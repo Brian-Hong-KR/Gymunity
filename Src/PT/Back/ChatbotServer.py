@@ -1,6 +1,5 @@
+
 from flask import Flask, render_template, request, jsonify
-from Persona.Samantha import talk
-# Torch CUDA
 
 app = Flask(__name__)
 
@@ -15,3 +14,5 @@ def process():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True)
+    
+    
