@@ -2,9 +2,11 @@
    On-Device AI 로 구현 (무료 서비스)
    최초 : 사전 설문 (웹) -> GET CustomPlan (100일 운동 프로그램) -> POST Profile (ID, Survey, CustomPlan )
    부팅 : GET DailyPlan (ID -> program, prompt, video_url)
-   오운완 : POST DailyExercise (ID, Date, 운동량)
+
 
 2. 영상 서버 개발 요구사항
+   Step : 영상 재생, 재생 완료시 Next Step
+   오운완 : POST DailyExercise (ID, Date, 운동량)
 
 3. ToDo
    Open Local sLLM 선택 : https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard
