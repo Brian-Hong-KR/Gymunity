@@ -5,10 +5,12 @@ from langchain_community.chat_models import ChatOllama
 from langchain_core.runnables.history import RunnableWithMessageHistory
 import time
 
-   
 llm = ChatOllama(model="gemma:2b") 
-
 app = Flask(__name__)
+
+@app.route("/")
+def PT(id, survey_answer_3):
+    return render_template("Exercise.html")
 
 @app.route("/Survey1", methods=["POST"])
 def Survey1(id, survey_answer_1):
