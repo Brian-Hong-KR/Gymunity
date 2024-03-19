@@ -3,9 +3,11 @@ from langchain.memory import ChatMessageHistory
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_community.chat_models import ChatOllama
 from langchain_core.runnables.history import RunnableWithMessageHistory
-import time
+import time, json, re, dotenv, os
 
-llm = ChatOllama(model="gemma:2b") 
+dotenv.load_dotenv()
+
+llm = ChatOllama(model="gemma:2b", temperature=0,) 
 app = Flask(__name__)
 
 @app.route("/")
@@ -34,14 +36,36 @@ def CreateProfile(id):
     # request / UserServer / POST / CreateProfile / id, surveys, guide
     return render_template("Main.html")
 
-@app.route("/DailyPlan", methods=["GET"])
+@app.route("/Excercise", methods=["GET"])
 def DailyPlan():
-    # request / UserServer / GET / ReadProfileAll / id 
-    # load chat_history
-    # GenerateExerciseStep (url_db, exercise_log, chat_history)
-    steps = [1, 2]
     
-    return steps
+    render_template("Exercise.html")
+    
+    user_level = "beginner"
+    user_goal = "fat loss"
+   
+    plan_prompt = """Create a """ + user_level + """'s home training program for """ + user_goal + """. do not explan. just keyword. you must choose a method from the pool :\n\n pool : """ + str(os.getenv("exercise_list")) + """\n\n output example: ["Push-ups", "Lunges", "Plank", "Burpees"]"""
+    
+    plan = llm.invoke( plan_prompt )
+    print (plan)
+    
+    matches = re.findall( r"\[(.*?)\]" , str(plan))
+    today_plan = eval(matches[0])
+      
+    with open(os.getenv("unit_guide_file_path"), "r", encoding='utf-8') as f:
+        unit_data = json.load(f)
+
+    daily_program = []
+
+    for plan in today_plan:    
+        for unit in unit_data:
+            if unit.get("unit_name") == plan + " (" + user_level + ")":
+                daily_program.append ( unit )
+
+    print ( daily_program )
+    
+    return daily_program
+    
 
 @app.route("/Question", methods=["GET"])
 def Question(id, input):
@@ -80,8 +104,7 @@ def Question(id, input):
 
     print ( response )
     print(f"응답 시간 : {end_time - start_time:.1f}초")
-    # GEMMA 2B 성능 : 노트북 : 6.2 / GPU : 
-    
+
     return response
 
 if __name__ == "__main__":
