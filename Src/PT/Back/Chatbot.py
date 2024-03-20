@@ -1,14 +1,40 @@
 from flask import Flask, render_template, request, jsonify
 from langchain.memory import ChatMessageHistory
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain_anthropic import ChatAnthropic
 from langchain_community.chat_models import ChatOllama
 from langchain_core.runnables.history import RunnableWithMessageHistory
+
 import time, json, re, dotenv, os
 
 dotenv.load_dotenv()
 
-llm = ChatOllama(model="gemma:2b", temperature=0,) 
+llm = ChatAnthropic(
+    model_name="claude-3-opus-20240229",
+    temperature=0, 
+    anthropic_api_key=os.getenv("anthropic_api_key"), 
+)
+
+local_llm = ChatOllama(model="gemma:2b", temperature=0,) 
 app = Flask(__name__)
+
+# Admin Open API (필요)
+# https://AdminServerIP:Port/plan_name      <- POST ( id, pt_plan )
+# https://AdminServerIP:Port/plus_point     <- POST ( id, reward )
+
+# Front                                        Route                                        Action
+# https://gymunity.ai/survey.html           -> https://PTServerIP:Port/survey_goal      -> https://gymunity.ai/survey_level.html?id="brian"&gender="male"&age="39"
+# https://gymunity.ai/survey_level.html     -> https://PTServerIP:Port/survey_level     -> https://gymunity.ai/survey_abnormal.html?id="brian"&gender="male"&age="39"&level="beginner"
+# https://gymunity.ai/survey_abnormal.html  -> https://PTServerIP:Port/survey_abnormal  -> pt_plan = generate_pt_plan ()
+#                                                                   https://gymunity.ai/pt_plan.html?id="brian"&gender="male"&age="39"&level="beginner"&abnormal="none"
+# https://gymunity.ai/pt_plan.html          -> https://PTServerIP:Port/pt_plan          -> https://AdminServerIP:Port/plan_name 
+
+# https://gymunity.ai/exercise.html         -> https://PTServerIP:Port/exercise         -> 
+#                                                                   user.pt_log.date, user.pt_log.program = generate_daily_plan () -> set_pt_env ( video, step, chatbot )
+#                                                                   https://AdminServerIP:Port/plus_point
+
+
+
 
 @app.route("/")
 def PT(id, survey_answer_3):
@@ -24,7 +50,23 @@ def Survey2(id, survey_answer_2):
 
 @app.route("/SurveyDone", methods=["POST"])
 def SurveyDone(id, survey_answer_3):
-    # GeneratePlan (surveys)
+    gender = "Male"
+    age= "39"
+    goal = "to lose weight"
+    level = "beginner"
+    abnormal = "none"
+
+    prompt = """You are a personal trainer. Answer the training guide based on your client's information. :\n
+    Client Information >
+    Gender: """ + gender + """\nAge : """ + age + """\nGoal : """ + goal + """\nExercise Level : """ + level + """\nHealth abnormalities: """ + abnormal + """\n\nOUTPUT example >
+    1. PT Plan Name : Weight Loss (beginner)
+    2. PT Plan Description : 
+    3. Additional recommendations (mindset, diet, sleep) : """
+
+    result = llm.invoke( prompt )
+
+    print ( result )
+
     return render_template("Plan.html")
 
 @app.route("/RestartSurvey", methods=["POST"])
@@ -46,7 +88,7 @@ def DailyPlan():
    
     plan_prompt = """Create a """ + user_level + """'s home training program for """ + user_goal + """. do not explan. just keyword. you must choose a method from the pool :\n\n pool : """ + str(os.getenv("exercise_list")) + """\n\n output example: ["Push-ups", "Lunges", "Plank", "Burpees"]"""
     
-    plan = llm.invoke( plan_prompt )
+    plan = local_llm.invoke( plan_prompt )
     print (plan)
     
     matches = re.findall( r"\[(.*?)\]" , str(plan))
@@ -82,7 +124,7 @@ def Question(id, input):
         ]
     )
 
-    chain = system_prompt | llm
+    chain = system_prompt | local_llm
 
     chat_history = ChatMessageHistory()
 
