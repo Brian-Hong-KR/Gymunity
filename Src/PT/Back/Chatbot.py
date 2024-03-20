@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from langchain.memory import ChatMessageHistory
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_anthropic import ChatAnthropic
 from langchain_community.chat_models import ChatOllama
 from langchain_core.runnables.history import RunnableWithMessageHistory
 
@@ -9,13 +8,7 @@ import time, json, re, dotenv, os
 
 dotenv.load_dotenv()
 
-llm = ChatAnthropic(
-    model_name="claude-3-opus-20240229",
-    temperature=0, 
-    anthropic_api_key=os.getenv("anthropic_api_key"), 
-)
-
-local_llm = ChatOllama(model="gemma:2b", temperature=0,) 
+llm = ChatOllama(model="llama2", temperature=0,) 
 app = Flask(__name__)
 
 # Admin Open API (필요)
@@ -32,8 +25,6 @@ app = Flask(__name__)
 # https://gymunity.ai/exercise.html         -> https://PTServerIP:Port/exercise         -> 
 #                                                                   user.pt_log.date, user.pt_log.program = generate_daily_plan () -> set_pt_env ( video, step, chatbot )
 #                                                                   https://AdminServerIP:Port/plus_point
-
-
 
 
 @app.route("/")
@@ -63,6 +54,11 @@ def SurveyDone(id, survey_answer_3):
     2. PT Plan Description : 
     3. Additional recommendations (mindset, diet, sleep) : """
 
+#    사용자 정보 : 성별, 나이, 운동 목표, 운동 수준, 건강 이상
+#       운동 목표 : 체중 감량, 근육량 증가, 종합 (체중, 체력, 스트레스 해소 등), 기타
+#       운동 수준 : 초급, 중급, 고급
+#    건강 이상 : 없음, 당뇨, 심장, 고혈압, 뼈/관절, 빈혈, 기타 => 추가 가이드 (추천 상품)
+
     result = llm.invoke( prompt )
 
     print ( result )
@@ -88,7 +84,7 @@ def DailyPlan():
    
     plan_prompt = """Create a """ + user_level + """'s home training program for """ + user_goal + """. do not explan. just keyword. you must choose a method from the pool :\n\n pool : """ + str(os.getenv("exercise_list")) + """\n\n output example: ["Push-ups", "Lunges", "Plank", "Burpees"]"""
     
-    plan = local_llm.invoke( plan_prompt )
+    plan = llm.invoke( plan_prompt )
     print (plan)
     
     matches = re.findall( r"\[(.*?)\]" , str(plan))
@@ -124,7 +120,7 @@ def Question(id, input):
         ]
     )
 
-    chain = system_prompt | local_llm
+    chain = system_prompt | llm
 
     chat_history = ChatMessageHistory()
 
