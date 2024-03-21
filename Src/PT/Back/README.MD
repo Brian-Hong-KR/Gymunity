@@ -59,3 +59,89 @@ Create a beginner's home training program with a combination of exercises from t
 exercises_pool = [ "Squats", "Push-ups", "Lunges", "Plank", "Burpees", "Mountain Climbers", "Jumping Jacks", "High Knees", "Glute Bridge", "Crunches", "Bicycle Crunches", "Russian Twists", "Leg Raises", "Wall Sits", "Tricep Dips", "Inchworm Walk", "Superman", "Bird Dog", "Dead Bug", "Calf Raises", "Single-Leg Deadlift", "Curtsy Lunges", "Fire Hydrants", "Donkey Kicks", "Lateral Lunges", "Step-ups", "Box Jumps", "Tuck Jumps", "Jumping Lunges", "Plank Jacks", "Plank Tap", "Plank Reach", "Side Plank", "Reverse Plank", "Downward Dog Push-ups", "Diamond Push-ups", "Decline Push-ups", "Archer Push-ups", "Shoulder Taps", "Leg Flutters", "Scissor Kicks", "Hollow Hold", "Reverse Crunches", "Sit-ups", "V-ups", "Flutter Kicks", "Heel Touches", "Oblique Crunches", "Plank with Knee Tucks", "Squat Jumps", "Arm circles", "Butt kicks", "Arm swings", "Neck rolls", "Shoulder rolls", "Ankle circles", "Marching in place", "Arm raises", "Quad stretches", "Hamstring stretches", "Chest stretches", "Tricep stretches", "Shoulder stretches", "Lower back rotations", "Neck stretches", "Lower back stretch", "Downward-Facing Dog", "Warrior II Pose", "Triangle Pose", "Mountain Pose", "Cat-Cow Pose", "Child's Pose", "Plank Pose", "Bridge Pose", "Cobra Pose", "Seated Spinal Twist"]
 
 output_example = ["Push-ups", "Lunges", "Plank", "Burpees"]
+
+llm_list = ["gemma:2b", "solar", "neural-chat", "phi", "llama2"]
+
+BENCHMARK RESULT
+
+1.  input = """Create a beginner's home training program with a combination of exercises from the given pool. the output must be as shown in the example. :
+
+        exercises_pool = [ "Squats", "Push-ups", "Lunges", "Plank", "Burpees", "Mountain Climbers", "Jumping Jacks", "High Knees", "Glute Bridge", "Crunches", "Bicycle Crunches", "Russian Twists", "Leg Raises", "Wall Sits", "Tricep Dips", "Inchworm Walk", "Superman", "Bird Dog", "Dead Bug", "Calf Raises", "Single-Leg Deadlift", "Curtsy Lunges", "Fire Hydrants", "Donkey Kicks", "Lateral Lunges", "Step-ups", "Box Jumps", "Tuck Jumps", "Jumping Lunges", "Plank Jacks", "Plank Tap", "Plank Reach", "Side Plank", "Reverse Plank", "Downward Dog Push-ups", "Diamond Push-ups", "Decline Push-ups", "Archer Push-ups", "Shoulder Taps", "Leg Flutters", "Scissor Kicks", "Hollow Hold", "Reverse Crunches", "Sit-ups", "V-ups", "Flutter Kicks", "Heel Touches", "Oblique Crunches", "Plank with Knee Tucks", "Squat Jumps", "Arm circles", "Butt kicks", "Arm swings", "Neck rolls", "Shoulder rolls", "Ankle circles", "Marching in place", "Arm raises", "Quad stretches", "Hamstring stretches", "Chest stretches", "Tricep stretches", "Shoulder stretches", "Lower back rotations", "Neck stretches", "Lower back stretch", "Downward-Facing Dog", "Warrior II Pose", "Triangle Pose", "Mountain Pose", "Cat-Cow Pose", "Child's Pose", "Plank Pose", "Bridge Pose", "Cobra Pose", "Seated Spinal Twist"]
+
+        output_example = ["Push-ups", "Lunges", "Plank", "Burpees"]"""
+
+gemma:2b
+
+- 24.65, normal
+  solar
+- 24.71, good
+  neural-chat
+- 51.69, normal
+  phi
+- 14.87, bad
+  llama2
+- 47.90, normal
+
+2.  prompt = """Select 8 items from the EXERCISE_POOL, and Answer in the form of OUTPUT_EXAMPLE :
+
+    EXERCISE_POOL = [ "Squats", "Push-ups", "Lunges", "Plank", "Burpees", "Mountain Climbers", "Jumping Jacks", "High Knees", "Glute Bridge", "Crunches", "Bicycle Crunches", "Russian Twists", "Leg Raises", "Wall Sits", "Tricep Dips", "Inchworm Walk", "Superman", "Bird Dog", "Dead Bug", "Calf Raises", "Single-Leg Deadlift", "Curtsy Lunges", "Fire Hydrants", "Donkey Kicks", "Lateral Lunges", "Step-ups", "Box Jumps", "Tuck Jumps", "Jumping Lunges", "Plank Jacks", "Plank Tap", "Plank Reach", "Side Plank", "Reverse Plank", "Downward Dog Push-ups", "Diamond Push-ups", "Decline Push-ups", "Archer Push-ups", "Shoulder Taps", "Leg Flutters", "Scissor Kicks", "Hollow Hold", "Reverse Crunches", "Sit-ups", "V-ups", "Flutter Kicks", "Heel Touches", "Oblique Crunches", "Plank with Knee Tucks", "Squat Jumps", "Arm circles", "Butt kicks", "Arm swings", "Neck rolls", "Shoulder rolls", "Ankle circles", "Marching in place", "Arm raises", "Quad stretches", "Hamstring stretches", "Chest stretches", "Tricep stretches", "Shoulder stretches", "Lower back rotations", "Neck stretches", "Lower back stretch", "Downward-Facing Dog", "Warrior II Pose", "Triangle Pose", "Mountain Pose", "Cat-Cow Pose", "Child's Pose", "Plank Pose", "Bridge Pose", "Cobra Pose", "Seated Spinal Twist"]
+
+    OUPUT_EXAMPLE = ["Push-ups", "Lunges", "Plank", "Burpees"]""
+
+gemma:2b
+
+- 13.98, normal
+  solar
+- 129.53, good
+  neural-chat
+- 27.73, good
+  phi
+- 28.5, bad
+  llama2
+- 30.34, bad
+
+3.  prompt = """Select 8 items from the EXERCISE_POOL. Don't explan. just list the 8 items :
+
+    EXERCISE_POOL = [ "Squats", "Push-ups", "Lunges", "Plank", "Burpees", "Mountain Climbers", "Jumping Jacks", "High Knees", "Glute Bridge", "Crunches", "Bicycle Crunches", "Russian Twists", "Leg Raises", "Wall Sits", "Tricep Dips", "Inchworm Walk", "Superman", "Bird Dog", "Dead Bug", "Calf Raises", "Single-Leg Deadlift", "Curtsy Lunges", "Fire Hydrants", "Donkey Kicks", "Lateral Lunges", "Step-ups", "Box Jumps", "Tuck Jumps", "Jumping Lunges", "Plank Jacks", "Plank Tap", "Plank Reach", "Side Plank", "Reverse Plank", "Downward Dog Push-ups", "Diamond Push-ups", "Decline Push-ups", "Archer Push-ups", "Shoulder Taps", "Leg Flutters", "Scissor Kicks", "Hollow Hold", "Reverse Crunches", "Sit-ups", "V-ups", "Flutter Kicks", "Heel Touches", "Oblique Crunches", "Plank with Knee Tucks", "Squat Jumps", "Arm circles", "Butt kicks", "Arm swings", "Neck rolls", "Shoulder rolls", "Ankle circles", "Marching in place", "Arm raises", "Quad stretches", "Hamstring stretches", "Chest stretches", "Tricep stretches", "Shoulder stretches", "Lower back rotations", "Neck stretches", "Lower back stretch", "Downward-Facing Dog", "Warrior II Pose", "Triangle Pose", "Mountain Pose", "Cat-Cow Pose", "Child's Pose", "Plank Pose", "Bridge Pose", "Cobra Pose", "Seated Spinal Twist"]
+
+    ouput example : Push-ups, Lunges, Plank, Burpees"""
+
+gemma:2b
+
+- 16.70 normal
+  solar
+- 61.26, good
+  neural-chat
+- 27.78, Squats, Jumping Jacks, Glute Bridge, Russian Twists, Leg Raises, Wall Sits, Tricep Dips, Calf Raises
+  phi
+- 37.07 , bad
+  llama2
+- 27.90, normal
+
+4. random 8 items
+
+gemma : 15.8 (not good)
+neural-chat : 9.1 (very good)
+
+5.
+
+choose 8 fat-burning items from the EXERCISE_POOL to . Don't explan, just list the 8 items :
+
+[Squats, Push-ups, Lunges, Mountain Climbers, Jumping Jacks, High Knees, Crunches, Russian Twists]
+4.652194976806641
+
+6. choose 8 items from the EXERCISE_POOL to strengthen butt muscles. Do not explan, just list the 8 items :
+   Squats, Plank, Burpees, Glute Bridge
+   4.31516170501709
+
+7. temperature tune
+
+A's Answer >
+Squats, Mountain Climbers, High Knees, Glute Bridge, Crunches, Bicycle Crunches, Russian Twists, Leg Raises
+Squats, Mountain Climbers, Glute Bridge, Calf Raises
+Squats, Mountain Climbers, High Knees, Glute Bridge, Crunches, Bicycle Crunches, Russian Twists, and Leg Raises
+
+B's Answer >
+Squats, Mountain Climbers, Jumping Jacks, High Knees, Glute Bridge, Crunches, Bicycle Crunches, Russian Twists
+Squats, Mountain Climbers, High Knees, Glute Bridge, Crunches, Bicycle Crunches, Russian Twists, Leg Raises
+Squats, Push-ups, Lunges, Glute Bridge, Calf Raises, Single-Leg Deadlift, Curtsy Lunges, Fire Hydrants
