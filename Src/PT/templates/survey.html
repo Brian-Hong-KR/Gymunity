@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Survey</title>
+  </head>
+  <body>
+    <h1>사전 설문</h1>
+
+    <form action="{{ url_for('plan') }}" method="post">
+      <h4>1. 성별은?</h4>
+      <input type="radio" id="option1" name="gender" value="male" />
+      <label for="option1">남자</label><br />
+      <input type="radio" id="option2" name="gender" value="female" checked />
+      <label for="option2">여자</label><br />
+
+      <h4>2. 연령대는?</h4>
+      <input type="radio" id="option1" name="age" value="gen10" />
+      <label for="option1">10대</label><br />
+      <input type="radio" id="option2" name="age" value="gen20" checked />
+      <label for="option2">20대</label><br />
+      <input type="radio" id="option3" name="age" value="gen30" />
+      <label for="option3">30대</label><br />
+      <input type="radio" id="option4" name="age" value="gen40" />
+      <label for="option4">40대</label><br />
+      <input type="radio" id="option5" name="age" value="gen50" />
+      <label for="option5">50대</label><br />
+      <input type="radio" id="option6" name="age" value="gen60" />
+      <label for="option6">60대 이상</label><br />
+
+      <h4>3. 운동 목표는?</h4>
+      <input type="radio" id="option1" name="goal" value="fat" checked />
+      <label for="option1">체지방량 감소</label><br />
+      <input type="radio" id="option2" name="goal" value="muscle" />
+      <label for="option2">근육량 증가</label><br />
+      <input type="radio" id="option3" name="goal" value="wellbeing" />
+      <label for="option3">종합 건강</label><br />
+
+      <h4>4. 운동 수준은?</h4>
+      <input type="radio" id="option1" name="level" value="beginner" checked />
+      <label for="option1">입문</label><br />
+      <input type="radio" id="option2" name="level" value="intermediate" />
+      <label for="option2">중급</label><br />
+      <input type="radio" id="option3" name="level" value="advanced" />
+      <label for="option3">전문가</label><br />
+
+      <h4>5. 질환?</h4>
+      <input type="radio" id="option1" name="abnormal" value="blood" />
+      <label for="option1">심혈관계 (심장, 혈관, 혈압 등) </label><br />
+      <input type="radio" id="option2" name="abnormal" value="born" />
+      <label for="option2">근골격계 (디스크, 관절, 뼈, 근육 등)</label><br />
+      <input type="radio" id="option3" name="abnormal" value="breath" />
+      <label for="option3">호흡기 (천식, 폐렴, 흉통 등)</label><br />
+      <input type="radio" id="option4" name="abnormal" value="none" checked />
+      <label for="option4">없음</label><br />
+
+      <input type="submit" value="맞춤 플랜 생성 " />
+    </form>
+    <h5>맞춤 플랜 생성에 약 2분 소요됩니다. 잠시만 기다려 주세요.</h5>
+  </body>
+</html>

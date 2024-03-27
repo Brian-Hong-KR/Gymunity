@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plan</title>
+  </head>
+  <body>
+    <h1>맞춤 훈련</h1>
+    <form action="{{ url_for('survey_done') }}" method="post">
+      <p>{{plan_desc}}</p>
+      <input type="submit" value="시작하기" />
+    </form>
+    <form action="{{ url_for('survey_reset') }}" method="post">
+      <input type="submit" value="다시하기" />
+    </form>
+  </body>
+</html>
