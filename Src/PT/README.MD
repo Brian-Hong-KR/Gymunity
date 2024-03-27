@@ -46,6 +46,10 @@
    claude-3-opus (현시점 최고성능 LLM) : https://python.langchain.com/docs/integrations/chat/anthropic
    youtube api in langchain : https://python.langchain.com/docs/integrations/tools/youtube
    Ollama : https://python.langchain.com/docs/integrations/llms/ollama
+   Google Sign Up : https://m.blog.naver.com/hjinha2/221171730314
+   Youtube in myWebsite : https://developers.google.com/youtube/iframe_api_reference?hl=ko
+   Flask 템플릿 테그 : https://wikidocs.net/81046
+
 
 6. schedule
    design

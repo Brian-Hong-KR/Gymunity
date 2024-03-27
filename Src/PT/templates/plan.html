@@ -7,11 +7,11 @@
   </head>
   <body>
     <h1>맞춤 훈련</h1>
-    <form action="{{ url_for('survey_done') }}" method="post">
-      <p>{{plan_desc}}</p>
+    <form action="{{ url_for('pt_server.survey_done') }}" method="post">
+      <a>{{plan_desc}}</a>
       <input type="submit" value="시작하기" />
     </form>
-    <form action="{{ url_for('survey_reset') }}" method="post">
+    <form action="{{ url_for('pt_server.survey_reset') }}" method="post">
       <input type="submit" value="다시하기" />
     </form>
   </body>
