@@ -1,12 +1,16 @@
 from langchain.llms import Ollama
-import json, re, os
+import json, re
 
-exercises = ["Squats", "Push-ups", "Lunges", "Plank", "Burpees", "Mountain Climbers", "Jumping Jacks", "High Knees", "Glute Bridge", "Crunches", "Bicycle Crunches", "Russian Twists", "Leg Raises", "Wall Sits", "Tricep Dips", "Inchworm Walk", "Superman", "Bird Dog", "Dead Bug", "Calf Raises", "Single-Leg Deadlift", "Curtsy Lunges", "Fire Hydrants", "Donkey Kicks", "Lateral Lunges", "Step-ups", "Box Jumps", "Tuck Jumps", "Jumping Lunges", "Plank Jacks", "Plank Tap", "Plank Reach", "Side Plank", "Reverse Plank", "Downward Dog Push-ups", "Diamond Push-ups", "Decline Push-ups", "Archer Push-ups", "Shoulder Taps", "Leg Flutters", "Scissor Kicks", "Hollow Hold", "Reverse Crunches", "Sit-ups", "V-ups", "Flutter Kicks", "Heel Touches", "Oblique Crunches", "Plank with Knee Tucks", "Squat Jumps", "Arm circles", "Butt kicks", "Arm swings", "Neck rolls", "Shoulder rolls", "Ankle circles", "Marching in place", "Arm raises", "Quad stretches", "Hamstring stretches", "Chest stretches", "Tricep stretches", "Shoulder stretches", "Lower back rotations", "Neck stretches", "Lower back stretch", "Downward-Facing Dog", "Warrior II Pose", "Triangle Pose", "Mountain Pose", "Cat-Cow Pose", "Child's Pose", "Plank Pose", "Bridge Pose", "Cobra Pose", "Seated Spinal Twist"]
+import dotenv, os
+f = dotenv.find_dotenv()
+dotenv.load_dotenv(f)
+file_path = os.environ["pt_unit_file_path"]
+exercises = os.environ["exercises"]
 
 llm = Ollama(model="neural-chat", temperature=0.5) 
 
 unit_data = []
-with open("./PT/Data/pt_unit.json", "r", encoding='utf-8') as f:
+with open( file_path , "r", encoding='utf-8') as f:
     unit_data = json.load(f)
 
 def generate_pt_plan (gender, age, goal, level, abnormal):
@@ -23,7 +27,7 @@ def generate_pt_plan (gender, age, goal, level, abnormal):
     return result
 
 def generate_daily_program (goal, level):
-    prompt = """Create a """ + level + """'s home training program for """ + goal + """. do not explan. just keyword. you must choose a method from the pool :\n\n pool : """ + str(exercises) + """\n\n output example: ["Push-ups", "Lunges", "Plank", "Burpees"]"""
+    prompt = """Create a """ + level + """'s home training program for """ + goal + """. do not explan. just keyword. you must choose a method from the pool :\n\n pool : """ + str( exercises ) + """\n\n output example: ["Push-ups", "Lunges", "Plank", "Burpees"]"""
     
     plan = llm.invoke( prompt )
     print (plan)

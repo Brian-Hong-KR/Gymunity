@@ -7,7 +7,11 @@ db = SQLAlchemy()
 migrate = Migrate()
 
 if __name__=="__main__":
-    app = Flask(__name__, template_folder='templates')
+    app = Flask(__name__, 
+                static_url_path='',
+                static_folder='../../Front/',
+                template_folder='../../Front/'          
+                )
     app.config.from_object(config)
 
     db.init_app(app)
@@ -19,4 +23,3 @@ if __name__=="__main__":
     
     app.run( debug = True )
 
-    # return app
