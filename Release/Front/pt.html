@@ -117,6 +117,37 @@
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
               <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div
+                    class="text-xs font-weight-bold text-info text-uppercase mb-1"
+                  >
+                    오늘의 운동 진행 상황
+                  </div>
+                  <div class="row no-gutters align-items-center">
+                    <div class="col-auto">
+                      <div
+                        class="h5 mb-0 mr-3 font-weight-bold text-gray-800"
+                      >
+                        50%
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="progress progress-sm mr-2">
+                        <div
+                          class="progress-bar bg-info"
+                          role="progressbar"
+                          style="width: 50%"
+                          aria-valuenow="50"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <li class="nav-item dropdown no-arrow d-sm-none">
                 <a
                   class="nav-link dropdown-toggle"
@@ -220,83 +251,40 @@
                 ></iframe>
         </div>
 
-      <!-- Earnings (Monthly) Card Example -->
-      <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-info shadow h-100 py-2">
-          <div class="card-body">
-            <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                <div
-                  class="text-xs font-weight-bold text-info text-uppercase mb-1"
-                >
-                  오늘의 운동 진행 상황
-                </div>
-                <div class="row no-gutters align-items-center">
-                  <div class="col-auto">
-                    <div
-                      class="h5 mb-0 mr-3 font-weight-bold text-gray-800"
-                    >
-                      50%
+
+      <!-- Chat -->
+
+                <div class="chat">
+                    <div class="chat-history">
+                        <ul class="m-b-0">
+                            <li class="clearfix">
+                                <div class="message other-message float-right"> Hi Aiden, how are you? How is the project coming along? </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="message-data">
+                                    <span class="message-data-time">10:12 AM, Today</span>
+                                </div>
+                                <div class="message my-message">Are we meeting today?</div>                                    
+                            </li>                               
+                            <li class="clearfix">
+                                <div class="message-data">
+                                    <span class="message-data-time">10:15 AM, Today</span>
+                                </div>
+                                <div class="message my-message">Project has been already finished and I have results to show you.</div>
+                            </li>
+                        </ul>
                     </div>
-                  </div>
-                  <div class="col">
-                    <div class="progress progress-sm mr-2">
-                      <div
-                        class="progress-bar bg-info"
-                        role="progressbar"
-                        style="width: 50%"
-                        aria-valuenow="50"
-                        aria-valuemin="0"
-                        aria-valuemax="100"
-                      ></div>
+                    <div class="chat-message clearfix">
+                        <div class="input-group mb-0">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-send">Q</i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Enter text here...">                                    
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-<!-- Basic Card Example -->
-    <div class="card shadow mb-4">
-      <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">
-          사용자 입력 "뭐부터 해야하나요?"
-        </h6>
-      </div>
-      <div class="card-body">
-        AI 퍼스널 트레이너 답변 : "The styling for this basic card example is created by using
-        default Bootstrap utility classes. By using utility classes,
-        the style of the card compo"
-      </div>
-    </div>
-    <div class="card shadow mb-4">
-      <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">
-          사용자 입력 "뭐부터 해야하나요?"
-        </h6>
-      </div>
-      <div class="card-body">
-        AI 퍼스널 트레이너 답변 : "The styling for this basic card example is created by using
-        default Bootstrap utility classes. By using utility classes,
-        the style of the card compo"
-      </div>
-    </div>
 
 
-        <div class="col-sm-6">
-          <input
-            type="text"
-            class="form-control form-control-user"
-            id="exampleLastName"
-            placeholder="Last Name"
-          />
-        </div>
-        
-        <a href="#" class="btn btn-warning btn-circle btn-lg">
-          <i class="fas fa-exclamation-triangle"></i>
-      </a>
 
           <!-- /.container-fluid -->
         </div>
