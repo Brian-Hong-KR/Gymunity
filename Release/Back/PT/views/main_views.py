@@ -52,7 +52,16 @@ def survey_reset():
 
 @bp.route('/exercise')
 def exercise():
-    return render_template ( "pt.html")
+    daily_program = Chatbot.generate_daily_program(goal="diet", level = "beginner")
+
+    play_list = ""
+    for unit in daily_program:
+        play_list += unit.get("unit_video") + ","
+
+    # play_list = play_list[:-2] 
+    #TODO : 마지막 쉼표 제거?
+
+    return render_template ( "pt.html", play_list=play_list)
 
 # @bp.get("/pt_data/<int:user_code>/")
 # def pt_data (user_code):
