@@ -5,16 +5,8 @@
   </head>
 
   <body>
-    <!-- ibYD23-dtjo -->
-    <!-- playlist=ibYD23-dtjo" -->
-    <!-- YouTube 동영상을 삽입할 <div> 태그 -->
-    <!-- <a>{{video_list}}</a> -->
-
     <div id="player"></div>
-
-    <!-- YouTube API 코드 비동기로 로드 -->
     <script>
-      // YouTube API 스크립트 동적으로 로드
       var tag = document.createElement('script');
       tag.src = 'https://www.youtube.com/player_api';
       var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -23,41 +15,22 @@
       var player;
 
       function onYouTubePlayerAPIReady() {
-        // 플레이어 생성 및 설정
         player = new YT.Player('player', {
-          height: '360',
-          width: '640',
-          //   videoId: '{{ video_list }}',
           playerVars: {
             listType: 'playlist',
             list: '{{video_list}}',
-            autoplay: 1, // 자동 재생
-            controls: 0, // 컨트롤 숨김
-            rel: 0, // 관련 동영상 표시 안 함
+            rel: 0,
           },
           events: {
-            onReady: onPlayerReady,
             onStateChange: onPlayerStateChange,
           },
         });
       }
 
-      // 플레이어 준비 시 음소거 및 재생 시작
-      function onPlayerReady(event) {
-        event.target.mute();
-        event.target.playVideo();
-      }
-
-      // 플레이어 상태 변화 감지
       function onPlayerStateChange(event) {
         if (event.data == YT.PlayerState.ENDED) {
-          console.log('동영상 재생이 종료되었습니다.');
-        } else if (event.data == YT.PlayerState.PLAYING) {
-          console.log('동영상이 재생 중입니다.');
-        } else if (event.data == YT.PlayerState.PAUSED) {
-          console.log('동영상이 일시정지되었습니다.');
+          console.log('오운완');
         }
-        // ... 추가적인 상태에 따른 동작을 정의할 수 있습니다.
       }
     </script>
   </body>
