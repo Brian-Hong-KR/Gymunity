@@ -13,14 +13,16 @@
       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
       var player;
+      var index = 0;
+      var video_list_str = '{{video_list}}';
+      const my_play_list = video_list_str.split(',');
+
+      console.log(my_play_list[index]);
 
       function onYouTubePlayerAPIReady() {
         player = new YT.Player('player', {
-          playerVars: {
-            listType: 'playlist',
-            list: '{{video_list}}',
-            rel: 0,
-          },
+          videoId: my_play_list[index],
+          playerVars: { rel: 0 },
           events: {
             onStateChange: onPlayerStateChange,
           },
@@ -28,8 +30,14 @@
       }
 
       function onPlayerStateChange(event) {
-        if (event.data == YT.PlayerState.ENDED) {
-          console.log('오운완');
+        if (event.data === YT.PlayerState.ENDED) {
+          if (index < my_play_list.length - 1) {
+            console.log('스텝 완료');
+            index++;
+            player.loadVideoById(my_play_list[index]);
+          } else {
+            console.log('오늘 운동 완료');
+          }
         }
       }
     </script>
