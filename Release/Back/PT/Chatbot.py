@@ -5,7 +5,10 @@ import dotenv, os
 f = dotenv.find_dotenv()
 dotenv.load_dotenv(f)
 file_path = os.environ["pt_unit_file_path"]
-exercises = os.environ["exercises"]
+exercise_list = os.environ["exercises"]
+exercises = eval (exercise_list)
+print ( type(exercises) )
+
 
 llm = Ollama(model="neural-chat", temperature=0.5) 
 
