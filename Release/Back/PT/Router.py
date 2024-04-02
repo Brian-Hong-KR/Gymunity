@@ -46,7 +46,8 @@ def chatbot_response():
     
     return answer
 
-# @bp.route('/exercise_done')
-# def exercise_done():
-#     DataBase.AddPoint(user_id, )
-#     # TODO : User ID
+@bp.route('/exercise_done')
+def exercise_done():
+    user_id = request.form["user_id"]  
+    DataBase.AddPoint(user_id=user_id, amount=20 )
+    # TODO : User ID

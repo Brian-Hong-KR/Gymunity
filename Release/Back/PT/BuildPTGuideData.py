@@ -49,7 +49,8 @@ for i in range (len (exercises)):
         with open( file_path, "a", encoding='utf-8') as f:
             json.dump (new_data, f, indent = 4)
             f.write(",\n")
-            
+
+# TODO : 마지막 콤마 제거
 with open(file_path, "a", encoding='utf-8') as f:
     f.write("]")
     
