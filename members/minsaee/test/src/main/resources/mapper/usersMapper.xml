@@ -5,10 +5,10 @@
 	
 	<!-- 회원가입-->
 	<!-- Users 테이블에 데이터 삽입 -->
-	<insert id="insertUser" parameterType="UsersDTO" useGeneratedKeys="true" keyProperty="userId">
+	<insert id="insertUser" parameterType="UsersDTO" useGeneratedKeys="true" keyProperty="user_id">
 	<![CDATA[
-	INSERT INTO users (user_account_id, nickname)
-	VALUES (#{user_account_id}, #{nickname});
+	INSERT INTO users (user_account_id, nickname, admin_yn)
+	VALUES (#{user_account_id}, #{nickname}, #{admin_yn})
     ]]>
     </insert>
     
@@ -16,7 +16,7 @@
     <insert id="insertProfile" parameterType="UsersDTO">
     <![CDATA[
     INSERT INTO profiles (user_id, password, user_email, user_name)
-    VALUES (#{userId}, #{password}, #{user_email}, #{user_name});
+    VALUES (#{user_id}, #{password}, #{user_email}, #{user_name})
     ]]>
     </insert>
 
@@ -29,4 +29,10 @@
 		 INSERT INTO pt(plan_name, plan_desc)
 		 VALUES(#{plan_name}, #{plan_desc});
 		 ]]>-->
+		 
+	<!--회원정보 가져오기 -->
+    <select id="selectByAccountId"   parameterType="string"  resultType="UsersDTO">
+       SELECT * FROM users
+       WHERE user_account_id = #{user_account_id}
+    </select>
 </mapper>

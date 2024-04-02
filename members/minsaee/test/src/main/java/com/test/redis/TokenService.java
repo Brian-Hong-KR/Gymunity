@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class TokenService {
 
-	private RedisTemplate<String, Object> redisTemplate;
+	private final RedisTemplate<String, Object> redisTemplate;
 
 	public TokenService(RedisTemplate<String, Object> redisTemplate) {
 		this.redisTemplate = redisTemplate;

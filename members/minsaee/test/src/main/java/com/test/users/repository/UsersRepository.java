@@ -11,5 +11,7 @@ public interface UsersRepository {
 	
 	public int insertUser(UsersDTO dto);
 	public int insertProfile(UsersDTO dto);
+	
+	public UsersDTO selectByAccountId(String accountId);
 
 }

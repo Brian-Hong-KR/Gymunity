@@ -1,13 +1,15 @@
-package com.company.shop.security.jwt;
+package com.test.security.jwt;
 
 import java.io.IOException;
+
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.company.shop.members.dto.SignResponse;
-import com.company.shop.members.service.MembersServiceImp;
+import com.test.users.dto.SignResponse;
+import com.test.users.service.UsersServiceImp;
+
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,13 +24,11 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 	private static final int REFRESH_EXPIRED = 702;
 	private static final int DOUBLE_EXPIRED = 703;
 
-	private final MembersServiceImp membersServiceImp;
+	private final UsersServiceImp usersServiceImp;
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
-
-		// login 전에는 null이어야 함.
 
 		String accessToken = request.getHeader("Authorization");
 		log.info("accessToken:{}", accessToken);
@@ -79,18 +79,18 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 		// Bearer 뒤 token만 가져오기
 		String token = accessToken.split(" ")[1];
 
-		String memberEmail = JwtProvider.getMemberEmail(token);
+		String userAccounId = JwtProvider.getUserAccountId(token);
 
-		SignResponse loginUser = membersServiceImp.getByMemberEmail(memberEmail);
+		SignResponse loginUser = usersServiceImp.getByUserAccountId(userAccounId);
 
 		UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-				// 뒤의 null 자리에 관리자 권한?
-				loginUser.getMemberEmail(), null, null);
+				loginUser.getUserAccountId(), null, null);
 
 		authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
 		SecurityContextHolder.getContext().setAuthentication(authenticationToken);
 		filterChain.doFilter(request, response);
-	}
 
-}// end class()
+	} // end doFilterInternal()
+
+}// end class
