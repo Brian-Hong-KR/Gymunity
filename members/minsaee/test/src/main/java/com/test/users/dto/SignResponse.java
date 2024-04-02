@@ -20,12 +20,10 @@ public class SignResponse {
 	private String accessToken;
 	private String refreshToken;
 
-	public SignResponse(String memberEmail, String memberPass) {
+	public SignResponse(String userAccountId, String nickName) {
 		super();
 		this.userAccountId = userAccountId;
 		this.nickName = nickName;
 	}
-
-	
 
 }
