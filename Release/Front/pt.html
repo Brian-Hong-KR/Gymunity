@@ -237,52 +237,104 @@
             </ul>
           </nav>
           <!-- End of Topbar -->
-          <body>
-            <div class ="ptVideo">
-                <iframe
-                width="560"
-                height="315"
-                src="https://www.youtube.com/embed/XeIisvrExBU?si=EUjzVfEL_N7eyg4R"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen
-                ></iframe>
+          <div id="player"></div>
+          <!-- <div class ="ptVideo" id="player"></div> -->
+        <script>
+          var tag = document.createElement('script');
+          tag.src = 'https://www.youtube.com/player_api';
+          var firstScriptTag = document.getElementsByTagName('script')[0];
+          firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+          var player;
+          var index = 0;
+          var video_list_str = '{{video_list}}';
+          const my_play_list = video_list_str.split(',');
+
+          console.log(my_play_list[index]);
+
+          function onYouTubePlayerAPIReady() {
+            player = new YT.Player('player', {
+              videoId: my_play_list[index],
+              playerVars: { rel: 0 },
+              events: {
+                onStateChange: onPlayerStateChange,
+              },
+            });
+          }
+
+          function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.ENDED) {
+              if (index < my_play_list.length - 1) {
+                console.log('스텝 완료');
+                index++;
+                player.loadVideoById(my_play_list[index]);
+              } else {
+                console.log('오늘 운동 완료');
+                // TODO : /exercise_done 호출 (user_id)
+              }
+            }
+          }
+        </script>
+
+        <div class="row">
+          <div class="col-md-10 mr-auto ml-auto">
+            
+            <form>
+              <div id="chatbox">
+                <div class="col-md-8 ml-auto mr-auto">
+                  <p class="botText">
+                    <span>unit_name 에 대해서 무엇이든 물어보세요.</span>
+                  </p>
+                </div>
+              </div>
+              <div id="userInput" class="row">
+                <!-- TODO : 현재 unit_name 을 얻어내는 방법 -->
+                <div class="col-md-10">
+                  <input
+                    id="question"
+                    type="text"
+                    name="question"
+                    placeholder="Question"
+                    class="form-control"
+                  />
+                  <button type="submit" id="send" class="btn btn-warning">
+                    Send
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
 
-
-      <!-- Chat -->
-      <div class="chat">
-          <div class="chat-history">
-              <ul class="m-b-0">
-                  <li class="clearfix">
-                      <div class="message other-message float-right"> Hi Aiden, how are you? How is the project coming along? </div>
-                  </li>
-                  <li class="clearfix">
-                      <div class="message-data">
-                          <span class="message-data-time">10:12 AM, Today</span>
-                      </div>
-                      <div class="message my-message">Are we meeting today?</div>                                    
-                  </li>                               
-                  <li class="clearfix">
-                      <div class="message-data">
-                          <span class="message-data-time">10:15 AM, Today</span>
-                      </div>
-                      <div class="message my-message">Project has been already finished and I have results to show you.</div>
-                  </li>
-              </ul>
-          </div>
-          <div class="chat-message clearfix">
-              <div class="input-group mb-0">
-                  <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="fa fa-send">Q</i></span>
-                  </div>
-                  <input type="text" class="form-control" placeholder="Enter text here...">                                    
-              </div>
-          </div>
-      </div>
-
+        <script>
+          $(document).ready(function () {
+            $('form').on('submit', function (event) {
+              var rawText = $('#text').val();
+              var userHtml = '<p class="userText"><span>' + rawText + '</span></p>';
+              $('#text').val('');
+              $('#chatbox').append(userHtml);
+              document.getElementById('userInput').scrollIntoView({
+                block: 'start',
+                behavior: 'smooth',
+              });
+              $.ajax({
+                data: {
+                  msg: rawText,
+                },
+                type: 'POST',
+                url: '/question',
+              }).done(function (data) {
+                var botHtml = '<p class="botText"><span>' + data + '</span></p>';
+                $('#chatbox').append($.parseHTML(botHtml));
+                document.getElementById('userInput').scrollIntoView({
+                  block: 'start',
+                  behavior: 'smooth',
+                });
+              });
+              event.preventDefault();
+            });
+          });
+        </script>
 
 
           <!-- /.container-fluid -->

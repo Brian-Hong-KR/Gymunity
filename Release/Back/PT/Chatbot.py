@@ -9,7 +9,6 @@ exercise_list = os.environ["exercises"]
 exercises = eval (exercise_list)
 print ( type(exercises) )
 
-
 llm = Ollama(model="neural-chat", temperature=0.5) 
 
 unit_data = []
@@ -27,7 +26,12 @@ def generate_pt_plan (gender, age, goal, level, abnormal):
 
     result = llm.invoke( prompt )
 
-    return result
+    # TODO : From pt_plan.json
+
+    plan_name = "임의 플랜명"
+    plan_desc = result
+
+    return plan_name, plan_desc
 
 def generate_daily_program (goal, level):
     prompt = """Create a """ + level + """'s home training program for """ + goal + """. do not explan. just keyword. you must choose a method from the pool :\n\n pool : """ + str( exercises ) + """\n\n output example: ["Push-ups", "Lunges", "Plank", "Burpees"]"""
