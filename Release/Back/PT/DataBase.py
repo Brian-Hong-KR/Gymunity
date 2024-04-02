@@ -33,7 +33,7 @@ class PTQnA(Base):
     answer = Column(String(1024)) 
 
 def AddPoint(user_id, amount ):
-    # TODO : 반드시 Refactoring 필요, user_id 의 point 를 갱신
+    # TODO : 반드시 Refactoring 필요 user_id 의 point 를 갱신
     user_list = session.query(Users).all()
     for user_unit in user_list:
         if user_unit.user_id == user_id:

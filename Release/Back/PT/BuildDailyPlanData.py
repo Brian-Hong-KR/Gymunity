@@ -1,19 +1,17 @@
 from langchain.llms import Ollama
 import json, time
+import dotenv, os, re
 
-import dotenv, os
 f = dotenv.find_dotenv()
 dotenv.load_dotenv(f)
-file_path = os.environ["pt_plan_file_path"]
+file_path = os.environ["daily_plan_file_path"]
 exercises = os.environ["exercises"]
 
 exercise_list = eval (exercises)
 gender_list = ["male", "female"]
 age_list = ["young", "old"]
-
 goal_list = ["Body fat reduction", "Muscle gain", "Overall health improvement"]
 level_list = ["beginner", "Intermediate", "advanced"]
-
 abnormal_list = ["cardiovascular disease", "musculoskeletal disorders", "respiratory diseases", "no health problems"]
 
 llm = Ollama(model="neural-chat", temperature=0.5) 
@@ -34,10 +32,11 @@ for gender in gender_list:
                     
                     step_start_time = time.time()
 
-                    prompt = """You are a personal trainer. Answer the training guide based on your client's information. :\n
-                    Client Information >\nGender: """ + gender + """\nAge : """ + age + """\nGoal : """ + goal + """\nExercise Level : """ + level + """\nHealth abnormalities: """ + abnormal + """\n\n"""
+                    prompt = """Create a """ + age + " " + gender + " " + level + "(" + abnormal + """)'s home training program for """ + goal + """. do not explan. just keyword. you must choose a method from the pool :\n\n pool : """ + str( exercises ) + """\n\n output example: ["Push-ups", "Lunges", "Plank", "Burpees"]"""
 
-                    plan_desc = llm.invoke( prompt )
+                    plan = llm.invoke( prompt )
+
+                    matches = re.findall( r"\[(.*?)\]" , str(plan))
 
                     new_data = {
                         "gender": gender,
@@ -45,8 +44,7 @@ for gender in gender_list:
                         "goal" : goal,
                         "level" : level,
                         "abnormal" : abnormal,
-                        "plan_name" : goal + " " + level,
-                        "plan_desc" : plan_desc,
+                        "daily_program" : eval(matches[0]) ,
                     }
                     
                     progress += 1                    
