@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request
 from youtubesearchpython import VideosSearch
 import Chatbot, DataBase
 import datetime
+from googletrans import Translator
 
 bp = Blueprint('pt_server', __name__, url_prefix='/')
 
@@ -34,7 +35,7 @@ def survey_done():
 
     DataBase.SavePTLog(daily_program=str(daily_program), done_datetime=datetime.datetime.today())
 
-    return render_template ( "pt.html", video_list=video_list)
+    return render_template ( "pt.html", daily_program=daily_program, video_list=video_list)
 
 
 @bp.route('/survey_reset')
@@ -51,8 +52,11 @@ def plan():
     abnormal = request.form['abnormal']
 
     plan_name = f"플랜명 : {goal} ({level})"
-    plan_desc = Chatbot.generate_pt_plan( gender=gender, age=age, goal=goal, level=level, abnormal=abnormal)
-
+    result = Chatbot.generate_pt_plan( gender=gender, age=age, goal=goal, level=level, abnormal=abnormal)
+    
+    tran = Translator()
+    plan_desc = tran.translate(text=result, src="en", dest="ko").text  
+         
     return render_template ( "plan.html", plan_name=plan_name, plan_desc = plan_desc)
 
 @bp.route('/exercise')
