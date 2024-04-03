@@ -90,8 +90,12 @@ def chatbot_response():
     
     return answer
 
-@bp.route('/exercise_done')
+@bp.route('/exercise_done', methods=["POST"])
 def exercise_done():
-    user_id = request.form["user_id"]  
+    data = request.get_json()
+    user_id = data["user_id"]
+    print ("2. 오운완 ID from JSON : ", user_id)
+
     DataBase.AddPoint(user_id=user_id, amount=20 )
-    # TODO : User ID
+    
+    return True

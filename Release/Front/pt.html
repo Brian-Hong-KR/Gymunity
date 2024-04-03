@@ -254,27 +254,29 @@
               },
             });
           }
-
+          
           function onPlayerStateChange(event) {
             if (event.data === YT.PlayerState.ENDED) {
-              if (index < my_play_list.length -2) {
-                console.log('스텝 완료');
-
+              
+              if (index < my_play_list.length - 2) {
+                // 스탭 완료
                 const progressbar = document.querySelector('.progress-bar');
                 const progress = (index + 1) / my_play_list.length * 100;
                 progressbar.style.width = `${progress}%`;
 
                 index++;
                 player.loadVideoById(my_play_list[index]);
-
               } else {
-                console.log('오늘 운동 완료');
-
+                // 오늘 운동 완료
                 const progressbar = document.querySelector('.progress-bar');
-                const progress = 100;
-                progressbar.style.width = `${progress}%`;
+                progressbar.style.width = '100%';  
 
-                // TODO : /exercise_done 호출 (user_id)
+                fetch("{{ url_for('pt_server.exercise_done') }}", {
+                  method: 'POST',
+                  headers: {'Content-Type': 'application/json',},
+                  body: JSON.stringify({ user_id: 1, }),
+                });// TODO : 실제 UID 받아서 전달
+
               }
             }
           }
