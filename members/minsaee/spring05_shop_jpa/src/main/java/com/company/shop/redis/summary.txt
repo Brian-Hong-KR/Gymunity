@@ -1,0 +1,60 @@
+springboot JWT 로그인 -(6)RefreshToken 방식을 사용하도록 변경 &코드정리
+https://ws-pace.tistory.com/254
+
+스프링 부트 Redis를 사용하여 refresh token 저장하기 (1)
+https://growth-coder.tistory.com/227
+https://growth-coder.tistory.com/228
+
+[Spring] 스프링 부트 Redis를 사용하여 refresh token 저장하기 (2) 
+https://growth-coder.tistory.com/230
+
+Spring Boot JWT Tutorial
+https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-jwt
+
+https://velog.io/@kyu9610/Spring-Security-11.-JWT-%EA%B5%AC%ED%98%84#jwt-%EA%B5%AC%ED%98%84
+
+https://velog.io/@qkrmekem/Spring-Security-%EB%A1%9C%EA%B7%B8%EC%9D%B8
+
+
+
+https://ws-pace.tistory.com/251
+
+https://ws-pace.tistory.com/254?category=1025277
+
+https://tansfil.tistory.com/59
+
+=====================================================================
+스프링부트 시큐리티 24강 - jwt를 위한 로그인 시도
+https://www.youtube.com/watch?v=E5brrYYjrwI
+https://github.com/codingspecialist/Springboot-Security-JWT-Easy/tree/master/src
+최종자료
+https://github.com/codingspecialist/Springboot-RestAPI-Security-JWT-End/tree/master
+============================================
+Spring Boot + React: JWT Authentication with Spring Security
+https://www.bezkoder.com/react-spring-boot-crud/
+===================================================
+https://velog.io/@meong/Spring-Security-AuthenticationFilter-%EC%BB%A4%EC%8A%A4%ED%85%80-%EC%8B%9C-%EC%96%B4%EB%96%A4-%ED%95%84%ED%84%B0%EB%A5%BC-%EC%83%81%EC%86%8D%EB%B0%9B%EC%9D%84-%EA%B2%83%EC%9D%B8%EA%B0%80
+===================================
+스프링 시큐리티 인증방식의 종류
+https://velog.io/@wook2pp/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%EB%A5%BC-%ED%86%B5%ED%95%9C-%EC%9D%B8%EC%A6%9D%EC%B2%98%EB%A6%AC
+17 스프링 시큐리티 설정
+====================================
+HTTP 기본 인증 (Basic Authentication): 개념과 사용 방법
+https://engineerinsight.tistory.com/69
+===========================================
+https://lealea.tistory.com/247
+////////////////////////////////////////
+https://velog.io/@junho5336/SpringBoot-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0-with.-SpringSecurity-JWT
+https://github.com/fsoftwareengineer/todo-application
+https://velog.io/@junho5336/%ED%86%A0%ED%81%B0-%ED%83%88%EC%B7%A8-%EA%B3%A0%EB%A0%A4%ED%95%98%EA%B8%B0-Refresh-Token
+jjwt 버전을 올렸더니 jwt가
+https://www.inflearn.com/questions/1134290/jjwt-%EB%B2%84%EC%A0%84%EC%9D%84-%EC%98%AC%EB%A0%B8%EB%8D%94%EB%8B%88-jwt%EA%B0%80-%EC%9C%A0%ED%9A%A8%ED%95%98%EC%A7%80-%EC%95%8A%EB%8B%A4%EA%B3%A0-%ED%95%A9%EB%8B%88%EB%8B%A4
+https://9keyyyy.tistory.com/48
+https://www.youtube.com/watch?v=ovXZrpZ2X7U
+https://velog.io/@bigquann97/TIL-32
+https://growth-coder.tistory.com/227
+=================================
+ verifyWith()는 주로JWT의 서명을 검증하는 데 사용되며, signWith()는 새로운 JWT를 생성하고 서명하는 데 사용된다.
+ 
+ 
+ 

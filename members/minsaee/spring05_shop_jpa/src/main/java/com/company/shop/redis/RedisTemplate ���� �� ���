@@ -1,0 +1,32 @@
+[RedisTemplate 설정 및 사용]
+1. 의존성 추가: 프로젝트에 Redis를 사용하기 위해 build.gradle 또는 pom.xml에
+   Spring Data Redis 관련 의존성을 추가합니다.
+   implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+
+2. application.properties 설정: Redis 서버에 연결하기 위한 기본 설정을 추가합니다.
+   spring.redis.host=localhost
+   spring.redis.port=6379
+   
+3. RedisTemplate 사용: RedisTemplate<String, String>을 사용하여 memberEmail을 키로 하고,
+    accessToken 및 refreshToken을 값으로 저장합니다.   
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.data.redis.core.RedisTemplate;
+    import org.springframework.stereotype.Component;
+
+    @Component
+    public class TokenService {
+
+    private final RedisTemplate<String, String> redisTemplate;
+
+    @Autowired
+    public TokenService(RedisTemplate<String, String> redisTemplate) {
+        this.redisTemplate = redisTemplate;
+    }
+
+    public void saveTokens(String memberEmail, String accessToken, String refreshToken) {
+        redisTemplate.opsForValue().set(memberEmail + ":accessToken", accessToken);
+        redisTemplate.opsForValue().set(memberEmail + ":refreshToken", refreshToken);
+    }
+   }
+    
+   

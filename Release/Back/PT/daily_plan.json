@@ -1,0 +1,183 @@
+[
+{
+    "gender": "male",
+    "age": "young",
+    "goal": "Body fat reduction",
+    "level": "beginner",
+    "abnormal": "cardiovascular disease",
+    "daily_program": [
+        "Cardio Burpees",
+        "Resistance Band Squats",
+        "Side Planks",
+        "Reverse Crunches"
+    ]
+},
+{
+    "gender": "male",
+    "age": "young",
+    "goal": "Body fat reduction",
+    "level": "beginner",
+    "abnormal": "musculoskeletal disorders",
+    "daily_program": [
+        "Squats",
+        "High Knees",
+        "Jumping Jacks",
+        "Mountain Climbers",
+        "Crunches",
+        "Bicycle Crunches",
+        "Russian Twists",
+        "Leg Raises",
+        "Wall Sits",
+        "Tricep Dips",
+        "Inchworm Walk"
+    ]
+},
+{
+    "gender": "male",
+    "age": "young",
+    "goal": "Body fat reduction",
+    "level": "beginner",
+    "abnormal": "respiratory diseases",
+    "daily_program": [
+        "Cardio Burpees",
+        "Resistance Training (Push-Ups and Lunges)",
+        "Core Workout (Planks)"
+    ]
+},
+{
+    "gender": "male",
+    "age": "young",
+    "goal": "Body fat reduction",
+    "level": "beginner",
+    "abnormal": "no health problems",
+    "daily_program": [
+        "Squats",
+        "High Knees",
+        "Mountain Climbers",
+        "Bicycle Crunches",
+        "Russian Twists",
+        "Leg Raises",
+        "Wall Sits",
+        "Tricep Dips",
+        "Plank",
+        "Crunches",
+        "Flutter Kicks"
+    ]
+},
+{
+    "gender": "male",
+    "age": "young",
+    "goal": "Body fat reduction",
+    "level": "Intermediate",
+    "abnormal": "cardiovascular disease",
+    "daily_program": [
+        "High Knees",
+        "Squat Jumps",
+        "Mountain Climbers",
+        "Leg Raises",
+        "Tricep Dips",
+        "Inchworm Walk",
+        "Crunches",
+        "Russian Twists"
+    ]
+},
+{
+    "gender": "male",
+    "age": "young",
+    "goal": "Body fat reduction",
+    "level": "Intermediate",
+    "abnormal": "musculoskeletal disorders",
+    "daily_program": [
+        "Squats",
+        "High Knees",
+        "Mountain Climbers",
+        "Jumping Jacks",
+        "Tricep Dips",
+        "Crunches",
+        "Russian Twists",
+        "Leg Raises",
+        "Wall Sits",
+        "Plank Tap",
+        "Side Plank",
+        "Downward Dog Push-ups",
+        "Diamond Push-ups",
+        "Decline Push-ups",
+        "Archer Push-ups",
+        "Shoulder Taps",
+        "Hollow Hold",
+        "Reverse Crunches",
+        "Sit-ups",
+        "V-ups",
+        "Flutter Knees"
+    ]
+},
+{
+    "gender": "male",
+    "age": "young",
+    "goal": "Body fat reduction",
+    "level": "Intermediate",
+    "abnormal": "respiratory diseases",
+    "daily_program": [
+        "Squats",
+        "High Knees",
+        "Plank Jacks",
+        "Mountain Climbers",
+        "Crunches",
+        "Russian Twists",
+        "Leg Raises",
+        "Wall Sits",
+        "Tricep Dips",
+        "Inchworm Walk",
+        "Superman",
+        "Bird Dog",
+        "Dead Bug",
+        "Calf Raises",
+        "Single-Leg Deadlift",
+        "Curtsy Lunges",
+        "Fire Hydrants",
+        "Donkey Kicks",
+        "Lateral Lunges",
+        "Step-ups",
+        "Box Jumps",
+        "Tuck Jumps",
+        "Jumping Lunges",
+        "Plank with Knee Tucks",
+        "Squat Jumps",
+        "Arm circles",
+        "Butt kicks"
+    ]
+},
+{
+    "gender": "male",
+    "age": "young",
+    "goal": "Body fat reduction",
+    "level": "Intermediate",
+    "abnormal": "no health problems",
+    "daily_program": [
+        "Squats",
+        "High Knees",
+        "Crunches",
+        "Mountain Climbers",
+        "Jumping Jacks",
+        "Bicycle Crunches",
+        "Russian Twists",
+        "Wall Sits",
+        "Tricep Dips",
+        "Inchworm Walk"
+    ]
+},
+{
+    "gender": "male",
+    "age": "young",
+    "goal": "Body fat reduction",
+    "level": "advanced",
+    "abnormal": "cardiovascular disease",
+    "daily_program": [
+        "Squats",
+        "High Knees",
+        "Mountain Climbers",
+        "Jumping Jacks",
+        "Planks",
+        "Burpees"
+    ]
+},
