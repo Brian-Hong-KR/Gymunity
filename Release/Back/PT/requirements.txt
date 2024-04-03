@@ -15,10 +15,11 @@ Windows : visual studio code, github desktop
 
 flask
 sqlalchemy
+pymysql
 langchain
 python-dotenv
 youtube-search-python
-googletrans==4.0.0-rc1
+googletrans (단, youtube-search-python 과 의존성 충돌)
 
 3. Run PT Server
 

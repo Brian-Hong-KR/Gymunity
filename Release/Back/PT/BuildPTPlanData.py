@@ -1,5 +1,6 @@
 from langchain.llms import Ollama
 import json, time
+from googletrans import Translator
 
 import dotenv, os
 f = dotenv.find_dotenv()
@@ -37,7 +38,10 @@ for gender in gender_list:
                     prompt = f"""You are a personal trainer. Answer the training guide based on your client's information. :\n\n
                     Client Information >\nGender: {gender}\nAge : {age}\nGoal : {goal}\nExercise Level {level}\nHealth abnormalities: {abnormal}"""
 
-                    plan_desc = llm.invoke( prompt )
+                    result = llm.invoke( prompt )
+
+                    tran = Translator()
+                    plan_desc = tran.translate(text=result.replace("\n", "<br>"), src="en", dest="ko").text  
 
                     new_data = {
                         "gender": gender,

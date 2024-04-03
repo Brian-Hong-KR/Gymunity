@@ -44,8 +44,13 @@
                 <form
                   action="{{ url_for('pt_server.survey_done') }}"
                   method="post"
+                  name="plan_name"
+                  value="{{plan_name}}"
                 >
-                  {{plan_desc}}
+                  <p>{{plan_name}}</p>
+                  <hr />
+
+                  {{plan_desc|safe}}
 
                   <hr />
                   <p class="mb-4">
@@ -58,16 +63,13 @@
                   />
                 </form>
 
-                <hr />
-
-                <div class="buttons">
-                  <button
-                    class="btn-hover color-10"
-                    onclick="location.href='survey.html'"
-                  >
-                    설문 다시 하기
-                  </button>
-                </div>
+                <form action="{{ url_for('pt_server.survey_reset') }}">
+                  <input
+                    type="submit"
+                    class="btn-hover color-11"
+                    value="설문 다시 하기"
+                  />
+                </form>
               </div>
             </div>
           </div>

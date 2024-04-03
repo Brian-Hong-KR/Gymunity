@@ -125,19 +125,12 @@
                     오늘의 운동 진행 상황
                   </div>
                   <div class="row no-gutters align-items-center">
-                    <div class="col-auto">
-                      <div
-                        class="h5 mb-0 mr-3 font-weight-bold text-gray-800"
-                      >
-                        50%
-                      </div>
-                    </div>
                     <div class="col">
                       <div class="progress progress-sm mr-2">
                         <div
                           class="progress-bar bg-info"
                           role="progressbar"
-                          style="width: 50%"
+                          style="width: 0%"
                           aria-valuenow="50"
                           aria-valuemin="0"
                           aria-valuemax="100"
@@ -261,16 +254,29 @@
               },
             });
           }
-
+          
           function onPlayerStateChange(event) {
             if (event.data === YT.PlayerState.ENDED) {
-              if (index < my_play_list.length - 1) {
-                console.log('스텝 완료');
+              
+              if (index < my_play_list.length - 2) {
+                // 스탭 완료
+                const progressbar = document.querySelector('.progress-bar');
+                const progress = (index + 1) / my_play_list.length * 100;
+                progressbar.style.width = `${progress}%`;
+
                 index++;
                 player.loadVideoById(my_play_list[index]);
               } else {
-                console.log('오늘 운동 완료');
-                // TODO : /exercise_done 호출 (user_id)
+                // 오늘 운동 완료
+                const progressbar = document.querySelector('.progress-bar');
+                progressbar.style.width = '100%';  
+
+                fetch("{{ url_for('pt_server.exercise_done') }}", {
+                  method: 'POST',
+                  headers: {'Content-Type': 'application/json',},
+                  body: JSON.stringify({ user_id: 1, }),
+                });// TODO : 실제 UID 받아서 전달
+
               }
             }
           }

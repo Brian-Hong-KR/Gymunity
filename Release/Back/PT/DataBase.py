@@ -1,8 +1,8 @@
 from sqlalchemy import create_engine, Column, Integer, String
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker, declarative_base
+# from sqlalchemy.ext.declarative import declarative_base
 
-import datetime
+from datetime import datetime, timedelta
 
 engine = create_engine("mysql+pymysql://gm:1234@112.169.231.62:6060/gm")
 Base = declarative_base()
@@ -17,11 +17,22 @@ class Users(Base):
     admin_yn = Column(String(3))
     point = Column(Integer)
     grade_id = Column(Integer)
+    last_point_time = Column(String(45))
+
+class Survey(Base):
+    __tablename__ = "survey"
+    survey_id = Column(Integer, primary_key=True) 
+    user_id = Column(Integer) 
+    gender = Column(String(64))
+    age = Column(String(64))
+    goal = Column(String(64))
+    level = Column(String(64))
+    abnormal = Column(String(128))    
 
 class PTLog(Base):
     __tablename__ = "pt_log"
     pt_log_id = Column(Integer, primary_key=True) 
-    daily_program = Column(String(64))
+    daily_program = Column(String(1024))
     done_datetime = Column(String(64))
     user_id = Column(Integer) 
     
@@ -33,13 +44,38 @@ class PTQnA(Base):
     answer = Column(String(1024)) 
 
 def AddPoint(user_id, amount ):
-    # TODO : 반드시 Refactoring 필요 user_id 의 point 를 갱신
-    user_list = session.query(Users).all()
-    for user_unit in user_list:
-        if user_unit.user_id == user_id:
-            user_unit.point += 20
+    
+    user_unit = session.query(Users).filter(Users.user_id == user_id).first()
+    
+    if not user_unit:
+        return False 
 
-    session.commit()
+    last_point_time_str = user_unit.last_point_time.split(".")[0]
+    now_time = datetime.now()
+
+    if last_point_time_str:
+        last_point_time = datetime.strptime(last_point_time_str, """%Y-%m-%d %H:%M:%S""")
+          
+        if now_time - last_point_time > timedelta(hours=20):
+            user_unit.point += amount
+            user_unit.last_point_time = now_time
+            session.commit()
+        else:
+            print ("20시간이 경과하지 않았음")
+    else:
+        user_unit.point += amount
+        user_unit.last_point_time = now_time
+        session.commit()
+
+    return True
+
+
+def LoadSurveyData ( user_id ):
+    survey_unit = session.query(Survey).filter(Survey.user_id == user_id).first()
+    if survey_unit:
+        return survey_unit.gender, survey_unit.age, survey_unit.goal, survey_unit.level, survey_unit.abnormal
+    else:
+        return "female", "old", "Overall health improvement", "beginner", "cardiovascular disease"  # Return placeholder values
 
 def SavePTLog(daily_program, done_datetime):
     #TODO : user_id 는 user table 이 생성된 이후에     
@@ -47,32 +83,17 @@ def SavePTLog(daily_program, done_datetime):
     session.add(log_unit)
     session.commit()
 
-def LoadPTLog( ):
-    log_list = session.query(PTLog).all()
-    for log_unit in log_list:
-        print(f"log_id : {log_unit.pt_log_id}, user_id: {log_unit.user_id}, daily_program: {log_unit.daily_program}, done_datetime :{log_unit.done_datetime}")
-
 def SavePTQnA(unit_name, question, answer):
     qna_unit = PTQnA(unit_name=unit_name, question=question, answer=answer)
     session.add(qna_unit)
     session.commit()
 
 def LoadPTQnA():
-    qna_list = session.query(PTQnA).all()
-    for qna_unit in qna_list:
-        print(f"qna_id : {qna_unit.pt_qna_id}, unit_name: {qna_unit.unit_name}, question: {qna_unit.question}, answer :{qna_unit.answer}")
-
-
+    return session.query(PTQnA).all()
 
 
 if __name__ == "__main__":
-    # SavePTLog(daily_program="요요 다이어트 1일차", done_datetime= str(datetime.datetime.today()))
-    # SavePTLog(daily_program="요요 다이어트 2일차", done_datetime= str(datetime.datetime.today()))
+    AddPoint(1, 11 )
 
-    # SavePTQnA(unit_name = "스쿼트 입문", question="방구가 나와요", answer="참으면서 하세용")
-    # SavePTQnA(unit_name = "스쿼트 중급", question="방구가 나옵니다요", answer="꾹 참으면서 하세용")
-
-    # LoadPTLog()
-    # LoadPTQnA()
 
     session.close()
