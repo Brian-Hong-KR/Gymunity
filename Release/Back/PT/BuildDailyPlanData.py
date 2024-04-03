@@ -32,11 +32,22 @@ for gender in gender_list:
                     
                     step_start_time = time.time()
 
-                    prompt = f"""Write a home training program for today based on the customer's information (but without any preparation) The result is only output in python string list format as shown in the example :\n\nCustomer information >\n\nGender : {gender}\nAge : {age}\nWorkout Goal : {goal}\nExercise level : {level}\nHealth Concerns: {abnormal}\n\nSample Results >\n\n[ "Running in place", "Dynamic stretches (neck, shoulders, arms, lower back, legs)", "Burpees (3 sets x max reps)", "Lunges (3 sets x 10 reps each leg)", "Push-ups (3 sets x max reps)", "Planks (3 sets x 30 seconds)", "Mountain climbers (3 sets x 30 seconds)", "Static stretches (neck, shoulders, arms, lower back, legs)"]"""
+                    prompt = f"""Write a home training program for today based on the customer's information (but without any preparation) The result is only output in python list format as shown in the example :\n\nCustomer information >\n\nGender : {gender}\nAge : {age}\nWorkout Goal : {goal}\nExercise level : {level}\nHealth Concerns: {abnormal}\n\nSample Results >\n\n[ "Running in place", "Dynamic stretches (neck, shoulders, arms, lower back, legs)", "Burpees (3 sets x max reps)", "Lunges (3 sets x 10 reps each leg)", "Push-ups (3 sets x max reps)", "Planks (3 sets x 30 seconds)", "Mountain climbers (3 sets x 30 seconds)", "Static stretches (neck, shoulders, arms, lower back, legs)"]"""
 
                     plan = llm.invoke( prompt )
 
+                    
+                    
+                    matches = []
                     matches = re.findall( r"\[(.*?)\]" , str(plan))
+                    
+                    print (matches)
+                    
+                    if len(matches) == 0:
+                        daily_program = "default"
+                    else:
+                        daily_program = eval(matches[0])
+                    
 
                     new_data = {
                         "gender": gender,
@@ -44,7 +55,7 @@ for gender in gender_list:
                         "goal" : goal,
                         "level" : level,
                         "abnormal" : abnormal,
-                        "daily_program" : eval(matches[0]) ,
+                        "daily_program" : daily_program ,
                     }
                     
                     progress += 1                    
