@@ -19,8 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
 
-	
-	private  final MembersRepository membersRepository;
+	private final MembersRepository membersRepository;
 
 	// 1. AuthenticationProvider에서 loadUserByUsername(String memberEmail)을 호출한다.
 	// 2. loadUserByUsername(String memberEmail)에서는 DB에서 memberEmail에 해당하는 데이터를 검색해서

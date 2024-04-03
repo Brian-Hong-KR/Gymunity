@@ -1,18 +1,18 @@
 package com.company.shop.security.jwt;
 
 public interface JwtProperties {
-	
+
 	public String SECRET_KEY = "mySecurityCosShop123456789MyNickNameisyoonminyoung562552656325632avbwdwkdkwkjdklsfkwdflowkdowkfkdoskd";
-	
-	//public SecretKey SECRET_KEY =Jwts.SIG.HS512.key().build();
-	
-	//public int EXPIRATION_TIME = 1800000; // 30분
+
+	// public SecretKey SECRET_KEY =Jwts.SIG.HS512.key().build();
+
+	// public int EXPIRATION_TIME = 1800000; // 30분
 	public int EXPIRATION_TIME = 86400000;// 1일
-	public int REFRESH_EXPIRATION_TIME =864000000; //10일
-	public  String TOKEN_PREFIX = "Bearer ";
-	public  String HEADER_STRING = "Authorization";
+	public int REFRESH_EXPIRATION_TIME = 864000000; // 10일
+	public String TOKEN_PREFIX = "Bearer ";
+	public String HEADER_STRING = "Authorization";
 	public String HEADER_REFRESH_STRING = "Authorization-refresh";
-	
+
 }
 
 //1000 밀리초 = 1초  

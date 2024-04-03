@@ -13,6 +13,7 @@ public class UsersDTO {
 	private String password; // 유저가 직접 사용하는 비밀번호
 	private String userEmail; // 유저의 이메일
 	private String userName; // 유저의 이름
+	private String admin_yn = "n";
 	
 	// 비밀번호 일치 확인
 	public boolean matchPassword(String password) {
