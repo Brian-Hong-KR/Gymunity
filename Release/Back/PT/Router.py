@@ -76,13 +76,15 @@ def exercise( user_id ):
 
 @bp.route("/question", methods=["POST"])
 def chatbot_response():
-    unit_name = request.form["unit_name"]    
-    question = request.form["question"]    
-    gender = request.form['gender']
-    age = request.form['age']
-    goal = request.form['goal']
-    level = request.form['level']
-    abnormal = request.form['abnormal']
+    # TODO : 쿼리
+    gender = "female"
+    age = "old"
+    goal = "Muscle gain"
+    level = "beginner"
+    abnormal = "no health problems"
+
+    unit_name = "push-ups"
+    question = request.form["question"]        
     
     answer = Chatbot.generate_answer(unit_name=unit_name, question=question, gender=gender, age=age, goal=goal, level=level, abnormal=abnormal )
     
