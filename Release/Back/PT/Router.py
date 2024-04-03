@@ -42,14 +42,12 @@ def exercise():
 
     DataBase.SavePTLog(daily_program=daily_program, done_datetime=datetime.datetime.today())
 
-
     return render_template ( "pt.html", video_list=video_list)
 
 @bp.route("/question", methods=["POST"])
 def chatbot_response():
     unit_name = request.form["unit_name"]    
-    question = request.form["question"]
-    
+    question = request.form["question"]    
     gender = request.form['gender']
     age = request.form['age']
     goal = request.form['goal']

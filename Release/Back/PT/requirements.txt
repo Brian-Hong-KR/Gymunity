@@ -12,6 +12,7 @@ sqlalchemy
 langchain
 python-dotenv
 youtube-search-python
+googletrans==4.0.0-rc1
 
 3. Run PT Server
 
