@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.users.repository.UsersRepository">
+	
+	<!-- 회원가입-->
+	<!-- Users 테이블에 데이터 삽입 -->
+	<insert id="insertUser" parameterType="UsersDTO" useGeneratedKeys="true" keyProperty="userId">
+	<![CDATA[
+	INSERT INTO users (user_account_id, nickname, admin_yn)
+	VALUES (#{userAccountId}, #{nickname}, #{admin_yn})
+    ]]>
+    </insert>
+    
+    <!-- Profiles 테이블에 데이터 삽입 -->
+    <insert id="insertProfile" parameterType="UsersDTO">
+    <![CDATA[
+    INSERT INTO profiles (user_id, password, user_email, user_name)
+    VALUES (#{userId}, #{password}, #{userEmail}, #{userName})
+    ]]>
+    </insert>
+
+		 
+		 <!-- survey 테이블에 삽입
+		 INSERT INTO survey(gender, age, goal, level, abnormal)
+		 VALUES(#{gender}, #{age}, #{goal}, #{level}, #{abnormal});
+		 
+		 pt 테이블에 삽입
+		 INSERT INTO pt(plan_name, plan_desc)
+		 VALUES(#{plan_name}, #{plan_desc});
+		 ]]>-->
+		 
+	<!--회원정보 가져오기 -->
+    <select id="selectByAccountId"   parameterType="string"  resultType="UsersDTO">
+       SELECT * FROM users
+       WHERE user_account_id = #{user_account_id}
+    </select>
+    
+    <!--회원탈퇴 -->
+	<delete id="deleteUser" parameterType="string">
+	  SET FOREIGN_KEY_CHECKS=0
+	  DELETE FROM users 
+	  WHERE user_account_id = #{userAccountId}
+	  SET FOREIGN_KEY_CHECKS=1
+	</delete>
+	
+
+	
+
+</mapper>
