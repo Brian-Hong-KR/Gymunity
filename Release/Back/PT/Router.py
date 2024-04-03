@@ -13,9 +13,29 @@ def home():
 def survey():
     return render_template("survey.html")
 
-@bp.route('/survey_done')
+@bp.route('/survey_done', methods=('POST',))
 def survey_done():
-    return render_template("register.html")
+    # TODO : render_template("register.html")
+    gender = "female"
+    age = "old"
+    goal = "Muscle gain"
+    level = "beginner"
+    abnormal = "no health problems"
+
+    daily_program = Chatbot.generate_daily_program( gender=gender, age=age, goal=goal, level=level, abnormal=abnormal )
+
+    video_list = ""
+        
+    for unit_name in daily_program:
+        videosSearch = VideosSearch("""홈트레이닝 """ + unit_name , limit=1)
+
+        for video in videosSearch.result()['result']:
+            video_list += video['id'] + ","
+
+    DataBase.SavePTLog(daily_program=str(daily_program), done_datetime=datetime.datetime.today())
+
+    return render_template ( "pt.html", video_list=video_list)
+
 
 @bp.route('/survey_reset')
 def survey_reset():
@@ -36,23 +56,16 @@ def plan():
     return render_template ( "plan.html", plan_name=plan_name, plan_desc = plan_desc)
 
 @bp.route('/exercise')
-def exercise():
-    # TODO : user_id
-    user_id = request.form["user_id"]  
-
-    unit_name = request.form["unit_name"]  
-    gender = request.form['gender']
-    age = request.form['age']
-    goal = request.form['goal']
-    level = request.form['level']
-    abnormal = request.form['abnormal']
+def exercise( user_id ):
+    # TODO 
+    gender, age, goal, level, abnormal = DataBase.LoadSurveyData  (user_id )
 
     daily_program = Chatbot.generate_daily_program( gender=gender, age=age, goal=goal, level=level, abnormal=abnormal )
 
     video_list = ""
     
     for unit_name in daily_program:
-        videosSearch = VideosSearch("""홈트레이닝 """ + unit_name + " "+ gender + " "+ age + " "+ goal + " "+ level + " "+ abnormal + " ", limit = 1)
+        videosSearch = VideosSearch(f"""홈트레이닝 {unit_name} {age} {gender} {goal} {level} {abnormal}""", limit = 1)
 
         for video in videosSearch.result()['result']:
             video_list += video['id'] + ","

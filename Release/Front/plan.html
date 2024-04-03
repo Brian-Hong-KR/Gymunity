@@ -41,7 +41,12 @@
                 <div class="text-center">
                   <h1 class="h4 text-gray-900 mb-4">맞춤 플랜</h1>
                 </div>
-                <form action="{{ url_for('pt_server.survey_done') }}">
+                <form
+                  action="{{ url_for('pt_server.survey_done') }}"
+                  method="post"
+                  name="plan_name"
+                  value="{{plan_name}}"
+                >
                   <p>{{plan_name}}</p>
                   <hr />
 

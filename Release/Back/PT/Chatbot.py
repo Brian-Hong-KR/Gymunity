@@ -31,7 +31,7 @@ def generate_daily_program (gender, age, goal, level, abnormal):
         if item["gender"] == gender and item["age"] == age and item["goal"] == goal and item["level"] == level and item["abnormal"] == abnormal:
             return item["daily_program"]
     
-    return "??"
+    return f"플랜 생성 오류 : {gender} {age} {goal} {level} {abnormal}"
 
 def generate_answer (unit_name, question, gender, age, goal, level, abnormal):
 
