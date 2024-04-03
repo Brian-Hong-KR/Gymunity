@@ -2,7 +2,6 @@ from flask import Blueprint, render_template, request
 from youtubesearchpython import VideosSearch
 import Chatbot, DataBase
 import datetime
-from googletrans import Translator
 
 bp = Blueprint('pt_server', __name__, url_prefix='/')
 
@@ -52,11 +51,8 @@ def plan():
     abnormal = request.form['abnormal']
 
     plan_name = f"플랜명 : {goal} ({level})"
-    result = Chatbot.generate_pt_plan( gender=gender, age=age, goal=goal, level=level, abnormal=abnormal)
-    
-    tran = Translator()
-    plan_desc = tran.translate(text=result, src="en", dest="ko").text  
-         
+    plan_desc = Chatbot.generate_pt_plan( gender=gender, age=age, goal=goal, level=level, abnormal=abnormal)
+
     return render_template ( "plan.html", plan_name=plan_name, plan_desc = plan_desc)
 
 @bp.route('/exercise')
