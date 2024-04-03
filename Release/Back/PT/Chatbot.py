@@ -30,7 +30,7 @@ def generate_daily_program (gender, age, goal, level, abnormal):
 
 def generate_answer (unit_name, question, gender, age, goal, level, abnormal):
 
-    prompt = """You are a personal trainer. Answer the your client's question about """ + unit_name + """ based on your client's information. : :\n\n your client's question : """ + question + """\n\n \nClient Information :\nGender: """ + gender + """\nAge : """ + age + """\nGoal : """ + goal + """\nExercise Level : """ + level + """\nHealth abnormalities: """ + abnormal 
+    prompt = f"""You are a personal trainer. Answer the your client's question about {unit_name} based on your client's information. : :\n\n your client's question >\n{question}\n\n \nClient Information >\nGender: {gender}\nAge : {age}\nGoal : {goal}\nExercise Level : {level}\nHealth abnormalities: {abnormal}"""
 
     response = llm.invoke (prompt)
     

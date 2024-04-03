@@ -32,7 +32,7 @@ for gender in gender_list:
                     
                     step_start_time = time.time()
 
-                    prompt = """Create a """ + age + " " + gender + " " + level + "(" + abnormal + """)'s home training program for """ + goal + """. do not explan. just keyword. you must choose a method from the pool :\n\n pool : """ + str( exercises ) + """\n\n output example: ["Push-ups", "Lunges", "Plank", "Burpees"]"""
+                    prompt = f"""Write a home training program for today based on the customer's information (but without any preparation) The result is only output in python string list format as shown in the example :\n\nCustomer information >\n\nGender : {gender}\nAge : {age}\nWorkout Goal : {goal}\nExercise level : {level}\nHealth Concerns: {abnormal}\n\nSample Results >\n\n[ "Running in place", "Dynamic stretches (neck, shoulders, arms, lower back, legs)", "Burpees (3 sets x max reps)", "Lunges (3 sets x 10 reps each leg)", "Push-ups (3 sets x max reps)", "Planks (3 sets x 30 seconds)", "Mountain climbers (3 sets x 30 seconds)", "Static stretches (neck, shoulders, arms, lower back, legs)"]"""
 
                     plan = llm.invoke( prompt )
 

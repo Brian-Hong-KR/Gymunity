@@ -34,8 +34,8 @@ for gender in gender_list:
                     
                     step_start_time = time.time()
 
-                    prompt = """You are a personal trainer. Answer the training guide based on your client's information. :\n
-                    Client Information >\nGender: """ + gender + """\nAge : """ + age + """\nGoal : """ + goal + """\nExercise Level : """ + level + """\nHealth abnormalities: """ + abnormal + """\n\n"""
+                    prompt = f"""You are a personal trainer. Answer the training guide based on your client's information. :\n\n
+                    Client Information >\nGender: {gender}\nAge : {age}\nGoal : {goal}\nExercise Level {level}\nHealth abnormalities: {abnormal}"""
 
                     plan_desc = llm.invoke( prompt )
 

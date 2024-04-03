@@ -1,11 +1,17 @@
-1. Windows Tool >
+1. Env
 
-visual studio code
-github desktop
+Ubuntu Server 22.04.4 LTS 
+    2022년 4월 출시, 2027년 4월까지 지원
+    Linux Kernel 5.15
+    OpenJDK 17
+    Python 3.10
+python 3.10
 ollama --> "ollama pull neural-chat" (Local LLM)
-python 3.12.0
 
-2. Python Package (py -m pip install package_name)
+Windows : visual studio code, github desktop
+
+
+2. Python Package (pip install package_name)
 
 flask
 sqlalchemy
