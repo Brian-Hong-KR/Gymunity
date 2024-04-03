@@ -1,0 +1,25 @@
+1. Windows Tool >
+
+visual studio code
+github desktop
+ollama --> "ollama pull neural-chat" (Local LLM)
+python 3.12.0
+
+2. Python Package (py -m pip install package_name)
+
+flask
+flask-migrate
+flask-sqlalchemy
+
+langchain
+langchain-community
+youtube_search
+python-dotenv
+
+googletrans==4.0.0-rc1
+
+3. Run PT Server
+
+py app.py --> (web browser) localhost:5000
+
+
