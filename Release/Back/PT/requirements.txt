@@ -15,6 +15,7 @@ Windows : visual studio code, github desktop
 
 flask
 sqlalchemy
+pymysql
 langchain
 python-dotenv
 youtube-search-python

@@ -5,6 +5,23 @@ import datetime
 
 bp = Blueprint('pt_server', __name__, url_prefix='/')
 
+@bp.route('/')
+def home():
+    return render_template("home.html")
+
+@bp.route('/survey')
+def survey():
+    return render_template("survey.html")
+
+@bp.route('/survey_done')
+def survey_done():
+    return render_template("register.html")
+
+@bp.route('/survey_reset')
+def survey_reset():
+    return render_template("survey.html")
+
+
 @bp.route('/plan', methods=('POST',))
 def plan():
     gender = request.form['gender']
@@ -13,9 +30,9 @@ def plan():
     level = request.form['level']
     abnormal = request.form['abnormal']
 
-    plan_name = goal + " " + level
+    plan_name = f"플랜명 : {goal} ({level})"
     plan_desc = Chatbot.generate_pt_plan( gender=gender, age=age, goal=goal, level=level, abnormal=abnormal)
-        
+
     return render_template ( "plan.html", plan_name=plan_name, plan_desc = plan_desc)
 
 @bp.route('/exercise')
