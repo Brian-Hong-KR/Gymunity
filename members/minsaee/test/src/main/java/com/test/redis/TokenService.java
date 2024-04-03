@@ -15,7 +15,7 @@ public class TokenService {
 
 	// redisTemplate를 이용해서 데이터 저장
 	public void saveTokens(String userAccoutId, String accessToken, String refreshToken) {
-		redisTemplate.opsForValue().set(userAccoutId + ":accessToken:", accessToken);
+		redisTemplate.opsForValue().set(userAccoutId + ":accessToken", accessToken);
 		redisTemplate.opsForValue().set(userAccoutId + ":refreshToken", refreshToken);
 	}
 
