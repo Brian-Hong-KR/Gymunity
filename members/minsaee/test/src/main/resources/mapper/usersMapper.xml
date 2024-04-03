@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.test.user.repository.UsersRepository">
+<mapper namespace="com.test.users.repository.UsersRepository">
 	
 	<!-- 회원가입-->
 	<!-- Users 테이블에 데이터 삽입 -->
-	<insert id="insertUser" parameterType="UsersDTO" useGeneratedKeys="true" keyProperty="user_id">
+	<insert id="insertUser" parameterType="UsersDTO" useGeneratedKeys="true" keyProperty="userId">
 	<![CDATA[
 	INSERT INTO users (user_account_id, nickname, admin_yn)
-	VALUES (#{user_account_id}, #{nickname}, #{admin_yn})
+	VALUES (#{userAccountId}, #{nickname}, #{admin_yn})
     ]]>
     </insert>
     
@@ -16,7 +16,7 @@
     <insert id="insertProfile" parameterType="UsersDTO">
     <![CDATA[
     INSERT INTO profiles (user_id, password, user_email, user_name)
-    VALUES (#{user_id}, #{password}, #{user_email}, #{user_name})
+    VALUES (#{userId}, #{password}, #{userEmail}, #{userName})
     ]]>
     </insert>
 

@@ -15,6 +15,7 @@ import com.test.users.dto.SignResponse;
 import com.test.users.dto.UsersDTO;
 import com.test.users.service.UsersService;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -33,6 +34,7 @@ public class UsersController {
 	private final BCryptPasswordEncoder encodePassword;
 
 	// 회원가입 처리
+	@Operation(summary = "회원가입", description = "회원가입 API")
 	@PostMapping("/user/signip")
 	public ResponseEntity<SignResponse> addmember(@RequestBody UsersDTO usersDTO) {
 		log.info("유저DTO:{}:", usersDTO);
@@ -46,6 +48,8 @@ public class UsersController {
 		return ResponseEntity.ok(authInfo);
 	} // end addmember()
 
+	// 로그인 처리
+	@Operation(summary = "로그인", description = "로그인 API")
 	@PostMapping(value = "/member/login")
 	public ResponseEntity<SignResponse> signin(@RequestBody UsersDTO usersDTO) throws Exception {
 		String accessToken = JwtProperties.TOKEN_PREFIX + JwtProvider.createAccessToken(usersDTO.getUserAccountId());

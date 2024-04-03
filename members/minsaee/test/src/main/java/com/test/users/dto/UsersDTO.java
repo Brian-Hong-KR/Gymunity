@@ -14,12 +14,13 @@ public class UsersDTO {
 	private String userEmail; // 유저의 이메일
 	private String userName; // 유저의 이름
 	private String admin_yn = "n";
-	
+	private int userId;
+
 	// 비밀번호 일치 확인
 	public boolean matchPassword(String password) {
 		return this.password.equals(password);
 	}// end matchPassword()
-	
+
 	public void changePassword(String oldPassword, String newPassword) {
 		if (!this.password.equals(oldPassword))
 			throw new WrongEmailPasswordException("비밀번호 불일치");
