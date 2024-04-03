@@ -17,15 +17,23 @@ const MyPage = () => {
             <div className="d-sm-flex align-items-center justify-content-between mb-4">
               <h1 className="h3 mb-0 text-gray-800">사용자 이름</h1>
             </div>
-            {/* Buttons */}
             <div className="buttons">
               <Link to="/photo" className="btn-hover color-11">
                 나의 사진첩
               </Link>
+              <button className="btn-hover color-11">플랜 다시 세우기</button>
+              <button className="btn-hover color-11">고객 문의</button>
+              <button className="btn-hover color-10">회원 탈퇴</button>
             </div>
 
-            {/* Content Row */}
-            {/* ...중략... */}
+            {/* Content Rows and Cards */}
+            <div className="row">
+              {/* 각각의 카드와 컨텐츠를 여기에 작성 */}
+              {/* 예: 포인트, 등급, 챌린지, 플랜 등 */}
+            </div>
+
+            {/* 기타 페이지 컨텐츠 및 구성요소 */}
+            {/* 예: 차트, 데이터 테이블, 기타 UI 요소 */}
 
             {/* Footer */}
             <footer className="sticky-footer bg-white">
