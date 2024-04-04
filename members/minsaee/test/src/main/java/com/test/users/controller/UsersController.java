@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,7 +38,7 @@ public class UsersController {
 	@Autowired
 	private final BCryptPasswordEncoder encodePassword;
 
-	// 회원가입 처리
+	// 회원가입
 	@Operation(summary = "회원가입", description = "회원가입 API")
 	@PostMapping("/user/signip")
 	public ResponseEntity<SignResponse> addUser(@RequestBody UsersDTO usersDTO) {
@@ -52,7 +53,7 @@ public class UsersController {
 		return ResponseEntity.ok(authInfo);
 	} // end addUser()
 
-	// 로그인 처리
+	// 로그인
 	@Operation(summary = "로그인", description = "로그인 API")
 	@PostMapping(value = "/user/login")
 	public ResponseEntity<SignResponse> signin(@RequestBody UsersDTO usersDTO) throws Exception {
@@ -73,6 +74,14 @@ public class UsersController {
 
 		return ResponseEntity.ok(signResponse);
 	}// end signin()
+	
+	// 회원정보 수정
+	@Operation(summary = "회원정보 수정", description = "회원정보 수정 API")
+	@PutMapping("/user/update")
+	public ResponseEntity<SignResponse> updateUser(@RequestBody UsersDTO usersDTO){
+//		usersDTO.setPassword(encodePassword.encode(usersDTO.getPassword()));
+		return ResponseEntity.ok(usersService.updateMemberProcess(usersDTO));
+	}
 
 	// 회원탈퇴
 	@Operation(summary = "회원탈퇴", description = "회원탈퇴 API")

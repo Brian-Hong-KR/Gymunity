@@ -51,10 +51,23 @@ public class UsersServiceImp implements UsersService {
 
 	} // end addUserProcess()
 
-	// 회원 정보 가져오기
+	// 회원정보가져오기
 	@Override
 	public UsersDTO viewUserProcess(String userAccounId) {
 		return usersRepository.selectByAccountId(userAccounId);
+	}
+	
+	// 회원정보수정
+	@Override
+	public SignResponse updateMemberProcess(UsersDTO dto) {
+		
+		// users 테이블에 데이터 업데이트
+		usersRepository.updateUsers(dto);
+		
+		// profiles 테이블에 데이터 업데이트
+		usersRepository.updateProfiles(dto);
+	
+		return new SignResponse(dto.getNickname(), dto.getUserEmail());
 	}
 
 //	// 회원 아이디, 비밀번호 일치
