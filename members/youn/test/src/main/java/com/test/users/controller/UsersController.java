@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -73,17 +74,19 @@ public class UsersController {
 
 		return ResponseEntity.ok(signResponse);
 	}// end signin()
-	
+
 //	//회원정보 가져오기
-//	public ResponseEntity<UsersDTO> getUser(@PathVariable ("userAccountId") String userAccountId){
-//		return ResponseEntity.ok(usersService.selectByAccountId(usersDTO));
-//	}
-	
+	@Operation(summary="회원정보 가져오기", description="회원정보 가져오기 API")
+	@GetMapping("/member/editinfo/{userAccountId}")
+	public ResponseEntity<UsersDTO> getUser(@PathVariable ("userAccountId") String userAccountId){
+		return ResponseEntity.ok(usersService.viewUserProcess(userAccountId));
+	}
+
 	//회원탈퇴
 		@Operation(summary="회원탈퇴",description="회원탈퇴 API")
-		@DeleteMapping("/member/delete/{userAccountId}")
-		public ResponseEntity<Object> deleteUser(@PathVariable("userAccountId") String userAccountId){
-			usersService.deleteUserProcess(userAccountId);
+		@DeleteMapping("/member/delete/{userId}")
+		public ResponseEntity<Object> deleteUser(@PathVariable("userId") int userId){
+			usersService.deleteUserProcess(userId);
 			return ResponseEntity.ok(null);
 		}
 

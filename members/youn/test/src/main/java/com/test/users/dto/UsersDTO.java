@@ -22,8 +22,9 @@ public class UsersDTO {
 	}// end matchPassword()
 
 	public void changePassword(String oldPassword, String newPassword) {
-		if (!this.password.equals(oldPassword))
+		if (!this.password.equals(oldPassword)) {
 			throw new WrongEmailPasswordException("비밀번호 불일치");
+		}
 		this.password = newPassword;
 	}
 }

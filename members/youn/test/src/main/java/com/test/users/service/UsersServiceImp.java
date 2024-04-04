@@ -26,8 +26,9 @@ public class UsersServiceImp implements UsersService {
 		log.info("로드유저바이유저네임 : {}", userAccountId);
 		UsersDTO usersDTO = usersRepository.selectByAccountId(userAccountId);
 
-		if (usersDTO == null)
+		if (usersDTO == null) {
 			new UsernameNotFoundException("히히 몰라! 유저서비스임프");
+		}
 		return SignResponse.builder().userAccountId(usersDTO.getUserAccountId())
 				.userAccountId(usersDTO.getUserAccountId()).accessToken(JwtProvider.createAccessToken(userAccountId))
 				.refreshToken(JwtProvider.createRefreshToken(userAccountId)).build();
@@ -48,15 +49,19 @@ public class UsersServiceImp implements UsersService {
 
 	} // end addUserProcess()
 
+
+
 	// 회원 정보 가져오기
 	@Override
-	public UsersDTO viewUserProcess(String userAccounId) {
-		return usersRepository.selectByAccountId(userAccounId);
-	}
-	
+	public UsersDTO viewUserProcess(String userAccountId) {
+		return usersRepository.selectByAccountId(userAccountId);
+	} // end viewUserProcess()
+
+
+
 	// 회원 정보 삭제
 	@Override
-	public void deleteUserProcess(String userAccountId) {
-		usersRepository.deleteUser(userAccountId);
-	}
+	public void deleteUserProcess(int userId) {
+		usersRepository.deleteUser(userId);
+	} // end deleteUserProcess()
 }

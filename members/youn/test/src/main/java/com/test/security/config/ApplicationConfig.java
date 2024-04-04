@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 @Configuration
 @RequiredArgsConstructor
 public class ApplicationConfig {
-	
+
 	@Bean
 	public BCryptPasswordEncoder encodePassword() {
 		return new BCryptPasswordEncoder();

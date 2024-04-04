@@ -66,12 +66,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
 		}
 
-		if (accessToken == null) {
-			filterChain.doFilter(request, response);
-			return;
-		}
-
-		if (!accessToken.startsWith("Bearer ")) {
+		if ((accessToken == null) || !accessToken.startsWith("Bearer ")) {
 			filterChain.doFilter(request, response);
 			return;
 		}

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.crypto.SecretKey;
+
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
@@ -27,7 +28,7 @@ public class JwtProvider {
 
 	@PostConstruct
 	public void init() {
-		this.key = Keys.hmacShaKeyFor(Decoders.BASE64URL.decode(JwtProperties.SECRET_KEY));
+		JwtProvider.key = Keys.hmacShaKeyFor(Decoders.BASE64URL.decode(JwtProperties.SECRET_KEY));
 	}
 
 	// Access Token 생성
@@ -88,7 +89,7 @@ public class JwtProvider {
 				token = token.split(" ")[1].trim();
 			}
 
-			Jwts.parser().verifyWith((SecretKey) key).build().parseSignedClaims(token);
+			Jwts.parser().verifyWith(key).build().parseSignedClaims(token);
 			return true;
 		} catch (SecurityException | MalformedJwtException e) {
 

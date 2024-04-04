@@ -8,12 +8,13 @@ import com.test.users.dto.UsersDTO;
 @Mapper
 @Repository
 public interface UsersRepository {
-	
+
 	public int insertUser(UsersDTO dto);
 	public int insertProfile(UsersDTO dto);
-	
+
 	public UsersDTO selectByAccountId(String userAccountId);
-	
-	public void deleteUser(String userAccountId);
+
+
+	public void deleteUser(int userId);
 
 }
