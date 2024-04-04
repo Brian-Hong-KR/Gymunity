@@ -53,4 +53,11 @@ public class UsersServiceImp implements UsersService {
 	public UsersDTO viewUserProcess(String userAccounId) {
 		return usersRepository.selectByAccountId(userAccounId);
 	}
-}
+	
+	// 회원 탈퇴
+	@Override
+	public void deleteUserProcess(int userId) {
+		usersRepository.deleteUser(userId);	
+	}
+	
+}//end class

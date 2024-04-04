@@ -13,5 +13,7 @@ public interface UsersRepository {
 	public int insertProfile(UsersDTO dto);
 	
 	public UsersDTO selectByAccountId(String accountId);
+	
+	public void deleteUser(int userId);
 
 }
