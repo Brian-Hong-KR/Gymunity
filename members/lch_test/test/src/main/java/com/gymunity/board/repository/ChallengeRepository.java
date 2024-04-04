@@ -20,8 +20,12 @@ public interface ChallengeRepository {
 
 	public void save(ChallengeDTO dto);
 	
+	public void saveUserUpdate(int user_code);
+	
 	public void update(ChallengeDTO dto);
 	
 	public void delete(int ch_code);
+	
+	public void finishUserUpdate(int user_code);
 
 }

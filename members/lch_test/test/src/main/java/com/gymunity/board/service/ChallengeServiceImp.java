@@ -10,7 +10,7 @@ import com.gymunity.board.dto.PageDTO;
 import com.gymunity.board.repository.ChallengeRepository;
 
 @Service
-public class ChallengeServiceImp implements ChallengeService {
+public abstract class ChallengeServiceImp implements ChallengeService {
 
 	@Autowired
 	private ChallengeRepository challengeRepository;
@@ -32,6 +32,11 @@ public class ChallengeServiceImp implements ChallengeService {
 	public void insertProcess(ChallengeDTO dto) {
 		challengeRepository.save(dto);
 	}
+	
+	@Override
+	public void insertUserUpdateProcess(int user_code) {
+		challengeRepository.saveUserUpdate(user_code);
+	}
 
 	@Override
 	public ChallengeDTO contentProcess(int ch_code) {
@@ -46,6 +51,11 @@ public class ChallengeServiceImp implements ChallengeService {
 	@Override
 	public void deleteProcess(int ch_code) {
 		challengeRepository.delete(ch_code);
+	}
+	
+	@Override
+	public void finishUserUpdateProcess(int user_code) {
+		challengeRepository.finishUserUpdate(user_code);
 	}
 	
 
