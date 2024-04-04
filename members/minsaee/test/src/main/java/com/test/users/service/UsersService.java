@@ -12,10 +12,13 @@ public interface UsersService {
 	
 	public UsersDTO viewUserProcess(String userAccounId);
 	
-	// 유저의 아이디 비밀번호 확인 메서드
+	// 회원정보수정
+	public SignResponse updateMemberProcess(UsersDTO dto);
+	
+	// 유저의 아이디 비밀번호 확인
 	boolean authenticateUser(UserDeleteRequest request);
 	
-	// 회원탈퇴 메서드
+	// 회원탈퇴
 	void deleteUserByAccountId(String userAccountId);
 
 }

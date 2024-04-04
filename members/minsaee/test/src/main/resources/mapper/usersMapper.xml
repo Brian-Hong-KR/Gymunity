@@ -36,6 +36,20 @@
 		 <result property="userAccountId" column="user_account_id"/>
 	</resultMap>
 	
+	<!-- 회원 정보 수정 -->
+    <!-- 회원 정보 수정 -->
+    <update id="updateUsers" parameterType="UsersDTO">
+        UPDATE users
+        SET nickname = #{nickname}
+        WHERE user_id = #{userId};
+    </update>
+
+    <update id="updateProfiles" parameterType="UsersDTO">
+        UPDATE profiles
+        SET user_email = #{userEmail}
+        WHERE user_id = #{userId};
+    </update>
+	
 	<select id="selectByAccountId" parameterType="string" resultMap="userResultMap">
 		SELECT u.*, p.password
 		FROM users u

@@ -14,6 +14,9 @@ public interface UsersRepository {
 	
 	public UsersDTO selectByAccountId(String accountId);
 	
+	public void updateUsers(UsersDTO dto);
+	public void updateProfiles(UsersDTO dto);
+	
 	public void deleteUser(int userId);
 
 }
