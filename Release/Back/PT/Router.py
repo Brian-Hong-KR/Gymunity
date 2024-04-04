@@ -76,6 +76,9 @@ def exercise( user_id ):
 
 @bp.route("/question", methods=["POST"])
 def chatbot_response():
+    question = request.form["msg"]    
+    unit_name = "push-ups"
+
     # TODO : 쿼리
     gender = "female"
     age = "old"
@@ -83,13 +86,10 @@ def chatbot_response():
     level = "beginner"
     abnormal = "no health problems"
 
-    unit_name = "push-ups"
-    question = request.form["question"]        
-    
     answer = Chatbot.generate_answer(unit_name=unit_name, question=question, gender=gender, age=age, goal=goal, level=level, abnormal=abnormal )
-    
+
     DataBase.SavePTQnA(unit_name=unit_name, question=question, answer=answer)
-    
+
     return answer
 
 @bp.route('/exercise_done', methods=["POST"])

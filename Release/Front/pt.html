@@ -32,6 +32,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/pt_style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   </head>
 
@@ -281,26 +282,22 @@
             }
           }
         </script>
-
+          
         <div class="row">
           <div class="col-md-10 mr-auto ml-auto">
-            
             <form>
               <div id="chatbox">
                 <div class="col-md-8 ml-auto mr-auto">
-                  <p class="botText">
-                    <span>unit_name 에 대해서 무엇이든 물어보세요.</span>
-                  </p>
+                  <p class="botText"><span>Hi! I'm Your bot.</span></p>
                 </div>
               </div>
               <div id="userInput" class="row">
-                <!-- TODO : 현재 unit_name 을 얻어내는 방법 -->
                 <div class="col-md-10">
                   <input
-                    id="question"
+                    id="text"
                     type="text"
-                    name="question"
-                    placeholder="Question"
+                    name="msg"
+                    placeholder="Message"
                     class="form-control"
                   />
                   <button type="submit" id="send" class="btn btn-warning">
@@ -341,7 +338,6 @@
             });
           });
         </script>
-
 
           <!-- /.container-fluid -->
         </div>
