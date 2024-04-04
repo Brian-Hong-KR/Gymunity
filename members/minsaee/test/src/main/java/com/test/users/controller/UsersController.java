@@ -1,6 +1,7 @@
 package com.test.users.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,6 +15,7 @@ import com.test.redis.TokenService;
 import com.test.security.jwt.JwtProperties;
 import com.test.security.jwt.JwtProvider;
 import com.test.users.dto.SignResponse;
+import com.test.users.dto.UserDeleteRequest;
 import com.test.users.dto.UsersDTO;
 import com.test.users.service.UsersService;
 
@@ -71,13 +73,16 @@ public class UsersController {
 
 		return ResponseEntity.ok(signResponse);
 	}// end signin()
-	
+
 	// 회원탈퇴
 	@Operation(summary = "회원탈퇴", description = "회원탈퇴 API")
-	@DeleteMapping("/user/delete/{userId}")
-	public ResponseEntity<Object> deleteUser(@PathVariable("userId") int userId){
-		usersService.deleteUserProcess(userId);
-		return ResponseEntity.ok(null);
-	} // deleteUser()
+	@DeleteMapping("/user/delete")
+    public ResponseEntity<?> deleteUser(@RequestBody UserDeleteRequest request) {
+		if (usersService.authenticateUser(request)) {
+			usersService.deleteUserByAccountId(request.getUserAccountId());
+			return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    }
 
 } // end class

@@ -1,11 +1,13 @@
 package com.test.users.service;
 
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.test.security.jwt.JwtProvider;
 import com.test.users.dto.SignResponse;
+import com.test.users.dto.UserDeleteRequest;
 import com.test.users.dto.UsersDTO;
 import com.test.users.repository.UsersRepository;
 
@@ -20,6 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 public class UsersServiceImp implements UsersService {
 
 	private final UsersRepository usersRepository;
+	private final BCryptPasswordEncoder passwordEncoder;
 
 	@Override
 	public SignResponse getByUserAccountId(String userAccountId) {
@@ -53,11 +56,47 @@ public class UsersServiceImp implements UsersService {
 	public UsersDTO viewUserProcess(String userAccounId) {
 		return usersRepository.selectByAccountId(userAccounId);
 	}
-	
+
+//	// 회원 아이디, 비밀번호 일치
+//	@Override
+//	public boolean authenticateUser(UserDeleteRequest request) {
+//		UsersDTO user = usersRepository.selectByAccountId(request.getUserAccountId());
+//		if (user != null && passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+//			return true;
+//		}
+//		return false;
+//	}// authenticateUser()
+
+	@Override
+	public boolean authenticateUser(UserDeleteRequest request) {
+		UsersDTO user = usersRepository.selectByAccountId(request.getUserAccountId());
+		if (user != null) {
+			// 사용자의 암호화된 비밀번호를 로그로 출력
+			System.out.println("UserId from DB: " + user.getUserId());
+			System.out.println("UserAccountId from DB: " + user.getUserAccountId());
+			System.out.println("Encrypted password from DB: " + user.getPassword());
+
+			// 비밀번호 일치 검사 실행 및 결과 로깅
+			boolean isPasswordMatch = passwordEncoder.matches(request.getPassword(), user.getPassword());
+			System.out.println("Password match result: " + isPasswordMatch);
+
+			return isPasswordMatch;
+		}
+		return false;
+	}
+
 	// 회원 탈퇴
 	@Override
-	public void deleteUserProcess(int userId) {
-		usersRepository.deleteUser(userId);	
-	}
-	
-}//end class
+	public void deleteUserByAccountId(String userAccountId) {
+		UsersDTO user = usersRepository.selectByAccountId(userAccountId);
+		if (user != null) {
+			log.info("-------------------------------------------------------------------------------------");
+			log.info("-------------------------------------------------------------------------------------");
+			log.info("-------------------------------------------------------------------------------------");
+			log.info("Deleting user with userId: {}", user.getUserId()); // 로그 출력
+			log.info("Deleting user with userAccountId: {}", user.getUserAccountId()); // 로그 출력
+			usersRepository.deleteUser(user.getUserId());
+		}
+	}// deleteUserByAccountId()
+
+}// end class
