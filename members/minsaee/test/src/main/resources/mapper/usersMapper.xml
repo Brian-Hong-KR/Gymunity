@@ -35,4 +35,10 @@
        SELECT * FROM users
        WHERE user_account_id = #{user_account_id}
     </select>
+    
+    <!-- 회원 탈퇴 -->
+    <!-- Users 테이블에서 사용자 데이터 삭제 -->
+    <delete id="deleteUser" parameterType="int">
+		DELETE FROM users WHERE user_id = #{userId}
+    </delete>
 </mapper>

@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,7 +38,7 @@ public class UsersController {
 	// 회원가입 처리
 	@Operation(summary = "회원가입", description = "회원가입 API")
 	@PostMapping("/user/signip")
-	public ResponseEntity<SignResponse> addmember(@RequestBody UsersDTO usersDTO) {
+	public ResponseEntity<SignResponse> addUser(@RequestBody UsersDTO usersDTO) {
 		log.info("유저DTO:{}:", usersDTO);
 
 		// 비밀번호 암호화
@@ -46,11 +48,11 @@ public class UsersController {
 		SignResponse authInfo = usersService.addUserProcess(usersDTO);
 
 		return ResponseEntity.ok(authInfo);
-	} // end addmember()
+	} // end addUser()
 
 	// 로그인 처리
 	@Operation(summary = "로그인", description = "로그인 API")
-	@PostMapping(value = "/member/login")
+	@PostMapping(value = "/user/login")
 	public ResponseEntity<SignResponse> signin(@RequestBody UsersDTO usersDTO) throws Exception {
 		String accessToken = JwtProperties.TOKEN_PREFIX + JwtProvider.createAccessToken(usersDTO.getUserAccountId());
 		String refreshToken = JwtProvider.createRefreshToken(usersDTO.getUserAccountId());
@@ -69,5 +71,13 @@ public class UsersController {
 
 		return ResponseEntity.ok(signResponse);
 	}// end signin()
+	
+	// 회원탈퇴
+	@Operation(summary = "회원탈퇴", description = "회원탈퇴 API")
+	@DeleteMapping("/user/delete/{userId}")
+	public ResponseEntity<Object> deleteUser(@PathVariable("userId") int userId){
+		usersService.deleteUserProcess(userId);
+		return ResponseEntity.ok(null);
+	} // deleteUser()
 
 } // end class
