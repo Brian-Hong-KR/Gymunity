@@ -234,7 +234,36 @@
         
         <div class ="ptVideo" id="player"></div>
 
+        
+
+        <div class="col-md-10 mr-auto ml-auto">
+          <form>
+             <div id="chatbox">
+              <div class="col-md-8 ml-auto mr-auto">
+                <p class="botText"><span>운동하시면서 궁금한 걸 물어보세요</span></p>
+              </div>
+            </div>
+            
+            <div id="userInput" class="row">
+              <div class="col-md-10">
+                <input
+                  id="text"
+                  type="text"
+                  name="msg"
+                  placeholder="Message"
+                  class="form-control"
+                />
+                <button type="submit" id="send" class="btn-hover color-11">
+                  Send
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+
         <script>
+
           var tag = document.createElement('script');
           tag.src = 'https://www.youtube.com/player_api';
           var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -245,7 +274,6 @@
           var video_list_str = '{{video_list}}';
           const my_play_list = video_list_str.split(',');
 
-          console.log(my_play_list[index]);
 
           function onYouTubePlayerAPIReady() {
             player = new YT.Player('player', {
@@ -282,37 +310,16 @@
               }
             }
           }
-        </script>
 
-        <div class="col-md-10 mr-auto ml-auto">
-          <form>
-            <div id="chatbox">
-              <div class="col-md-8 ml-auto mr-auto">
-                <p class="botText"><span>운동하시면서 궁금한 걸 물어보세요</span></p>
-              </div>
-            </div>
-            <div id="userInput" class="row">
-              <div class="col-md-10">
-                <input
-                  id="text"
-                  type="text"
-                  name="msg"
-                  placeholder="Message"
-                  class="form-control"
-                />
-
-                <button type="submit" id="send" class="btn-hover color-11">
-                  Send
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-
-
-        <script>
+          var daily_program = '{{daily_program}}'
+          var unitNames = daily_program.split(',');
+          
           $(document).ready(function () {
             $('form').on('submit', function (event) {
+              var unitName = unitNames[index];
+              
+              console.log(unitName)
+              
               var rawText = $('#text').val();
               var userHtml = '<p class="userText"><span>' + rawText + '</span></p>';
               $('#text').val('');
@@ -324,6 +331,7 @@
               $.ajax({
                 data: {
                   msg: rawText,
+                  unit_name: unitName
                 },
                 type: 'POST',
                 url: '/question',

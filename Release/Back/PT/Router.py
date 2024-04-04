@@ -57,7 +57,8 @@ def plan():
 
 @bp.route('/exercise')
 def exercise( user_id ):
-    # TODO 
+    # TODO : Survey_done -> 다른 page 에서 exercise POST 로 호출
+
     gender, age, goal, level, abnormal = DataBase.LoadSurveyData  (user_id )
 
     daily_program = Chatbot.generate_daily_program( gender=gender, age=age, goal=goal, level=level, abnormal=abnormal )
@@ -72,12 +73,12 @@ def exercise( user_id ):
 
     DataBase.SavePTLog(daily_program=daily_program, done_datetime=datetime.datetime.today())
 
-    return render_template ( "pt.html", video_list=video_list)
+    return render_template ( "pt.html", daily_program=daily_program, video_list=video_list)
 
 @bp.route("/question", methods=["POST"])
 def chatbot_response():
     question = request.form["msg"]    
-    unit_name = "push-ups"
+    unit_name = request.form["unit_name"] 
 
     answer = Chatbot.generate_answer(unit_name=unit_name, question=question )
 
