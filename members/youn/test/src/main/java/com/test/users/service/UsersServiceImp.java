@@ -57,7 +57,11 @@ public class UsersServiceImp implements UsersService {
 		return usersRepository.selectByAccountId(userAccountId);
 	} // end viewUserProcess()
 
-
+	@Override
+	public SignResponse updateUserProcess(UsersDTO dto) {
+		usersRepository.updateUser(dto);		
+		return new SignResponse(dto.getnickname());
+	}
 
 	// 회원 정보 삭제
 	@Override
@@ -65,3 +69,10 @@ public class UsersServiceImp implements UsersService {
 		usersRepository.deleteUser(userId);
 	} // end deleteUserProcess()
 }
+
+
+
+
+
+
+
