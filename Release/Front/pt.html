@@ -32,6 +32,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/pt_style.css" />
+    <link rel="stylesheet" href="css/gymunity_button.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   </head>
@@ -230,9 +231,9 @@
               </li>
             </ul>
           </nav>
-          <!-- End of Topbar -->
-          <div id="player"></div>
-          <!-- <div class ="ptVideo" id="player"></div> -->
+        
+        <div class ="ptVideo" id="player"></div>
+
         <script>
           var tag = document.createElement('script');
           tag.src = 'https://www.youtube.com/player_api';
@@ -282,32 +283,32 @@
             }
           }
         </script>
-          
-        <div class="row">
-          <div class="col-md-10 mr-auto ml-auto">
-            <form>
-              <div id="chatbox">
-                <div class="col-md-8 ml-auto mr-auto">
-                  <p class="botText"><span>Hi! I'm Your bot.</span></p>
-                </div>
+
+        <div class="col-md-10 mr-auto ml-auto">
+          <form>
+            <div id="chatbox">
+              <div class="col-md-8 ml-auto mr-auto">
+                <p class="botText"><span>운동하시면서 궁금한 걸 물어보세요</span></p>
               </div>
-              <div id="userInput" class="row">
-                <div class="col-md-10">
-                  <input
-                    id="text"
-                    type="text"
-                    name="msg"
-                    placeholder="Message"
-                    class="form-control"
-                  />
-                  <button type="submit" id="send" class="btn btn-warning">
-                    Send
-                  </button>
-                </div>
+            </div>
+            <div id="userInput" class="row">
+              <div class="col-md-10">
+                <input
+                  id="text"
+                  type="text"
+                  name="msg"
+                  placeholder="Message"
+                  class="form-control"
+                />
+
+                <button type="submit" id="send" class="btn-hover color-11">
+                  Send
+                </button>
               </div>
-            </form>
-          </div>
+            </div>
+          </form>
         </div>
+
 
         <script>
           $(document).ready(function () {

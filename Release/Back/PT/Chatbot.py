@@ -33,9 +33,9 @@ def generate_daily_program (gender, age, goal, level, abnormal):
     
     return f"플랜 생성 오류 : {gender} {age} {goal} {level} {abnormal}"
 
-def generate_answer (unit_name, question, gender, age, goal, level, abnormal):
+def generate_answer (unit_name, question):
 
-    prompt = f"""You are a personal trainer. Answer about {unit_name} based on client's information in 2 sentences. : :\n\n client's question >\n{question}\n\n \nClient Information >\nGender: {gender}\nAge : {age}\nGoal : {goal}\nExercise Level : {level}\nHealth abnormalities: {abnormal}"""
+    prompt = f"""You are a personal trainer. Your A client asks you the following question about {unit_name}. Give a three-sentence in korean colloquial response.:\n\nClient's question: {question}"""
 
     response = llm.invoke (prompt)
     

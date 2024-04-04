@@ -79,14 +79,7 @@ def chatbot_response():
     question = request.form["msg"]    
     unit_name = "push-ups"
 
-    # TODO : 쿼리
-    gender = "female"
-    age = "old"
-    goal = "Muscle gain"
-    level = "beginner"
-    abnormal = "no health problems"
-
-    answer = Chatbot.generate_answer(unit_name=unit_name, question=question, gender=gender, age=age, goal=goal, level=level, abnormal=abnormal )
+    answer = Chatbot.generate_answer(unit_name=unit_name, question=question )
 
     DataBase.SavePTQnA(unit_name=unit_name, question=question, answer=answer)
 
