@@ -40,7 +40,7 @@ public class UsersController {
 
 	// 회원가입
 	@Operation(summary = "회원가입", description = "회원가입 API")
-	@PostMapping("/user/signip")
+	@PostMapping("/user/signup")
 	public ResponseEntity<SignResponse> addUser(@RequestBody UsersDTO usersDTO) {
 		log.info("유저DTO:{}:", usersDTO);
 
