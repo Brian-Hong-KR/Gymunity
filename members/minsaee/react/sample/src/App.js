@@ -14,6 +14,7 @@ import MemberRemove from "./components/members/MemberRemove";
 import PrivateRoute from "./access/PrivateRoute";
 import { jwtDecode } from "jwt-decode";
 import Survey from "./components/members/Survey";
+import Plan from './components/members/Plan';
 function App() {
   function getTokenExpirationDate(token) {
     const decoded = jwtDecode(token);
@@ -59,6 +60,10 @@ function App() {
             path="survey"
             element={<PrivateRoute isAuth={false} RouteComponent={Survey} />}
           />
+
+          <Route
+          path="plan"
+          element={<PrivateRoute isAuth={false} RouteComponent={Plan}/>}/>
 
           <Route
             path="joinadd"

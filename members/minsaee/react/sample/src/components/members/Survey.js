@@ -20,12 +20,12 @@ const Survey = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitting", formData);
-  
+
     // formData를 로컬 스토리지에 저장
     localStorage.setItem("surveyData", JSON.stringify(formData));
-  
-    // 회원가입 페이지로 이동
-    navigate("/joinadd");
+
+    // Plan 페이지로 이동
+    navigate("/plan");
   };
 
   return (
