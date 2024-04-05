@@ -1,5 +1,0 @@
-python-dotenv
-langchain
-langchain-community
-youtube_search
-flask-migrate
