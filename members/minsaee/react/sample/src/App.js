@@ -1,20 +1,18 @@
-import { Route, Routes } from "react-router-dom";
-import "./App.css";
-import BaseLayout from "./components/layout/BaseLayout";
-import BoardList from "./components/board/BoardList";
-import Home from "./components/Home";
-import BoardWrite from "./components/board/BoardWrite";
-import BoardView from "./components/board/BoardView";
-import BoardUpdate from "./components/board/BoardUpdate";
-import JoinAdd from "./components/members/JoinAdd";
-import Login from "./components/members/Login";
-import Logout from "./components/members/Logout";
-import EditInfo from "./components/members/EditInfo";
-import MemberRemove from "./components/members/MemberRemove";
-import PrivateRoute from "./access/PrivateRoute";
-import { jwtDecode } from "jwt-decode";
-import Survey from "./components/members/Survey";
-import Plan from './components/members/Plan';
+import { Route, Routes } from 'react-router-dom';
+import './App.css';
+import BaseLayout from './components/layout/BaseLayout';
+import BoardList from './components/board/BoardList';
+import Home from './components/Home';
+import BoardWrite from './components/board/BoardWrite';
+import BoardView from './components/board/BoardView';
+import BoardUpdate from './components/board/BoardUpdate';
+import JoinAdd from './components/members/JoinAdd';
+import Login from './components/members/Login';
+import Logout from './components/members/Logout';
+import EditInfo from './components/members/EditInfo';
+import MemberRemove from './components/members/MemberRemove';
+import PrivateRoute from './access/PrivateRoute';
+import { jwtDecode } from 'jwt-decode';
 function App() {
   function getTokenExpirationDate(token) {
     const decoded = jwtDecode(token);
@@ -32,74 +30,64 @@ function App() {
     return expirationDate < new Date();
   }
 
-  if (localStorage.getItem("Authorization")) {
+  if (localStorage.getItem('Authorization')) {
     //const token = '여기에_당신의_JWT_토큰을_넣으세요';
-    const token = localStorage.getItem("Authorization");
+    const token = localStorage.getItem('Authorization');
     const expirationDate = getTokenExpirationDate(token);
-    console.log("토큰 만료 시간:", expirationDate);
+    console.log('토큰 만료 시간:', expirationDate);
 
     if (isTokenExpired(token)) {
-      console.log("토큰이 만료되었습니다.");
+      console.log('토큰이 만료되었습니다.');
     } else {
-      console.log("토큰이 아직 유효합니다.");
+      console.log('토큰이 아직 유효합니다.');
     }
   }
   return (
-    <div className="container">
+    <div className='container'>
       <h1>My Shop</h1>
       <Routes>
-        <Route path="/" element={<BaseLayout />}>
+        <Route path='/' element={<BaseLayout />}>
           <Route index element={<Home />} />
 
           <Route
-            path="login"
+            path='login'
             element={<PrivateRoute isAuth={false} RouteComponent={Login} />}
           />
-
           <Route
-            path="survey"
-            element={<PrivateRoute isAuth={false} RouteComponent={Survey} />}
-          />
-
-          <Route
-          path="plan"
-          element={<PrivateRoute isAuth={false} RouteComponent={Plan}/>}/>
-
-          <Route
-            path="joinadd"
+            path='joinadd'
             element={<PrivateRoute isAuth={false} RouteComponent={JoinAdd} />}
           />
           <Route
-            path="logout"
+            path='logout'
             element={<PrivateRoute isAuth={true} RouteComponent={Logout} />}
           />
           <Route
-            path="editinfo"
+            path='editinfo'
             element={<PrivateRoute isAuth={true} RouteComponent={EditInfo} />}
           />
           <Route
-            path="memberremove"
+            path='memberremove'
             element={
               <PrivateRoute isAuth={true} RouteComponent={MemberRemove} />
             }
           />
 
-          <Route path="board/list/:currentPage" element={<BoardList />} />
+          <Route path='board/list/:currentPage' element={<BoardList />} />
 
           <Route
-            path="board/write"
+            path='board/write'
             element={<PrivateRoute isAuth={true} RouteComponent={BoardWrite} />}
           />
           <Route
-            path="board/write/:num"
+            path='board/write/:num'
             element={<PrivateRoute isAuth={true} RouteComponent={BoardWrite} />}
           />
           <Route
-            path="board/view/:num"
+            path='board/view/:num'
             element={<PrivateRoute isAuth={true} RouteComponent={BoardView} />}
           />
           <Route
-            path="board/update/:num"
+            path='board/update/:num'
             element={
               <PrivateRoute isAuth={true} RouteComponent={BoardUpdate} />
             }

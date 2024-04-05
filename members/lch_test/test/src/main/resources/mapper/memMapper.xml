@@ -5,19 +5,13 @@
 
 <mapper namespace="com.gymunity.board.repository.MemRepository">
 
-  <insert id="savemem" parameterType="MemDTO">
+  <insert id="savemem" parameterType="MemDTO" useGeneratedKeys="true" keyProperty="member_id">
 	INSERT INTO members
 	(mem_user_id, mem_grade_id, mem_ch_id)
   	VALUES (#{mem_user_id}, #{mem_grade_id}, #{mem_ch_id})
   </insert>
   
-
-	<update id="updateP" parameterType="int"> 
-		update profiles p
-		join members m
-		on p.user_id = m.mem_user_id
-		set #{mem_id} = #{member_id};
-	</update>
+	
 </mapper>   
 
 
