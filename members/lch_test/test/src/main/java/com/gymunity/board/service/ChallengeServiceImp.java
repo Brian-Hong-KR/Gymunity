@@ -32,6 +32,8 @@ public class ChallengeServiceImp implements ChallengeService {
 	public void insertProcess(ChallengeDTO dto) {
 		challengeRepository.save(dto);
 	}
+	
+
 
 	@Override
 	public ChallengeDTO contentProcess(int ch_code) {
@@ -40,7 +42,7 @@ public class ChallengeServiceImp implements ChallengeService {
 
 	@Override
 	public void updateProcess(ChallengeDTO dto) {
-		challengeRepository.update(dto);		
+		challengeRepository.update(dto);
 	}
 
 	@Override

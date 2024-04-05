@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import com.gymunity.board.dto.ChallengeDTO;
+import com.gymunity.board.dto.MemDTO;
 import com.gymunity.board.dto.PageDTO;
 
 @Mapper
@@ -19,6 +20,8 @@ public interface ChallengeRepository {
 	public ChallengeDTO content(int ch_code);
 
 	public void save(ChallengeDTO dto);
+	
+	
 	
 	public void update(ChallengeDTO dto);
 	

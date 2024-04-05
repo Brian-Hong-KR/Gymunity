@@ -14,8 +14,7 @@
 	ORDER BY c.ch_id DESC
 	LIMIT #{startRow}, #{blockCount}
   </select>
- 
- 
+
  
   <insert id="save" parameterType="ChallengeDTO">
 	INSERT INTO challenges
@@ -23,6 +22,10 @@
   	VALUES (#{user_id}, #{grade_id}, CURRENT_TIMESTAMP, #{ch_start_date, javaType=java.sql.Date}, #{ch_end_date, javaType=java.sql.Date}, #{category}, #{title}, #{content}, #{proceed}, #{total_participants})
   </insert>
   
+	<insert id="savemem" parameterType="ChallengeDTO">
+	
+  	</insert>
+  	
   <select id="content" parameterType="int" resultType="ChallengeDTO">
 	SELECT * FROM challenges
 	WHERE ch_id=#{ch_id}
