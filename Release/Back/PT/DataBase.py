@@ -2,7 +2,7 @@ from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-import datetime
+from datetime import datetime, time
 
 engine = create_engine("mysql+pymysql://gm:1234@112.169.231.62:6060/gm")
 Base = declarative_base()
@@ -13,10 +13,11 @@ class Users(Base):
     __tablename__ = "users"
     user_id = Column(Integer, primary_key=True) 
     user_account_id = Column(String(45))
-    nickname = Column(String(45))
+    nick_name = Column(String(45))
     admin_yn = Column(String(3))
     point = Column(Integer)
     grade_id = Column(Integer)
+    last_point_time = Column(String(45))
 
 class Survey(Base):
     __tablename__ = "survey"
@@ -49,10 +50,26 @@ def AddPoint(user_id, amount ):
     if not user_unit:
         return False 
 
-    user_unit.point += amount
-    session.commit()
+    last_point_time_str = user_unit.last_point_time.split(".")[0]
+    now_time = datetime.now()
+    today_4am = datetime.combine(now_time.date(), time(hour=4))
 
-    return True  
+    if last_point_time_str:
+        last_point_time = datetime.strptime(last_point_time_str, """%Y-%m-%d %H:%M:%S""")
+
+        if last_point_time < today_4am:
+            user_unit.point += amount
+            user_unit.last_point_time = now_time
+            session.commit()
+        else:
+            print ("지급 기준 시간 (오전 4시) 이 되지 않았습니다.")
+    else:
+        user_unit.point += amount
+        user_unit.last_point_time = now_time
+        session.commit()
+
+    return True
+ 
 
 
 def LoadSurveyData ( user_id ):
