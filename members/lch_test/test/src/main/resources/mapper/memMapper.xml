@@ -12,12 +12,6 @@
   </insert>
   
 
-	<update id="updateP" parameterType="int"> 
-		update profiles p
-		join members m
-		on p.user_id = m.mem_user_id
-		set #{mem_id} = #{member_id};
-	</update>
 </mapper>   
 
 

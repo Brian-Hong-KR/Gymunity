@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gymunity.board.dto.ChallengeDTO;
+import com.gymunity.board.dto.MemDTO;
 import com.gymunity.board.dto.PageDTO;
 import com.gymunity.board.service.ChallengeService;
+import com.gymunity.board.service.MemSerice;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -29,6 +31,9 @@ public class ChallengeController {
 
     @Autowired
     private ChallengeService challengeService;
+    
+    @Autowired
+	private MemSerice memService;
 
     @Autowired
 	private PageDTO pdto;
@@ -57,10 +62,11 @@ public class ChallengeController {
     }
 	
 	@PostMapping("/challenge/create")
-	public ResponseEntity<String> writeProExecute(@RequestBody ChallengeDTO dto, PageDTO pv) {
+	public ResponseEntity<String> writeProExecute(@RequestBody ChallengeDTO dto, PageDTO pv, MemDTO mdto) {
 		log.info("userid:{}, title:{}", dto.getUser_id(), dto.getTitle());
 		
 		challengeService.insertProcess(dto);
+		memService.insertProcess(mdto);
 		return ResponseEntity.ok(String.valueOf(1));
 	}
 	

@@ -4,20 +4,13 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MemDTO {
-	private int mem_id,member_id, reward_point, mem_user_id, mem_grade_id, mem_ch_id;
+	private int member_id, reward_point, mem_user_id, mem_grade_id, mem_ch_id;
 	private float archive_rate;
 	
 	public MemDTO() {
 		
 	}
 
-	public int getMem_id() {
-		return mem_id;
-	}
-
-	public void setMem_id(int mem_id) {
-		this.mem_id = mem_id;
-	}
 
 	public int getMem_user_id() {
 		return mem_user_id;
