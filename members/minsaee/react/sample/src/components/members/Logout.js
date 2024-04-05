@@ -12,12 +12,12 @@ const Logout = () => {
 
   const handleCommit = async () => {
     await axios
-      .get(`/member/logout`, config)
+      .get(`/user/logout`, config)
       .then((response) => {
         localStorage.removeItem("Authorization");
         localStorage.removeItem("Authorization-refresh");
-        localStorage.removeItem("memberEmail");
-        localStorage.removeItem("memberName");
+        localStorage.removeItem("userAccountId");
+        localStorage.removeItem("nickName");
         localStorage.removeItem("isLogin");
         localStorage.clear();
         window.location.replace("/");

@@ -19,10 +19,10 @@ const BaseLayout = () => {
             </li>
 
             {console.log(
-              "localStorage_memberEmail",
-              localStorage.getItem("memberEmail")
+              "localStorage_userAccountId",
+              localStorage.getItem("userAccountId")
             )}
-            {localStorage.getItem("memberEmail") == null ? (
+            {localStorage.getItem("userAccountId") == null ? (
               <>
                 <li className="nav-item">
                   <NavLink style={activeStyle} className="nav-link" to="/login">
@@ -48,7 +48,7 @@ const BaseLayout = () => {
                     className="nav-link"
                     to="/logout"
                   >
-                    {localStorage.getItem("memberName")}
+                    {localStorage.getItem("nickName")}
                     <span style={{ fontSize: "10px" }}>로그아웃</span>
                   </NavLink>
                 </li>
@@ -67,7 +67,7 @@ const BaseLayout = () => {
                   <NavLink
                     style={activeStyle}
                     className="nav-link"
-                    to="/memberremove"
+                    to="/userremove"
                   >
                     회원탈퇴
                   </NavLink>

@@ -8,7 +8,7 @@ const JoinAdd = () => {
   const [users, setUsers] = useState({
     userAccountId: "",
     password: "",
-    nickname: "",
+    nickName: "",
     userEmail: "",
     userName: "",
   });
@@ -78,7 +78,7 @@ const JoinAdd = () => {
             <input
               type="text"
               className="form-control"
-              name="nickname"
+              name="nickName"
               placeholder="닉네임"
               onChange={handleValueChange}
             />
