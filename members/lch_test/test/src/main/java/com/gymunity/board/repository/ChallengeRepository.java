@@ -21,10 +21,16 @@ public interface ChallengeRepository {
 
 	public void save(ChallengeDTO dto);
 	
+<<<<<<< HEAD
 	
+=======
+	public void saveUserUpdate(int user_code);
+>>>>>>> 6bd5d3878a3e3cde60a1907ce7083d8a502e0b7f
 	
 	public void update(ChallengeDTO dto);
 	
 	public void delete(int ch_code);
+	
+	public void finishUserUpdate(int user_code);
 
 }
