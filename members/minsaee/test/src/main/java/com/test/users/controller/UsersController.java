@@ -71,21 +71,21 @@ public class UsersController {
 		tokenService.saveTokens(udto.getUserAccountId(), accessToken, refreshToken);
 
 		SignResponse signResponse = SignResponse.builder().userAccountId(udto.getUserAccountId())
-				.userAccountId(udto.getUserAccountId()).accessToken(accessToken).refreshToken(refreshToken).build();
+				.nickName(udto.getNickName()).accessToken(accessToken).refreshToken(refreshToken).build();
 
 		return ResponseEntity.ok(signResponse);
 	}// end signin()
-	
+
 	// 회원정보 가져오기
 	@GetMapping("/user/editinfo/{userAccountId}")
-	public ResponseEntity<UsersDTO> getuser(@PathVariable("userAccountId") String userAccountId){
+	public ResponseEntity<UsersDTO> getuser(@PathVariable("userAccountId") String userAccountId) {
 		return ResponseEntity.ok(usersService.viewUserProcess(userAccountId));
 	}
-	
+
 	// 회원정보 수정
 	@Operation(summary = "회원정보 수정", description = "회원정보 수정 API")
 	@PutMapping("/user/update")
-	public ResponseEntity<SignResponse> updateUser(@RequestBody UsersDTO usersDTO){
+	public ResponseEntity<SignResponse> updateUser(@RequestBody UsersDTO usersDTO) {
 //		usersDTO.setPassword(encodePassword.encode(usersDTO.getPassword()));
 		return ResponseEntity.ok(usersService.updateMemberProcess(usersDTO));
 	}
@@ -93,12 +93,12 @@ public class UsersController {
 	// 회원탈퇴
 	@Operation(summary = "회원탈퇴", description = "회원탈퇴 API")
 	@DeleteMapping("/user/delete")
-    public ResponseEntity<?> deleteUser(@RequestBody UserDeleteRequest request) {
+	public ResponseEntity<?> deleteUser(@RequestBody UserDeleteRequest request) {
 		if (usersService.authenticateUser(request)) {
 			usersService.deleteUserByAccountId(request.getUserAccountId());
 			return ResponseEntity.ok().build();
-        }
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-    }
+		}
+		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+	}
 
 } // end class
