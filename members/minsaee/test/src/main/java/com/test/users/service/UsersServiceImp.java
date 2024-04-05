@@ -47,14 +47,14 @@ public class UsersServiceImp implements UsersService {
 		usersRepository.insertProfile(dto);
 
 		// 인증 정보 반환
-		return new SignResponse(dto.getNickname(), dto.getUserAccountId());
+		return new SignResponse(dto.getNickName(), dto.getUserAccountId());
 
 	} // end addUserProcess()
 
 	// 회원정보가져오기
 	@Override
-	public UsersDTO viewUserProcess(String userAccounId) {
-		return usersRepository.selectByAccountId(userAccounId);
+	public UsersDTO viewUserProcess(String userAccountId) {
+		return usersRepository.selectByAccountId(userAccountId);
 	}
 	
 	// 회원정보수정
@@ -67,7 +67,7 @@ public class UsersServiceImp implements UsersService {
 		// profiles 테이블에 데이터 업데이트
 		usersRepository.updateProfiles(dto);
 	
-		return new SignResponse(dto.getNickname(), dto.getUserEmail());
+		return new SignResponse(dto.getNickName(), dto.getUserEmail());
 	}
 
 //	// 회원 아이디, 비밀번호 일치

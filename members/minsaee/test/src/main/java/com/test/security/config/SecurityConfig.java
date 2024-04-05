@@ -81,6 +81,7 @@ public class SecurityConfig {
 							Claims claims = Jwts.parser().verifyWith((SecretKey) key).build().parseSignedClaims(token)
 									.getPayload();
 							String userId = (String) claims.get("userAccountId");
+							log.info("userId : " + userId);
 							tokenService.deleteTokens(userId);
 						} catch (Exception e) {
 							log.error("Error parsing JWT: " + e.getMessage());
