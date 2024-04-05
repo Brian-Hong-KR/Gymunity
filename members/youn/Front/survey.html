@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Gymunity - Survey</title>
+
+    <!-- Custom fonts for this template-->
+    <link
+      href="vendor/fontawesome-free/css/all.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet"
+    />
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet" />
+    <link href="css/gymunity_button.css" rel="stylesheet" />
+    <link href="css/survey_style.css" rel="stylesheet" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/2.2.0/uicons-bold-rounded/css/uicons-bold-rounded.css"
+    />
+  </head>
+
+  <body class="bg-gradient-primary">
+    <div class="container">
+      <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+          <!-- Nested Row within Card Body -->
+          <div class="row">
+            <div class="col-lg-7">
+              <div class="p-5">
+                <div class="text-center">
+                  <h1 class="h4 text-gray-900 mb-4">설문조사</h1>
+                </div>
+                <form action="{{ url_for('pt_server.plan') }}" method="post">
+                  <div class="top-text-wrapper">
+                    <div class="text-center">
+                      <h4>1. 당신의 성별은?</h4>
+                    </div>
+                  </div>
+                  <div class="grid-wrapper grid-col-auto">
+                    <label for="radio-card-21" class="radio-card">
+                      <input
+                        type="radio"
+                        name="gender"
+                        id="radio-card-21"
+                        value="male"
+                      />
+                      <div class="card-content-wrapper">
+                        <span class="check-icon"></span>
+                        <div class="card-content">
+                          <i class="fi fi-br-male"></i>
+                          <h4>남자</h4>
+                        </div>
+                      </div>
+                    </label>
+                    <!-- /.radio-card -->
+
+                    <label for="radio-card-22" class="radio-card">
+                      <input
+                        type="radio"
+                        name="gender"
+                        id="radio-card-22"
+                        value="female"
+                      />
+                      <div class="card-content-wrapper">
+                        <span class="check-icon"></span>
+                        <div class="card-content">
+                          <i class="fi fi-br-female"></i>
+                          <h4>여자</h4>
+                        </div>
+                      </div>
+                    </label>
+                    <!-- /.radio-card -->
+                  </div>
+                  <!-- /.grid-wrapper -->
+
+                  <hr />
+
+                  <!-- /.container -->
+                  <div class="top-text-wrapper">
+                    <div class="text-center">
+                      <h4>2. 당신의 연령대는?</h4>
+                    </div>
+                  </div>
+                  <div class="grid-wrapper grid-col-auto">
+                    <label for="radio-card-1" class="radio-card">
+                      <input
+                        type="radio"
+                        name="age"
+                        id="radio-card-1"
+                        value="young"
+                      />
+                      <div class="card-content-wrapper">
+                        <span class="check-icon"></span>
+                        <div class="card-content">
+                          <i class="fi fi-br-arrow-alt-down"></i>
+                          <h4>35세 이하</h4>
+                        </div>
+                      </div>
+                    </label>
+                    <!-- /.radio-card -->
+
+                    <label for="radio-card-2" class="radio-card">
+                      <input
+                        type="radio"
+                        name="age"
+                        id="radio-card-2"
+                        value="old"
+                      />
+                      <div class="card-content-wrapper">
+                        <span class="check-icon"></span>
+                        <div class="card-content">
+                          <i class="fi fi-br-arrow-alt-up"></i>
+                          <h4>36세 이상</h4>
+                        </div>
+                      </div>
+                    </label>
+                    <!-- /.radio-card -->
+                  </div>
+                  <!-- /.grid-wrapper -->
+
+                  <hr />
+
+                  <!-- /.container -->
+                  <div class="top-text-wrapper">
+                    <div class="text-center">
+                      <h4>3. 당신의 운동의 목표는?</h4>
+                    </div>
+                  </div>
+                  <div class="grid-wrapper grid-col-auto">
+                    <label for="radio-card-3" class="radio-card">
+                      <input
+                        type="radio"
+                        name="goal"
+                        id="radio-card-3"
+                        value="fat"
+                      />
+                      <div class="card-content-wrapper">
+                        <span class="check-icon"></span>
+                        <div class="card-content">
+                          <i class="fi fi-br-running"></i>
+                          <h4>체지방량 감소</h4>
+                          <h5>Lorem ipsum dolor sit amet, consectetur.</h5>
+                        </div>
+                      </div>
+                    </label>
+                    <!-- /.radio-card -->
+
+                    <label for="radio-card-4" class="radio-card">
+                      <input
+                        type="radio"
+                        name="goal"
+                        id="radio-card-4"
+                        value="muscle"
+                      />
+                      <div class="card-content-wrapper">
+                        <span class="check-icon"></span>
+                        <div class="card-content">
+                          <i class="fi fi-br-gym"></i>
+                          <h4>근육량 증가</h4>
+                          <h5>Lorem ipsum dolor sit amet, consectetur.</h5>
+                        </div>
+                      </div>
+                    </label>
+
+                    <label for="radio-card-5" class="radio-card">
+                      <input
+                        type="radio"
+                        name="goal"
+                        id="radio-card-5"
+                        value="wellbing"
+                      />
+                      <div class="card-content-wrapper">
+                        <span class="check-icon"></span>
+                        <div class="card-content">
+                          <i class="fi fi-br-equality"></i>
+                          <h4>종합 건강</h4>
+                          <h5>Lorem ipsum dolor sit amet, consectetur.</h5>
+                        </div>
+                      </div>
+                    </label>
+
+                    <!-- /.radio-card -->
+                  </div>
+                  <!-- /.grid-wrapper -->
+
+                  <hr />
+
+                  <!-- /.container -->
+                  <div class="top-text-wrapper">
+                    <div class="text-center">
+                      <h4>4. 당신의 운동 수준은?</h4>
+                    </div>
+                  </div>
+                  <div class="grid-wrapper grid-col-auto">
+                    <label for="radio-card-6" class="radio-card">
+                      <input
+                        type="radio"
+                        name="level"
+                        id="radio-card-6"
+                        value="beginner"
+                      />
+                      <div class="card-content-wrapper">
+                        <span class="check-icon"></span>
+                        <div class="card-content">
+                          <i class="fi fi-br-signal-alt"></i>
+                          <h4>입문</h4>
+                          <h5>Lorem ipsum dolor sit amet, consectetur.</h5>
+                        </div>
+                      </div>
+                    </label>
+                    <!-- /.radio-card -->
+
+                    <label for="radio-card-7" class="radio-card">
+                      <input
+                        type="radio"
+                        name="level"
+                        id="radio-card-7"
+                        value="intermediate"
+                      />
+                      <div class="card-content-wrapper">
+                        <span class="check-icon"></span>
+                        <div class="card-content">
+                          <i class="fi fi-br-signal-alt-1"></i>
+                          <h4>중급</h4>
+                          <h5>Lorem ipsum dolor sit amet, consectetur.</h5>
+                        </div>
+                      </div>
+                    </label>
+
+                    <label for="radio-card-8" class="radio-card">
+                      <input
+                        type="radio"
+                        name="level"
+                        id="radio-card-8"
+                        value="advanced"
+                      />
+                      <div class="card-content-wrapper">
+                        <span class="check-icon"></span>
+                        <div class="card-content">
+                          <i class="fi fi-br-signal-alt-2"></i>
+                          <h4>전문가</h4>
+                          <h5>Lorem ipsum dolor sit amet, consectetur.</h5>
+                        </div>
+                      </div>
+                    </label>
+
+                    <!-- /.radio-card -->
+                  </div>
+                  <!-- /.grid-wrapper -->
+                  <!-- /.container -->
+                  <hr />
+
+                  <!-- /.container -->
+                  <div class="top-text-wrapper">
+                    <div class="text-center">
+                      <h4>5. 운동시 주의가 필요한 건강 이상은?</h4>
+                    </div>
+                  </div>
+                  <div class="grid-wrapper grid-col-auto">
+                    <label for="radio-card-9" class="radio-card">
+                      <input
+                        type="radio"
+                        name="abnormal"
+                        id="radio-card-9"
+                        value="blood"
+                      />
+                      <div class="card-content-wrapper">
+                        <span class="check-icon"></span>
+                        <div class="card-content">
+                          <i class="fi fi-br-heart"></i>
+                          <h4>심혈관계</h4>
+                          <h5>Lorem ipsum dolor sit amet, consectetur.</h5>
+                        </div>
+                      </div>
+                    </label>
+                    <!-- /.radio-card -->
+
+                    <label for="radio-card-10" class="radio-card">
+                      <input
+                        type="radio"
+                        name="abnormal"
+                        id="radio-card-10"
+                        value="born"
+                      />
+                      <div class="card-content-wrapper">
+                        <span class="check-icon"></span>
+                        <div class="card-content">
+                          <i class="fi fi-br-bone"></i>
+                          <h4>근골격계</h4>
+                          <h5>Lorem ipsum dolor sit amet, consectetur.</h5>
+                        </div>
+                      </div>
+                    </label>
+
+                    <label for="radio-card-11" class="radio-card">
+                      <input
+                        type="radio"
+                        name="abnormal"
+                        id="radio-card-11"
+                        value="breath"
+                      />
+                      <div class="card-content-wrapper">
+                        <span class="check-icon"></span>
+                        <div class="card-content">
+                          <i class="fi fi-br-lungs"></i>
+                          <h4>호흡기</h4>
+                          <h5>Lorem ipsum dolor sit amet, consectetur.</h5>
+                        </div>
+                      </div>
+                    </label>
+
+                    <label for="radio-card-12" class="radio-card">
+                      <input
+                        type="radio"
+                        name="abnormal"
+                        id="radio-card-12"
+                        value="none"
+                      />
+                      <div class="card-content-wrapper">
+                        <span class="check-icon"></span>
+                        <div class="card-content">
+                          <i class="fi fi-br-grin"></i>
+                          <h4>없음</h4>
+                          <h5>Lorem ipsum dolor sit amet, consectetur.</h5>
+                        </div>
+                      </div>
+                    </label>
+
+                    <!-- /.radio-card -->
+                  </div>
+                  <!-- /.grid-wrapper -->
+                  <!-- /.container -->
+                  <hr />
+
+                  <input
+                    type="submit"
+                    class="btn-hover color-11"
+                    value="맞춤 플랜 생성 "
+                  />
+
+                  <p>플랜 생성에 1분 정도 시간이 소요됩니다.</p>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+  </body>
+</html>
