@@ -84,6 +84,12 @@ const BaseLayout = () => {
                 게시판
               </NavLink>
             </li>
+
+            <li className="nav-item">
+              <NavLink style={activeStyle} className="nav-link" to="/survey">
+                설문조사
+              </NavLink>
+            </li>
           </ul>
         </div>
       </nav>
