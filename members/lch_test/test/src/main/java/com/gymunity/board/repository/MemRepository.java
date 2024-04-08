@@ -13,5 +13,7 @@ public interface MemRepository {
 	
 	public void savemem(MemDTO dto);
 	
+	public void writemem(MemDTO dto);
+	
 	public void updateP(MemDTO dto);
 }

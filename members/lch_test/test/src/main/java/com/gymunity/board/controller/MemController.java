@@ -28,7 +28,7 @@ public class MemController {
 	@PostMapping("/mem/attend")
 	public ResponseEntity<String> writeProExecute(@RequestBody MemDTO dto){
 		log.info("userid:{}, ch_id:{}", dto.getMem_user_id(), dto.getMem_ch_id());
-		memService.insertProcess(dto);
+		memService.attendProcess(dto);
 		
 		return ResponseEntity.ok(String.valueOf(1));
 	}
