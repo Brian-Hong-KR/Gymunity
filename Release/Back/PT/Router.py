@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request
 from youtubesearchpython import VideosSearch
 import Chatbot, DataBase
-import datetime
+
 
 bp = Blueprint('pt_server', __name__, url_prefix='/')
 
@@ -32,7 +32,7 @@ def survey_done():
         for video in videosSearch.result()['result']:
             video_list += video['id'] + ","
 
-    DataBase.SavePTLog(daily_program=str(daily_program), done_datetime=datetime.datetime.today())
+    DataBase.SavePTLog(daily_program=str(daily_program))
 
     return render_template ( "pt.html", daily_program=daily_program, video_list=video_list)
 
@@ -57,7 +57,8 @@ def plan():
 
 @bp.route('/exercise')
 def exercise( user_id ):
-    # TODO 
+    # TODO : Survey_done -> 다른 page 에서 exercise POST 로 호출
+
     gender, age, goal, level, abnormal = DataBase.LoadSurveyData  (user_id )
 
     daily_program = Chatbot.generate_daily_program( gender=gender, age=age, goal=goal, level=level, abnormal=abnormal )
@@ -70,28 +71,27 @@ def exercise( user_id ):
         for video in videosSearch.result()['result']:
             video_list += video['id'] + ","
 
-    DataBase.SavePTLog(daily_program=daily_program, done_datetime=datetime.datetime.today())
+    DataBase.SavePTLog(daily_program=daily_program)
 
-    return render_template ( "pt.html", video_list=video_list)
+    return render_template ( "pt.html", daily_program=daily_program, video_list=video_list)
 
 @bp.route("/question", methods=["POST"])
 def chatbot_response():
-    unit_name = request.form["unit_name"]    
-    question = request.form["question"]    
-    gender = request.form['gender']
-    age = request.form['age']
-    goal = request.form['goal']
-    level = request.form['level']
-    abnormal = request.form['abnormal']
-    
-    answer = Chatbot.generate_answer(unit_name=unit_name, question=question, gender=gender, age=age, goal=goal, level=level, abnormal=abnormal )
-    
+    question = request.form["msg"]    
+    unit_name = request.form["unit_name"] 
+
+    answer = Chatbot.generate_answer(unit_name=unit_name, question=question )
+
     DataBase.SavePTQnA(unit_name=unit_name, question=question, answer=answer)
-    
+
     return answer
 
-@bp.route('/exercise_done')
+@bp.route('/exercise_done', methods=["POST"])
 def exercise_done():
-    user_id = request.form["user_id"]  
+    data = request.get_json()
+    user_id = data["user_id"]
+    print ("2. 오운완 ID from JSON : ", user_id)
+
     DataBase.AddPoint(user_id=user_id, amount=20 )
-    # TODO : User ID
+    
+    return True

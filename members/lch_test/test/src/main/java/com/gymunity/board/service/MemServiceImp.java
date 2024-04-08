@@ -18,6 +18,15 @@ public class MemServiceImp implements MemSerice{
 
 	@Override
 	public void insertProcess(MemDTO dto) {
+		// 챌린지 생성시
+		
+		memRepository.writemem(dto);
+		
+	}
+
+	@Override
+	public void attendProcess(MemDTO dto) {
+		// 챌린지 참가시
 		memRepository.savemem(dto);
 		
 	}

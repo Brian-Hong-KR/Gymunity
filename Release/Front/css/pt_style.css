@@ -1,0 +1,17 @@
+.ptVideo {
+  position: relative;
+  width: 100%;
+  height: 70%;
+}
+
+.ptVideo iframe {
+  position: absolute;
+  width: 100%;
+}
+
+.userText {
+  font-weight: bold;
+}
+.botText {
+  color: #e74a3b;
+}

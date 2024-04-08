@@ -17,6 +17,7 @@ public class SignResponse {
 
 	private String userAccountId;
 	private String nickName;
+	private String userEmail;
 	private String accessToken;
 	private String refreshToken;
 
@@ -25,5 +26,11 @@ public class SignResponse {
 		this.userAccountId = userAccountId;
 		this.nickName = nickName;
 	}
+	
+//	public SignResponse(String nickName, String userEmail) {
+//		super();
+//		this.nickName = nickName;
+//		this.userEmail = userEmail;
+//	}
 
 }

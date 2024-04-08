@@ -5,10 +5,18 @@
 
 <mapper namespace="com.gymunity.board.repository.MemRepository">
 
+
   <insert id="savemem" parameterType="MemDTO">
 	INSERT INTO members
-	(mem_user_id, mem_grade_id, mem_ch_id)
-  	VALUES (#{mem_user_id}, #{mem_grade_id}, #{mem_ch_id})
+	(mem_user_id, mem_grade_id, mem_ch_id, registrant)
+  	VALUES (#{mem_user_id}, #{mem_grade_id}, #{mem_ch_id}, DEFAULT)
+  </insert>
+  
+
+  <insert id="writemem" parameterType="MemDTO">
+	INSERT INTO members
+	(mem_user_id, mem_grade_id, mem_ch_id, registrant)
+  	VALUES (#{mem_user_id}, #{mem_grade_id}, #{mem_ch_id}, 'Y')
   </insert>
   
 

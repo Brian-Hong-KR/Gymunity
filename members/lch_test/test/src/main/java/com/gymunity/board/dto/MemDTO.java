@@ -6,9 +6,21 @@ import org.springframework.stereotype.Component;
 public class MemDTO {
 	private int member_id, reward_point, mem_user_id, mem_grade_id, mem_ch_id;
 	private float archive_rate;
+	private char registrant;
 	
 	public MemDTO() {
 		
+	}
+
+	
+
+	public char getRegistrant() {
+		return registrant;
+	}
+
+
+	public void setRegistrant(char registrant) {
+		this.registrant = registrant;
 	}
 
 

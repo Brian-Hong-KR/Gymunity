@@ -9,7 +9,10 @@ import com.gymunity.board.dto.MemDTO;
 public interface MemSerice {
 
 	
+	
 	public void insertProcess(MemDTO dto);
 	
 	public void updateProcess(MemDTO dto);
+	
+	public void attendProcess(MemDTO dto);
 }

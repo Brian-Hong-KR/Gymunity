@@ -32,6 +32,8 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/pt_style.css" />
+    <link rel="stylesheet" href="css/gymunity_button.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   </head>
 
@@ -229,10 +231,39 @@
               </li>
             </ul>
           </nav>
-          <!-- End of Topbar -->
-          <div id="player"></div>
-          <!-- <div class ="ptVideo" id="player"></div> -->
+        
+        <div class ="ptVideo" id="player"></div>
+
+        
+
+        <div class="col-md-10 mr-auto ml-auto">
+          <form>
+             <div id="chatbox">
+              <div class="col-md-8 ml-auto mr-auto">
+                <p class="botText"><span>운동하시면서 궁금한 걸 물어보세요</span></p>
+              </div>
+            </div>
+            
+            <div id="userInput" class="row">
+              <div class="col-md-10">
+                <input
+                  id="text"
+                  type="text"
+                  name="msg"
+                  placeholder="Message"
+                  class="form-control"
+                />
+                <button type="submit" id="send" class="btn-hover color-11">
+                  Send
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+
         <script>
+
           var tag = document.createElement('script');
           tag.src = 'https://www.youtube.com/player_api';
           var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -243,7 +274,6 @@
           var video_list_str = '{{video_list}}';
           const my_play_list = video_list_str.split(',');
 
-          console.log(my_play_list[index]);
 
           function onYouTubePlayerAPIReady() {
             player = new YT.Player('player', {
@@ -254,65 +284,42 @@
               },
             });
           }
-
+          
           function onPlayerStateChange(event) {
             if (event.data === YT.PlayerState.ENDED) {
-              if (index < my_play_list.length -2) {
-                console.log('스텝 완료');
-
+              
+              if (index < my_play_list.length - 2) {
+                // 스탭 완료
                 const progressbar = document.querySelector('.progress-bar');
                 const progress = (index + 1) / my_play_list.length * 100;
                 progressbar.style.width = `${progress}%`;
 
                 index++;
                 player.loadVideoById(my_play_list[index]);
-
               } else {
-                console.log('오늘 운동 완료');
-
+                // 오늘 운동 완료
                 const progressbar = document.querySelector('.progress-bar');
-                const progress = 100;
-                progressbar.style.width = `${progress}%`;
+                progressbar.style.width = '100%';  
 
-                // TODO : /exercise_done 호출 (user_id)
+                fetch("{{ url_for('pt_server.exercise_done') }}", {
+                  method: 'POST',
+                  headers: {'Content-Type': 'application/json',},
+                  body: JSON.stringify({ user_id: 1, }),
+                });// TODO : 실제 UID 받아서 전달
+
               }
             }
           }
-        </script>
 
-        <div class="row">
-          <div class="col-md-10 mr-auto ml-auto">
-            
-            <form>
-              <div id="chatbox">
-                <div class="col-md-8 ml-auto mr-auto">
-                  <p class="botText">
-                    <span>unit_name 에 대해서 무엇이든 물어보세요.</span>
-                  </p>
-                </div>
-              </div>
-              <div id="userInput" class="row">
-                <!-- TODO : 현재 unit_name 을 얻어내는 방법 -->
-                <div class="col-md-10">
-                  <input
-                    id="question"
-                    type="text"
-                    name="question"
-                    placeholder="Question"
-                    class="form-control"
-                  />
-                  <button type="submit" id="send" class="btn btn-warning">
-                    Send
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-
-        <script>
+          var daily_program = '{{daily_program}}'
+          var unitNames = daily_program.split(',');
+          
           $(document).ready(function () {
             $('form').on('submit', function (event) {
+              var unitName = unitNames[index];
+              
+              console.log(unitName)
+              
               var rawText = $('#text').val();
               var userHtml = '<p class="userText"><span>' + rawText + '</span></p>';
               $('#text').val('');
@@ -324,6 +331,7 @@
               $.ajax({
                 data: {
                   msg: rawText,
+                  unit_name: unitName
                 },
                 type: 'POST',
                 url: '/question',
@@ -339,7 +347,6 @@
             });
           });
         </script>
-
 
           <!-- /.container-fluid -->
         </div>
