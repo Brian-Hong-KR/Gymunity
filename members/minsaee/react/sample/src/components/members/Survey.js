@@ -13,23 +13,40 @@ const Survey = () => {
     abnormal: "no health problems",
   });
 
+  // 서버로부터 받은 계획 데이터를 저장하기 위한 상태
+  const [planData, setPlanData] = useState({
+    planName: "",
+    planDesc: "",
+  });
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Form submitting", formData);
 
     // formData를 로컬 스토리지에 저장
-    localStorage.setItem("surveyGender", formData.gender);
-    localStorage.setItem("surveyAge", formData.age);
-    localStorage.setItem("surveyGoal", formData.goal);
-    localStorage.setItem("surveyLevel", formData.level);
-    localStorage.setItem("surveyAbnormal", formData.abnormal);
+    localStorage.setItem("gender", formData.gender);
+    localStorage.setItem("age", formData.age);
+    localStorage.setItem("goal", formData.goal);
+    localStorage.setItem("level", formData.level);
+    localStorage.setItem("abnormal", formData.abnormal);
 
-    // Plan 페이지로 이동
-    navigate("/plan");
+    try {
+      const response = await axios.post("survey", formData);
+      console.log("Response data:", response.data);
+      setPlanData({
+        planName: response.data.planName,
+        planDesc: response.data.planDesc,
+      });
+
+      // Plan 페이지로 이동
+      navigate("/plan", { state: { planData: response.data } });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   };
 
   return (

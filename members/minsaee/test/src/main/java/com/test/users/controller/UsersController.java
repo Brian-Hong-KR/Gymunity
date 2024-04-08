@@ -1,5 +1,8 @@
 package com.test.users.controller;
 
+import java.io.IOException;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +20,10 @@ import com.test.redis.TokenService;
 import com.test.security.jwt.JwtProperties;
 import com.test.security.jwt.JwtProvider;
 import com.test.users.dto.SignResponse;
+import com.test.users.dto.Survey;
 import com.test.users.dto.UserDeleteRequest;
 import com.test.users.dto.UsersDTO;
+import com.test.users.service.PlanService;
 import com.test.users.service.UsersService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -38,6 +43,8 @@ public class UsersController {
 
 	@Autowired
 	private final BCryptPasswordEncoder encodePassword;
+
+	private final PlanService planService;
 
 	// 회원가입
 	@Operation(summary = "회원가입", description = "회원가입 API")
@@ -99,6 +106,13 @@ public class UsersController {
 			return ResponseEntity.ok().build();
 		}
 		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+	}
+
+	// 일치하는 설문조사 클라이언트에 반환
+	@Operation(summary = "설문조사")
+	@PostMapping("/survey")
+	public List<Survey> getPlan(@RequestBody Survey formData) throws IOException{
+		return planService.findMatchingPlans(formData);
 	}
 
 } // end class
