@@ -9,6 +9,7 @@ import lombok.Setter;
 @Setter
 public class Survey {
 
+	private int userId;
 	private String gender;
 	private String age;
 	private String goal;

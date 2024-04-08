@@ -22,6 +22,7 @@ import com.test.security.jwt.JwtProvider;
 import com.test.users.dto.SignResponse;
 import com.test.users.dto.Survey;
 import com.test.users.dto.UserDeleteRequest;
+import com.test.users.dto.UserRegistrationDTO;
 import com.test.users.dto.UsersDTO;
 import com.test.users.service.PlanService;
 import com.test.users.service.UsersService;
@@ -49,14 +50,15 @@ public class UsersController {
 	// 회원가입
 	@Operation(summary = "회원가입", description = "회원가입 API")
 	@PostMapping("/user/signup")
-	public ResponseEntity<SignResponse> addUser(@RequestBody UsersDTO usersDTO) {
-		log.info("유저DTO:{}:", usersDTO);
+	public ResponseEntity<SignResponse> addUser(@RequestBody UserRegistrationDTO dto) {
+		
+		log.info("Received request data: {}", dto);
 
 		// 비밀번호 암호화
-		usersDTO.setPassword(encodePassword.encode(usersDTO.getPassword()));
+		dto.getUsersDTO().setPassword(encodePassword.encode(dto.getUsersDTO().getPassword()));
 
 		// 회원 정보 등록
-		SignResponse authInfo = usersService.addUserProcess(usersDTO);
+		SignResponse authInfo = usersService.addUserProcess(dto);
 
 		return ResponseEntity.ok(authInfo);
 	} // end addUser()

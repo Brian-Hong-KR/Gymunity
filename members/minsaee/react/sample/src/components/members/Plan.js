@@ -20,7 +20,8 @@ const Plan = () => {
   }, [location.state]);
 
   const handleRegister = () => {
-    navigate("/joinadd");
+    // 현재 location 상태를 `/joinadd` 페이지로 전달
+    navigate("/joinadd", { state: { planData: planData } });
   };
 
   const handleSurveyReset = () => {

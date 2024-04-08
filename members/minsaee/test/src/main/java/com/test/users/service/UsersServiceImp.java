@@ -6,8 +6,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.test.security.jwt.JwtProvider;
+import com.test.users.dto.Point;
 import com.test.users.dto.SignResponse;
+import com.test.users.dto.Survey;
 import com.test.users.dto.UserDeleteRequest;
+import com.test.users.dto.UserRegistrationDTO;
 import com.test.users.dto.UsersDTO;
 import com.test.users.mapper.UsersMapper;
 
@@ -38,16 +41,35 @@ public class UsersServiceImp implements UsersService {
 
 	// 회원 정보 추가하기
 	@Override
-	public SignResponse addUserProcess(UsersDTO dto) {
+	public SignResponse addUserProcess(UserRegistrationDTO dto) {
+		
+		UsersDTO usersDTO = dto.getUsersDTO();
+		Survey survey = dto.getSurvey();
+		Point point = dto.getPoint();
 
 		// users 테이블에 데이터 삽입
-		usersMapper.insertUser(dto);
+		usersMapper.insertUser(usersDTO);
 
 		// profiles 테이블에 데이터 삽입
-		usersMapper.insertProfile(dto);
+		usersMapper.insertProfile(usersDTO);
+		
+		// UsersDTO의 userId를 Survey 객체에 설정
+		survey.setUserId(usersDTO.getUserId());
+		
+		// 테이블에 데이터 삽입
+		usersMapper.insertSurvey(survey);
+//		usersMapper.insertPt(survey); pt TABLE 삽입
+		
+		// UsersDTO의 userId를 Point 객체에 설정
+		point.setUserId(usersDTO.getUserId());
+		
+		usersMapper.insertPointAggr(point);
+		
+		
+		
 
 		// 인증 정보 반환
-		return new SignResponse(dto.getNickName(), dto.getUserAccountId());
+		return new SignResponse(usersDTO.getNickName(), usersDTO.getUserAccountId());
 
 	} // end addUserProcess()
 
