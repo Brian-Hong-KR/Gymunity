@@ -5,6 +5,9 @@ Ubuntu Server 22.04.4 LTS
     Linux Kernel 5.15
     OpenJDK 17
     Python 3.10
+    sudo apt install gunicorn
+    sudo apt install nginx
+
 python 3.10
 ollama --> "ollama pull neural-chat" (Local LLM)
 
@@ -19,10 +22,14 @@ pymysql
 langchain
 python-dotenv
 youtube-search-python
-googletrans==4.0.0-rc1
+googletrans (단, youtube-search-python 과 의존성 충돌)
 
 3. Run PT Server
 
-py app.py --> (web browser) localhost:5000
+sudo systemctl restart nginx
+cd /home/utopos/GitHub/Gymunity/Release/Back/PT
+gunicorn --bind unix:/tmp/myproject.sock "__init__:create_app()"
+(web browser) http://192.168.0.60
 
-
+4. Run with Java
+sudo nano /etc/nginx/site-avilabel/myproject
