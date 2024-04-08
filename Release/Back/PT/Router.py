@@ -78,11 +78,12 @@ def exercise( user_id ):
 @bp.route("/question", methods=["POST"])
 def chatbot_response():
     question = request.form["msg"]    
+    user_id = request.form["user_id"]    
     unit_name = request.form["unit_name"] 
 
     answer = Chatbot.generate_answer(unit_name=unit_name, question=question )
 
-    DataBase.SavePTQnA(unit_name=unit_name, question=question, answer=answer)
+    DataBase.SavePTQnA(user_id=user_id, unit_name=unit_name, question=question, answer=answer)
 
     return answer
 
@@ -95,3 +96,23 @@ def exercise_done():
     DataBase.AddPoint(user_id=user_id, amount=20 )
     
     return True
+
+@bp.route('/store', methods=["POST"])
+def store():
+    user_id = request.form["user_id"] 
+    gender, age, goal, level, abnormal = DataBase.LoadSurveyData ( user_id )
+    
+    # TODO : 최신 정보 반영 및 Disable 기능
+    # lastest_program = DataBase.load_lastest_daily_program ( user_id=user_id)
+    # lastest_questions = DataBase.load_lastest_qna (user_id=user_id)
+    # disable_product = DataBase.load_disable_product (user_id=user_id)
+
+    product_list = Chatbot.generate_product_list ( gender=gender, age=age, goal=goal, level=level, abnormal=abnormal )
+    
+    print (product_list)
+
+    return render_template ( "store.html", product_list=product_list)
+
+
+
+
