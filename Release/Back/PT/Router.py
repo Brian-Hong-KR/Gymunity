@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request
 from youtubesearchpython import VideosSearch
 import Chatbot, DataBase
-import datetime
+
 
 bp = Blueprint('pt_server', __name__, url_prefix='/')
 
@@ -32,7 +32,7 @@ def survey_done():
         for video in videosSearch.result()['result']:
             video_list += video['id'] + ","
 
-    DataBase.SavePTLog(daily_program=str(daily_program), done_datetime=datetime.datetime.today())
+    DataBase.SavePTLog(daily_program=str(daily_program))
 
     return render_template ( "pt.html", daily_program=daily_program, video_list=video_list)
 
@@ -71,7 +71,7 @@ def exercise( user_id ):
         for video in videosSearch.result()['result']:
             video_list += video['id'] + ","
 
-    DataBase.SavePTLog(daily_program=daily_program, done_datetime=datetime.datetime.today())
+    DataBase.SavePTLog(daily_program=daily_program)
 
     return render_template ( "pt.html", daily_program=daily_program, video_list=video_list)
 
