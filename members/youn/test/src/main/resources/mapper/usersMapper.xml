@@ -7,7 +7,7 @@
 	<!-- Users 테이블에 데이터 삽입 -->
 	<insert id="insertUser" parameterType="UsersDTO" useGeneratedKeys="true" keyProperty="userId">
 	<![CDATA[
-	INSERT INTO users (user_account_id, nickname, admin_yn)
+	INSERT INTO users (user_account_id, nick_name, admin_yn)
 	VALUES (#{userAccountId}, #{nickname}, #{admin_yn})
     ]]>
     </insert>
@@ -40,7 +40,7 @@
     <!-- 회원 정보 수정 -->
     <update id="updateUsers" parameterType="UsersDTO">
         UPDATE users
-        SET nickname = #{nickname}
+        SET nick_name = #{nickname}
         WHERE user_id = #{userId};
     </update>
 

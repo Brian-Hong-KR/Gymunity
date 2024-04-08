@@ -9,7 +9,7 @@ import com.test.security.jwt.JwtProvider;
 import com.test.users.dto.SignResponse;
 import com.test.users.dto.UserDeleteRequest;
 import com.test.users.dto.UsersDTO;
-import com.test.users.repository.UsersRepository;
+import com.test.users.mappers.UsersMappers;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 
 public class UsersServiceImp implements UsersService {
 
-	private final UsersRepository usersRepository;
+	private final UsersMappers usersRepository;
 	private final BCryptPasswordEncoder passwordEncoder;
 
 	@Override

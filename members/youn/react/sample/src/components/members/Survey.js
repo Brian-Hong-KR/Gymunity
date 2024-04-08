@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 
 const Survey = () => {
   const navigate = useNavigate();
-
   const [formData, setFormData] = useState({
     gender: "female",
     age: "young",
@@ -17,21 +16,25 @@ const Survey = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Form submitting', formData);
 
-    // formData를 로컬 스토리지에 저장
-    localStorage.setItem('surveyGender', formData.gender);
-    localStorage.setItem('surveyAge', formData.age);
-    localStorage.setItem('surveyGoal', formData.goal);
-    localStorage.setItem('surveyLevel', formData.level);
-    localStorage.setItem('surveyAbnormal', formData.abnormal);
+    try {
+      // 설문조사 결과를 백엔드로 전송
+      await axios.post('/processSurvey', formData);
 
-    // Plan 페이지로 이동
-    navigate('/plan');
+      // 설문조사 결과를 로컬 스토리지에 저장
+      localStorage.setItem('surveyFormData', JSON.stringify(formData));
+
+      // Plan 페이지로 이동
+      navigate('/plan');
+    } catch (error) {
+      console.error('Error submitting survey:', error);
+    }
   };
 
+  
   return (
     <div className="container">
       <div className="card o-hidden border-0 shadow-lg my-5">
