@@ -21,7 +21,7 @@ public interface ChallengeRepository {
 
 	public void save(ChallengeDTO dto);
 	
-	public void verph(ChallengeDTO dto);
+	
 	
 	public void update(ChallengeDTO dto);
 	

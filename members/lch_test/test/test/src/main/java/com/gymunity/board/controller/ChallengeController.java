@@ -3,11 +3,7 @@ package com.gymunity.board.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,21 +12,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.gymunity.board.dto.ChallengeDTO;
 import com.gymunity.board.dto.MemDTO;
 import com.gymunity.board.dto.PageDTO;
 import com.gymunity.board.dto.PointDTO;
-import com.gymunity.board.file.FileUpload;
 import com.gymunity.board.service.ChallengeService;
 import com.gymunity.board.service.MemSerice;
 import com.gymunity.board.service.PointService;
 
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -52,9 +43,6 @@ public class ChallengeController {
     @Autowired
 	private PageDTO pdto;
 	private int currentPage;
-	
-	@Value("${spring.servlet.multipart.location}")
-	private String filePath;
 	
 	public ChallengeController() {
 		
@@ -105,21 +93,6 @@ public class ChallengeController {
 		challengeService.deleteProcess(ch_id);
 		return ResponseEntity.ok(null);
 	}
-	
-
-	@PostMapping(value="/challenge/verify", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public ResponseEntity<String> verifyProExecute(ChallengeDTO dto, @Parameter(description = "첨부파일") @RequestPart(value="filename", required=false) MultipartFile filename) {
-		MultipartFile file = dto.getFilename();
-		log.info("file:{}", file.getOriginalFilename());
-		
-		if(file!=null && !file.isEmpty()) {
-			UUID random = FileUpload.saveCopyFile(file, filePath);						
-			dto.setUpload1(random+"_"+ file.getOriginalFilename());
-		}
-		challengeService.verifyProcess(dto);		
-		return ResponseEntity.ok(String.valueOf(1));
-	}
-	
 	
 
 }

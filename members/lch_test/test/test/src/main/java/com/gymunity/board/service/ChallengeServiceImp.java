@@ -18,14 +18,6 @@ public class ChallengeServiceImp implements ChallengeService {
 	public ChallengeServiceImp() {
 	}
 	
-	
-	@Override
-	public void verifyProcess(ChallengeDTO dto) {
-		challengeRepository.verph(dto);
-		
-	}
-
-
 	@Override
 	public int countProcess() {
 		return challengeRepository.count();
