@@ -39,6 +39,7 @@ Coded by www.creative-tim.com
 import Dashboard from "layouts/dashboard";
 import Tables from "layouts/tables";
 import Billing from "layouts/billing";
+import PT from "layouts/PT";
 import VirtualReality from "layouts/virtual-reality";
 import RTL from "layouts/rtl";
 import Profile from "layouts/profile";
@@ -63,6 +64,15 @@ const routes = [
     route: "/profile",
     icon: <CustomerSupport size="12px" />,
     component: <Profile />,
+    noCollapse: true,
+  },
+    {
+    type: "collapse",
+    name: "PT",
+    key: "PT",
+    route: "/PT",
+    icon: <CustomerSupport size="12px" />,
+    component: <PT />,
     noCollapse: true,
   },
     {
