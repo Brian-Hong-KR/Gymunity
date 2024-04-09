@@ -25,6 +25,8 @@ public interface UsersMapper {
 	public void updateUsers(UsersDTO dto);
 	public void updateProfiles(UsersDTO dto);
 	
+	public void updateUserGradeName(int userId);
+	
 	public int deleteUser(int userId);
 
 }
