@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
+import Chatbot from 'react-simple-chatbot';
+//import { ThemeProvidor } from 'styled-components';
+
 // @mui material components
 import Card from "@mui/material/Card";
 import Icon from "@mui/material/Icon";
@@ -7,7 +10,6 @@ import Icon from "@mui/material/Icon";
 // Soft UI Dashboard React components
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
-
 
 const PersonalTraining = () => {
   const [player, setPlayer] = useState(null);
@@ -54,10 +56,24 @@ const PersonalTraining = () => {
     }
   };
 
+  const steps = [
+  {
+    id:'0',
+    message:"안녕하세요.",
+    end: true,
+  },
+  ]
+
   return (
+  <div>
     <div style={{ position:'relative', width:'100%', paddingBottom:'56.25%'}}>
         <div style={{ position:'absolute', width:'100%', height:'100%' }} id="player"></div>
     </div>
+    <div style={{ position: 'relative', bottom: 0, left: 0 }}>
+        <Chatbot steps={steps} hideHeader={true} placeholder={'채팅'} />
+    </div>
+  </div>
+
   );
 };
 
