@@ -1,11 +1,11 @@
-package com.gymunity.board.service;
+package com.gymunity.challenges.service;
 
 import java.util.List;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-import com.gymunity.board.dto.ChallengeDTO;
-import com.gymunity.board.dto.PageDTO;
+import com.gymunity.challenges.dto.ChallengeDTO;
+import com.gymunity.challenges.dto.PageDTO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -20,4 +20,5 @@ public interface ChallengeService {
 	public void updateProcess(ChallengeDTO dto);
 	public void deleteProcess(int num);
 	public void verifyProcess(ChallengeDTO dto);
+	public void insertUserUpdateProcess(int num);
 }

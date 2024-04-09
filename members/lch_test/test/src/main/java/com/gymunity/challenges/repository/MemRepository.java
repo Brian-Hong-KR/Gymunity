@@ -1,11 +1,11 @@
-package com.gymunity.board.repository;
+package com.gymunity.challenges.repository;
 
 
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-import com.gymunity.board.dto.MemDTO;
+import com.gymunity.challenges.dto.MemDTO;
 
 @Mapper
 @Repository

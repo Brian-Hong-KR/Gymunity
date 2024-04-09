@@ -1,10 +1,10 @@
-package com.gymunity.board.service;
+package com.gymunity.challenges.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gymunity.board.dto.MemDTO;
-import com.gymunity.board.repository.MemRepository;
+import com.gymunity.challenges.dto.MemDTO;
+import com.gymunity.challenges.repository.MemRepository;
 
 @Service
 public class MemServiceImp implements MemSerice{
