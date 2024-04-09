@@ -28,11 +28,11 @@ const Survey = () => {
     console.log("Form submitting", formData);
 
     // formData를 로컬 스토리지에 저장
-    localStorage.setItem("gender", formData.gender);
-    localStorage.setItem("age", formData.age);
-    localStorage.setItem("goal", formData.goal);
-    localStorage.setItem("level", formData.level);
-    localStorage.setItem("abnormal", formData.abnormal);
+    // localStorage.setItem("gender", formData.gender);
+    // localStorage.setItem("age", formData.age);
+    // localStorage.setItem("goal", formData.goal);
+    // localStorage.setItem("level", formData.level);
+    // localStorage.setItem("abnormal", formData.abnormal);
 
     try {
       const response = await axios.post("survey", formData);
