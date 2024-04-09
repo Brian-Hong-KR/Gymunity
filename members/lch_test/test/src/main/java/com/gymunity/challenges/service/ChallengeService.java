@@ -21,4 +21,5 @@ public interface ChallengeService {
 	public void deleteProcess(int num);
 	public void verifyProcess(ChallengeDTO dto);
 	public void insertUserUpdateProcess(int num);
+	public void countChProcess(ChallengeDTO dto);
 }
