@@ -15,8 +15,8 @@
     <!-- profiles 테이블에 데이터 삽입 -->
     <insert id="insertProfile" parameterType="UsersDTO">
         <![CDATA[
-        INSERT INTO profiles (user_id, password, user_email, user_name)
-        VALUES (#{userId}, #{password}, #{userEmail}, #{userName})
+        INSERT INTO profiles (user_id, password, user_email)
+        VALUES (#{userId}, #{password}, #{userEmail})
         ]]>
     </insert>
 
@@ -37,20 +37,72 @@
 		]]>
 	</insert> -->
 	
-	<!-- point_aggr 테이블에 데이터 삽입 -->
-	<insert id="insertPointAggr" parameterType="Point">
+	<!-- point_add 테이블에 데이터 삽입 -->
+	<insert id="addPoint" parameterType="Point">
 		<![CDATA[ 
-		INSERT INTO point_aggr (user_id, total_points)
-		VALUES (#{userId}, #{totalPoints})
+		INSERT INTO point_add (user_id, points_added, reason)
+		VALUES (#{userId}, #{pointsAdded}, #{reason})
 		]]>
 	</insert>
 	
-	
+	<!-- point_aggr 테이블에 데이터 업데이트 -->
+	<!-- 
+	<insert id="addOrUpdatePointsAggregate" parameterType="int">
+        INSERT INTO point_aggr (user_id, total_points)
+        VALUES (#{userId}, 0)
+        ON DUPLICATE KEY UPDATE
+        total_points = total_points + (SELECT points_added FROM point_add WHERE user_id = #{userId} ORDER BY added_at DESC LIMIT 1)
+    </insert> -->
+    
+    <insert id="addOrUpdatePointsAggregate" parameterType="int">
+        <!-- point_aggr 테이블에 데이터를 삽입하는 쿼리 -->
+        INSERT INTO point_aggr (user_id, total_points, current_points)
+        VALUES (
+            #{userId}, <!-- userId를 테이블에 삽입 -->
+            <!-- point_add 테이블에서 해당 userId에 대한 points_added의 합을 total_points에 계산하여 삽입 -->
+            (SELECT COALESCE(SUM(points_added), 0) FROM point_add WHERE user_id = #{userId}),
+            <!-- point_add 테이블에서 해당 userId에 대한 points_added의 합을 current_points에 계산하여 삽입 -->
+            (SELECT COALESCE(SUM(points_added), 0) FROM point_add WHERE user_id = #{userId})
+        )
+        ON DUPLICATE KEY UPDATE
+        <!-- point_add 테이블에서 가장 최근에 추가된 points_added 값을 total_points와 current_points에 더함 -->
+        total_points = total_points + (SELECT points_added FROM point_add WHERE user_id = #{userId} ORDER BY added_at DESC LIMIT 1),
+        current_points = current_points + (SELECT points_added FROM point_add WHERE user_id = #{userId} ORDER BY added_at DESC LIMIT 1);
+    </insert>
+    
+    <!-- point_subtract 테이블에 데이터 삽입 -->
+	<insert id="subtractPoint" parameterType="Point">
+		<![CDATA[ 
+		INSERT INTO point_subtract (user_id, points_subtracted, reason)
+		VALUES (#{userId}, #{pointsSubtracted}, #{reason})
+		]]>
+	</insert>
+    
+	<!-- 회원 등급 업데이트 -->
+	<update id="updateUserGradeName" parameterType="int">
+        UPDATE users
+        SET grade_name = (
+            SELECT g.grade_name
+            FROM grades g
+            WHERE g.grade_id = (
+                SELECT CASE
+                    WHEN pa.total_points >= 3000 THEN 4
+                    WHEN pa.total_points >= 1500 THEN 3
+                    WHEN pa.total_points >= 600 THEN 2
+                    ELSE 1
+                END
+                FROM point_aggr pa
+                WHERE pa.user_id = #{userId}
+            )
+        )
+        WHERE user_id = #{userId};
+    </update>
     <!-- 회원 정보 수정 -->
 	<resultMap id="userResultMap" type="UsersDTO">
 		 <result property="userId" column="user_id"/>
 		 <result property="userAccountId" column="user_account_id"/>
 		 <result property="nickName" column="nick_name"/>
+		 <result property="lastLogin" column="last_login"/>
 	</resultMap>
 
     <update id="updateUsers" parameterType="UsersDTO">
@@ -62,6 +114,13 @@
     <update id="updateProfiles" parameterType="UsersDTO">
         UPDATE profiles
         SET user_email = #{userEmail}
+        WHERE user_id = #{userId};
+    </update>
+    
+    <!-- last_login 필드 업데이트 -->
+    <update id="updateLastLogin" parameterType="UsersDTO">
+        UPDATE users
+        SET last_login = #{lastLogin}
         WHERE user_id = #{userId};
     </update>
 	

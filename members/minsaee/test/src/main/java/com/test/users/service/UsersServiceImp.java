@@ -1,5 +1,7 @@
 package com.test.users.service;
 
+import java.time.LocalDateTime;
+
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -32,17 +34,19 @@ public class UsersServiceImp implements UsersService {
 		log.info("로드유저바이유저네임 : {}", userAccountId);
 		UsersDTO usersDTO = usersMapper.selectByAccountId(userAccountId);
 
-		if (usersDTO == null)
-			new UsernameNotFoundException("히히 몰라! 유저서비스임프");
+		if (usersDTO == null) {
+			throw new UsernameNotFoundException("사용자를 찾을 수 없습니다.");
+		}
+
 		return SignResponse.builder().userAccountId(usersDTO.getUserAccountId())
-				.userAccountId(usersDTO.getUserAccountId()).accessToken(JwtProvider.createAccessToken(userAccountId))
+				.userEmail(usersDTO.getUserEmail()).accessToken(JwtProvider.createAccessToken(userAccountId))
 				.refreshToken(JwtProvider.createRefreshToken(userAccountId)).build();
 	}
 
 	// 회원 정보 추가하기
 	@Override
 	public SignResponse addUserProcess(UserRegistrationDTO dto) {
-		
+
 		UsersDTO usersDTO = dto.getUsersDTO();
 		Survey survey = dto.getSurvey();
 		Point point = dto.getPoint();
@@ -52,43 +56,119 @@ public class UsersServiceImp implements UsersService {
 
 		// profiles 테이블에 데이터 삽입
 		usersMapper.insertProfile(usersDTO);
-		
+
 		// UsersDTO의 userId를 Survey 객체에 설정
 		survey.setUserId(usersDTO.getUserId());
-		
+
 		// 테이블에 데이터 삽입
 		usersMapper.insertSurvey(survey);
 //		usersMapper.insertPt(survey); pt TABLE 삽입
-		
+
 		// UsersDTO의 userId를 Point 객체에 설정
 		point.setUserId(usersDTO.getUserId());
-		
-		usersMapper.insertPointAggr(point);
-		
-		
-		
+
+		// 회원가입 보상과 회원의 증가,차감테이블 생성
+		usersMapper.addPoint(point);
+		usersMapper.subtractPoint(point);
 
 		// 인증 정보 반환
 		return new SignResponse(usersDTO.getNickName(), usersDTO.getUserAccountId());
 
 	} // end addUserProcess()
 
+	@Override
+	public void addOrUpdatePointsAggregate(int userId) {
+
+		// points_aggr 업데이트
+		usersMapper.addOrUpdatePointsAggregate(userId);
+		
+		// grade_name 업데이트
+		usersMapper.updateUserGradeName(userId);
+
+		log.info("addOrUpdatePointsAggregate: {}", userId);
+
+	}
+
 	// 회원정보가져오기
 	@Override
 	public UsersDTO viewUserProcess(String userAccountId) {
+
 		return usersMapper.selectByAccountId(userAccountId);
 	}
-	
+
+//	@Override
+//	public void updateLastLogin(String userAccountId) {
+//		// lastLogin 업데이트
+//		LocalDateTime now = LocalDateTime.now();
+//		UsersDTO usersDTO = usersMapper.selectByAccountId(userAccountId);
+//		
+//		if (usersDTO != null) {
+//			usersDTO.setLastLogin(now);
+//			
+//			// 로그인 로그 업데이트
+//			usersMapper.updateLastLogin(usersDTO);
+//			
+//			// 로그인 보상 로직
+//	        // 이 부분은 특정 조건(예: 하루에 한 번만 지급)에 맞춰 실행되어야 함
+//			/* 로그인 보상 지급 조건 */
+//	    }
+//	}
+
+	@Override
+	public void updateLastLogin(String userAccountId) {
+		
+
+		// 유저 정보 가져오기
+		UsersDTO usersDTO = usersMapper.selectByAccountId(userAccountId);
+
+		if (usersDTO != null) {
+			// 현재 시간
+			LocalDateTime now = LocalDateTime.now();
+			
+			// 마지막 로그인 시간 가져오기
+			LocalDateTime lastLogin = usersDTO.getLastLogin();
+			
+			// 오늘 새벽 4시
+			LocalDateTime today4am = now.toLocalDate().atStartOfDay().plusHours(4);
+			// 20XX-XX-XXT04:00:00
+
+			// 마지막 로그인 시간이 오늘 새벽 4시 이전이라면 보상을 지급
+			if (lastLogin.isBefore(today4am)) {
+
+				// 로그인 보상 포인트 설정
+				Point point = new Point();
+				point.setUserId(usersDTO.getUserId());
+				point.setPointsAdded(20);
+				point.setReason("출석 보상");
+
+				// point_add 테이블에 데이터 삽입
+				usersMapper.addPoint(point);
+
+				// poinT_aggr 테이블 업데이트
+				usersMapper.addOrUpdatePointsAggregate(usersDTO.getUserId());
+				
+				// grade_name 업데이트
+				usersMapper.updateUserGradeName(usersDTO.getUserId());
+				
+			} // end inner if()
+
+			// 로그인 시간 업데이트
+			usersDTO.setLastLogin(now);
+			usersMapper.updateLastLogin(usersDTO);
+		} // end outer if
+
+	}// end updateLastLogin()
+
 	// 회원정보수정
 	@Override
 	public SignResponse updateMemberProcess(UsersDTO dto) {
-		
+
 		// users 테이블에 데이터 업데이트
 		usersMapper.updateUsers(dto);
-		
+
 		// profiles 테이블에 데이터 업데이트
 		usersMapper.updateProfiles(dto);
-	
+
 		return new SignResponse(dto.getNickName(), dto.getUserEmail());
 	}
 

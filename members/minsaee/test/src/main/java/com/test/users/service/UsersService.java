@@ -14,8 +14,13 @@ public interface UsersService {
 	
 	public UsersDTO viewUserProcess(String userAccountId);
 	
+	public void addOrUpdatePointsAggregate(int userId);
+	
 	// 회원정보수정
 	public SignResponse updateMemberProcess(UsersDTO dto);
+	
+	// 로그인정보 업데이트
+	void updateLastLogin(String userAccountId);
 	
 	// 유저의 아이디 비밀번호 확인
 	boolean authenticateUser(UserDeleteRequest request);

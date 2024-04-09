@@ -1,5 +1,7 @@
 package com.test.users.dto;
 
+import java.time.LocalDateTime;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.test.common.exception.WrongEmailPasswordException;
@@ -14,8 +16,8 @@ public class UsersDTO {
 	private String nickName; // 유저가 직접 사용하는 별명
 	private String password; // 유저가 직접 사용하는 비밀번호
 	private String userEmail; // 유저의 이메일
-	private String userName; // 유저의 이름
 	private String admin_yn = "n";
+	private LocalDateTime lastLogin;
 	private int userId;
 
 	// 비밀번호 일치 확인

@@ -68,31 +68,33 @@ public class SecurityConfig {
 		http.authorizeHttpRequests(authorize -> authorize.anyRequest().permitAll());
 
 		// 로그아웃
-//		http.logout(logout -> logout.logoutUrl("/member/logout").invalidateHttpSession(true).clearAuthentication(true)
-//				.logoutSuccessHandler((request, response, authentication) -> {
-//					// 로그아웃 성공 시 처리 로직
-//					String accessToken = request.getHeader("Authorization");
-//					String refreshToken = request.getHeader("Authorization-refresh");
-//					if (accessToken != null) {
-//						String token = accessToken.split(" ")[1];
-//						log.info("logout token : " + token);
-//						log.info("refreshToken : " + refreshToken);
-//						try {
-//							Claims claims = Jwts.parser().verifyWith((SecretKey) key).build().parseSignedClaims(token)
-//									.getPayload();
-//							String userId = (String) claims.get("memberEmail");
-//							tokenService.deleteTokens(userId);
-//						} catch (Exception e) {
-//							log.error("Error parsing JWT: " + e.getMessage());
-//						}
-//					}
-//					response.setStatus(HttpServletResponse.SC_OK);
-//				})).exceptionHandling(exceptionHandling -> exceptionHandling
-//						.authenticationEntryPoint((request, response, authException) -> {
-//							// 인증 실패 시 처리 로직
-//						}));
+		http.logout(logout -> logout.logoutUrl("/user/logout").invalidateHttpSession(true).clearAuthentication(true)
+				.logoutSuccessHandler((request, response, authentication) -> {
+					// 로그아웃 성공 시 처리 로직
+					String accessToken = request.getHeader("Authorization");
+					String refreshToken = request.getHeader("Authorization-refresh");
+					if (accessToken != null) {
+						String token = accessToken.split(" ")[1];
+						log.info("logout token : " + token);
+						log.info("refreshToken : " + refreshToken);
+						try {
+							Claims claims = Jwts.parser().verifyWith((SecretKey) key).build().parseSignedClaims(token)
+									.getPayload();
+							String userId = (String) claims.get("userAccountId");
+							log.info("userId : " + userId);
+							tokenService.deleteTokens(userId);
+						} catch (Exception e) {
+							log.error("Error parsing JWT: " + e.getMessage());
+						}
+					}
+					response.setStatus(HttpServletResponse.SC_OK);
+				})).exceptionHandling(exceptionHandling -> exceptionHandling
+						.authenticationEntryPoint((request, response, authException) -> {
+							// 인증 실패 시 처리 로직
+						}));
 
 		return http.build();
 	}
 
 }// end class
+
