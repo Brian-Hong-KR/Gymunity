@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -51,18 +52,18 @@ public class UsersController {
 	@Operation(summary = "회원가입", description = "회원가입 API")
 	@PostMapping("/user/signup")
 	public ResponseEntity<SignResponse> addUser(@RequestBody UserRegistrationDTO dto) {
-		
+
 		log.info("Received request data: {}", dto);
 
 		// 비밀번호 암호화
 		String encodedPassword = encodePassword.encode(dto.getUsersDTO().getPassword());
-	    dto.getUsersDTO().setPassword(encodedPassword);
+		dto.getUsersDTO().setPassword(encodedPassword);
 
 		// 회원 정보 등록
 		SignResponse authInfo = usersService.addUserProcess(dto);
-		
+
 		// 회원가입 후 자동으로 포인트 집계 업데이트
-	    usersService.addOrUpdatePointsAggregate(dto.getUsersDTO().getUserId());
+		usersService.addOrUpdatePointsAggregate(dto.getUsersDTO().getUserId());
 
 		return ResponseEntity.ok(authInfo);
 	} // end addUser()
@@ -80,13 +81,21 @@ public class UsersController {
 		// MySQL DB 조회
 		UsersDTO udto = usersService.viewUserProcess(usersDTO.getUserAccountId());
 
-		// Redis DB 저장
-		tokenService.saveTokens(udto.getUserAccountId(), accessToken, refreshToken);
+		if (udto != null) {
+			// lastLogin 업데이트
+	        usersService.updateLastLogin(usersDTO.getUserAccountId());
 
-		SignResponse signResponse = SignResponse.builder().userAccountId(udto.getUserAccountId())
-				.nickName(udto.getNickName()).accessToken(accessToken).refreshToken(refreshToken).build();
+			// Redis DB 저장
+			tokenService.saveTokens(udto.getUserAccountId(), accessToken, refreshToken);
 
-		return ResponseEntity.ok(signResponse);
+			SignResponse signResponse = SignResponse.builder().userAccountId(udto.getUserAccountId())
+					.nickName(udto.getNickName()).accessToken(accessToken).refreshToken(refreshToken).build();
+
+			return ResponseEntity.ok(signResponse);
+
+		} else {
+			throw new UsernameNotFoundException("User not found with accountId: " + usersDTO.getUserAccountId());
+		}
 	}// end signin()
 
 	// 회원정보 가져오기
@@ -117,7 +126,7 @@ public class UsersController {
 	// 일치하는 설문조사 클라이언트에 반환
 	@Operation(summary = "설문조사")
 	@PostMapping("/survey")
-	public List<Survey> getPlan(@RequestBody Survey formData) throws IOException{
+	public List<Survey> getPlan(@RequestBody Survey formData) throws IOException {
 		return planService.findMatchingPlans(formData);
 	}
 
