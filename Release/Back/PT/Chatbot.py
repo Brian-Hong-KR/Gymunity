@@ -6,6 +6,7 @@ f = dotenv.find_dotenv()
 dotenv.load_dotenv(f)
 pt_plan_file_path = os.environ["pt_plan_file_path"]
 daily_plan_file_path = os.environ["daily_plan_file_path"]
+product_list_file_path = os.environ["product_list_file_path"]
 
 llm = Ollama(model="neural-chat", temperature=0.5) 
 
@@ -16,6 +17,10 @@ with open( pt_plan_file_path , "r", encoding='utf-8') as f:
 daily_guide_list = []
 with open( daily_plan_file_path , "r", encoding='utf-8') as f:
     daily_guide_list = json.load(f)
+
+product_list = []
+with open( product_list_file_path , "r", encoding='utf-8') as f:
+    product_list = json.load(f)
 
 def generate_pt_plan (gender, age, goal, level, abnormal):
 
@@ -40,3 +45,18 @@ def generate_answer (unit_name, question):
     response = llm.invoke (prompt)
     
     return response
+
+def generate_product_list ( gender, age, goal, level, abnormal ) :
+    
+    my_product_list = [
+        item for item in product_list
+        if item["except"] not in (gender, age, goal, level, abnormal)
+    ]
+
+    return my_product_list
+    
+if __name__ == "__main__":
+    my_list = generate_product_list ("male","old","fat","beginner","cardiovascular disease")
+    
+    print (len(product_list))
+    print (len(my_list))

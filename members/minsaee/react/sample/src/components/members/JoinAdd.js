@@ -1,9 +1,12 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const JoinAdd = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const planData = location.state?.planData;
 
   const [users, setUsers] = useState({
     userAccountId: "",
@@ -13,7 +16,6 @@ const JoinAdd = () => {
     userName: "",
   });
 
-
   const handleValueChange = (e) => {
     setUsers((prev) => {
       return { ...prev, [e.target.name]: e.target.value };
@@ -22,8 +24,23 @@ const JoinAdd = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+
+    // survey 데이터가 배열이면 첫 번째 요소를 사용하고, 배열이 아니면 그대로 사용
+    const surveyData = Array.isArray(planData) ? planData[0] : planData;
+
+    // 포인트 데이터를 생성 (예시로 초기 포인트를 200으로 설정)
+    const pointData = { totalPoints: 200 };
+
+    const userRegistrationData = {
+      usersDTO: users,
+      survey: surveyData,
+      point: pointData,
+    };
+
+    console.log("Sending requestData:", userRegistrationData); // 로그 출력
+
     await axios
-      .post(`/user/signup`, users)
+      .post(`/user/signup`, userRegistrationData)
       .then((response) => {
         console.log(response);
         navigate("/");

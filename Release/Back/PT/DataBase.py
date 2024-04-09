@@ -46,6 +46,7 @@ class PTQnA(Base):
     question = Column(String(1024))
     answer = Column(String(1024))
     answer_at = Column(DateTime)
+    user_id = Column(Integer) 
 
 def AddPoint(user_id, amount ):
 
@@ -59,14 +60,10 @@ def AddPoint(user_id, amount ):
         print ("User ID 가 없습니다.")
         return False
 
-    add_logs = session.query(PointAdd).filter(PointAdd.reason == done_sign).all()
+    # TODO : order_by ( date. desc)
+    add_logs = session.query(PointAdd).filter(PointAdd.user_id == user_id, PointAdd.reason == done_sign).all()
 
     for add_log_unit in add_logs:
-
-        # last_point_time_str = add_log_unit.added_at.split(".")[0]
-        # last_point_time = datetime.strptime(last_point_time_str, """%Y-%m-%d %H:%M:%S""")
-
-        # if last_point_time > today_4am:
         if add_log_unit.added_at > today_4am:
             print ( "중복 보상")
             return False
@@ -76,14 +73,6 @@ def AddPoint(user_id, amount ):
     session.commit()
     return True
 
-
-#
-# def LoadSurveyData ( user_id ):
-#     survey_unit = session.query(Survey).filter(Survey.user_id == user_id).first()
-#     if survey_unit:
-#         return survey_unit.gender, survey_unit.age, survey_unit.goal, survey_unit.level, survey_unit.abnormal
-#     else:
-#         return "female", "old", "Overall health improvement", "beginner", "cardiovascular disease"  # Return placeholder values
 
 def SavePTLog(daily_program):
     #TODO : user_id 는 user table 이 생성된 이후에
@@ -96,12 +85,23 @@ def SavePTQnA(unit_name, question, answer):
     session.add(qna_unit)
     session.commit()
 
-# def LoadPTQnA():
-#     return session.query(PTQnA).all()
+def load_lastest_daily_program ( user_id ):
+    log_unit = session.query(PTLog).filter(PTLog.user_id == user_id).order_by(PTLog.done_datetime.desc()).limit(1).first()
+    return log_unit.daily_program
 
-#
-# if __name__ == "__main__":
-#     AddPoint(1, 11 )
-#
-#
-#     session.close()
+def load_lastest_qna ( user_id ) :   
+    qna_logs = session.query(PTQnA).filter(PTQnA.user_id == user_id).order_by(PTQnA.answer_at.desc()).limit(5).first()
+
+    response = ""
+    for qna_log in qna_logs:
+        response += f"""{qna_log.question} (about {qna_log.unit_name})"""
+
+    return response    
+
+
+# def LoadSurveyData ( user_id ):
+#     survey_unit = session.query(Survey).filter(Survey.user_id == user_id).first()
+#     if survey_unit:
+#         return survey_unit.gender, survey_unit.age, survey_unit.goal, survey_unit.level, survey_unit.abnormal
+#     else:
+#         return "female", "old", "Overall health improvement", "beginner", "cardiovascular disease"  # Return placeholder values

@@ -62,7 +62,7 @@ public class JwtProvider {
 	public static String getUserAccountId(String token) {
 		return extractClaims(token).get("userAccountId").toString();
 	} // end getUserAccoutId()
-
+00000
 	// 발급된 Token이 만료 시간이 지났는지 체크
 	public static boolean isExpired(String token) {
 		Date expiredDate = null;

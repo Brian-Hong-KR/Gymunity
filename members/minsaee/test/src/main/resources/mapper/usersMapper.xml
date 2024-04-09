@@ -1,34 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.test.users.repository.UsersRepository">
+<mapper namespace="com.test.users.mapper.UsersMapper">
 	
 	<!-- 회원가입-->
-	<!-- Users 테이블에 데이터 삽입 -->
+	<!-- users 테이블에 데이터 삽입 -->
 	<insert id="insertUser" parameterType="UsersDTO" useGeneratedKeys="true" keyProperty="userId">
-	<![CDATA[
-	INSERT INTO users (user_account_id, nick_name, admin_yn)
-	VALUES (#{userAccountId}, #{nickName}, #{admin_yn})
-    ]]>
+	    <![CDATA[
+	    INSERT INTO users (user_account_id, nick_name, admin_yn)
+	    VALUES (#{userAccountId}, #{nickName}, #{admin_yn})
+        ]]>
     </insert>
     
-    <!-- Profiles 테이블에 데이터 삽입 -->
+    <!-- profiles 테이블에 데이터 삽입 -->
     <insert id="insertProfile" parameterType="UsersDTO">
-    <![CDATA[
-    INSERT INTO profiles (user_id, password, user_email, user_name)
-    VALUES (#{userId}, #{password}, #{userEmail}, #{userName})
-    ]]>
+        <![CDATA[
+        INSERT INTO profiles (user_id, password, user_email, user_name)
+        VALUES (#{userId}, #{password}, #{userEmail}, #{userName})
+        ]]>
     </insert>
 
-		 
-		 <!-- survey 테이블에 삽입
-		 INSERT INTO survey(gender, age, goal, level, abnormal)
-		 VALUES(#{gender}, #{age}, #{goal}, #{level}, #{abnormal});
-		 
-		 pt 테이블에 삽입
-		 INSERT INTO pt(plan_name, plan_desc)
-		 VALUES(#{plan_name}, #{plan_desc});
-		 ]]>-->
+    <!-- survey 테이블에 데이터 삽입 -->
+    <insert id="insertSurvey" parameterType="Survey">
+		<![CDATA[ 
+		INSERT INTO survey (user_id, gender, age, goal, level, abnormal)
+		VALUES (#{userId}, #{gender}, #{age}, #{goal}, #{level}, #{abnormal})
+		]]>
+	</insert>
+	
+	<!-- pt 테이블에 데이터 삽입 -->
+	<!-- 
+	<insert id="insertPt" parameterType="Survey">
+		<![CDATA[ 
+		INSERT INTO pt (user_id, plan_name, plan_desc)
+		VALUES (#{userId}, #{planName}, #{planDesc})
+		]]>
+	</insert> -->
+	
+	<!-- point_aggr 테이블에 데이터 삽입 -->
+	<insert id="insertPointAggr" parameterType="Point">
+		<![CDATA[ 
+		INSERT INTO point_aggr (user_id, total_points)
+		VALUES (#{userId}, #{totalPoints})
+		]]>
+	</insert>
+	
 	
     <!-- 회원 정보 수정 -->
 	<resultMap id="userResultMap" type="UsersDTO">

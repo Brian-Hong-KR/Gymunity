@@ -1,8 +1,23 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Plan = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [planData, setPlanData] = useState(null);
+
+  useEffect(() => {
+    if (
+      location.state &&
+      location.state.planData &&
+      location.state.planData.length > 0
+    ) {
+      console.log("Plan data received:", location.state.planData[0]);
+      setPlanData(location.state.planData[0]);
+    } else {
+      console.log("No plan data received.");
+    }
+  }, [location.state]);
 
   const handleRegister = () => {
     navigate("/joinadd");
@@ -24,12 +39,16 @@ const Plan = () => {
                   <h1 className="h4 text-gray-900 mb-4">맞춤 플랜</h1>
                 </div>
 
-                {/* 여기에 맞춤 플랜 내용을 렌더링하세요. */}
-                <p>{/* planName을 여기에 렌더링 */}</p>
-                <hr />
-
-                {/* planDesc 렌더링 */}
-                <div>{/* 여기에 설명 텍스트 또는 컴포넌트 */}</div>
+                {planData && (
+                  <>
+                    <p>{planData.plan_name}</p>
+                    <hr />
+                    <div
+                      dangerouslySetInnerHTML={{ __html: planData.plan_desc }}
+                    />
+                    <hr />
+                  </>
+                )}
 
                 <hr />
                 <p className="mb-4">
