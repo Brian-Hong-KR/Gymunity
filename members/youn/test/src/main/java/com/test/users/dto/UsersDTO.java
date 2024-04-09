@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 public class UsersDTO {
 	private String userAccountId; // 유저가 직접 사용하는 ID
-	private String nickname; // 유저가 직접 사용하는 별명
+	private String nickName; // 유저가 직접 사용하는 별명
 	private String password; // 유저가 직접 사용하는 비밀번호
 	private String userEmail; // 유저의 이메일
 	private String userName; // 유저의 이름

@@ -10,7 +10,7 @@ public interface UsersService {
 
 	public SignResponse addUserProcess(UsersDTO dto);
 	
-	public UsersDTO viewUserProcess(String userAccounId);
+	public UsersDTO viewUserProcess(String userAccountId);
 	
 	// 회원정보수정
 	public SignResponse updateMemberProcess(UsersDTO dto);

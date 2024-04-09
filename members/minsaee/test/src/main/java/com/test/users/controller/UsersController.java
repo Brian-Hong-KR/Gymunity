@@ -55,10 +55,14 @@ public class UsersController {
 		log.info("Received request data: {}", dto);
 
 		// 비밀번호 암호화
-		dto.getUsersDTO().setPassword(encodePassword.encode(dto.getUsersDTO().getPassword()));
+		String encodedPassword = encodePassword.encode(dto.getUsersDTO().getPassword());
+	    dto.getUsersDTO().setPassword(encodedPassword);
 
 		// 회원 정보 등록
 		SignResponse authInfo = usersService.addUserProcess(dto);
+		
+		// 회원가입 후 자동으로 포인트 집계 업데이트
+	    usersService.addOrUpdatePointsAggregate(dto.getUsersDTO().getUserId());
 
 		return ResponseEntity.ok(authInfo);
 	} // end addUser()

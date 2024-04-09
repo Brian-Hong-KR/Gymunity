@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const Survey = () => {
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     gender: "female",
     age: "young",
@@ -12,29 +13,42 @@ const Survey = () => {
     abnormal: "no health problems",
   });
 
+  // 서버로부터 받은 계획 데이터를 저장하기 위한 상태
+  const [planData, setPlanData] = useState({
+    planName: "",
+    planDesc: "",
+  });
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitting', formData);
+    console.log("Form submitting", formData);
+
+    // formData를 로컬 스토리지에 저장
+    localStorage.setItem("gender", formData.gender);
+    localStorage.setItem("age", formData.age);
+    localStorage.setItem("goal", formData.goal);
+    localStorage.setItem("level", formData.level);
+    localStorage.setItem("abnormal", formData.abnormal);
 
     try {
-      // 설문조사 결과를 백엔드로 전송
-      await axios.post('/processSurvey', formData);
-
-      // 설문조사 결과를 로컬 스토리지에 저장
-      localStorage.setItem('surveyFormData', JSON.stringify(formData));
+      const response = await axios.post("survey", formData);
+      console.log("Response data:", response.data);
+      setPlanData({
+        planName: response.data.planName,
+        planDesc: response.data.planDesc,
+      });
 
       // Plan 페이지로 이동
-      navigate('/plan');
+      navigate("/plan", { state: { planData: response.data } });
     } catch (error) {
-      console.error('Error submitting survey:', error);
+      console.error("Error fetching data:", error);
     }
   };
 
-  
   return (
     <div className="container">
       <div className="card o-hidden border-0 shadow-lg my-5">
