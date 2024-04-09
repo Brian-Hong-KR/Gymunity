@@ -1,13 +1,13 @@
-package com.gymunity.board.repository;
+package com.gymunity.challenges.repository;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-import com.gymunity.board.dto.ChallengeDTO;
-import com.gymunity.board.dto.MemDTO;
-import com.gymunity.board.dto.PageDTO;
+import com.gymunity.challenges.dto.ChallengeDTO;
+import com.gymunity.challenges.dto.MemDTO;
+import com.gymunity.challenges.dto.PageDTO;
 
 @Mapper
 @Repository
@@ -26,5 +26,7 @@ public interface ChallengeRepository {
 	public void update(ChallengeDTO dto);
 	
 	public void delete(int ch_code);
+	
+	public void saveUserUpdate(int user_code);
 
 }

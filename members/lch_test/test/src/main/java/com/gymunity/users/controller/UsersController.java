@@ -1,10 +1,18 @@
 package com.gymunity.users.controller;
 
+import java.io.IOException;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,7 +20,11 @@ import com.gymunity.redis.TokenService;
 import com.gymunity.security.jwt.JwtProperties;
 import com.gymunity.security.jwt.JwtProvider;
 import com.gymunity.users.dto.SignResponse;
+import com.gymunity.users.dto.Survey;
+import com.gymunity.users.dto.UserDeleteRequest;
+import com.gymunity.users.dto.UserRegistrationDTO;
 import com.gymunity.users.dto.UsersDTO;
+import com.gymunity.users.service.PlanService;
 import com.gymunity.users.service.UsersService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -33,24 +45,31 @@ public class UsersController {
 	@Autowired
 	private final BCryptPasswordEncoder encodePassword;
 
-	// 회원가입 처리
+	private final PlanService planService;
+
+	// 회원가입
 	@Operation(summary = "회원가입", description = "회원가입 API")
-	@PostMapping("/user/signip")
-	public ResponseEntity<SignResponse> addmember(@RequestBody UsersDTO usersDTO) {
-		log.info("유저DTO:{}:", usersDTO);
+	@PostMapping("/user/signup")
+	public ResponseEntity<SignResponse> addUser(@RequestBody UserRegistrationDTO dto) {
+		
+		log.info("Received request data: {}", dto);
 
 		// 비밀번호 암호화
-		usersDTO.setPassword(encodePassword.encode(usersDTO.getPassword()));
+		String encodedPassword = encodePassword.encode(dto.getUsersDTO().getPassword());
+	    dto.getUsersDTO().setPassword(encodedPassword);
 
 		// 회원 정보 등록
-		SignResponse authInfo = usersService.addUserProcess(usersDTO);
+		SignResponse authInfo = usersService.addUserProcess(dto);
+		
+		// 회원가입 후 자동으로 포인트 집계 업데이트
+	    usersService.addOrUpdatePointsAggregate(dto.getUsersDTO().getUserId());
 
 		return ResponseEntity.ok(authInfo);
-	} // end addmember()
+	} // end addUser()
 
-	// 로그인 처리
+	// 로그인
 	@Operation(summary = "로그인", description = "로그인 API")
-	@PostMapping(value = "/member/login")
+	@PostMapping(value = "/user/login")
 	public ResponseEntity<SignResponse> signin(@RequestBody UsersDTO usersDTO) throws Exception {
 		String accessToken = JwtProperties.TOKEN_PREFIX + JwtProvider.createAccessToken(usersDTO.getUserAccountId());
 		String refreshToken = JwtProvider.createRefreshToken(usersDTO.getUserAccountId());
@@ -65,9 +84,41 @@ public class UsersController {
 		tokenService.saveTokens(udto.getUserAccountId(), accessToken, refreshToken);
 
 		SignResponse signResponse = SignResponse.builder().userAccountId(udto.getUserAccountId())
-				.userAccountId(udto.getUserAccountId()).accessToken(accessToken).refreshToken(refreshToken).build();
+				.nickName(udto.getNickName()).accessToken(accessToken).refreshToken(refreshToken).build();
 
 		return ResponseEntity.ok(signResponse);
 	}// end signin()
+
+	// 회원정보 가져오기
+	@GetMapping("/user/editinfo/{userAccountId}")
+	public ResponseEntity<UsersDTO> getuser(@PathVariable("userAccountId") String userAccountId) {
+		return ResponseEntity.ok(usersService.viewUserProcess(userAccountId));
+	}
+
+	// 회원정보 수정
+	@Operation(summary = "회원정보 수정", description = "회원정보 수정 API")
+	@PutMapping("/user/update")
+	public ResponseEntity<SignResponse> updateUser(@RequestBody UsersDTO usersDTO) {
+//		usersDTO.setPassword(encodePassword.encode(usersDTO.getPassword()));
+		return ResponseEntity.ok(usersService.updateMemberProcess(usersDTO));
+	}
+
+	// 회원탈퇴
+	@Operation(summary = "회원탈퇴", description = "회원탈퇴 API")
+	@DeleteMapping("/user/delete")
+	public ResponseEntity<?> deleteUser(@RequestBody UserDeleteRequest request) {
+		if (usersService.authenticateUser(request)) {
+			usersService.deleteUserByAccountId(request.getUserAccountId());
+			return ResponseEntity.ok().build();
+		}
+		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+	}
+
+	// 일치하는 설문조사 클라이언트에 반환
+	@Operation(summary = "설문조사")
+	@PostMapping("/survey")
+	public List<Survey> getPlan(@RequestBody Survey formData) throws IOException{
+		return planService.findMatchingPlans(formData);
+	}
 
 } // end class

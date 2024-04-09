@@ -1,4 +1,4 @@
-package com.gymunity.board.file;
+package com.gymunity.challenges.file;
 
 import java.io.File;
 import java.io.FileOutputStream;

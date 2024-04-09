@@ -1,4 +1,4 @@
-package com.gymunity.board.controller;
+package com.gymunity.challenges.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,24 +20,27 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.gymunity.board.dto.ChallengeDTO;
-import com.gymunity.board.dto.MemDTO;
-import com.gymunity.board.dto.PageDTO;
-import com.gymunity.board.dto.PointDTO;
-import com.gymunity.board.file.FileUpload;
-import com.gymunity.board.service.ChallengeService;
-import com.gymunity.board.service.MemSerice;
-import com.gymunity.board.service.PointService;
+import com.gymunity.challenges.dto.ChallengeDTO;
+import com.gymunity.challenges.dto.MemDTO;
+import com.gymunity.challenges.dto.PageDTO;
+import com.gymunity.challenges.dto.PointDTO;
+import com.gymunity.challenges.file.FileUpload;
+import com.gymunity.challenges.service.ChallengeService;
+import com.gymunity.challenges.service.MemSerice;
+import com.gymunity.challenges.service.PointService;
+import com.gymunity.users.dto.UsersDTO;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @CrossOrigin("*")
 @Slf4j
 @RestController
+@RequiredArgsConstructor
 public class ChallengeController {
 
     @Autowired
@@ -56,9 +59,7 @@ public class ChallengeController {
 	@Value("${spring.servlet.multipart.location}")
 	private String filePath;
 	
-	public ChallengeController() {
-		
-	}
+
 	
 	
     @GetMapping("/challenge/list/{currentPage}")
@@ -79,11 +80,14 @@ public class ChallengeController {
     }
 	
 	@PostMapping("/challenge/create")
-	public ResponseEntity<String> writeProExecute(@RequestBody ChallengeDTO dto, PageDTO pv, MemDTO mdto, PointDTO pdto) {
+	public ResponseEntity<String> writeProExecute(@RequestBody ChallengeDTO dto, PageDTO pv, MemDTO mdto, PointDTO pdto, UsersDTO udto) {
 		log.info("userid:{}, title:{}", dto.getUser_id(), dto.getTitle());
-		pointService.attendProcess(pdto);
-		challengeService.insertProcess(dto);
-		memService.insertProcess(mdto);
+		
+		pointService.attendProcess(pdto);		// 포인트 차감
+		challengeService.insertProcess(dto); // 챌린지 글
+		memService.insertProcess(mdto);		// 멤버 등록
+		challengeService.insertUserUpdateProcess(udto.getUserId());
+		
 		return ResponseEntity.ok(String.valueOf(1));
 	}
 	

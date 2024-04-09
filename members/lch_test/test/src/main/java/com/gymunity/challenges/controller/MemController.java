@@ -1,4 +1,4 @@
-package com.gymunity.board.controller;
+package com.gymunity.challenges.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -8,10 +8,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gymunity.board.dto.MemDTO;
-import com.gymunity.board.dto.PointDTO;
-import com.gymunity.board.service.MemSerice;
-import com.gymunity.board.service.PointService;
+import com.gymunity.challenges.dto.ChallengeDTO;
+import com.gymunity.challenges.dto.MemDTO;
+import com.gymunity.challenges.dto.PointDTO;
+import com.gymunity.challenges.service.ChallengeService;
+import com.gymunity.challenges.service.MemSerice;
+import com.gymunity.challenges.service.PointService;
+import com.gymunity.users.dto.UsersDTO;
 
 import lombok.extern.slf4j.Slf4j;	
 
@@ -26,16 +29,20 @@ public class MemController {
 	@Autowired
 	private PointService pointService;
 	
+	@Autowired
+	private ChallengeService challengeService;
+	
 	public MemController() {
 		
 	}
 	
 	// 챌린지 참가
 	@PostMapping("/mem/attend")
-	public ResponseEntity<String> writeProExecute(@RequestBody MemDTO dto, PointDTO pdto){
+	public ResponseEntity<String> writeProExecute(@RequestBody MemDTO dto, PointDTO pdto, UsersDTO udto){
 		log.info("userid:{}, ch_id:{}", dto.getMem_user_id(), dto.getMem_ch_id());
-		memService.attendProcess(dto);
-		pointService.attendProcess(pdto);
+		memService.attendProcess(dto); // 챌린지 참가 멤버 등록
+		pointService.attendProcess(pdto);	// 포인트 차감
+		challengeService.insertUserUpdateProcess(udto.getUserId());  // 프로필 업데이트
 		return ResponseEntity.ok(String.valueOf(1));
 	}
 	

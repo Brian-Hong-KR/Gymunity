@@ -1,5 +1,7 @@
 package com.gymunity.users.dto;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import com.gymunity.common.exception.WrongEmailPasswordException;
 
 import lombok.Getter;
@@ -9,7 +11,7 @@ import lombok.Setter;
 @Setter
 public class UsersDTO {
 	private String userAccountId; // 유저가 직접 사용하는 ID
-	private String nickname; // 유저가 직접 사용하는 별명
+	private String nickName; // 유저가 직접 사용하는 별명
 	private String password; // 유저가 직접 사용하는 비밀번호
 	private String userEmail; // 유저의 이메일
 	private String userName; // 유저의 이름
@@ -17,9 +19,15 @@ public class UsersDTO {
 	private int userId;
 
 	// 비밀번호 일치 확인
-	public boolean matchPassword(String password) {
-		return this.password.equals(password);
-	}// end matchPassword()
+//	public boolean matchPassword(String password) {
+//		return this.password.equals(password);
+//	}// end matchPassword()
+
+	// 비밀번호 확인 메서드 수정
+	public boolean matchPassword(String rawPassword) {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		return encoder.matches(rawPassword, this.password); // this.password는 암호화된 비밀번호
+	}
 
 	public void changePassword(String oldPassword, String newPassword) {
 		if (!this.password.equals(oldPassword))

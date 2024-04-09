@@ -1,13 +1,13 @@
-package com.gymunity.board.service;
+package com.gymunity.challenges.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gymunity.board.dto.ChallengeDTO;
-import com.gymunity.board.dto.PageDTO;
-import com.gymunity.board.repository.ChallengeRepository;
+import com.gymunity.challenges.dto.ChallengeDTO;
+import com.gymunity.challenges.dto.PageDTO;
+import com.gymunity.challenges.repository.ChallengeRepository;
 
 @Service
 public class ChallengeServiceImp implements ChallengeService {
@@ -19,6 +19,13 @@ public class ChallengeServiceImp implements ChallengeService {
 	}
 	
 	
+	@Override
+	public void insertUserUpdateProcess(int user_code) {
+		challengeRepository.saveUserUpdate(user_code);
+		
+	}
+
+
 	@Override
 	public void verifyProcess(ChallengeDTO dto) {
 		challengeRepository.verph(dto);

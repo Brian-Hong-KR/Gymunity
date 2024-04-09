@@ -1,4 +1,4 @@
-package com.gymunity.board.dto;
+package com.gymunity.challenges.dto;
 
 import java.sql.Date;
 
