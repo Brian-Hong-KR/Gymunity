@@ -7,6 +7,8 @@ import lombok.Setter;
 @Setter
 public class Point {
 	private int userId;
-	private int totalPoints = 200;
+	private int pointsAdded;
+	private int pointsSubtracted;
+	private String reason;
 
 }

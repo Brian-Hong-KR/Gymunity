@@ -15,14 +15,16 @@ public interface UsersMapper {
 	public int insertProfile(UsersDTO dto);
 	public int insertSurvey(Survey dto);
 //	public int insertPt(Survey dto); // pt TABLE 삽입
-	public int insertPointAggr(Point dto);
+	public int addPoint(Point dto);
+	public int addOrUpdatePointsAggregate(int userId);
+	public int subtractPoint(Point dto);
 	
 	public UsersDTO selectByAccountId(String accountId);
 	
 	public void updateUsers(UsersDTO dto);
 	public void updateProfiles(UsersDTO dto);
 	
-	public void deleteUser(int userId);
+	public int deleteUser(int userId);
 
 }
 

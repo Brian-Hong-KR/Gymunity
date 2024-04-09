@@ -37,14 +37,46 @@
 		]]>
 	</insert> -->
 	
-	<!-- point_aggr 테이블에 데이터 삽입 -->
-	<insert id="insertPointAggr" parameterType="Point">
+	<!-- point_add 테이블에 데이터 삽입 -->
+	<insert id="addPoint" parameterType="Point">
 		<![CDATA[ 
-		INSERT INTO point_aggr (user_id, total_points)
-		VALUES (#{userId}, #{totalPoints})
+		INSERT INTO point_add (user_id, points_added, reason)
+		VALUES (#{userId}, #{pointsAdded}, #{reason})
 		]]>
 	</insert>
 	
+	<!-- point_aggr 테이블에 데이터 업데이트 -->
+	<!-- 
+	<insert id="addOrUpdatePointsAggregate" parameterType="int">
+        INSERT INTO point_aggr (user_id, total_points)
+        VALUES (#{userId}, 0)
+        ON DUPLICATE KEY UPDATE
+        total_points = total_points + (SELECT points_added FROM point_add WHERE user_id = #{userId} ORDER BY added_at DESC LIMIT 1)
+    </insert> -->
+    
+    <insert id="addOrUpdatePointsAggregate" parameterType="int">
+		<!-- point_aggr 테이블에 데이터를 삽입하는 쿼리 -->
+        INSERT INTO point_aggr (user_id, total_points)
+        VALUES (
+            #{userId}, <!-- userId를 테이블에 삽입 -->
+            <!-- point_add 테이블에서 해당 userId에 대한 points_added의 합을 계산하여 삽입합니다. 
+             point_add 테이블에 해당 userId에 대한 레코드가 없으면 0을 삽입합니다. -->
+            (SELECT COALESCE(SUM(points_added), 0) FROM point_add WHERE user_id = #{userId})
+        )
+        <!-- 이미 해당 userId가 point_aggr 테이블에 존재할 경우, 아래의 명령을 실행 -->
+        ON DUPLICATE KEY UPDATE
+        <!-- point_add 테이블에서 가장 최근에 추가된 points_added 값을 현재 total_points에 더합니다. -->
+        total_points = total_points + (SELECT points_added FROM point_add WHERE user_id = #{userId} ORDER BY added_at DESC LIMIT 1);
+    </insert>
+    
+    <!-- point_add 테이블에 데이터 삽입 -->
+	<insert id="subtractPoint" parameterType="Point">
+		<![CDATA[ 
+		INSERT INTO point_subtract (user_id, points_subtracted, reason)
+		VALUES (#{userId}, #{pointsSubtracted}, #{reason})
+		]]>
+	</insert>
+    
 	
     <!-- 회원 정보 수정 -->
 	<resultMap id="userResultMap" type="UsersDTO">

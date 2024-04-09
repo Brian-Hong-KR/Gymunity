@@ -63,7 +63,8 @@ public class UsersServiceImp implements UsersService {
 		// UsersDTO의 userId를 Point 객체에 설정
 		point.setUserId(usersDTO.getUserId());
 		
-		usersMapper.insertPointAggr(point);
+		usersMapper.addPoint(point);
+		usersMapper.subtractPoint(point);
 		
 		
 		
@@ -73,6 +74,16 @@ public class UsersServiceImp implements UsersService {
 
 	} // end addUserProcess()
 
+	
+	@Override
+	public void addOrUpdatePointsAggregate(int userId) {
+
+		usersMapper.addOrUpdatePointsAggregate(userId);
+		
+		log.info("addOrUpdatePointsAggregate: {}", userId);
+		
+	}
+	
 	// 회원정보가져오기
 	@Override
 	public UsersDTO viewUserProcess(String userAccountId) {

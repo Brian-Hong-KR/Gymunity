@@ -28,8 +28,12 @@ const JoinAdd = () => {
     // survey 데이터가 배열이면 첫 번째 요소를 사용하고, 배열이 아니면 그대로 사용
     const surveyData = Array.isArray(planData) ? planData[0] : planData;
 
-    // 포인트 데이터를 생성 (예시로 초기 포인트를 200으로 설정)
-    const pointData = { totalPoints: 200 };
+    // 포인트 데이터를 생성 (예시로 초기 포인트를 400으로 설정)
+    const pointData = {
+      pointsAdded: 400,
+      pointsSubtracted: 0,
+      reason: "회원가입 보상",
+    };
 
     const userRegistrationData = {
       usersDTO: users,

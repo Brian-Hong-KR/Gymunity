@@ -14,6 +14,8 @@ public interface UsersService {
 	
 	public UsersDTO viewUserProcess(String userAccountId);
 	
+	public void addOrUpdatePointsAggregate(int userId);
+	
 	// 회원정보수정
 	public SignResponse updateMemberProcess(UsersDTO dto);
 	
