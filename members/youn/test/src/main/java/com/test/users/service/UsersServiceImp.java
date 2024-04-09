@@ -9,7 +9,7 @@ import com.test.security.jwt.JwtProvider;
 import com.test.users.dto.SignResponse;
 import com.test.users.dto.UserDeleteRequest;
 import com.test.users.dto.UsersDTO;
-import com.test.users.mappers.UsersMappers;
+import com.test.users.mapper.UsersMapper;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,13 +21,13 @@ import lombok.extern.slf4j.Slf4j;
 
 public class UsersServiceImp implements UsersService {
 
-	private final UsersMappers usersRepository;
+	private final UsersMapper usersMapper;
 	private final BCryptPasswordEncoder passwordEncoder;
 
 	@Override
 	public SignResponse getByUserAccountId(String userAccountId) {
 		log.info("로드유저바이유저네임 : {}", userAccountId);
-		UsersDTO usersDTO = usersRepository.selectByAccountId(userAccountId);
+		UsersDTO usersDTO = usersMapper.selectByAccountId(userAccountId);
 
 		if (usersDTO == null)
 			new UsernameNotFoundException("히히 몰라! 유저서비스임프");
@@ -41,20 +41,20 @@ public class UsersServiceImp implements UsersService {
 	public SignResponse addUserProcess(UsersDTO dto) {
 
 		// users 테이블에 데이터 삽입
-		usersRepository.insertUser(dto);
+		usersMapper.insertUser(dto);
 
 		// profiles 테이블에 데이터 삽입
-		usersRepository.insertProfile(dto);
+		usersMapper.insertProfile(dto);
 
 		// 인증 정보 반환
-		return new SignResponse(dto.getNickname(), dto.getUserAccountId());
+		return new SignResponse(dto.getNickName(), dto.getUserAccountId());
 
 	} // end addUserProcess()
 
 	// 회원정보가져오기
 	@Override
-	public UsersDTO viewUserProcess(String userAccounId) {
-		return usersRepository.selectByAccountId(userAccounId);
+	public UsersDTO viewUserProcess(String userAccountId) {
+		return usersMapper.selectByAccountId(userAccountId);
 	}
 	
 	// 회원정보수정
@@ -62,12 +62,12 @@ public class UsersServiceImp implements UsersService {
 	public SignResponse updateMemberProcess(UsersDTO dto) {
 		
 		// users 테이블에 데이터 업데이트
-		usersRepository.updateUsers(dto);
+		usersMapper.updateUsers(dto);
 		
 		// profiles 테이블에 데이터 업데이트
-		usersRepository.updateProfiles(dto);
+		usersMapper.updateProfiles(dto);
 	
-		return new SignResponse(dto.getNickname(), dto.getUserEmail());
+		return new SignResponse(dto.getNickName(), dto.getUserEmail());
 	}
 
 //	// 회원 아이디, 비밀번호 일치
@@ -82,7 +82,7 @@ public class UsersServiceImp implements UsersService {
 
 	@Override
 	public boolean authenticateUser(UserDeleteRequest request) {
-		UsersDTO user = usersRepository.selectByAccountId(request.getUserAccountId());
+		UsersDTO user = usersMapper.selectByAccountId(request.getUserAccountId());
 		if (user != null) {
 			// 사용자의 암호화된 비밀번호를 로그로 출력
 			System.out.println("UserId from DB: " + user.getUserId());
@@ -101,14 +101,14 @@ public class UsersServiceImp implements UsersService {
 	// 회원 탈퇴
 	@Override
 	public void deleteUserByAccountId(String userAccountId) {
-		UsersDTO user = usersRepository.selectByAccountId(userAccountId);
+		UsersDTO user = usersMapper.selectByAccountId(userAccountId);
 		if (user != null) {
 			log.info("-------------------------------------------------------------------------------------");
 			log.info("-------------------------------------------------------------------------------------");
 			log.info("-------------------------------------------------------------------------------------");
 			log.info("Deleting user with userId: {}", user.getUserId()); // 로그 출력
 			log.info("Deleting user with userAccountId: {}", user.getUserAccountId()); // 로그 출력
-			usersRepository.deleteUser(user.getUserId());
+			usersMapper.deleteUser(user.getUserId());
 		}
 	}// deleteUserByAccountId()
 

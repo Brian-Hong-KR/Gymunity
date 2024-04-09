@@ -3,17 +3,83 @@ package com.gymunity.board.dto;
 import java.sql.Date;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Component
 public class ChallengeDTO {
-	private int user_id, ch_id, grade_id, category, batting_point, total_participants;
-	private String title, content, proceed;
+	private int user_id, ch_id, grade_id, category, 
+	batting_point, total_participants, vi_id, vi_user_id, vi_ch_id;
+	private String title, content, proceed, result;
 	private Date regist_date, ch_start_date, ch_end_date;
-	//user_id '0'으로 시작하는 데이터를 int로 처리할 경우 오류?
+	
+	private String upload1,upload2;
+	
+	//form페이지에서 파일첨부를 받아 처리해주는 멤버변수
+	private MultipartFile filename;
+	
 	
 	public ChallengeDTO() {
+		
 	}
+	
+	public int getVi_id() {
+		return vi_id;
+	}
+
+	public void setVi_id(int vi_id) {
+		this.vi_id = vi_id;
+	}
+
+	public int getVi_user_id() {
+		return vi_user_id;
+	}
+
+	public void setVi_user_id(int vi_user_id) {
+		this.vi_user_id = vi_user_id;
+	}
+
+	public int getVi_ch_id() {
+		return vi_ch_id;
+	}
+
+	public void setVi_ch_id(int vi_ch_id) {
+		this.vi_ch_id = vi_ch_id;
+	}
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
+	}
+
+	public String getUpload1() {
+		return upload1;
+	}
+
+	public void setUpload1(String upload1) {
+		this.upload1 = upload1;
+	}
+
+	public String getUpload2() {
+		return upload2;
+	}
+
+	public void setUpload2(String upload2) {
+		this.upload2 = upload2;
+	}
+
+	public MultipartFile getFilename() {
+		return filename;
+	}
+
+	public void setFilename(MultipartFile filename) {
+		this.filename = filename;
+	}
+
+	
 
 	public int getCh_id() {
 		return ch_id;

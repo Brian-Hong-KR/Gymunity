@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.test.users.dto.UsersDTO;
-import com.test.users.mappers.UsersMappers;
+import com.test.users.mapper.UsersMapper;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 
 public class CustomUserDetailService implements UserDetailsService {
 
-	private final UsersMappers usersRepository;
+	private final UsersMapper usersRepository;
 
 	// 1. AuthenticationProvider에서 loadUserByUsername(String usersAccountId)을 호출한다.
 	// 2. loadUserByUsername(String usersAccountId)에서는 DB에서 userAccountId에 해당하는 데이터를
