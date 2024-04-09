@@ -80,13 +80,12 @@ public class ChallengeController {
     }
 	
 	@PostMapping("/challenge/create")
-	public ResponseEntity<String> writeProExecute(@RequestBody ChallengeDTO dto, PageDTO pv, MemDTO mdto, PointDTO pdto, UsersDTO udto) {
+	public ResponseEntity<String> writeProExecute(@RequestBody ChallengeDTO dto, PageDTO pv, MemDTO mdto, PointDTO pdto) {
 		log.info("userid:{}, title:{}", dto.getUser_id(), dto.getTitle());
 		
 		pointService.attendProcess(pdto);		// 포인트 차감
 		challengeService.insertProcess(dto); // 챌린지 글
 		memService.insertProcess(mdto);		// 멤버 등록
-		challengeService.insertUserUpdateProcess(udto.getUserId());
 		
 		return ResponseEntity.ok(String.valueOf(1));
 	}

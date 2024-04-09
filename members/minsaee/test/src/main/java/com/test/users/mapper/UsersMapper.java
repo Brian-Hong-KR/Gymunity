@@ -20,6 +20,7 @@ public interface UsersMapper {
 	public int subtractPoint(Point dto);
 	
 	public UsersDTO selectByAccountId(String accountId);
+	void updateLastLogin(UsersDTO usersDTO);
 	
 	public void updateUsers(UsersDTO dto);
 	public void updateProfiles(UsersDTO dto);

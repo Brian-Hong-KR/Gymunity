@@ -37,12 +37,12 @@ public class MemController {
 	}
 	
 	// 챌린지 참가
-	@PostMapping("/mem/attend")
-	public ResponseEntity<String> writeProExecute(@RequestBody MemDTO dto, PointDTO pdto, UsersDTO udto){
+	@PostMapping("/mem/attend/{ch_id}")
+	public ResponseEntity<String> writeProExecute(@RequestBody MemDTO dto, PointDTO pdto, ChallengeDTO cdto){
 		log.info("userid:{}, ch_id:{}", dto.getMem_user_id(), dto.getMem_ch_id());
 		memService.attendProcess(dto); // 챌린지 참가 멤버 등록
 		pointService.attendProcess(pdto);	// 포인트 차감
-		challengeService.insertUserUpdateProcess(udto.getUserId());  // 프로필 업데이트
+		challengeService.countChProcess(cdto);
 		return ResponseEntity.ok(String.valueOf(1));
 	}
 	

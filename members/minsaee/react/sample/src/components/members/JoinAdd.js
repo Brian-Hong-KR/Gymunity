@@ -13,7 +13,6 @@ const JoinAdd = () => {
     password: "",
     nickName: "",
     userEmail: "",
-    userName: "",
   });
 
   const handleValueChange = (e) => {
@@ -83,15 +82,6 @@ const JoinAdd = () => {
               className="form-control"
               name="userEmail"
               placeholder="이메일"
-              onChange={handleValueChange}
-            />
-          </div>
-          <div className="form-group mb-1">
-            <input
-              type="text"
-              className="form-control"
-              name="userName"
-              placeholder="이름"
               onChange={handleValueChange}
             />
           </div>

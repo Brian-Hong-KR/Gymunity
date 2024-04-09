@@ -51,6 +51,13 @@
 	WHERE ch_id=#{ch_id}
   </delete>
   
+  <update id="countCH" parameterType="int"> 
+	 UPDATE challenges
+	 SET count= count + 1
+	 WHERE ch_id=#{ch_id};
+	  
+  </update>
+  
 </mapper>   
 
 

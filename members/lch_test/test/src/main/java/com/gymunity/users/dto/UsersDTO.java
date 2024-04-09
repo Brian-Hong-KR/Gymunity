@@ -16,7 +16,7 @@ public class UsersDTO {
 	private String userEmail; // 유저의 이메일
 	private String userName; // 유저의 이름
 	private String admin_yn = "n";
-	private int userId;
+	private int userId, ch_id;
 
 	// 비밀번호 일치 확인
 //	public boolean matchPassword(String password) {

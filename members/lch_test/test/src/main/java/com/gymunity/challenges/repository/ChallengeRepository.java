@@ -28,5 +28,7 @@ public interface ChallengeRepository {
 	public void delete(int ch_code);
 	
 	public void saveUserUpdate(int user_code);
+	
+	public void countCH(ChallengeDTO dto);
 
 }
