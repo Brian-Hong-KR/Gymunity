@@ -8,7 +8,7 @@
 	<insert id="insertUser" parameterType="UsersDTO" useGeneratedKeys="true" keyProperty="userId">
 	<![CDATA[
 	INSERT INTO users (user_account_id, nick_name, admin_yn)
-	VALUES (#{userAccountId}, #{nickname}, #{admin_yn})
+	VALUES (#{userAccountId}, #{nickName}, #{admin_yn})
     ]]>
     </insert>
     
@@ -30,17 +30,16 @@
 		 VALUES(#{plan_name}, #{plan_desc});
 		 ]]>-->
 	
-	<!--회원정보 가져오기-->
+    <!-- 회원 정보 수정 -->
 	<resultMap id="userResultMap" type="UsersDTO">
 		 <result property="userId" column="user_id"/>
 		 <result property="userAccountId" column="user_account_id"/>
+		 <result property="nickName" column="nick_name"/>
 	</resultMap>
-	
-	<!-- 회원 정보 수정 -->
-    <!-- 회원 정보 수정 -->
+
     <update id="updateUsers" parameterType="UsersDTO">
         UPDATE users
-        SET nick_name = #{nickname}
+        SET nick_name = #{nickName}
         WHERE user_id = #{userId};
     </update>
 
@@ -50,8 +49,9 @@
         WHERE user_id = #{userId};
     </update>
 	
+	<!--회원정보 가져오기-->
 	<select id="selectByAccountId" parameterType="string" resultMap="userResultMap">
-		SELECT u.*, p.password
+		SELECT u.*, p.*
 		FROM users u
 		JOIN profiles p ON u.user_id = p.user_id
 		WHERE u.user_account_id = #{userAccountId}
