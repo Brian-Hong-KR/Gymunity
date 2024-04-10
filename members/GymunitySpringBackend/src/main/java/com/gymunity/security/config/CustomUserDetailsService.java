@@ -1,0 +1,39 @@
+package com.gymunity.security.config;
+
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import com.gymunity.user.entity.User;
+import com.gymunity.user.repository.UserMapper;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+
+public class CustomUserDetailsService implements UserDetailsService {
+
+	private final UserMapper userMapper;
+
+	// 1. AuthenticationProvider에서 loadUserByUsername(String usersAccountId)을 호출한다.
+	// 2. loadUserByUsername(String usersAccountId)에서는 DB에서 userAccountId에 해당하는 데이터를
+	// 검색해서 UserDatils에 담아서 리턴한다.
+	// 3. AuthenticationProvider에서 UserDetailes를 받아서 Authentication에 저장을 함으로써 결국
+	// Security Session에 저장을 한다.
+
+	@Override
+	public UserDetails loadUserByUsername(String userAccountId) throws UsernameNotFoundException {
+
+		User user = userMapper.selectByAccountId(userAccountId);
+
+		if (user == null) {
+			throw new UsernameNotFoundException("히히 몰라! 커스텀유저디테일서비스");
+		}
+
+		return new CustomUserDetails(user);
+
+	} // end loadUsersByUsername()
+
+}// end class
