@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import Chatbot from 'react-simple-chatbot';
-//import { ThemeProvidor } from 'styled-components';
+import { ThemeProvider } from 'styled-components';
 
 // @mui material components
 import Card from "@mui/material/Card";
@@ -60,17 +60,40 @@ const PersonalTraining = () => {
   {
     id:'0',
     message:"안녕하세요.",
-    end: true,
+    trigger:'1',
+  },
+  {
+    id:'1',
+    user:true,
+    trigger:'2',
+  },
+  {
+    id:'2',
+    message:"{previousValue}님 반갑습니다.",
+    end:true,
   },
   ]
+
+  const theme = {
+    background:"#f8f9fa",
+    botBubbleColor:"#344767",
+    botFontColor:"#FFFFFF",
+    userBubbleColor:"#5974a2",
+    userFontColor:"#FFFFFF",
+    botAvatar:"assets/images/Logo_icon.png"
+  };
+
 
   return (
   <div>
     <div style={{ position:'relative', width:'100%', paddingBottom:'56.25%'}}>
         <div style={{ position:'absolute', width:'100%', height:'100%' }} id="player"></div>
     </div>
-    <div style={{ position: 'relative', bottom: 0, left: 0 }}>
-        <Chatbot steps={steps} hideHeader={true} placeholder={'채팅'} />
+
+    <div style={{ position: 'relative', align: "center"  }}>
+        <ThemeProvider theme={theme}>
+            <Chatbot  steps={steps} hideHeader={true} placeholder={'질문'} />
+        </ThemeProvider>
     </div>
   </div>
 
