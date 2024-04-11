@@ -29,11 +29,11 @@ sudo nano /etc/nginx/site-avilabel/myproject
 sudo systemctl start nginx
 sudo systemctl enable nginx
 
-
 //MySQL Service
 sudo apt-get install mysql-server
 sudo systemctl start mysql
 sudo systemctl enable mysql
+bash create_db.sh
 
 //Local LLM Service
 curl -fsSL https://ollama.com/install.sh | sh
@@ -42,25 +42,20 @@ ollama pull neural-chat
 //Java Spring Service
 OpenJDK 17 ????
 
-
-
 2. Run
 
-//Front
 cd React
 yarn start react
 
-//Admin
 sudo systemctl restart mysql
-sudo
 
-//PT
 ollama serve
 sudo systemctl restart nginx
 cd Flask
 gunicorn --bind unix:/tmp/myproject.sock "__init__:create_app()"
 
-//Test
+
+3. Test
 (web browser) http://192.168.0.60
 TODO > https://gymunity.site
 
