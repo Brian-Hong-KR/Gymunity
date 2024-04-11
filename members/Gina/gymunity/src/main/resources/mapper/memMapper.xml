@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gymunity.challenges.repository.MemRepository">
+
+
+  <insert id="savemem" parameterType="MemDTO">
+	INSERT INTO members
+	(mem_user_id, mem_grade_id, mem_ch_id, registrant)
+  	VALUES (#{mem_user_id}, #{mem_grade_id}, #{mem_ch_id}, DEFAULT)
+  </insert>
+  
+
+  <insert id="writemem" parameterType="MemDTO">
+	INSERT INTO members
+	(mem_user_id, mem_grade_id, mem_ch_id, registrant)
+  	VALUES (#{mem_user_id}, #{mem_grade_id}, #{mem_ch_id}, 'Y')
+  </insert>
+  
+
+</mapper>   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
