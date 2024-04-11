@@ -1,3 +1,7 @@
+
+npm install react-simple-chatbot --save
+npm install styled-components --save
+
 cd (PWD)/Gymunity/members/ReactFront
 yarn install
 yarn start

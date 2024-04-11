@@ -33,7 +33,7 @@ public class RedisConfig {
 		// 아래 두 라인이 없을시, key값이 요란하게 조회됨.
 		redisTemplate.setKeySerializer(new StringRedisSerializer());
 		redisTemplate.setValueSerializer(new StringRedisSerializer());
-		;
+		
 		return redisTemplate;
 	} // end redisTemplate()
 

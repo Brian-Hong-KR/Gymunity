@@ -47,7 +47,7 @@ function Dashboard() {
   const { chart, items } = reportsBarChartData;
 
   return (
-    <DashboardLayout>
+    <DashboardLayout >
       <DashboardNavbar />
       <SoftBox py={3}>
         <SoftBox mb={3}>

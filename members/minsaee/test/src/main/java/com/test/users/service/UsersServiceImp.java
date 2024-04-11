@@ -39,7 +39,7 @@ public class UsersServiceImp implements UsersService {
 		}
 
 		return SignResponse.builder().userAccountId(usersDTO.getUserAccountId())
-				.userAccountId(usersDTO.getUserAccountId()).accessToken(JwtProvider.createAccessToken(userAccountId))
+				.userEmail(usersDTO.getUserEmail()).accessToken(JwtProvider.createAccessToken(userAccountId))
 				.refreshToken(JwtProvider.createRefreshToken(userAccountId)).build();
 	}
 
@@ -79,7 +79,11 @@ public class UsersServiceImp implements UsersService {
 	@Override
 	public void addOrUpdatePointsAggregate(int userId) {
 
+		// points_aggr 업데이트
 		usersMapper.addOrUpdatePointsAggregate(userId);
+		
+		// grade_name 업데이트
+		usersMapper.updateUserGradeName(userId);
 
 		log.info("addOrUpdatePointsAggregate: {}", userId);
 
@@ -112,18 +116,24 @@ public class UsersServiceImp implements UsersService {
 
 	@Override
 	public void updateLastLogin(String userAccountId) {
-		// 현재 시간
-		LocalDateTime now = LocalDateTime.now();
+		
 
 		// 유저 정보 가져오기
 		UsersDTO usersDTO = usersMapper.selectByAccountId(userAccountId);
 
 		if (usersDTO != null) {
+			// 현재 시간
+			LocalDateTime now = LocalDateTime.now();
+			
 			// 마지막 로그인 시간 가져오기
 			LocalDateTime lastLogin = usersDTO.getLastLogin();
+			
+			// 오늘 새벽 4시
+			LocalDateTime today4am = now.toLocalDate().atStartOfDay().plusHours(4);
+			// 20XX-XX-XXT04:00:00
 
-			// 마지막 로그인이 오늘 날짜 이전이고, 현재 시간이 새벽 4시 이후인 경우에만 로그인 보상 지급
-			if (lastLogin.isBefore(now.toLocalDate().atStartOfDay().plusHours(4))) {
+			// 마지막 로그인 시간이 오늘 새벽 4시 이전이라면 보상을 지급
+			if (lastLogin.isBefore(today4am)) {
 
 				// 로그인 보상 포인트 설정
 				Point point = new Point();
@@ -136,6 +146,10 @@ public class UsersServiceImp implements UsersService {
 
 				// poinT_aggr 테이블 업데이트
 				usersMapper.addOrUpdatePointsAggregate(usersDTO.getUserId());
+				
+				// grade_name 업데이트
+				usersMapper.updateUserGradeName(usersDTO.getUserId());
+				
 			} // end inner if()
 
 			// 로그인 시간 업데이트

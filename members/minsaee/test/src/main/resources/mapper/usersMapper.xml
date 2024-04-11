@@ -78,7 +78,25 @@
 		]]>
 	</insert>
     
-	
+	<!-- 회원 등급 업데이트 -->
+	<update id="updateUserGradeName" parameterType="int">
+        UPDATE users
+        SET grade_name = (
+            SELECT g.grade_name
+            FROM grades g
+            WHERE g.grade_id = (
+                SELECT CASE
+                    WHEN pa.total_points >= 3000 THEN 4
+                    WHEN pa.total_points >= 1500 THEN 3
+                    WHEN pa.total_points >= 600 THEN 2
+                    ELSE 1
+                END
+                FROM point_aggr pa
+                WHERE pa.user_id = #{userId}
+            )
+        )
+        WHERE user_id = #{userId};
+    </update>
     <!-- 회원 정보 수정 -->
 	<resultMap id="userResultMap" type="UsersDTO">
 		 <result property="userId" column="user_id"/>

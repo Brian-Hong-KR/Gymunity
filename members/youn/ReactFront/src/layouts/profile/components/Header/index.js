@@ -46,21 +46,20 @@ function Header() {
   const [tabsOrientation, setTabsOrientation] = useState("horizontal");
   const [tabValue, setTabValue] = useState(0);
 
-  // 사용자 화면 크기 변화 감지
   useEffect(() => {
     // A function that sets the orientation state of the tabs.
     function handleTabsOrientation() {
       return window.innerWidth < breakpoints.values.sm
-        ? setTabsOrientation("vertical") // 세로
-        : setTabsOrientation("horizontal"); //가로
+        ? setTabsOrientation("vertical")
+        : setTabsOrientation("horizontal");
     }
 
-    /**
-     창 크기를 조정할 때 handlerTabsOrientation 함수를 호출하는 이벤트 리스너
+    /** 
+     The event listener that's calling the handleTabsOrientation function when resizing the window.
     */
     window.addEventListener("resize", handleTabsOrientation);
 
-    // 초기값으로 상태를 설정하기 위해 handlerTabsOrientation 함수 호출
+    // Call the handleTabsOrientation function to set the state with the initial value.
     handleTabsOrientation();
 
     // Remove event listener on cleanup
@@ -72,7 +71,6 @@ function Header() {
   return (
     <SoftBox position="relative">
       <DashboardNavbar absolute light />
-      {/* 배경 이미지와 그라디언트를  설정한 SoftBox 컴포넌트*/} 
       <SoftBox
         display="flex"
         alignItems="center"
@@ -80,23 +78,21 @@ function Header() {
         minHeight="18.75rem"
         borderRadius="xl"
         sx={{
-          // 배경 이미지 설정
           backgroundImage: ({ functions: { rgba, linearGradient }, palette: { gradients } }) =>
             `${linearGradient(
               rgba(gradients.info.main, 0.6),
               rgba(gradients.info.state, 0.6)
             )}, url(${curved0})`,
           backgroundSize: "cover",
-          backgroundPosition: "50%", // 배경 이미지 위치 중앙
+          backgroundPosition: "50%",
           overflow: "hidden",
         }}
       />
-      {/* 정보 카드를 설정한 Card 컴포넌트 */}
       <Card
         sx={{
           backdropFilter: `saturate(200%) blur(30px)`,
           backgroundColor: ({ functions: { rgba }, palette: { white } }) => rgba(white.main, 0.8),
-          boxShadow: ({ boxShadows: { navbarBoxShadow } }) => navbarBoxShadow, // 그림자 생성
+          boxShadow: ({ boxShadows: { navbarBoxShadow } }) => navbarBoxShadow,
           position: "relative",
           mt: -8,
           mx: 3,
@@ -104,7 +100,6 @@ function Header() {
           px: 2,
         }}
       >
-        {/* 그리드 컨테이너 설정 */}
         <Grid container spacing={3} alignItems="center">
           <Grid item>
             <SoftAvatar
@@ -121,22 +116,12 @@ function Header() {
                 이름 적어주세용
               </SoftTypography>
               <SoftTypography variant="button" color="text" fontWeight="medium">
-                 여기에는 등급 어때여? 
+                여기에는 등급 적는거 어떤가용
               </SoftTypography>
             </SoftBox>
           </Grid>
           <Grid item xs={12} md={6} lg={4} sx={{ ml: "auto" }}>
             <AppBar position="static">
-              <Tabs
-                orientation={tabsOrientation}
-                value={tabValue}
-                onChange={handleSetTabValue}
-                sx={{ background: "transparent" }}
-              >
-                <Tab label="App" icon={<Cube />} />
-                <Tab label="Message" icon={<Document />} />
-                <Tab label="Settings" icon={<Settings />} />
-              </Tabs>
             </AppBar>
           </Grid>
         </Grid>
