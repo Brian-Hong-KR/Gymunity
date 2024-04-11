@@ -24,7 +24,7 @@ public interface UsersMapper {
 
 	public int subtractPoint(Point dto);
 
-	public UsersDTO selectBUyAccountId(String accountId);
+	public UsersDTO selectByAccountId(String accountId);
 
 	void updateLastLogin(UsersDTO usersDTO);
 
