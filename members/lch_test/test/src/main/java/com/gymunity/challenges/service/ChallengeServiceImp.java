@@ -1,5 +1,7 @@
 package com.gymunity.challenges.service;
 
+import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +27,6 @@ public class ChallengeServiceImp implements ChallengeService {
 	@Autowired
 	private ChallengeRepository challengeRepository;
 	
-
-	
-
-
-
-
 
 
 
@@ -60,7 +56,12 @@ public class ChallengeServiceImp implements ChallengeService {
 
 	@Override
 	public void insertProcess(ChallengeDTO dto) {
-		challengeRepository.save(dto);
+
+		LocalDate startDate = dto.getCh_start_date();
+		LocalDate endDate = startDate.plusWeeks(1);
+		dto.setCh_end_date(endDate);
+	    // 6. 저장
+	    challengeRepository.save(dto);	
 	}
 	
 

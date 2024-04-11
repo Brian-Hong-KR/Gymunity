@@ -26,8 +26,16 @@
   <insert id="save" parameterType="ChallengeDTO">
 	INSERT INTO challenges
 	(user_id, grade_id, regist_date, ch_start_date, ch_end_date, category, title, content, proceed, total_participants)
-  	VALUES (#{user_id}, #{grade_id}, CURRENT_TIMESTAMP, #{ch_start_date, javaType=java.sql.Date}, #{ch_end_date, javaType=java.sql.Date}, #{category}, #{title}, #{content}, #{proceed}, #{total_participants})
+  	VALUES (#{user_id}, #{grade_id}, CURRENT_TIMESTAMP, #{ch_start_date}, #{ch_end_date}, #{category}, #{title}, #{content}, #{proceed}, #{total_participants})
   </insert>
+  
+  <!-- java.sql.Date 타입에서 LocalDate 타입 객체로 변환 -->
+   <resultMap id="challengeResultMap" type="ChallengeDTO">
+   <id column="ch_id" property="ch_id" />
+  	<result column="title" property="title" />
+  	<result column="ch_start_date" property="ch_start_date" typeHandler="org.apache.ibatis.type.LocalDateTypeHandler" />
+ 	 <result column="ch_end_date" property="ch_end_date" typeHandler="org.apache.ibatis.type.LocalDateTypeHandler" />
+   </resultMap>
   
 	<insert id="verph" parameterType="ChallengeDTO">
 	 INSERT INTO verify
