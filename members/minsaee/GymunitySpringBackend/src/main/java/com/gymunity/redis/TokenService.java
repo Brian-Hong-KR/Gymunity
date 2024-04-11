@@ -22,7 +22,6 @@ public class TokenService {
 	public Object getAccessToken(String userAccountId) {
 		return redisTemplate.opsForValue().get(userAccountId + ":accessToken");
 	}// end getAccessToken()
-
 	public Object getRefreshToken(String userAccountId) {
 		return redisTemplate.opsForValue().get(userAccountId + ":refreshToken");
 	}// end getRefreshToken()

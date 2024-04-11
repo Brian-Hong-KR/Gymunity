@@ -6,12 +6,13 @@
 	<resultMap id="userResultMap" type="User">
 		<result property="userId" column="user_id" />
 		<result property="userAccountId" column="user_account_id" />
+		<result property="nickName" column="nick_name" />
 	</resultMap>
 
 	<!--회원정보 가져오기-->
 	<select id="findUserByAccountId" parameterType="string"
 		resultMap="userResultMap">
-		SELECT user_id, user_account_id, user_nickname
+		SELECT user_id, user_account_id, nick_name
 		FROM users
 		WHERE user_account_id = #{userAccountId}
 	</select>

@@ -1,5 +1,6 @@
 package com.gymunity.user.serviceimpl;
 
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +13,7 @@ import com.gymunity.user.dto.Profile;
 import com.gymunity.user.dto.SignupDTO;
 import com.gymunity.user.dto.Survey;
 import com.gymunity.user.dto.User;
+import com.gymunity.user.dto.UserInfoDTO;
 import com.gymunity.user.dto.UserUpdateDTO;
 import com.gymunity.user.repository.UserMapper;
 import com.gymunity.user.response.SigninResponse;
@@ -73,6 +75,30 @@ public class UserServiceImpl implements UserService {
 
 		return new SignupResponse(dto.getUserAccountId(), dto.getNickName(), dto.getUserEmail());
 	}// end signupProcess()
+
+	// 회원정보호출
+	@Override
+	public UserInfoDTO userInfoProcess(String userAccountId) {
+		// userAccountId를 사용하여 User 정보 조회
+		User user = userMapper.selectByAccountId(userAccountId);
+		if (user == null) {
+			// 사용자 정보가 없으면 예외 처리
+			throw new UsernameNotFoundException("User not found with accountId: " + userAccountId);
+		}
+
+		// user 객체의 userId를 사용하여 Profile 정보 조회
+		Profile profile = userMapper.selectProfilesByUserId(user.getUserId());
+
+		// User와 Profile 정보를 UserInfoDTO에 매핑
+		UserInfoDTO userInfoDTO = new UserInfoDTO();
+		userInfoDTO.setUserId(user.getUserId());
+		userInfoDTO.setUserAccountId(user.getUserAccountId());
+		userInfoDTO.setNickName(user.getNickName());
+		userInfoDTO.setGradeName(user.getGradeName());
+		userInfoDTO.setUserEmail(profile.getUserEmail());
+
+		return userInfoDTO;
+	}// UserInfoProcess()
 
 	// 회원정보수정
 	@Override

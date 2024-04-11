@@ -17,6 +17,7 @@ import com.gymunity.user.dto.CheckUserIdPassword;
 import com.gymunity.user.dto.Profile;
 import com.gymunity.user.dto.SignupDTO;
 import com.gymunity.user.dto.User;
+import com.gymunity.user.dto.UserInfoDTO;
 import com.gymunity.user.dto.UserUpdateDTO;
 import com.gymunity.user.response.SigninResponse;
 import com.gymunity.user.response.SignupResponse;
@@ -47,9 +48,11 @@ public class UserController {
 	}// end signupUser()
 
 	// 회원정보호출
+	@Operation(summary = "회원정보호출")
 	@GetMapping("/user/editinfo/{userAccountId}")
-	public ResponseEntity<User> getUser(@PathVariable("userAccountId") String userAccountId) {
-		return ResponseEntity.ok(signinService.processSignIn(userAccountId));
+	public ResponseEntity<UserInfoDTO> getUser(@PathVariable("userAccountId") String userAccountId) {
+		UserInfoDTO userInfoDTO = userService.userInfoProcess(userAccountId);
+		return ResponseEntity.ok(userInfoDTO);
 	}
 
 	// 회원정보수정
