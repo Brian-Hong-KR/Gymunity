@@ -1,0 +1,69 @@
+1. Install & Config
+
+//OS & Tools
+Ubuntu Server 22.04.4 LTS
+PyCharm
+Github Desktop
+
+//React Service
+cd React
+yarn install
+npm install react-simple-chatbot --save
+npm install styled-components --save
+
+//Python Flask Service
+sudo apt install python3.10
+pip install flask
+pip install sqlalchemy
+pip install pymysql
+pip install langchain
+pip install python-dotenv
+pip install youtube-search-python
+pip install googletrans (단, youtube-search-python 과 의존성 충돌)
+
+//Proxy & WSGI Service
+sudo apt-get update
+sudo apt install gunicorn
+sudo apt install nginx
+sudo nano /etc/nginx/site-avilabel/myproject
+sudo systemctl start nginx
+sudo systemctl enable nginx
+
+
+//MySQL Service
+sudo apt-get install mysql-server
+sudo systemctl start mysql
+sudo systemctl enable mysql
+
+//Local LLM Service
+curl -fsSL https://ollama.com/install.sh | sh
+ollama pull neural-chat
+
+//Java Spring Service
+OpenJDK 17 ????
+
+
+
+2. Run
+
+//Front
+cd React
+yarn start react
+
+//Admin
+sudo systemctl restart mysql
+sudo
+
+//PT
+ollama serve
+sudo systemctl restart nginx
+cd Flask
+gunicorn --bind unix:/tmp/myproject.sock "__init__:create_app()"
+
+//Test
+(web browser) http://192.168.0.60
+TODO > https://gymunity.site
+
+
+
+
