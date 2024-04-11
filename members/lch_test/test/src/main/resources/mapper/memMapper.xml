@@ -19,6 +19,9 @@
   	VALUES (#{mem_user_id}, #{mem_grade_id}, #{mem_ch_id}, 'Y')
   </insert>
   
+  
+
+  
 
 </mapper>   
 
