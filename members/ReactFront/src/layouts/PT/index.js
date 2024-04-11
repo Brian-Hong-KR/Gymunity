@@ -33,10 +33,9 @@ import GradientLineChart from "examples/Charts/LineCharts/GradientLineChart";
 // Soft UI Dashboard React base styles
 import typography from "assets/theme/base/typography";
 
-import PersonalTraining from "layouts/PT/components/PersonalTraining";
+// import PersonalTraining from "layouts/PT/components/PersonalTraining";
 
 function PT() {
-
   return (
     <DashboardLayout>
       <DashboardNavbar />
