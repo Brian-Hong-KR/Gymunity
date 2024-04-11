@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gymunity.point.dto.PointAdd;
 import com.gymunity.point.repository.PointMapper;
+import com.gymunity.point.service.PointService;
 import com.gymunity.redis.TokenService;
 import com.gymunity.security.jwt.JwtProperties;
 import com.gymunity.security.jwt.JwtProvider;
@@ -31,6 +32,7 @@ public class SigninServiceImpl implements SigninService {
 	private final PointMapper pointMapper;
 	private final PasswordEncoder passwordEncoder;
 	private final TokenService tokenService;
+	private final PointService pointService;
 
 	// 로그인 프로세스
 	@Override
@@ -62,11 +64,14 @@ public class SigninServiceImpl implements SigninService {
 					pointAdd.setPointsAdded(20);
 					pointAdd.setAddedReason("출석 보상");
 					pointMapper.addPoint(pointAdd);
+
+					// 회원포인트업데이트
+					pointService.addOrUpdatePointsAggr(user.getUserId());
 				} // end inner if()
 
 				// 로그인 시간 업데이트
 				user.setLastSignin(now);
-				userMapper.updateLastLogin(user);
+				signinMapper.updateLastSignin(user);
 
 				// 토큰 생성 및 저장
 				String accessToken = JwtProperties.TOKEN_PREFIX

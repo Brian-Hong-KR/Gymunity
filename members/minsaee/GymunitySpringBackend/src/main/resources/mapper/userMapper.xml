@@ -4,8 +4,10 @@
 <mapper namespace="com.gymunity.user.repository.UserMapper">
 	
     <resultMap id="userResultMap" type="User">
-		<result property="userId" column="user_id" />
+		<result property="userId" column="user_id" jdbcType="INTEGER"/>
 		<result property="userAccountId" column="user_account_id" />
+		<result property="gradeName" column="grade_name" />
+		<result property="nickName" column="nick_name" />
 	</resultMap>
 	
 	<resultMap id="profileResultMap" type="Profile">
@@ -69,15 +71,22 @@
 		WHERE u.user_account_id = #{userAccountId}
 	</select> -->
 	
-	<!--아이디 확인 -->
+	<!--userAccountId로 조회 -->
     <select id="selectByAccountId" parameterType="string" resultMap="userResultMap">
-        SELECT user_id, user_account_id
+        SELECT user_id, user_account_id, nick_name, grade_name
         FROM users
         WHERE user_account_id = #{userAccountId}
     </select>
     
+    <!-- userId로 profiles 조회-->
+    <select id="selectProfilesByUserId" parameterType="int" resultMap="profileResultMap">
+        SELECT user_email
+        FROM profiles
+        WHERE user_id = #{userId}
+    </select>
+    
     <!-- 비밀번호 확인 -->
-    <select id="selectPasswordByUserId" parameterType="string" resultMap="profileResultMap">
+    <select id="selectPasswordByUserId" parameterType="int" resultMap="profileResultMap">
         SELECT password
         FROM profiles
         WHERE user_id = #{userId}

@@ -26,6 +26,8 @@ public interface UserMapper {
 
 	public User selectByAccountId(String accouintId);
 
+	public Profile selectProfilesByUserId(int userId);
+
 	public Profile selectPasswordByUserId(int userId);
 
 	public int deleteUsers(int userId);
