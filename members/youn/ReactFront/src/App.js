@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Soft UI Dashboard React - v4.0.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useState, useEffect, useMemo } from "react";
 
 // react-router components
@@ -47,6 +32,9 @@ import { useSoftUIController, setMiniSidenav, setOpenConfigurator } from "contex
 
 // Images
 import brand from "assets/images/logo-ct.png";
+
+import PointPage from "layouts/profile/info/PointPage";
+import PhotoPage from "layouts/profile/info/PhotoPage";
 
 export default function App() {
   const [controller, dispatch] = useSoftUIController();
@@ -153,6 +141,9 @@ export default function App() {
         {layout === "vr" && <Configurator />}
         <Routes>
           {getRoutes(routes)}
+          {/* 새로운 페이지에 대한 Route를 추가합니다. */}
+          <Route path="/point" element={<PointPage />} />
+          <Route path="/photo" element={<PhotoPage />} />
           <Route path="*" element={<Navigate to="/dashboard" />} />
         </Routes>
       </ThemeProvider>
@@ -177,6 +168,9 @@ export default function App() {
       {layout === "vr" && <Configurator />}
       <Routes>
         {getRoutes(routes)}
+        {/* 새로운 페이지에 대한 Route를 추가합니다. */}
+        <Route path="/point" element={<PointPage />} />
+        <Route path="/photo" element={<PhotoPage />} />
         <Route path="*" element={<Navigate to="/dashboard" />} />
       </Routes>
     </ThemeProvider>
