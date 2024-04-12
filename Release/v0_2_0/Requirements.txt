@@ -25,10 +25,15 @@ pip install googletrans (단, youtube-search-python 과 의존성 충돌)
 sudo apt-get update
 sudo apt install gunicorn
 sudo apt install nginx
-sudo nano /etc/nginx/site-avilabel/myproject
+
+
+sudo nano /etc/nginx/sites-available/myproject (proxy_pass localhost:3000)
+sudo systemctl stop nginx
+sudo rm /etc/nginx/sites-enabled/myproject
+sudo ln -s /etc/nginx/sites-available/myproject /etc/nginx/sites-enabled
 sudo systemctl start nginx
 sudo systemctl enable nginx
-r
+
 //MySQL Service
 sudo apt-get install mysql-server
 sudo systemctl start mysql
@@ -46,15 +51,15 @@ sudo apt install openjdk-17*
 
 2. Run (bash run.sh)
 
+<Port : 3000 React, 5000 Flask, 3306 MySQL>
 
 sudo systemctl restart nginx
 sudo systemctl restart mysql
 (enter password)
 
 
-
 cd /home/utopos/GitHub/Gymunity/Release/v0_2_0/React
-yarn start react
+yarn start
 
 cd ../Spring
 java -jar 20240411_SNAPSHOT.jar
