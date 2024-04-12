@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function TestP() {
-  const [data, setData] = useState('');
+
+  const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:5000/test')
-      .then(response => response.json())
-      .then(responseData => setData(responseData.return));
+    axios.get('http://localhost:5000/test')
+      .then(response => setData(response.data))
+      .catch(error => console.error(error));
   }, []);
+
+  if (!data) return <div>데이터를 불러오는 중입니다...</div>;
 
   return (
     <div>
-      {data}
+      <p>메시지: {data.message}</p>
     </div>
   );
 }
