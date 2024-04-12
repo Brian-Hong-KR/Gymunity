@@ -20,7 +20,8 @@ import DefaultProjectCard from "examples/Cards/ProjectCards/DefaultProjectCard";
 import PlaceholderCard from "examples/Cards/PlaceholderCard";
 
 // Overview page components
-import Header from "../../profile/components/Header/index";
+import Header from "./../components/Header/index";
+import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 // Images
 import categoryToLoseWeight from "assets/images/category/category_toloseweight.jpg";
@@ -45,6 +46,7 @@ function Challenge() {
 
   return (
     <DashboardLayout>
+      <DashboardNavbar />
       <Header />
       <SoftBox mt={5} mb={3}></SoftBox>
       <SoftBox mb={3}>
@@ -72,7 +74,7 @@ function Challenge() {
                   master="뱃살대마왕"
                   master_grade="bronze"
                   total_participants="3"
-                  cetify_frequency="매일"
+                  verify_frequency="매일"
                   challenge_term="4주간"
                   action={{
                     type: "joined",
@@ -90,7 +92,7 @@ function Challenge() {
                   master="뱃살대마왕"
                   master_grade="bronze"
                   total_participants="3"
-                  cetify_frequency="매일"
+                  verify_frequency="매일"
                   challenge_term="4주간"
                   action={{
                     type: "joined",
@@ -128,7 +130,7 @@ function Challenge() {
                   master="뱃살대마왕"
                   master_grade="bronze"
                   total_participants="3"
-                  cetify_frequency="매일"
+                  verify_frequency="매일"
                   challenge_term="4주간"
                   action={{
                     type: "ongoing",
@@ -143,7 +145,7 @@ function Challenge() {
                   title="주말 등산 1회"
                   master_grade="bronze"
                   total_participants="3"
-                  cetify_frequency="매일"
+                  verify_frequency="매일"
                   challenge_term="4주간"
                   action={{
                     type: "ongoing",
@@ -159,7 +161,7 @@ function Challenge() {
                   title="주 3회 헬스장 가기"
                   master_grade="bronze"
                   total_participants="3"
-                  cetify_frequency="매일"
+                  verify_frequency="매일"
                   challenge_term="4주간"
                   action={{
                     type: "ongoing",
@@ -175,7 +177,7 @@ function Challenge() {
                   title="주 3회 헬스장 가기"
                   master_grade="bronze"
                   total_participants="3"
-                  cetify_frequency="매일"
+                  verify_frequency="매일"
                   challenge_term="4주간"
                   action={{
                     type: "ongoing",
@@ -194,7 +196,7 @@ function Challenge() {
                   title="매일 러닝머신 30분"
                   master_grade="bronze"
                   total_participants="3"
-                  cetify_frequency="매일"
+                  verify_frequency="매일"
                   challenge_term="4주간"
                   action={{
                     type: "ongoing",
@@ -210,7 +212,7 @@ function Challenge() {
                   title="주말 등산 1회"
                   master_grade="bronze"
                   total_participants="3"
-                  cetify_frequency="매일"
+                  verify_frequency="매일"
                   challenge_term="4주간"
                   action={{
                     type: "ongoing",
@@ -226,7 +228,7 @@ function Challenge() {
                   title="주 3회 헬스장 가기"
                   master_grade="bronze"
                   total_participants="3"
-                  cetify_frequency="매일"
+                  verify_frequency="매일"
                   challenge_term="4주간"
                   action={{
                     type: "ongoing",
@@ -242,7 +244,7 @@ function Challenge() {
                   title="주 3회 헬스장 가기"
                   master_grade="bronze"
                   total_participants="3"
-                  cetify_frequency="매일"
+                  verify_frequency="매일"
                   challenge_term="4주간"
                   action={{
                     type: "ongoing",

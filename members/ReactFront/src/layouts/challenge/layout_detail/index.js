@@ -16,8 +16,17 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import Table from "examples/Tables/Table";
 
+// @mui icons
+import FacebookIcon from "@mui/icons-material/Facebook";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import InstagramIcon from "@mui/icons-material/Instagram";
+
 // Images
 import categoryToLoseWeight from "assets/images/category/category_toloseweight.jpg";
+
+// Overview page components
+import Header from "./../components/Header/index";
+import Socials from "layouts/authentication/components/Socials";
 
 function ChallengeDetail({
   category,
@@ -26,7 +35,7 @@ function ChallengeDetail({
   master,
   master_grade,
   total_participants,
-  cetify_frequency,
+  verify_frequency,
   challenge_term,
   action,
 }) {
@@ -42,23 +51,27 @@ function ChallengeDetail({
     challenge_term: "2주간",
     ch_start_date: "2024-05-01",
     // ch_end_date: "2024-05-15", //ch_start_date + challenge_term 계산식으로 수정
-    cetify_frequency: "매일",
-    cetify_times: "일일 1번",
+    verify_frequency: "매일",
+    verify_times: "일일 1번",
     batting_point: "10000",
-    cetify_explain: "30분 이상 러닝 기록이 찍힌 러닝머신 화면을 찍어서 올림",
-    cetify_example1: require("assets/images/category/category_toloseweight.jpg"),
-    cetify_example2: require("assets/images/category/category_toloseweight.jpg"),
+    verify_explain: "30분 이상 러닝 기록이 찍힌 러닝머신 화면을 찍어서 올림",
+    verify_example1: require("assets/images/category/category_toloseweight.jpg"),
+    verify_example2: require("assets/images/category/category_toloseweight.jpg"),
   };
 
   return (
     <DashboardLayout>
-      <DashboardNavbar />
+      <Header />
       <SoftBox py={3}>
         <SoftBox mb={3}>
           <SoftBox>
             <Grid display="flex" alignItems="center" container spacing={3}>
               <img src={challenge.image} alt="category" />
             </Grid>
+          </SoftBox>
+          <SoftBox>
+            <SoftTypography variant="h3">공유하기</SoftTypography>
+            <Socials />
           </SoftBox>
           <Card>
             <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
@@ -134,7 +147,7 @@ function ChallengeDetail({
                 </SoftBox>
                 <SoftBox mb={1} ml={0.5}>
                   <SoftTypography component="label" variant="caption" fontWeight="bold">
-                    {challenge.cetify_frequency}
+                    {challenge.verify_frequency}
                   </SoftTypography>
                 </SoftBox>
               </SoftBox>
@@ -147,7 +160,7 @@ function ChallengeDetail({
                 </SoftBox>
                 <SoftBox mb={1} ml={0.5}>
                   <SoftTypography component="label" variant="caption" fontWeight="bold">
-                    {challenge.cetify_times}
+                    {challenge.verify_times}
                   </SoftTypography>
                 </SoftBox>
               </SoftBox>
@@ -160,7 +173,7 @@ function ChallengeDetail({
                 </SoftBox>
                 <SoftBox mb={1} ml={0.5}>
                   <SoftTypography component="label" variant="caption" fontWeight="bold">
-                    {challenge.cetify_explain}
+                    {challenge.verify_explain}
                   </SoftTypography>
                 </SoftBox>
               </SoftBox>
@@ -173,10 +186,10 @@ function ChallengeDetail({
                 </SoftBox>
                 <SoftBox mb={1} ml={0.5}>
                   <Grid display="flex" alignItems="center" container spacing={3}>
-                    <img src={challenge.cetify_example1} alt="category" />
+                    <img src={challenge.verify_example1} alt="category" />
                   </Grid>
                   <Grid display="flex" alignItems="center" container spacing={3}>
-                    <img src={challenge.cetify_example1} alt="category" />
+                    <img src={challenge.verify_example1} alt="category" />
                   </Grid>
                 </SoftBox>
               </SoftBox>
@@ -207,7 +220,7 @@ ChallengeDetail.propTypes = {
   master: PropTypes.string.isRequired,
   master_grade: PropTypes.number.isRequired,
   total_participants: PropTypes.number.isRequired,
-  cetify_frequency: PropTypes.string.isRequired,
+  verify_frequency: PropTypes.string.isRequired,
   challenge_term: PropTypes.string.isRequired,
   action: PropTypes.shape({
     type: PropTypes.oneOf(["joined", "none"]).isRequired,

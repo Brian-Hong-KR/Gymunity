@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Soft UI Dashboard React - v4.0.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useState, useEffect, useMemo } from "react";
 
 // react-router components
@@ -51,6 +36,7 @@ import brand from "assets/images/Logo_icon.png";
 //route
 import ChallengeCreate from "layouts/challenge/layout_create";
 import ChallengeDetail from "layouts/challenge/layout_detail";
+import ChallengeVerify from "layouts/challenge/layaout_verify";
 
 export default function App() {
   const [controller, dispatch] = useSoftUIController();
@@ -158,6 +144,7 @@ export default function App() {
         <Route path="challenge/create" element={<ChallengeCreate />} />
         <Route path="challenge/1/detail" element={<ChallengeDetail />} />
         {/* <Route path="challenge/:challengeId/detail" element={<ChallengeDetail />} /> */}
+        <Route path="challenge/1/verify" element={<ChallengeVerify />} />
         <Route path="*" element={<Navigate to="/dashboard" />} />
         {getRoutes(routes)}
       </Routes>

@@ -117,7 +117,7 @@ function DefaultProjectCard({
           {action.type === "joined" ? (
             <SoftButton
               component={Link}
-              to="challenge/1/verify"
+              to="/challenge/1/verify"
               variant="outlined"
               size="small"
               color={action.color}
@@ -127,7 +127,8 @@ function DefaultProjectCard({
           ) : (
             <SoftButton
               component={Link}
-              to="challenge/1/detail"
+              to="/challenge/1/detail"
+              // <SoftButton component={Link} to={`challenge/${ch_id}/detail`} />
               // to={action.route}
               // component="a"
               // href={action.route}
