@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Soft UI Dashboard React - v4.0.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 // react-router-dom components
 import { Link } from "react-router-dom";
 
@@ -55,8 +40,8 @@ function DefaultProjectCard({
     >
       <SoftBox
         position="absolute"
-        top="-10px" // 첫 번째 SoftBox의 상대적인 수직 위치 조정
-        left="10px" // 첫 번째 SoftBox의 상대적인 수평 위치 조정
+        // top="-10px" // 첫 번째 SoftBox의 상대적인 수직 위치 조정
+        // left="10px" // 첫 번째 SoftBox의 상대적인 수평 위치 조정
         width="180px"
         height="30px"
         shadow="xl"
@@ -132,24 +117,27 @@ function DefaultProjectCard({
           {action.type === "join" ? (
             <SoftButton
               component={Link}
-              to={action.route}
+              to="challenge/1/verify"
               variant="outlined"
               size="small"
               color={action.color}
             >
-              {action.label}
+              인증하기
             </SoftButton>
           ) : (
             <SoftButton
-              component="a"
-              href={action.route}
-              target="_blank"
-              rel="noreferrer"
+              component={Link}
+              to="challenge/1/detail"
+              // to={action.route}
+              // component="a"
+              // href={action.route}
+              // target="_blank"
+              // rel="noreferrer"
               variant="outlined"
               size="small"
               color={action.color}
             >
-              {action.label}
+              참여하기
             </SoftButton>
           )}
         </SoftBox>
