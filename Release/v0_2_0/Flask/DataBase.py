@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 
 from datetime import datetime, time
 
-engine = create_engine("mysql+pymysql://gm:1234@112.169.231.62:6060/gm")
+engine = create_engine("mysql+pymysql://gm:1234@localhost:3306/gymunity")
 Base = declarative_base()
 session_maker = sessionmaker(bind=engine)
 session = session_maker()
