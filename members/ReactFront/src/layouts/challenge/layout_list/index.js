@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 // @mui material components
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
@@ -14,17 +16,11 @@ import SoftTypography from "components/SoftTypography";
 // Soft UI Dashboard React examples
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import Footer from "examples/Footer";
-import ProfileInfoCard from "examples/Cards/InfoCards/ProfileInfoCard";
-import ProfilesList from "examples/Lists/ProfilesList";
 import DefaultProjectCard from "examples/Cards/ProjectCards/DefaultProjectCard";
 import PlaceholderCard from "examples/Cards/PlaceholderCard";
 
 // Overview page components
 import Header from "../../profile/components/Header/index";
-import PlatformSettings from "layouts/profile/components/PlatformSettings";
-
-// Data
-import profilesListData from "layouts/profile/data/profilesListData";
 
 // Images
 import categoryToLoseWeight from "assets/images/category/category_toloseweight.jpg";
@@ -32,13 +28,21 @@ import categoryToIncreaseMuscle from "assets/images/category/category_toincrease
 import categoryPhsicalStrength from "assets/images/category/category_physicalstrength.jpg";
 import categoryDiet from "assets/images/category/category_diet.jpg";
 
-import team1 from "assets/images/team-1.jpg";
-import team2 from "assets/images/team-2.jpg";
-import team3 from "assets/images/team-3.jpg";
-import team4 from "assets/images/team-4.jpg";
-import { Link } from "react-router-dom";
-
 function Challenge() {
+  const category_input = 1;
+  function handleCategory(category_input) {
+    if ((category_input = 1)) {
+      category = "체지방 감소";
+      image = { categoryToLoseWeight };
+    } else if ((category_input = 2)) {
+      category = "근육량 증가";
+      image = { categoryToIncreaseMuscle };
+    } else {
+      category = "종합 건강 증진";
+      image = { categoryPhsicalStrength };
+    }
+  }
+
   return (
     <DashboardLayout>
       <Header />
@@ -61,37 +65,36 @@ function Challenge() {
             <Grid container spacing={3}>
               <Grid item xs={12} md={6} xl={3}>
                 <DefaultProjectCard
-                  image={categoryToLoseWeight}
+                  ch_id="1"
                   category="체지방 감소"
+                  image={categoryToLoseWeight}
                   title="매일 러닝머신 30분"
                   master="뱃살대마왕"
                   master_grade="bronze"
                   total_participants="3"
-                  cetify_term="매일"
+                  cetify_frequency="매일"
                   challenge_term="4주간"
                   action={{
-                    type: "personal",
-                    route: "/challenge/list/1",
+                    type: "joined",
+                    proceed: "pr",
                     color: "info",
-                    label: "인증하기",
                   }}
                 />
               </Grid>
               <Grid item xs={12} md={6} xl={3}>
                 <DefaultProjectCard
+                  ch_id="1"
+                  category="다이어트"
                   image={categoryDiet}
-                  label="다이어트"
                   title="점심 식단 인증"
                   master="뱃살대마왕"
                   master_grade="bronze"
                   total_participants="3"
-                  cetify_term="매일"
+                  cetify_frequency="매일"
                   challenge_term="4주간"
                   action={{
-                    type: "personal",
-                    route: "/challenge/list/1",
+                    type: "joined",
                     color: "info",
-                    label: "인증하기",
                   }}
                 />
               </Grid>
@@ -120,35 +123,49 @@ function Challenge() {
               <Grid item xs={12} md={6} xl={3}>
                 <DefaultProjectCard
                   image={categoryToLoseWeight}
-                  author={[{ image: team1, name: "Elena Morison" }]}
+                  category="다이어트"
                   title="매일 러닝머신 30분"
-                  description="매일 러닝머신 30분 인증하기"
+                  master="뱃살대마왕"
+                  master_grade="bronze"
+                  total_participants="3"
+                  cetify_frequency="매일"
+                  challenge_term="4주간"
                   action={{
-                    type: "personal",
-                    route: "/challenge/list/1",
+                    type: "ongoing",
                     color: "info",
-                    label: "참여하기",
                   }}
                 />
               </Grid>
               <Grid item xs={12} md={6} xl={3}>
                 <DefaultProjectCard
                   image={categoryToIncreaseMuscle}
-                  label="체력 증진"
+                  category="체력 증진"
                   title="주말 등산 1회"
-                  description="매주 주말마다 등산하고 인증하기"
+                  master_grade="bronze"
+                  total_participants="3"
+                  cetify_frequency="매일"
+                  challenge_term="4주간"
                   action={{
-                    type: "personal",
-                    route: "/challenge/list/2",
+                    type: "ongoing",
+                    route: "/challenge/list/1",
                     color: "info",
-                    label: "참여하기",
                   }}
-                  authors={[
-                    { image: team3, name: "Nick Daniel" },
-                    { image: team4, name: "Peterson" },
-                    { image: team1, name: "Elena Morison" },
-                    { image: team2, name: "Ryan Milly" },
-                  ]}
+                />
+              </Grid>
+              <Grid item xs={12} md={6} xl={3}>
+                <DefaultProjectCard
+                  image={categoryPhsicalStrength}
+                  category="체력 증진"
+                  title="주 3회 헬스장 가기"
+                  master_grade="bronze"
+                  total_participants="3"
+                  cetify_frequency="매일"
+                  challenge_term="4주간"
+                  action={{
+                    type: "ongoing",
+                    route: "/challenge/list/1",
+                    color: "info",
+                  }}
                 />
               </Grid>
               <Grid item xs={12} md={6} xl={3}>
@@ -156,39 +173,15 @@ function Challenge() {
                   image={categoryPhsicalStrength}
                   label="체력 증진"
                   title="주 3회 헬스장 가기"
-                  description="주 3회 헬스장 가고 인증하기"
+                  master_grade="bronze"
+                  total_participants="3"
+                  cetify_frequency="매일"
+                  challenge_term="4주간"
                   action={{
-                    type: "official",
-                    route: "/pages/profile/profile-overview",
+                    type: "ongoing",
+                    route: "/challenge/list/1",
                     color: "info",
-                    label: "참여하기",
                   }}
-                  authors={[
-                    { image: team4, name: "Peterson" },
-                    { image: team3, name: "Nick Daniel" },
-                    { image: team2, name: "Ryan Milly" },
-                    { image: team1, name: "Elena Morison" },
-                  ]}
-                />
-              </Grid>
-              <Grid item xs={12} md={6} xl={3}>
-                <DefaultProjectCard
-                  image={categoryPhsicalStrength}
-                  label="체력 증진"
-                  title="주 3회 헬스장 가기"
-                  description="주 3회 헬스장 가고 인증하기"
-                  action={{
-                    type: "official",
-                    route: "/pages/profile/profile-overview",
-                    color: "info",
-                    label: "참여하기",
-                  }}
-                  authors={[
-                    { image: team4, name: "Peterson" },
-                    { image: team3, name: "Nick Daniel" },
-                    { image: team2, name: "Ryan Milly" },
-                    { image: team1, name: "Elena Morison" },
-                  ]}
                 />
               </Grid>
             </Grid>
@@ -199,19 +192,15 @@ function Challenge() {
                   image={categoryToLoseWeight}
                   label="체지방 감소"
                   title="매일 러닝머신 30분"
-                  description="매일 러닝머신 30분 인증하기"
+                  master_grade="bronze"
+                  total_participants="3"
+                  cetify_frequency="매일"
+                  challenge_term="4주간"
                   action={{
-                    type: "personal",
+                    type: "ongoing",
                     route: "/challenge/list/1",
                     color: "info",
-                    label: "참여하기",
                   }}
-                  authors={[
-                    { image: team1, name: "Elena Morison" },
-                    { image: team2, name: "Ryan Milly" },
-                    { image: team3, name: "Nick Daniel" },
-                    { image: team4, name: "Peterson" },
-                  ]}
                 />
               </Grid>
               <Grid item xs={12} md={6} xl={3}>
@@ -219,19 +208,15 @@ function Challenge() {
                   image={categoryPhsicalStrength}
                   label="체력 증진"
                   title="주말 등산 1회"
-                  description="매주 주말마다 등산하고 인증하기"
+                  master_grade="bronze"
+                  total_participants="3"
+                  cetify_frequency="매일"
+                  challenge_term="4주간"
                   action={{
-                    type: "personal",
-                    route: "/challenge/list/2",
+                    type: "ongoing",
+                    route: "/challenge/list/1",
                     color: "info",
-                    label: "참여하기",
                   }}
-                  authors={[
-                    { image: team3, name: "Nick Daniel" },
-                    { image: team4, name: "Peterson" },
-                    { image: team1, name: "Elena Morison" },
-                    { image: team2, name: "Ryan Milly" },
-                  ]}
                 />
               </Grid>
               <Grid item xs={12} md={6} xl={3}>
@@ -239,19 +224,15 @@ function Challenge() {
                   image={categoryPhsicalStrength}
                   label="체력 증진"
                   title="주 3회 헬스장 가기"
-                  description="주 3회 헬스장 가고 인증하기"
+                  master_grade="bronze"
+                  total_participants="3"
+                  cetify_frequency="매일"
+                  challenge_term="4주간"
                   action={{
-                    type: "official",
-                    route: "/pages/profile/profile-overview",
+                    type: "ongoing",
+                    route: "/challenge/list/1",
                     color: "info",
-                    label: "참여하기",
                   }}
-                  authors={[
-                    { image: team4, name: "Peterson" },
-                    { image: team3, name: "Nick Daniel" },
-                    { image: team2, name: "Ryan Milly" },
-                    { image: team1, name: "Elena Morison" },
-                  ]}
                 />
               </Grid>
               <Grid item xs={12} md={6} xl={3}>
@@ -259,19 +240,15 @@ function Challenge() {
                   image={categoryPhsicalStrength}
                   label="체력 증진"
                   title="주 3회 헬스장 가기"
-                  description="주 3회 헬스장 가고 인증하기"
+                  master_grade="bronze"
+                  total_participants="3"
+                  cetify_frequency="매일"
+                  challenge_term="4주간"
                   action={{
-                    type: "official",
-                    route: "/pages/profile/profile-overview",
+                    type: "ongoing",
+                    route: "/challenge/list/1",
                     color: "info",
-                    label: "참여하기",
                   }}
-                  authors={[
-                    { image: team4, name: "Peterson" },
-                    { image: team3, name: "Nick Daniel" },
-                    { image: team2, name: "Ryan Milly" },
-                    { image: team1, name: "Elena Morison" },
-                  ]}
                 />
               </Grid>
             </Grid>

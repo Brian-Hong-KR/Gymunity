@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Soft UI Dashboard React - v4.0.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 // react-router-dom components
 import { Link } from "react-router-dom";
 
@@ -32,15 +17,15 @@ import SoftAvatar from "components/SoftAvatar";
 import typography from "assets/theme/base/typography";
 
 function DefaultProjectCard({
-  image,
   category,
+  image,
   title,
-  action,
   master,
   master_grade,
   total_participants,
-  cetify_term,
+  cetify_frequency,
   challenge_term,
+  action,
 }) {
   return (
     <Card
@@ -55,8 +40,6 @@ function DefaultProjectCard({
     >
       <SoftBox
         position="absolute"
-        top="-10px" // 첫 번째 SoftBox의 상대적인 수직 위치 조정
-        left="10px" // 첫 번째 SoftBox의 상대적인 수평 위치 조정
         width="180px"
         height="30px"
         shadow="xl"
@@ -65,6 +48,8 @@ function DefaultProjectCard({
         component="div"
         sx={{
           ...typography.h6,
+          top: "-10px",
+          left: "-10px",
           maxWidth: "100%",
           maxHeight: "100%",
           margin: 0,
@@ -124,32 +109,35 @@ function DefaultProjectCard({
         <SoftBox mb={1}>{total_participants} </SoftBox>
         <SoftBox></SoftBox>
         <SoftBox mb={1}>
-          {cetify_term} {challenge_term}{" "}
+          {cetify_frequency} {challenge_term}
         </SoftBox>
         <SoftBox></SoftBox>
         <SoftBox mb={3} lineHeight={0}></SoftBox>
         <SoftBox display="flex" justifyContent="space-between" alignItems="center">
-          {action.type === "join" ? (
+          {action.type === "joined" ? (
             <SoftButton
               component={Link}
-              to={action.route}
+              to="challenge/1/verify"
               variant="outlined"
               size="small"
               color={action.color}
             >
-              {action.label}
+              인증하기
             </SoftButton>
           ) : (
             <SoftButton
-              component="a"
-              href={action.route}
-              target="_blank"
-              rel="noreferrer"
+              component={Link}
+              to="challenge/1/detail"
+              // to={action.route}
+              // component="a"
+              // href={action.route}
+              // target="_blank"
+              // rel="noreferrer"
               variant="outlined"
               size="small"
               color={action.color}
             >
-              {action.label}
+              참여하기
             </SoftButton>
           )}
         </SoftBox>
@@ -165,13 +153,18 @@ DefaultProjectCard.defaultProps = {
 
 // Typechecking props for the DefaultProjectCard
 DefaultProjectCard.propTypes = {
+  category: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  master: PropTypes.string.isRequired,
+  master_grade: PropTypes.number.isRequired,
+  total_participants: PropTypes.number.isRequired,
+  cetify_frequency: PropTypes.string.isRequired,
+  challenge_term: PropTypes.string.isRequired,
   action: PropTypes.shape({
-    type: PropTypes.oneOf(["external", "internal"]),
-    route: PropTypes.string.isRequired,
+    type: PropTypes.oneOf(["joined", "none"]).isRequired,
+    // route: PropTypes.string.isRequired,
+    proceed: PropTypes.oneOf(["rec", "pr", "done"]).isRequired,
     color: PropTypes.oneOf([
       "primary",
       "secondary",
@@ -185,7 +178,6 @@ DefaultProjectCard.propTypes = {
     ]).isRequired,
     label: PropTypes.string.isRequired,
   }).isRequired,
-  authors: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default DefaultProjectCard;
