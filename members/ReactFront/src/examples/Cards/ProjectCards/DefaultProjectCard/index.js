@@ -118,7 +118,7 @@ function DefaultProjectCard({
             textTransform="capitalize"
             textGradient
           >
-            {master_grade} master : {master}
+            master : {master_grade} {master}
           </SoftTypography>
         </SoftBox>
         <SoftBox mb={1}>{total_participants} </SoftBox>

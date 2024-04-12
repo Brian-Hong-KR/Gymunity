@@ -95,13 +95,12 @@ function Challenge() {
                   }}
                 />
               </Grid>
-              <Grid item xs={12} md={6} xl={3} component={Link} to="/detail">
+              <Grid item xs={12} md={6} xl={3} component={Link} to="/challenge/create">
                 <PlaceholderCard title={{ variant: "h5", text: "챌린지 만들기" }} outlined />
               </Grid>
             </Grid>
           </SoftBox>
         </Card>
-        {/* 진행중인 챌린지 */}
         <SoftBox mt={3} mb={3}></SoftBox>
         <Card>
           <SoftBox pt={2} px={2}>
