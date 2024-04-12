@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 import Router
 
 def create_app():
@@ -9,6 +10,8 @@ def create_app():
                 )
 
     app.register_blueprint(Router.bp)
-    
+
+    CORS(app)
+
     return app
 

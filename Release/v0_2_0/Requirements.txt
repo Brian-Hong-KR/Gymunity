@@ -14,6 +14,7 @@ npm install styled-components --save
 //Python Flask Service
 sudo apt install python3.10
 pip install flask
+pip install flask-cors
 pip install sqlalchemy
 pip install pymysql
 pip install langchain
@@ -27,7 +28,7 @@ sudo apt install gunicorn
 sudo apt install nginx
 
 
-sudo nano /etc/nginx/sites-available/myproject (proxy_pass localhost:3000)
+sudo nano /etc/nginx/sites-available/myproject
 sudo systemctl stop nginx
 sudo rm /etc/nginx/sites-enabled/myproject
 sudo ln -s /etc/nginx/sites-available/myproject /etc/nginx/sites-enabled
@@ -48,25 +49,24 @@ ollama pull neural-chat
 sudo apt install openjdk-17*
 
 
-
 2. Run (bash run.sh)
 
-<Port : 3000 React, 5000 Flask, 3306 MySQL>
-
+ollama serve
 sudo systemctl restart nginx
 sudo systemctl restart mysql
 (enter password)
 
+cd /home/utopos/GitHub/Gymunity/Release/v0_2_0/
 
-cd /home/utopos/GitHub/Gymunity/Release/v0_2_0/React
-yarn start
-
-cd ../Spring
+cd Spring
 java -jar 20240411_SNAPSHOT.jar
 
 cd ../Flask
-ollama serve
-gunicorn --bind unix:/tmp/myproject.sock "__init__:create_app()"
+gunicorn --bind 0:5000 "__init__:create_app()"
+
+cd ../React
+yarn start
+
 
 
 3. Test

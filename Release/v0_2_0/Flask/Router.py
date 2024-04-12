@@ -1,17 +1,17 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, jsonify
 from youtubesearchpython import VideosSearch
 import Chatbot, DataBase
 
-
 bp = Blueprint('pt_server', __name__, url_prefix='/')
 
-@bp.route('/')
-def home():
-    return render_template("home.html")
-
-@bp.route('/survey')
-def survey():
-    return render_template("survey.html")
+@bp.route('/test')
+def test():
+    data = {'message': 'Hello from Flask!'}
+    return jsonify(data)
+#
+# @bp.route('/survey')
+# def survey():
+#     return render_template("survey.html")
 
 @bp.route('/survey_done', methods=('POST',))
 def survey_done():
@@ -34,12 +34,13 @@ def survey_done():
 
     DataBase.SavePTLog(daily_program=str(daily_program))
 
-    return render_template ( "pt.html", daily_program=daily_program, video_list=video_list)
+    # return render_template ( "pt.html", daily_program=daily_program, video_list=video_list)
+    return daily_program, video_list
 
-
-@bp.route('/survey_reset')
-def survey_reset():
-    return render_template("survey.html")
+#
+# @bp.route('/survey_reset')
+# def survey_reset():
+#     return render_template("survey.html")
 
 
 @bp.route('/plan', methods=('POST',))
@@ -53,7 +54,8 @@ def plan():
     plan_name = f"플랜명 : {goal} ({level})"
     plan_desc = Chatbot.generate_pt_plan( gender=gender, age=age, goal=goal, level=level, abnormal=abnormal)
 
-    return render_template ( "plan.html", plan_name=plan_name, plan_desc = plan_desc)
+    # return render_template ( "plan.html", plan_name=plan_name, plan_desc = plan_desc)
+    return plan_name, plan_desc
 
 @bp.route('/exercise')
 def exercise( user_id ):
@@ -73,7 +75,8 @@ def exercise( user_id ):
 
     DataBase.SavePTLog(daily_program=daily_program)
 
-    return render_template ( "pt.html", daily_program=daily_program, video_list=video_list)
+    # return render_template ( "pt.html", daily_program=daily_program, video_list=video_list)
+    return daily_program, video_list
 
 @bp.route("/question", methods=["POST"])
 def chatbot_response():
@@ -111,7 +114,9 @@ def store():
     
     print (product_list)
 
-    return render_template ( "store.html", product_list=product_list)
+    # return render_template ( "store.html", product_list=product_list)
+    return product_list
+
 
 
 

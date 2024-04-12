@@ -34,12 +34,14 @@ import GradientLineChart from "examples/Charts/LineCharts/GradientLineChart";
 import typography from "assets/theme/base/typography";
 
 import PersonalTraining from "layouts/PT/components/PersonalTraining";
+import TestP from "layouts/PT/components/TestP";
 
 function PT() {
 
   return (
     <DashboardLayout>
       <DashboardNavbar />
+      <TestP />
       <SoftBox width="8rem" textAlign="left">
         <SoftTypography variant="h6"> 오늘 운동 진행률 </SoftTypography>
         <SoftProgress value={50} color="success" variant="gradient" label={false} />
