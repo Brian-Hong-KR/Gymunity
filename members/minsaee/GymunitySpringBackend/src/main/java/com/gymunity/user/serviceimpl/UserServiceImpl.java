@@ -103,13 +103,9 @@ public class UserServiceImpl implements UserService {
 	// 회원정보수정
 	@Override
 	public SigninResponse updateUserProcess(UserUpdateDTO dto) {
-		User user = new User();
-		user.setNickName(dto.getNickName());
-		userMapper.updateUsers(user);
+		userMapper.updateUsers(dto);
 
-		Profile profile = new Profile();
-		profile.setUserEmail(dto.getUserEmail());
-		userMapper.updateProfiles(profile);
+		userMapper.updateProfiles(dto);
 
 		return new SigninResponse(dto.getNickName(), dto.getUserEmail());
 	}// end updateUserProcess()

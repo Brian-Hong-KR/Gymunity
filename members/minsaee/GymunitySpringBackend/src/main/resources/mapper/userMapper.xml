@@ -2,14 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.gymunity.user.repository.UserMapper">
-	
-    <resultMap id="userResultMap" type="User">
-		<result property="userId" column="user_id" jdbcType="INTEGER"/>
-		<result property="userAccountId" column="user_account_id" />
-		<result property="gradeName" column="grade_name" />
-		<result property="nickName" column="nick_name" />
+
+	<resultMap id="userResultMap" type="User">
+		<result property="userId" column="user_id" jdbcType="INTEGER" />
+		<result
+			property="userAccountId" column="user_account_id" />
+		<result
+			property="gradeName" column="grade_name" />
+		<result
+			property="nickName" column="nick_name" />
 	</resultMap>
-	
+
 	<resultMap id="profileResultMap" type="Profile">
 		<result property="userId" column="user_id" />
 		<result property="password" column="password" />
@@ -61,7 +64,7 @@
 		)
 		WHERE user_id = #{userId};
 	</update>
-	
+
 	<!-- 아이디, 비밀번호 확인 
 	<select id="selectByAccountId" parameterType="string"
 		resultMap="userResultMap">
@@ -70,27 +73,30 @@
 		JOIN profiles p ON u.user_id = p.user_id
 		WHERE u.user_account_id = #{userAccountId}
 	</select> -->
-	
+
 	<!--userAccountId로 조회 -->
-    <select id="selectByAccountId" parameterType="string" resultMap="userResultMap">
-        SELECT user_id, user_account_id, nick_name, grade_name
-        FROM users
-        WHERE user_account_id = #{userAccountId}
-    </select>
-    
-    <!-- userId로 profiles 조회-->
-    <select id="selectProfilesByUserId" parameterType="int" resultMap="profileResultMap">
-        SELECT user_email
-        FROM profiles
-        WHERE user_id = #{userId}
-    </select>
-    
-    <!-- 비밀번호 확인 -->
-    <select id="selectPasswordByUserId" parameterType="int" resultMap="profileResultMap">
-        SELECT password
-        FROM profiles
-        WHERE user_id = #{userId}
-    </select>
+	<select id="selectByAccountId" parameterType="string"
+		resultMap="userResultMap">
+		SELECT user_id, user_account_id, nick_name, grade_name
+		FROM users
+		WHERE user_account_id = #{userAccountId}
+	</select>
+
+	<!-- userId로 profiles 조회-->
+	<select id="selectProfilesByUserId" parameterType="int"
+		resultMap="profileResultMap">
+		SELECT user_email
+		FROM profiles
+		WHERE user_id = #{userId}
+	</select>
+
+	<!-- 비밀번호 확인 -->
+	<select id="selectPasswordByUserId" parameterType="int"
+		resultMap="profileResultMap">
+		SELECT password
+		FROM profiles
+		WHERE user_id = #{userId}
+	</select>
 
 	<!-- users 테이블 업데이트 -->
 	<update id="updateUsers" parameterType="User">

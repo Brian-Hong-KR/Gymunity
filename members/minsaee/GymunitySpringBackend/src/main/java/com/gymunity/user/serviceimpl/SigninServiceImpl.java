@@ -22,7 +22,9 @@ import com.gymunity.user.response.SigninResponse;
 import com.gymunity.user.service.SigninService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -50,9 +52,11 @@ public class SigninServiceImpl implements SigninService {
 
 				// 마지막 로그인 시간 가져오기
 				LocalDateTime lastSignin = user.getLastSignin();
+				log.info("DB로그인시간 {}", lastSignin);
 
 				// 오늘 새벽 4시
 				LocalDateTime today4am = now.toLocalDate().atStartOfDay().plusHours(4);
+				log.info("오늘 새벽 4시 {}", today4am);
 				// 20XX-XX-XXT04:00:00
 
 				// 마지막 로그인 시간이 오늘 새벽 4시 이전이라면 보상을 지급

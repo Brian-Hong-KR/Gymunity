@@ -11,5 +11,7 @@ public class UserUpdateDTO {
 
 	// Profile 정보
 	private String userEmail;
+	
+	private int userId;
 
 }// end class

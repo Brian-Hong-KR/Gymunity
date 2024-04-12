@@ -6,17 +6,18 @@ import org.springframework.stereotype.Repository;
 import com.gymunity.user.dto.Profile;
 import com.gymunity.user.dto.Survey;
 import com.gymunity.user.dto.User;
+import com.gymunity.user.dto.UserUpdateDTO;
 
 @Mapper
 @Repository
 public interface UserMapper {
 	public int insertUsers(User dto);
 
-	public void updateUsers(User dto);
+	public void updateUsers(UserUpdateDTO dto);
 
 	public int insertProfiles(Profile dto);
 
-	public void updateProfiles(Profile dto);
+	public void updateProfiles(UserUpdateDTO dto);
 
 	public int insertSurvey(Survey dto);
 
