@@ -28,17 +28,13 @@ import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
-@CrossOrigin
+@CrossOrigin("*")
 @RestController
 @RequiredArgsConstructor
 public class UserController {
 
 	private final UserService userService;
-	private final PointService pointService;
-	private final SigninService signinService;
-	private final BCryptPasswordEncoder encodePassword;
-
+	
 	// 회원가입
 	@Operation(summary = "회원가입")
 	@PostMapping("/user/signup")
