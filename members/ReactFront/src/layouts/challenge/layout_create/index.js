@@ -202,7 +202,7 @@ function ChallengeCreate() {
         <SoftBox mb={2}>
           <SoftBox mb={1} ml={0.5}>
             <SoftTypography component="label" variant="caption" fontWeight="bold">
-              예치금
+              예치 포인트
             </SoftTypography>
           </SoftBox>
           <SoftInput type="title" placeholder="챌린지 제목" />
