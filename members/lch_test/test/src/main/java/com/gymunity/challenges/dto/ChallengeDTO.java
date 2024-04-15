@@ -18,7 +18,7 @@ import lombok.Setter;
 @Setter
 public class ChallengeDTO {
 	private int user_id, ch_id, grade_id, category, 
-	batting_point, total_participants,  count, userId;
+	batting_point, total_participants, count, userId;
 	private String title, content, proceed;
 	private Date regist_date;
 	

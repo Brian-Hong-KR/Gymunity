@@ -53,16 +53,10 @@ public class ChallengeController {
     @Autowired
    	private PointService pointService;
     
-   
     @Autowired
 	private PageDTO pdto;
 	private int currentPage;
-	
 
-	
-
-	
-	
     @GetMapping("/challenge/list/{currentPage}")
     public ResponseEntity<Map<String, Object>> listExecute(@PathVariable("currentPage") int currentPage) {
         Map<String, Object> map = new HashMap<>();
@@ -73,7 +67,7 @@ public class ChallengeController {
         	
         	this.currentPage = currentPage;
 			this.pdto = new PageDTO(this.currentPage, totalRecord);
-			map.put("boardList", challengeService.listProcess(pdto));
+			map.put("challengeList", challengeService.listProcess(pdto));
 			map.put("pv", this.pdto);
         }
         log.info("challengeList:{}", map.get("challengeList"));
@@ -91,7 +85,7 @@ public class ChallengeController {
 		return ResponseEntity.ok(String.valueOf(1));
 	}
 	
-	@GetMapping("/challenge/view/{ch_id}")
+	@GetMapping("/challenge/detail/{ch_id}")
 	public ResponseEntity<ChallengeDTO> viewExecute(@PathVariable("ch_id") int ch_id) {
 		ChallengeDTO dto = challengeService.contentProcess(ch_id);
 		return ResponseEntity.ok(dto);

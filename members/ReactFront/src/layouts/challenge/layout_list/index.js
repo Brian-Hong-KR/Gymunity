@@ -1,17 +1,16 @@
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
+import { challengeActions } from "../toolkit/actions/challenge_actions";
 
 // @mui material components
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 
-// @mui icons
-import FacebookIcon from "@mui/icons-material/Facebook";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import InstagramIcon from "@mui/icons-material/Instagram";
-
 // Soft UI Dashboard React components
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
+import SoftPagination from "components/SoftPagination";
 
 // Soft UI Dashboard React examples
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
@@ -30,19 +29,20 @@ import categoryPhsicalStrength from "assets/images/category/category_physicalstr
 import categoryDiet from "assets/images/category/category_diet.jpg";
 
 function Challenge() {
-  const category_input = 1;
-  function handleCategory(category_input) {
-    if ((category_input = 1)) {
-      category = "체지방 감소";
-      image = { categoryToLoseWeight };
-    } else if ((category_input = 2)) {
-      category = "근육량 증가";
-      image = { categoryToIncreaseMuscle };
-    } else {
-      category = "종합 건강 증진";
-      image = { categoryPhsicalStrength };
-    }
-  }
+  const { currentPage } = useParams();
+  const dispatch = useDispatch();
+
+  const getChallengeList = (currentPage) => {
+    console.log("currentPage:", currentPage);
+    dispatch(challengeActions.getChallengeList(currentPage));
+  };
+
+  useEffect(() => {
+    getChallengeList(currentPage);
+  }, []);
+
+  const challengeList = useSelector((state) => state.challenge.challengeList);
+  const pv = useSelector((state) => state.challenge.pv);
 
   return (
     <DashboardLayout>
@@ -65,48 +65,22 @@ function Challenge() {
           </SoftBox>
           <SoftBox p={2}>
             <Grid container spacing={3}>
-              <Grid item xs={12} md={6} xl={3}>
-                <DefaultProjectCard
-                  ch_id="1"
-                  category="체지방 감소"
-                  image={categoryToLoseWeight}
-                  title="매일 러닝머신 30분"
-                  master="뱃살대마왕"
-                  master_grade="bronze"
-                  total_participants="3"
-                  verify_frequency="매일"
-                  challenge_term="4주간"
-                  action={{
-                    type: "joined",
-                    proceed: "pr",
-                    color: "info",
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12} md={6} xl={3}>
-                <DefaultProjectCard
-                  ch_id="1"
-                  category="다이어트"
-                  image={categoryDiet}
-                  title="점심 식단 인증"
-                  master="뱃살대마왕"
-                  master_grade="bronze"
-                  total_participants="3"
-                  verify_frequency="매일"
-                  challenge_term="4주간"
-                  action={{
-                    type: "joined",
-                    color: "info",
-                  }}
-                />
-              </Grid>
+              {challengeList &&
+                challengeList.map((challenge) => {
+                  return (
+                    <Grid item xs={12} md={6} xl={3}>
+                      <DefaultProjectCard challenge={challenge} key={challenge.ch_id} />
+                    </Grid>
+                  );
+                })}
+
               <Grid item xs={12} md={6} xl={3} component={Link} to="/challenge/create">
                 <PlaceholderCard title={{ variant: "h5", text: "챌린지 만들기" }} outlined />
               </Grid>
             </Grid>
           </SoftBox>
         </Card>
-        <SoftBox mt={3} mb={3}></SoftBox>
+        {/* <SoftBox mt={3} mb={3}></SoftBox>
         <Card>
           <SoftBox pt={2} px={2}>
             <SoftBox mb={0.5}>
@@ -255,7 +229,9 @@ function Challenge() {
               </Grid>
             </Grid>
           </SoftBox>
-        </Card>
+        </Card> */}
+        {/* TODO SoftPagination 설정 */}
+        {pv && <SoftPagination getChallengeList={getChallengeList} />}
       </SoftBox>
 
       <Footer />
