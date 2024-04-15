@@ -126,7 +126,7 @@ function SignIn() {
         </SoftBox>
         <SoftBox mt={4} mb={1}>
           <SoftButton type="submit" variant="gradient" color="info" fullWidth>
-            sign in
+            로그인하도록
           </SoftButton>
         </SoftBox>
         <SoftBox mt={3} textAlign="center">
@@ -140,7 +140,7 @@ function SignIn() {
               fontWeight="medium"
               textGradient
             >
-              Sign up
+              회원가입
             </SoftTypography>
           </SoftTypography>
         </SoftBox>
