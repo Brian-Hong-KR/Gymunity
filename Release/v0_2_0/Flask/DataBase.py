@@ -99,9 +99,9 @@ def load_lastest_qna ( user_id ) :
     return response    
 
 
-# def LoadSurveyData ( user_id ):
-#     survey_unit = session.query(Survey).filter(Survey.user_id == user_id).first()
-#     if survey_unit:
-#         return survey_unit.gender, survey_unit.age, survey_unit.goal, survey_unit.level, survey_unit.abnormal
-#     else:
-#         return "female", "old", "Overall health improvement", "beginner", "cardiovascular disease"  # Return placeholder values
+def LoadSurveyData ( user_id ):
+    survey_unit = session.query(Survey).filter(Survey.user_id == user_id).first()
+    if survey_unit:
+        return survey_unit.gender, survey_unit.age, survey_unit.goal, survey_unit.level, survey_unit.abnormal
+    else:
+        return "female", "old", "Overall health improvement", "beginner", "cardiovascular disease"  # Return placeholder values
