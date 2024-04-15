@@ -22,6 +22,7 @@ import ChallengeDetail from 'layouts/challenge/layout_detail';
 import ChallengeVerify from 'layouts/challenge/layaout_verify';
 import PointPage from 'layouts/profile/info/PointPage';
 import PhotoPage from 'layouts/profile/info/PhotoPage';
+import UserManagePage from 'layouts/dashboard/info/UserManagePage';
 
 const routes = [
   {
@@ -117,6 +118,12 @@ const routes = [
     key: 'photo',
     route: '/photo',
     component: <PhotoPage />,
+  },
+
+  {
+    key: 'usermanage',
+    route: '/usermanage',
+    component: <UserManagePage />,
   },
 ];
 

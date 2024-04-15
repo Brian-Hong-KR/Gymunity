@@ -12,7 +12,6 @@ import SoftTypography from "components/SoftTypography";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import Footer from "examples/Footer";
 import MiniStatisticsCard from "examples/Cards/StatisticsCards/MiniStatisticsCard";
-import GradientLineChart from "examples/Charts/LineCharts/GradientLineChart";
 import ReportsBarChart from 'examples/Charts/BarCharts/ReportsBarChart';
 
 // Soft UI Dashboard React base styles
@@ -20,8 +19,7 @@ import typography from "assets/theme/base/typography";
 
 
 // Data
-import gradientLineChartData from "layouts/dashboard/data/gradientLineChartData";
-import reportsBarChartData from 'layouts/dashboard/data/reportsBarChartData';
+import reportsBarChartData from 'layouts/profile/data/reportsBarChartData';
 
 
 
@@ -75,14 +73,13 @@ function PlatformSettings() {
           <Grid container spacing={3}>
             <Grid item xs={12} lg={5}>
               <ReportsBarChart
-                title='active users'
+                title='Weekly Point'
                 description={
                   <>
                     (<strong>+23%</strong>) than last week
                   </>
                 }
                 chart={chart}
-                items={items}
               />
             </Grid>
           </Grid>

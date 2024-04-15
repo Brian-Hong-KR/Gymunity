@@ -27,7 +27,7 @@ function SignUp() {
   const handleSetAgremment = () => setAgremment(!agreement);
 
   return (
-    <BasicLayout title="안녕!" description="Gymunity 가입하쟝" image={curved6}>
+    <BasicLayout title="안녕!" description="Gymunity 가입하자" image={curved6}>
       <Card>
         <SoftBox pt={2} pb={3} px={3}>
           <SoftBox component="form" role="form">
@@ -69,7 +69,7 @@ function SignUp() {
             </SoftBox>
             <SoftBox mt={3} textAlign="center">
               <SoftTypography variant="button" color="text" fontWeight="regular">
-                아 이미 아이디 있나?&nbsp;
+                이미 아이디 있어?&nbsp;
                 <SoftTypography
                   component={Link}
                   to="/authentication/sign-in"

@@ -24,12 +24,12 @@ import Projects from 'layouts/dashboard/components/Projects';
 import OrderOverview from 'layouts/dashboard/components/OrderOverview';
 
 // Data
-import reportsBarChartData from 'layouts/dashboard/data/reportsBarChartData';
 import gradientLineChartData from 'layouts/dashboard/data/gradientLineChartData';
+
+import { Link } from 'react-router-dom'; // react-router-dom을 사용하여 링크를 관리합니다.
 
 function Dashboard() {
   const { size } = typography;
-  const { chart, items } = reportsBarChartData;
 
   return (
     <DashboardLayout>
@@ -40,7 +40,7 @@ function Dashboard() {
             <Grid item xs={12} sm={6} xl={3}>
               <MiniStatisticsCard
                 title={{ text: '오늘 가입 유저 수' }}
-                count='$53,000'
+                count='100'
                 percentage={{ color: 'success', text: '+55%' }}
                 icon={{ color: 'info', component: 'paid' }}
               />
@@ -48,23 +48,25 @@ function Dashboard() {
             <Grid item xs={12} sm={6} xl={3}>
               <MiniStatisticsCard
                 title={{ text: '오늘 활동 유저 수' }}
-                count='2,300'
+                count='4320'
                 percentage={{ color: 'success', text: '+3%' }}
                 icon={{ color: 'info', component: 'public' }}
               />
             </Grid>
             <Grid item xs={12} sm={6} xl={3}>
-              <MiniStatisticsCard
-                title={{ text: '총 유저 수' }}
-                count='+3,462'
-                percentage={{ color: 'error', text: '-2%' }}
-                icon={{ color: 'info', component: 'emoji_events' }}
-              />
+              <Link to='/usermanage'>
+                <MiniStatisticsCard
+                  title={{ text: '총 유저 수' }}
+                  count='6000'
+                  percentage={{ color: 'error', text: '-2%' }}
+                  icon={{ color: 'info', component: 'emoji_events' }}
+                />
+              </Link>
             </Grid>
             <Grid item xs={12} sm={6} xl={3}>
               <MiniStatisticsCard
                 title={{ text: '오늘 탈퇴 유저 수' }}
-                count='$103,430'
+                count='100'
                 percentage={{ color: 'success', text: '+5%' }}
                 icon={{
                   color: 'info',
@@ -95,13 +97,13 @@ function Dashboard() {
                       color='text'
                       fontWeight='medium'
                     >
-                      4% more{' '}
+                      0% more{' '}
                       <SoftTypography
                         variant='button'
                         color='text'
                         fontWeight='regular'
                       >
-                        in 2021
+                        in 2024
                       </SoftTypography>
                     </SoftTypography>
                   </SoftBox>

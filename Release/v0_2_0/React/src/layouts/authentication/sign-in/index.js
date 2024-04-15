@@ -40,8 +40,8 @@ function SignIn() {
 
   return (
     <CoverLayout
-      title="어서왕"
-      description="이메일이랑 비밀번호 쳐서 로그인하도록 해"
+      title="Gymunity"
+      description="이메일과 비밀번호로 로그인하세요"
       image={curved9}
     >
       <SoftBox component="form" role="form">
@@ -69,7 +69,7 @@ function SignIn() {
             onClick={handleSetRememberMe}
             sx={{ cursor: "pointer", userSelect: "none" }}
           >
-            &nbsp;&nbsp;아이디 기억하게 할랭?
+            &nbsp;&nbsp;아이디 기억하게 할래?
           </SoftTypography>
         </SoftBox>
         <SoftBox mt={4} mb={1}>
