@@ -13,6 +13,7 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import Footer from "examples/Footer";
 import MiniStatisticsCard from "examples/Cards/StatisticsCards/MiniStatisticsCard";
 import GradientLineChart from "examples/Charts/LineCharts/GradientLineChart";
+import ReportsBarChart from 'examples/Charts/BarCharts/ReportsBarChart';
 
 // Soft UI Dashboard React base styles
 import typography from "assets/theme/base/typography";
@@ -20,11 +21,13 @@ import typography from "assets/theme/base/typography";
 
 // Data
 import gradientLineChartData from "layouts/dashboard/data/gradientLineChartData";
+import reportsBarChartData from 'layouts/dashboard/data/reportsBarChartData';
 
 
 
 function PlatformSettings() {
   const { size } = typography;
+  const { chart, items } = reportsBarChartData;
 
   return (
     <DashboardLayout>
@@ -32,36 +35,36 @@ function PlatformSettings() {
         <SoftBox mb={3}>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6} xl={3}>
-              <Link to="/point">
+              <Link to='/point'>
                 <MiniStatisticsCard
-                  title={{ text: "Point" }}
-                  count="530"
-                  icon={{ color: "info", component: "paid" }}
+                  title={{ text: 'Point' }}
+                  count='530'
+                  icon={{ color: 'info', component: 'paid' }}
                 />
               </Link>
             </Grid>
             <Grid item xs={12} sm={6} xl={3}>
               <MiniStatisticsCard
-                title={{ text: "Plan" }}
-                count="요요 다이어트"
-                icon={{ color: "info", component: "public" }}
+                title={{ text: 'Plan' }}
+                count='요요 다이어트'
+                icon={{ color: 'info', component: 'public' }}
               />
             </Grid>
             <Grid item xs={12} sm={6} xl={3}>
               <MiniStatisticsCard
-                title={{ text: "Challenge" }}
-                count="하루 한시간씩 유산소 하기"
-                icon={{ color: "info", component: "emoji_events" }}
+                title={{ text: 'Challenge' }}
+                count='하루 한시간씩 유산소 하기'
+                icon={{ color: 'info', component: 'emoji_events' }}
               />
             </Grid>
             <Grid item xs={12} sm={6} xl={3}>
-              <Link to="/photo">
+              <Link to='/photo'>
                 <MiniStatisticsCard
-                  title={{ text: "Photo" }}
-                  count="인증 사진 확인하기"
+                  title={{ text: 'Photo' }}
+                  count='인증 사진 확인하기'
                   icon={{
-                    color: "info",
-                    component: "shopping_cart",
+                    color: 'info',
+                    component: 'shopping_cart',
                   }}
                 />
               </Link>
@@ -70,24 +73,16 @@ function PlatformSettings() {
         </SoftBox>
         <SoftBox mb={3}>
           <Grid container spacing={3}>
-            <Grid item xs={12} lg={7}>
-              <GradientLineChart
-                title="Sales Overview"
+            <Grid item xs={12} lg={5}>
+              <ReportsBarChart
+                title='active users'
                 description={
-                  <SoftBox display="flex" alignItems="center">
-                    <SoftBox fontSize={size.lg} color="success" mb={0.3} mr={0.5} lineHeight={0}>
-                      <Icon className="font-bold">arrow_upward</Icon>
-                    </SoftBox>
-                    <SoftTypography variant="button" color="text" fontWeight="medium">
-                      4% more{" "}
-                      <SoftTypography variant="button" color="text" fontWeight="regular">
-                        in 2021
-                      </SoftTypography>
-                    </SoftTypography>
-                  </SoftBox>
+                  <>
+                    (<strong>+23%</strong>) than last week
+                  </>
                 }
-                height="20.25rem"
-                chart={gradientLineChartData}
+                chart={chart}
+                items={items}
               />
             </Grid>
           </Grid>

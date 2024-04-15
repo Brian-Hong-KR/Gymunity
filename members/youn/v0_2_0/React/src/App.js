@@ -33,14 +33,6 @@ import { useSoftUIController, setMiniSidenav, setOpenConfigurator } from "contex
 // Images
 import brand from "assets/images/Logo_icon.png";
 
-//route
-import ChallengeCreate from "layouts/challenge/layout_create";
-import ChallengeDetail from "layouts/challenge/layout_detail";
-import ChallengeVerify from "layouts/challenge/layaout_verify";
-
-import PointPage from "layouts/profile/info/PointPage";
-import PhotoPage from "layouts/profile/info/PhotoPage";
-
 export default function App() {
   const [controller, dispatch] = useSoftUIController();
   const { miniSidenav, direction, layout, openConfigurator, sidenavColor } = controller;
@@ -144,15 +136,15 @@ export default function App() {
       )}
       {layout === "vr" && <Configurator />}
       <Routes>
-        <Route path="challenge/create" element={<ChallengeCreate />} />
-        <Route path="challenge/1/detail" element={<ChallengeDetail />} />
+        {/* <Route path="challenge/create" element={<ChallengeCreate />} />
+        <Route path="challenge/1/detail" element={<ChallengeDetail />} /> */}
         {/* <Route path="challenge/:challengeId/detail" element={<ChallengeDetail />} /> */}
-        <Route path="challenge/1/verify" element={<ChallengeVerify />} />
+        {/* <Route path="challenge/1/verify" element={<ChallengeVerify />} />
 
         <Route path="/point" element={<PointPage />} />
         <Route path="/photo" element={<PhotoPage />} />
-
-        <Route path="*" element={<Navigate to="/dashboard" />} />
+ */}
+        <Route path="*" element={<Navigate to="/profile" />} />
         {getRoutes(routes)}
       </Routes>
     </ThemeProvider>
