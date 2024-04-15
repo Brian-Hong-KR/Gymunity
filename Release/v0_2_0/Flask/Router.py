@@ -30,30 +30,32 @@ def exercise():
     gender, age, goal, level, abnormal = DataBase.LoadSurveyData(user_id=user_id)
 
     daily_program = Chatbot.generate_daily_program(gender=gender, age=age, goal=goal, level=level, abnormal=abnormal)
+    # DataBase.SavePTLog(user_id = user_id, daily_program=str(daily_program))
 
-    video_list = []
+    videoList = []
 
     for unit_name in daily_program:
         videosSearch = VideosSearch("""홈트레이닝 """ + unit_name, limit=1)
         for video in videosSearch.result()['result']:
-            video_list.append( video['id'] )
-
-    DataBase.SavePTLog(daily_program=str(daily_program))
+            videoList.append( video['id'] )
 
     response_data = {
-        'daily_program': [daily_program],
-        'video_list': video_list,
+        'videoList': videoList
     }
+
+    print (response_data)
 
     return jsonify(response_data)
 
 
 @bp.route("/question", methods=('POST',))
 def chatbot_response():
+
     data = request.get_json()
-    question = data["msg"]
-    user_id = data["user_id"]
-    unit_name = data["unit_name"]
+    question = data["question"]
+    # user_id = data["user_id"]
+    # unit_name = data["unit_name"]
+    unit_name = "푸쉬업"
 
     answer = Chatbot.generate_answer(unit_name=unit_name, question=question )
 
@@ -61,7 +63,7 @@ def chatbot_response():
         'answer': answer,
     }
 
-    DataBase.SavePTQnA(user_id=user_id, unit_name=unit_name, question=question, answer=answer)
+    # DataBase.SavePTQnA(user_id=user_id, unit_name=unit_name, question=question, answer=answer)
 
     return jsonify(response_data)
 
