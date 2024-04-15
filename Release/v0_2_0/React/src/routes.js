@@ -58,7 +58,7 @@ import CreditCard from "examples/Icons/CreditCard";
 const routes = [
   {
     type: "collapse",
-    name: "My Home",
+    name: "My Page",
     key: "profile",
     route: "/profile",
     icon: <CustomerSupport size="12px" />,
@@ -92,25 +92,6 @@ const routes = [
     component: <Billing />,
     noCollapse: true,
   },
-  //  {
-  //    type: "collapse",
-  //    name: "Virtual Reality",
-  //    key: "virtual-reality",
-  //    route: "/virtual-reality",
-  //    icon: <Cube size="12px" />,
-  //    component: <VirtualReality />,
-  //    noCollapse: true,
-  //  },
-  //  {
-  //    type: "collapse",
-  //    name: "RTL",
-  //    key: "rtl",
-  //    route: "/rtl",
-  //    icon: <Settings size="12px" />,
-  //    component: <RTL />,
-  //    noCollapse: true,
-  //  },
-  //  { type: "title", title: "Account Pages", key: "account-pages" },
 
   {
     type: "collapse",
