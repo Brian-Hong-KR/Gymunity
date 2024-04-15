@@ -14,4 +14,6 @@ public interface MemSerice {
 	public void updateProcess(MemDTO dto);
 	
 	public void attendProcess(MemDTO dto);
+	
+	
 }

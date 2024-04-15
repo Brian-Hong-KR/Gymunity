@@ -2,6 +2,7 @@ package com.gymunity.challenges.service;
 
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,11 +38,6 @@ public class ChallengeServiceImp implements ChallengeService {
 	}
 
 
-	@Override
-	public void verifyProcess(ChallengeDTO dto) {
-		challengeRepository.verph(dto);
-		
-	}
 
 
 	@Override
@@ -58,7 +54,7 @@ public class ChallengeServiceImp implements ChallengeService {
 	public void insertProcess(ChallengeDTO dto) {
 
 		LocalDate startDate = dto.getCh_start_date();
-		LocalDate endDate = startDate.plusWeeks(1);
+		LocalDate endDate = startDate.plusWeeks(2);
 		dto.setCh_end_date(endDate);
 	    // 6. 저장
 	    challengeRepository.save(dto);	
@@ -87,6 +83,11 @@ public class ChallengeServiceImp implements ChallengeService {
 		challengeRepository.countCH(dto);
 		
 	}
+
+
+
+
+
 
 	
 
