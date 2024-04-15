@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import Chatbot from 'react-simple-chatbot';
-import { ThemeProvider } from 'styled-components';
 
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
@@ -61,33 +59,6 @@ const PersonalTraining = () => {
         }
     };
 
-  const steps = [
-  {
-    id:'0',
-    message:"안녕하세요.",
-    trigger:'1',
-  },
-  {
-    id:'1',
-    user:true,
-    trigger:'2',
-  },
-  {
-    id:'2',
-    message:"{previousValue}님 반갑습니다.",
-    end:true,
-  },
-  ]
-
-  const theme = {
-    background:"#f8f9fa",
-    botBubbleColor:"#344767",
-    botFontColor:"#FFFFFF",
-    userBubbleColor:"#5974a2",
-    userFontColor:"#FFFFFF",
-  };
-
-
   return (
     <SoftBox>
         <SoftTypography variant="h6"> 오늘 운동 진행률 (step : {index.current + 1}) </SoftTypography>
@@ -95,9 +66,6 @@ const PersonalTraining = () => {
         <div style={{ position:'relative', width:'100%', paddingBottom:'56.25%'}}>
             <div style={{ position:'absolute', width:'100%', height:'100%' }} id="YTP"></div>
         </div>
-        <ThemeProvider theme={theme}>
-            <Chatbot  steps={steps} hideHeader={true} placeholder={'질문'} />
-        </ThemeProvider>
     </SoftBox>
 
   );

@@ -50,10 +50,12 @@ def exercise():
 
 @bp.route("/question", methods=('POST',))
 def chatbot_response():
+
     data = request.get_json()
-    question = data["msg"]
-    user_id = data["user_id"]
-    unit_name = data["unit_name"]
+    question = data["question"]
+    # user_id = data["user_id"]
+    # unit_name = data["unit_name"]
+    unit_name = "푸쉬업"
 
     answer = Chatbot.generate_answer(unit_name=unit_name, question=question )
 
@@ -61,7 +63,7 @@ def chatbot_response():
         'answer': answer,
     }
 
-    DataBase.SavePTQnA(user_id=user_id, unit_name=unit_name, question=question, answer=answer)
+    # DataBase.SavePTQnA(user_id=user_id, unit_name=unit_name, question=question, answer=answer)
 
     return jsonify(response_data)
 
