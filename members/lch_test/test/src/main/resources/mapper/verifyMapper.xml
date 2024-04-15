@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gymunity.challenges.repository.VerifyRepository">
+
+
+	<insert id="verph" parameterType="VerifyDTO">
+	 INSERT INTO verify
+	 (vi_user_id, vi_ch_id, upload1, upload2, result)
+	 VALUES (#{vi_user_id}, #{vi_ch_id}, #{upload1}, #{upload2}, 'Y')
+  	</insert>
+
+<!-- 인증 Y값 카운트 -->
+<select id="countVerified" parameterType="VerifyDTO">
+    SELECT COUNT(*) AS verified_count
+    FROM challenges c
+    INNER JOIN verify v ON c.ch_id = v.vi_ch_id
+    WHERE v.vi_user_id = #{userId} AND v.vi_ch_id = #{chId} AND v.result = 'Y';
+</select>
+
+
+<update id="updateMemRate" parameterType="VerifyDTO">
+    UPDATE members m
+    JOIN (
+        SELECT 
+            cm.mem_user_id,
+            cm.mem_ch_id,
+            ROUND((COUNT(DISTINCT CASE WHEN v.result = 'Y' THEN v.vi_id ELSE NULL END) / MAX(DATEDIFF(c.ch_end_date, c.ch_start_date))) * 100, 1) AS su
+        FROM 
+            members cm
+        JOIN 
+            challenges c ON cm.mem_ch_id = c.ch_id
+        JOIN 
+            verify v ON v.vi_user_id = cm.mem_user_id AND v.vi_ch_id = cm.mem_ch_id
+        WHERE 
+            v.vi_user_id = #{vi_user_id} AND v.vi_ch_id = #{vi_ch_id}
+        GROUP BY 
+            cm.mem_user_id, cm.mem_ch_id
+    ) AS su_data ON m.mem_user_id = su_data.mem_user_id AND m.mem_ch_id = su_data.mem_ch_id
+    SET 
+        m.archive_rate = su_data.su
+</update>
+
+
+</mapper>   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

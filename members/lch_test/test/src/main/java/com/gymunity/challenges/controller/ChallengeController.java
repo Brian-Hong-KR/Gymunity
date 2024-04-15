@@ -28,6 +28,7 @@ import com.gymunity.challenges.file.FileUpload;
 import com.gymunity.challenges.service.ChallengeService;
 import com.gymunity.challenges.service.MemSerice;
 import com.gymunity.challenges.service.PointService;
+import com.gymunity.challenges.service.VerifyService;
 import com.gymunity.users.dto.UsersDTO;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -51,13 +52,13 @@ public class ChallengeController {
     
     @Autowired
    	private PointService pointService;
-
+    
+   
     @Autowired
 	private PageDTO pdto;
 	private int currentPage;
 	
-	@Value("${spring.servlet.multipart.location}")
-	private String filePath;
+
 	
 
 	
@@ -110,19 +111,7 @@ public class ChallengeController {
 	}
 	
 
-	@PostMapping(value="/challenge/verify", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public ResponseEntity<String> verifyProExecute(ChallengeDTO dto, @Parameter(description = "첨부파일") @RequestPart(value="filename", required=false) MultipartFile filename) {
-		MultipartFile file = dto.getFilename();
-		log.info("file:{}", file.getOriginalFilename());
-		
-		if(file!=null && !file.isEmpty()) {
-			UUID random = FileUpload.saveCopyFile(file, filePath);						
-			dto.setUpload1(random+"_"+ file.getOriginalFilename());
-		}
-		challengeService.verifyProcess(dto);		
-		return ResponseEntity.ok(String.valueOf(1));
-	}
-	
+
 	
 
 }

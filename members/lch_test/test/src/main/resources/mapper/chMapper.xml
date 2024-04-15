@@ -37,11 +37,7 @@
  	 <result column="ch_end_date" property="ch_end_date" typeHandler="org.apache.ibatis.type.LocalDateTypeHandler" />
    </resultMap>
   
-	<insert id="verph" parameterType="ChallengeDTO">
-	 INSERT INTO verify
-	 (vi_user_id, vi_ch_id, upload1, upload2, result)
-	 VALUES (#{vi_user_id}, #{vi_ch_id}, #{upload1}, #{upload2}, #{result})
-  	</insert>
+
   	
   <select id="content" parameterType="int" resultType="ChallengeDTO">
 	SELECT * FROM challenges
@@ -66,6 +62,18 @@
 	  
   </update>
   
+ <!-- 챌린지 날짜 간격 -->
+  <select id="findDateRangeByChId" parameterType="int">
+	SELECT DATEDIFF(ch_end_date, ch_start_date) AS date_difference
+	FROM challenges
+	where ch_id = #{ch_id};
+  </select> 
+
+    
+ 
+
+
+
 </mapper>   
 
 

@@ -9,13 +9,12 @@
 
   <insert id="attendPoint" parameterType="MemDTO">
 	INSERT INTO point_subtract 
-	(points_subtracted, subtracted_reason, subtracted_at, user_id)
+	(points_subtracted, reason, subtracted_at, user_id)
   	VALUES (#{points_subtracted}, '챌린지 참가', CURRENT_TIMESTAMP, #{user_id})
   </insert>
   
 
 
-  
 
 </mapper>   
 
