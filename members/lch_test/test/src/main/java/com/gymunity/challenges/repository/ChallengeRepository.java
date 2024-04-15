@@ -1,5 +1,6 @@
 package com.gymunity.challenges.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -21,8 +22,6 @@ public interface ChallengeRepository {
 
 	public void save(ChallengeDTO dto);
 	
-	public void verph(ChallengeDTO dto);
-	
 	public void update(ChallengeDTO dto);
 	
 	public void delete(int ch_code);
@@ -30,5 +29,8 @@ public interface ChallengeRepository {
 	public void saveUserUpdate(int user_code);
 	
 	public void countCH(ChallengeDTO dto);
+	
+
+
 
 }
