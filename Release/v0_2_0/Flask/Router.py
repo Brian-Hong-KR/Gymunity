@@ -30,20 +30,20 @@ def exercise():
     gender, age, goal, level, abnormal = DataBase.LoadSurveyData(user_id=user_id)
 
     daily_program = Chatbot.generate_daily_program(gender=gender, age=age, goal=goal, level=level, abnormal=abnormal)
+    # DataBase.SavePTLog(user_id = user_id, daily_program=str(daily_program))
 
-    video_list = []
+    videoList = []
 
     for unit_name in daily_program:
         videosSearch = VideosSearch("""홈트레이닝 """ + unit_name, limit=1)
         for video in videosSearch.result()['result']:
-            video_list.append( video['id'] )
-
-    DataBase.SavePTLog(daily_program=str(daily_program))
+            videoList.append( video['id'] )
 
     response_data = {
-        'daily_program': [daily_program],
-        'video_list': video_list,
+        'videoList': videoList
     }
+
+    print (response_data)
 
     return jsonify(response_data)
 
