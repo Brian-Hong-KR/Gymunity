@@ -45,6 +45,24 @@ public class MemServiceImp implements MemSerice{
 		memRepository.updateP(dto);
 		
 	}
+
+	@Override
+	public MemDTO getMemberInfo(int mem_user_id) {
+		 MemDTO memberInfo = memRepository.findId(mem_user_id);
+	     return memberInfo;
+	}
+
+//	@Override
+//	public int findPProcess(int mem_user_id, int mem_ch_id) {
+//		return memRepository.findTotalPoint(mem_user_id, mem_ch_id);
+//	}
+
+	
+
+
+
+
+
 	
 	
 	

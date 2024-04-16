@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 // @mui material components
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
@@ -6,6 +8,7 @@ import Grid from "@mui/material/Grid";
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
+import SoftAlert from "components/SoftAlert";
 
 // prop-types is a library for typechecking of props
 import PropTypes from "prop-types";
@@ -50,13 +53,25 @@ function ChallengeDetail({
     total_participants: "3",
     challenge_term: "2주간",
     ch_start_date: "2024-05-01",
-    // ch_end_date: "2024-05-15", //ch_start_date + challenge_term 계산식으로 수정
+    // TODO ch_end_date: "2024-05-15", //ch_start_date + challenge_term 계산식으로 수정
     verify_frequency: "매일",
     verify_times: "일일 1번",
     batting_point: "10000",
     verify_explain: "30분 이상 러닝 기록이 찍힌 러닝머신 화면을 찍어서 올림",
     verify_example1: require("assets/images/category/category_toloseweight.jpg"),
     verify_example2: require("assets/images/category/category_toloseweight.jpg"),
+  };
+
+  const [showAlert, setShowAlert] = useState(false); // SoftAlert의 표시 여부를 관리할 상태
+
+  // SoftButton 클릭 시 SoftAlert을 보여주는 함수
+  const handleJoinButtonClick = () => {
+    setShowAlert(true); // showAlert 상태를 true로 변경하여 SoftAlert을 보이도록 설정
+  };
+
+  // SoftAlert의 닫기 버튼 클릭 시 SoftAlert을 닫는 함수
+  const handleAlertClose = () => {
+    setShowAlert(false); // showAlert 상태를 false로 변경하여 SoftAlert을 숨기도록 설정
   };
 
   return (
@@ -194,9 +209,27 @@ function ChallengeDetail({
                 </SoftBox>
               </SoftBox>
               <SoftBox mt={4} mb={1}>
-                <SoftButton variant="gradient" color="info" fullWidth>
-                  참여하기
-                </SoftButton>
+                {localStorage.getItem("userId") === challengeDetail.master_id ? (
+                  <>
+                    <Link className="btn btn-primary" to={`/board/update/${num}`}>
+                      수정
+                    </Link>
+                    <button className="btn btn-primary" onClick={handleDelete}>
+                      삭제
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <SoftButton variant="gradient" color="info" onClick={handleJoinButtonClick}>
+                      참여하기
+                    </SoftButton>
+                    {showAlert && (
+                      <SoftAlert color="success" dismissible onClose={handleAlertClose}>
+                        참여 완료! 챌린지를 끝까지 완수해보세요.
+                      </SoftAlert>
+                    )}
+                  </>
+                )}
               </SoftBox>
             </SoftBox>
           </Card>
@@ -213,32 +246,32 @@ ChallengeDetail.defaultProps = {
 };
 
 // Typechecking props for the ChallengeDetail
-ChallengeDetail.propTypes = {
-  category: PropTypes.number.isRequired,
-  image: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  master: PropTypes.string.isRequired,
-  master_grade: PropTypes.number.isRequired,
-  total_participants: PropTypes.number.isRequired,
-  verify_frequency: PropTypes.string.isRequired,
-  challenge_term: PropTypes.string.isRequired,
-  action: PropTypes.shape({
-    type: PropTypes.oneOf(["joined", "none"]).isRequired,
-    // route: PropTypes.string.isRequired,
-    proceed: PropTypes.oneOf(["rec", "pr", "done"]).isRequired,
-    color: PropTypes.oneOf([
-      "primary",
-      "secondary",
-      "info",
-      "success",
-      "warning",
-      "error",
-      "light",
-      "dark",
-      "white",
-    ]).isRequired,
-    label: PropTypes.string.isRequired,
-  }).isRequired,
-};
+// ChallengeDetail.propTypes = {
+//   category: PropTypes.number.isRequired,
+//   image: PropTypes.string.isRequired,
+//   title: PropTypes.string.isRequired,
+//   master: PropTypes.string.isRequired,
+//   master_grade: PropTypes.number.isRequired,
+//   total_participants: PropTypes.number.isRequired,
+//   verify_frequency: PropTypes.string.isRequired,
+//   challenge_term: PropTypes.string.isRequired,
+//   action: PropTypes.shape({
+//     type: PropTypes.oneOf(["joined", "none"]).isRequired,
+//     // route: PropTypes.string.isRequired,
+//     proceed: PropTypes.oneOf(["rec", "pr", "done"]).isRequired,
+//     color: PropTypes.oneOf([
+//       "primary",
+//       "secondary",
+//       "info",
+//       "success",
+//       "warning",
+//       "error",
+//       "light",
+//       "dark",
+//       "white",
+//     ]).isRequired,
+//     label: PropTypes.string.isRequired,
+//   }).isRequired,
+// };
 
 export default ChallengeDetail;

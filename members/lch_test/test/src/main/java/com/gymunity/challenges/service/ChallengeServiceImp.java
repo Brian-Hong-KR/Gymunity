@@ -13,6 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gymunity.challenges.dto.ChallengeDTO;
 import com.gymunity.challenges.dto.PageDTO;
 import com.gymunity.challenges.repository.ChallengeRepository;
+import com.gymunity.challenges.repository.MemRepository;
+import com.gymunity.challenges.repository.VerifyRepository;
 import com.gymunity.users.mapper.UsersMapper;
 import com.gymunity.users.service.UsersServiceImp;
 
@@ -27,6 +29,9 @@ public class ChallengeServiceImp implements ChallengeService {
 
 	@Autowired
 	private ChallengeRepository challengeRepository;
+	
+	@Autowired
+	private VerifyRepository verifyRepository;
 	
 
 
@@ -69,6 +74,9 @@ public class ChallengeServiceImp implements ChallengeService {
 
 	@Override
 	public void updateProcess(ChallengeDTO dto) {
+		LocalDate startDate = dto.getCh_start_date();
+		LocalDate endDate = startDate.plusWeeks(2);
+		dto.setCh_end_date(endDate);
 		challengeRepository.update(dto);
 	}
 
@@ -80,7 +88,17 @@ public class ChallengeServiceImp implements ChallengeService {
 
 	@Override
 	public void countChProcess(ChallengeDTO dto) {
+		
 		challengeRepository.countCH(dto);
+		
+	}
+
+
+
+
+	@Override
+	public void totalPointProcess(int ch_id) {
+		challengeRepository.totalP(ch_id);
 		
 	}
 

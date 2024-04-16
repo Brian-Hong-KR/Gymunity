@@ -46,5 +46,12 @@ public class MemController {
 		return ResponseEntity.ok(String.valueOf(1));
 	}
 	
-
+	// 챌린지 보상 (마감이랑 합쳐야함)
+	@PostMapping("/mem/reward/{ch_id}")
+	public ResponseEntity<String> rewardExecute(@RequestBody PointDTO pdto){
+		log.info("Processing reward for user {} and challenge {}", pdto.getMem_user_id(), pdto.getMem_ch_id());
+		log.info("rate {} and total {}", pdto.getArchiveRate(), pdto.getBattingPoint());
+		pointService.rewardProcess(pdto);
+		return ResponseEntity.ok(String.valueOf(1));
+	}
 }

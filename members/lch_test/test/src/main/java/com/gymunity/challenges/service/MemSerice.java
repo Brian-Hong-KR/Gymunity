@@ -15,5 +15,9 @@ public interface MemSerice {
 	
 	public void attendProcess(MemDTO dto);
 	
+	public MemDTO getMemberInfo(int mem_user_id);
 	
+	//public int findPProcess (int mem_user_id, int mem_ch_id);
+	
+
 }

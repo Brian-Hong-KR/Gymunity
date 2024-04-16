@@ -13,20 +13,48 @@ import Tooltip from "@mui/material/Tooltip";
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
-import SoftAvatar from "components/SoftAvatar";
 import typography from "assets/theme/base/typography";
 
-function DefaultProjectCard({
-  category,
-  image,
-  title,
-  master,
-  master_grade,
-  total_participants,
-  cetify_frequency,
-  challenge_term,
-  action,
-}) {
+// 카테고리 이미지
+import categoryToLoseWeight from "assets/images/category/category_toloseweight.jpg";
+import categoryToIncreaseMuscle from "assets/images/category/category_toincreasemuscle.jpg";
+import categoryPhsicalStrength from "assets/images/category/category_physicalstrength.jpg";
+
+function DefaultProjectCard({ challenge }) {
+  //카테고리명 변환
+  let image;
+  let category;
+  if (challenge.category === 1) {
+    category = "체지방 감소";
+    image = { categoryToLoseWeight };
+  } else if (challenge.category === 2) {
+    category = "근육량 증가";
+    image = { categoryToIncreaseMuscle };
+  } else {
+    category = "종합 건강 증진";
+    image = { categoryPhsicalStrength };
+  }
+
+  //등급명 변환
+  let master_grade;
+  if (challenge.grade_id === 1) {
+    master_grade = "브론즈";
+  } else if (challenge.grade_id === 2) {
+    master_grade = "실버";
+  } else if (challenge.grade_id === 3) {
+    master_grade = "골드";
+  } else {
+    master_grade = "플래티넘";
+  }
+
+  let color;
+  let type;
+  const localStorageUserID = "81";
+  if (localStorageUserID === challenge.user_id) {
+    type = "joined";
+    color = "primary";
+  }
+
   return (
     <Card
       sx={{
@@ -62,7 +90,7 @@ function DefaultProjectCard({
           alignItems: "center",
         }}
       >
-        {category}
+        {category} {challenge.proceed}
       </SoftBox>
       <SoftBox
         position="relative"
@@ -89,11 +117,11 @@ function DefaultProjectCard({
         <SoftBox mb={1}>
           <SoftTypography
             component={Link}
-            to={action.route}
+            to={`/challenge/detail/${challenge.ch_id}`}
             variant="h5"
             textTransform="capitalize"
           >
-            {title}
+            {challenge.title}
           </SoftTypography>
         </SoftBox>
         <SoftBox>
@@ -103,40 +131,32 @@ function DefaultProjectCard({
             textTransform="capitalize"
             textGradient
           >
-            master : {master_grade} {master}
+            master : {master_grade} {challenge.user_id}
           </SoftTypography>
         </SoftBox>
-        <SoftBox mb={1}>{total_participants} </SoftBox>
+        <SoftBox mb={1}>{challenge.count} </SoftBox>
         <SoftBox></SoftBox>
-        <SoftBox mb={1}>
-          {cetify_frequency} {challenge_term}
-        </SoftBox>
+        <SoftBox mb={1}>{/* {cetify_frequency} {challenge_term} */}</SoftBox>
         <SoftBox></SoftBox>
         <SoftBox mb={3} lineHeight={0}></SoftBox>
         <SoftBox display="flex" justifyContent="space-between" alignItems="center">
-          {action.type === "joined" ? (
+          {type === "joined" ? (
             <SoftButton
               component={Link}
-              to="/challenge/1/verify"
+              to={`/challenge/verify/${challenge.ch_id}`}
               variant="outlined"
               size="small"
-              color={action.color}
+              color={color}
             >
               인증하기
             </SoftButton>
           ) : (
             <SoftButton
               component={Link}
-              to="/challenge/1/detail"
-              // <SoftButton component={Link} to={`challenge/${ch_id}/detail`} />
-              // to={action.route}
-              // component="a"
-              // href={action.route}
-              // target="_blank"
-              // rel="noreferrer"
+              to={`/challenge/detail/${challenge.ch_id}`}
               variant="outlined"
               size="small"
-              color={action.color}
+              color={color}
             >
               참여하기
             </SoftButton>
@@ -149,36 +169,26 @@ function DefaultProjectCard({
 
 // Setting default values for the props of DefaultProjectCard
 DefaultProjectCard.defaultProps = {
-  total_participants: 0,
+  challenge: { total_participants: 0 },
+  type: "joined",
+  color: "info",
 };
 
 // Typechecking props for the DefaultProjectCard
 DefaultProjectCard.propTypes = {
-  category: PropTypes.number.isRequired,
-  image: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  master: PropTypes.string.isRequired,
-  master_grade: PropTypes.number.isRequired,
-  total_participants: PropTypes.number.isRequired,
-  cetify_frequency: PropTypes.string.isRequired,
-  challenge_term: PropTypes.string.isRequired,
-  action: PropTypes.shape({
-    type: PropTypes.oneOf(["joined", "none"]).isRequired,
-    // route: PropTypes.string.isRequired,
-    proceed: PropTypes.oneOf(["rec", "pr", "done"]).isRequired,
-    color: PropTypes.oneOf([
-      "primary",
-      "secondary",
-      "info",
-      "success",
-      "warning",
-      "error",
-      "light",
-      "dark",
-      "white",
-    ]).isRequired,
-    label: PropTypes.string.isRequired,
-  }).isRequired,
+  type: PropTypes.oneOf(["joined", "none"]).isRequired,
+  proceed: PropTypes.oneOf(["rec", "pr", "done"]).isRequired,
+  color: PropTypes.oneOf([
+    "primary",
+    "secondary",
+    "info",
+    "success",
+    "warning",
+    "error",
+    "light",
+    "dark",
+    "white",
+  ]).isRequired,
 };
 
 export default DefaultProjectCard;

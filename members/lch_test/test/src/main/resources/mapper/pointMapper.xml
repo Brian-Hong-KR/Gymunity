@@ -6,15 +6,35 @@
 <mapper namespace="com.gymunity.challenges.repository.PointRepository">
 
 
-
+  <!-- 참가시 - 포인트 -->
   <insert id="attendPoint" parameterType="MemDTO">
 	INSERT INTO point_subtract 
 	(points_subtracted, reason, subtracted_at, user_id)
   	VALUES (#{points_subtracted}, '챌린지 참가', CURRENT_TIMESTAMP, #{user_id})
   </insert>
   
+  <!-- 챌린지 + 보상-->
+  <insert id = "rewardPoint" parameterType="MemDTO"> 
+	  INSERT INTO point_add
+	  (points_added, added_reason, added_at, user_id)
+	  VALUES (#{points_added}, '챌린지 보상', CURRENT_TIMESTAMP, #{user_id})
+  </insert>
+
+ <resultMap id="pointResultMap" type="PointDTO">
+    <!-- 각 열을 DTO 클래스의 필드와 매핑 -->
+    <result column="batting_point" property="battingPoint"/>
+    <result column="archive_rate" property="archiveRate"/>
+</resultMap>
 
 
+  
+<!-- 성공률 찾기 -->
+<select id="findRate" parameterType="map" resultMap="pointResultMap">
+    SELECT c.batting_point,  FORMAT(m.archive_rate, 1) AS archiveRate
+    FROM members m
+    JOIN challenges c ON m.mem_ch_id = c.ch_id
+    WHERE m.mem_user_id = #{mem_user_id} AND m.mem_ch_id = #{mem_ch_id}
+</select>
 
 </mapper>   
 

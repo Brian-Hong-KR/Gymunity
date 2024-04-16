@@ -18,4 +18,6 @@ public interface MemRepository {
 	
 	public void updateP(MemDTO dto);
 	
+	public MemDTO findId(int mem_user_id);
+
 }
