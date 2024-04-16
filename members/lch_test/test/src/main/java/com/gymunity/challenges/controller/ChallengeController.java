@@ -44,58 +44,69 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class ChallengeController {
 
-    @Autowired
-    private ChallengeService challengeService;
-    
-    @Autowired
+	@Autowired
+	private ChallengeService challengeService;
+
+	@Autowired
 	private MemSerice memService;
-    
-    @Autowired
-   	private PointService pointService;
-    
-    @Autowired
+
+	@Autowired
+	private PointService pointService;
+
+	@Autowired
 	private PageDTO pdto;
 	private int currentPage;
 
-    @GetMapping("/challenge/list/{currentPage}")
-    public ResponseEntity<Map<String, Object>> listExecute(@PathVariable("currentPage") int currentPage) {
-        Map<String, Object> map = new HashMap<>();
-        int totalRecord = challengeService.countProcess();
-        log.info("totalRecord:{}", totalRecord);
+	@GetMapping("/challenge/list/{currentPage}")
+	public ResponseEntity<Map<String, Object>> listExecute(@PathVariable("currentPage") int currentPage) {
 
-        if (totalRecord >= 1) {
-        	
-        	this.currentPage = currentPage;
+//		TODO 추후 인증 정보에서 user_id 받아오기
+//  public ResponseEntity<Map<String, Object>> listExecute(@PathVariable("currentPage") int currentPage, 
+//                 @AuthenticationPrincipal Principal principal) {
+//  // Principal 객체에서 사용자 ID 추출
+//  String currentUserId = /* Extract user ID from principal */;
+		int currentUserId = 81;
+
+		Map<String, Object> map = new HashMap<>();
+		int totalRecord = challengeService.countProcess();
+		log.info("totalRecord:{}", totalRecord);
+
+		if (totalRecord >= 1) {
+
+			this.currentPage = currentPage;
 			this.pdto = new PageDTO(this.currentPage, totalRecord);
 			map.put("challengeList", challengeService.listProcess(pdto));
 			map.put("pv", this.pdto);
-        }
-        log.info("challengeList:{}", map.get("challengeList"));
-        return ResponseEntity.ok(map);
-    }
-	
+			map.put("joinList", challengeService.joinListProcess(currentUserId));
+		}
+		log.info("challengeList:{}", map.get("challengeList"));
+		log.info("joinList:{}", map.get("joinList"));
+		return ResponseEntity.ok(map);
+	}
+
 	@PostMapping("/challenge/create")
-	public ResponseEntity<String> writeProExecute(@RequestBody ChallengeDTO dto, PageDTO pv, MemDTO mdto, PointDTO pdto) {
+	public ResponseEntity<String> writeProExecute(@RequestBody ChallengeDTO dto, PageDTO pv, MemDTO mdto,
+			PointDTO pdto) {
 		log.info("userid:{}, title:{}", dto.getUser_id(), dto.getTitle());
-		
-		pointService.attendProcess(pdto);		// 포인트 차감
+
+		pointService.attendProcess(pdto); // 포인트 차감
 		challengeService.insertProcess(dto); // 챌린지 글
-		memService.insertProcess(mdto);		// 멤버 등록
-		
+		memService.insertProcess(mdto); // 멤버 등록
+
 		return ResponseEntity.ok(String.valueOf(1));
 	}
-	
+
 	@GetMapping("/challenge/detail/{ch_id}")
 	public ResponseEntity<ChallengeDTO> viewExecute(@PathVariable("ch_id") int ch_id) {
 		ChallengeDTO dto = challengeService.contentProcess(ch_id);
 		return ResponseEntity.ok(dto);
 	}
-	
+
 	@PutMapping("/challenge/update")
-	public ResponseEntity<Object> updateExecute(ChallengeDTO dto,VerifyService vdto,  HttpServletRequest req) {
+	public ResponseEntity<Object> updateExecute(ChallengeDTO dto, VerifyService vdto, HttpServletRequest req) {
 		log.info("ch_id:{}, title:{}", dto.getCh_id(), dto.getTitle());
 		challengeService.updateProcess(dto);
-		
+
 		return ResponseEntity.ok(null);
 	}
 
@@ -104,11 +115,5 @@ public class ChallengeController {
 		challengeService.deleteProcess(ch_id);
 		return ResponseEntity.ok(null);
 	}
-	
-	
-	
-
-
-	
 
 }

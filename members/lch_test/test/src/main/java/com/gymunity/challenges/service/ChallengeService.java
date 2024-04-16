@@ -15,6 +15,7 @@ public interface ChallengeService {
 
 	public int countProcess(); 
 	public List<ChallengeDTO> listProcess(PageDTO pv);
+	public List<ChallengeDTO> joinListProcess(int user_id);
 	public void insertProcess(ChallengeDTO dto);
 	public ChallengeDTO contentProcess(int num);
 	public void updateProcess(ChallengeDTO dto);

@@ -43,13 +43,9 @@ function Challenge() {
   }, [currentPage, isInitialRender]);
 
   const challengeList = useSelector((state) => state.challenge.challengeList || []);
-  const pv = useSelector((state) => state.challenge.pv);
+  const joinList = useSelector((state) => state.challenge.joinList || []); // joinList 상태 추가
 
-  // const localStorageUserID = "81";
-  // let type;
-  // if (localStorageUserID === {challenge.user_id}) {
-  //   type = "joined";
-  // }
+  const pv = useSelector((state) => state.challenge.pv);
 
   return (
     <DashboardLayout>
@@ -73,10 +69,15 @@ function Challenge() {
           <SoftBox p={2}>
             <Grid container spacing={3}>
               {challengeList &&
+                // joinType.type === "joined" &&
                 challengeList.map((challenge) => {
                   return (
                     <Grid item xs={12} md={6} xl={3}>
-                      <DefaultProjectCard challenge={challenge} key={challenge.ch_id} />
+                      <DefaultProjectCard
+                        challenge={challenge}
+                        // joinType={joinType}
+                        key={challenge.ch_id}
+                      />
                     </Grid>
                   );
                 })}

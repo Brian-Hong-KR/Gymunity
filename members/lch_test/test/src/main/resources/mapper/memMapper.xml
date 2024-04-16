@@ -11,7 +11,6 @@
 	(mem_user_id, mem_grade_id, mem_ch_id, registrant)
   	VALUES (#{mem_user_id}, #{mem_grade_id}, #{mem_ch_id}, DEFAULT)
   </insert>
-  
 
   <insert id="writemem" parameterType="MemDTO">
 	INSERT INTO members
@@ -23,7 +22,6 @@
 	SELECT * FROM members WHERE mem_user_id = #{userId}
   </select> 
   
-
  
 </mapper>   
 

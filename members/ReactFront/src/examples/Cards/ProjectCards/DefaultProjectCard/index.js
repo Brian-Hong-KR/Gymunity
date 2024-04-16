@@ -35,25 +35,18 @@ function DefaultProjectCard({ challenge }) {
     image = { categoryPhsicalStrength };
   }
 
-  //등급명 변환
-  let master_grade;
-  if (challenge.grade_id === 1) {
-    master_grade = "브론즈";
-  } else if (challenge.grade_id === 2) {
-    master_grade = "실버";
-  } else if (challenge.grade_id === 3) {
-    master_grade = "골드";
-  } else {
-    master_grade = "플래티넘";
-  }
-
-  let color;
-  let type;
-  const localStorageUserID = "81";
-  if (localStorageUserID === challenge.user_id) {
-    type = "joined";
-    color = "primary";
-  }
+  // 참여 여부 구분 81번 나나
+  const extendedChallenge = {
+    ...challenge,
+    type:
+      challenge.ch_id === challenge.ch_id1 || challenge.ch_id === challenge.ch_id2
+        ? "joined"
+        : "none",
+    color:
+      challenge.ch_id === challenge.ch_id1 || challenge.ch_id === challenge.ch_id2
+        ? "primary"
+        : "info",
+  };
 
   return (
     <Card
@@ -117,6 +110,7 @@ function DefaultProjectCard({ challenge }) {
         <SoftBox mb={1}>
           <SoftTypography
             component={Link}
+            // to={`/challenge/detail/${challenge.ch_id}`}
             to={`/challenge/detail/${challenge.ch_id}`}
             variant="h5"
             textTransform="capitalize"
@@ -131,7 +125,7 @@ function DefaultProjectCard({ challenge }) {
             textTransform="capitalize"
             textGradient
           >
-            master : {master_grade} {challenge.user_id}
+            master : {challenge.grade_name} {challenge.nick_name}
           </SoftTypography>
         </SoftBox>
         <SoftBox mb={1}>{challenge.count} </SoftBox>
@@ -140,13 +134,14 @@ function DefaultProjectCard({ challenge }) {
         <SoftBox></SoftBox>
         <SoftBox mb={3} lineHeight={0}></SoftBox>
         <SoftBox display="flex" justifyContent="space-between" alignItems="center">
-          {type === "joined" ? (
+          {extendedChallenge.type === "joined" ? (
             <SoftButton
               component={Link}
               to={`/challenge/verify/${challenge.ch_id}`}
               variant="outlined"
               size="small"
-              color={color}
+              color={extendedChallenge.color}
+              // color="primary"
             >
               인증하기
             </SoftButton>
@@ -156,7 +151,8 @@ function DefaultProjectCard({ challenge }) {
               to={`/challenge/detail/${challenge.ch_id}`}
               variant="outlined"
               size="small"
-              color={color}
+              color={extendedChallenge.color}
+              // color="info"
             >
               참여하기
             </SoftButton>
@@ -170,25 +166,25 @@ function DefaultProjectCard({ challenge }) {
 // Setting default values for the props of DefaultProjectCard
 DefaultProjectCard.defaultProps = {
   challenge: { total_participants: 0 },
-  type: "joined",
-  color: "info",
+  // extendedChallenge: { type: "joined", color: "info" },
 };
 
 // Typechecking props for the DefaultProjectCard
 DefaultProjectCard.propTypes = {
-  type: PropTypes.oneOf(["joined", "none"]).isRequired,
-  proceed: PropTypes.oneOf(["rec", "pr", "done"]).isRequired,
-  color: PropTypes.oneOf([
-    "primary",
-    "secondary",
-    "info",
-    "success",
-    "warning",
-    "error",
-    "light",
-    "dark",
-    "white",
-  ]).isRequired,
+  extendedChallenge: PropTypes.shape({
+    // type: PropTypes.oneOf(["joined", "none"]).isRequired,
+    color: PropTypes.oneOf([
+      "primary",
+      "secondary",
+      "info",
+      "success",
+      "warning",
+      "error",
+      "light",
+      "dark",
+      "white",
+    ]).isRequired,
+  }).isRequired,
 };
 
 export default DefaultProjectCard;

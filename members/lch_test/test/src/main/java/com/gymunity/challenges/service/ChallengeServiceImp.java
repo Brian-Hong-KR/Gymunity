@@ -32,18 +32,11 @@ public class ChallengeServiceImp implements ChallengeService {
 	
 	@Autowired
 	private VerifyRepository verifyRepository;
-	
-
-
 
 	@Override
 	public void insertUserUpdateProcess(int user_code) {
 		challengeRepository.saveUserUpdate(user_code);
-		
 	}
-
-
-
 
 	@Override
 	public int countProcess() {
@@ -54,6 +47,12 @@ public class ChallengeServiceImp implements ChallengeService {
 	public List<ChallengeDTO> listProcess(PageDTO pv) {
 		return challengeRepository.list(pv);
 	}
+	
+	@Override
+	public List<ChallengeDTO> joinListProcess(int user_id) {
+		return challengeRepository.joinList(user_id);
+	}
+
 
 	@Override
 	public void insertProcess(ChallengeDTO dto) {
@@ -93,17 +92,11 @@ public class ChallengeServiceImp implements ChallengeService {
 		
 	}
 
-
-
-
 	@Override
 	public void totalPointProcess(int ch_id) {
 		challengeRepository.totalP(ch_id);
 		
 	}
-
-
-
 
 
 

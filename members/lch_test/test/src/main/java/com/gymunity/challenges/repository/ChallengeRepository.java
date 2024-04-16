@@ -17,6 +17,8 @@ public interface ChallengeRepository {
 	public int count();
 
 	public List<ChallengeDTO> list(PageDTO pv);
+	
+	public List<ChallengeDTO> joinList(int user_id);
 
 	public ChallengeDTO content(int ch_code);
 
