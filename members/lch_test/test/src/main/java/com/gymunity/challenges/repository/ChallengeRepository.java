@@ -30,6 +30,8 @@ public interface ChallengeRepository {
 	
 	public void countCH(ChallengeDTO dto);
 	
+	// 토탈 포인트
+	public ChallengeDTO totalP(int ch_id);
 
 
 

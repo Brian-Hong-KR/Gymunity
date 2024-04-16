@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gymunity.challenges.dto.ChallengeDTO;
 import com.gymunity.challenges.dto.PageDTO;
 import com.gymunity.challenges.repository.ChallengeRepository;
+import com.gymunity.challenges.repository.MemRepository;
 import com.gymunity.users.mapper.UsersMapper;
 import com.gymunity.users.service.UsersServiceImp;
 
@@ -27,6 +28,8 @@ public class ChallengeServiceImp implements ChallengeService {
 
 	@Autowired
 	private ChallengeRepository challengeRepository;
+	
+
 	
 
 
@@ -81,6 +84,15 @@ public class ChallengeServiceImp implements ChallengeService {
 	@Override
 	public void countChProcess(ChallengeDTO dto) {
 		challengeRepository.countCH(dto);
+		
+	}
+
+
+
+
+	@Override
+	public void totalPointProcess(int ch_id) {
+		challengeRepository.totalP(ch_id);
 		
 	}
 

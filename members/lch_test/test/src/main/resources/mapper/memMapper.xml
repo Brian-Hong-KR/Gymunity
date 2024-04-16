@@ -19,6 +19,10 @@
   	VALUES (#{mem_user_id}, #{mem_grade_id}, #{mem_ch_id}, 'Y')
   </insert>
   
+  <select id="findId" parameterType="int">
+	SELECT * FROM members WHERE mem_user_id = #{userId}
+  </select> 
+  
 
  
 </mapper>   

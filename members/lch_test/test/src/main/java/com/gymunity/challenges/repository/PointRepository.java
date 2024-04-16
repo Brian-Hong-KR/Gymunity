@@ -10,4 +10,11 @@ import com.gymunity.challenges.dto.PointDTO;
 public interface PointRepository {
 
 		public void attendPoint(PointDTO dto);
+		
+		public void rewardPoint(PointDTO dto);
+		
+		
+		public int findTotalPoint (int mem_user_id, int mem_ch_id);
+		
+		public double findRate (int mem_user_id, int mem_ch_id);
 }

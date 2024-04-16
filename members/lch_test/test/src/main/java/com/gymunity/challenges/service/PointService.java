@@ -8,4 +8,6 @@ import com.gymunity.challenges.dto.PointDTO;
 public interface PointService {
 
 	public void attendProcess(PointDTO dto);
+	
+	public void rewardProcess(PointDTO dto);
 }

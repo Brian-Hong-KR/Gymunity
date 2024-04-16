@@ -58,17 +58,16 @@
   <update id="countCH" parameterType="int"> 
 	 UPDATE challenges
 	 SET count= count + 1
-	 WHERE ch_id=#{ch_id};
+	 WHERE ch_id=#{ch_id}
 	  
-  </update>
+  </update> 
   
- <!-- 챌린지 날짜 간격 -->
-  <select id="findDateRangeByChId" parameterType="int">
-	SELECT DATEDIFF(ch_end_date, ch_start_date) AS date_difference
-	FROM challenges
-	where ch_id = #{ch_id};
-  </select> 
 
+ <select id="totalP" parameterType="int">
+	SELECT total_participants
+	FROM challenges
+	WHERE ch_id = #{ch_id}
+  </select>
     
  
 
