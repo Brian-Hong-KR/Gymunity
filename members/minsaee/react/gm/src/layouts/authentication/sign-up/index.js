@@ -32,23 +32,23 @@ function SignUp() {
   const location = useLocation();
 
   // location.state.planData가 배열인지 확인하고, 배열이면 첫 번째 요소를 사용하고, 아니면 그대로 사용
-  // const planData = Array.isArray(location.state?.planData)
-  //   ? location.state.planData[0]
-  //   : location.state?.planData;
+  const formData = Array.isArray(location.state?.formData)
+    ? location.state.formData[0]
+    : location.state?.formData;
 
-  const planData = location.state?.planData;
-  console.log("Registration successful:", planData);
+  // const planData = location.state?.planData;
+  // console.log("Registration successful:", planData);
 
   const [user, setUser] = useState({
     userAccountId: "",
     nickName: "",
     password: "",
     userEmail: "",
-    gender: planData?.gender || "",
-    age: planData?.age || "",
-    goal: planData?.goal || "",
-    level: planData?.level || "",
-    abnormal: planData?.abnormal || "",
+    gender: formData?.gender || "",
+    age: formData?.age || "",
+    goal: formData?.goal || "",
+    level: formData?.level || "",
+    abnormal: formData?.abnormal || "",
   });
 
   const handleValueChange = (e) => {
