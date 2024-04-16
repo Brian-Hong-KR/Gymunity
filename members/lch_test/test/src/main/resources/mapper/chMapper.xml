@@ -25,8 +25,8 @@
  
   <insert id="save" parameterType="ChallengeDTO">
 	INSERT INTO challenges
-	(user_id, grade_id, regist_date, ch_start_date, ch_end_date, category, title, content, proceed, total_participants)
-  	VALUES (#{user_id}, #{grade_id}, CURRENT_TIMESTAMP, #{ch_start_date}, #{ch_end_date}, #{category}, #{title}, #{content}, #{proceed}, #{total_participants})
+	(user_id, grade_id, regist_date, ch_start_date, ch_end_date, category, title, content, proceed)
+  	VALUES (#{user_id}, #{grade_id}, CURRENT_TIMESTAMP, #{ch_start_date}, #{ch_end_date}, #{category}, #{title}, #{content}, #{proceed}})
   </insert>
   
   <!-- java.sql.Date 타입에서 LocalDate 타입 객체로 변환 -->

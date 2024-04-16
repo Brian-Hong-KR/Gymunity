@@ -20,20 +20,21 @@
 	  VALUES (#{points_added}, '챌린지 보상', CURRENT_TIMESTAMP, #{user_id})
   </insert>
 
-  <!-- 보상시 챌린지 배팅 포인트 -->
-  <select id="findTotalPoint" parameterType="PointDTO" resultType="int">
-	SELECT c.batting_point
-	FROM members m
-	JOIN challenges c ON m.mem_ch_id = c.ch_id
-	WHERE m.mem_user_id = #{mem_user_id} AND m.mem_ch_id = #{mem_ch_id}
-  </select> 
+ <resultMap id="pointResultMap" type="PointDTO">
+    <!-- 각 열을 DTO 클래스의 필드와 매핑 -->
+    <result column="batting_point" property="battingPoint"/>
+    <result column="archive_rate" property="archiveRate"/>
+</resultMap>
+
+
   
-   <!-- 성공률 찾기 -->
-  <select id="findRate" parameterType="PointDTO" resultType="double">
-	SELECT archive_rate 
-	from members 
-	WHERE mem_user_id = #{mem_user_id} AND mem_ch_id = #{mem_ch_id}
-  </select>
+<!-- 성공률 찾기 -->
+<select id="findRate" parameterType="map" resultMap="pointResultMap">
+    SELECT c.batting_point,  FORMAT(m.archive_rate, 1) AS archiveRate
+    FROM members m
+    JOIN challenges c ON m.mem_ch_id = c.ch_id
+    WHERE m.mem_user_id = #{mem_user_id} AND m.mem_ch_id = #{mem_ch_id}
+</select>
 
 </mapper>   
 

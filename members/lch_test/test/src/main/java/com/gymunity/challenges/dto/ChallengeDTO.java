@@ -19,7 +19,7 @@ import lombok.Setter;
 public class ChallengeDTO {
 	private int user_id, ch_id, grade_id, category, 
 	betting_point, total_participants, count, userId;
-	private String title, content, proceed;
+	private String title, content, proceed, nick_name;
 	private Date regist_date;
 	
 	private LocalDate ch_start_date, ch_end_date;

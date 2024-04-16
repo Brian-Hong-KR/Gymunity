@@ -12,6 +12,10 @@ public class MemDTO {
 	private float archive_rate;
 	private char registrant;
 	
-	
+	 public static MemDTO getMemDTO() {
+	        MemDTO memDTO = new MemDTO();
+	        // MemDTO를 초기화하는 코드 작성
+	        return memDTO;
+	    }
 	
 }

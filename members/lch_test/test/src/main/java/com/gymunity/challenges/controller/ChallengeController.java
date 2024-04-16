@@ -92,9 +92,10 @@ public class ChallengeController {
 	}
 	
 	@PutMapping("/challenge/update")
-	public ResponseEntity<Object> updateExecute(ChallengeDTO dto, HttpServletRequest req) {
+	public ResponseEntity<Object> updateExecute(ChallengeDTO dto,VerifyService vdto,  HttpServletRequest req) {
 		log.info("ch_id:{}, title:{}", dto.getCh_id(), dto.getTitle());
 		challengeService.updateProcess(dto);
+		
 		return ResponseEntity.ok(null);
 	}
 
