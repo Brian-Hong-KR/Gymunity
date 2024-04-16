@@ -55,7 +55,7 @@ function PlatformSettings() {
               <Link to='/photo'>
                 <MiniStatisticsCard
                   title={{ text: 'Photo' }}
-                  count='인증 사진 확인하기'
+                  count='나의 사진첩'
                   icon={{
                     color: 'info',
                     component: 'shopping_cart',

@@ -80,7 +80,7 @@ function Dashboard() {
           <Grid container spacing={3}>
             <Grid item xs={12} lg={7}>
               <GradientLineChart
-                title='Sales Overview'
+                title='유저 회원가입 수'
                 description={
                   <SoftBox display='flex' alignItems='center'>
                     <SoftBox
@@ -97,7 +97,7 @@ function Dashboard() {
                       color='text'
                       fontWeight='medium'
                     >
-                      0% more{' '}
+                      11% more{' '}
                       <SoftTypography
                         variant='button'
                         color='text'

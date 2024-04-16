@@ -95,10 +95,10 @@ function Header() {
           <Grid item>
             <SoftBox height="100%" mt={0.5} lineHeight={1}>
               <SoftTypography variant="h5" fontWeight="medium">
-                이름 적어주세용
+                디그다그다그다
               </SoftTypography>
               <SoftTypography variant="button" color="text" fontWeight="medium">
-                여기에는 등급 적는거 어떤가용
+                실버
               </SoftTypography>
             </SoftBox>
           </Grid>
