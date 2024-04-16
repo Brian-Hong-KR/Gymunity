@@ -23,10 +23,6 @@ import Header from "./../components/Header/index";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 // Images
-import categoryToLoseWeight from "assets/images/category/category_toloseweight.jpg";
-import categoryToIncreaseMuscle from "assets/images/category/category_toincreasemuscle.jpg";
-import categoryPhsicalStrength from "assets/images/category/category_physicalstrength.jpg";
-import categoryDiet from "assets/images/category/category_diet.jpg";
 
 function Challenge() {
   const { currentPage } = useParams();
@@ -80,7 +76,7 @@ function Challenge() {
             </Grid>
           </SoftBox>
         </Card>
-        {/* <SoftBox mt={3} mb={3}></SoftBox>
+        <SoftBox mt={3} mb={3}></SoftBox>
         <Card>
           <SoftBox pt={2} px={2}>
             <SoftBox mb={0.5}>
@@ -96,140 +92,17 @@ function Challenge() {
           </SoftBox>
           <SoftBox p={2}>
             <Grid container spacing={3}>
-              <Grid item xs={12} md={6} xl={3}>
-                <DefaultProjectCard
-                  image={categoryToLoseWeight}
-                  category="다이어트"
-                  title="매일 러닝머신 30분"
-                  master="뱃살대마왕"
-                  master_grade="bronze"
-                  total_participants="3"
-                  verify_frequency="매일"
-                  challenge_term="4주간"
-                  action={{
-                    type: "ongoing",
-                    color: "info",
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12} md={6} xl={3}>
-                <DefaultProjectCard
-                  image={categoryToIncreaseMuscle}
-                  category="체력 증진"
-                  title="주말 등산 1회"
-                  master_grade="bronze"
-                  total_participants="3"
-                  verify_frequency="매일"
-                  challenge_term="4주간"
-                  action={{
-                    type: "ongoing",
-                    route: "/challenge/list/1",
-                    color: "info",
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12} md={6} xl={3}>
-                <DefaultProjectCard
-                  image={categoryPhsicalStrength}
-                  category="체력 증진"
-                  title="주 3회 헬스장 가기"
-                  master_grade="bronze"
-                  total_participants="3"
-                  verify_frequency="매일"
-                  challenge_term="4주간"
-                  action={{
-                    type: "ongoing",
-                    route: "/challenge/list/1",
-                    color: "info",
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12} md={6} xl={3}>
-                <DefaultProjectCard
-                  image={categoryPhsicalStrength}
-                  label="체력 증진"
-                  title="주 3회 헬스장 가기"
-                  master_grade="bronze"
-                  total_participants="3"
-                  verify_frequency="매일"
-                  challenge_term="4주간"
-                  action={{
-                    type: "ongoing",
-                    route: "/challenge/list/1",
-                    color: "info",
-                  }}
-                />
-              </Grid>
-            </Grid>
-            <SoftBox mt={5} mb={3}></SoftBox>
-            <Grid container spacing={3}>
-              <Grid item xs={12} md={6} xl={3}>
-                <DefaultProjectCard
-                  image={categoryToLoseWeight}
-                  label="체지방 감소"
-                  title="매일 러닝머신 30분"
-                  master_grade="bronze"
-                  total_participants="3"
-                  verify_frequency="매일"
-                  challenge_term="4주간"
-                  action={{
-                    type: "ongoing",
-                    route: "/challenge/list/1",
-                    color: "info",
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12} md={6} xl={3}>
-                <DefaultProjectCard
-                  image={categoryPhsicalStrength}
-                  label="체력 증진"
-                  title="주말 등산 1회"
-                  master_grade="bronze"
-                  total_participants="3"
-                  verify_frequency="매일"
-                  challenge_term="4주간"
-                  action={{
-                    type: "ongoing",
-                    route: "/challenge/list/1",
-                    color: "info",
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12} md={6} xl={3}>
-                <DefaultProjectCard
-                  image={categoryPhsicalStrength}
-                  label="체력 증진"
-                  title="주 3회 헬스장 가기"
-                  master_grade="bronze"
-                  total_participants="3"
-                  verify_frequency="매일"
-                  challenge_term="4주간"
-                  action={{
-                    type: "ongoing",
-                    route: "/challenge/list/1",
-                    color: "info",
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12} md={6} xl={3}>
-                <DefaultProjectCard
-                  image={categoryPhsicalStrength}
-                  label="체력 증진"
-                  title="주 3회 헬스장 가기"
-                  master_grade="bronze"
-                  total_participants="3"
-                  verify_frequency="매일"
-                  challenge_term="4주간"
-                  action={{
-                    type: "ongoing",
-                    route: "/challenge/list/1",
-                    color: "info",
-                  }}
-                />
-              </Grid>
+              {challengeList &&
+                challengeList.map((challenge) => {
+                  return (
+                    <Grid item xs={12} md={6} xl={3}>
+                      <DefaultProjectCard challenge={challenge} key={challenge.ch_id} />
+                    </Grid>
+                  );
+                })}
             </Grid>
           </SoftBox>
-        </Card> */}
+        </Card>
         {/* TODO SoftPagination 설정 */}
         {pv && <SoftPagination getChallengeList={getChallengeList} />}
       </SoftBox>

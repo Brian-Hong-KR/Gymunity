@@ -2,8 +2,6 @@
 import Dashboard from "layouts/dashboard";
 import Billing from "layouts/billing";
 import PT from "layouts/PT";
-import VirtualReality from "layouts/virtual-reality";
-import RTL from "layouts/rtl";
 import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
@@ -46,7 +44,7 @@ const routes = [
     type: "collapse",
     name: "Challenge",
     key: "Challenge",
-    route: "/Challenge",
+    route: "/challenge/list/1",
     icon: <Office size="12px" />,
     component: <Challenge />,
     noCollapse: true,
@@ -60,26 +58,6 @@ const routes = [
     component: <Billing />,
     noCollapse: true,
   },
-  //  {
-  //    type: "collapse",
-  //    name: "Virtual Reality",
-  //    key: "virtual-reality",
-  //    route: "/virtual-reality",
-  //    icon: <Cube size="12px" />,
-  //    component: <VirtualReality />,
-  //    noCollapse: true,
-  //  },
-  //  {
-  //    type: "collapse",
-  //    name: "RTL",
-  //    key: "rtl",
-  //    route: "/rtl",
-  //    icon: <Settings size="12px" />,
-  //    component: <RTL />,
-  //    noCollapse: true,
-  //  },
-  //  { type: "title", title: "Account Pages", key: "account-pages" },
-
   {
     type: "collapse",
     name: "Sign In",
@@ -108,20 +86,25 @@ const routes = [
     noCollapse: true,
   },
   {
+    key: "Challengelist",
+    route: "/challenge/list/:currentPage",
+    icon: <Office size="12px" />,
+    component: <Challenge />,
+    noCollapse: true,
+  },
+  {
     key: "ChallengeCreate",
-    route: "challenge/create",
+    route: "/challenge/create",
     component: <ChallengeCreate />,
   },
-
   {
     key: "ChallengeDetail",
-    route: "challenge/1/detail",
+    route: "/challenge/detail/1",
     component: <ChallengeDetail />,
   },
-
   {
     key: "ChallengeVerify",
-    route: "challenge/1/verify",
+    route: "/challenge/verify/1",
     component: <ChallengeVerify />,
   },
 ];
