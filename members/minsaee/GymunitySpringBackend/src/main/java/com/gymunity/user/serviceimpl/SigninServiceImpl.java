@@ -78,14 +78,13 @@ public class SigninServiceImpl implements SigninService {
 				signinMapper.updateLastSignin(user);
 
 				// 토큰 생성 및 저장
-				String accessToken = JwtProperties.TOKEN_PREFIX
-						+ JwtProvider.createAccessToken(user.getUserAccountId());
-				String refreshToken = JwtProvider.createRefreshToken(user.getUserAccountId());
+				String accessToken = JwtProperties.TOKEN_PREFIX + JwtProvider.createAccessToken(user.getUserId());
+				String refreshToken = JwtProvider.createRefreshToken(user.getUserId());
 
 				tokenService.saveTokens(user.getUserAccountId(), accessToken, refreshToken);
 
-				return SigninResponse.builder().userAccountId(user.getUserAccountId()).nickName(user.getNickName())
-						.accessToken(accessToken).refreshToken(refreshToken).build();
+				return SigninResponse.builder().userId(user.getUserId()).userAccountId(user.getUserAccountId())
+						.nickName(user.getNickName()).accessToken(accessToken).refreshToken(refreshToken).build();
 			}
 
 		} else {
@@ -94,17 +93,14 @@ public class SigninServiceImpl implements SigninService {
 
 	}// end getUserByAccountId()
 
-	// 토큰 프로세스
+	// 토큰생성 프로세스
 	@Override
-	public SigninResponse generateAndReturnUserAuthTokens(String userAccountId) {
-		User user = signinMapper.findUserByAccountId(userAccountId);
+	public SigninResponse generateAndReturnUserAuthTokens(Integer userId) {
 
-		if (user == null) {
-			throw new UsernameNotFoundException("사용자를 찾을 수 없습니다.");
-		}
-		return SigninResponse.builder().userAccountId(user.getUserAccountId())
-				.accessToken(JwtProvider.createAccessToken(userAccountId))
-				.refreshToken(JwtProvider.createRefreshToken(userAccountId)).build();
+		String accessToken = JwtProvider.createAccessToken(userId);
+		String refreshToken = JwtProvider.createRefreshToken(userId);
+
+		return SigninResponse.builder().accessToken(accessToken).refreshToken(refreshToken).build();
 	}// end generateAndReturnUserAuthTokens()
 
 }// end class

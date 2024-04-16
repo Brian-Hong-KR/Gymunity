@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gymunity.challenges.repository.TestMapper">
+	<resultMap id="chReusltMap" type="ChallengeDTO">
+		<result property="ch_id" column="ch_id"/>
+		<result property="batting_point" column="batting_point"/>
+	</resultMap>
+	
+	<resultMap id="memResultMap" type="memDTO">
+		<result property="member_id" column="member_id"/>
+		<result property="mem_ch_id" column="mem_ch_id"/>
+		<result property="archive_rate" column="archive_rate"/>
+	</resultMap>
+	
+	<!-- 멤버조회 멤버아이디 멤버챌린지아이디 성공률-->
+	<select id="selectMembymem_id" parameterType="int" resultMap="memResultMap">
+		SELECT member_id, mem_ch_id, archive_rate, mem_user_id
+		FROM members
+		WHERE member_id = #{member_id}
+	</select>
+	
+	<!-- 챌린지조회 배팅포인트-->
+	<select id="selectChbymem_ch_id" parameterType="int" resultMap="chReusltMap">
+		SELECT batting_point
+		from challenges
+		WHERE ch_id = #{ch_id}
+	</select>
+	
+	
+	<!-- 멤버삽입 리워드포인트-->
+	<!-- point_add 테이블에 데이터 삽입 -->
+	<insert id="addPoint" parameterType="PointDTO">
+		<![CDATA[ 
+		INSERT INTO point_add (user_id, points_added, added_reason)
+		VALUES (#{user_id}, #{points_added}, #{added_reason})
+		]]>
+	</insert>
+	
+	<insert id="addOrUpdatePointsAggr" parameterType="int">
+        <!-- Try to insert a new record into point_aggr table -->
+        INSERT INTO point_aggr (user_id, total_points, current_points)
+        VALUES (
+            #{user_id},
+            (SELECT COALESCE(SUM(points_added), 0) FROM point_add WHERE user_id = #{user_id}),
+            (SELECT COALESCE(SUM(points_added), 0) FROM point_add WHERE user_id = #{user_id})
+        )
+        ON DUPLICATE KEY UPDATE
+        <!-- If there's an existing record, recalculate the total and current points -->
+        total_points = (SELECT COALESCE(SUM(points_added), 0) FROM point_add WHERE user_id = #{user_id}),
+        current_points = (SELECT COALESCE(SUM(points_added), 0) FROM point_add WHERE user_id = #{user_id});
+    </insert>
+	
+</mapper>

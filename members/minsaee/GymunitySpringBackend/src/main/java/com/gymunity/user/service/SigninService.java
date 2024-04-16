@@ -6,5 +6,5 @@ public interface SigninService {
 
 	public SigninResponse processSignIn(String userAccountId, String password);
 
-	public SigninResponse generateAndReturnUserAuthTokens(String userAccountId);
+	public SigninResponse generateAndReturnUserAuthTokens(Integer userId);
 }// end interface

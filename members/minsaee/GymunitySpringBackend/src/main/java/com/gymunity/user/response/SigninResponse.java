@@ -18,6 +18,7 @@ public class SigninResponse {
 	private String userAccountId;
 	private String nickName;
 	private String userEmail;
+	private int userId;
 	private String accessToken;
 	private String refreshToken;
 
@@ -27,11 +28,12 @@ public class SigninResponse {
 		this.userEmail = userEmail;
 	}
 
-	public SigninResponse(String userAccountId, String nickName, String userEmail) {
+	public SigninResponse(String userAccountId, String nickName, String userEmail, int userId) {
 		super();
 		this.userAccountId = userAccountId;
 		this.nickName = nickName;
 		this.userEmail = userEmail;
+		this.userId = userId;
 	}// end LoginResponse()
 
 }// end class

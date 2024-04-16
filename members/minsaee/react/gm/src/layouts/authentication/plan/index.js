@@ -112,7 +112,7 @@ const PlanPage = () => {
         <SoftBox pt={2} pb={3} px={3}>
           <SoftBox component="form" role="form">
             <SoftTypography variant="h5" fontWeight="medium">
-              2. 당신의 연령대는?
+              잠온다
             </SoftTypography>
             {planData && (
               <>
