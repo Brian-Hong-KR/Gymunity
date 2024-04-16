@@ -18,17 +18,21 @@
     "@mui/icons-material": "5.11.16",
     "@mui/material": "5.13.0",
     "@mui/styled-engine": "5.12.3",
+    "@reduxjs/toolkit": "^2.2.3",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "14.0.0",
     "@testing-library/user-event": "14.4.3",
+    "axios": "^1.6.8",
     "chart.js": "3.9.1",
     "chroma-js": "2.4.2",
     "prop-types": "15.8.1",
     "react": ">=16.8.0",
+    "react-app": "^1.1.2",
     "react-chartjs-2": "3.0.5",
     "react-countup": "6.4.2",
     "react-dom": ">=16.8.0",
     "react-flatpickr": "3.10.13",
+    "react-redux": "^9.1.1",
     "react-router-dom": "6.11.1",
     "react-scripts": "5.0.1",
     "react-simple-chatbot": "^0.6.1",
@@ -79,5 +83,6 @@
   },
   "overrides": {
     "svgo": "3.0.2"
-  }
+  },
+  "proxy": "http://127.0.0.1:8090"
 }

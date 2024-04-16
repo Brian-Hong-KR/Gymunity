@@ -336,7 +336,7 @@ const Survey = () => {
                         name="abnormal"
                         id="radio-card-12"
                         value="no health problems"
-                        checked={formData.abnormal === "no health problems"}
+                        checked={formData.abnormal === "respiratory diseases"}
                         onChange={handleChange}
                       />
                       <div className="card-content-wrapper">
