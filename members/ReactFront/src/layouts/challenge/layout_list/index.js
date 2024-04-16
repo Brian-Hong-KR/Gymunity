@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { challengeActions } from "../toolkit/actions/challenge_actions";
@@ -25,7 +25,7 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 // Images
 
 function Challenge() {
-  const { currentPage } = useParams();
+  const { currentPage = 1 } = useParams();
   const dispatch = useDispatch();
 
   const getChallengeList = (currentPage) => {
@@ -33,12 +33,23 @@ function Challenge() {
     dispatch(challengeActions.getChallengeList(currentPage));
   };
 
-  useEffect(() => {
-    getChallengeList(currentPage);
-  }, []);
+  const [isInitialRender, setIsInitialRender] = useState(true);
 
-  const challengeList = useSelector((state) => state.challenge.challengeList);
+  useEffect(() => {
+    if (isInitialRender && currentPage) {
+      getChallengeList(currentPage);
+      setIsInitialRender(false);
+    }
+  }, [currentPage, isInitialRender]);
+
+  const challengeList = useSelector((state) => state.challenge.challengeList || []);
   const pv = useSelector((state) => state.challenge.pv);
+
+  // const localStorageUserID = "81";
+  // let type;
+  // if (localStorageUserID === {challenge.user_id}) {
+  //   type = "joined";
+  // }
 
   return (
     <DashboardLayout>

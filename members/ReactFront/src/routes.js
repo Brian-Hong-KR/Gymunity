@@ -99,12 +99,12 @@ const routes = [
   },
   {
     key: "ChallengeDetail",
-    route: "/challenge/detail/1",
+    route: "/challenge/detail/:ch_id",
     component: <ChallengeDetail />,
   },
   {
     key: "ChallengeVerify",
-    route: "/challenge/verify/1",
+    route: "/challenge/verify/:ch_id",
     component: <ChallengeVerify />,
   },
 ];

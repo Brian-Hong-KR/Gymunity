@@ -246,32 +246,32 @@ ChallengeDetail.defaultProps = {
 };
 
 // Typechecking props for the ChallengeDetail
-ChallengeDetail.propTypes = {
-  category: PropTypes.number.isRequired,
-  image: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  master: PropTypes.string.isRequired,
-  master_grade: PropTypes.number.isRequired,
-  total_participants: PropTypes.number.isRequired,
-  verify_frequency: PropTypes.string.isRequired,
-  challenge_term: PropTypes.string.isRequired,
-  action: PropTypes.shape({
-    type: PropTypes.oneOf(["joined", "none"]).isRequired,
-    // route: PropTypes.string.isRequired,
-    proceed: PropTypes.oneOf(["rec", "pr", "done"]).isRequired,
-    color: PropTypes.oneOf([
-      "primary",
-      "secondary",
-      "info",
-      "success",
-      "warning",
-      "error",
-      "light",
-      "dark",
-      "white",
-    ]).isRequired,
-    label: PropTypes.string.isRequired,
-  }).isRequired,
-};
+// ChallengeDetail.propTypes = {
+//   category: PropTypes.number.isRequired,
+//   image: PropTypes.string.isRequired,
+//   title: PropTypes.string.isRequired,
+//   master: PropTypes.string.isRequired,
+//   master_grade: PropTypes.number.isRequired,
+//   total_participants: PropTypes.number.isRequired,
+//   verify_frequency: PropTypes.string.isRequired,
+//   challenge_term: PropTypes.string.isRequired,
+//   action: PropTypes.shape({
+//     type: PropTypes.oneOf(["joined", "none"]).isRequired,
+//     // route: PropTypes.string.isRequired,
+//     proceed: PropTypes.oneOf(["rec", "pr", "done"]).isRequired,
+//     color: PropTypes.oneOf([
+//       "primary",
+//       "secondary",
+//       "info",
+//       "success",
+//       "warning",
+//       "error",
+//       "light",
+//       "dark",
+//       "white",
+//     ]).isRequired,
+//     label: PropTypes.string.isRequired,
+//   }).isRequired,
+// };
 
 export default ChallengeDetail;
