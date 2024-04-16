@@ -62,4 +62,28 @@
     <delete id="deleteUser" parameterType="int">
 		DELETE FROM users WHERE user_id = #{userId}
     </delete>
+    
+    <!-- 포인트 불러오기-->
+     <resultMap id="PointHistoryResultMap" type="com.test.users.dto.PointHistory">
+        <id property="userId" column="user_id"/>
+        <result property="pointsSubtracted" column="points_subtracted"/>
+        <result property="subtractedAt" column="subtracted_at"/>
+        <result property="pointsAdded" column="points_added"/>
+        <result property="addedAt" column="added_at"/>
+    </resultMap>
+    
+     <select id="getPointHistory" resultMap="PointHistoryResultMap" parameterType="int">
+        SELECT user_id, points_subtracted, subtracted_at, points_added, added_at
+        FROM (
+            SELECT user_id, points_subtracted, subtracted_at, NULL AS points_added, NULL AS added_at
+            FROM point_subtract
+            WHERE user_id = #{userId}
+            UNION ALL
+            SELECT user_id, NULL AS points_subtracted, NULL AS subtracted_at, points_added, added_at
+            FROM point_add
+            WHERE user_id = #{userId}
+        ) AS combined_data
+        ORDER BY user_id, points_subtracted DESC NULLS LAST, subtracted_at DESC NULLS LAST, points_added DESC NULLS LAST, added_at DESC NULLS LAST;
+    </select>
+    
 </mapper>

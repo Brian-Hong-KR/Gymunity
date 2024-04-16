@@ -33,20 +33,7 @@ public class SwaggerConfig {
 
 		return new OpenAPI().info(info).addSecurityItem(securityRequirement).components(components);
 
-//        String jwt = "JWT";
-//        SecurityRequirement securityRequirement = new SecurityRequirement().addList(jwt); // 헤더에 토큰 포함
-//        
-//      
-//        Components components = new Components().addSecuritySchemes(jwt, new SecurityScheme()
-//                .name(jwt)
-//                .type(SecurityScheme.Type.HTTP)
-//                .scheme("bearer")
-//                .bearerFormat("JWT")
-//        );
-//
-//        return new OpenAPI()
-//                .info(info)
-//                .addSecurityItem(securityRequirement)
-//                .components(components);
+
+		
 	}
 }

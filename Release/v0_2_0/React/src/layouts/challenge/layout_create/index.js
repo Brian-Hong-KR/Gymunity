@@ -38,83 +38,110 @@ function ChallengeCreate() {
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
-  const [tabsOrientation, setTabsOrientation] = useState("horizontal");
+  const [tabsOrientation, setTabsOrientation] = useState('horizontal');
   const [tabValue, setTabValue] = useState(0);
 
   useEffect(() => {
     // A function that sets the orientation state of the tabs.
     function handleTabsOrientation() {
       return window.innerWidth < breakpoints.values.sm
-        ? setTabsOrientation("vertical")
-        : setTabsOrientation("horizontal");
+        ? setTabsOrientation('vertical')
+        : setTabsOrientation('horizontal');
     }
-    window.addEventListener("resize", handleTabsOrientation);
+    window.addEventListener('resize', handleTabsOrientation);
 
     handleTabsOrientation();
 
-    return () => window.removeEventListener("resize", handleTabsOrientation);
+    return () => window.removeEventListener('resize', handleTabsOrientation);
   }, [tabsOrientation]);
 
   const handleSetTabValue = (event, newValue) => setTabValue(newValue);
+
+  // 챌린지 유형 탭 값을 관리하는 상태
+  const [challengeTabValue, setChallengeTabValue] = useState(0);
+
+  // 인증 빈도 탭 값을 관리하는 상태
+  const [certificationTabValue, setCertificationTabValue] = useState(0);
+
+  // 챌린지 유형 탭 값 변경 핸들러
+  const handleSetChallengeTabValue = (event, newValue) => {
+    setChallengeTabValue(newValue);
+  };
+
+  // 인증 빈도 탭 값 변경 핸들러
+  
+  const handleSetCertificationTabValue = (event, newValue) => {
+    setCertificationTabValue(newValue);
+  };
 
   return (
     <DashboardLayout>
       <Header />
       <CoverLayout
-        title="챌린지 만들기"
-        description="건전하고 공정한 챌린지로 모두 즐겁게 운동할 수 있게 해주세요."
+        title='챌린지 만들기'
+        description='건전하고 공정한 챌린지로 모두 즐겁게 운동할 수 있게 해주세요.'
         image={curved9}
       >
-        <SoftBox component="form" role="form">
+        <SoftBox component='form' role='form'>
           <SoftBox mb={2}>
             <SoftBox mb={1} ml={0.5}>
-              <SoftTypography component="label" variant="caption" fontWeight="bold">
+              <SoftTypography
+                component='label'
+                variant='caption'
+                fontWeight='bold'
+              >
                 챌린지 제목
               </SoftTypography>
             </SoftBox>
-            <SoftInput type="title" placeholder="챌린지 제목" />
+            <SoftInput type='title' placeholder='챌린지 제목' />
           </SoftBox>
           <SoftBox mb={2}>
             <SoftBox mb={1} ml={0.5}>
-              <SoftTypography component="label" variant="caption" fontWeight="bold">
+              <SoftTypography
+                component='label'
+                variant='caption'
+                fontWeight='bold'
+              >
                 챌린지 유형
               </SoftTypography>
             </SoftBox>
-            <Grid item xs={12} md={6} lg={4} sx={{ ml: "auto" }}>
-              <AppBar position="static">
+            <Grid item xs={12} md={6} lg={4} sx={{ ml: 'auto' }}>
+              <AppBar position='static'>
                 <Tabs
-                  orientation={tabsOrientation}
-                  value={tabValue}
-                  onChange={handleSetTabValue}
-                  sx={{ background: "transparent" }}
+                  value={certificationTabValue}
+                  onChange={handleSetCertificationTabValue}
+                  sx={{ background: 'transparent' }}
                 >
-                  <Tab label="체중 감소" icon={<Cube />} />
-                  <Tab label="근력 향상" icon={<Document />} />
-                  <Tab label="종합 건강 증진" icon={<Settings />} />
+                  <Tab label='체중 감소' icon={<Cube />} />
+                  <Tab label='근력 향상' icon={<Document />} />
+                  <Tab label='종합 건강 증진' icon={<Settings />} />
                 </Tabs>
               </AppBar>
             </Grid>
           </SoftBox>
           <SoftBox mb={2}>
             <SoftBox mb={1} ml={0.5}>
-              <SoftTypography component="label" variant="caption" fontWeight="bold">
+              <SoftTypography
+                component='label'
+                variant='caption'
+                fontWeight='bold'
+              >
                 인증 빈도
               </SoftTypography>
             </SoftBox>
-            <Grid item xs={12} md={6} lg={4} sx={{ ml: "auto" }}>
-              <AppBar position="static">
+            <Grid item xs={12} md={6} lg={4} sx={{ ml: 'auto' }}>
+              <AppBar position='static'>
                 <Tabs
-                  orientation={tabsOrientation}
-                  value={tabValue}
-                  onChange={handleSetTabValue}
-                  sx={{ background: "transparent" }}
+                  value={certificationTabValue}
+                  onChange={handleSetCertificationTabValue}
+                  sx={{ background: 'transparent' }}
                 >
-                  <Tab label="매일" icon={<Cube />} />
-                  <Tab label="평일 매일" icon={<Document />} />
-                  <Tab label="주말 매일" icon={<Settings />} />
-                  <Tab label="주 1일" icon={<Settings />} />
-                  <Tab label="주 2일" icon={<Settings />} />
-                  <Tab label="주 3일" icon={<Settings />} />
+                  <Tab label='매일' icon={<Cube />} />
+                  <Tab label='평일 매일' icon={<Document />} />
+                  <Tab label='주말 매일' icon={<Settings />} />
+                  <Tab label='주 1일' icon={<Settings />} />
+                  <Tab label='주 2일' icon={<Settings />} />
+                  <Tab label='주 3일' icon={<Settings />} />
                 </Tabs>
               </AppBar>
             </Grid>
@@ -122,65 +149,85 @@ function ChallengeCreate() {
 
           <SoftBox mb={2}>
             <SoftBox mb={1} ml={0.5}>
-              <SoftTypography component="label" variant="caption" fontWeight="bold">
+              <SoftTypography
+                component='label'
+                variant='caption'
+                fontWeight='bold'
+              >
                 챌린지 기간
               </SoftTypography>
             </SoftBox>
-            <Grid item xs={12} md={6} lg={4} sx={{ ml: "auto" }}>
-              <AppBar position="static">
+            <Grid item xs={12} md={6} lg={4} sx={{ ml: 'auto' }}>
+              <AppBar position='static'>
                 <Tabs
                   orientation={tabsOrientation}
                   value={tabValue}
                   onChange={handleSetTabValue}
-                  sx={{ background: "transparent" }}
+                  sx={{ background: 'transparent' }}
                 >
-                  <Tab label="2주간" icon={<Cube />} />
-                  <Tab label="4주간" icon={<Document />} />
-                  <Tab label="8주간" icon={<Settings />} />
+                  <Tab label='2주간' icon={<Cube />} />
+                  <Tab label='4주간' icon={<Document />} />
+                  <Tab label='8주간' icon={<Settings />} />
                 </Tabs>
               </AppBar>
             </Grid>
           </SoftBox>
           <SoftBox mb={2}>
             <SoftBox mb={1} ml={0.5}>
-              <SoftTypography component="label" variant="caption" fontWeight="bold">
+              <SoftTypography
+                component='label'
+                variant='caption'
+                fontWeight='bold'
+              >
                 챌린지 시작일
               </SoftTypography>
             </SoftBox>
-            <SoftInput type="title" placeholder="챌린지 제목" />
+            <SoftInput type='title' placeholder='챌린지 제목' />
           </SoftBox>
           <SoftBox mb={2}>
             <SoftBox mb={1} ml={0.5}>
-              <SoftTypography component="label" variant="caption" fontWeight="bold">
+              <SoftTypography
+                component='label'
+                variant='caption'
+                fontWeight='bold'
+              >
                 인증 방법
               </SoftTypography>
             </SoftBox>
-            <SoftInput type="title" placeholder="챌린지 제목" />
+            <SoftInput type='title' placeholder='챌린지 제목' />
           </SoftBox>
           <SoftBox mb={2}>
             <SoftBox mb={1} ml={0.5}>
-              <SoftTypography component="label" variant="caption" fontWeight="bold">
+              <SoftTypography
+                component='label'
+                variant='caption'
+                fontWeight='bold'
+              >
                 인증샷 예시 (업로드)
               </SoftTypography>
             </SoftBox>
-            <SoftInput type="title" placeholder="챌린지 제목" />
+            <SoftInput type='title' placeholder='챌린지 제목' />
           </SoftBox>
           <SoftBox mb={2}>
             <SoftBox mb={1} ml={0.5}>
-              <SoftTypography component="label" variant="caption" fontWeight="bold">
+              <SoftTypography
+                component='label'
+                variant='caption'
+                fontWeight='bold'
+              >
                 어떻게 인증할까요?
               </SoftTypography>
             </SoftBox>
-            <Grid item xs={12} md={6} lg={4} sx={{ ml: "auto" }}>
-              <AppBar position="static">
+            <Grid item xs={12} md={6} lg={4} sx={{ ml: 'auto' }}>
+              <AppBar position='static'>
                 <Tabs
                   orientation={tabsOrientation}
                   value={tabValue}
                   onChange={handleSetTabValue}
-                  sx={{ background: "transparent" }}
+                  sx={{ background: 'transparent' }}
                 >
-                  <Tab label="일일 1번" icon={<Cube />} />
-                  <Tab label="일일 2번" icon={<Document />} />
+                  <Tab label='일일 1번' icon={<Cube />} />
+                  <Tab label='일일 2번' icon={<Document />} />
                 </Tabs>
               </AppBar>
             </Grid>
@@ -198,22 +245,30 @@ function ChallengeCreate() {
         </SoftBox> */}
           <SoftBox mb={2}>
             <SoftBox mb={1} ml={0.5}>
-              <SoftTypography component="label" variant="caption" fontWeight="bold">
+              <SoftTypography
+                component='label'
+                variant='caption'
+                fontWeight='bold'
+              >
                 챌린지 소개
               </SoftTypography>
             </SoftBox>
-            <SoftInput type="title" placeholder="챌린지 제목" />
+            <SoftInput type='title' placeholder='챌린지 제목' />
           </SoftBox>
           <SoftBox mb={2}>
             <SoftBox mb={1} ml={0.5}>
-              <SoftTypography component="label" variant="caption" fontWeight="bold">
+              <SoftTypography
+                component='label'
+                variant='caption'
+                fontWeight='bold'
+              >
                 예치 포인트
               </SoftTypography>
             </SoftBox>
-            <SoftInput type="title" placeholder="챌린지 제목" />
+            <SoftInput type='title' placeholder='챌린지 제목' />
           </SoftBox>
           <SoftBox mt={4} mb={1}>
-            <SoftButton variant="gradient" color="info" fullWidth>
+            <SoftButton variant='gradient' color='info' fullWidth>
               챌린지 만들기
             </SoftButton>
           </SoftBox>
