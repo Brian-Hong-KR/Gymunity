@@ -86,51 +86,11 @@ function DashboardNavbar({ absolute, light, isMini }) {
           mb={{ xs: 1, md: 0 }}
           sx={(theme) => navbarRow(theme, { isMini })}
         >
-          <Breadcrumbs
-            icon='home'
-            title={route[route.length - 1]}
-            route={route}
-            light={light}
-          />
         </SoftBox>
         {isMini ? null : (
           <SoftBox sx={(theme) => navbarRow(theme, { isMini })}>
-              <Grid item>
-                <SoftBox height='100%' mt={0.5} lineHeight={1}>
-                  <SoftTypography variant='h5' fontWeight='medium'>
-                    nickname
-                  </SoftTypography>
-                  <SoftTypography
-                    variant='button'
-                    color='text'
-                    fontWeight='medium'
-                  >
-                    grade
-                  </SoftTypography>
-                </SoftBox>
-              </Grid>
-            
-            <SoftBox color={light ? 'white' : 'inherit'}>
-              <Link to='/authentication/sign-in'>
-                <IconButton sx={navbarIconButton} size='small'>
-                  <Icon
-                    sx={({ palette: { dark, white } }) => ({
-                      color: light ? white.main : dark.main,
-                    })}
-                  >
-                    account_circle
-                  </Icon>
-                  <SoftTypography
-                    variant='button'
-                    fontWeight='medium'
-                    color={light ? 'white' : 'dark'}
-                  >
-                    Sign in
-                  </SoftTypography>
-                </IconButton>
-              </Link>
-              <IconButton
-                size='small'
+            <IconButton
+                size='large'
                 color='inherit'
                 sx={navbarMobileMenu}
                 onClick={handleMiniSidenav}
@@ -138,7 +98,42 @@ function DashboardNavbar({ absolute, light, isMini }) {
                 <Icon className={light ? 'text-white' : 'text-dark'}>
                   {miniSidenav ? 'menu_open' : 'menu'}
                 </Icon>
-              </IconButton>
+            </IconButton>
+
+            <Icon
+                sx={({ palette: { dark, white } }) => ({
+                  color: light ? white.main : dark.main,
+                })}
+              >account_circle
+            </Icon>
+
+              <SoftTypography variant='h5' fontWeight='medium'>
+                Nick name
+              </SoftTypography>
+
+              <SoftTypography
+                variant='button'
+                color='text'
+                fontWeight='medium'
+              >
+                grade
+              </SoftTypography>
+
+
+            <SoftBox color={light ? 'white' : 'inherit'}>
+              <Link to='/authentication/sign-in'>
+                <IconButton sx={navbarIconButton} size='small'>
+
+                  <SoftTypography
+                    variant='button'
+                    fontWeight='medium'
+                    color={light ? 'white' : 'dark'}
+                  >
+                    Log Out
+                  </SoftTypography>
+                </IconButton>
+              </Link>
+
             </SoftBox>
           </SoftBox>
         )}

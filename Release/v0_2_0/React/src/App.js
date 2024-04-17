@@ -131,11 +131,9 @@ export default function App() {
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}
           />
-          <Configurator />
-          {configsButton}
         </>
       )}
-      {layout === "vr" && <Configurator />}
+      {layout === "vr" }
       <Routes>
         <Route path="*" element={<Navigate to="/profile" />} />
         {getRoutes(routes)}
