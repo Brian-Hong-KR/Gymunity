@@ -38,36 +38,32 @@ function Dashboard() {
         <SoftBox mb={3}>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6} xl={3}>
-              <MiniStatisticsCard
-                title={{ text: '오늘 가입 유저 수' }}
-                count='100'
-                percentage={{ color: 'success', text: '+55%' }}
-                icon={{ color: 'info', component: 'paid' }}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6} xl={3}>
-              <MiniStatisticsCard
-                title={{ text: '오늘 활동 유저 수' }}
-                count='4320'
-                percentage={{ color: 'success', text: '+3%' }}
-                icon={{ color: 'info', component: 'public' }}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6} xl={3}>
               <Link to='/usermanage'>
                 <MiniStatisticsCard
-                  title={{ text: '총 유저 수' }}
-                  count='6000'
-                  percentage={{ color: 'error', text: '-2%' }}
+                  title={{ text: '유저 관리' }}
+                  icon={{ color: 'info', component: 'paid' }}
+                />
+              </Link>
+            </Grid>
+            <Grid item xs={12} sm={6} xl={3}>
+              <Link to='/point'>
+                <MiniStatisticsCard
+                  title={{ text: '유저 포인트 관리' }}
+                  icon={{ color: 'info', component: 'public' }}
+                />
+              </Link>
+            </Grid>
+            <Grid item xs={12} sm={6} xl={3}>
+              <Link to='/verify'>
+                <MiniStatisticsCard
+                  title={{ text: '사진 인증 관리' }}
                   icon={{ color: 'info', component: 'emoji_events' }}
                 />
               </Link>
             </Grid>
             <Grid item xs={12} sm={6} xl={3}>
               <MiniStatisticsCard
-                title={{ text: '오늘 탈퇴 유저 수' }}
-                count='100'
-                percentage={{ color: 'success', text: '+5%' }}
+                title={{ text: '추가할거 있나요???' }}
                 icon={{
                   color: 'info',
                   component: 'shopping_cart',
@@ -76,44 +72,7 @@ function Dashboard() {
             </Grid>
           </Grid>
         </SoftBox>
-        <SoftBox mb={3}>
-          <Grid container spacing={3}>
-            <Grid item xs={12} lg={7}>
-              <GradientLineChart
-                title='유저 회원가입 수'
-                description={
-                  <SoftBox display='flex' alignItems='center'>
-                    <SoftBox
-                      fontSize={size.lg}
-                      color='success'
-                      mb={0.3}
-                      mr={0.5}
-                      lineHeight={0}
-                    >
-                      <Icon className='font-bold'>arrow_upward</Icon>
-                    </SoftBox>
-                    <SoftTypography
-                      variant='button'
-                      color='text'
-                      fontWeight='medium'
-                    >
-                      11% more{' '}
-                      <SoftTypography
-                        variant='button'
-                        color='text'
-                        fontWeight='regular'
-                      >
-                        in 2024
-                      </SoftTypography>
-                    </SoftTypography>
-                  </SoftBox>
-                }
-                height='20.25rem'
-                chart={gradientLineChartData}
-              />
-            </Grid>
-          </Grid>
-        </SoftBox>
+        
       </SoftBox>
       <Footer />
     </DashboardLayout>

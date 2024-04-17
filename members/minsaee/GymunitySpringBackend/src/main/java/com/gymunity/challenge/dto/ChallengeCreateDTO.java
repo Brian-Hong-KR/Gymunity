@@ -1,6 +1,6 @@
 package com.gymunity.challenge.dto;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -14,12 +14,8 @@ public class ChallengeCreateDTO {
 	private int category;
 	private int bettingPoint;
 	private String preceed;
-	private LocalDateTime chStartDate;
-	private LocalDateTime chEndDate;
+	private LocalDate chStartDate;
+	private LocalDate chEndDate;
 	private int userId;
-	
-	// Member 정보
-	private double archiveRate;
-	private String registrant;
 
 }//end class

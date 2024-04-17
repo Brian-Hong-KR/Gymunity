@@ -22,9 +22,11 @@ import CreditCard from "examples/Icons/CreditCard";
 import ChallengeCreate from 'layouts/challenge/layout_create';
 import ChallengeDetail from 'layouts/challenge/layout_detail';
 import ChallengeVerify from 'layouts/challenge/layaout_verify';
-import PointPage from 'layouts/profile/info/PointPage';
+import PointPage from 'layouts/dashboard/info/PointPage';
 import PhotoPage from 'layouts/profile/info/PhotoPage';
 import UserManagePage from 'layouts/dashboard/info/UserManagePage';
+import VerifyPage from 'layouts/dashboard/info/VerifyPage';
+import ModifyPlanPage from 'layouts/profile/info/ModifyPlanPage';
 
 const routes = [
   {
@@ -118,6 +120,18 @@ const routes = [
     key: 'usermanage',
     route: '/usermanage',
     component: <UserManagePage />,
+  },
+
+  {
+    key: 'verify',
+    route: '/verify',
+    component: <VerifyPage />,
+  },
+
+  {
+    key: 'modifyPlan',
+    route: '/modifyPlan',
+    component: <ModifyPlanPage />,
   },
 ];
 

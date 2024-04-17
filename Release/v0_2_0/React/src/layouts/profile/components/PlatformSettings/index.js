@@ -29,20 +29,20 @@ function PlatformSettings() {
         <SoftBox mb={3}>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6} xl={3}>
-              <Link to='/point'>
-                <MiniStatisticsCard
-                  title={{ text: 'Point' }}
-                  count='530'
-                  icon={{ color: 'info', component: 'paid' }}
-                />
-              </Link>
+              <MiniStatisticsCard
+                title={{ text: 'Point' }}
+                count='530'
+                icon={{ color: 'info', component: 'paid' }}
+              />
             </Grid>
             <Grid item xs={12} sm={6} xl={3}>
-              <MiniStatisticsCard
-                title={{ text: 'Plan' }}
-                count='요요 다이어트'
-                icon={{ color: 'info', component: 'public' }}
-              />
+              <Link to='/modifyPlan'>
+                <MiniStatisticsCard
+                  title={{ text: 'Plan' }}
+                  count='요요 다이어트'
+                  icon={{ color: 'info', component: 'public' }}
+                />
+              </Link>
             </Grid>
             <Grid item xs={12} sm={6} xl={3}>
               <MiniStatisticsCard
