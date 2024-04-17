@@ -26,12 +26,21 @@ function getChallengeList(currentPage) {
   };
 }
 
+// //챌린지 생성하기
+// function getChallengeCreate(formData, config) {
+//   return async () => {
+//     await axios.post(`/challenge/create`, formData, config).then((response) => response.data);
+//   };
+// }
+
+
 //챌린지 생성하기
-function getChallengeCreate(formData, config) {
+function getChallengeCreate(formData) {
   return async () => {
-    await axios.post(`/challenge/create`, formData, config).then((response) => response.data);
+    await axios.post(`/challenge/create`, formData).then((response) => response.data);
   };
 }
+
 
 //챌린지 상세페이지
 // function getChallengeDetail(ch_id, config) {
@@ -66,6 +75,8 @@ function getChallengeUpdate(formData, config) {
     await axios.put(`/challenge/update`, formData, config).then((response) => response.data);
   };
 }
+
+
 
 //삭제하기
 // function getChallengeDelete(ch_id, config) {
