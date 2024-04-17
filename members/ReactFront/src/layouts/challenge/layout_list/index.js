@@ -31,6 +31,8 @@ function Challenge() {
   const getChallengeList = (currentPage) => {
     console.log("currentPage:", currentPage);
     dispatch(challengeActions.getChallengeList(currentPage));
+    // dispatch 함수를 인자로 전달
+    // getChallengeList(currentPage, dispatch);
   };
 
   const [isInitialRender, setIsInitialRender] = useState(true);

@@ -13,12 +13,12 @@ import { challengeReducers } from "../createSlice/challenge_createSlice";
 //   };
 // }
 function getChallengeList(currentPage) {
+  console.log(currentPage);
   return async (dispatch) => {
     try {
       const response = await axios.get(`/challenge/list/${currentPage}`);
-      const { challengeList, joinList } = response.data;
-
-      dispatch(challengeReducers.getChallengeList({ challengeList }));
+      const { challengeList, joinList, pv } = response.data;
+      dispatch(challengeReducers.getChallengeList({ challengeList, pv }));
       dispatch(challengeReducers.getJoinList({ joinList }));
     } catch (error) {
       console.error("챌린지 및 참여 목록 데이터를 가져오는 중 오류 발생:", error);
@@ -32,15 +32,12 @@ function getChallengeList(currentPage) {
 //     await axios.post(`/challenge/create`, formData, config).then((response) => response.data);
 //   };
 // }
-
-
 //챌린지 생성하기
 function getChallengeCreate(formData) {
   return async () => {
     await axios.post(`/challenge/create`, formData).then((response) => response.data);
   };
 }
-
 
 //챌린지 상세페이지
 // function getChallengeDetail(ch_id, config) {
@@ -75,8 +72,6 @@ function getChallengeUpdate(formData, config) {
     await axios.put(`/challenge/update`, formData, config).then((response) => response.data);
   };
 }
-
-
 
 //삭제하기
 // function getChallengeDelete(ch_id, config) {
