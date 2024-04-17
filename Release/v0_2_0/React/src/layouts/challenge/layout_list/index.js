@@ -1,17 +1,16 @@
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
+import { challengeActions } from "../toolkit/actions/challenge_actions";
 
 // @mui material components
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 
-// @mui icons
-import FacebookIcon from "@mui/icons-material/Facebook";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import InstagramIcon from "@mui/icons-material/Instagram";
-
 // Soft UI Dashboard React components
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
+import SoftPagination from "components/SoftPagination";
 
 // Soft UI Dashboard React examples
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
@@ -24,30 +23,35 @@ import Header from "./../components/Header/index";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 // Images
-import categoryToLoseWeight from "assets/images/category/category_toloseweight.jpg";
-import categoryToIncreaseMuscle from "assets/images/category/category_toincreasemuscle.jpg";
-import categoryPhsicalStrength from "assets/images/category/category_physicalstrength.jpg";
-import categoryDiet from "assets/images/category/category_diet.jpg";
 
 function Challenge() {
-  const category_input = 1;
-  function handleCategory(category_input) {
-    if ((category_input = 1)) {
-      category = "체지방 감소";
-      image = { categoryToLoseWeight };
-    } else if ((category_input = 2)) {
-      category = "근육량 증가";
-      image = { categoryToIncreaseMuscle };
-    } else {
-      category = "종합 건강 증진";
-      image = { categoryPhsicalStrength };
+  const { currentPage = 1 } = useParams();
+  const dispatch = useDispatch();
+
+  const getChallengeList = (currentPage) => {
+    console.log("currentPage:", currentPage);
+    dispatch(challengeActions.getChallengeList(currentPage));
+  };
+
+  const [isInitialRender, setIsInitialRender] = useState(true);
+
+  useEffect(() => {
+    if (isInitialRender && currentPage) {
+      getChallengeList(currentPage);
+      setIsInitialRender(false);
     }
-  }
+  }, [currentPage, isInitialRender]);
+
+  const challengeList = useSelector((state) => state.challenge.challengeList || []);
+  const joinList = useSelector((state) => state.challenge.joinList || []);
+  console.log("joinList:", joinList);
+
+  const pv = useSelector((state) => state.challenge.pv || {});
 
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <Header />
+     
       <SoftBox mt={5} mb={3}></SoftBox>
       <SoftBox mb={3}>
         <Card>
@@ -65,41 +69,27 @@ function Challenge() {
           </SoftBox>
           <SoftBox p={2}>
             <Grid container spacing={3}>
-              <Grid item xs={12} md={6} xl={3}>
-                <DefaultProjectCard
-                  ch_id="1"
-                  category="체지방 감소"
-                  image={categoryToLoseWeight}
-                  title="매일 러닝머신 30분"
-                  master="뱃살대마왕"
-                  master_grade="bronze"
-                  total_participants="3"
-                  verify_frequency="매일"
-                  challenge_term="4주간"
-                  action={{
-                    type: "joined",
-                    proceed: "pr",
-                    color: "info",
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12} md={6} xl={3}>
-                <DefaultProjectCard
-                  ch_id="1"
-                  category="다이어트"
-                  image={categoryDiet}
-                  title="점심 식단 인증"
-                  master="뱃살대마왕"
-                  master_grade="bronze"
-                  total_participants="3"
-                  verify_frequency="매일"
-                  challenge_term="4주간"
-                  action={{
-                    type: "joined",
-                    color: "info",
-                  }}
-                />
-              </Grid>
+              {challengeList &&
+                challengeList.map((challenge) => {
+                  // joinList에서 현재 challenge의 ch_id가 있는지 확인
+                  const isJoined = joinList.some((join) => join.ch_id === challenge.ch_id);
+
+                  // 일치하는 ch_id가 있으면 DefaultProjectCard를 표시
+                  if (isJoined) {
+                    return (
+                      <Grid item xs={12} md={6} xl={3} key={challenge.ch_id}>
+                        <DefaultProjectCard
+                          challenge={challenge}
+                          // joinType={joinType}
+                        />
+                      </Grid>
+                    );
+                  } else {
+                    // 일치하는 ch_id가 없으면 아무것도 표시하지 않음
+                    return null;
+                  }
+                })}
+
               <Grid item xs={12} md={6} xl={3} component={Link} to="/challenge/create">
                 <PlaceholderCard title={{ variant: "h5", text: "챌린지 만들기" }} outlined />
               </Grid>
@@ -122,140 +112,19 @@ function Challenge() {
           </SoftBox>
           <SoftBox p={2}>
             <Grid container spacing={3}>
-              <Grid item xs={12} md={6} xl={3}>
-                <DefaultProjectCard
-                  image={categoryToLoseWeight}
-                  category="다이어트"
-                  title="매일 러닝머신 30분"
-                  master="뱃살대마왕"
-                  master_grade="bronze"
-                  total_participants="3"
-                  verify_frequency="매일"
-                  challenge_term="4주간"
-                  action={{
-                    type: "ongoing",
-                    color: "info",
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12} md={6} xl={3}>
-                <DefaultProjectCard
-                  image={categoryToIncreaseMuscle}
-                  category="체력 증진"
-                  title="주말 등산 1회"
-                  master_grade="bronze"
-                  total_participants="3"
-                  verify_frequency="매일"
-                  challenge_term="4주간"
-                  action={{
-                    type: "ongoing",
-                    route: "/challenge/list/1",
-                    color: "info",
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12} md={6} xl={3}>
-                <DefaultProjectCard
-                  image={categoryPhsicalStrength}
-                  category="체력 증진"
-                  title="주 3회 헬스장 가기"
-                  master_grade="bronze"
-                  total_participants="3"
-                  verify_frequency="매일"
-                  challenge_term="4주간"
-                  action={{
-                    type: "ongoing",
-                    route: "/challenge/list/1",
-                    color: "info",
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12} md={6} xl={3}>
-                <DefaultProjectCard
-                  image={categoryPhsicalStrength}
-                  label="체력 증진"
-                  title="주 3회 헬스장 가기"
-                  master_grade="bronze"
-                  total_participants="3"
-                  verify_frequency="매일"
-                  challenge_term="4주간"
-                  action={{
-                    type: "ongoing",
-                    route: "/challenge/list/1",
-                    color: "info",
-                  }}
-                />
-              </Grid>
-            </Grid>
-            <SoftBox mt={5} mb={3}></SoftBox>
-            <Grid container spacing={3}>
-              <Grid item xs={12} md={6} xl={3}>
-                <DefaultProjectCard
-                  image={categoryToLoseWeight}
-                  label="체지방 감소"
-                  title="매일 러닝머신 30분"
-                  master_grade="bronze"
-                  total_participants="3"
-                  verify_frequency="매일"
-                  challenge_term="4주간"
-                  action={{
-                    type: "ongoing",
-                    route: "/challenge/list/1",
-                    color: "info",
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12} md={6} xl={3}>
-                <DefaultProjectCard
-                  image={categoryPhsicalStrength}
-                  label="체력 증진"
-                  title="주말 등산 1회"
-                  master_grade="bronze"
-                  total_participants="3"
-                  verify_frequency="매일"
-                  challenge_term="4주간"
-                  action={{
-                    type: "ongoing",
-                    route: "/challenge/list/1",
-                    color: "info",
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12} md={6} xl={3}>
-                <DefaultProjectCard
-                  image={categoryPhsicalStrength}
-                  label="체력 증진"
-                  title="주 3회 헬스장 가기"
-                  master_grade="bronze"
-                  total_participants="3"
-                  verify_frequency="매일"
-                  challenge_term="4주간"
-                  action={{
-                    type: "ongoing",
-                    route: "/challenge/list/1",
-                    color: "info",
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12} md={6} xl={3}>
-                <DefaultProjectCard
-                  image={categoryPhsicalStrength}
-                  label="체력 증진"
-                  title="주 3회 헬스장 가기"
-                  master_grade="bronze"
-                  total_participants="3"
-                  verify_frequency="매일"
-                  challenge_term="4주간"
-                  action={{
-                    type: "ongoing",
-                    route: "/challenge/list/1",
-                    color: "info",
-                  }}
-                />
-              </Grid>
+              {challengeList &&
+                challengeList.map((challenge) => {
+                  return (
+                    <Grid item xs={12} md={6} xl={3}>
+                      <DefaultProjectCard challenge={challenge} key={challenge.ch_id} />
+                    </Grid>
+                  );
+                })}
             </Grid>
           </SoftBox>
         </Card>
+        {/* TODO SoftPagination 설정 */}
+        {pv && <SoftPagination getChallengeList={getChallengeList} />}
       </SoftBox>
 
       <Footer />

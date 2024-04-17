@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { challengeActions } from "../toolkit/actions/challenge_actions";
 
 // @mui icons
@@ -63,162 +63,72 @@ function ChallengeDetail() {
     <DashboardLayout>
       <Header />
       <SoftBox py={3}>
-        <SoftBox mb={3}>
-          <SoftBox>
-            <Grid display="flex" alignItems="center" container spacing={3}>
-              <img src={challengeDetail.image} alt="category" />
+        <Card>
+          <SoftBox p={3}>
+            <SoftTypography variant="h3" align="center" gutterBottom>
+              {challengeDetail.title}
+            </SoftTypography>
+          </SoftBox>
+
+          <SoftBox p={3} textAlign="center">
+            <Grid container spacing={3} justifyContent="center">
+              <Grid item xs={6} sm={4}>
+                <SoftTypography component="label" variant="caption" fontWeight="bold">
+                  챌린지 유형
+                </SoftTypography>
+                <SoftTypography variant="body1">{challengeDetail.category}</SoftTypography>
+              </Grid>
+              <Grid item xs={6} sm={4}>
+                <SoftTypography component="label" variant="caption" fontWeight="bold">
+                  챌린지 시작일
+                </SoftTypography>
+                <SoftTypography variant="body1">{challengeDetail.ch_start_date}</SoftTypography>
+              </Grid>
+              <Grid item xs={6} sm={4}>
+                <SoftTypography component="label" variant="caption" fontWeight="bold">
+                  챌린지 기간
+                </SoftTypography>
+                <SoftTypography variant="body1">{challengeDetail.challenge_term}</SoftTypography>
+              </Grid>
+              <Grid item xs={6} sm={4}>
+                <SoftTypography component="label" variant="caption" fontWeight="bold">
+                  배팅 포인트
+                </SoftTypography>
+                <SoftTypography variant="body1">{challengeDetail.batting_point}</SoftTypography>
+              </Grid>
+              <Grid item xs={6} sm={4}>
+                <SoftTypography component="label" variant="caption" fontWeight="bold">
+                  인증 빈도
+                </SoftTypography>
+                <SoftTypography variant="body1">{challengeDetail.verify_frequency}</SoftTypography>
+              </Grid>
             </Grid>
-          </SoftBox>
-          <SoftBox>
-            <SoftTypography variant="h3">공유하기</SoftTypography>
-            <Socials />
-          </SoftBox>
-          <Card>
-            <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
-              <SoftTypography variant="h3">{challengeDetail.title}</SoftTypography>
+
+            <SoftBox mt={6} textAlign="center">
+              {localStorageUserID === challengeDetail.user_id ? (
+                <>
+                  <Link className="btn btn-primary" to={`/challenge/update/${ch_id}`}>
+                    수정
+                  </Link>
+                  <button className="btn btn-primary" onClick={handleDelete}>
+                    삭제
+                  </button>
+                </>
+              ) : (
+                <>
+                  <SoftButton variant="gradient" color="info" onClick={handleJoinButtonClick}>
+                    참여하기
+                  </SoftButton>
+                  {showAlert && (
+                    <SoftAlert color="success" dismissible onClose={handleAlertClose}>
+                      참여 완료! 챌린지를 끝까지 완수해보세요.
+                    </SoftAlert>
+                  )}
+                </>
+              )}
             </SoftBox>
-            <SoftBox
-              sx={{
-                "& .MuiTableRow-root:not(:last-child)": {
-                  "& td": {
-                    borderBottom: ({ borders: { borderWidth, borderColor } }) =>
-                      `${borderWidth[1]} solid ${borderColor}`,
-                  },
-                },
-              }}
-            >
-              <SoftBox mb={2}>
-                <SoftBox mb={1} ml={0.5}>
-                  <SoftTypography component="label" variant="caption" fontWeight="bold">
-                    챌린지 유형
-                  </SoftTypography>
-                </SoftBox>
-                <SoftBox mb={1} ml={0.5}>
-                  <SoftTypography component="label" variant="caption" fontWeight="bold">
-                    {challengeDetail.category}
-                  </SoftTypography>
-                </SoftBox>
-              </SoftBox>
-
-              <SoftBox mb={2}>
-                <SoftBox mb={1} ml={0.5}>
-                  <SoftTypography component="label" variant="caption" fontWeight="bold">
-                    챌린지 시작일
-                  </SoftTypography>
-                </SoftBox>
-                <SoftBox mb={1} ml={0.5}>
-                  <SoftTypography component="label" variant="caption" fontWeight="bold">
-                    {challengeDetail.ch_start_date}
-                  </SoftTypography>
-                </SoftBox>
-              </SoftBox>
-
-              <SoftBox mb={2}>
-                <SoftBox mb={1} ml={0.5}>
-                  <SoftTypography component="label" variant="caption" fontWeight="bold">
-                    챌린지 기간
-                  </SoftTypography>
-                </SoftBox>
-                <SoftBox mb={1} ml={0.5}>
-                  <SoftTypography component="label" variant="caption" fontWeight="bold">
-                    {challengeDetail.challenge_term}
-                  </SoftTypography>
-                </SoftBox>
-              </SoftBox>
-
-              <SoftBox mb={2}>
-                <SoftBox mb={1} ml={0.5}>
-                  <SoftTypography component="label" variant="caption" fontWeight="bold">
-                    예치 포인트
-                  </SoftTypography>
-                </SoftBox>
-                <SoftBox mb={1} ml={0.5}>
-                  <SoftTypography component="label" variant="caption" fontWeight="bold">
-                    {challengeDetail.batting_point}
-                  </SoftTypography>
-                </SoftBox>
-              </SoftBox>
-
-              <SoftBox mb={2}>
-                <SoftBox mb={1} ml={0.5}>
-                  <SoftTypography component="label" variant="caption" fontWeight="bold">
-                    인증 빈도
-                  </SoftTypography>
-                </SoftBox>
-                <SoftBox mb={1} ml={0.5}>
-                  <SoftTypography component="label" variant="caption" fontWeight="bold">
-                    {challengeDetail.verify_frequency}
-                  </SoftTypography>
-                </SoftBox>
-              </SoftBox>
-
-              <SoftBox mb={2}>
-                <SoftBox mb={1} ml={0.5}>
-                  <SoftTypography component="label" variant="caption" fontWeight="bold">
-                    인증 횟수
-                  </SoftTypography>
-                </SoftBox>
-                <SoftBox mb={1} ml={0.5}>
-                  <SoftTypography component="label" variant="caption" fontWeight="bold">
-                    {challengeDetail.verify_times}
-                  </SoftTypography>
-                </SoftBox>
-              </SoftBox>
-
-              <SoftBox mb={2}>
-                <SoftBox mb={1} ml={0.5}>
-                  <SoftTypography component="label" variant="caption" fontWeight="bold">
-                    인증 방법
-                  </SoftTypography>
-                </SoftBox>
-                <SoftBox mb={1} ml={0.5}>
-                  <SoftTypography component="label" variant="caption" fontWeight="bold">
-                    {challengeDetail.verify_explain}
-                  </SoftTypography>
-                </SoftBox>
-              </SoftBox>
-
-              <SoftBox mb={2}>
-                <SoftBox mb={1} ml={0.5}>
-                  <SoftTypography component="label" variant="caption" fontWeight="bold">
-                    인증 예시
-                  </SoftTypography>
-                </SoftBox>
-                <SoftBox mb={1} ml={0.5}>
-                  <Grid display="flex" alignItems="center" container spacing={3}>
-                    <img src={challengeDetail.verify_example1} alt="category" />
-                  </Grid>
-                  <Grid display="flex" alignItems="center" container spacing={3}>
-                    <img src={challengeDetail.verify_example1} alt="category" />
-                  </Grid>
-                </SoftBox>
-              </SoftBox>
-              <SoftBox mt={4} mb={1}>
-                {localStorageUserID === challengeDetail.user_id ? (
-                  <>
-                    <Link className="btn btn-primary" to={`/challenge/update/${ch_id}`}>
-                      수정
-                    </Link>
-                    <button className="btn btn-primary" onClick={handleDelete}>
-                      삭제
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <SoftButton variant="gradient" color="info" onClick={handleJoinButtonClick}>
-                      참여하기
-                    </SoftButton>
-                    {showAlert && (
-                      <SoftAlert color="success" dismissible onClose={handleAlertClose}>
-                        참여 완료! 챌린지를 끝까지 완수해보세요.
-                      </SoftAlert>
-                    )}
-                  </>
-                )}
-              </SoftBox>
-            </SoftBox>
-          </Card>
-        </SoftBox>
+          </SoftBox>
+        </Card>
       </SoftBox>
       <Footer />
     </DashboardLayout>

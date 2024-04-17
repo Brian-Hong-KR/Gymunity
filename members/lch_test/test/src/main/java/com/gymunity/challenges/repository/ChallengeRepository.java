@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.gymunity.challenges.dto.ChallengeDTO;
 import com.gymunity.challenges.dto.MemDTO;
 import com.gymunity.challenges.dto.PageDTO;
+import com.gymunity.challenges.dto.ProfileDTO;
 
 @Mapper
 @Repository
@@ -18,7 +19,7 @@ public interface ChallengeRepository {
 
 	public List<ChallengeDTO> list(PageDTO pv);
 	
-	public List<ChallengeDTO> joinList(int user_id);
+	public List<ProfileDTO> joinList(int user_id);
 
 	public ChallengeDTO content(int ch_code);
 

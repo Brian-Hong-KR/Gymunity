@@ -17,12 +17,19 @@ import Document from "examples/Icons/Document";
 import SpaceShip from "examples/Icons/SpaceShip";
 import CustomerSupport from "examples/Icons/CustomerSupport";
 import CreditCard from "examples/Icons/CreditCard";
+
+
 import ChallengeCreate from 'layouts/challenge/layout_create';
 import ChallengeDetail from 'layouts/challenge/layout_detail';
 import ChallengeVerify from 'layouts/challenge/layaout_verify';
-import PointPage from 'layouts/profile/info/PointPage';
+import PointPage from 'layouts/dashboard/info/PointPage';
 import PhotoPage from 'layouts/profile/info/PhotoPage';
 import UserManagePage from 'layouts/dashboard/info/UserManagePage';
+import VerifyPage from 'layouts/dashboard/info/VerifyPage';
+import ModifyPlanPage from 'layouts/profile/info/ModifyPlanPage';
+import MainPage from "layouts/main";
+import Survey from "layouts/authentication/survey";
+import PlanPage from "layouts/authentication/plan";
 
 const routes = [
   {
@@ -30,7 +37,7 @@ const routes = [
     name: 'My Page',
     key: 'profile',
     route: '/profile',
-    icon: <CustomerSupport size='12px' />,
+    icon: <CreditCard size='12px' />,
     component: <Profile />,
     noCollapse: true,
   },
@@ -47,8 +54,8 @@ const routes = [
     type: 'collapse',
     name: 'Challenge',
     key: 'Challenge',
-    route: '/Challenge',
-    icon: <Office size='12px' />,
+    route: '/Challenge/list/1',
+    icon: <SpaceShip size='12px' />,
     component: <Challenge />,
     noCollapse: true,
   },
@@ -57,35 +64,27 @@ const routes = [
     name: 'Store',
     key: 'billing',
     route: '/billing',
-    icon: <CreditCard size='12px' />,
+    icon: <Shop size='12px' />,
     component: <Billing />,
     noCollapse: true,
   },
 
   {
-    type: 'collapse',
-    name: 'Sign In',
     key: 'sign-in',
     route: '/authentication/sign-in',
-    icon: <Document size='12px' />,
     component: <SignIn />,
-    noCollapse: true,
   },
   {
-    type: 'collapse',
-    name: 'Sign Up',
     key: 'sign-up',
     route: '/authentication/sign-up',
-    icon: <SpaceShip size='12px' />,
     component: <SignUp />,
-    noCollapse: true,
   },
   {
     type: 'collapse',
     name: 'Admin',
     key: 'dashboard',
     route: '/dashboard',
-    icon: <Shop size='12px' />,
+    icon: <CustomerSupport size='12px' />,
     component: <Dashboard />,
     noCollapse: true,
   },
@@ -97,14 +96,13 @@ const routes = [
   },
 
   {
-    key: 'ChallengeDetail',
-    route: 'challenge/1/detail',
+    key: "ChallengeDetail",
+    route: "/challenge/detail/:ch_id",
     component: <ChallengeDetail />,
   },
-
   {
-    key: 'ChallengeVerify',
-    route: 'challenge/1/verify',
+    key: "ChallengeVerify",
+    route: "/challenge/verify/:ch_id",
     component: <ChallengeVerify />,
   },
 
@@ -124,6 +122,40 @@ const routes = [
     key: 'usermanage',
     route: '/usermanage',
     component: <UserManagePage />,
+  },
+
+  {
+    key: 'verify',
+    route: '/verify',
+    component: <VerifyPage />,
+  },
+
+  {
+    key: 'modifyPlan',
+    route: '/modifyPlan',
+    component: <ModifyPlanPage />,
+  },
+
+  {
+    key: "main",
+    route: "/main",
+    component: <MainPage />,
+  },
+
+  {
+    type: "collapse",
+    name: "Admin",
+    key: "survey",
+    route: "/authentication/survey",
+    icon: <Shop size="12px" />,
+    component: <Survey />,
+    noCollapse: true,
+  },
+
+  {
+    key: "PlanPage",
+    route: "/authentication/plan",
+    component: <PlanPage />,
   },
 ];
 

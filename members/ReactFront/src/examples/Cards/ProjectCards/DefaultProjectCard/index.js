@@ -19,8 +19,9 @@ import typography from "assets/theme/base/typography";
 import categoryToLoseWeight from "assets/images/category/category_toloseweight.jpg";
 import categoryToIncreaseMuscle from "assets/images/category/category_toincreasemuscle.jpg";
 import categoryPhsicalStrength from "assets/images/category/category_physicalstrength.jpg";
+import { useEffect } from "react";
 
-function DefaultProjectCard({ challenge }) {
+function DefaultProjectCard({ challenge, extendedChallenge }) {
   //카테고리명 변환
   let image;
   let category;
@@ -36,17 +37,19 @@ function DefaultProjectCard({ challenge }) {
   }
 
   // 참여 여부 구분 81번 나나
-  const extendedChallenge = {
-    ...challenge,
-    type:
-      challenge.ch_id === challenge.ch_id1 || challenge.ch_id === challenge.ch_id2
-        ? "joined"
-        : "none",
-    color:
-      challenge.ch_id === challenge.ch_id1 || challenge.ch_id === challenge.ch_id2
-        ? "primary"
-        : "info",
-  };
+  useEffect(() => {
+    setExtendedChallenge({
+      ...challenge,
+      type:
+        challenge.ch_id === challenge.ch_id1 || challenge.ch_id === challenge.ch_id2
+          ? "joined"
+          : "none",
+      color:
+        challenge.ch_id === challenge.ch_id1 || challenge.ch_id === challenge.ch_id2
+          ? "primary"
+          : "info",
+    });
+  }, [challenge, setExtendedChallenge]);
 
   return (
     <Card

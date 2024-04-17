@@ -25,6 +25,14 @@
 		SET last_signin = #{lastSignin}
 		WHERE user_id = #{userId};
 	</update>
+	
+	<!-- userId로 users 조회-->
+	<select id="selectUsersByUserId" parameterType="int"
+		resultMap="userResultMap">
+		SELECT *
+		FROM users
+		WHERE user_id = #{userId}
+	</select>
 
 </mapper>
 <!-- 

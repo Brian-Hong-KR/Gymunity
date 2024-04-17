@@ -34,10 +34,12 @@ import team1 from "assets/images/team-1.jpg";
 import team2 from "assets/images/team-2.jpg";
 import team3 from "assets/images/team-3.jpg";
 import team4 from "assets/images/team-4.jpg";
+import DashboardNavbar from 'examples/Navbars/DashboardNavbar';
 
 function Overview() {
   return (
     <DashboardLayout>
+      <DashboardNavbar />
       <Header />
       <SoftBox mt={5} mb={3}>
         <Grid>

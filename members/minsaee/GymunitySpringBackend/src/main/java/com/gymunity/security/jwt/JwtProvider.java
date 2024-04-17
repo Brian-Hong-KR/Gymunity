@@ -36,9 +36,8 @@ public class JwtProvider {
 	// AccessToken 생성
 	public static String createAccessToken(Integer userId) {
 		Map<String, Object> claims = new HashMap<>(); // JWT 클레임 설정
-		claims.put("userId", userId); // 사용자 계정 ID를 클레임에 포함
+		claims.put("userId", userId); // 사용자 ID를 클레임에 포함
 
-		// 발행시간(issuedAt) HS512 알고리즘을 사용하여 서명(sighWith) 토큰의 주제 설정 (subject)
 		return Jwts.builder().claims(claims).issuedAt(new Date(System.currentTimeMillis()))
 				.expiration(new Date(System.currentTimeMillis() + JwtProperties.EXPIRATION_TIME))
 				.signWith(key, Jwts.SIG.HS512).subject("accessToken").compact();
@@ -47,7 +46,8 @@ public class JwtProvider {
 	// RefreshToken 생성
 	public static String createRefreshToken(Integer userId) {
 		Map<String, Object> claims = new HashMap<>();
-		claims.put("userId", String.valueOf(userId));
+//		claims.put("userId", String.valueOf(userId));
+		claims.put("userId", userId);
 
 		String refreshToken = Jwts.builder().claims(claims).issuedAt(new Date(System.currentTimeMillis()))
 				.expiration(new Date(System.currentTimeMillis() + JwtProperties.REFRESH_EXPIRATION_TIME))

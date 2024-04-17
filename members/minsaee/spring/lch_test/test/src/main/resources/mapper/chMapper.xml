@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gymunity.challenges.repository.ChallengeRepository">
+	
+  <select id="count" resultType="int">
+	SELECT count(*) FROM challenges     
+  </select>
+  
+  <select id="list" resultType="ChallengeDTO" parameterType="PageDTO">
+	SELECT c.*, u.nick_name, u.grade_name, u.admin_yn
+	FROM challenges c
+	JOIN users u ON c.user_id = u.user_id
+	ORDER BY FIELD(c.proceed, 'rec', 'pr', 'done'), c.ch_id DESC
+	LIMIT #{startRow}, #{blockCount}
+  </select>
+  
+  <select id="joinList" resultType="ProfileDTO" parameterType="int">
+	SELECT ch_id1, ch_id2
+	FROM profiles
+	WHERE user_id=#{user_id}
+  </select>
+  
+  <!-- 챌린지 등.참여시 프로필에 업데이트-->
+  <update id="saveUserUpdate" parameterType="int">
+	UPDATE profiles
+	SET ch_id=#{ch_id}
+	WHERE user_id=#{user_id}
+  </update>
+
+ 
+  <insert id="save" parameterType="ChallengeDTO">
+	INSERT INTO challenges
+	(user_id, grade_id, regist_date, ch_start_date, ch_end_date, category, title, content, proceed)
+  	VALUES (#{user_id}, #{grade_id}, CURRENT_TIMESTAMP, #{ch_start_date}, #{ch_end_date}, #{category}, #{title}, #{content}, #{proceed}})
+  </insert>
+  
+  <!-- java.sql.Date 타입에서 LocalDate 타입 객체로 변환 -->
+   <resultMap id="challengeResultMap" type="ChallengeDTO">
+   <id column="ch_id" property="ch_id" />
+  	<result column="title" property="title" />
+  	<result column="ch_start_date" property="ch_start_date" typeHandler="org.apache.ibatis.type.LocalDateTypeHandler" />
+ 	 <result column="ch_end_date" property="ch_end_date" typeHandler="org.apache.ibatis.type.LocalDateTypeHandler" />
+   </resultMap>
+  
+  <select id="content" parameterType="int" resultType="ChallengeDTO">
+	SELECT * FROM challenges
+	WHERE ch_id=#{ch_id}
+  </select>
+  
+  <update id="update" parameterType="ChallengeDTO">
+	UPDATE challenges
+	SET ch_start_date=#{ch_start_date}, ch_end_date=#{ch_end_date}, category=#{category}, title=#{title}, content=#{content}
+	WHERE ch_id=#{ch_id}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+	DELETE FROM challenges
+	WHERE ch_id=#{ch_id}
+  </delete>
+  
+  <update id="countCH" parameterType="int"> 
+	 UPDATE challenges
+	 SET count= count + 1
+	 WHERE ch_id=#{ch_id}
+  </update> 
+  
+ <select id="totalP" parameterType="int">
+	SELECT total_participants
+	FROM challenges
+	WHERE ch_id = #{ch_id}
+  </select>
+
+
+</mapper>   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

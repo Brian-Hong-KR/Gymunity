@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from 'react';
+
 // @mui material components
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
@@ -6,6 +8,8 @@ import Grid from "@mui/material/Grid";
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
+import SoftInput from "components/SoftInput";
+import SoftAlert from "components/SoftAlert";
 
 // prop-types is a library for typechecking of props
 import PropTypes from "prop-types";
@@ -26,7 +30,6 @@ import categoryToLoseWeight from "assets/images/category/category_toloseweight.j
 
 // Overview page components
 import Header from "../components/Header/index";
-import SoftInput from "components/SoftInput";
 
 function ChallengeVerify({
   category,
@@ -59,21 +62,47 @@ function ChallengeVerify({
     verify_example2: require("assets/images/category/category_toloseweight.jpg"),
   };
 
+  const [showAlert, setShowAlert] = useState(false); // SoftAlert의 표시 여부를 관리할 상태
+
+  // SoftButton 클릭 시 SoftAlert을 보여주는 함수
+  const handleVerifyButtonClick = () => {
+    setShowAlert(true); // showAlert 상태를 true로 변경하여 SoftAlert을 보이도록 설정
+  };
+
+  // SoftAlert의 닫기 버튼 클릭 시 SoftAlert을 닫는 함수
+  const handleAlertClose = () => {
+    setShowAlert(false); // showAlert 상태를 false로 변경하여 SoftAlert을 숨기도록 설정
+  };
+
+  useEffect(() => {
+    if (showAlert) {
+      const timeout = setTimeout(() => {
+        setShowAlert(false);
+      }, 1000);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [showAlert]);
+
+
+
   return (
     <DashboardLayout>
-      <Header />
-      <Card>
-        <SoftBox mb={2}>
-          <SoftBox mb={1} ml={0.5}>
-            <SoftTypography component="label" variant="caption" fontWeight="bold">
-              첫 번째 인증사진을 등록하세요.
-            </SoftTypography>
-          </SoftBox>
+       <DashboardNavbar/>
+      <div style={{ marginBottom: '30px' }}></div> {/* 헤더와 카드 사이 간격 조정 */}
+      <Card style={{ textAlign: 'center' }}>
+        
+        <SoftBox mb={2} style={{ width: '400px' , margin: '0 auto' }}>
+        <SoftBox mb={1} ml={1.5}>
+        <SoftTypography component="label" variant="caption" fontWeight="bold">
+          첫 번째 인증사진을 등록하세요.
+        </SoftTypography>
+       </SoftBox>
           <SoftInput type="file" placeholder="파일 선택" />
-        </SoftBox>
+       </SoftBox>
 
-        <SoftBox mb={2}>
-          <SoftBox mb={1} ml={0.5}>
+       <SoftBox mb={2} style={{ width: '400px' , margin: '0 auto' }}>
+          <SoftBox mb={1} ml={1.5}>
             <SoftTypography component="label" variant="caption" fontWeight="bold">
               두 번째 인증사진을 등록하세요.
             </SoftTypography>
@@ -82,9 +111,17 @@ function ChallengeVerify({
         </SoftBox>
 
         <SoftBox mt={4} mb={1}>
-          <SoftButton variant="gradient" color="info" fullWidth>
+          <SoftButton variant="gradient" color="info" fullWidth onClick={handleVerifyButtonClick} >
             인증하기
           </SoftButton>
+          {showAlert && (
+            <SoftBox style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
+            <SoftAlert color="success" dismissible onClose={handleAlertClose}
+            >  
+              인증이 완료되었습니다.
+            </SoftAlert>
+            </SoftBox>
+          )}
         </SoftBox>
       </Card>
     </DashboardLayout>

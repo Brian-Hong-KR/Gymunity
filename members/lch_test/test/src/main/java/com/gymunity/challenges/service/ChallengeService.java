@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.gymunity.challenges.dto.ChallengeDTO;
 import com.gymunity.challenges.dto.PageDTO;
+import com.gymunity.challenges.dto.ProfileDTO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -15,7 +16,7 @@ public interface ChallengeService {
 
 	public int countProcess(); 
 	public List<ChallengeDTO> listProcess(PageDTO pv);
-	public List<ChallengeDTO> joinListProcess(int user_id);
+	public List<ProfileDTO> joinListProcess(int user_id);
 	public void insertProcess(ChallengeDTO dto);
 	public ChallengeDTO contentProcess(int num);
 	public void updateProcess(ChallengeDTO dto);

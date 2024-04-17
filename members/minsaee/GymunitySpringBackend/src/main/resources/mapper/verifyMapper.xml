@@ -3,17 +3,17 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.gymunity.challenges.repository.VerifyRepository">
+<mapper namespace="com.gymunity.challenge.repository.VerifyMapper">
 
 
-	<insert id="verph" parameterType="VerifyDTO">
+	<insert id="verph" parameterType="Verify">
 	 INSERT INTO verify
 	 (vi_user_id, vi_ch_id, upload1, upload2, result)
 	 VALUES (#{vi_user_id}, #{vi_ch_id}, #{upload1}, #{upload2}, 'Y')
   	</insert>
 
 <!-- 인증 Y값 카운트 -->
-<select id="countVerified" parameterType="VerifyDTO">
+<select id="countVerified" parameterType="Verify">
     SELECT COUNT(*) AS verified_count
     FROM challenges c
     INNER JOIN verify v ON c.ch_id = v.vi_ch_id
@@ -21,7 +21,7 @@
 </select>
 
 
-<update id="updateMemRate" parameterType="VerifyDTO">
+<update id="updateMemRate" parameterType="Verify">
     UPDATE members m
     JOIN (
         SELECT 
