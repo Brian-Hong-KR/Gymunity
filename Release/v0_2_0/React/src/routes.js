@@ -27,6 +27,9 @@ import PhotoPage from 'layouts/profile/info/PhotoPage';
 import UserManagePage from 'layouts/dashboard/info/UserManagePage';
 import VerifyPage from 'layouts/dashboard/info/VerifyPage';
 import ModifyPlanPage from 'layouts/profile/info/ModifyPlanPage';
+import MainPage from "layouts/main";
+import Survey from "layouts/authentication/survey";
+import PlanPage from "layouts/authentication/plan";
 
 const routes = [
   {
@@ -131,6 +134,28 @@ const routes = [
     key: 'modifyPlan',
     route: '/modifyPlan',
     component: <ModifyPlanPage />,
+  },
+
+  {
+    key: "main",
+    route: "/main",
+    component: <MainPage />,
+  },
+
+  {
+    type: "collapse",
+    name: "Admin",
+    key: "survey",
+    route: "/authentication/survey",
+    icon: <Shop size="12px" />,
+    component: <Survey />,
+    noCollapse: true,
+  },
+
+  {
+    key: "PlanPage",
+    route: "/authentication/plan",
+    component: <PlanPage />,
   },
 ];
 
