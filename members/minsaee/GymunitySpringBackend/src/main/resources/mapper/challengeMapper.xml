@@ -26,6 +26,14 @@
   <select id="count" resultType="int">
 	SELECT count(*) FROM challenges     
   </select>
+  
+  <!-- 챌린지 삭제-->
+  <!-- challenges 테이블에 데이터 삭제-->
+  <delete id="deleteChallenges" parameterType="int">
+	DELETE FROM challenges
+	WHERE ch_id=#{ch_id}
+  </delete>
+  
   <!-- 
   <select id="list" resultType="Challenge" parameterType="PageDTO">
 	SELECT c.*
