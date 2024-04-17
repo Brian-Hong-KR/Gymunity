@@ -24,6 +24,7 @@ import com.gymunity.challenges.dto.ChallengeDTO;
 import com.gymunity.challenges.dto.MemDTO;
 import com.gymunity.challenges.dto.PageDTO;
 import com.gymunity.challenges.dto.PointDTO;
+import com.gymunity.challenges.dto.ProfileDTO;
 import com.gymunity.challenges.file.FileUpload;
 import com.gymunity.challenges.service.ChallengeService;
 import com.gymunity.challenges.service.MemSerice;
@@ -75,8 +76,8 @@ public class ChallengeController {
 
 			this.currentPage = currentPage;
 			this.pdto = new PageDTO(this.currentPage, totalRecord);
-			map.put("challengeList", challengeService.listProcess(pdto));
 			map.put("pv", this.pdto);
+			map.put("challengeList", challengeService.listProcess(pdto));
 			map.put("joinList", challengeService.joinListProcess(currentUserId));
 		}
 		log.info("challengeList:{}", map.get("challengeList"));

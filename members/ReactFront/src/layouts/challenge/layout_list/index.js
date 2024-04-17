@@ -43,9 +43,10 @@ function Challenge() {
   }, [currentPage, isInitialRender]);
 
   const challengeList = useSelector((state) => state.challenge.challengeList || []);
-  const joinList = useSelector((state) => state.challenge.joinList || []); // joinList 상태 추가
+  const joinList = useSelector((state) => state.challenge.joinList || []);
+  console.log("joinList:", joinList);
 
-  const pv = useSelector((state) => state.challenge.pv);
+  const pv = useSelector((state) => state.challenge.pv || {});
 
   return (
     <DashboardLayout>
@@ -69,17 +70,24 @@ function Challenge() {
           <SoftBox p={2}>
             <Grid container spacing={3}>
               {challengeList &&
-                // joinType.type === "joined" &&
                 challengeList.map((challenge) => {
-                  return (
-                    <Grid item xs={12} md={6} xl={3}>
-                      <DefaultProjectCard
-                        challenge={challenge}
-                        // joinType={joinType}
-                        key={challenge.ch_id}
-                      />
-                    </Grid>
-                  );
+                  // joinList에서 현재 challenge의 ch_id가 있는지 확인
+                  const isJoined = joinList.some((join) => join.ch_id === challenge.ch_id);
+
+                  // 일치하는 ch_id가 있으면 DefaultProjectCard를 표시
+                  if (isJoined) {
+                    return (
+                      <Grid item xs={12} md={6} xl={3} key={challenge.ch_id}>
+                        <DefaultProjectCard
+                          challenge={challenge}
+                          // joinType={joinType}
+                        />
+                      </Grid>
+                    );
+                  } else {
+                    // 일치하는 ch_id가 없으면 아무것도 표시하지 않음
+                    return null;
+                  }
                 })}
 
               <Grid item xs={12} md={6} xl={3} component={Link} to="/challenge/create">

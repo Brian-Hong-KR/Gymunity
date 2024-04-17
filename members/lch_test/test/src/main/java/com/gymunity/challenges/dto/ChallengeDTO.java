@@ -17,13 +17,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ChallengeDTO {
-	private int user_id, ch_id, grade_id, category, 
+	private int user_id, ch_id, category, 
 	betting_point, total_participants, count;
-	private String title, content, proceed, nick_name;
+	private String title, content, proceed, nick_name, grade_name;
 	private Date regist_date;
 	private LocalDate ch_start_date, ch_end_date;
 	private char admin_yn;
 	
-
-
 }
