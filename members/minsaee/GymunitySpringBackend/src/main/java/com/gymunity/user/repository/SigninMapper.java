@@ -10,7 +10,9 @@ import com.gymunity.user.dto.User;
 public interface SigninMapper {
 
 	public User findUserByAccountId(String accountId);
+	
+	public User selectUsersByUserId(int userId);
 
 	public void updateLastSignin(User dto);
 
-}
+}// end interface

@@ -1,66 +1,48 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { challengeActions } from "../toolkit/actions/challenge_actions";
 
-// @mui material components
-import Card from "@mui/material/Card";
-import Grid from "@mui/material/Grid";
+// @mui icons
+import InstagramIcon from "@mui/icons-material/Instagram";
+import { Card, Grid } from "@mui/material";
+
+// Overview page components
+import Header from "./../components/Header/index";
+import Socials from "layouts/authentication/components/Socials";
+import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 
 // Soft UI Dashboard React components
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
 import SoftAlert from "components/SoftAlert";
-
-// prop-types is a library for typechecking of props
-import PropTypes from "prop-types";
-
-// Soft UI Dashboard React examples
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
-import Table from "examples/Tables/Table";
 
-// @mui icons
-import FacebookIcon from "@mui/icons-material/Facebook";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import InstagramIcon from "@mui/icons-material/Instagram";
+function ChallengeDetail() {
+  const { ch_id } = useParams();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-// Images
-import categoryToLoseWeight from "assets/images/category/category_toloseweight.jpg";
+  const challengeDetail = useSelector((state) => state.challenge.challengeDetail);
+  const pv = useSelector((state) => state.challenge.pv);
 
-// Overview page components
-import Header from "./../components/Header/index";
-import Socials from "layouts/authentication/components/Socials";
+  // const config = {
+  //   headers: {
+  //     Authorization: localStorage.getItem("Authorization"),
+  //     "Authorization-refresh": localStorage.getItem("Authorization-refresh"),
+  //   },
 
-function ChallengeDetail({
-  category,
-  image,
-  title,
-  master,
-  master_grade,
-  total_participants,
-  verify_frequency,
-  challenge_term,
-  action,
-}) {
-  // 예시
-  const challenge = {
-    ch_id: "1",
-    category: "체지방 감소",
-    title: "매일 러닝머신 30분",
-    image: require("assets/images/category/category_toloseweight.jpg"),
-    master: "뱃살대마왕",
-    master_grade: "브론즈",
-    total_participants: "3",
-    challenge_term: "2주간",
-    ch_start_date: "2024-05-01",
-    // TODO ch_end_date: "2024-05-15", //ch_start_date + challenge_term 계산식으로 수정
-    verify_frequency: "매일",
-    verify_times: "일일 1번",
-    batting_point: "10000",
-    verify_explain: "30분 이상 러닝 기록이 찍힌 러닝머신 화면을 찍어서 올림",
-    verify_example1: require("assets/images/category/category_toloseweight.jpg"),
-    verify_example2: require("assets/images/category/category_toloseweight.jpg"),
+  //삭제버튼
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    await dispatch(challengeActions.getChallengeDelete(ch_id));
+    navigate(`/challenge/list/${pv.currentPage}`);
   };
+
+  useEffect(() => {
+    dispatch(challengeActions.getChallengeDetail(ch_id));
+  }, []);
 
   const [showAlert, setShowAlert] = useState(false); // SoftAlert의 표시 여부를 관리할 상태
 
@@ -74,6 +56,9 @@ function ChallengeDetail({
     setShowAlert(false); // showAlert 상태를 false로 변경하여 SoftAlert을 숨기도록 설정
   };
 
+  //TODO localStorage.getItem("userAccount")로 바꾸기
+  const localStorageUserID = 81;
+
   return (
     <DashboardLayout>
       <Header />
@@ -81,7 +66,7 @@ function ChallengeDetail({
         <SoftBox mb={3}>
           <SoftBox>
             <Grid display="flex" alignItems="center" container spacing={3}>
-              <img src={challenge.image} alt="category" />
+              <img src={challengeDetail.image} alt="category" />
             </Grid>
           </SoftBox>
           <SoftBox>
@@ -90,7 +75,7 @@ function ChallengeDetail({
           </SoftBox>
           <Card>
             <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
-              <SoftTypography variant="h3">{challenge.title}</SoftTypography>
+              <SoftTypography variant="h3">{challengeDetail.title}</SoftTypography>
             </SoftBox>
             <SoftBox
               sx={{
@@ -110,7 +95,7 @@ function ChallengeDetail({
                 </SoftBox>
                 <SoftBox mb={1} ml={0.5}>
                   <SoftTypography component="label" variant="caption" fontWeight="bold">
-                    {challenge.category}
+                    {challengeDetail.category}
                   </SoftTypography>
                 </SoftBox>
               </SoftBox>
@@ -123,7 +108,7 @@ function ChallengeDetail({
                 </SoftBox>
                 <SoftBox mb={1} ml={0.5}>
                   <SoftTypography component="label" variant="caption" fontWeight="bold">
-                    {challenge.ch_start_date}
+                    {challengeDetail.ch_start_date}
                   </SoftTypography>
                 </SoftBox>
               </SoftBox>
@@ -136,7 +121,7 @@ function ChallengeDetail({
                 </SoftBox>
                 <SoftBox mb={1} ml={0.5}>
                   <SoftTypography component="label" variant="caption" fontWeight="bold">
-                    {challenge.challenge_term}
+                    {challengeDetail.challenge_term}
                   </SoftTypography>
                 </SoftBox>
               </SoftBox>
@@ -149,7 +134,7 @@ function ChallengeDetail({
                 </SoftBox>
                 <SoftBox mb={1} ml={0.5}>
                   <SoftTypography component="label" variant="caption" fontWeight="bold">
-                    {challenge.batting_point}
+                    {challengeDetail.batting_point}
                   </SoftTypography>
                 </SoftBox>
               </SoftBox>
@@ -162,7 +147,7 @@ function ChallengeDetail({
                 </SoftBox>
                 <SoftBox mb={1} ml={0.5}>
                   <SoftTypography component="label" variant="caption" fontWeight="bold">
-                    {challenge.verify_frequency}
+                    {challengeDetail.verify_frequency}
                   </SoftTypography>
                 </SoftBox>
               </SoftBox>
@@ -175,7 +160,7 @@ function ChallengeDetail({
                 </SoftBox>
                 <SoftBox mb={1} ml={0.5}>
                   <SoftTypography component="label" variant="caption" fontWeight="bold">
-                    {challenge.verify_times}
+                    {challengeDetail.verify_times}
                   </SoftTypography>
                 </SoftBox>
               </SoftBox>
@@ -188,7 +173,7 @@ function ChallengeDetail({
                 </SoftBox>
                 <SoftBox mb={1} ml={0.5}>
                   <SoftTypography component="label" variant="caption" fontWeight="bold">
-                    {challenge.verify_explain}
+                    {challengeDetail.verify_explain}
                   </SoftTypography>
                 </SoftBox>
               </SoftBox>
@@ -201,17 +186,17 @@ function ChallengeDetail({
                 </SoftBox>
                 <SoftBox mb={1} ml={0.5}>
                   <Grid display="flex" alignItems="center" container spacing={3}>
-                    <img src={challenge.verify_example1} alt="category" />
+                    <img src={challengeDetail.verify_example1} alt="category" />
                   </Grid>
                   <Grid display="flex" alignItems="center" container spacing={3}>
-                    <img src={challenge.verify_example1} alt="category" />
+                    <img src={challengeDetail.verify_example1} alt="category" />
                   </Grid>
                 </SoftBox>
               </SoftBox>
               <SoftBox mt={4} mb={1}>
-                {localStorage.getItem("userId") === challengeDetail.master_id ? (
+                {localStorageUserID === challengeDetail.user_id ? (
                   <>
-                    <Link className="btn btn-primary" to={`/board/update/${num}`}>
+                    <Link className="btn btn-primary" to={`/challenge/update/${ch_id}`}>
                       수정
                     </Link>
                     <button className="btn btn-primary" onClick={handleDelete}>

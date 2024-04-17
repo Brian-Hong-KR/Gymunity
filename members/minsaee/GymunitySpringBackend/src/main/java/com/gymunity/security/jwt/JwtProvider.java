@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.UnsupportedJwtException;
@@ -33,19 +34,20 @@ public class JwtProvider {
 	}// end init()
 
 	// AccessToken 생성
-	public static String createAccessToken(String userAccountId) {
+	public static String createAccessToken(Integer userId) {
 		Map<String, Object> claims = new HashMap<>(); // JWT 클레임 설정
-		claims.put("userAccountId", userAccountId); // 사용자 계정 ID를 클레임에 포함
+		claims.put("userId", userId); // 사용자 ID를 클레임에 포함
 
-		// 발행시간(issuedAt) HS512 알고리즘을 사용하여 서명(sighWith) 토큰의 주제 설정 (subject)
 		return Jwts.builder().claims(claims).issuedAt(new Date(System.currentTimeMillis()))
 				.expiration(new Date(System.currentTimeMillis() + JwtProperties.EXPIRATION_TIME))
 				.signWith(key, Jwts.SIG.HS512).subject("accessToken").compact();
 	}// end createAccessToken()
 
 	// RefreshToken 생성
-	public static String createRefreshToken(String userAccountId) {
+	public static String createRefreshToken(Integer userId) {
 		Map<String, Object> claims = new HashMap<>();
+//		claims.put("userId", String.valueOf(userId));
+		claims.put("userId", userId);
 
 		String refreshToken = Jwts.builder().claims(claims).issuedAt(new Date(System.currentTimeMillis()))
 				.expiration(new Date(System.currentTimeMillis() + JwtProperties.REFRESH_EXPIRATION_TIME))
@@ -62,10 +64,15 @@ public class JwtProvider {
 		return claims;
 	}// end extractClaims()
 
-	// Claims에서 userAccountId 가져오기
-	public static String getUserAccountId(String token) {
-		return extractClaims(token).get("userAccountId").toString();
-	}// end getUserAccountId()
+	// Claims에서 userId 가져오기
+//	public static Integer getUserId(String token) {
+//		return extractClaims(token).get("userId").toString();
+//	} // end getUserId()
+	
+	public static Integer getUserId(String token) {
+	    Claims claims = extractClaims(token);
+	    return claims.get("userId", Integer.class);
+	} // end getUserId()
 
 	// Token 만료시간 확인
 	public static boolean isExpired(String token) {

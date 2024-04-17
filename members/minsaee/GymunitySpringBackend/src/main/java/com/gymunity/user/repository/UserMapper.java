@@ -13,13 +13,13 @@ import com.gymunity.user.dto.UserUpdateDTO;
 public interface UserMapper {
 	public int insertUsers(User dto);
 
-	public void updateUsers(UserUpdateDTO dto);
-
 	public int insertProfiles(Profile dto);
 
-	public void updateProfiles(UserUpdateDTO dto);
-
 	public int insertSurvey(Survey dto);
+
+	public void updateUsers(UserUpdateDTO dto);
+
+	public void updateProfiles(UserUpdateDTO dto);
 
 	public void updateUserGradeName(int userId);
 

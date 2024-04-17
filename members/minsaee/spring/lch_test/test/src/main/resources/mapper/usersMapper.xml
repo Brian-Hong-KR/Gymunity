@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gymunity.users.mapper.UsersMapper">
+	
+	<!-- 회원가입-->
+	<!-- users 테이블에 데이터 삽입 -->
+	<insert id="insertUser" parameterType="UsersDTO" useGeneratedKeys="true" keyProperty="userId">
+	    <![CDATA[
+	    INSERT INTO users (user_account_id, nick_name, admin_yn)
+	    VALUES (#{userAccountId}, #{nickName}, #{admin_yn})
+        ]]>
+    </insert>
+    
+    <!-- profiles 테이블에 데이터 삽입 -->
+    <insert id="insertProfile" parameterType="UsersDTO">
+        <![CDATA[
+        INSERT INTO profiles (user_id, password, user_email, user_name)
+        VALUES (#{userId}, #{password}, #{userEmail}, #{userName})
+        ]]>
+    </insert>
+
+    <!-- survey 테이블에 데이터 삽입 -->
+    <insert id="insertSurvey" parameterType="Survey">
+		<![CDATA[ 
+		INSERT INTO survey (user_id, gender, age, goal, level, abnormal)
+		VALUES (#{userId}, #{gender}, #{age}, #{goal}, #{level}, #{abnormal})
+		]]>
+	</insert>
+	
+	<!-- pt 테이블에 데이터 삽입 -->
+	<!-- 
+	<insert id="insertPt" parameterType="Survey">
+		<![CDATA[ 
+		INSERT INTO pt (user_id, plan_name, plan_desc)
+		VALUES (#{userId}, #{planName}, #{planDesc})
+		]]>
+	</insert> -->
+	
+	<!-- point_add 테이블에 데이터 삽입 -->
+	<insert id="addPoint" parameterType="Point">
+		<![CDATA[ 
+		INSERT INTO point_add (user_id, points_added, reason)
+		VALUES (#{userId}, #{pointsAdded}, #{reason})
+		]]>
+	</insert>
+	
+	<!-- point_aggr 테이블에 데이터 업데이트 -->
+	<!-- 
+	<insert id="addOrUpdatePointsAggregate" parameterType="int">
+        INSERT INTO point_aggr (user_id, total_points)
+        VALUES (#{userId}, 0)
+        ON DUPLICATE KEY UPDATE
+        total_points = total_points + (SELECT points_added FROM point_add WHERE user_id = #{userId} ORDER BY added_at DESC LIMIT 1)
+    </insert> -->
+    
+    <insert id="addOrUpdatePointsAggregate" parameterType="int">
+		<!-- point_aggr 테이블에 데이터를 삽입하는 쿼리 -->
+        INSERT INTO point_aggr (user_id, total_points)
+        VALUES (
+            #{userId}, <!-- userId를 테이블에 삽입 -->
+            <!-- point_add 테이블에서 해당 userId에 대한 points_added의 합을 계산하여 삽입합니다. 
+             point_add 테이블에 해당 userId에 대한 레코드가 없으면 0을 삽입합니다. -->
+            (SELECT COALESCE(SUM(points_added), 0) FROM point_add WHERE user_id = #{userId})
+        )
+        <!-- 이미 해당 userId가 point_aggr 테이블에 존재할 경우, 아래의 명령을 실행 -->
+        ON DUPLICATE KEY UPDATE
+        <!-- point_add 테이블에서 가장 최근에 추가된 points_added 값을 현재 total_points에 더합니다. -->
+        total_points = total_points + (SELECT points_added FROM point_add WHERE user_id = #{userId} ORDER BY added_at DESC LIMIT 1);
+    </insert>
+    
+    <!-- point_add 테이블에 데이터 삽입 -->
+	<insert id="subtractPoint" parameterType="Point">
+		<![CDATA[ 
+		INSERT INTO point_subtract (user_id, points_subtracted, reason)
+		VALUES (#{userId}, #{pointsSubtracted}, #{reason})
+		]]>
+	</insert>
+    
+	
+    <!-- 회원 정보 수정 -->
+	<resultMap id="userResultMap" type="UsersDTO">
+		 <result property="userId" column="user_id"/>
+		 <result property="userAccountId" column="user_account_id"/>
+		 <result property="nickName" column="nick_name"/>
+	</resultMap>
+
+    <update id="updateUsers" parameterType="UsersDTO">
+        UPDATE users
+        SET nick_name = #{nickName}
+        WHERE user_id = #{userId};
+    </update>
+
+    <update id="updateProfiles" parameterType="UsersDTO">
+        UPDATE profiles
+        SET user_email = #{userEmail}
+        WHERE user_id = #{userId};
+    </update>
+	
+	<!--회원정보 가져오기-->
+	<select id="selectByAccountId" parameterType="string" resultMap="userResultMap">
+		SELECT u.*, p.*
+		FROM users u
+		JOIN profiles p ON u.user_id = p.user_id
+		WHERE u.user_account_id = #{userAccountId}
+	</select>
+    
+    <!-- 회원 탈퇴 -->
+    <!-- Users 테이블에서 사용자 데이터 삭제 -->
+    <delete id="deleteUser" parameterType="int">
+		DELETE FROM users WHERE user_id = #{userId}
+    </delete>
+</mapper>

@@ -29,7 +29,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		User user = userMapper.selectByAccountId(userAccountId);
 
 		if (user == null) {
-			throw new UsernameNotFoundException("히히 몰라! 커스텀유저디테일서비스");
+			throw new UsernameNotFoundException("커스텀유저디테일서비스");
 		}
 
 		return new CustomUserDetails(user);

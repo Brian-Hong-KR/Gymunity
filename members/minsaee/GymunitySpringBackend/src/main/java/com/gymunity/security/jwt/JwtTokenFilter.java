@@ -53,12 +53,10 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
 		if (Boolean.TRUE.equals(isAccessToken) && Boolean.TRUE.equals(isRefreshToken)) {
 			response.sendError(DOUBLE_EXPIRED);
-			response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "DOUBLE_EXPIRED");
 			return;
 		} else if (Boolean.FALSE.equals(isAccessToken) && Boolean.TRUE.equals(isRefreshToken)) {
 			response.sendError(REFRESH_EXPIRED);
 			return;
-
 		} else if (Boolean.TRUE.equals(isAccessToken) && Boolean.FALSE.equals(isRefreshToken)) {
 			// accessToken은 만료가 되었고 refreshToken은 유효한 경우...
 			response.sendError(ACCESS_EXPIRED);
@@ -79,12 +77,12 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 		// Bearer 뒤 token만 가져오기
 		String token = accessToken.split(" ")[1];
 
-		String userAccounId = JwtProvider.getUserAccountId(token);
+		Integer userId = JwtProvider.getUserId(token);
 
-		SigninResponse signinUser = signinServiceImpl.generateAndReturnUserAuthTokens(userAccounId);
+		SigninResponse signinUser = signinServiceImpl.getByUserId(userId);
 
 		UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-				signinUser.getUserAccountId(), null, null);
+				signinUser.getUserId(), null, null);
 
 		authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
