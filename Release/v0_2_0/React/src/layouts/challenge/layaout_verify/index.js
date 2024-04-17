@@ -88,7 +88,7 @@ function ChallengeVerify({
 
   return (
     <DashboardLayout>
-      <Header />
+       <DashboardNavbar/>
       <div style={{ marginBottom: '30px' }}></div> {/* 헤더와 카드 사이 간격 조정 */}
       <Card style={{ textAlign: 'center' }}>
         

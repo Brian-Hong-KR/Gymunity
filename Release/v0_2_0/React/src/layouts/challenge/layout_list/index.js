@@ -51,7 +51,7 @@ function Challenge() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <Header />
+     
       <SoftBox mt={5} mb={3}></SoftBox>
       <SoftBox mb={3}>
         <Card>

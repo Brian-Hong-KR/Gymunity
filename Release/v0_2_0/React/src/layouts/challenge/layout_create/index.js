@@ -32,6 +32,7 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 
 // Overview page components
 import Header from "./../components/Header/index";
+import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 function ChallengeCreate() {
   const [rememberMe, setRememberMe] = useState(true);
@@ -142,7 +143,7 @@ function ChallengeCreate() {
 
   return (
     <DashboardLayout>
-      <Header />
+     <DashboardNavbar/>
 
       <CoverLayout
         title="챌린지 만들기"

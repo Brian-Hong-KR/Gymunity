@@ -51,7 +51,7 @@ const routes = [
     type: 'collapse',
     name: 'Challenge',
     key: 'Challenge',
-    route: '/Challenge',
+    route: '/Challenge/list/1',
     icon: <SpaceShip size='12px' />,
     component: <Challenge />,
     noCollapse: true,
@@ -93,14 +93,13 @@ const routes = [
   },
 
   {
-    key: 'ChallengeDetail',
-    route: 'challenge/1/detail',
+    key: "ChallengeDetail",
+    route: "/challenge/detail/:ch_id",
     component: <ChallengeDetail />,
   },
-
   {
-    key: 'ChallengeVerify',
-    route: 'challenge/1/verify',
+    key: "ChallengeVerify",
+    route: "/challenge/verify/:ch_id",
     component: <ChallengeVerify />,
   },
 
