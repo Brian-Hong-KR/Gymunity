@@ -3,11 +3,10 @@ import React from 'react';
 
 const UserManagePage = () => {
   return (
-    <DashboardLayout>
     <div>
-      <h1>User 관리 페이지</h1>
+      <h1>User 관리 페이지 - 유저 관리(like 삭제)</h1>
       </div>
-    </DashboardLayout>
+
   );
 };
 
