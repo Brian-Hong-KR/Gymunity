@@ -8,7 +8,7 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import Footer from "examples/Footer";
 
-import Header from "../components/Header";
+
 
 function PointPage() {
   const [userPoints, setUserPoints] = useState([]);
@@ -29,9 +29,9 @@ function PointPage() {
 
   return (
     <DashboardLayout>
-      <Header />
+      
       <div>
-        <h1>Point 페이지</h1>
+        <h1>유저 포인트 관리 페이지 - UserAccountId 입력시 포인트 내역 뜨고..,,</h1>
         <ul>
           {userPoints.map((point) => (
             <li key={point.id}>
