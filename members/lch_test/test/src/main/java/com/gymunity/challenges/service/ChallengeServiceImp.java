@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gymunity.challenges.dto.ChallengeDTO;
 import com.gymunity.challenges.dto.PageDTO;
+import com.gymunity.challenges.dto.ProfileDTO;
 import com.gymunity.challenges.repository.ChallengeRepository;
 import com.gymunity.challenges.repository.MemRepository;
 import com.gymunity.challenges.repository.VerifyRepository;
@@ -49,7 +50,7 @@ public class ChallengeServiceImp implements ChallengeService {
 	}
 	
 	@Override
-	public List<ChallengeDTO> joinListProcess(int user_id) {
+	public List<ProfileDTO> joinListProcess(int user_id) {
 		return challengeRepository.joinList(user_id);
 	}
 
