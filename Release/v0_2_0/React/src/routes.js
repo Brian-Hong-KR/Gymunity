@@ -8,6 +8,7 @@ import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
 import Challenge from "layouts/challenge/layout_list";
+import Store from "layouts/Store";
 
 // Soft UI Dashboard React icons
 import Shop from "examples/Icons/Shop";
@@ -62,10 +63,10 @@ const routes = [
   {
     type: 'collapse',
     name: 'Store',
-    key: 'billing',
-    route: '/billing',
+    key: 'Store',
+    route: '/Store',
     icon: <Shop size='12px' />,
-    component: <Billing />,
+    component: <Store />,
     noCollapse: true,
   },
 
@@ -84,7 +85,7 @@ const routes = [
     name: 'Admin',
     key: 'dashboard',
     route: '/dashboard',
-    icon: <CustomerSupport size='12px' />,
+    icon: <Settings size='12px' />,
     component: <Dashboard />,
     noCollapse: true,
   },
@@ -143,13 +144,9 @@ const routes = [
   },
 
   {
-    type: "collapse",
-    name: "Admin",
     key: "survey",
     route: "/authentication/survey",
-    icon: <Shop size="12px" />,
     component: <Survey />,
-    noCollapse: true,
   },
 
   {
