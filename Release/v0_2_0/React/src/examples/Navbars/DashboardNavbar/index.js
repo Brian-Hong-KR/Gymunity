@@ -86,10 +86,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
           mb={{ xs: 1, md: 0 }}
           sx={(theme) => navbarRow(theme, { isMini })}
         >
-        </SoftBox>
-        {isMini ? null : (
-          <SoftBox sx={(theme) => navbarRow(theme, { isMini })}>
-            <IconButton
+        <IconButton
                 size='large'
                 color='inherit'
                 sx={navbarMobileMenu}
@@ -99,6 +96,11 @@ function DashboardNavbar({ absolute, light, isMini }) {
                   {miniSidenav ? 'menu_open' : 'menu'}
                 </Icon>
             </IconButton>
+
+        </SoftBox>
+        {isMini ? null : (
+          <SoftBox sx={(theme) => navbarRow(theme, { isMini })}>
+
 
             <Icon
                 sx={({ palette: { dark, white } }) => ({
