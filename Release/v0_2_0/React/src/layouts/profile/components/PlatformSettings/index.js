@@ -18,6 +18,8 @@ import typography from 'assets/theme/base/typography';
 
 // Data
 import reportsBarChartData from 'layouts/profile/data/reportsBarChartData';
+import DashboardNavbar from 'examples/Navbars/DashboardNavbar';
+import Header from '../Header';
 
 function PlatformSettings() {
   const { size } = typography;
@@ -36,7 +38,7 @@ function PlatformSettings() {
               />
             </Grid>
             <Grid item xs={12} sm={6} xl={3}>
-              <Link to='/modifyPlan'>
+              <Link to='modifyPlan'>
                 <MiniStatisticsCard
                   title={{ text: 'Plan' }}
                   count='요요 다이어트'

@@ -26,7 +26,6 @@ import breakpoints from "assets/theme/base/breakpoints";
 // Images
 import burceMars from "assets/images/youn/digda.webp";
 import curved0 from "assets/images/youn/digdas.jpg";
-import SoftButton from 'components/SoftButton';
 
 function Header() {
   const [tabsOrientation, setTabsOrientation] = useState("horizontal");
@@ -55,67 +54,7 @@ function Header() {
   const handleSetTabValue = (event, newValue) => setTabValue(newValue);
 
   return (
-    <SoftBox position='relative'>
-      <DashboardNavbar absolute light />
-      <SoftBox
-        display='flex'
-        alignItems='center'
-        position='relative'
-        minHeight='18.75rem'
-        borderRadius='xl'
-        sx={{
-          backgroundImage: ({
-            functions: { rgba, linearGradient },
-            palette: { gradients },
-          }) => `url(${curved0})`,
-          backgroundSize: 'cover',
-          backgroundPosition: '50%',
-          overflow: 'hidden',
-        }}
-      />
-      <Card
-        sx={{
-          backdropFilter: `saturate(200%) blur(30px)`,
-          backgroundColor: ({ functions: { rgba }, palette: { white } }) =>
-            rgba(white.main, 0.8),
-          boxShadow: ({ boxShadows: { navbarBoxShadow } }) => navbarBoxShadow,
-          position: 'relative',
-          mt: -8,
-          mx: 3,
-          py: 2,
-          px: 2,
-        }}
-      >
-        <Grid container spacing={3} alignItems='center'>
-          <Grid item>
-            <SoftAvatar
-              src={burceMars}
-              alt='profile-image'
-              variant='rounded'
-              size='xl'
-              shadow='sm'
-            />
-          </Grid>
-          <Grid item>
-            <SoftBox height='100%' mt={0.5} lineHeight={1}>
-              <SoftTypography variant='h5' fontWeight='medium'>
-                디그다그다그다
-              </SoftTypography>
-              <SoftTypography variant='button' color='text' fontWeight='medium'>
-                실버
-              </SoftTypography>
-            </SoftBox>
-          </Grid>
-          <Grid item xs={12} md={6} lg={4} sx={{ ml: 'auto' }}>
-            <AppBar position='static'>
-              <SoftButton variant='gradient' color='error' fullWidth>
-                회원 정보 수정
-              </SoftButton>
-            </AppBar>
-          </Grid>
-        </Grid>
-      </Card>
-    </SoftBox>
+   null
   );
 }
 
