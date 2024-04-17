@@ -93,6 +93,14 @@ public class SigninServiceImpl implements SigninService {
 
 	}// end getUserByAccountId()
 
+	@Override
+	public SigninResponse getByUserId(Integer userId) {
+		User user = signinMapper.selectUsersByUserId(userId);
+		return SigninResponse.builder().userAccountId(user.getUserAccountId()).userId(user.getUserId())
+				.nickName(user.getNickName()).accessToken(JwtProvider.createAccessToken(userId))
+				.refreshToken(JwtProvider.createRefreshToken(userId)).build();
+	}
+
 	// 토큰생성 프로세스
 	@Override
 	public SigninResponse generateAndReturnUserAuthTokens(Integer userId) {
@@ -102,5 +110,7 @@ public class SigninServiceImpl implements SigninService {
 
 		return SigninResponse.builder().accessToken(accessToken).refreshToken(refreshToken).build();
 	}// end generateAndReturnUserAuthTokens()
+
+	// 정보 조회하기
 
 }// end class

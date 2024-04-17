@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PointSubtract {
-	private int pointSubtracted;
+	private int pointsSubtracted;
 	private String subtractedReason;
 	private int userId;
 

@@ -20,22 +20,32 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 public class ChallengeController {
-	
-	// 챌린지생성
-	@Operation(summary = "챌린지생성")
+
+	private final ChallengeService challengeService;
+
+//	// 챌린지생성
+//	@Operation(summary = "챌린지생성")
+//	@PostMapping("/challenges/create")
+//	public ResponseEntity<?> createChallenge(@RequestBody ChallengeCreateDTO challengeDTO) {
+//
+//		challengeService.createChallengeProcess(challengeDTO);
+//
+//		return ResponseEntity.ok("1");
+//
+//	}// end createChallenge()
+
+	// 챌린지 생성
+	@Operation(summary = "챌린지 생성")
 	@PostMapping("/challenges/create")
 	public ResponseEntity<?> createChallenge(@RequestBody ChallengeCreateDTO challengeDTO) {
-	    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-	    if (authentication != null && authentication.isAuthenticated()) {
-	    	UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-	        String userId = userDetails.getUsername();  // 사용자 ID 가져오기
+		// Spring Security의 Authentication 객체를 통해 현재 로그인된 사용자의 정보를 가져옴
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
 
-	        challengeDTO.setUserId(userId);  // DTO에 userId 설정
-	        ChallengeService.createChallengeProcess(challengeDTO);  // 서비스 메서드 호출
-	        return ResponseEntity.ok("Challenge created successfully");
-	    } else {
-	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not authenticated");
-	    }
+		// 챌린지 생성 로직에 userId를 전달
+		challengeService.createChallengeProcess(challengeDTO, userId);
+
+		return ResponseEntity.ok("챌린지가 생성되었습니다.");
 	}
 
-}//end class
+}// end class

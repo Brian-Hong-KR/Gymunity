@@ -20,9 +20,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
 public class JwtTokenFilter extends OncePerRequestFilter {
-//	private static final int ACCESS_EXPIRED = 701;
-//	private static final int REFRESH_EXPIRED = 702;
-//	private static final int DOUBLE_EXPIRED = 703;
+	private static final int ACCESS_EXPIRED = 701;
+	private static final int REFRESH_EXPIRED = 702;
+	private static final int DOUBLE_EXPIRED = 703;
 
 	private final SigninServiceImpl signinServiceImpl;
 
@@ -36,37 +36,32 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 		String refreshToken = request.getHeader("Authorization-refresh");
 		log.info("refreshToken:{}", refreshToken);
 
-		Boolean isAccessTokenExpired = null;
-		Boolean isRefreshTokenExpired = null;
+		Boolean isAccessToken = null;
+		Boolean isRefreshToken = null;
 
-		if (accessToken != null && accessToken.startsWith("Bearer ")) {
-			accessToken = accessToken.substring(7);
-			isAccessTokenExpired = JwtProvider.isExpired(accessToken);
-			isRefreshTokenExpired = (refreshToken != null) ? JwtProvider.isExpired(refreshToken) : true;
-			log.info("isAccessTokenExpired : " + isAccessTokenExpired);
-			log.info("isRefreshTokenExpired : " + isRefreshTokenExpired);
+		if (accessToken != null) {
+			System.out.println("accessToken:" + accessToken);
+			System.out.println("refreshToken:" + refreshToken);
+			String authAccToken = accessToken.split(" ")[1];
+
+			log.info("token Expiration : " + JwtProvider.isExpired(authAccToken));
+			isAccessToken = JwtProvider.isExpired(authAccToken);
+			isRefreshToken = JwtProvider.isExpired(refreshToken);
+			log.info("isAccessToken : " + isAccessToken);
+			log.info("isRefreshToken : " + isRefreshToken);
 		}
 
-		if (Boolean.TRUE.equals(isAccessTokenExpired) && Boolean.FALSE.equals(isRefreshTokenExpired)) {
-			// accessToken 만료되었고 refreshToken은 유효할 때
-			// refreshToken을 사용하여 accessToken을 재발급 받아야 합니다.
-			Integer userId = JwtProvider.getUserId(refreshToken); // userId를 refreshToken에서 추출
-			SigninResponse signinUser = signinServiceImpl.generateAndReturnUserAuthTokens(userId);
-			accessToken = signinUser.getAccessToken(); // 새 accessToken
-
-			// Update the Security Context with the new authentication token
-			UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-					signinUser.getUserAccountId(), null, null);
-			authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-			SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-
-			// Update the Authorization header of the request
-			request.setAttribute("Authorization", "Bearer " + accessToken);
-		}
-
-		if (Boolean.TRUE.equals(isAccessTokenExpired) && Boolean.TRUE.equals(isRefreshTokenExpired)) {
-			response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Both tokens expired");
+		if (Boolean.TRUE.equals(isAccessToken) && Boolean.TRUE.equals(isRefreshToken)) {
+			response.sendError(DOUBLE_EXPIRED);
 			return;
+		} else if (Boolean.FALSE.equals(isAccessToken) && Boolean.TRUE.equals(isRefreshToken)) {
+			response.sendError(REFRESH_EXPIRED);
+			return;
+		} else if (Boolean.TRUE.equals(isAccessToken) && Boolean.FALSE.equals(isRefreshToken)) {
+			// accessToken은 만료가 되었고 refreshToken은 유효한 경우...
+			response.sendError(ACCESS_EXPIRED);
+			return;
+
 		}
 
 		if (accessToken == null) {
@@ -79,6 +74,19 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 			return;
 		}
 
+		// Bearer 뒤 token만 가져오기
+		String token = accessToken.split(" ")[1];
+
+		Integer userId = JwtProvider.getUserId(token);
+
+		SigninResponse signinUser = signinServiceImpl.getByUserId(userId);
+
+		UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+				signinUser.getUserId(), null, null);
+
+		authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+
+		SecurityContextHolder.getContext().setAuthentication(authenticationToken);
 		filterChain.doFilter(request, response);
 
 	} // end doFilterInternal()

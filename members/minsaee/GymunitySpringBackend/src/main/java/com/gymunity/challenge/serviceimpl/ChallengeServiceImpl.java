@@ -24,7 +24,7 @@ public class ChallengeServiceImpl implements ChallengeService{
 	private final PointService pointService;
 	
 	@Override
-	public void createChallengeProcess(ChallengeCreateDTO dto) {
+	public void createChallengeProcess(ChallengeCreateDTO dto, int userId) {
 		
 		// challenge 등록
 		Challenge challenge = new Challenge();
@@ -35,20 +35,19 @@ public class ChallengeServiceImpl implements ChallengeService{
 		challenge.setProceed(dto.getPreceed());
 		challenge.setChStartDate(dto.getChStartDate());
 		challenge.setChEndDate(dto.getChEndDate());
-		challenge.setUserId(dto.getUserId());
+		challenge.setUserId(userId);
 		challengeMapper.insertChallenges(challenge);
 		
 		// member 등록
 		Member member = new Member();
 		member.setMemUserId(challenge.getUserId());
-		member.setArchiveRate(dto.getArchiveRate());
-		member.setRegistrant(dto.getRegistrant());
+		member.setMemChId(challenge.getChId());
 		challengeMapper.insertMembers(member);
 		
-		// point 등록
+		// point 차감 등록
 		PointSubtract pointSubtract = new PointSubtract();
 		pointSubtract.setUserId(member.getMemUserId());
-		pointSubtract.setPointSubtracted(challenge.getBettingPoint());
+		pointSubtract.setPointsSubtracted(challenge.getBettingPoint());
 		pointSubtract.setSubtractedReason("챌린지 참가");
 		pointMapper.subtractPoint(pointSubtract);
 		
