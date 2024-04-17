@@ -42,7 +42,7 @@ public class MemController {
 		log.info("userid:{}, ch_id:{}", dto.getMem_user_id(), dto.getMem_ch_id());
 		memService.attendProcess(dto); // 챌린지 참가 멤버 등록
 		pointService.attendProcess(pdto);	// 포인트 차감
-		challengeService.countChProcess(cdto);
+		//challengeService.countChProcess(cdto);
 		return ResponseEntity.ok(String.valueOf(1));
 	}
 	

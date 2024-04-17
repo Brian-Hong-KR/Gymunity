@@ -1,6 +1,5 @@
 // react-router-dom components
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
 
 // prop-types is a library for typechecking of props
 import PropTypes from "prop-types";
@@ -20,21 +19,21 @@ import typography from "assets/theme/base/typography";
 import categoryToLoseWeight from "assets/images/category/category_toloseweight.jpg";
 import categoryToIncreaseMuscle from "assets/images/category/category_toincreasemuscle.jpg";
 import categoryPhsicalStrength from "assets/images/category/category_physicalstrength.jpg";
+import { useEffect } from "react";
 
-function DefaultProjectCard({ challenge }) {
-  const [extendedChallenge, setExtendedChallenge] = useState({});
+function DefaultProjectCard({ challenge, extendedChallenge }) {
   //카테고리명 변환
   let image;
   let category;
   if (challenge.category === 1) {
     category = "체지방 감소";
-    image = categoryToLoseWeight;
+    image = { categoryToLoseWeight };
   } else if (challenge.category === 2) {
     category = "근육량 증가";
-    image = categoryToIncreaseMuscle;
+    image = { categoryToIncreaseMuscle };
   } else {
     category = "종합 건강 증진";
-    image = categoryPhsicalStrength;
+    image = { categoryPhsicalStrength };
   }
 
   // 참여 여부 구분 81번 나나
@@ -50,7 +49,7 @@ function DefaultProjectCard({ challenge }) {
           ? "primary"
           : "info",
     });
-  }, [challenge]);
+  }, [challenge, setExtendedChallenge]);
 
   return (
     <Card

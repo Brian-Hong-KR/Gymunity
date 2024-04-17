@@ -31,8 +31,6 @@ function Challenge() {
   const getChallengeList = (currentPage) => {
     console.log("currentPage:", currentPage);
     dispatch(challengeActions.getChallengeList(currentPage));
-    // dispatch 함수를 인자로 전달
-    // getChallengeList(currentPage, dispatch);
   };
 
   const [isInitialRender, setIsInitialRender] = useState(true);
@@ -53,7 +51,7 @@ function Challenge() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <Header />
+     
       <SoftBox mt={5} mb={3}></SoftBox>
       <SoftBox mb={3}>
         <Card>
