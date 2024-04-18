@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
-// Soft UI Dashboard React components
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
-
-// Soft UI Dashboard React base styles
 import typography from "assets/theme/base/typography";
-
-// Images
-import digdas from "assets/images/youn/digdas.jpg";
 import { Card } from "@mui/material";
 
 import BasicLayout from "layouts/authentication/components/BasicLayout";

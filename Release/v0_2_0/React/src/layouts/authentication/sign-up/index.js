@@ -165,7 +165,7 @@ function SignUp() {
                 color="text"
                 fontWeight="regular"
               >
-                아 이미 아이디 있나?&nbsp;
+                이미 아이디가 있으신가요?&nbsp;
                 <SoftTypography
                   component={Link}
                   to="/authentication/sign-in"
