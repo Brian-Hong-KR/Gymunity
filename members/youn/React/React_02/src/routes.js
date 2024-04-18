@@ -29,115 +29,117 @@ import MainPage from "layouts/main";
 import Survey from "layouts/authentication/survey";
 import PlanPage from "layouts/authentication/plan";
 import ModifyUserPage from 'layouts/profile/info/ModifyUserPage';
+import DeleteUser from 'layouts/profile/info/DeleteUser';
+
 
 
 const routes = [
   {
-    type: "collapse",
-    name: "My Page",
-    key: "profile",
-    route: "/profile",
-    icon: <CreditCard size="12px" />,
+    type: 'collapse',
+    name: 'My Page',
+    key: 'profile',
+    route: '/profile',
+    icon: <CreditCard size='12px' />,
     component: <Profile />,
     noCollapse: true,
   },
   {
-    type: "collapse",
-    name: "Personal Training",
-    key: "PT",
-    route: "/PT",
-    icon: <CustomerSupport size="12px" />,
+    type: 'collapse',
+    name: 'Personal Training',
+    key: 'PT',
+    route: '/PT',
+    icon: <CustomerSupport size='12px' />,
     component: <PT />,
     noCollapse: true,
   },
   {
-    type: "collapse",
-    name: "Challenge",
-    key: "Challenge",
-    route: "/Challenge/list/1",
-    icon: <SpaceShip size="12px" />,
+    type: 'collapse',
+    name: 'Challenge',
+    key: 'Challenge',
+    route: '/Challenge/list/1',
+    icon: <SpaceShip size='12px' />,
     component: <Challenge />,
     noCollapse: true,
   },
   {
-    type: "collapse",
-    name: "Store",
-    key: "Store",
-    route: "/Store",
-    icon: <Shop size="12px" />,
+    type: 'collapse',
+    name: 'Store',
+    key: 'Store',
+    route: '/Store',
+    icon: <Shop size='12px' />,
     component: <Store />,
     noCollapse: true,
   },
 
   {
-    key: "sign-in",
-    route: "/authentication/sign-in",
+    key: 'sign-in',
+    route: '/authentication/sign-in',
     component: <SignIn />,
   },
   {
-    key: "sign-up",
-    route: "/authentication/sign-up",
+    key: 'sign-up',
+    route: '/authentication/sign-up',
     component: <SignUp />,
   },
   {
-    type: "collapse",
-    name: "Admin",
-    key: "dashboard",
-    route: "/dashboard",
-    icon: <Settings size="12px" />,
+    type: 'collapse',
+    name: 'Admin',
+    key: 'dashboard',
+    route: '/dashboard',
+    icon: <Settings size='12px' />,
     component: <Dashboard />,
     noCollapse: true,
   },
 
   {
-    key: "Challengelist",
-    route: "/challenge/list/:currentPage",
-    icon: <Office size="12px" />,
+    key: 'Challengelist',
+    route: '/challenge/list/:currentPage',
+    icon: <Office size='12px' />,
     component: <Challenge />,
     noCollapse: true,
   },
   {
-    key: "ChallengeCreate",
-    route: "/challenge/create",
+    key: 'ChallengeCreate',
+    route: '/challenge/create',
     component: <ChallengeCreate />,
   },
   {
-    key: "ChallengeDetail",
-    route: "/challenge/detail/:ch_id",
+    key: 'ChallengeDetail',
+    route: '/challenge/detail/:ch_id',
     component: <ChallengeDetail />,
   },
   {
-    key: "ChallengeVerify",
-    route: "/challenge/verify/:ch_id",
+    key: 'ChallengeVerify',
+    route: '/challenge/verify/:ch_id',
     component: <ChallengeVerify />,
   },
   {
-    key: "point",
-    route: "/point",
+    key: 'point',
+    route: '/point',
     component: <PointPage />,
   },
 
   {
-    key: "photo",
-    route: "/photo",
+    key: 'photo',
+    route: '/photo',
     component: <PhotoPage />,
   },
 
   {
-    key: "usermanage",
-    route: "/usermanage",
+    key: 'usermanage',
+    route: '/usermanage',
     component: <UserManagePage />,
   },
 
   {
-    key: "verify",
-    route: "/verify",
+    key: 'verify',
+    route: '/verify',
     component: <VerifyPage />,
   },
 
   {
-    key: "modifyPlan",
-    route: "/modifyPlan",
+    key: 'modifyPlan',
+    route: '/modifyPlan',
     component: <ModifyPlanPage />,
   },
 
@@ -148,8 +150,8 @@ const routes = [
   },
 
   {
-    key: "survey",
-    route: "/authentication/survey",
+    key: 'survey',
+    route: '/authentication/survey',
     component: <Survey />,
   },
 
@@ -163,6 +165,12 @@ const routes = [
     key: 'modifyUser',
     route: '/profile/modifyUser',
     component: <ModifyUserPage />,
+  },
+
+  {
+    key: 'DeleteUser',
+    route: '/profile/deleteUser',
+    component: <DeleteUser />,
   },
 ];
 

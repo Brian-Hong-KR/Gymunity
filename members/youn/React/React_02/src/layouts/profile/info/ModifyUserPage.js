@@ -11,45 +11,41 @@ import { useNavigate } from 'react-router-dom';
 
 const ModifyUserPage = () => {
   const navigate = useNavigate();
-  console.log('EditInfo');
+  console.log('ModifyUserPage');
 
   const [users, setUsers] = useState({
-    userEmail: '',
+    userEmail: localStorage.getItem('userEmail') || '',
     userPass: '',
-    nickName: '',
+    nickName: localStorage.getItem('nickName') || '',
   });
 
   const { userEmail, userPass, nickName } = users;
 
-  const config = {
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: localStorage.getItem('Authorization'),
-      'Authorization-refresh': localStorage.getItem('Authorization-refresh'),
-    },
-  };
 
   const handleValueChange = (e) => {
     setUsers({ ...users, [e.target.name]: e.target.value });
   };
 
+
   const [passwordCheck, setPasswordCheck] = useState('');
+
 
   const passChang = (e) => {
     if (userPass !== e.target.value) setPasswordCheck('비밀번호 불일치');
     else setPasswordCheck('비밀번호 일치');
   };
 
-  // 비밀번호 일치 여부에 따라 색상과 글꼴 크기를 동적으로 변경
+  
   const messageStyle = {
     color: passwordCheck === '비밀번호 일치' ? 'green' : 'red',
-    fontSize: '14px', // 글꼴 크기 설정
+    fontSize: '14px',
   };
 
   const info = async () => {
     await axios
-      .get(`/user/editinfo/${localStorage.userEmail}`, config)
+      .get(`/user/editinfo/${localStorage.userAccountId}`)
       .then((response) => {
+        localStorage.setItem('userId', response.data.userId);
         // console.log(response);
         setUsers((prev) => {
           return { ...prev, ...response.data, userPass: '' };
@@ -60,24 +56,22 @@ const ModifyUserPage = () => {
       });
   };
 
+
   useEffect(() => {
     info();
   }, []);
 
   const onSubmit = async (e) => {
     e.preventDefault();
+
     if (!userPass) {
       alert('비밀번호를 입력하세요.');
       return;
     }
-
-    const formData = new FormData();
-    formData.append('userPass', userPass);
-    formData.append('userEmail', userEmail);
-    formData.append('nickName', nickName);
     
      try {
-       const response = await axios.put(`/user/update`, users, config);
+       const response = await axios.put(`/user/update`, users);
+       localStorage.setItem('userEmail', userEmail);
        localStorage.setItem('nickName', nickName);
        navigate('/'); // 수정 후 메인 페이지로 이동
      } catch (error) {
@@ -86,6 +80,7 @@ const ModifyUserPage = () => {
      }
   };
 
+  
   return (
     <DashboardLayout>
       <DashboardNavbar />

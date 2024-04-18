@@ -43,7 +43,7 @@ function PlatformSettings() {
                 title={{ text: 'Point' }}
                 count='530'
                 icon={{ color: 'info', component: 'paid' }}
-                text = '다음 등급까지 300포인트'
+                text='다음 등급까지 300포인트'
               />
             </Grid>
             <Grid item xs={12} sm={6} xl={3}>
@@ -105,6 +105,7 @@ function PlatformSettings() {
             color='error'
             fullWidth
             onClick={handleDeleteAccount}
+            to='/profile/deleteUser'
           >
             회원탈퇴
           </SoftButton>

@@ -59,6 +59,7 @@ function SignIn() {
         localStorage.setItem("userAccountId", response.data.userAccountId);
         localStorage.setItem("nickName", response.data.nickName);
         localStorage.setItem("userId", response.data.userId);
+        localStorage.setItem('userEmail', response.data.userEmail);
         localStorage.setItem("isLogin", true);
 
         setInputs({ userAccountId: "", password: "" });

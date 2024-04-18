@@ -45,6 +45,7 @@ public class UsersController {
 	private final BCryptPasswordEncoder encodePassword;
 
 	private final PlanService planService;
+	
 
 	// 회원가입
 	@Operation(summary = "회원가입", description = "회원가입 API")
@@ -93,7 +94,13 @@ public class UsersController {
 	@Operation(summary = "회원정보 수정", description = "회원정보 수정 API")
 	@PutMapping("/user/update")
 	public ResponseEntity<SignResponse> updateUser(@RequestBody UsersDTO usersDTO) {
-		return ResponseEntity.ok(usersService.updateMemberProcess(usersDTO));
+	    // 변경된 비밀번호가 있다면 암호화하여 저장
+	    if (usersDTO.getPassword() != null && !usersDTO.getPassword().isEmpty()) {
+	        String hashedPassword = encodePassword.encode(usersDTO.getPassword());
+	        usersDTO.setPassword(hashedPassword);
+	    }
+	    
+	    return ResponseEntity.ok(usersService.updateMemberProcess(usersDTO));
 	}
 
 	// 회원탈퇴
@@ -107,7 +114,7 @@ public class UsersController {
 		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 	}
 
-	// 일치하는 설문조사 클라이언트에 반환
+	// 일치하는 설문조사 클라이언트에 반환        
 	@Operation(summary = "설문조사")
 	@PostMapping("/survey")
 	public List<Survey> getPlan(@RequestBody Survey formData) throws IOException{
