@@ -1,6 +1,6 @@
 // react-router-dom components
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // @mui material components
 import Switch from "@mui/material/Switch";
@@ -34,112 +34,191 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import Header from "./../components/Header/index";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
+import axios from 'axios';
+
 function ChallengeCreate() {
   const [rememberMe, setRememberMe] = useState(true);
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
   
+  // const formData = Array.isArray(location.state?.formData)
+  // ? location.state.formData[0]
+  // : location.state?.formData;
 
-  const [tabsOrientation, setTabsOrientation] = useState("horizontal");
-  const [tabValue, setTabValue] = useState(0);
-  const [tabValue1, setTabValue1] = useState(0);
-  const [tabValue2, setTabValue2] = useState(0);
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
 
-  useEffect(() => {
-    // A function that sets the orientation state of the tabs.
-    function handleTabsOrientation() {
-      return window.innerWidth < breakpoints.values.sm
-        ? setTabsOrientation("vertical")
-        : setTabsOrientation("horizontal");
-    }
-    window.addEventListener("resize", handleTabsOrientation);
+  const [challenge, setChallenge] = useState({
+    title: "",
+    content: "",
+    category: 0,
+    bettingPoint: 0,
+    chStartDate: "",
+    chEndDate: "",
+  });
 
-    handleTabsOrientation();
 
-    return () => window.removeEventListener("resize", handleTabsOrientation);
-  }, [tabsOrientation]);
+  // useEffect(() => {
+  //   // A function that sets the orientation state of the tabs.
+  //   function handleTabsOrientation() {
+  //     return window.innerWidth < breakpoints.values.sm
+  //       ? setTabsOrientation("vertical")
+  //       : setTabsOrientation("horizontal");
+  //   }
+  //   window.addEventListener("resize", handleTabsOrientation);
+
+  //   handleTabsOrientation();
+
+  //   return () => window.removeEventListener("resize", handleTabsOrientation);
+  // }, [tabsOrientation]);
+
+
 
   // 탭 
-  const handleSetTabValue = (event, newValue) => setTabValue(newValue);
+  
   const handleSetTabValue1 = (event, newValue) => setTabValue1(newValue);
-  const handleSetTabValue2 = (event, newValue) => setTabValue2(newValue);
 
-  // 배팅 포인트
-  const [bettingPoint, setBettingPoint] = useState('');
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const [date, setDate] = useState('');
+
+  const [tabsOrientation, setTabsOrientation] = useState("horizontal");
+  const [CategoryTabValue, setCategoryTabValue] = useState(0);
+  const [tabValue1, setTabValue1] = useState(0);
+  const [tabValue2, setTabValue2] = useState(0);
+ 
   const [errorMessage, setErrorMessage] = useState('');
 
+ // 배팅 포인트
+const [bettingPoint, setBettingPoint] = useState(0);
 
-  const handleCreateChallenge = () => {
-    if (!title.trim() || !content.trim() || !bettingPoint.trim()) {
-      setErrorMessage('빈 입력란을 작성해주세요.');
-      return;
-    }
+// 카테고리
+const handleSetTabValue = (event, newValue) => {
+  setCategoryTabValue(newValue);
 
-    if (bettingPoint <= 199) {
-      alert('배팅 포인트를 200 이상으로 작성하세요.');
-      setBettingPoint(''); // 배팅 포인트 리셋
-      return;
-    } else {
-      // 챌린지 생성 로직
-    }
+  const categortOptions = {
+    0: 1,
+    1: 2,
+    2: 3
+  };
+  const newCategory = categortOptions[newValue];
+  setCategoryTabValue(newValue);
+  setChallenge((prev) => ({
+    ...prev,
+    category: newCategory,
+  }));
+  console.log("카테고리 값:", newCategory);
+};
+
+// 챌린지 기간
+const handleSetTabValue2 = (event, newValue) => {
+  setTabValue2(newValue);
+
+  const dateOptions = {
+    0: 1,
+    1: 2,
+    2: 4,
+    3: 8
   };
 
+  const periodInWeeks = dateOptions[newValue];
+
+  if (!challenge.chStartDate) {
+    console.error('챌린지 시작일이 비어있습니다. 기본값으로 현재 날짜를 설정합니다.');
+    const today = new Date();
+    setChallenge({ ...challenge, chStartDate: today.toISOString().split('T')[0] });
+    return;
+  }
+  const startDateRegex = /^\d{4}-\d{2}-\d{2}$/;
+  if (!startDateRegex.test(challenge.chStartDate)) {
+    console.error('챌린지 시작일이 올바른 형식이 아닙니다.');
+    return;
+  }
   
-  
-  const handleChangeDate = (event) => {
+  const startDate = challenge.chStartDate ? new Date(challenge.chStartDate) : new Date();
+
+  const endDate = new Date(startDate);
+  endDate.setDate(endDate.getDate() + periodInWeeks * 7);
+
+  setChallenge((prev) => ({
+    ...prev,
+    chEndDate: endDate.toISOString().split('T')[0]
+  }));
+
+  console.log("계산된 종료일:", endDate.toISOString().split('T')[0]);
+
+};
+
+// 이벤트
+const handleChangeDate = (event) => {
+  const input = event.target.value;
+
+  // 입력값이 숫자로만 이루어져 있는지 확인 (정규식)
+  const numberRegex = /^[0-9]*$/;
+
+  // 챌린지 시작일 업데이트
+  setChallenge({ ...challenge, chStartDate: input });
+};
+
+// 시작일 안 지워져서 하는거임
+const handleKeyDown = (event) => {
+  // Backspace 키를 눌렀을 때 '-' 문자를 삭제합니다
+  if (event.key === 'Backspace') {
     const input = event.target.value;
-    // 입력된 값이 숫자인지 확인합니다
-    const numericInput = input.replace(/\D/g, '');
-    // 입력된 값이 4자리일 때는 'yyyy-' 형식으로, 6자리일 때는 'yyyy-mm-' 형식으로 자동으로 '-'가 추가됩니다
-    if (numericInput.length === 4) {
-      const formattedDate = `${numericInput}-`;
-      setDate(formattedDate);
-    } else if (numericInput.length === 5) {
-      const year = numericInput.slice(0, 4);
-      const month = numericInput.slice(4, 5);
-      const formattedDate = `${year}-${month || ''}`;
-      setDate(formattedDate);
-    } else if (numericInput.length >= 6) {
-      const year = numericInput.slice(0, 4);
-      const month = numericInput.slice(4, 6);
-      const day = numericInput.slice(6, 8);
-      const formattedDate = `${year}-${month || ''}-${day || ''}`;
-      setDate(formattedDate);
-    } else {
-      setDate(numericInput);
+    if (input[input.length - 1] === '-') {
+      setDate(input.slice(0, input.length - 1));
     }
-  };
+  }
+};
 
-  const handleKeyDown = (event) => {
-    // Backspace 키를 눌렀을 때 '-' 문자를 삭제합니다
-    if (event.key === 'Backspace') {
-      const input = event.target.value;
-      if (input[input.length - 1] === '-') {
-        setDate(input.slice(0, input.length - 1));
-      }
-    }
-  };
+const handleValueChange = (event) => {
+  const { name, value } = event.target;
+  // name이 'bettingPoint' 또는 'category'일 때는 value를 정수형으로 변환하여 상태에 설정
+  // 그렇지 않은 경우에는 문자열 그대로 설정
+  setChallenge((prev) => ({
+    ...prev,
+    [name]: (name === 'bettingPoint' || name === 'category') ? (parseInt(value) || "") : value
+  }));
+};
+
+const handleCreateChallenge  = async (e) =>  {
+  // const { title, content, bettingPoint } = challenge;
   
-  const handleChangeTitle = (event) => {
-    setTitle(event.target.value);
-    setErrorMessage('');
-  };
+  // if (!title.trim() || !content.trim() || bettingPoint === 0) {
+  //   setErrorMessage('빈 입력란을 작성해주세요.');
+  //   return;
+  // }
+  // const bettingPointValue = parseInt(bettingPoint);
 
-  const handleChangeContent = (event) => {
-    setContent(event.target.value);
-    setErrorMessage('');
-  };
+  //  if (bettingPointValue <= 199) {
+  //   // bettingPoint가 200보다 작거나 같은 경우
+  //   alert('배팅 포인트를 200 이상으로 작성하세요.');
+  //   setBettingPoint(0); // 배팅 포인트 리셋
+  //   return;
+  // } else {
+  //   e.preventDefault();
+    
+  //   // 챌린지 생성 로직
+  //   try {
+  //     const response = await axios.post("/challenges/create", challenge);
+  //     console.log("Response data:", response.data);
+  //     //history.push("/challenges/list/1");
+  //   } catch (error) {
+  //     console.error("Error fetching data:", error);
+  //   }
+  // }
 
-  const handleChangeBettingPoint = (event) => {
-    setBettingPoint(event.target.value);
-    setErrorMessage('');
-  };
+  e.preventDefault();
 
-  
-  
+  console.log("Form submitting", challenge);
+  try {
+    const response = await axios.post("/challenges/create", challenge);
+    console.log("Registration successful:", response);
+    navigate("/dashboard"); // 회원가입 후 메인 페이지로 이동
+  } catch (error) {
+    console.error("Registration failed:", error);
+  }
+
+};
+
+
 
   return (
     <DashboardLayout>
@@ -151,7 +230,7 @@ function ChallengeCreate() {
         image={curved9}
       >
 
-        <SoftBox component="form" role="form">
+        <SoftBox component="form" role="form" onSubmit={handleCreateChallenge}> 
 
           <SoftBox mb={2}>
             <SoftBox mb={1} ml={0.5}>
@@ -159,7 +238,11 @@ function ChallengeCreate() {
                 챌린지 제목
               </SoftTypography>
             </SoftBox>
-            <SoftInput type="title" placeholder="챌린지 제목" onChange={handleChangeTitle}/>
+            <SoftInput type="title" 
+            placeholder="챌린지 제목" 
+            name = "title"
+            value = {challenge.title}
+            onChange={handleValueChange}/>
           </SoftBox>
 
           <SoftBox mb={2}>
@@ -172,7 +255,7 @@ function ChallengeCreate() {
               <AppBar position="static">
                 <Tabs
                   orientation={tabsOrientation}
-                  value={tabValue}
+                  value={CategoryTabValue}
                   onChange={handleSetTabValue}
                   sx={{ background: "transparent" }}
                 >
@@ -184,7 +267,7 @@ function ChallengeCreate() {
             </Grid>
           </SoftBox>
 
-          <SoftBox mb={2}>
+          {/* <SoftBox mb={2}>
             <SoftBox mb={1} ml={0.5}>
               <SoftTypography component="label" variant="caption" fontWeight="bold">
                 인증 빈도
@@ -207,7 +290,7 @@ function ChallengeCreate() {
                 </Tabs>
               </AppBar>
             </Grid>
-          </SoftBox>
+          </SoftBox> */}
 
           <SoftBox mb={2}>
             <SoftBox mb={1} ml={0.5}>
@@ -238,13 +321,14 @@ function ChallengeCreate() {
                 챌린지 시작일
               </SoftTypography>
             </SoftBox>
-            <SoftInput type="title" 
-                        value={date} 
-                        placeholder="yyyy-mm-dd" 
-                        onChange={handleChangeDate}
-                        onKeyDown={handleKeyDown}
-                        />
-                        
+            <SoftInput
+              type="title"
+              name = "chStartDate"
+              value={challenge.chStartDate}
+              placeholder="yyyy-mm-dd"
+              onChange={handleChangeDate}
+              onKeyDown={handleKeyDown}
+            />
           </SoftBox>
 
           <SoftBox mb={2}>
@@ -254,8 +338,10 @@ function ChallengeCreate() {
               </SoftTypography>
             </SoftBox>
             <SoftInput type="title" 
-                       placeholder="챌린지 소개" 
-                       onChange={handleChangeContent}/>
+                       name = "content"
+                       placeholder="챌린지 소개"
+                       value = {challenge.content} 
+                       onChange={handleValueChange}/>
           </SoftBox>
 
           <SoftBox mb={2}>
@@ -265,16 +351,22 @@ function ChallengeCreate() {
               </SoftTypography>
             </SoftBox>
             <SoftInput
-              type="title"
+              type="number"
+              name = "bettingPoint"
               placeholder="배팅 포인트"
-              value={bettingPoint}
-              onChange={handleChangeBettingPoint}
+              value={challenge.bettingPoint}
+              onChange={handleValueChange}
             />
           </SoftBox>
           
           {errorMessage && <p>{errorMessage}</p>}
           <SoftBox mt={4} mb={1}>
-            <SoftButton variant="gradient" color="info" fullWidth onClick={handleCreateChallenge}>
+            <SoftButton type = "submit" 
+                        variant="gradient" 
+                        color="info" 
+                        fullWidth 
+                        // onClick={handleCreateChallenge}>
+                        >
               챌린지 만들기
             </SoftButton>
           </SoftBox>

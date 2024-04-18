@@ -32,7 +32,6 @@ public class ChallengeServiceImpl implements ChallengeService{
 		challenge.setContent(dto.getContent());
 		challenge.setCategory(dto.getCategory());
 		challenge.setBettingPoint(dto.getBettingPoint());
-		challenge.setProceed(dto.getPreceed());
 		challenge.setChStartDate(dto.getChStartDate());
 		challenge.setChEndDate(dto.getChEndDate());
 		challenge.setUserId(userId);

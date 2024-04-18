@@ -13,9 +13,7 @@ public class ChallengeCreateDTO {
 	private String content;
 	private int category;
 	private int bettingPoint;
-	private String preceed;
-	private LocalDate chStartDate;
-	private LocalDate chEndDate;
-	private int userId;
+	private String chStartDate;
+	private String chEndDate;
 
 }//end class

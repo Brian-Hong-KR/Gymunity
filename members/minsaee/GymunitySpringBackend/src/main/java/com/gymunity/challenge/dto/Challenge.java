@@ -15,9 +15,9 @@ public class Challenge {
 	private int bettingPoint;
 	private String proceed;
 //	private LocalDateTime registDate;
-	private LocalDate chStartDate;
-	private LocalDate chEndDate;
-//	private int count;
+	private String chStartDate;
+	private String chEndDate;
+	private int count;
 	private int userId;
 //	private int grade;
 //	private String nickName;

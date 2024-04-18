@@ -22,6 +22,7 @@ import SoftInput from "components/SoftInput";
 import Breadcrumbs from "examples/Breadcrumbs";
 import NotificationItem from "examples/Items/NotificationItem";
 
+import GymunityLogo from "assets/images/logos/logo_white.png"
 // Custom styles for DashboardNavbar
 import {
   navbar,
@@ -93,9 +94,14 @@ function DashboardNavbar({ absolute, light, isMini }) {
                 onClick={handleMiniSidenav}
               >
                 <Icon className={light ? 'text-white' : 'text-dark'}>
-                  {miniSidenav ? 'menu_open' : 'menu'}
+                  {'menu'}
                 </Icon>
             </IconButton>
+
+        <SoftBox display="flex" justifyContent="flex-end" width="60%">
+            <SoftBox component="img" src={GymunityLogo} alt="logo" width="80%" mt={1} />
+        </SoftBox>
+
 
         </SoftBox>
 
