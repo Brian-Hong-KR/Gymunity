@@ -43,7 +43,7 @@ function PlatformSettings() {
                 title={{ text: 'Point' }}
                 count='530'
                 icon={{ color: 'info', component: 'paid' }}
-                text = '다음 등급까지 300포인트'
+                text='다음 등급까지 300포인트'
               />
             </Grid>
             <Grid item xs={12} sm={6} xl={3}>
@@ -92,7 +92,7 @@ function PlatformSettings() {
           </Grid>
         </SoftBox>
         <SoftBox mt={4} mb={1}>
-          <Link to='modifyUser'>
+          <Link to='editUser'>
             <SoftButton type='submit' variant='gradient' color='info' fullWidth>
               회원정보 수정
             </SoftButton>
@@ -105,6 +105,7 @@ function PlatformSettings() {
             color='error'
             fullWidth
             onClick={handleDeleteAccount}
+            to='/profile/deleteUser'
           >
             회원탈퇴
           </SoftButton>
