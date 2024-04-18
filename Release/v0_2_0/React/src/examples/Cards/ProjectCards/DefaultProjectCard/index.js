@@ -1,5 +1,6 @@
 // react-router-dom components
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 // prop-types is a library for typechecking of props
 import PropTypes from "prop-types";
@@ -19,37 +20,25 @@ import typography from "assets/theme/base/typography";
 import categoryToLoseWeight from "assets/images/category/category_toloseweight.jpg";
 import categoryToIncreaseMuscle from "assets/images/category/category_toincreasemuscle.jpg";
 import categoryPhsicalStrength from "assets/images/category/category_physicalstrength.jpg";
-import { useEffect } from "react";
 
 function DefaultProjectCard({ challenge, extendedChallenge }) {
+  // const { type, color } = extendedChallenge;
+
   //카테고리명 변환
   let image;
   let category;
   if (challenge.category === 1) {
     category = "체지방 감소";
-    image = { categoryToLoseWeight };
+    image = categoryToLoseWeight;
   } else if (challenge.category === 2) {
     category = "근육량 증가";
-    image = { categoryToIncreaseMuscle };
+    image = categoryToIncreaseMuscle;
   } else {
     category = "종합 건강 증진";
-    image = { categoryPhsicalStrength };
+    image = categoryPhsicalStrength;
   }
 
-  // 참여 여부 구분 81번 나나
-  useEffect(() => {
-    setExtendedChallenge({
-      ...challenge,
-      type:
-        challenge.ch_id === challenge.ch_id1 || challenge.ch_id === challenge.ch_id2
-          ? "joined"
-          : "none",
-      color:
-        challenge.ch_id === challenge.ch_id1 || challenge.ch_id === challenge.ch_id2
-          ? "primary"
-          : "info",
-    });
-  }, [challenge, setExtendedChallenge]);
+  // 예시 81번 나나
 
   return (
     <Card
@@ -136,7 +125,11 @@ function DefaultProjectCard({ challenge, extendedChallenge }) {
         <SoftBox mb={1}>{/* {cetify_frequency} {challenge_term} */}</SoftBox>
         <SoftBox></SoftBox>
         <SoftBox mb={3} lineHeight={0}></SoftBox>
-        <SoftBox display="flex" justifyContent="space-between" alignItems="center">
+        <SoftBox
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+        >
           {extendedChallenge.type === "joined" ? (
             <SoftButton
               component={Link}
@@ -166,16 +159,20 @@ function DefaultProjectCard({ challenge, extendedChallenge }) {
   );
 }
 
-// Setting default values for the props of DefaultProjectCard
 DefaultProjectCard.defaultProps = {
-  challenge: { total_participants: 0 },
-  // extendedChallenge: { type: "joined", color: "info" },
+  challenge: {
+    total_participants: 0,
+  },
+  extendedChallenge: {
+    type: "joined",
+    color: "info",
+  },
 };
 
-// Typechecking props for the DefaultProjectCard
 DefaultProjectCard.propTypes = {
+  challenge: PropTypes.object.isRequired,
   extendedChallenge: PropTypes.shape({
-    // type: PropTypes.oneOf(["joined", "none"]).isRequired,
+    type: PropTypes.oneOf(["joined", "none"]).isRequired,
     color: PropTypes.oneOf([
       "primary",
       "secondary",
@@ -186,8 +183,8 @@ DefaultProjectCard.propTypes = {
       "light",
       "dark",
       "white",
-    ]).isRequired,
-  }).isRequired,
+    ]),
+  }),
 };
 
 export default DefaultProjectCard;
