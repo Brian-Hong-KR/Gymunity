@@ -35,8 +35,7 @@ public class VerifyController {
 		return null;
 	}
 
-//	(VerifyDTO dto, @Parameter(description = "첨부파일") @RequestPart(value = "filename", required = false) MultipartFile filename)
-	// 챌린지 생성
+	// 인증사진업로드
 	@Operation(summary = "인증사진 업로드")
 	@PostMapping(value = "/verify/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<String> verifyUpload(@RequestParam("chId") int chId, @RequestPart("file") MultipartFile file,

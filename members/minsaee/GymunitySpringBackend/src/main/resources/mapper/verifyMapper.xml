@@ -37,12 +37,6 @@
 		AND vi_id = #{viId}
 	</update>
 
-	<insert id="verph" parameterType="Verify">
-		INSERT INTO verify
-		(vi_user_id, vi_ch_id, upload1, upload2, result)
-		VALUES (#{vi_user_id}, #{vi_ch_id}, #{upload1}, #{upload2}, 'Y')
-	</insert>
-
 	<!-- 인증 Y값 카운트 -->
 	<select id="countVerified" parameterType="Verify">
 		SELECT COUNT(*) AS verified_count

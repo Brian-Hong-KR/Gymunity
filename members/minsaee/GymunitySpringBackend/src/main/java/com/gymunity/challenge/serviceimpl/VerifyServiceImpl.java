@@ -58,7 +58,6 @@ public class VerifyServiceImpl implements VerifyService {
 		LocalDateTime today4am = now.toLocalDate().atStartOfDay().plusHours(4);
 
 		Verify existingDto = verifyMapper.selectVerifyByUserIdAndChId(userId, chId);
-		log.info("bbbbbbbbbbbbbbbbbb {}", existingDto.getViId());
 
 		try {
 			if (existingDto == null) {
