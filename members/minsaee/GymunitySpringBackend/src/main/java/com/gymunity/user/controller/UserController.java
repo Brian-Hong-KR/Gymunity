@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gymunity.user.dto.CheckUserIdPassword;
 import com.gymunity.user.dto.SignupDTO;
-import com.gymunity.user.dto.UserInfoDTO;
 import com.gymunity.user.dto.UserUpdateDTO;
 import com.gymunity.user.response.SigninResponse;
 import com.gymunity.user.response.SignupResponse;
+import com.gymunity.user.response.UserInfoResponse;
 import com.gymunity.user.service.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -40,9 +40,9 @@ public class UserController {
 	// 회원정보호출
 	@Operation(summary = "회원정보호출")
 	@GetMapping("/user/editinfo/{userAccountId}")
-	public ResponseEntity<UserInfoDTO> getUser(@PathVariable("userAccountId") String userAccountId) {
-		UserInfoDTO userInfoDTO = userService.userInfoProcess(userAccountId);
-		return ResponseEntity.ok(userInfoDTO);
+	public ResponseEntity<UserInfoResponse> getUser(@PathVariable("userAccountId") String userAccountId) {
+		UserInfoResponse info = userService.userInfoProcess(userAccountId);
+		return ResponseEntity.ok(info);
 	}
 
 	// 회원정보수정

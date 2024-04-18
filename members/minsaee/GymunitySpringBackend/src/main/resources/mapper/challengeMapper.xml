@@ -9,14 +9,14 @@
 		<result column="content" property="content" />
 		<result column="category" property="category" />
 		<result column="betting_point" property="bettingPoint" />
-		<result column="ch_start_date" property="chStartDate"/>
-		<result column="ch_end_date" property="chEndDate"/>
+		<result column="ch_start_date" property="chStartDate" />
+		<result column="ch_end_date" property="chEndDate" />
 		<result column="count" property="count" />
 		<result column="user_id" property="userId" />
 	</resultMap>
 
 	<!-- 챌린지 생성-->
-	<!-- challenges 테이블에 데이터 삽입-->
+	<!-- challenges 테이블 데이터 삽입-->
 	<insert id="insertChallenges" parameterType="Challenge"
 		useGeneratedKeys="true"
 		keyProperty="chId">
@@ -26,7 +26,7 @@
         ]]>
     </insert>
 
-	<!-- members 테이블에 데이터 삽입 -->
+	<!-- members 테이블 데이터 삽입 -->
 	<insert id="insertMembers" parameterType="Member">
         <![CDATA[
         INSERT INTO members (mem_user_id, mem_ch_id, registrant)
@@ -89,12 +89,4 @@
 	LIMIT #{startRow}, #{blockCount}
   </select>
   -->
-
-	<update id="countCH" parameterType="int">
-		UPDATE challenges
-		SET count = count + 1
-		WHERE ch_id=#{ch_id}
-
-	</update>
-
 </mapper>
