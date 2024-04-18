@@ -93,7 +93,6 @@ public class UsersController {
 	@Operation(summary = "회원정보 수정", description = "회원정보 수정 API")
 	@PutMapping("/user/update")
 	public ResponseEntity<SignResponse> updateUser(@RequestBody UsersDTO usersDTO) {
-//		usersDTO.setPassword(encodePassword.encode(usersDTO.getPassword()));
 		return ResponseEntity.ok(usersService.updateMemberProcess(usersDTO));
 	}
 

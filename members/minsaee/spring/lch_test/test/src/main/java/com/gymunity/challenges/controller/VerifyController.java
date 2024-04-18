@@ -30,27 +30,26 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class VerifyController {
 
-	
-	 @Autowired
-	 private  VerifyService verifyService;
+	@Autowired
+	private VerifyService verifyService;
 
-		@Value("${spring.servlet.multipart.location}")
-		private String filePath;
-	 
-		@PostMapping(value="/challenge/verify", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-		public ResponseEntity<String> verifyProExecute(  VerifyDTO dto, @Parameter(description = "첨부파일") @RequestPart(value="filename", required=false) MultipartFile filename ) {
-			MultipartFile file = dto.getFilename();
-			log.info("file:{}", file.getOriginalFilename());
-			
-			if(file!=null && !file.isEmpty()) {
-				UUID random = FileUpload.saveCopyFile(file, filePath);						
-				dto.setUpload1(random+"_"+ file.getOriginalFilename());
-			}
-			
-			verifyService.verifyProcess(dto); // 인증
-			verifyService.updateMemProcess(dto);  // 성공률
-			return ResponseEntity.ok(String.valueOf(1));
+	@Value("${spring.servlet.multipart.location}")
+	private String filePath;
+
+	@PostMapping(value = "/challenge/verify", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public ResponseEntity<String> verifyProExecute(VerifyDTO dto,
+			@Parameter(description = "첨부파일") @RequestPart(value = "filename", required = false) MultipartFile filename) {
+		MultipartFile file = dto.getFilename();
+		log.info("file:{}", file.getOriginalFilename());
+
+		if (file != null && !file.isEmpty()) {
+			UUID random = FileUpload.saveCopyFile(file, filePath);
+			dto.setUpload1(random + "_" + file.getOriginalFilename());
 		}
-		
+
+		verifyService.verifyProcess(dto); // 인증
+		verifyService.updateMemProcess(dto); // 성공률
+		return ResponseEntity.ok(String.valueOf(1));
+	}
 
 }
