@@ -75,12 +75,12 @@ function Challenge() {
         <Card>
           <SoftBox pt={2} px={2}>
             <SoftBox mb={0.5}>
-              <SoftTypography variant="h6" fontWeight="medium">
+              <SoftTypography variant="h5" fontWeight="medium">
                 참여중인 챌린지
               </SoftTypography>
             </SoftBox>
             <SoftBox mb={1}>
-              <SoftTypography variant="button" fontWeight="regular" color="text">
+              <SoftTypography variant="h6" fontWeight="regular" color="text">
                 참여중인 챌린지를 확인하고 이행 여부를 인증해보세요!
               </SoftTypography>
             </SoftBox>
@@ -102,7 +102,7 @@ function Challenge() {
         <Card>
           <SoftBox pt={2} px={2}>
             <SoftBox mb={0.5}>
-              <SoftTypography variant="h6" fontWeight="medium">
+              <SoftTypography variant="h4" fontWeight="medium">
                 전체 챌린지 리스트
               </SoftTypography>
             </SoftBox>
