@@ -17,7 +17,7 @@ public class Challenge {
 //	private LocalDateTime registDate;
 	private LocalDate chStartDate;
 	private LocalDate chEndDate;
-//	private int count;
+	private int count;
 	private int userId;
 //	private int grade;
 //	private String nickName;

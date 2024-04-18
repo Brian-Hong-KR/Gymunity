@@ -1,4 +1,4 @@
-package com.gymunity.challenge.dto;
+package com.gymunity.challenge.response;
 
 import java.time.LocalDate;
 
@@ -7,13 +7,19 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ChallengeCreateDTO {
-	// Challenge 정보
+public class ChallengeDetailResponse {
+//	private int chId;
 	private String title;
 	private String content;
 	private int category;
 	private int bettingPoint;
+	private String proceed;
+//	private LocalDateTime registDate;
 	private LocalDate chStartDate;
 	private LocalDate chEndDate;
+	private int count;
+//	private int userId;
+//	private int grade;
+//	private String nickName;
 
 }//end class
