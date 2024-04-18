@@ -32,8 +32,8 @@ export default function data() {
   return {
     columns: [
       { name: "상품명", align: "center" },
-      { name: "용도", align: "center" },
-      { name: "링크", align: "center" }
+      { name: "링크", align: "center" },
+      { name: "용도", align: "left" }
     ],
 
     rows: [
@@ -48,8 +48,8 @@ export default function data() {
             target="_blank"
             rel="noreferrer"
             size="small"
-            color="info"
-            fullWidth > 추천 상품 </SoftButton>
+            color="dark"
+             >추천</SoftButton>
       },
       {
         상품명: [yoga_mat, "요가매트"],
@@ -62,8 +62,8 @@ export default function data() {
             target="_blank"
             rel="noreferrer"
             size="small"
-            color="info"
-            fullWidth > 추천 상품 </SoftButton>
+            color="dark"
+             > 추천 </SoftButton>
       },
             {
         상품명: [msg_gun, "마사지건"],
@@ -76,8 +76,8 @@ export default function data() {
             target="_blank"
             rel="noreferrer"
             size="small"
-            color="info"
-            fullWidth > 추천 상품 </SoftButton>
+            color="dark"
+            > 추천 </SoftButton>
       },
       {
         상품명: [stick, "지압봉"],
@@ -90,8 +90,8 @@ export default function data() {
             target="_blank"
             rel="noreferrer"
             size="small"
-            color="info"
-            fullWidth > 추천 상품 </SoftButton>
+            color="dark"
+             > 추천 </SoftButton>
       },
 
 
@@ -107,7 +107,7 @@ export default function data() {
             rel="noreferrer"
             size="small"
             color="white"
-            fullWidth > 구매하기 </SoftButton>
+             > 구매 </SoftButton>
       },
       {
         상품명: [ball, "라크로스 볼"],
@@ -121,7 +121,7 @@ export default function data() {
             rel="noreferrer"
             size="small"
             color="white"
-            fullWidth > 구매하기 </SoftButton>
+             > 구매 </SoftButton>
       },
       {
         상품명: [gel, "스포츠 젤"],
@@ -135,7 +135,7 @@ export default function data() {
             rel="noreferrer"
             size="small"
             color="white"
-            fullWidth > 구매하기 </SoftButton>
+             > 구매 </SoftButton>
       },
       {
         상품명: [step_box, "스텝박스"],
@@ -149,7 +149,7 @@ export default function data() {
             rel="noreferrer"
             size="small"
             color="white"
-            fullWidth > 구매하기 </SoftButton>
+             > 구매 </SoftButton>
       },
       {
         상품명: [stepper, "스텝퍼"],
@@ -163,7 +163,7 @@ export default function data() {
             rel="noreferrer"
             size="small"
             color="white"
-            fullWidth > 구매하기 </SoftButton>
+             > 구매 </SoftButton>
       },
       {
         상품명: [cycle, "헬스 사이클"],
@@ -177,7 +177,7 @@ export default function data() {
             rel="noreferrer"
             size="small"
             color="white"
-            fullWidth > 구매하기 </SoftButton>
+             > 구매 </SoftButton>
       },
       {
         상품명: [running, "런닝머신"],
@@ -191,7 +191,7 @@ export default function data() {
             rel="noreferrer"
             size="small"
             color="white"
-            fullWidth > 구매하기 </SoftButton>
+             > 구매 </SoftButton>
       },
       {
         상품명: [trampulin, "트램펄린"],
@@ -205,7 +205,7 @@ export default function data() {
             rel="noreferrer"
             size="small"
             color="white"
-            fullWidth > 구매하기 </SoftButton>
+             > 구매 </SoftButton>
       },
     {
         상품명: [ems, "EMS 트레이닝"],
@@ -219,7 +219,7 @@ export default function data() {
             rel="noreferrer"
             size="small"
             color="white"
-            fullWidth > 구매하기 </SoftButton>
+             > 구매 </SoftButton>
       },
       {
         상품명: [band, "탄력밴드"],
@@ -233,7 +233,7 @@ export default function data() {
             rel="noreferrer"
             size="small"
             color="white"
-            fullWidth > 구매하기 </SoftButton>
+             > 구매 </SoftButton>
       },
       {
         상품명: [pilates_ring, "필라테스 링"],
@@ -247,7 +247,7 @@ export default function data() {
             rel="noreferrer"
             size="small"
             color="white"
-            fullWidth > 구매하기 </SoftButton>
+             > 구매 </SoftButton>
       },
 
             {
@@ -262,7 +262,7 @@ export default function data() {
             rel="noreferrer"
             size="small"
             color="white"
-            fullWidth > 구매하기 </SoftButton>
+             > 구매 </SoftButton>
       },
       {
         상품명: [strech_stick, "스트레칭 봉"],
@@ -276,7 +276,7 @@ export default function data() {
             rel="noreferrer"
             size="small"
             color="white"
-            fullWidth > 구매하기 </SoftButton>
+             > 구매 </SoftButton>
       },
       {
         상품명: [push_up_bar, "푸쉬업 바"],
@@ -290,7 +290,7 @@ export default function data() {
             rel="noreferrer"
             size="small"
             color="white"
-            fullWidth > 구매하기 </SoftButton>
+             > 구매 </SoftButton>
       },
           {
         상품명: [squart_mc, "스쿼트 머신"],
@@ -304,7 +304,7 @@ export default function data() {
             rel="noreferrer"
             size="small"
             color="white"
-            fullWidth > 구매하기 </SoftButton>
+             > 구매 </SoftButton>
       },
       {
         상품명: [dumbel, "아령"],
@@ -318,7 +318,7 @@ export default function data() {
             rel="noreferrer"
             size="small"
             color="white"
-            fullWidth > 구매하기 </SoftButton>
+             > 구매 </SoftButton>
       },
       {
         상품명: [cattle_bell, "케틀벨"],
@@ -332,7 +332,7 @@ export default function data() {
             rel="noreferrer"
             size="small"
             color="white"
-            fullWidth > 구매하기 </SoftButton>
+             > 구매 </SoftButton>
       },
       {
         상품명: [chulbong, "철봉"],
@@ -346,7 +346,7 @@ export default function data() {
             rel="noreferrer"
             size="small"
             color="white"
-            fullWidth > 구매하기 </SoftButton>
+             > 구매 </SoftButton>
       },
 
 

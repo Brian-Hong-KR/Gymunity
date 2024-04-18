@@ -44,14 +44,14 @@ const ProfileData = () => {
             </SoftBox>
             <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
                 <Link to='/modifyUser'>
-                  <SoftButton type='submit' variant='gradient' color='error' fullWidth>
+                  <SoftButton type='submit' variant='gradient' color='dark' fullWidth>
                   회원정보수정
                   </SoftButton>
                 </Link>
 
 
                 <Link to='/authentication/sign-in'>
-                  <SoftButton type='submit' variant='gradient' color='error' fullWidth>
+                  <SoftButton type='submit' variant='gradient' color='dark' fullWidth>
                   로그아웃
                   </SoftButton>
                 </Link>
@@ -63,7 +63,7 @@ const ProfileData = () => {
               <MiniStatisticsCard
                 title={{ text: 'Grade' }}
                 count='실버'
-                icon={{ color: 'error', component: 'paid' }}
+                icon={{ color: 'dark', component: 'paid' }}
                 text = '다음 등급까지 300포인트'
               />
             </Grid>
@@ -72,7 +72,7 @@ const ProfileData = () => {
               <MiniStatisticsCard
                 title={{ text: 'Point' }}
                 count='530'
-                icon={{ color: 'error', component: 'paid' }}
+                icon={{ color: 'dark', component: 'paid' }}
               />
             </Grid>
 
@@ -80,7 +80,7 @@ const ProfileData = () => {
                 <MiniStatisticsCard
                   title={{ text: 'Plan' }}
                   count='요요 다이어트'
-                  icon={{ color: 'error', component: 'public' }}
+                  icon={{ color: 'dark', component: 'public' }}
                 />
             </Grid>
 
@@ -88,7 +88,7 @@ const ProfileData = () => {
               <MiniStatisticsCard
                 title={{ text: 'Challenge' }}
                 count='매일 유산소 1h'
-                icon={{ color: 'error', component: 'emoji_events' }}
+                icon={{ color: 'dark', component: 'emoji_events' }}
                 text = '카테고리 : 체지방 감소'
               />
             </Grid>
@@ -99,13 +99,13 @@ const ProfileData = () => {
             <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
 
                 <Link to='/modifyPlan'>
-                  <SoftButton type='submit' variant='gradient' color='error' fullWidth>
+                  <SoftButton type='submit' variant='gradient' color='dark' fullWidth>
                   플랜 다시 세우기
                   </SoftButton>
                 </Link>
 
                 <Link to='/photo'>
-                  <SoftButton type='submit' variant='gradient' color='error' fullWidth>
+                  <SoftButton type='submit' variant='gradient' color='dark' fullWidth>
                   나의 사진첩
                   </SoftButton>
                 </Link>
@@ -130,7 +130,7 @@ const ProfileData = () => {
         </SoftBox>
         <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
             <Link to='/customService'>
-              <SoftButton type='submit' variant='gradient' color='error' >
+              <SoftButton type='submit' variant='gradient' color='dark' >
               고객 문의
               </SoftButton>
             </Link>
