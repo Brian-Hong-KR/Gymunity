@@ -15,7 +15,8 @@ import com.gymunity.challenge.service.ChallengeService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
-
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @CrossOrigin("*")
 @RestController
 @RequiredArgsConstructor
@@ -41,10 +42,10 @@ public class ChallengeController {
 		// Spring Security의 Authentication 객체를 통해 현재 로그인된 사용자의 정보를 가져옴
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
-
+		
 		// 챌린지 생성 로직에 userId를 전달
 		challengeService.createChallengeProcess(challengeDTO, userId);
-
+		log.info("asdasddto :{}",challengeDTO );
 		return ResponseEntity.ok("챌린지가 생성되었습니다.");
 	}
 

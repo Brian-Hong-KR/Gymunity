@@ -9,8 +9,8 @@
 	<insert id="insertChallenges" parameterType="Challenge" useGeneratedKeys="true"
 		keyProperty="chId">
 	    <![CDATA[
-	    INSERT INTO challenges (title, content, category, betting_point, proceed, ch_start_date, ch_end_date, user_id)
-	    VALUES (#{title}, #{content}, #{category}, #{bettingPoint}, #{proceed}, #{chStartDate}, #{chEndDate}, #{userId})
+	    INSERT INTO challenges (title, content, category, betting_point, ch_start_date, ch_end_date, user_id)
+	    VALUES (#{title}, #{content}, #{category}, #{bettingPoint},  #{chStartDate}, #{chEndDate}, #{userId})
         ]]>
     </insert>
     
@@ -47,8 +47,8 @@
    <resultMap id="challengeResultMap" type="Challenge">
    <id column="ch_id" property="ch_id" />
   	<result column="title" property="title" />
-  	<result column="ch_start_date" property="ch_start_date" typeHandler="org.apache.ibatis.type.LocalDateTypeHandler" />
- 	 <result column="ch_end_date" property="ch_end_date" typeHandler="org.apache.ibatis.type.LocalDateTypeHandler" />
+  	<result column="ch_start_date" property="ch_start_date"  />
+ 	 <result column="ch_end_date" property="ch_end_date"  />
    </resultMap>
   
 

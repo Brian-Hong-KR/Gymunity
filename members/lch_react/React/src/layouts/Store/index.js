@@ -2,18 +2,16 @@ import SoftBox from "components/SoftBox";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
-import PersonalTraining from "layouts/PT/components/PersonalTraining";
-import PTChatbot from "layouts/PT/components/PTChatbot";
+import ProductList from "layouts/Store/components/ProductList";
 
-function PT() {
+function Store() {
 
   return (
     <DashboardLayout>
         <DashboardNavbar />
-        <PersonalTraining />
-        <PTChatbot />
+        <ProductList />
     </DashboardLayout>
   );
 }
 
-export default PT;
+export default Store;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { challengeActions } from "../toolkit/actions/challenge_actions";
@@ -42,16 +42,30 @@ function Challenge() {
     }
   }, [currentPage, isInitialRender]);
 
-  const challengeList = useSelector((state) => state.challenge.challengeList || []);
+  const challengeList = useSelector(
+    (state) => state.challenge.challengeList || []
+  );
   const joinList = useSelector((state) => state.challenge.joinList || []);
   console.log("joinList:", joinList);
 
   const pv = useSelector((state) => state.challenge.pv || {});
 
+  const updatedChallengeList = useMemo(() => {
+    return challengeList.map((challenge) => {
+      const isJoined = joinList.some((join) => join.ch_id === challenge.ch_id);
+      const extendedChallenge = {
+        ...challenge,
+        type: isJoined ? "joined" : "none",
+        color: isJoined ? "primary" : "info",
+      };
+      return { ...challenge, isJoined, extendedChallenge };
+    });
+  }, [challengeList, joinList]);
+
   return (
     <DashboardLayout>
       <DashboardNavbar />
-     
+      
       <SoftBox mt={5} mb={3}></SoftBox>
       <SoftBox mb={3}>
         <Card>
@@ -62,36 +76,40 @@ function Challenge() {
               </SoftTypography>
             </SoftBox>
             <SoftBox mb={1}>
-              <SoftTypography variant="button" fontWeight="regular" color="text">
+              <SoftTypography
+                variant="button"
+                fontWeight="regular"
+                color="text"
+              >
                 참여중인 챌린지를 확인하고 이행 여부를 인증해보세요!
               </SoftTypography>
             </SoftBox>
           </SoftBox>
           <SoftBox p={2}>
             <Grid container spacing={3}>
-              {challengeList &&
-                challengeList.map((challenge) => {
-                  // joinList에서 현재 challenge의 ch_id가 있는지 확인
-                  const isJoined = joinList.some((join) => join.ch_id === challenge.ch_id);
+              {challengeList.map((challenge) => (
+                <Grid item xs={12} md={6} xl={3} key={challenge.ch_id}>
+                  {challenge.isJoined && (
+                    <DefaultProjectCard
+                      challenge={challenge}
+                      extendedChallenge={challenge.extendedChallenge}
+                    />
+                  )}
+                </Grid>
+              ))}
 
-                  // 일치하는 ch_id가 있으면 DefaultProjectCard를 표시
-                  if (isJoined) {
-                    return (
-                      <Grid item xs={12} md={6} xl={3} key={challenge.ch_id}>
-                        <DefaultProjectCard
-                          challenge={challenge}
-                          // joinType={joinType}
-                        />
-                      </Grid>
-                    );
-                  } else {
-                    // 일치하는 ch_id가 없으면 아무것도 표시하지 않음
-                    return null;
-                  }
-                })}
-
-              <Grid item xs={12} md={6} xl={3} component={Link} to="/challenge/create">
-                <PlaceholderCard title={{ variant: "h5", text: "챌린지 만들기" }} outlined />
+              <Grid
+                item
+                xs={12}
+                md={6}
+                xl={3}
+                component={Link}
+                to="/challenge/create"
+              >
+                <PlaceholderCard
+                  title={{ variant: "h5", text: "챌린지 만들기" }}
+                  outlined
+                />
               </Grid>
             </Grid>
           </SoftBox>
@@ -105,7 +123,11 @@ function Challenge() {
               </SoftTypography>
             </SoftBox>
             <SoftBox mb={1}>
-              <SoftTypography variant="button" fontWeight="regular" color="text">
+              <SoftTypography
+                variant="button"
+                fontWeight="regular"
+                color="text"
+              >
                 진행중인 챌린지를 확인하고 참여해보세요!
               </SoftTypography>
             </SoftBox>
@@ -116,7 +138,10 @@ function Challenge() {
                 challengeList.map((challenge) => {
                   return (
                     <Grid item xs={12} md={6} xl={3}>
-                      <DefaultProjectCard challenge={challenge} key={challenge.ch_id} />
+                      <DefaultProjectCard
+                        challenge={challenge}
+                        key={challenge.ch_id}
+                      />
                     </Grid>
                   );
                 })}
