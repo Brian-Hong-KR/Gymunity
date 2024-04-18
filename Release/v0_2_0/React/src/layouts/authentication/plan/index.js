@@ -12,10 +12,60 @@ import typography from "assets/theme/base/typography";
 // Images
 import digdas from "assets/images/youn/digdas.jpg";
 import { Card } from "@mui/material";
+import BasicLayout from "../components/BasicLayout";
+//   return (
+//     <BaseLayout>
+//       <SoftBox
+//         minHeight="100vh"
+//         ml={{ xs: 0, md: 10 }}
+//         mt={{ xs: 0, md: 4 }}
+//         pt={{ xs: 16, md: 32 }}
+//         pb={{ xs: 0, md: 3 }}
+//         sx={{ transform: "scale(1.1)" }}
+//       >
+//         <Grid container>
+//           <SoftBox p={3} mb={1} textAlign="center">
+//             <SoftTypography variant="h5" fontWeight="medium">
+//               2. 당신의 연령대는?
+//             </SoftTypography>
+//             {planData && (
+//               <>
+//                 <p>{planData.plan_name}</p>
+//                 <hr />
+//                 <div dangerouslySetInnerHTML={{ __html: planData.plan_desc }} />
+//                 <hr />
+//               </>
+//             )}
 
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import AuthNavbar from "examples/Navbars/AuthNavbar";
+//             <hr />
+//             <SoftBox mt={4} mb={1}>
+//               <SoftButton
+//                 type="button"
+//                 variant="gradient"
+//                 color="dark"
+//                 fullWidth
+//                 onClick={handleRegister}
+//               >
+//                 회원가입
+//               </SoftButton>
+//               <SoftButton
+//                 type="button"
+//                 variant="gradient"
+//                 color="dark"
+//                 fullWidth
+//                 onClick={handleSurveyReset}
+//               >
+//                 설문 다시 하기
+//               </SoftButton>
+//             </SoftBox>
+//           </SoftBox>
+//         </Grid>
+//       </SoftBox>
+//     </BaseLayout>
+//   );
+// };
 
+// export default PlanPage;
 
 const PlanPage = () => {
   const { d1, h2, fontWeightMedium } = typography;
@@ -57,15 +107,13 @@ const PlanPage = () => {
   };
 
   return (
-  <DashboardLayout>
-    <AuthNavbar />
-      <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
-        <SoftTypography variant="h3">맞춤 운동 플랜</SoftTypography>
-      </SoftBox>
-
+    <BasicLayout title="운동유형" description="해라" image={digdas}>
       <Card>
         <SoftBox pt={2} pb={3} px={3}>
           <SoftBox component="form" role="form">
+            <SoftTypography variant="h5" fontWeight="medium">
+              잠온다
+            </SoftTypography>
             {planData && (
               <>
                 <p>{planData.plan_name}</p>
@@ -84,12 +132,10 @@ const PlanPage = () => {
               >
                 회원가입
               </SoftButton>
-            </SoftBox>
-            <SoftBox mt={4} mb={1}>
               <SoftButton
                 type="button"
                 variant="gradient"
-                color="white"
+                color="dark"
                 fullWidth
                 onClick={handleSurveyReset}
               >
@@ -99,7 +145,7 @@ const PlanPage = () => {
           </SoftBox>
         </SoftBox>
       </Card>
-    </DashboardLayout>
+    </BasicLayout>
   );
 };
 

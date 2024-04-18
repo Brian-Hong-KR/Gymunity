@@ -17,9 +17,6 @@ import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
 import axios from "axios";
 
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import AuthNavbar from "examples/Navbars/AuthNavbar";
-
 function Survey() {
   const navigate = useNavigate();
 
@@ -134,11 +131,11 @@ function Survey() {
   };
 
   return (
-    <DashboardLayout>
-        <AuthNavbar />
-            <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
-                <SoftTypography variant="h3">사전 설문</SoftTypography>
-            </SoftBox>
+    <BasicLayout
+      image={backimage}
+      title="설문조사"
+      description="설국열차설구경차"
+    >
       <Card>
         <SoftBox
           component="form"
@@ -150,7 +147,7 @@ function Survey() {
         >
           <AppBar position="static">
             <SoftBox p={3} mb={1} textAlign="center">
-              <SoftTypography variant="h5" fontWeight="medium" textAlign="left">
+              <SoftTypography variant="h5" fontWeight="medium">
                 1. 당신의 성별은?
               </SoftTypography>
             </SoftBox>
@@ -165,7 +162,7 @@ function Survey() {
               <Tab label="여자" />
             </Tabs>
             <SoftBox p={3} mb={1} textAlign="center">
-              <SoftTypography variant="h5" fontWeight="medium" textAlign="left">
+              <SoftTypography variant="h5" fontWeight="medium">
                 2. 당신의 연령대는?
               </SoftTypography>
             </SoftBox>
@@ -180,7 +177,7 @@ function Survey() {
               <Tab label="36세 이상" />
             </Tabs>
             <SoftBox p={3} mb={1} textAlign="center">
-              <SoftTypography variant="h5" fontWeight="medium" textAlign="left">
+              <SoftTypography variant="h5" fontWeight="medium">
                 3. 당신의 운동 목표는?
               </SoftTypography>
             </SoftBox>
@@ -196,7 +193,7 @@ function Survey() {
               <Tab label="종합 건강" />
             </Tabs>
             <SoftBox p={3} mb={1} textAlign="center">
-              <SoftTypography variant="h5" fontWeight="medium" textAlign="left">
+              <SoftTypography variant="h5" fontWeight="medium">
                 4. 당신의 운동 수준은?
               </SoftTypography>
             </SoftBox>
@@ -212,7 +209,7 @@ function Survey() {
               <Tab label="전문가" />
             </Tabs>
             <SoftBox p={3} mb={1} textAlign="center">
-              <SoftTypography variant="h5" fontWeight="medium" textAlign="left">
+              <SoftTypography variant="h5" fontWeight="medium">
                 5. 운동 시 주의가 필요한 건강 이상은?
               </SoftTypography>
             </SoftBox>
@@ -236,15 +233,8 @@ function Survey() {
           </SoftBox>
         </SoftBox>
       </Card>
-
-    </DashboardLayout>
+    </BasicLayout>
   );
 }
 
 export default Survey;
-
-
-
-
-
-

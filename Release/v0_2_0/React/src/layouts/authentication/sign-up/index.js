@@ -13,9 +13,6 @@ import SoftTypography from "components/SoftTypography";
 import SoftInput from "components/SoftInput";
 import SoftButton from "components/SoftButton";
 
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import AuthNavbar from "examples/Navbars/AuthNavbar";
-
 // Authentication layout components
 import BasicLayout from "layouts/authentication/components/BasicLayout";
 import Socials from "layouts/authentication/components/Socials";
@@ -81,13 +78,7 @@ function SignUp() {
   };
 
   return (
-
-  <DashboardLayout>
-    <AuthNavbar />
-      <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
-        <SoftTypography variant="h3">회원 가입</SoftTypography>
-      </SoftBox>
-
+    <BasicLayout title="안녕!" description="Gymunity 가입하쟝" image={curved6}>
       <Card>
         <SoftBox pt={2} pb={3} px={3}>
           <SoftBox component="form" role="form" onSubmit={onSubmit}>
@@ -184,7 +175,7 @@ function SignUp() {
           </SoftBox>
         </SoftBox>
       </Card>
-    </DashboardLayout>
+    </BasicLayout>
   );
 }
 
