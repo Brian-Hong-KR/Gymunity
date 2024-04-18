@@ -30,6 +30,8 @@ import ModifyPlanPage from 'layouts/profile/info/ModifyPlanPage';
 import MainPage from "layouts/main";
 import Survey from "layouts/authentication/survey";
 import PlanPage from "layouts/authentication/plan";
+import ModifyUserPage from 'layouts/profile/info/ModifyUserPage';
+
 
 const routes = [
   {
@@ -138,25 +140,31 @@ const routes = [
   },
 
   {
-    key: "main",
-    route: "/main",
+    key: 'main',
+    route: '/main',
     component: <MainPage />,
   },
 
   {
-    type: "collapse",
-    name: "Admin",
-    key: "survey",
-    route: "/authentication/survey",
-    icon: <Shop size="12px" />,
+    type: 'collapse',
+    name: 'Admin',
+    key: 'survey',
+    route: '/authentication/survey',
+    icon: <Shop size='12px' />,
     component: <Survey />,
     noCollapse: true,
   },
 
   {
-    key: "PlanPage",
-    route: "/authentication/plan",
+    key: 'PlanPage',
+    route: '/authentication/plan',
     component: <PlanPage />,
+  },
+
+  {
+    key: 'modifyUser',
+    route: '/profile/modifyUser',
+    component: <ModifyUserPage />,
   },
 ];
 

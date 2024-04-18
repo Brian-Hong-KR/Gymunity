@@ -40,7 +40,6 @@ function Overview() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <Header />
       <SoftBox mt={5} mb={3}>
         <Grid>
           <Grid>
@@ -48,7 +47,6 @@ function Overview() {
           </Grid>
         </Grid>
       </SoftBox>
-
       <Footer />
     </DashboardLayout>
   );
