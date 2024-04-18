@@ -13,11 +13,11 @@ import com.gymunity.user.dto.Profile;
 import com.gymunity.user.dto.SignupDTO;
 import com.gymunity.user.dto.Survey;
 import com.gymunity.user.dto.User;
-import com.gymunity.user.dto.UserInfoDTO;
 import com.gymunity.user.dto.UserUpdateDTO;
 import com.gymunity.user.repository.UserMapper;
 import com.gymunity.user.response.SigninResponse;
 import com.gymunity.user.response.SignupResponse;
+import com.gymunity.user.response.UserInfoResponse;
 import com.gymunity.user.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -77,7 +77,7 @@ public class UserServiceImpl implements UserService {
 
 	// 회원정보호출
 	@Override
-	public UserInfoDTO userInfoProcess(String userAccountId) {
+	public UserInfoResponse userInfoProcess(String userAccountId) {
 		// userAccountId를 사용하여 User 정보 조회
 		User user = userMapper.selectUsersByAccountId(userAccountId);
 		if (user == null) {
@@ -89,29 +89,29 @@ public class UserServiceImpl implements UserService {
 		Profile profile = userMapper.selectProfilesByUserId(user.getUserId());
 
 		// User와 Profile 정보를 UserInfoDTO에 매핑
-		UserInfoDTO userInfoDTO = new UserInfoDTO();
-		userInfoDTO.setUserId(user.getUserId());
-		userInfoDTO.setUserAccountId(user.getUserAccountId());
-		userInfoDTO.setNickName(user.getNickName());
-		userInfoDTO.setGradeName(user.getGradeName());
-		userInfoDTO.setUserEmail(profile.getUserEmail());
+		UserInfoResponse response = new UserInfoResponse();
+		response.setUserId(user.getUserId());
+		response.setUserAccountId(user.getUserAccountId());
+		response.setNickName(user.getNickName());
+		response.setGradeName(user.getGradeName());
+		response.setUserEmail(profile.getUserEmail());
 
-		return userInfoDTO;
+		return response;
 	}// UserInfoProcess()
 
 	// 회원정보수정
 	@Override
 	public SigninResponse updateUserProcess(UserUpdateDTO dto) {
-		 // 변경된 비밀번호가 있다면 암호화하여 저장
-	    dto.encryptPassword(dto.getPassword(), passwordEncoder);
+		// 변경된 비밀번호가 있다면 암호화하여 저장
+		dto.encryptPassword(dto.getPassword(), passwordEncoder);
 
-	    // users 테이블 업데이트
-	    userMapper.updateUsers(dto);
+		// users 테이블 업데이트
+		userMapper.updateUsers(dto);
 
-	    // profiles 테이블 업데이트
-	    userMapper.updateProfiles(dto);
+		// profiles 테이블 업데이트
+		userMapper.updateProfiles(dto);
 
-	    return new SigninResponse(dto.getNickName(), dto.getUserEmail());
+		return new SigninResponse(dto.getNickName(), dto.getUserEmail());
 	}// end updateUserProcess()
 
 	// 회원탈퇴

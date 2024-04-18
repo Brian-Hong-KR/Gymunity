@@ -1,11 +1,11 @@
-package com.gymunity.user.dto;
+package com.gymunity.user.response;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class UserInfoDTO {
+public class UserInfoResponse {
 	// User 정보
 	private String userAccountId;
 	private String nickName;

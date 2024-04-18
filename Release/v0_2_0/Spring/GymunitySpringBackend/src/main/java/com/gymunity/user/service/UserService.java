@@ -2,10 +2,10 @@ package com.gymunity.user.service;
 
 import com.gymunity.user.dto.CheckUserIdPassword;
 import com.gymunity.user.dto.SignupDTO;
-import com.gymunity.user.dto.UserInfoDTO;
 import com.gymunity.user.dto.UserUpdateDTO;
 import com.gymunity.user.response.SigninResponse;
 import com.gymunity.user.response.SignupResponse;
+import com.gymunity.user.response.UserInfoResponse;
 
 public interface UserService {
 
@@ -17,6 +17,6 @@ public interface UserService {
 
 	public void deleteUserProcess(String userAccountId);
 
-	public UserInfoDTO userInfoProcess(String userAccountId);
+	public UserInfoResponse userInfoProcess(String userAccountId);
 
 }// end interface

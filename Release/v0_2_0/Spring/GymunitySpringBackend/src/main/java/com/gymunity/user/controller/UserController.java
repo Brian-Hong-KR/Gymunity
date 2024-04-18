@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gymunity.user.dto.CheckUserIdPassword;
 import com.gymunity.user.dto.SignupDTO;
-import com.gymunity.user.dto.UserInfoDTO;
 import com.gymunity.user.dto.UserUpdateDTO;
 import com.gymunity.user.response.SigninResponse;
 import com.gymunity.user.response.SignupResponse;
+import com.gymunity.user.response.UserInfoResponse;
 import com.gymunity.user.service.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -31,8 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 public class UserController {
 
 	private final UserService userService;
-	private final PasswordEncoder passwordEncoder;
-	
+
 	// 회원가입
 	@Operation(summary = "회원가입")
 	@PostMapping("/user/signup")
@@ -44,29 +43,23 @@ public class UserController {
 	// 회원정보호출
 	@Operation(summary = "회원정보호출")
 	@GetMapping("/user/editinfo/{userAccountId}")
-	public ResponseEntity<UserInfoDTO> getUser(@PathVariable("userAccountId") String userAccountId) {
-		UserInfoDTO userInfoDTO = userService.userInfoProcess(userAccountId);
-		return ResponseEntity.ok(userInfoDTO);
+	public ResponseEntity<UserInfoResponse> getUser(@PathVariable("userAccountId") String userAccountId) {
+		UserInfoResponse response = userService.userInfoProcess(userAccountId);
+		return ResponseEntity.ok(response);
 	}
 
-	
-	
-	
-	
 	// 회원정보수정
 	@Operation(summary = "회원정보수정")
 	@PutMapping("/user/update")
-	public ResponseEntity<SigninResponse> updateUser(@RequestBody UserUpdateDTO dto) {	
+	public ResponseEntity<SigninResponse> updateUser(@RequestBody UserUpdateDTO dto) {
 		log.info("받은 데이터: {}", dto.getNickName());
 		log.info("받은 데이터: {}", dto.getPassword());
 		log.info("받은 데이터: {}", dto.getUserEmail());
 		SigninResponse update = userService.updateUserProcess(dto);
-		
+
 		return ResponseEntity.ok(update);
 	}// end updateUser()
 
-	
-	
 	// 회원탈퇴
 	@Operation(summary = "회원탈퇴")
 	@DeleteMapping("/user/delete")
