@@ -26,7 +26,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String userAccountId) throws UsernameNotFoundException {
 
-		User user = userMapper.selectByAccountId(userAccountId);
+		User user = userMapper.selectUsersByAccountId(userAccountId);
 
 		if (user == null) {
 			throw new UsernameNotFoundException("커스텀유저디테일서비스");

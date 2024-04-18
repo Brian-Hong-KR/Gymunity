@@ -79,7 +79,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserInfoDTO userInfoProcess(String userAccountId) {
 		// userAccountId를 사용하여 User 정보 조회
-		User user = userMapper.selectByAccountId(userAccountId);
+		User user = userMapper.selectUsersByAccountId(userAccountId);
 		if (user == null) {
 			// 사용자 정보가 없으면 예외 처리
 			throw new UsernameNotFoundException("User not found with accountId: " + userAccountId);
@@ -112,7 +112,7 @@ public class UserServiceImpl implements UserService {
 	// 회원탈퇴
 	@Override
 	public void deleteUserProcess(String userAccountId) {
-		User user = userMapper.selectByAccountId(userAccountId);
+		User user = userMapper.selectUsersByAccountId(userAccountId);
 
 		if (user != null) {
 			userMapper.deleteUsers(user.getUserId());
@@ -123,7 +123,7 @@ public class UserServiceImpl implements UserService {
 	// Id,Password 확인
 	@Override
 	public boolean validateUserIdPassword(CheckUserIdPassword dto) {
-		User user = userMapper.selectByAccountId(dto.getUserAccountId());
+		User user = userMapper.selectUsersByAccountId(dto.getUserAccountId());
 
 		if (user != null) {
 			Profile profile = userMapper.selectPasswordByUserId(user.getUserId());

@@ -25,7 +25,9 @@ public interface UserMapper {
 
 	public void updateLastLogin(User dto);
 
-	public User selectByAccountId(String accouintId);
+	public User selectUsersByAccountId(String accouintId);
+	
+	public User selectUsersByUserId(int userId);
 
 	public Profile selectProfilesByUserId(int userId);
 

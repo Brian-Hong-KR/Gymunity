@@ -75,11 +75,19 @@
 	</select> -->
 
 	<!--userAccountId로 조회 -->
-	<select id="selectByAccountId" parameterType="string"
+	<select id="selectUsersByAccountId" parameterType="string"
 		resultMap="userResultMap">
 		SELECT user_id, user_account_id, nick_name, grade_name
 		FROM users
 		WHERE user_account_id = #{userAccountId}
+	</select>
+	
+	<!--userAccountId로 조회 -->
+	<select id="selectUsersByUserId" parameterType="int"
+		resultMap="userResultMap">
+		SELECT user_id, user_account_id, nick_name, grade_name
+		FROM users
+		WHERE user_id = #{userId}
 	</select>
 
 	<!-- userId로 profiles 조회-->
