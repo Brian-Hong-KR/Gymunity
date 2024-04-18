@@ -14,7 +14,9 @@ import com.gymunity.challenge.repository.VerifyMapper;
 import com.gymunity.challenge.service.VerifyService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -56,6 +58,7 @@ public class VerifyServiceImpl implements VerifyService {
 		LocalDateTime today4am = now.toLocalDate().atStartOfDay().plusHours(4);
 
 		Verify existingDto = verifyMapper.selectVerifyByUserIdAndChId(userId, chId);
+		log.info("bbbbbbbbbbbbbbbbbb {}", existingDto.getViId());
 
 		try {
 			if (existingDto == null) {
@@ -68,11 +71,13 @@ public class VerifyServiceImpl implements VerifyService {
 			} else {
 				// 마지막 인증사진 업데이트 시간 가져오기
 				LocalDateTime lastUpdateDate = existingDto.getUpdateVerify();
+				log.info("aaaaaaaa {}", lastUpdateDate);
 				// 업데이트 시간이 오늘 새벽 4시 전일 때
-				if (lastUpdateDate.isBefore(today4am)) {
+				if (lastUpdateDate.isAfter(today4am)) {
 					if (existingDto.getUpload1() != null && existingDto.getUpload2() == null) {
 						String newFilename = verifysaveFileProcess(userId, chId, file);
 						existingDto.setUpload2(newFilename);
+						existingDto.setUpdateVerify(now);
 						verifyMapper.updateVerify(existingDto);
 					} else {
 						throw new IllegalStateException("오늘은 인증을 모두 하셨습니다");

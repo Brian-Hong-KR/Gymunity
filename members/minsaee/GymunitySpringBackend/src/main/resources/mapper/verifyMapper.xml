@@ -3,6 +3,7 @@
 
 <mapper namespace="com.gymunity.challenge.repository.VerifyMapper">
 	<resultMap id="verifyResultMap" type="Verify">
+		<result column="vi_id" property="viId" />
 		<result column="vi_user_id" property="userId" />
 		<result column="vi_ch_id" property="chId" />
 		<result column="upload1" property="upload1" />
@@ -14,10 +15,8 @@
 	<!-- verify 테이블 데이터 삽입 -->
 	<insert id="insertVerify" parameterType="Verify" useGeneratedKeys="true"
 		keyProperty="viId">
-		INSERT INTO verify (vi_user_id, vi_ch_id, upload1, upload2,
-		update_verify)
-		VALUES (#{userId}, #{userId}, #{upload1}, #{upload2},
-		#{updateVerify})
+		INSERT INTO verify (vi_user_id, vi_ch_id, upload1, upload2)
+		VALUES (#{userId}, #{chId}, #{upload1}, #{upload2})
 	</insert>
 
 	<!-- verify 테이블 조회-->
@@ -28,15 +27,14 @@
 		WHERE vi_user_id = #{userId} AND vi_ch_id = #{chId}
 		ORDER BY update_verify DESC LIMIT 1
 	</select>
-
+    
 	<!-- verify 테이블 업데이트-->
-	<update id="updateVerify">
+	<update id="updateVerify" parameterType="Verify">
 		UPDATE verify
 		SET upload2 = #{upload2}, update_verify = #{updateVerify}
-		WHERE user_id = #{userId}
-		AND ch_id = #{chId}
-		AND update_verify = (SELECT MAX(update_verify) FROM verify WHERE user_id
-		= #{userId} AND ch_id = #{chId})
+		WHERE vi_user_id = #{userId}
+		AND vi_ch_id = #{chId}
+		AND vi_id = #{viId}
 	</update>
 
 	<insert id="verph" parameterType="Verify">
