@@ -4,6 +4,7 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 import PersonalTraining from "layouts/PT/components/PersonalTraining";
 import PTChatbot from "layouts/PT/components/PTChatbot";
+import GymunityNavbar from "examples/Navbars/GymunityNavbar";
 
 function PT() {
 
@@ -12,6 +13,7 @@ function PT() {
         <DashboardNavbar />
         <PersonalTraining />
         <PTChatbot />
+        <GymunityNavbar />
     </DashboardLayout>
   );
 }

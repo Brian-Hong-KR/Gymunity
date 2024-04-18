@@ -29,7 +29,7 @@ import {
   navbarRow,
   navbarIconButton,
   navbarMobileMenu,
-} from "examples/Navbars/DashboardNavbar/styles";
+} from "examples/Navbars/GymunityNavbar/styles";
 
 // Soft UI Dashboard React context
 import {
@@ -44,7 +44,7 @@ import team2 from "assets/images/team-2.jpg";
 import logoSpotify from "assets/images/small-logos/logo-spotify.svg";
 import { Grid } from '@mui/material';
 
-function DashboardNavbar({ absolute, light, isMini }) {
+function GymunityNavbar({ absolute, light, isMini }) {
   const [navbarType, setNavbarType] = useState();
   const [controller, dispatch] = useSoftUIController();
   const { miniSidenav, transparentNavbar, fixedNavbar, openConfigurator } = controller;
@@ -86,16 +86,41 @@ function DashboardNavbar({ absolute, light, isMini }) {
           mb={{ xs: 1, md: 0 }}
           sx={(theme) => navbarRow(theme, { isMini })}
         >
-        <IconButton
-                size='large'
-                color='inherit'
-                sx={navbarMobileMenu}
-                onClick={handleMiniSidenav}
+        <Link to='/Profile'>
+            <IconButton
+                size='small'
+                color='white'
               >
-                <Icon className={light ? 'text-white' : 'text-dark'}>
-                  {miniSidenav ? 'menu_open' : 'menu'}
-                </Icon>
+                  My Page
             </IconButton>
+        </Link>
+
+        <Link to='/PT'>
+            <IconButton
+                size='small'
+                color='white'
+              >
+                  PT
+            </IconButton>
+        </Link>
+
+        <Link to='/Challenge/list/1'>
+            <IconButton
+                size='small'
+                color='white'
+              >
+                  Challenge
+            </IconButton>
+        </Link>
+
+        <Link to='/Store'>
+            <IconButton
+                size='small'
+                color='white'
+              >
+                  Store
+            </IconButton>
+        </Link>
 
         </SoftBox>
 
@@ -106,17 +131,17 @@ function DashboardNavbar({ absolute, light, isMini }) {
 }
 
 // Setting default values for the props of DashboardNavbar
-DashboardNavbar.defaultProps = {
+GymunityNavbar.defaultProps = {
   absolute: false,
   light: false,
   isMini: false,
 };
 
 // Typechecking props for the DashboardNavbar
-DashboardNavbar.propTypes = {
+GymunityNavbar.propTypes = {
   absolute: PropTypes.bool,
   light: PropTypes.bool,
   isMini: PropTypes.bool,
 };
 
-export default DashboardNavbar;
+export default GymunityNavbar;

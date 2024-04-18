@@ -48,7 +48,7 @@ export default function data() {
             target="_blank"
             rel="noreferrer"
             size="small"
-            color="dark"
+            color="info"
             fullWidth > 추천 상품 </SoftButton>
       },
       {
@@ -62,7 +62,7 @@ export default function data() {
             target="_blank"
             rel="noreferrer"
             size="small"
-            color="dark"
+            color="info"
             fullWidth > 추천 상품 </SoftButton>
       },
             {
@@ -76,7 +76,7 @@ export default function data() {
             target="_blank"
             rel="noreferrer"
             size="small"
-            color="dark"
+            color="info"
             fullWidth > 추천 상품 </SoftButton>
       },
       {
@@ -90,7 +90,7 @@ export default function data() {
             target="_blank"
             rel="noreferrer"
             size="small"
-            color="dark"
+            color="info"
             fullWidth > 추천 상품 </SoftButton>
       },
 
