@@ -94,7 +94,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
                 onClick={handleMiniSidenav}
               >
                 <Icon className={light ? 'text-white' : 'text-dark'}>
-                  {miniSidenav ? 'menu_open' : 'menu'}
+                  {'menu'}
                 </Icon>
             </IconButton>
 

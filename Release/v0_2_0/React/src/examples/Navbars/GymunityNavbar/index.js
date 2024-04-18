@@ -40,8 +40,6 @@ import {
 } from "context";
 
 // Images
-import team2 from "assets/images/team-2.jpg";
-import logoSpotify from "assets/images/small-logos/logo-spotify.svg";
 import { Grid } from '@mui/material';
 
 function GymunityNavbar({ absolute, light, isMini }) {
@@ -83,44 +81,89 @@ function GymunityNavbar({ absolute, light, isMini }) {
       <Toolbar sx={(theme) => navbarContainer(theme)}>
         <SoftBox
           color='white'
-          mb={{ xs: 1, md: 0 }}
+          mb={{ xs: 0, md: 0 }}
           sx={(theme) => navbarRow(theme, { isMini })}
         >
-        <Link to='/Profile'>
-            <IconButton
-                size='small'
-                color='white'
-              >
-                  My Page
-            </IconButton>
-        </Link>
 
-        <Link to='/PT'>
-            <IconButton
-                size='small'
-                color='white'
-              >
-                  PT
-            </IconButton>
-        </Link>
+      <Link to='/Profile'>
+        <Grid container align="center">
+            <Grid item xs={12} sm={6} xl={3} >
+                 <IconButton
+                    size='large'
+                    color='white'
+                  >
+                    <Icon className={light ? 'text-white' : 'text-dark'}>
+                      {'person'}
+                    </Icon>
+                 </IconButton>
+            </Grid>
+            <Grid item xs={12} sm={6} xl={3} >
+                <SoftTypography variant="button" fontWeight="medium" color="white">
+                My Page
+                </SoftTypography>
+            </Grid>
+        </Grid>
+      </Link>
 
-        <Link to='/Challenge/list/1'>
-            <IconButton
-                size='small'
-                color='white'
-              >
-                  Challenge
-            </IconButton>
-        </Link>
+      <Link to='/PT'>
+        <Grid container align="center">
+            <Grid item xs={12} sm={6} xl={3}>
+                 <IconButton
+                    size='large'
+                    color='white'
+                  >
+                    <Icon className={light ? 'text-white' : 'text-dark'}>
+                      {'assistant'}
+                    </Icon>
+                 </IconButton>
+            </Grid>
+            <Grid item xs={12} sm={6} xl={3} >
+                <SoftTypography variant="button" fontWeight="medium" color="white">
+                PT
+                </SoftTypography>
+            </Grid>
+        </Grid>
+      </Link>
 
-        <Link to='/Store'>
-            <IconButton
-                size='small'
-                color='white'
-              >
-                  Store
-            </IconButton>
-        </Link>
+      <Link to='/Challenge/list/1'>
+        <Grid container align="center">
+            <Grid item xs={12} sm={6} xl={3} >
+                 <IconButton
+                    size='large'
+                    color='white'
+                  >
+                    <Icon className={light ? 'text-white' : 'text-dark'}>
+                      {'group'}
+                    </Icon>
+                 </IconButton>
+            </Grid>
+            <Grid item xs={12} sm={6} xl={3} >
+                <SoftTypography variant="button" fontWeight="medium" color="white">
+                Challenge
+                </SoftTypography>
+            </Grid>
+        </Grid>
+      </Link>
+
+      <Link to='/Store'>
+        <Grid container align="center">
+            <Grid item xs={12} sm={6} xl={3} >
+                 <IconButton
+                    size='large'
+                    color='white'
+                  >
+                    <Icon className={light ? 'text-white' : 'text-dark'}>
+                      {'shop'}
+                    </Icon>
+                 </IconButton>
+            </Grid>
+            <Grid item xs={12} sm={6} xl={3}>
+                <SoftTypography variant="button" fontWeight="medium" color="white">
+                Store
+                </SoftTypography>
+            </Grid>
+        </Grid>
+      </Link>
 
         </SoftBox>
 
