@@ -86,47 +86,41 @@ function GymunityNavbar({ absolute, light, isMini }) {
           mb={{ xs: 1, md: 0 }}
           sx={(theme) => navbarRow(theme, { isMini })}
         >
-        <IconButton
-                size='large'
-                color='inherit'
-                sx={navbarMobileMenu}
-                onClick={handleMiniSidenav}
+        <Link to='/Profile'>
+            <IconButton
+                size='small'
+                color='white'
               >
-                <Icon className='text-dark'>
                   My Page
-                </Icon>
             </IconButton>
+        </Link>
 
-
-        <IconButton
-                size='large'
-                color='inherit'
-                onClick={handleMiniSidenav}
+        <Link to='/PT'>
+            <IconButton
+                size='small'
+                color='white'
               >
-                <Icon className='text-dark'>
                   PT
-                </Icon>
             </IconButton>
+        </Link>
 
-        <IconButton
-                size='large'
-                color='inherit'
-                onClick={handleMiniSidenav}
+        <Link to='/Challenge/list/1'>
+            <IconButton
+                size='small'
+                color='white'
               >
-                <Icon className='text-dark'>
                   Challenge
-                </Icon>
             </IconButton>
+        </Link>
 
-        <IconButton
-                size='large'
-                color='inherit'
-                onClick={handleMiniSidenav}
+        <Link to='/Store'>
+            <IconButton
+                size='small'
+                color='white'
               >
-                <Icon className='text-dark'>
                   Store
-                </Icon>
             </IconButton>
+        </Link>
 
         </SoftBox>
 

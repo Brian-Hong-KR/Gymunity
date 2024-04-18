@@ -66,9 +66,13 @@ function Challenge() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <Header />
-      <SoftBox mt={5} mb={3}></SoftBox>
-      <SoftBox mb={3}>
+      <SoftBox py={3}>
+        <SoftBox mb={3}>
+            <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
+                <SoftTypography variant="h5">Nickname</SoftTypography>
+                <SoftTypography variant="body2" color="text"> grade</SoftTypography>
+            </SoftBox>
+
         <Card>
           <SoftBox pt={2} px={2}>
             <SoftBox mb={0.5}>
@@ -115,7 +119,9 @@ function Challenge() {
             </Grid>
           </SoftBox>
         </Card>
-        <SoftBox mt={3} mb={3}></SoftBox>
+
+        <SoftBox py={1} mb={1}> </SoftBox>
+
         <Card>
           <SoftBox pt={2} px={2}>
             <SoftBox mb={0.5}>
@@ -149,12 +155,14 @@ function Challenge() {
             </Grid>
           </SoftBox>
         </Card>
+
         {/* TODO SoftPagination 설정 */}
         {pv && <SoftPagination getChallengeList={getChallengeList} />}
-      </SoftBox>
-
-      <GymunityNavbar />
+        </SoftBox>
+       </SoftBox>
+       <GymunityNavbar />
     </DashboardLayout>
+
   );
 }
 

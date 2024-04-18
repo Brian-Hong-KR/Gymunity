@@ -45,15 +45,17 @@ const ProfileData = () => {
             <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
                 <Link to='/modifyUser'>
                   <SoftButton type='submit' variant='gradient' color='error' fullWidth>
-                  회원 정보 수정
+                  회원정보수정
                   </SoftButton>
                 </Link>
 
-                <Link to='/photo'>
+
+                <Link to='/authentication/sign-in'>
                   <SoftButton type='submit' variant='gradient' color='error' fullWidth>
-                  나의 사진첩
+                  로그아웃
                   </SoftButton>
                 </Link>
+
             </SoftBox>
 
           <Grid container spacing={3}>
@@ -85,7 +87,7 @@ const ProfileData = () => {
             <Grid item xs={12} sm={6} xl={3}>
               <MiniStatisticsCard
                 title={{ text: 'Challenge' }}
-                count='하루 한시간씩 유산소 하기'
+                count='매일 유산소 1h'
                 icon={{ color: 'error', component: 'emoji_events' }}
                 text = '카테고리 : 체지방 감소'
               />
@@ -95,11 +97,20 @@ const ProfileData = () => {
         </SoftBox>
 
             <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
+
                 <Link to='/modifyPlan'>
                   <SoftButton type='submit' variant='gradient' color='error' fullWidth>
                   플랜 다시 세우기
                   </SoftButton>
                 </Link>
+
+                <Link to='/photo'>
+                  <SoftButton type='submit' variant='gradient' color='error' fullWidth>
+                  나의 사진첩
+                  </SoftButton>
+                </Link>
+
+
             </SoftBox>
 
         <SoftBox mb={3}>
