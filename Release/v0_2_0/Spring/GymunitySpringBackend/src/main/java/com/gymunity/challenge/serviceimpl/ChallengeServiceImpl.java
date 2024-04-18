@@ -88,16 +88,6 @@ public class ChallengeServiceImpl implements ChallengeService {
 	}// end createChallengeProcess()
 
 	// 챌린지 참가
-	// 챌린지 참가 전에 member 존재 여부 확인
-//	@Override
-//	public boolean isMemberExists(int userId, int chId) {
-//	    int count = challengeMapper.countMembersByUserIdAndChId(userId, chId);
-//	    boolean exists = count > 0;
-//	    log.info("Checking if member exists for user {} and challenge {}: count={}, exists={}", userId, chId, count, exists);
-//	    return exists;
-//	}
-
-	// 챌린지 참가
 	@Override
 	public ChallengeJoinResponse joinChallengeProcess(int chId, int userId) {
 

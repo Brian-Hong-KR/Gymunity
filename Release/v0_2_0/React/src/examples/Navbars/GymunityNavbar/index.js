@@ -153,7 +153,7 @@ function GymunityNavbar({ absolute, light, isMini }) {
                     color='white'
                   >
                     <Icon className={light ? 'text-white' : 'text-dark'}>
-                      {'shop'}
+                      {'store'}
                     </Icon>
                  </IconButton>
             </Grid>

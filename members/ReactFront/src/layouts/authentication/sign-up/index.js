@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 // react-router-dom components
 import { Link } from "react-router-dom";
@@ -20,23 +20,104 @@ import Separator from "layouts/authentication/components/Separator";
 
 // Images
 import curved6 from "assets/images/youn/digdas.jpg";
+import axios from "axios";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function SignUp() {
   const [agreement, setAgremment] = useState(true);
 
   const handleSetAgremment = () => setAgremment(!agreement);
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // location.state.planData가 배열인지 확인하고, 배열이면 첫 번째 요소를 사용하고, 아니면 그대로 사용
+  const formData = Array.isArray(location.state?.formData)
+    ? location.state.formData[0]
+    : location.state?.formData;
+
+  // const planData = location.state?.planData;
+  // console.log("Registration successful:", planData);
+
+  const [user, setUser] = useState({
+    userAccountId: "",
+    nickName: "",
+    password: "",
+    userEmail: "",
+    gender: formData?.gender || "",
+    age: formData?.age || "",
+    goal: formData?.goal || "",
+    level: formData?.level || "",
+    abnormal: formData?.abnormal || "",
+  });
+
+  const handleValueChange = (e) => {
+    setUser((prev) => {
+      return { ...prev, [e.target.name]: e.target.value };
+    });
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!agreement) {
+      alert("You must agree to the terms and conditions.");
+      return;
+    }
+
+    // survey 데이터가 배열이면 첫 번째 요소를 사용하고, 배열이 아니면 그대로 사용
+    // const surveyData = Array.isArray(planData) ? planData[0] : planData;
+
+    try {
+      const response = await axios.post("/user/signup", user);
+      console.log("Registration successful:", response);
+      navigate("/dashboard"); // 회원가입 후 메인 페이지로 이동
+    } catch (error) {
+      console.error("Registration failed:", error);
+    }
+  };
+
   return (
     <BasicLayout title="안녕!" description="Gymunity 가입하쟝" image={curved6}>
       <Card>
         <SoftBox pt={2} pb={3} px={3}>
-          <SoftBox component="form" role="form">
+          <SoftBox component="form" role="form" onSubmit={onSubmit}>
             <SoftBox mb={2}></SoftBox>
             <SoftBox mb={2}>
-              <SoftInput type="email" placeholder="Email" />
+              <SoftInput
+                type="text"
+                name="userAccountId"
+                value={user.userAccountId}
+                onChange={handleValueChange}
+                placeholder="아이디"
+              />
             </SoftBox>
             <SoftBox mb={2}>
-              <SoftInput type="password" placeholder="Password" />
+              <SoftInput
+                type="email"
+                name="userEmail"
+                value={user.userEmail}
+                onChange={handleValueChange}
+                placeholder="이메일"
+              />
+            </SoftBox>
+            <SoftBox mb={2}>
+              <SoftInput
+                type="password"
+                name="password"
+                value={user.password}
+                onChange={handleValueChange}
+                placeholder="비밀번호"
+              />
+            </SoftBox>
+            <SoftBox mb={2}>
+              <SoftInput
+                type="text"
+                name="nickName"
+                value={user.nickName}
+                onChange={handleValueChange}
+                placeholder="닉네임"
+              />
             </SoftBox>
             <SoftBox display="flex" flexDirection="column">
               <SoftBox mb={1} display="flex" alignItems="center">
@@ -63,12 +144,21 @@ function SignUp() {
               </SoftBox>
             </SoftBox>
             <SoftBox mt={4} mb={1}>
-              <SoftButton variant="gradient" color="dark" fullWidth>
-                sign up
+              <SoftButton
+                type="submit"
+                variant="gradient"
+                color="dark"
+                fullWidth
+              >
+                가입완료
               </SoftButton>
             </SoftBox>
             <SoftBox mt={3} textAlign="center">
-              <SoftTypography variant="button" color="text" fontWeight="regular">
+              <SoftTypography
+                variant="button"
+                color="text"
+                fontWeight="regular"
+              >
                 아 이미 아이디 있나?&nbsp;
                 <SoftTypography
                   component={Link}
@@ -78,7 +168,7 @@ function SignUp() {
                   fontWeight="bold"
                   textGradient
                 >
-                  Sign in
+                  로그인하기
                 </SoftTypography>
               </SoftTypography>
             </SoftBox>

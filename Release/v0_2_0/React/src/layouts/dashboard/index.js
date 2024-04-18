@@ -38,6 +38,18 @@ function Dashboard() {
             </Grid>
             <Grid item xs={12} lg={5}>
               <ReportsBarChart
+                title="PT"
+                description={
+                  <>
+                    (<strong>+23%</strong>) than last week
+                  </>
+                }
+                chart={chart}
+                items={items}
+              />
+            </Grid>
+            <Grid item xs={12} lg={5}>
+              <ReportsBarChart
                 title="CHALLENGE"
                 description={
                   <>

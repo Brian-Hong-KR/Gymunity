@@ -1,6 +1,5 @@
 // react-router-dom components
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
 
 // prop-types is a library for typechecking of props
 import PropTypes from "prop-types";
@@ -8,7 +7,6 @@ import PropTypes from "prop-types";
 // @mui material components
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
-import Tooltip from "@mui/material/Tooltip";
 
 // Soft UI Dashboard React components
 import SoftBox from "components/SoftBox";
@@ -22,47 +20,47 @@ import categoryToIncreaseMuscle from "assets/images/category/category_toincrease
 import categoryPhsicalStrength from "assets/images/category/category_physicalstrength.jpg";
 
 function DefaultProjectCard({ challenge }) {
-  const [extendedChallenge, setExtendedChallenge] = useState({});
+  console.log("isJoined: ", challenge.isJoined);
+  console.log("ch_id: ", challenge.ch_id);
+
   //카테고리명 변환
   let image;
   let category;
-  if (challenge.category === 1) {
-    category = "체지방 감소";
-    image = categoryToLoseWeight;
-  } else if (challenge.category === 2) {
-    category = "근육량 증가";
-    image = categoryToIncreaseMuscle;
-  } else {
-    category = "종합 건강 증진";
-    image = categoryPhsicalStrength;
+  switch (challenge.category) {
+    case 1:
+      category = "체지방 감소";
+      image = categoryToLoseWeight;
+      break;
+    case 2:
+      category = "근육량 증가";
+      image = categoryToIncreaseMuscle;
+      break;
+    case 3:
+      category = "종합 건강 증진";
+      image = categoryPhsicalStrength;
+      break;
   }
 
-  // 참여 여부 구분 81번 나나
-  useEffect(() => {
-    setExtendedChallenge({
-      ...challenge,
-      type:
-        challenge.ch_id === challenge.ch_id1 || challenge.ch_id === challenge.ch_id2
-          ? "joined"
-          : "none",
-      color:
-        challenge.ch_id === challenge.ch_id1 || challenge.ch_id === challenge.ch_id2
-          ? "primary"
-          : "info",
-    });
-  }, [challenge]);
+  //진행상태 변환
+  let proceed;
+  switch (challenge.proceed) {
+    case "rec":
+      proceed = "참여 가능";
+      break;
+    case "pr":
+      proceed = "진행중";
+      break;
+    case "done":
+      proceed = "종료";
+      break;
+  }
 
-  return (
-    <Card
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        backgroundColor: "transparent",
-        boxShadow: "none",
-        overflow: "visible",
-        position: "relative",
-      }}
-    >
+  // 예시 81번 나나
+  let classifyingComponent;
+  let buttonComponent;
+
+  if (challenge.isJoined && challenge.proceed === "rec") {
+    classifyingComponent = (
       <SoftBox
         position="absolute"
         width="180px"
@@ -87,8 +85,114 @@ function DefaultProjectCard({ challenge }) {
           alignItems: "center",
         }}
       >
-        {category} {challenge.proceed}
+        {category} {proceed}
       </SoftBox>
+    );
+    buttonComponent = (
+      <SoftButton
+        component={Link}
+        to={`/challenge/verify/${challenge.ch_id}`}
+        variant="outlined"
+        size="small"
+        color="error"
+      >
+        인증하기
+      </SoftButton>
+    );
+  } else if (!challenge.isJoined && challenge.proceed === "done") {
+    classifyingComponent = (
+      <SoftBox
+        position="absolute"
+        width="180px"
+        height="30px"
+        shadow="xl"
+        borderRadius="xl"
+        style={{ zIndex: 1 }}
+        component="div"
+        sx={{
+          ...typography.h6,
+          top: "-10px",
+          left: "-10px",
+          maxWidth: "100%",
+          maxHeight: "100%",
+          margin: 0,
+          boxShadow: ({ boxShadows: { md } }) => md,
+          objectFit: "contain",
+          objectPosition: "center",
+          backgroundColor: "red",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {category} {proceed}
+      </SoftBox>
+    );
+    buttonComponent = (
+      <SoftButton
+        component={Link}
+        to={`/challenge/detail/${challenge.ch_id}`}
+        variant="outlined"
+        size="small"
+        color="light"
+      >
+        참여 종료
+      </SoftButton>
+    );
+  } else {
+    classifyingComponent = (
+      <SoftBox
+        position="absolute"
+        width="180px"
+        height="30px"
+        shadow="xl"
+        borderRadius="xl"
+        style={{ zIndex: 1 }}
+        component="div"
+        sx={{
+          ...typography.h6,
+          top: "-10px",
+          left: "-10px",
+          maxWidth: "100%",
+          maxHeight: "100%",
+          margin: 0,
+          boxShadow: ({ boxShadows: { md } }) => md,
+          objectFit: "contain",
+          objectPosition: "center",
+          backgroundColor: "red",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {category} {proceed}
+      </SoftBox>
+    );
+    buttonComponent = (
+      <SoftButton
+        component={Link}
+        to={`/challenge/detail/${challenge.ch_id}`}
+        variant="outlined"
+        size="small"
+        color="primary"
+      >
+        자세히 보기
+      </SoftButton>
+    );
+  }
+
+  return (
+    <Card
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        backgroundColor: "transparent",
+        boxShadow: "none",
+        overflow: "visible",
+        position: "relative",
+      }}
+    >
+      {classifyingComponent}
       <SoftBox
         position="relative"
         width="310px"
@@ -138,45 +242,23 @@ function DefaultProjectCard({ challenge }) {
         <SoftBox></SoftBox>
         <SoftBox mb={3} lineHeight={0}></SoftBox>
         <SoftBox display="flex" justifyContent="space-between" alignItems="center">
-          {extendedChallenge.type === "joined" ? (
-            <SoftButton
-              component={Link}
-              to={`/challenge/verify/${challenge.ch_id}`}
-              variant="outlined"
-              size="small"
-              color={extendedChallenge.color}
-              // color="primary"
-            >
-              인증하기
-            </SoftButton>
-          ) : (
-            <SoftButton
-              component={Link}
-              to={`/challenge/detail/${challenge.ch_id}`}
-              variant="outlined"
-              size="small"
-              color={extendedChallenge.color}
-              // color="info"
-            >
-              참여하기
-            </SoftButton>
-          )}
+          {buttonComponent}
         </SoftBox>
       </SoftBox>
     </Card>
   );
 }
 
-// Setting default values for the props of DefaultProjectCard
 DefaultProjectCard.defaultProps = {
-  challenge: { total_participants: 0 },
-  // extendedChallenge: { type: "joined", color: "info" },
+  challenge: {
+    count: 0,
+    color: "info",
+  },
 };
 
-// Typechecking props for the DefaultProjectCard
 DefaultProjectCard.propTypes = {
-  extendedChallenge: PropTypes.shape({
-    // type: PropTypes.oneOf(["joined", "none"]).isRequired,
+  challenge: PropTypes.shape({
+    ch_id: PropTypes.number.isRequired,
     color: PropTypes.oneOf([
       "primary",
       "secondary",
@@ -187,8 +269,8 @@ DefaultProjectCard.propTypes = {
       "light",
       "dark",
       "white",
-    ]).isRequired,
-  }).isRequired,
+    ]),
+  }),
 };
 
 export default DefaultProjectCard;

@@ -74,11 +74,12 @@ public class ChallengeController {
 
 		if (totalRecord >= 1) {
 
+			map.put("joinList", challengeService.joinListProcess(currentUserId));
 			this.currentPage = currentPage;
 			this.pdto = new PageDTO(this.currentPage, totalRecord);
 			map.put("pv", this.pdto);
 			map.put("challengeList", challengeService.listProcess(pdto));
-			map.put("joinList", challengeService.joinListProcess(currentUserId));
+			
 		}
 		log.info("challengeList:{}", map.get("challengeList"));
 		log.info("joinList:{}", map.get("joinList"));

@@ -19,7 +19,7 @@ public interface ChallengeRepository {
 
 	public List<ChallengeDTO> list(PageDTO pv);
 	
-	public List<ProfileDTO> joinList(int user_id);
+	public List<ChallengeDTO> joinList(int user_id);
 
 	public ChallengeDTO content(int ch_code);
 

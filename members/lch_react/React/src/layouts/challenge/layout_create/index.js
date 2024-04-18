@@ -178,47 +178,83 @@ const handleValueChange = (event) => {
   }));
 };
 
-const handleCreateChallenge  = async (e) =>  {
-  // const { title, content, bettingPoint } = challenge;
+// const handleCreateChallenge  = async (e) =>  {
+//   // const { title, content, bettingPoint } = challenge;
   
-  // if (!title.trim() || !content.trim() || bettingPoint === 0) {
-  //   setErrorMessage('빈 입력란을 작성해주세요.');
-  //   return;
-  // }
-  // const bettingPointValue = parseInt(bettingPoint);
+//   // if (!title.trim() || !content.trim() || bettingPoint === 0) {
+//   //   setErrorMessage('빈 입력란을 작성해주세요.');
+//   //   return;
+//   // }
+//   // const bettingPointValue = parseInt(bettingPoint);
 
-  //  if (bettingPointValue <= 199) {
-  //   // bettingPoint가 200보다 작거나 같은 경우
-  //   alert('배팅 포인트를 200 이상으로 작성하세요.');
-  //   setBettingPoint(0); // 배팅 포인트 리셋
-  //   return;
-  // } else {
-  //   e.preventDefault();
+//   //  if (bettingPointValue <= 199) {
+//   //   // bettingPoint가 200보다 작거나 같은 경우
+//   //   alert('배팅 포인트를 200 이상으로 작성하세요.');
+//   //   setBettingPoint(0); // 배팅 포인트 리셋
+//   //   return;
+//   // } else {
+//   //   e.preventDefault();
     
-  //   // 챌린지 생성 로직
-  //   try {
-  //     const response = await axios.post("/challenges/create", challenge);
-  //     console.log("Response data:", response.data);
-  //     //history.push("/challenges/list/1");
-  //   } catch (error) {
-  //     console.error("Error fetching data:", error);
-  //   }
-  // }
+//   //   // 챌린지 생성 로직
+//   //   try {
+//   //     const response = await axios.post("/challenges/create", challenge);
+//   //     console.log("Response data:", response.data);
+//   //     //history.push("/challenges/list/1");
+//   //   } catch (error) {
+//   //     console.error("Error fetching data:", error);
+//   //   }
+//   // }
 
+//   e.preventDefault();
+
+//   console.log("Form submitting", challenge);
+//   // JWT 토큰을 로컬 스토리지에서 가져옵니다.
+//   const token = localStorage.getItem('jwtToken');
+
+//   // JWT 토큰이 존재하는지 확인합니다.
+//   if (!token) {
+//     console.error('JWT 토큰이 없습니다. 로그인 후 다시 시도하세요.');
+//     return;
+//   }
+
+  // 요청 헤더에 JWT 토큰을 포함하여 요청을 보냅니다.
+//   const config = {
+//     headers: {
+//       Authorization: `Bearer ${token}`,
+//     },
+//   };
+
+//   try {
+//     const response = await axios.post("/challenges/create", challenge, config);
+//     console.log("Registration successful:", response);
+//     navigate("/dashboard"); // 회원가입 후 메인 페이지로 이동
+//   } catch (error) {
+//     console.error("Registration failed:", error);
+//   }
+// };
+
+
+
+const handleCreateChallenge = async (e) => {
   e.preventDefault();
+
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `${localStorage.getItem("Authorization")}`, // Bearer 토큰 사용 예
+      "Authorization-refresh": localStorage.getItem("Authorization-refresh"),
+    },
+  };
 
   console.log("Form submitting", challenge);
   try {
-    const response = await axios.post("/challenges/create", challenge);
+    const response = await axios.post("/challenges/create", challenge, config);
     console.log("Registration successful:", response);
     navigate("/dashboard"); // 회원가입 후 메인 페이지로 이동
   } catch (error) {
     console.error("Registration failed:", error);
   }
-
 };
-
-
 
   return (
     <DashboardLayout>
