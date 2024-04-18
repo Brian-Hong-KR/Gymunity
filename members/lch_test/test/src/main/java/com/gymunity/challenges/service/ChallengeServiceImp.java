@@ -50,7 +50,7 @@ public class ChallengeServiceImp implements ChallengeService {
 	}
 	
 	@Override
-	public List<ProfileDTO> joinListProcess(int user_id) {
+	public List<ChallengeDTO> joinListProcess(int user_id) {
 		return challengeRepository.joinList(user_id);
 	}
 

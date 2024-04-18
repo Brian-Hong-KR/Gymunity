@@ -134,9 +134,9 @@ export default function App() {
           {configsButton}
         </>
       )}
-      {layout === "vr" && <Configurator />}
+      {layout === "vr"}
       <Routes>
-        <Route path="*" element={<Navigate to="/dashboard" />} />
+        <Route path="*" element={<Navigate to="/profile" />} />
         {getRoutes(routes)}
       </Routes>
     </ThemeProvider>

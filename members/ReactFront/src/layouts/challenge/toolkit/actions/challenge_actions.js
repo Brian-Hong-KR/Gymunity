@@ -1,5 +1,6 @@
 import axios from "axios";
 import { challengeReducers } from "../createSlice/challenge_createSlice";
+import { useState } from "react";
 
 //리스트 가져오기
 // function getChallengeList(currentPage) {
@@ -12,8 +13,8 @@ import { challengeReducers } from "../createSlice/challenge_createSlice";
 //     dispatch(challengeReducers.getChallengeList({ data }));
 //   };
 // }
-function getChallengeList(currentPage) {
-  console.log(currentPage);
+function getChallengeListAsync(currentPage) {
+  // console.log("currentPage: ", currentPage);
   return async (dispatch) => {
     try {
       const response = await axios.get(`/challenge/list/${currentPage}`);
@@ -86,7 +87,7 @@ function getChallengeDelete(ch_id) {
 }
 
 export const challengeActions = {
-  getChallengeList,
+  getChallengeListAsync,
   getChallengeCreate,
   getChallengeDetail,
   getChallengeDownload,
