@@ -13,13 +13,13 @@ import SoftTypography from "components/SoftTypography";
 import SoftInput from "components/SoftInput";
 import SoftButton from "components/SoftButton";
 
-// Authentication layout components
+
 import BasicLayout from "layouts/authentication/components/BasicLayout";
+import AuthNavbar from "examples/Navbars/AuthNavbar";
+
 import Socials from "layouts/authentication/components/Socials";
 import Separator from "layouts/authentication/components/Separator";
 
-// Images
-import curved6 from "assets/images/youn/digdas.jpg";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -78,7 +78,13 @@ function SignUp() {
   };
 
   return (
-    <BasicLayout title="안녕!" description="Gymunity 가입하쟝" image={curved6}>
+
+  <BasicLayout>
+    <AuthNavbar />
+      <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
+        <SoftTypography variant="h3">회원 가입</SoftTypography>
+      </SoftBox>
+
       <Card>
         <SoftBox pt={2} pb={3} px={3}>
           <SoftBox component="form" role="form" onSubmit={onSubmit}>

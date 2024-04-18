@@ -32,11 +32,44 @@ import CoverLayout from "layouts/authentication/components/CoverLayout";
 
 // Images
 import curved9 from "assets/images/curved-images/curved-6.jpg";
+import axios from "axios";
 
 function SignIn() {
   const [rememberMe, setRememberMe] = useState(true);
+  const [inputs, setInputs] = useState({ userAccountId: "", password: "" });
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    await axios
+      .post("/user/signin", inputs)
+      .then((response) => {
+        //console.log(response);
+        //let jwtToken = response.headers["authorization"];
+        //let jwtToken = response.headers.get('authorization');
+        //let refreshToken = response.headers.get('refreshToken');
+        //console.log(jwtToken);
+        let accessToken = response.data.accessToken;
+        let refreshToken = response.data.refreshToken;
+        console.log("accessToken", accessToken);
+        console.log("refreshToken", refreshToken);
+        localStorage.setItem("Authorization", accessToken);
+        localStorage.setItem("Authorization-refresh", refreshToken);
+        localStorage.setItem("userAccountId", response.data.userAccountId);
+        localStorage.setItem("nickName", response.data.nickName);
+        localStorage.setItem("userId", response.data.userId);
+        localStorage.setItem("isLogin", true);
+
+        setInputs({ userAccountId: "", password: "" });
+        //return response.data.memberEmail;
+      })
+      .then((response) => {
+        //console.log("then", response);
+        window.location.replace("/");
+      })
+      .catch((error) => console.log(error));
+  };
 
   return (
     <CoverLayout
@@ -44,22 +77,42 @@ function SignIn() {
       description="이메일이랑 비밀번호 쳐서 로그인하도록 해"
       image={curved9}
     >
-      <SoftBox component="form" role="form">
+      <SoftBox component="form" role="form" onSubmit={onSubmit}>
         <SoftBox mb={2}>
           <SoftBox mb={1} ml={0.5}>
-            <SoftTypography component="label" variant="caption" fontWeight="bold">
-              Email
+            <SoftTypography
+              component="label"
+              variant="caption"
+              fontWeight="bold"
+            >
+              아이디
             </SoftTypography>
           </SoftBox>
-          <SoftInput type="email" placeholder="Email" />
+          <SoftInput
+            type="text"
+            placeholder="아이디"
+            value={inputs.userAccountId}
+            onChange={(e) =>
+              setInputs({ ...inputs, userAccountId: e.target.value })
+            }
+          />
         </SoftBox>
         <SoftBox mb={2}>
           <SoftBox mb={1} ml={0.5}>
-            <SoftTypography component="label" variant="caption" fontWeight="bold">
+            <SoftTypography
+              component="label"
+              variant="caption"
+              fontWeight="bold"
+            >
               Password
             </SoftTypography>
           </SoftBox>
-          <SoftInput type="password" placeholder="Password" />
+          <SoftInput
+            type="password"
+            placeholder="비밀번호"
+            value={inputs.password}
+            onChange={(e) => setInputs({ ...inputs, password: e.target.value })}
+          />
         </SoftBox>
         <SoftBox display="flex" alignItems="center">
           <Switch checked={rememberMe} onChange={handleSetRememberMe} />
@@ -73,8 +126,8 @@ function SignIn() {
           </SoftTypography>
         </SoftBox>
         <SoftBox mt={4} mb={1}>
-          <SoftButton variant="gradient" color="info" fullWidth>
-            sign in
+          <SoftButton type="submit" variant="gradient" color="info" fullWidth>
+            로그인하도록
           </SoftButton>
         </SoftBox>
         <SoftBox mt={3} textAlign="center">
@@ -88,7 +141,7 @@ function SignIn() {
               fontWeight="medium"
               textGradient
             >
-              Sign up
+              회원가입
             </SoftTypography>
           </SoftTypography>
         </SoftBox>
