@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gymunity.challenge.repository.ChallengeMapper">
+	<!-- java.sql.Date 타입에서 LocalDate 타입 객체로 변환 -->
+	<resultMap id="challengeResultMap" type="Challenge">
+		<id column="ch_id" property="chId" />
+		<result column="title" property="title" />
+		<result column="content" property="content" />
+		<result column="category" property="category" />
+		<result column="betting_point" property="bettingPoint" />
+		<result column="ch_start_date" property="chStartDate"/>
+		<result column="ch_end_date" property="chEndDate"/>
+		<result column="count" property="count" />
+		<result column="user_id" property="userId" />
+	</resultMap>
+
+	<!-- 챌린지 생성-->
+	<!-- challenges 테이블에 데이터 삽입-->
+	<insert id="insertChallenges" parameterType="Challenge"
+		useGeneratedKeys="true"
+		keyProperty="chId">
+	    <![CDATA[
+	    INSERT INTO challenges (title, content, category, betting_point, ch_start_date, ch_end_date, user_id)
+	    VALUES (#{title}, #{content}, #{category}, #{bettingPoint}, #{chStartDate}, #{chEndDate}, #{userId})
+        ]]>
+    </insert>
+
+	<!-- members 테이블에 데이터 삽입 -->
+	<insert id="insertMembers" parameterType="Member">
+        <![CDATA[
+        INSERT INTO members (mem_user_id, mem_ch_id, registrant)
+        VALUES (#{memUserId}, #{memChId}, #{registrant})
+        ]]> 
+    </insert>
+
+	<!-- 챌린지 참가-->
+	<!-- members 테이블에서 user_id와 ch_id로 검색 -->
+	<select id="countMembersByUserIdAndChId" parameterType="int"
+		resultType="int">
+		SELECT COUNT(*)
+		FROM members
+		WHERE mem_user_id = #{userId} AND mem_ch_id = #{chId}
+	</select>
+
+	<!-- count 업데이트-->
+	<update id="updateChallengeCount">
+		UPDATE challenges
+		SET count = count + 1
+		WHERE ch_id = #{chId}
+	</update>
+
+	<!-- userId로 challenges 테이블 조회-->
+	<select id="selectChallengesByUserId" parameterType="int"
+		resultMap="challengeResultMap">
+		SELECT * FROM challenges
+		WHERE user_id=#{userId}
+	</select>
+
+	<!-- chId로 challenges 테이블 조회-->
+	<select id="selectChallengesByChId" parameterType="int"
+		resultMap="challengeResultMap">
+		SELECT * FROM challenges
+		WHERE ch_id=#{chId}
+	</select>
+
+	<!-- 챌린지 수정-->
+	<!-- challenges 테이블 업데이트-->
+	<update id="updateChallenges" parameterType="Challenge">
+		UPDATE challenges
+		SET title = #{title}, content = #{content}, category = #{category},
+		ch_start_date = #{chStartDate}, ch_end_date = #{chEndDate}
+		WHERE user_id = #{userId}
+	</update>
+
+
+	<!-- 챌린지 삭제-->
+	<!-- challenges 테이블에 데이터 삭제-->
+	<delete id="deleteChallenges" parameterType="int">
+		DELETE FROM challenges
+		WHERE user_id=#{userId}
+	</delete>
+
+	<!-- 
+  <select id="list" resultType="Challenge" parameterType="PageDTO">
+	SELECT c.*
+	FROM challenges c
+	ORDER BY c.ch_id DESC
+	LIMIT #{startRow}, #{blockCount}
+  </select>
+  -->
+
+	<update id="countCH" parameterType="int">
+		UPDATE challenges
+		SET count = count + 1
+		WHERE ch_id=#{ch_id}
+
+	</update>
+
+</mapper>
