@@ -21,6 +21,7 @@ import PlaceholderCard from "examples/Cards/PlaceholderCard";
 // Overview page components
 import Header from "./../components/Header/index";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
+import GymunityNavbar from "examples/Navbars/GymunityNavbar";
 
 // Images
 
@@ -152,7 +153,7 @@ function Challenge() {
         {pv && <SoftPagination getChallengeList={getChallengeList} />}
       </SoftBox>
 
-      <Footer />
+      <GymunityNavbar />
     </DashboardLayout>
   );
 }
