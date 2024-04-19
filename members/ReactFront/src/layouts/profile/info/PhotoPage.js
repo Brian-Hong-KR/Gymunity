@@ -29,14 +29,14 @@ const PhotoPage = () => {
 
   return (
     <DashboardLayout>
-      <Header />
+    <DashboardNavbar/>  
       <h1>Photo 페이지</h1>
       <div className="photo-grid">
         {photos.map((photo) => (
           <img key={photo.id} src={photo.filePath} alt={photo.fileName} className="photo-item" />
         ))}
       </div>
-      <Footer />
+      
     </DashboardLayout>
   );
 };

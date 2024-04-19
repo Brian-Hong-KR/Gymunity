@@ -38,7 +38,6 @@ function ChallengeCreate() {
   const [rememberMe, setRememberMe] = useState(true);
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
-  
 
   const [tabsOrientation, setTabsOrientation] = useState("horizontal");
   const [tabValue, setTabValue] = useState(0);
@@ -87,8 +86,6 @@ function ChallengeCreate() {
     }
   };
 
-  
-  
   const handleChangeDate = (event) => {
     const input = event.target.value;
     // 입력된 값이 숫자인지 확인합니다
@@ -122,7 +119,7 @@ function ChallengeCreate() {
       }
     }
   };
-  
+
   const handleChangeTitle = (event) => {
     setTitle(event.target.value);
     setErrorMessage('');
@@ -138,9 +135,6 @@ function ChallengeCreate() {
     setErrorMessage('');
   };
 
-  
-  
-
   return (
     <DashboardLayout>
      <DashboardNavbar/>
@@ -150,16 +144,14 @@ function ChallengeCreate() {
         description="건전하고 공정한 챌린지로 모두 즐겁게 운동할 수 있게 해주세요."
         image={curved9}
       >
-
         <SoftBox component="form" role="form">
-
           <SoftBox mb={2}>
             <SoftBox mb={1} ml={0.5}>
               <SoftTypography component="label" variant="caption" fontWeight="bold">
                 챌린지 제목
               </SoftTypography>
             </SoftBox>
-            <SoftInput type="title" placeholder="챌린지 제목" onChange={handleChangeTitle}/>
+            <SoftInput type="title" placeholder="챌린지 제목" onChange={handleChangeTitle} />
           </SoftBox>
 
           <SoftBox mb={2}>
@@ -238,13 +230,13 @@ function ChallengeCreate() {
                 챌린지 시작일
               </SoftTypography>
             </SoftBox>
-            <SoftInput type="title" 
-                        value={date} 
-                        placeholder="yyyy-mm-dd" 
-                        onChange={handleChangeDate}
-                        onKeyDown={handleKeyDown}
-                        />
-                        
+            <SoftInput
+              type="title"
+              value={date}
+              placeholder="yyyy-mm-dd"
+              onChange={handleChangeDate}
+              onKeyDown={handleKeyDown}
+            />
           </SoftBox>
 
           <SoftBox mb={2}>
@@ -253,9 +245,7 @@ function ChallengeCreate() {
                 챌린지 소개
               </SoftTypography>
             </SoftBox>
-            <SoftInput type="title" 
-                       placeholder="챌린지 소개" 
-                       onChange={handleChangeContent}/>
+            <SoftInput type="title" placeholder="챌린지 소개" onChange={handleChangeContent} />
           </SoftBox>
 
           <SoftBox mb={2}>
@@ -271,7 +261,7 @@ function ChallengeCreate() {
               onChange={handleChangeBettingPoint}
             />
           </SoftBox>
-          
+
           {errorMessage && <p>{errorMessage}</p>}
           <SoftBox mt={4} mb={1}>
             <SoftButton variant="gradient" color="info" fullWidth onClick={handleCreateChallenge}>

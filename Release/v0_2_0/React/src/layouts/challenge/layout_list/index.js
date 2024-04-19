@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { challengeActions } from "../toolkit/actions/challenge_actions";
@@ -29,10 +29,13 @@ function Challenge() {
   const { currentPage = 1 } = useParams();
   const dispatch = useDispatch();
 
-  const getChallengeList = (currentPage) => {
-    console.log("currentPage:", currentPage);
-    dispatch(challengeActions.getChallengeList(currentPage));
-  };
+  const getChallengeList = useCallback(
+    (page) => {
+      console.log("currentPage:", page);
+      dispatch(challengeActions.getChallengeListAsync(page));
+    },
+    [dispatch]
+  );
 
   const [isInitialRender, setIsInitialRender] = useState(true);
 
@@ -41,68 +44,57 @@ function Challenge() {
       getChallengeList(currentPage);
       setIsInitialRender(false);
     }
-  }, [currentPage, isInitialRender]);
-
-  const challengeList = useSelector(
-    (state) => state.challenge.challengeList || []
-  );
-  const joinList = useSelector((state) => state.challenge.joinList || []);
-  console.log("joinList:", joinList);
+  }, [currentPage, isInitialRender, getChallengeList]);
 
   const pv = useSelector((state) => state.challenge.pv || {});
 
-  const updatedChallengeList = useMemo(() => {
-    return challengeList.map((challenge) => {
-      const isJoined = joinList.some((join) => join.ch_id === challenge.ch_id);
-      const extendedChallenge = {
-        ...challenge,
-        type: isJoined ? "joined" : "none",
-        color: isJoined ? "primary" : "info",
-      };
-      return { ...challenge, isJoined, extendedChallenge };
-    });
-  }, [challengeList, joinList]);
+  // 1번
+  const challengeList = useSelector(
+    (state) => state.challenge.challengeList || []
+  );
+  const joinList = useSelector((state) => {
+    return (
+      state.challenge.joinList.map((item) => ({
+        ...item,
+        isJoined: true,
+      })) || []
+    );
+  });
+  const joinChIdList = joinList.map((item) => item.ch_id);
+  console.log("joinChIdList:", joinChIdList);
+
+  const updatedChallengeList = challengeList.map((challenge) => {
+    return {
+      ...challenge,
+      isJoined: joinChIdList.includes(challenge.ch_id),
+    };
+  });
 
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <SoftBox py={3}>
-        <SoftBox mb={3}>
-            <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
-                <SoftTypography variant="h5">Nickname</SoftTypography>
-                <SoftTypography variant="body2" color="text"> grade</SoftTypography>
-            </SoftBox>
-
+      <SoftBox mt={5} mb={3}></SoftBox>
+      <SoftBox mb={3}>
         <Card>
           <SoftBox pt={2} px={2}>
             <SoftBox mb={0.5}>
-              <SoftTypography variant="h6" fontWeight="medium">
+              <SoftTypography variant="h5" fontWeight="medium">
                 참여중인 챌린지
               </SoftTypography>
             </SoftBox>
             <SoftBox mb={1}>
-              <SoftTypography
-                variant="button"
-                fontWeight="regular"
-                color="text"
-              >
+              <SoftTypography variant="h6" fontWeight="regular" color="text">
                 참여중인 챌린지를 확인하고 이행 여부를 인증해보세요!
               </SoftTypography>
             </SoftBox>
           </SoftBox>
           <SoftBox p={2}>
             <Grid container spacing={3}>
-              {challengeList.map((challenge) => (
+              {joinList.map((challenge) => (
                 <Grid item xs={12} md={6} xl={3} key={challenge.ch_id}>
-                  {challenge.isJoined && (
-                    <DefaultProjectCard
-                      challenge={challenge}
-                      extendedChallenge={challenge.extendedChallenge}
-                    />
-                  )}
+                  <DefaultProjectCard challenge={challenge} />
                 </Grid>
               ))}
-
               <Grid
                 item
                 xs={12}
@@ -119,50 +111,36 @@ function Challenge() {
             </Grid>
           </SoftBox>
         </Card>
-
-        <SoftBox py={1} mb={1}> </SoftBox>
-
+        <SoftBox mt={3} mb={3}></SoftBox>
         <Card>
           <SoftBox pt={2} px={2}>
             <SoftBox mb={0.5}>
-              <SoftTypography variant="h6" fontWeight="medium">
-                챌린지 리스트
+              <SoftTypography variant="h5" fontWeight="medium">
+                전체 챌린지 리스트
               </SoftTypography>
             </SoftBox>
             <SoftBox mb={1}>
-              <SoftTypography
-                variant="button"
-                fontWeight="regular"
-                color="text"
-              >
+              <SoftTypography variant="h6" fontWeight="regular" color="text">
                 진행중인 챌린지를 확인하고 참여해보세요!
               </SoftTypography>
             </SoftBox>
           </SoftBox>
           <SoftBox p={2}>
             <Grid container spacing={3}>
-              {challengeList &&
-                challengeList.map((challenge) => {
-                  return (
-                    <Grid item xs={12} md={6} xl={3}>
-                      <DefaultProjectCard
-                        challenge={challenge}
-                        key={challenge.ch_id}
-                      />
-                    </Grid>
-                  );
-                })}
+              {updatedChallengeList.map((challenge) => (
+                <Grid item xs={12} md={6} xl={3} key={challenge.ch_id}>
+                  <DefaultProjectCard challenge={challenge} />
+                </Grid>
+              ))}
             </Grid>
           </SoftBox>
         </Card>
 
         {/* TODO SoftPagination 설정 */}
         {pv && <SoftPagination getChallengeList={getChallengeList} />}
-        </SoftBox>
-       </SoftBox>
-       <GymunityNavbar />
+      </SoftBox>
+      <GymunityNavbar />
     </DashboardLayout>
-
   );
 }
 

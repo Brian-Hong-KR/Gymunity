@@ -18,6 +18,7 @@ import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
 import SoftAlert from "components/SoftAlert";
 import Footer from "examples/Footer";
+import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 function ChallengeDetail() {
   const { ch_id } = useParams();
@@ -61,7 +62,7 @@ function ChallengeDetail() {
 
   return (
     <DashboardLayout>
-      <Header />
+       <DashboardNavbar/>
       <SoftBox py={3}>
         <Card>
           <SoftBox p={3}>

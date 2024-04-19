@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 // @mui material components
 import Card from "@mui/material/Card";
@@ -83,8 +83,6 @@ function ChallengeVerify({
       return () => clearTimeout(timeout);
     }
   }, [showAlert]);
-
-
 
   return (
     <DashboardLayout>
