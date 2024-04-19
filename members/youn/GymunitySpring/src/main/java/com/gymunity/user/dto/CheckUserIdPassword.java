@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CheckUserIdPassword {
-
+	private int userId;
 	private String userAccountId;
 	private String password;
 }// end class

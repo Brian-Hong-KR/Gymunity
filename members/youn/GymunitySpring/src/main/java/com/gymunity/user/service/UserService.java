@@ -15,7 +15,7 @@ public interface UserService {
 
 	public boolean validateUserIdPassword(CheckUserIdPassword dto);
 
-	public void deleteUserProcess(String userAccountId);
+	public void deleteUserProcess(int userId);
 
 	public UserInfoDTO userInfoProcess(String userAccountId);
 

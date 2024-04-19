@@ -21,20 +21,28 @@ function ProductList() {
   const { columns, rows } = data();
 
   return (
-    <Card>
-      <SoftBox
-        sx={{
-          "& .MuiTableRow-root:not(:last-child)": {
+    <SoftBox py={1}>
+        <SoftBox mb={1}>
+
+            <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
+                <SoftTypography variant="h5">맞춤 건강 상품</SoftTypography>
+            </SoftBox>
+
+            <SoftBox
+            sx={{
+            "& .MuiTableRow-root:not(:last-child)": {
             "& td": {
               borderBottom: ({ borders: { borderWidth, borderColor } }) =>
                 `${borderWidth[1]} solid ${borderColor}`,
             },
-          },
-        }}
-      >
-        <Table columns={columns} rows={rows} />
-      </SoftBox>
-    </Card>
+            },
+            }}
+            >
+                <Table columns={columns} rows={rows} />
+            </SoftBox>
+        </SoftBox>
+    </SoftBox>
+
   );
 }
 

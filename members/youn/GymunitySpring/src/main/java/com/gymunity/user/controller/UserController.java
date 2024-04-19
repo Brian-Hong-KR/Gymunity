@@ -69,14 +69,12 @@ public class UserController {
 	
 	// 회원탈퇴
 	@Operation(summary = "회원탈퇴")
-	@DeleteMapping("/user/delete")
-	public ResponseEntity<?> deleteUser(@RequestBody CheckUserIdPassword dto) {
-
-		if (userService.validateUserIdPassword(dto)) {
-			userService.deleteUserProcess(dto.getUserAccountId());
-			return ResponseEntity.ok().build();
-		}
-		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+	@DeleteMapping("/user/delete/{userId}")
+	public ResponseEntity<?> deleteUser(@PathVariable("userId") int userId){
+		userService.deleteUserProcess(userId);
+		return ResponseEntity.ok(null);
 	}// end deleteUser()
 
+	
+	
 }// end class

@@ -13,7 +13,7 @@ function navbar(theme, ownerState) {
     backdropFilter: transparentNavbar || absolute ? "none" : `saturate(200%) blur(${pxToRem(30)})`,
     backgroundColor:"#ea0606",
     color: "white",
-    top: absolute ? 0 : pxToRem(12),
+    bottom : 0,
     minHeight: pxToRem(75),
     display: "grid",
     alignItems: "center",
