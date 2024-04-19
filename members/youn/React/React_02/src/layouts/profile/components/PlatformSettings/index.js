@@ -92,7 +92,7 @@ function PlatformSettings() {
           </Grid>
         </SoftBox>
         <SoftBox mt={4} mb={1}>
-          <Link to='modifyUser'>
+          <Link to='editUser'>
             <SoftButton type='submit' variant='gradient' color='info' fullWidth>
               회원정보 수정
             </SoftButton>
@@ -105,7 +105,7 @@ function PlatformSettings() {
             color='error'
             fullWidth
             onClick={handleDeleteAccount}
-            to='/profile/deleteUser'
+            to='deleteUser'
           >
             회원탈퇴
           </SoftButton>

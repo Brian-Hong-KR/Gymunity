@@ -1,71 +1,55 @@
 from langchain.llms import Ollama
-import json, time
-import dotenv, os, re
+import time
 
-f = dotenv.find_dotenv()
-dotenv.load_dotenv(f)
-file_path = os.environ["daily_plan_file_path"]
-exercises = os.environ["exercises"]
+test_temp = 0.2
 
-exercise_list = eval(exercises)
-gender_list = ["male", "female"]
-age_list = ["young", "old"]
-goal_list = ["Body fat reduction", "Muscle gain", "Overall health improvement"]
-level_list = ["beginner", "Intermediate", "advanced"]
-abnormal_list = ["cardiovascular disease", "musculoskeletal disorders", "respiratory diseases", "no health problems"]
+llama3 = Ollama(model="llama3", temperature=test_temp)
 
-llm = Ollama(model="neural-chat", temperature=0.5)
+question_list = ["넌 뭘 대답할 수 있어?", "허리쪽이 아픕니다.", "무릎이 아픈데"]
 
-start_time = time.time()
 
-with open(file_path, "w", encoding='utf-8') as f:
-    f.write("[\n")
+def generate_answer(model, question):
+    prompt = f"""You are a personal trainer and your client has the following question about squats. Answer in 3 colloquial Korean sentences.\n\nClient's question : {question}"""
 
-progress = 0
-total = len(gender_list) * len(age_list) * len(goal_list) * len(level_list) * len(abnormal_list)
+    response = model.invoke(prompt)
 
-for gender in gender_list:
-    for age in age_list:
-        for goal in goal_list:
-            for level in level_list:
-                for abnormal in abnormal_list:
+    return response
 
-                    step_start_time = time.time()
+# sudo systemctl restart ollama.service
 
-                    prompt = f"""Write a home training program for today based on the customer's information (but without any preparation) The result is only output in python list format as shown in the example :\n\nCustomer information >\n\nGender : {gender}\nAge : {age}\nWorkout Goal : {goal}\nExercise level : {level}\nHealth Concerns: {abnormal}\n\nSample Results >\n\n[ "Running in place", "Dynamic stretches (neck, shoulders, arms, lower back, legs)", "Burpees (3 sets x max reps)", "Lunges (3 sets x 10 reps each leg)", "Push-ups (3 sets x max reps)", "Planks (3 sets x 30 seconds)", "Mountain climbers (3 sets x 30 seconds)", "Static stretches (neck, shoulders, arms, lower back, legs)"]"""
+if __name__ == "__main__":
 
-                    plan = llm.invoke(prompt)
+    print("""Temp : """, test_temp)
 
-                    matches = []
-                    matches = re.findall(r"\[(.*?)\]", str(plan))
+    for question_unit in question_list:
+        print("""Q : """, question_unit)
 
-                    print(matches)
+        step_start_time = time.time()
+        answer = generate_answer(llama3, question_unit)
+        print("""\nllama3 : """, time.time() - step_start_time)
+        print(answer)
 
-                    if len(matches) == 0:
-                        daily_program = "default"
-                    else:
-                        daily_program = eval(matches[0])
+        # step_start_time = time.time()
+        # answer = generate_answer(gemma, question_unit)
+        # print("""\ngemma : """, time.time() - step_start_time, answer)
+        # print(answer)
 
-                    new_data = {
-                        "gender": gender,
-                        "age": age,
-                        "goal": goal,
-                        "level": level,
-                        "abnormal": abnormal,
-                        "daily_program": daily_program,
-                    }
-
-                    progress += 1
-                    with open(file_path, "a", encoding='utf-8') as f:
-                        json.dump(new_data, f, indent=4)
-                        if progress < total:
-                            f.write(",\n")
-
-                    print("Step : " + str(progress) + " / " + str(total))
-                    print(" time : ", time.time() - step_start_time)
-
-with open(file_path, "a", encoding='utf-8') as f:
-    f.write("]")
-
-print("DONE !\n    Elapsed Total Time : ", time.time() - start_time)
-
+        #
+        # step_start_time = time.time()
+        # answer = generate_answer(mistral, question_unit)
+        # print("""\nmistral : """, time.time() - step_start_time)
+        # print(answer)
+        #
+        # # step_start_time = time.time()
+        # # answer = generate_answer(neural_chat, question_unit)
+        # # print("""\nneural-chat : """, time.time() - step_start_time)
+        # # print (answer)
+        #
+        # step_start_time = time.time()
+        # answer = generate_answer(phi, question_unit)
+        # print("""\nphi : """, time.time() - step_start_time, answer)
+        #
+        # # step_start_time = time.time()
+        # # answer = generate_answer(solar, question_unit)
+        # # print("""\nsolar : """, time.time() - step_start_time)
+        # # print(answer)

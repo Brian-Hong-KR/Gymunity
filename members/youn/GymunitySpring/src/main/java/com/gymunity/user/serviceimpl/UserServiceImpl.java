@@ -116,13 +116,8 @@ public class UserServiceImpl implements UserService {
 
 	// 회원탈퇴
 	@Override
-	public void deleteUserProcess(String userAccountId) {
-		User user = userMapper.selectUsersByAccountId(userAccountId);
-
-		if (user != null) {
-			userMapper.deleteUsers(user.getUserId());
-		}
-
+	public void deleteUserProcess(int userId) {
+		userMapper.deleteUsers(userId);
 	}// end deleteUserProcess()
 
 	// Id,Password 확인

@@ -348,8 +348,20 @@ export default function data() {
             color="white"
              > 구매 </SoftButton>
       },
-
-
+      {
+      상품명: [chair, "사무용 의자"],
+      용도: <SoftTypography variant="caption" color="text" fontWeight="medium">
+          추천 사무용 의자
+        </SoftTypography>,
+      링크: <SoftButton
+          component={Link}
+          href="https://link.coupang.com/a/bytFhx"
+          target="_blank"
+          rel="noreferrer"
+          size="small"
+          color="dark"
+           > 추천 </SoftButton>
+      },
 
     ],
   };

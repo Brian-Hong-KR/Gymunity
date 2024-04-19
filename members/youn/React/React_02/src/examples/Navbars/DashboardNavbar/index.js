@@ -22,6 +22,7 @@ import SoftInput from "components/SoftInput";
 import Breadcrumbs from "examples/Breadcrumbs";
 import NotificationItem from "examples/Items/NotificationItem";
 
+import GymunityLogo from "assets/images/logos/logo_white.png"
 // Custom styles for DashboardNavbar
 import {
   navbar,
@@ -82,7 +83,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
     >
       <Toolbar sx={(theme) => navbarContainer(theme)}>
         <SoftBox
-          color='inherit'
+          color='white'
           mb={{ xs: 1, md: 0 }}
           sx={(theme) => navbarRow(theme, { isMini })}
         >
@@ -93,52 +94,18 @@ function DashboardNavbar({ absolute, light, isMini }) {
                 onClick={handleMiniSidenav}
               >
                 <Icon className={light ? 'text-white' : 'text-dark'}>
-                  {miniSidenav ? 'menu_open' : 'menu'}
+                  {'menu'}
                 </Icon>
             </IconButton>
 
+        <SoftBox display="flex" justifyContent="flex-end" width="60%">
+            <SoftBox component="img" src={GymunityLogo} alt="logo" width="80%" mt={1} />
         </SoftBox>
-        {isMini ? null : (
-          <SoftBox sx={(theme) => navbarRow(theme, { isMini })}>
 
 
-            <Icon
-                sx={({ palette: { dark, white } }) => ({
-                  color: light ? white.main : dark.main,
-                })}
-              >account_circle
-            </Icon>
-
-              <SoftTypography variant='h5' fontWeight='medium'>
-                Nick name
-              </SoftTypography>
-
-              <SoftTypography
-                variant='button'
-                color='text'
-                fontWeight='medium'
-              >
-                grade
-              </SoftTypography>
+        </SoftBox>
 
 
-            <SoftBox color={light ? 'white' : 'inherit'}>
-              <Link to='/authentication/sign-in'>
-                <IconButton sx={navbarIconButton} size='small'>
-
-                  <SoftTypography
-                    variant='button'
-                    fontWeight='medium'
-                    color={light ? 'white' : 'dark'}
-                  >
-                    Log Out
-                  </SoftTypography>
-                </IconButton>
-              </Link>
-
-            </SoftBox>
-          </SoftBox>
-        )}
       </Toolbar>
     </AppBar>
   );

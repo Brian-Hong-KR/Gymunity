@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 // @mui material components
 import Card from "@mui/material/Card";
@@ -29,7 +29,6 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import categoryToLoseWeight from "assets/images/category/category_toloseweight.jpg";
 
 // Overview page components
-import Header from "../components/Header/index";
 
 function ChallengeVerify({
   category,
@@ -84,26 +83,32 @@ function ChallengeVerify({
     }
   }, [showAlert]);
 
-
-
   return (
     <DashboardLayout>
-       <DashboardNavbar/>
-      <div style={{ marginBottom: '30px' }}></div> {/* 헤더와 카드 사이 간격 조정 */}
-      <Card style={{ textAlign: 'center' }}>
-        
-        <SoftBox mb={2} style={{ width: '400px' , margin: '0 auto' }}>
-        <SoftBox mb={1} ml={1.5}>
-        <SoftTypography component="label" variant="caption" fontWeight="bold">
-          첫 번째 인증사진을 등록하세요.
-        </SoftTypography>
-       </SoftBox>
-          <SoftInput type="file" placeholder="파일 선택" />
-       </SoftBox>
-
-       <SoftBox mb={2} style={{ width: '400px' , margin: '0 auto' }}>
+      <DashboardNavbar />
+      <div style={{ marginBottom: "30px" }}></div>{" "}
+      {/* 헤더와 카드 사이 간격 조정 */}
+      <Card style={{ textAlign: "center" }}>
+        <SoftBox mb={2} style={{ width: "400px", margin: "0 auto" }}>
           <SoftBox mb={1} ml={1.5}>
-            <SoftTypography component="label" variant="caption" fontWeight="bold">
+            <SoftTypography
+              component="label"
+              variant="caption"
+              fontWeight="bold"
+            >
+              첫 번째 인증사진을 등록하세요.
+            </SoftTypography>
+          </SoftBox>
+          <SoftInput type="file" placeholder="파일 선택" />
+        </SoftBox>
+
+        <SoftBox mb={2} style={{ width: "400px", margin: "0 auto" }}>
+          <SoftBox mb={1} ml={1.5}>
+            <SoftTypography
+              component="label"
+              variant="caption"
+              fontWeight="bold"
+            >
               두 번째 인증사진을 등록하세요.
             </SoftTypography>
           </SoftBox>
@@ -111,15 +116,26 @@ function ChallengeVerify({
         </SoftBox>
 
         <SoftBox mt={4} mb={1}>
-          <SoftButton variant="gradient" color="info" fullWidth onClick={handleVerifyButtonClick} >
+          <SoftButton
+            variant="gradient"
+            color="info"
+            fullWidth
+            onClick={handleVerifyButtonClick}
+          >
             인증하기
           </SoftButton>
           {showAlert && (
-            <SoftBox style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
-            <SoftAlert color="success" dismissible onClose={handleAlertClose}
-            >  
-              인증이 완료되었습니다.
-            </SoftAlert>
+            <SoftBox
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+              }}
+            >
+              <SoftAlert color="success" dismissible onClose={handleAlertClose}>
+                인증이 완료되었습니다.
+              </SoftAlert>
             </SoftBox>
           )}
         </SoftBox>

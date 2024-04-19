@@ -8,7 +8,6 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import { Card, Grid } from "@mui/material";
 
 // Overview page components
-import Header from "./../components/Header/index";
 import Socials from "layouts/authentication/components/Socials";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 
@@ -25,7 +24,9 @@ function ChallengeDetail() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const challengeDetail = useSelector((state) => state.challenge.challengeDetail);
+  const challengeDetail = useSelector(
+    (state) => state.challenge.challengeDetail
+  );
   const pv = useSelector((state) => state.challenge.pv);
 
   // const config = {
@@ -62,7 +63,7 @@ function ChallengeDetail() {
 
   return (
     <DashboardLayout>
-       <DashboardNavbar/>
+      <DashboardNavbar />
       <SoftBox py={3}>
         <Card>
           <SoftBox p={3}>
@@ -74,41 +75,74 @@ function ChallengeDetail() {
           <SoftBox p={3} textAlign="center">
             <Grid container spacing={3} justifyContent="center">
               <Grid item xs={6} sm={4}>
-                <SoftTypography component="label" variant="caption" fontWeight="bold">
+                <SoftTypography
+                  component="label"
+                  variant="caption"
+                  fontWeight="bold"
+                >
                   챌린지 유형
                 </SoftTypography>
-                <SoftTypography variant="body1">{challengeDetail.category}</SoftTypography>
+                <SoftTypography variant="body1">
+                  {challengeDetail.category}
+                </SoftTypography>
               </Grid>
               <Grid item xs={6} sm={4}>
-                <SoftTypography component="label" variant="caption" fontWeight="bold">
+                <SoftTypography
+                  component="label"
+                  variant="caption"
+                  fontWeight="bold"
+                >
                   챌린지 시작일
                 </SoftTypography>
-                <SoftTypography variant="body1">{challengeDetail.ch_start_date}</SoftTypography>
+                <SoftTypography variant="body1">
+                  {challengeDetail.ch_start_date}
+                </SoftTypography>
               </Grid>
               <Grid item xs={6} sm={4}>
-                <SoftTypography component="label" variant="caption" fontWeight="bold">
+                <SoftTypography
+                  component="label"
+                  variant="caption"
+                  fontWeight="bold"
+                >
                   챌린지 기간
                 </SoftTypography>
-                <SoftTypography variant="body1">{challengeDetail.challenge_term}</SoftTypography>
+                <SoftTypography variant="body1">
+                  {challengeDetail.challenge_term}
+                </SoftTypography>
               </Grid>
               <Grid item xs={6} sm={4}>
-                <SoftTypography component="label" variant="caption" fontWeight="bold">
+                <SoftTypography
+                  component="label"
+                  variant="caption"
+                  fontWeight="bold"
+                >
                   배팅 포인트
                 </SoftTypography>
-                <SoftTypography variant="body1">{challengeDetail.batting_point}</SoftTypography>
+                <SoftTypography variant="body1">
+                  {challengeDetail.batting_point}
+                </SoftTypography>
               </Grid>
               <Grid item xs={6} sm={4}>
-                <SoftTypography component="label" variant="caption" fontWeight="bold">
+                <SoftTypography
+                  component="label"
+                  variant="caption"
+                  fontWeight="bold"
+                >
                   인증 빈도
                 </SoftTypography>
-                <SoftTypography variant="body1">{challengeDetail.verify_frequency}</SoftTypography>
+                <SoftTypography variant="body1">
+                  {challengeDetail.verify_frequency}
+                </SoftTypography>
               </Grid>
             </Grid>
 
             <SoftBox mt={6} textAlign="center">
               {localStorageUserID === challengeDetail.user_id ? (
                 <>
-                  <Link className="btn btn-primary" to={`/challenge/update/${ch_id}`}>
+                  <Link
+                    className="btn btn-primary"
+                    to={`/challenge/update/${ch_id}`}
+                  >
                     수정
                   </Link>
                   <button className="btn btn-primary" onClick={handleDelete}>
@@ -117,11 +151,19 @@ function ChallengeDetail() {
                 </>
               ) : (
                 <>
-                  <SoftButton variant="gradient" color="info" onClick={handleJoinButtonClick}>
+                  <SoftButton
+                    variant="gradient"
+                    color="info"
+                    onClick={handleJoinButtonClick}
+                  >
                     참여하기
                   </SoftButton>
                   {showAlert && (
-                    <SoftAlert color="success" dismissible onClose={handleAlertClose}>
+                    <SoftAlert
+                      color="success"
+                      dismissible
+                      onClose={handleAlertClose}
+                    >
                       참여 완료! 챌린지를 끝까지 완수해보세요.
                     </SoftAlert>
                   )}

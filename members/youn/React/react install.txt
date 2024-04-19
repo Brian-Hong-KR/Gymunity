@@ -1,0 +1,13 @@
+npx create-react-app
+
+__node_modules만 없을시
+npm install -s react-script
+
+npm install react-bootstrap bootstrap
+npm install react-router-dom
+npm install @reduxjs/toolkit
+npm install react-redux
+
+npm install --global yarn
+
+yarn install

@@ -12,40 +12,16 @@ import SoftTypography from "components/SoftTypography";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import PageLayout from "examples/LayoutContainers/PageLayout";
 
-// Authentication layout components
-import Footer from "layouts/authentication/components/Footer";
 
 function BasicLayout({ title, description, image, children }) {
   return (
     <PageLayout>
-      <DefaultNavbar
-        action={{
-          type: "external",
-          route: "https://creative-tim.com/product/soft-ui-dashboard-react",
-          label: "free download",
-        }}
-        transparent
-        light
-      />
+
       <SoftBox
-        width="calc(100% - 2rem)"
-        minHeight="50vh"
-        borderRadius="lg"
         mx={2}
         my={2}
         pt={6}
-        pb={28}
-        sx={{
-          backgroundImage: ({ functions: { linearGradient, rgba }, palette: { gradients } }) =>
-            image &&
-            `${linearGradient(
-              rgba(gradients.dark.main, 0.6),
-              rgba(gradients.dark.state, 0.6)
-            )}, url(${image})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
+        pb={10}
       >
         <Grid container spacing={3} justifyContent="center" sx={{ textAlign: "center" }}>
           <Grid item xs={10} lg={4}>
@@ -69,7 +45,7 @@ function BasicLayout({ title, description, image, children }) {
           </Grid>
         </Grid>
       </SoftBox>
-      <Footer />
+
     </PageLayout>
   );
 }

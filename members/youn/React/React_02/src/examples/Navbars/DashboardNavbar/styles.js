@@ -1,17 +1,4 @@
-/**
-=========================================================
-* Soft UI Dashboard React - v4.0.1
-=========================================================
 
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
 function navbar(theme, ownerState) {
   const { palette, boxShadows, functions, transitions, breakpoints, borders } = theme;
   const { transparentNavbar, absolute, light } = ownerState;
@@ -24,22 +11,8 @@ function navbar(theme, ownerState) {
   return {
     boxShadow: transparentNavbar || absolute ? "none" : navbarBoxShadow,
     backdropFilter: transparentNavbar || absolute ? "none" : `saturate(200%) blur(${pxToRem(30)})`,
-    backgroundColor:
-      transparentNavbar || absolute ? `${transparent.main} !important` : rgba(white.main, 0.8),
-
-    color: () => {
-      let color;
-
-      if (light) {
-        color = white.main;
-      } else if (transparentNavbar) {
-        color = text.main;
-      } else {
-        color = dark.main;
-      }
-
-      return color;
-    },
+    backgroundColor:"#ea0606",
+    color: "white",
     top: absolute ? 0 : pxToRem(12),
     minHeight: pxToRem(75),
     display: "grid",
@@ -101,6 +74,7 @@ const navbarRow = ({ breakpoints }, { isMini }) => ({
     width: "max-content !important",
   },
 });
+
 
 const navbarIconButton = ({ typography: { size }, breakpoints }) => ({
   px: 0.75,
