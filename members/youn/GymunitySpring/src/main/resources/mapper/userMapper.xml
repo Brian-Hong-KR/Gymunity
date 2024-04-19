@@ -121,13 +121,28 @@
 	</update>
 
 	<!-- 회원 탈퇴 -->
-
 	<!-- users 테이블에서 사용자 데이터 삭제 -->
 	<delete id="deleteUsers" parameterType="int">
 		DELETE 
 		FROM users 
 		WHERE user_id = #{userId}
 	</delete>
+	
+
+	<!-- 포인트 일주일치 -->
+	<select id="getUserPointsWithinLastWeek" parameterType="string" resultType="java.util.Map">
+  <![CDATA[
+    SELECT DATE(added_at) AS date,
+           SUM(points_added) AS total_points
+    FROM point_add
+    WHERE user_id = #{userId}
+          AND added_at >= DATE_SUB(NOW(), INTERVAL 1 WEEK)
+          AND added_reason != '챌린지 취소'
+    GROUP BY DATE(added_at)
+    ORDER BY DATE(added_at) DESC;
+  ]]>
+</select>
+
 </mapper>
 
 <!-- pt 테이블에 데이터 삽입 -->

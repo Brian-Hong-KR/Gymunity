@@ -1,11 +1,15 @@
 package com.gymunity.user.repository;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.gymunity.user.dto.Profile;
 import com.gymunity.user.dto.Survey;
 import com.gymunity.user.dto.User;
+import com.gymunity.user.dto.UserPointsWithinWeek;
 import com.gymunity.user.dto.UserUpdateDTO;
 
 @Mapper
@@ -35,4 +39,5 @@ public interface UserMapper {
 
 	public int deleteUsers(int userId);
 
+	List<UserPointsWithinWeek> getUserPointsWithinLastWeek(@Param("userId") String userId);
 }// end interface

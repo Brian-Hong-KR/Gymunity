@@ -1,5 +1,7 @@
 package com.gymunity.user.serviceimpl;
 
+import java.util.List;
+
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,7 @@ import com.gymunity.user.dto.SignupDTO;
 import com.gymunity.user.dto.Survey;
 import com.gymunity.user.dto.User;
 import com.gymunity.user.dto.UserInfoDTO;
+import com.gymunity.user.dto.UserPointsWithinWeek;
 import com.gymunity.user.dto.UserUpdateDTO;
 import com.gymunity.user.repository.UserMapper;
 import com.gymunity.user.response.SigninResponse;
@@ -133,4 +136,9 @@ public class UserServiceImpl implements UserService {
 		return false;
 	}// end validateUserIdPassword()
 
+	// 일주일 유저 포인트
+	@Override
+    public List<UserPointsWithinWeek> getUserPointsWithinLastWeek(String userId) {
+        return userMapper.getUserPointsWithinLastWeek(userId);
+    }
 }// end class
