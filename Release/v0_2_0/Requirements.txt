@@ -21,11 +21,15 @@ Editor (PyCharm, Meld)
 Github Desktop
  - wget -qO - https://mirror.mwt.me/ghd/gpgkey | sudo tee /etc/apt/trusted.gpg.d/shiftkey-desktop.asc > /dev/null
  - sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/shiftkey/desktop/any/ any main" > /etc/apt/sources.list.d/packagecloud-shiftkey-desktop.list'
-  - sudo apt update && sudo apt install github-desktop
-  - clone project to local folder
+ - sudo apt update && sudo apt install github-desktop
+ - clone project to local folder
 
 React
- - sudo apt install yarn
+ - sudo apt-get install nodejs
+ - sudo apt-get install npm
+ - sudo apt-get install build-essential
+ - npm install -g create-react-app
+ - npm install --global yarn
  - cd /project/react
  - yarn install
  - yarn start
@@ -37,6 +41,7 @@ Python Flask
  - pip install sqlalchemy
  - pip install pymysql
  - pip install langchain
+ - pip install langchain-community
  - pip install python-dotenv
  - pip install youtube-search-python
  - pip install googletrans (단, youtube-search-python 과 의존성 충돌)
@@ -45,12 +50,25 @@ NginX, Gunicorn
  - sudo apt-get update
  - sudo apt install gunicorn
  - sudo apt install nginx
+ - sudo apt install net-tools
  - sudo nano /etc/nginx/sites-available/myproject
- - sudo systemctl stop nginx
- - sudo rm /etc/nginx/sites-enabled/myproject
- - sudo ln -s /etc/nginx/sites-available/myproject /etc/nginx/sites-enabled
+     server {
+            listen 80;
+            server_name 192.168.0.60;
+
+            location / {
+                    include proxy_params;
+                    proxy_pass http://localhost:5000/;
+            }
+    }
+
  - sudo systemctl start nginx
  - sudo systemctl enable nginx
+  (변경시
+  - sudo systemctl stop nginx
+ - sudo rm /etc/nginx/sites-enabled/myproject
+ - sudo ln -s /etc/nginx/sites-available/myproject /etc/nginx/sites-enabled
+ - sudo systemctl restart nginx )
 
 MySQL
  - sudo apt-get install mysql-server
@@ -59,7 +77,6 @@ MySQL
  - bash create_db.sh (import)
 
 LLM
- - sudo add-apt-repository ppa:graphics-drivers/ppa sudo apt update sudo ubuntu-drivers autoinstall
  - curl -fsSL https://ollama.com/install.sh | sh
  - ollama pull llama3
 
