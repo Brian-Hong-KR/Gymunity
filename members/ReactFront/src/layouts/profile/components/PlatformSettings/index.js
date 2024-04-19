@@ -20,10 +20,18 @@ import typography from 'assets/theme/base/typography';
 import reportsBarChartData from 'layouts/profile/data/reportsBarChartData';
 import DashboardNavbar from 'examples/Navbars/DashboardNavbar';
 import Header from '../Header';
+import SoftButton from 'components/SoftButton';
 
 function PlatformSettings() {
   const { size } = typography;
   const { chart, items } = reportsBarChartData;
+
+  const handleDeleteAccount = () => {
+    const isConfirmed = window.confirm('정말 떠나시겠습니까?');
+    if (isConfirmed) {
+      // 여기에 회원탈퇴 로직을 추가하세요.
+    }
+  };
 
   return (
     <DashboardLayout>
@@ -35,10 +43,11 @@ function PlatformSettings() {
                 title={{ text: 'Point' }}
                 count='530'
                 icon={{ color: 'info', component: 'paid' }}
+                text='다음 등급까지 300포인트'
               />
             </Grid>
             <Grid item xs={12} sm={6} xl={3}>
-              <Link to='modifyPlan'>
+              <Link to='/modifyPlan'>
                 <MiniStatisticsCard
                   title={{ text: 'Plan' }}
                   count='요요 다이어트'
@@ -81,6 +90,25 @@ function PlatformSettings() {
               />
             </Grid>
           </Grid>
+        </SoftBox>
+        <SoftBox mt={4} mb={1}>
+          <Link to='editUser'>
+            <SoftButton type='submit' variant='gradient' color='info' fullWidth>
+              회원정보 수정
+            </SoftButton>
+          </Link>
+        </SoftBox>
+        <SoftBox mt={4} mb={1}>
+          <SoftButton
+            type='submit'
+            variant='gradient'
+            color='error'
+            fullWidth
+            onClick={handleDeleteAccount}
+            to='/profile/deleteUser'
+          >
+            회원탈퇴
+          </SoftButton>
         </SoftBox>
       </SoftBox>
       <Footer />

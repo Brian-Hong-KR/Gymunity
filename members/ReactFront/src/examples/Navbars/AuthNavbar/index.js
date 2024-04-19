@@ -45,7 +45,7 @@ import team2 from "assets/images/team-2.jpg";
 import logoSpotify from "assets/images/small-logos/logo-spotify.svg";
 import { Grid } from '@mui/material';
 
-function DashboardNavbar({ absolute, light, isMini }) {
+function AuthNavbar({ absolute, light, isMini }) {
   const [navbarType, setNavbarType] = useState();
   const [controller, dispatch] = useSoftUIController();
   const { miniSidenav, transparentNavbar, fixedNavbar, openConfigurator } = controller;
@@ -87,16 +87,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
           mb={{ xs: 1, md: 0 }}
           sx={(theme) => navbarRow(theme, { isMini })}
         >
-        <IconButton
-                size='large'
-                color='inherit'
-                sx={navbarMobileMenu}
-                onClick={handleMiniSidenav}
-              >
-                <Icon className={light ? 'text-white' : 'text-dark'}>
-                  {'menu'}
-                </Icon>
-            </IconButton>
+
 
         <SoftBox display="flex" justifyContent="flex-end" width="60%">
             <SoftBox component="img" src={GymunityLogo} alt="logo" width="80%" mt={1} />
@@ -112,17 +103,17 @@ function DashboardNavbar({ absolute, light, isMini }) {
 }
 
 // Setting default values for the props of DashboardNavbar
-DashboardNavbar.defaultProps = {
+AuthNavbar.defaultProps = {
   absolute: false,
   light: false,
   isMini: false,
 };
 
 // Typechecking props for the DashboardNavbar
-DashboardNavbar.propTypes = {
+AuthNavbar.propTypes = {
   absolute: PropTypes.bool,
   light: PropTypes.bool,
   isMini: PropTypes.bool,
 };
 
-export default DashboardNavbar;
+export default AuthNavbar;
