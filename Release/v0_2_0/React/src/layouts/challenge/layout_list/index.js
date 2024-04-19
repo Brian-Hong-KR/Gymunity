@@ -49,7 +49,9 @@ function Challenge() {
   const pv = useSelector((state) => state.challenge.pv || {});
 
   // 1번
-  const challengeList = useSelector((state) => state.challenge.challengeList || []);
+  const challengeList = useSelector(
+    (state) => state.challenge.challengeList || []
+  );
   const joinList = useSelector((state) => {
     return (
       state.challenge.joinList.map((item) => ({
@@ -93,8 +95,18 @@ function Challenge() {
                   <DefaultProjectCard challenge={challenge} />
                 </Grid>
               ))}
-              <Grid item xs={12} md={6} xl={3} component={Link} to="/challenge/create">
-                <PlaceholderCard title={{ variant: "h5", text: "챌린지 만들기" }} outlined />
+              <Grid
+                item
+                xs={12}
+                md={6}
+                xl={3}
+                component={Link}
+                to="/challenge/create"
+              >
+                <PlaceholderCard
+                  title={{ variant: "h5", text: "챌린지 만들기" }}
+                  outlined
+                />
               </Grid>
             </Grid>
           </SoftBox>
@@ -103,12 +115,12 @@ function Challenge() {
         <Card>
           <SoftBox pt={2} px={2}>
             <SoftBox mb={0.5}>
-              <SoftTypography variant="h4" fontWeight="medium">
+              <SoftTypography variant="h5" fontWeight="medium">
                 전체 챌린지 리스트
               </SoftTypography>
             </SoftBox>
             <SoftBox mb={1}>
-              <SoftTypography variant="button" fontWeight="regular" color="text">
+              <SoftTypography variant="h6" fontWeight="regular" color="text">
                 진행중인 챌린지를 확인하고 참여해보세요!
               </SoftTypography>
             </SoftBox>
@@ -126,8 +138,8 @@ function Challenge() {
 
         {/* TODO SoftPagination 설정 */}
         {pv && <SoftPagination getChallengeList={getChallengeList} />}
-        </SoftBox>
-       <GymunityNavbar />
+      </SoftBox>
+      <GymunityNavbar />
     </DashboardLayout>
   );
 }
