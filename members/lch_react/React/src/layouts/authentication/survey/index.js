@@ -11,21 +11,24 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import SoftBox from "components/SoftBox";
-import BasicLayout from "layouts/authentication/components/BasicLayout";
+
 import backimage from "assets/images/youn/digdas.jpg";
 import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
 import axios from "axios";
 
+import BasicLayout from "layouts/authentication/components/BasicLayout";
+import AuthNavbar from "examples/Navbars/AuthNavbar";
+
 function Survey() {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    gender: "female",
+    gender: "male",
     age: "young",
-    goal: "Overall health improvement",
-    level: "Intermediate",
-    abnormal: "no health problems",
+    goal: "Body fat reduction",
+    level: "beginner",
+    abnormal: "cardiovascular disease",
   });
 
   const [planData, setPlanData] = useState({
@@ -131,11 +134,11 @@ function Survey() {
   };
 
   return (
-    <BasicLayout
-      image={backimage}
-      title="설문조사"
-      description="설국열차설구경차"
-    >
+    <BasicLayout>
+        <AuthNavbar />
+            <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
+                <SoftTypography variant="h3">사전 설문</SoftTypography>
+            </SoftBox>
       <Card>
         <SoftBox
           component="form"
@@ -147,7 +150,7 @@ function Survey() {
         >
           <AppBar position="static">
             <SoftBox p={3} mb={1} textAlign="center">
-              <SoftTypography variant="h5" fontWeight="medium">
+              <SoftTypography variant="h5" fontWeight="medium" textAlign="left">
                 1. 당신의 성별은?
               </SoftTypography>
             </SoftBox>
@@ -162,7 +165,7 @@ function Survey() {
               <Tab label="여자" />
             </Tabs>
             <SoftBox p={3} mb={1} textAlign="center">
-              <SoftTypography variant="h5" fontWeight="medium">
+              <SoftTypography variant="h5" fontWeight="medium" textAlign="left">
                 2. 당신의 연령대는?
               </SoftTypography>
             </SoftBox>
@@ -177,7 +180,7 @@ function Survey() {
               <Tab label="36세 이상" />
             </Tabs>
             <SoftBox p={3} mb={1} textAlign="center">
-              <SoftTypography variant="h5" fontWeight="medium">
+              <SoftTypography variant="h5" fontWeight="medium" textAlign="left">
                 3. 당신의 운동 목표는?
               </SoftTypography>
             </SoftBox>
@@ -193,7 +196,7 @@ function Survey() {
               <Tab label="종합 건강" />
             </Tabs>
             <SoftBox p={3} mb={1} textAlign="center">
-              <SoftTypography variant="h5" fontWeight="medium">
+              <SoftTypography variant="h5" fontWeight="medium" textAlign="left">
                 4. 당신의 운동 수준은?
               </SoftTypography>
             </SoftBox>
@@ -209,7 +212,7 @@ function Survey() {
               <Tab label="전문가" />
             </Tabs>
             <SoftBox p={3} mb={1} textAlign="center">
-              <SoftTypography variant="h5" fontWeight="medium">
+              <SoftTypography variant="h5" fontWeight="medium" textAlign="left">
                 5. 운동 시 주의가 필요한 건강 이상은?
               </SoftTypography>
             </SoftBox>
@@ -233,8 +236,15 @@ function Survey() {
           </SoftBox>
         </SoftBox>
       </Card>
+
     </BasicLayout>
   );
 }
 
 export default Survey;
+
+
+
+
+
+

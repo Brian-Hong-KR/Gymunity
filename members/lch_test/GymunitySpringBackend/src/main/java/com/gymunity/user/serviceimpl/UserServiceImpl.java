@@ -13,11 +13,11 @@ import com.gymunity.user.dto.Profile;
 import com.gymunity.user.dto.SignupDTO;
 import com.gymunity.user.dto.Survey;
 import com.gymunity.user.dto.User;
-import com.gymunity.user.dto.UserInfoDTO;
 import com.gymunity.user.dto.UserUpdateDTO;
 import com.gymunity.user.repository.UserMapper;
 import com.gymunity.user.response.SigninResponse;
 import com.gymunity.user.response.SignupResponse;
+import com.gymunity.user.response.UserInfoResponse;
 import com.gymunity.user.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -77,9 +77,9 @@ public class UserServiceImpl implements UserService {
 
 	// 회원정보호출
 	@Override
-	public UserInfoDTO userInfoProcess(String userAccountId) {
+	public UserInfoResponse userInfoProcess(String userAccountId) {
 		// userAccountId를 사용하여 User 정보 조회
-		User user = userMapper.selectByAccountId(userAccountId);
+		User user = userMapper.selectUsersByAccountId(userAccountId);
 		if (user == null) {
 			// 사용자 정보가 없으면 예외 처리
 			throw new UsernameNotFoundException("User not found with accountId: " + userAccountId);
@@ -89,21 +89,29 @@ public class UserServiceImpl implements UserService {
 		Profile profile = userMapper.selectProfilesByUserId(user.getUserId());
 
 		// User와 Profile 정보를 UserInfoDTO에 매핑
-		UserInfoDTO userInfoDTO = new UserInfoDTO();
-		userInfoDTO.setUserId(user.getUserId());
-		userInfoDTO.setUserAccountId(user.getUserAccountId());
-		userInfoDTO.setNickName(user.getNickName());
-		userInfoDTO.setGradeName(user.getGradeName());
-		userInfoDTO.setUserEmail(profile.getUserEmail());
+		UserInfoResponse response = new UserInfoResponse();
+		response.setUserId(user.getUserId());
+		response.setUserAccountId(user.getUserAccountId());
+		response.setNickName(user.getNickName());
+		response.setGradeName(user.getGradeName());
+		response.setUserEmail(profile.getUserEmail());
 
-		return userInfoDTO;
+		return response;
 	}// UserInfoProcess()
+	
+	
+
 
 	// 회원정보수정
 	@Override
 	public SigninResponse updateUserProcess(UserUpdateDTO dto) {
+		// 변경된 비밀번호가 있다면 암호화하여 저장
+		dto.encryptPassword(dto.getPassword(), passwordEncoder);
+
+		// users 테이블 업데이트
 		userMapper.updateUsers(dto);
 
+		// profiles 테이블 업데이트
 		userMapper.updateProfiles(dto);
 
 		return new SigninResponse(dto.getNickName(), dto.getUserEmail());
@@ -112,7 +120,7 @@ public class UserServiceImpl implements UserService {
 	// 회원탈퇴
 	@Override
 	public void deleteUserProcess(String userAccountId) {
-		User user = userMapper.selectByAccountId(userAccountId);
+		User user = userMapper.selectUsersByAccountId(userAccountId);
 
 		if (user != null) {
 			userMapper.deleteUsers(user.getUserId());
@@ -123,7 +131,7 @@ public class UserServiceImpl implements UserService {
 	// Id,Password 확인
 	@Override
 	public boolean validateUserIdPassword(CheckUserIdPassword dto) {
-		User user = userMapper.selectByAccountId(dto.getUserAccountId());
+		User user = userMapper.selectUsersByAccountId(dto.getUserAccountId());
 
 		if (user != null) {
 			Profile profile = userMapper.selectPasswordByUserId(user.getUserId());
@@ -131,6 +139,27 @@ public class UserServiceImpl implements UserService {
 			return isPasswordMatch;
 		}
 		return false;
-	}// end validateUserIdPassword()
+	}
+
+	@Override
+	public void updatePlanProcess(Survey dto, int userId) {
+		User user = userMapper.selectSurveyByUserId(userId);
+		
+		Survey survey = new Survey();
+		survey.setUserId(userId);
+		survey.setGender(dto.getGender());
+		survey.setAge(dto.getAge());
+		survey.setGoal(dto.getGoal());
+		survey.setLevel(dto.getLevel());
+		survey.setAbnormal(dto.getAbnormal());
+		userMapper.updateSurvey(survey);
+		
+	}
+
+	
+	
+	
+	
+	
 
 }// end class

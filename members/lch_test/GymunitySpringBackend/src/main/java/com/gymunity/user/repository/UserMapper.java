@@ -16,6 +16,8 @@ public interface UserMapper {
 	public int insertProfiles(Profile dto);
 
 	public int insertSurvey(Survey dto);
+	
+	public int updateSurvey(Survey dto);
 
 	public void updateUsers(UserUpdateDTO dto);
 
@@ -25,12 +27,16 @@ public interface UserMapper {
 
 	public void updateLastLogin(User dto);
 
-	public User selectByAccountId(String accouintId);
+	public User selectUsersByAccountId(String accouintId);
+	
+	public User selectUsersByUserId(int userId);
 
 	public Profile selectProfilesByUserId(int userId);
 
 	public Profile selectPasswordByUserId(int userId);
 
 	public int deleteUsers(int userId);
+	
+	public User selectSurveyByUserId(int userId);
 
 }// end interface

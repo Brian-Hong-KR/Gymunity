@@ -2,13 +2,14 @@ from langchain.llms import Ollama
 import json, re
 
 import dotenv, os
+
 f = dotenv.find_dotenv()
 dotenv.load_dotenv(f)
 pt_plan_file_path = os.environ["pt_plan_file_path"]
 daily_plan_file_path = os.environ["daily_plan_file_path"]
 product_list_file_path = os.environ["product_list_file_path"]
 
-llm = Ollama(model="neural-chat", temperature=0.5) 
+llm = Ollama(model="llama3", temperature=0.2)
 
 pt_guide_list = []
 with open( pt_plan_file_path , "r", encoding='utf-8') as f:
@@ -56,7 +57,5 @@ def generate_product_list ( gender, age, goal, level, abnormal ) :
     return my_product_list
     
 if __name__ == "__main__":
-    my_list = generate_product_list ("male","old","fat","beginner","cardiovascular disease")
-    
-    print (len(product_list))
-    print (len(my_list))
+    print ( generate_answer( unit_name="push-ups", question="허리가 아프다") )
+
