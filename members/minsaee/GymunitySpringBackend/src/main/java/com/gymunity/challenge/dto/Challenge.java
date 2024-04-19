@@ -1,7 +1,5 @@
 package com.gymunity.challenge.dto;
 
-import java.time.LocalDate;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,7 +17,6 @@ public class Challenge {
 	private String chEndDate;
 	private int count;
 	private int userId;
-//	private int grade;
-//	private String nickName;
+	private int verifyTerm;
 
-}//end class
+}// end class

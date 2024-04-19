@@ -52,12 +52,15 @@ public class SigninServiceImpl implements SigninService {
 
 				// 마지막 로그인 시간 가져오기
 				LocalDateTime lastSignin = user.getLastSignin();
-				log.info("DB로그인시간 {}", lastSignin);
 
 				// 오늘 새벽 4시
 				LocalDateTime today4am = now.toLocalDate().atStartOfDay().plusHours(4);
-				log.info("오늘 새벽 4시 {}", today4am);
-				// 20XX-XX-XXT04:00:00
+				
+				// 현재 시간이 새벽 4시 이전이면, '오늘'의 기준을 전날의 새벽 4시로 설정
+				if (now.isBefore(today4am)) {
+					today4am = today4am.minusDays(1);
+				}
+
 
 				// 마지막 로그인 시간이 오늘 새벽 4시 이전이라면 보상을 지급
 				if (lastSignin == null || lastSignin.isBefore(today4am)) {

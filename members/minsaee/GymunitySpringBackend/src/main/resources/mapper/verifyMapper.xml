@@ -37,6 +37,15 @@
 		AND vi_id = #{viId}
 	</update>
 
+	<!-- 1주에 인증한 기간 확인하기-->
+	<select id="countVerifiesThisWeek">
+		SELECT COUNT(*)
+		FROM verify
+		WHERE vi_user_id = #{userId}
+		AND vi_ch_id = #{chId}
+		AND update_verify BETWEEN #{startOfWeek} AND #{endOfWeek}
+	</select>
+
 	<!-- 사진첩 보내주기-->
 	<!-- userId로 사진 정보와 챌린지 정보 조회 -->
 	<select id="selectPhotosByUserId" resultType="PhotoDTO">

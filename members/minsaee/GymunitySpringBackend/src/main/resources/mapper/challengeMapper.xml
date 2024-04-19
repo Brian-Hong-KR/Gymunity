@@ -11,6 +11,7 @@
 		<result column="betting_point" property="bettingPoint" />
 		<result column="ch_start_date" property="chStartDate" />
 		<result column="ch_end_date" property="chEndDate" />
+		<result column="verify_term" property="verifyTerm" />
 		<result column="count" property="count" />
 		<result column="user_id" property="userId" />
 	</resultMap>
