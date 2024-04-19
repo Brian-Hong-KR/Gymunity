@@ -31,7 +31,6 @@ import Settings from "examples/Icons/Settings";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 
 // Overview page components
-import Header from "./../components/Header/index";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 function ChallengeCreate() {
@@ -58,28 +57,27 @@ function ChallengeCreate() {
     return () => window.removeEventListener("resize", handleTabsOrientation);
   }, [tabsOrientation]);
 
-  // 탭 
+  // 탭
   const handleSetTabValue = (event, newValue) => setTabValue(newValue);
   const handleSetTabValue1 = (event, newValue) => setTabValue1(newValue);
   const handleSetTabValue2 = (event, newValue) => setTabValue2(newValue);
 
   // 배팅 포인트
-  const [bettingPoint, setBettingPoint] = useState('');
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const [date, setDate] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-
+  const [bettingPoint, setBettingPoint] = useState("");
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [date, setDate] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleCreateChallenge = () => {
     if (!title.trim() || !content.trim() || !bettingPoint.trim()) {
-      setErrorMessage('빈 입력란을 작성해주세요.');
+      setErrorMessage("빈 입력란을 작성해주세요.");
       return;
     }
 
     if (bettingPoint <= 199) {
-      alert('배팅 포인트를 200 이상으로 작성하세요.');
-      setBettingPoint(''); // 배팅 포인트 리셋
+      alert("배팅 포인트를 200 이상으로 작성하세요.");
+      setBettingPoint(""); // 배팅 포인트 리셋
       return;
     } else {
       // 챌린지 생성 로직
@@ -89,7 +87,7 @@ function ChallengeCreate() {
   const handleChangeDate = (event) => {
     const input = event.target.value;
     // 입력된 값이 숫자인지 확인합니다
-    const numericInput = input.replace(/\D/g, '');
+    const numericInput = input.replace(/\D/g, "");
     // 입력된 값이 4자리일 때는 'yyyy-' 형식으로, 6자리일 때는 'yyyy-mm-' 형식으로 자동으로 '-'가 추가됩니다
     if (numericInput.length === 4) {
       const formattedDate = `${numericInput}-`;
@@ -97,13 +95,13 @@ function ChallengeCreate() {
     } else if (numericInput.length === 5) {
       const year = numericInput.slice(0, 4);
       const month = numericInput.slice(4, 5);
-      const formattedDate = `${year}-${month || ''}`;
+      const formattedDate = `${year}-${month || ""}`;
       setDate(formattedDate);
     } else if (numericInput.length >= 6) {
       const year = numericInput.slice(0, 4);
       const month = numericInput.slice(4, 6);
       const day = numericInput.slice(6, 8);
-      const formattedDate = `${year}-${month || ''}-${day || ''}`;
+      const formattedDate = `${year}-${month || ""}-${day || ""}`;
       setDate(formattedDate);
     } else {
       setDate(numericInput);
@@ -112,9 +110,9 @@ function ChallengeCreate() {
 
   const handleKeyDown = (event) => {
     // Backspace 키를 눌렀을 때 '-' 문자를 삭제합니다
-    if (event.key === 'Backspace') {
+    if (event.key === "Backspace") {
       const input = event.target.value;
-      if (input[input.length - 1] === '-') {
+      if (input[input.length - 1] === "-") {
         setDate(input.slice(0, input.length - 1));
       }
     }
@@ -122,22 +120,22 @@ function ChallengeCreate() {
 
   const handleChangeTitle = (event) => {
     setTitle(event.target.value);
-    setErrorMessage('');
+    setErrorMessage("");
   };
 
   const handleChangeContent = (event) => {
     setContent(event.target.value);
-    setErrorMessage('');
+    setErrorMessage("");
   };
 
   const handleChangeBettingPoint = (event) => {
     setBettingPoint(event.target.value);
-    setErrorMessage('');
+    setErrorMessage("");
   };
 
   return (
     <DashboardLayout>
-     <DashboardNavbar/>
+      <DashboardNavbar />
 
       <CoverLayout
         title="챌린지 만들기"
@@ -147,16 +145,28 @@ function ChallengeCreate() {
         <SoftBox component="form" role="form">
           <SoftBox mb={2}>
             <SoftBox mb={1} ml={0.5}>
-              <SoftTypography component="label" variant="caption" fontWeight="bold">
+              <SoftTypography
+                component="label"
+                variant="caption"
+                fontWeight="bold"
+              >
                 챌린지 제목
               </SoftTypography>
             </SoftBox>
-            <SoftInput type="title" placeholder="챌린지 제목" onChange={handleChangeTitle} />
+            <SoftInput
+              type="title"
+              placeholder="챌린지 제목"
+              onChange={handleChangeTitle}
+            />
           </SoftBox>
 
           <SoftBox mb={2}>
             <SoftBox mb={1} ml={0.5}>
-              <SoftTypography component="label" variant="caption" fontWeight="bold">
+              <SoftTypography
+                component="label"
+                variant="caption"
+                fontWeight="bold"
+              >
                 챌린지 유형
               </SoftTypography>
             </SoftBox>
@@ -178,7 +188,11 @@ function ChallengeCreate() {
 
           <SoftBox mb={2}>
             <SoftBox mb={1} ml={0.5}>
-              <SoftTypography component="label" variant="caption" fontWeight="bold">
+              <SoftTypography
+                component="label"
+                variant="caption"
+                fontWeight="bold"
+              >
                 인증 빈도
               </SoftTypography>
             </SoftBox>
@@ -203,7 +217,11 @@ function ChallengeCreate() {
 
           <SoftBox mb={2}>
             <SoftBox mb={1} ml={0.5}>
-              <SoftTypography component="label" variant="caption" fontWeight="bold">
+              <SoftTypography
+                component="label"
+                variant="caption"
+                fontWeight="bold"
+              >
                 챌린지 기간
               </SoftTypography>
             </SoftBox>
@@ -226,7 +244,11 @@ function ChallengeCreate() {
 
           <SoftBox mb={2}>
             <SoftBox mb={1} ml={0.5}>
-              <SoftTypography component="label" variant="caption" fontWeight="bold">
+              <SoftTypography
+                component="label"
+                variant="caption"
+                fontWeight="bold"
+              >
                 챌린지 시작일
               </SoftTypography>
             </SoftBox>
@@ -241,16 +263,28 @@ function ChallengeCreate() {
 
           <SoftBox mb={2}>
             <SoftBox mb={1} ml={0.5}>
-              <SoftTypography component="label" variant="caption" fontWeight="bold">
+              <SoftTypography
+                component="label"
+                variant="caption"
+                fontWeight="bold"
+              >
                 챌린지 소개
               </SoftTypography>
             </SoftBox>
-            <SoftInput type="title" placeholder="챌린지 소개" onChange={handleChangeContent} />
+            <SoftInput
+              type="title"
+              placeholder="챌린지 소개"
+              onChange={handleChangeContent}
+            />
           </SoftBox>
 
           <SoftBox mb={2}>
             <SoftBox mb={1} ml={0.5}>
-              <SoftTypography component="label" variant="caption" fontWeight="bold">
+              <SoftTypography
+                component="label"
+                variant="caption"
+                fontWeight="bold"
+              >
                 배팅 포인트
               </SoftTypography>
             </SoftBox>
@@ -264,7 +298,12 @@ function ChallengeCreate() {
 
           {errorMessage && <p>{errorMessage}</p>}
           <SoftBox mt={4} mb={1}>
-            <SoftButton variant="gradient" color="info" fullWidth onClick={handleCreateChallenge}>
+            <SoftButton
+              variant="gradient"
+              color="info"
+              fullWidth
+              onClick={handleCreateChallenge}
+            >
               챌린지 만들기
             </SoftButton>
           </SoftBox>

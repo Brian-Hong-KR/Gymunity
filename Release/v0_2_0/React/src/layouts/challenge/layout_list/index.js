@@ -14,12 +14,10 @@ import SoftPagination from "components/SoftPagination";
 
 // Soft UI Dashboard React examples
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import Footer from "examples/Footer";
-import DefaultProjectCard from "examples/Cards/ProjectCards/DefaultProjectCard";
+import ChallengeCard from "../components/ChallengeCard";
 import PlaceholderCard from "examples/Cards/PlaceholderCard";
 
 // Overview page components
-import Header from "./../components/Header/index";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import GymunityNavbar from "examples/Navbars/GymunityNavbar";
 
@@ -92,7 +90,7 @@ function Challenge() {
             <Grid container spacing={3}>
               {joinList.map((challenge) => (
                 <Grid item xs={12} md={6} xl={3} key={challenge.ch_id}>
-                  <DefaultProjectCard challenge={challenge} />
+                  <ChallengeCard challenge={challenge} />
                 </Grid>
               ))}
               <Grid
@@ -129,7 +127,7 @@ function Challenge() {
             <Grid container spacing={3}>
               {updatedChallengeList.map((challenge) => (
                 <Grid item xs={12} md={6} xl={3} key={challenge.ch_id}>
-                  <DefaultProjectCard challenge={challenge} />
+                  <ChallengeCard challenge={challenge} />
                 </Grid>
               ))}
             </Grid>
