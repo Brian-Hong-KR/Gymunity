@@ -30,20 +30,6 @@ function DataConverter(challenge) {
       break;
   }
 
-  //진행상태 변환
-  let proceed;
-  switch (challenge.proceed) {
-    case "rec":
-      proceed = "참여 가능";
-      break;
-    case "pr":
-      proceed = "진행중";
-      break;
-    case "done":
-      proceed = "종료";
-      break;
-  }
-
   //등급이미지 변환
   let grade;
   switch (challenge.grade_name) {
@@ -110,7 +96,6 @@ function DataConverter(challenge) {
   return {
     image,
     category,
-    proceed,
     grade,
     verify_term,
     period,
