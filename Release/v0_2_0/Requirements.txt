@@ -25,11 +25,10 @@ Github Desktop
  - clone project to local folder
 
 React
- - sudo apt-get install nodejs
- - sudo apt-get install npm
- - sudo apt-get install build-essential
- - npm install -g create-react-app
- - npm install --global yarn
+ - curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+ - sudo apt install nodejs
+ - sudo apt install npm
+ - sudo npm install yarn
  - cd /project/react
  - yarn install
  - yarn start
@@ -74,7 +73,16 @@ MySQL
  - sudo apt-get install mysql-server
  - sudo systemctl start mysql
  - sudo systemctl enable mysql
- - bash create_db.sh (import)
+ (계정 및 DB 생성
+ - sudo mysql -u root -p
+ - create database gymunity DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+ - create user 'gm'@'%' identified by '1234';
+ - GRANT ALL PRIVILEGES ON gymunity.* TO 'gm'@'%';
+ - flush privileges;
+ - eixt
+ - (Dump 폴더로 복사 후) bash create_db.sh (비번 1234 연속으로 입력 필요, num lock 꺼져있는지 확인)
+ - sudo mysql -u gm -p gymunity
+ - SHOW tables;
 
 LLM
  - curl -fsSL https://ollama.com/install.sh | sh
@@ -90,10 +98,10 @@ sudo systemctl restart ollama.service
 sudo systemctl restart nginx
 sudo systemctl restart mysql
 
-cd /home/utopos/GitHub/Gymunity/Release/v0_2_0/
+cd /home/utopos/Gymunity/Release/v0_2_0/
 
 cd Spring
-java -jar 20240411_SNAPSHOT.jar
+java -jar GymunitySpringBackend-0.0.2-SNAPSHOT.jar
 
 cd ../Flask
 gunicorn --bind 0:5000 "__init__:create_app()"
@@ -102,8 +110,7 @@ cd ../React
 yarn start
 
 3. Test
-(web browser) http://192.168.0.60 -> 
-(domain ) https://gymunity.site
+(web browser) http://192.168.0.60 -> (domain ) https://gymunity.site
 
 4. Backup
 sudo apt install timeshift
