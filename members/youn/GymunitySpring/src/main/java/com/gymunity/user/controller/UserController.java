@@ -1,5 +1,8 @@
 package com.gymunity.user.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -10,11 +13,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gymunity.user.dto.CheckUserIdPassword;
 import com.gymunity.user.dto.SignupDTO;
 import com.gymunity.user.dto.UserInfoDTO;
+import com.gymunity.user.dto.UserPointsWithinWeek;
 import com.gymunity.user.dto.UserUpdateDTO;
 import com.gymunity.user.response.SigninResponse;
 import com.gymunity.user.response.SignupResponse;
@@ -30,6 +35,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class UserController {
 
+	
 	private final UserService userService;
 	private final PasswordEncoder passwordEncoder;
 	
@@ -75,6 +81,16 @@ public class UserController {
 		return ResponseEntity.ok(null);
 	}// end deleteUser()
 
+	
+	
+	//일주일 유저 포인트
+	@GetMapping("/{userId}/weekpoints")
+    public ResponseEntity<List<UserPointsWithinWeek>> getUserPointsWithinLastWeek(@PathVariable("userId") String userId) {
+        List<UserPointsWithinWeek> userPointsWithinWeek = userService.getUserPointsWithinLastWeek(userId);
+        return ResponseEntity.ok(userPointsWithinWeek);
+    }
+	
+	
 	
 	
 }// end class

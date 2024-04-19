@@ -78,7 +78,7 @@ public class VerifyServiceImpl implements VerifyService {
 
 		Verify existingDto = verifyMapper.selectVerifyByUserIdAndChId(userId, chId);
 
-		String baseDirectory = "/verify/" + userId;
+		String baseDirectory = "verify/" + userId;
 
 		
 

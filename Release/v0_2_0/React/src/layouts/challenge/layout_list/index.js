@@ -21,8 +21,6 @@ import PlaceholderCard from "examples/Cards/PlaceholderCard";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import GymunityNavbar from "examples/Navbars/GymunityNavbar";
 
-// Images
-
 function Challenge() {
   const { currentPage = 1 } = useParams();
   const dispatch = useDispatch();
@@ -71,16 +69,15 @@ function Challenge() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <SoftBox mt={5} mb={3}></SoftBox>
-      <SoftBox mb={3}>
+      <SoftBox mt={5} mb={3}>
         <Card>
-          <SoftBox pt={2} px={2}>
+          <SoftBox pt={5} px={5}>
             <SoftBox mb={0.5}>
               <SoftTypography variant="h5" fontWeight="medium">
                 참여중인 챌린지
               </SoftTypography>
             </SoftBox>
-            <SoftBox mb={1}>
+            <SoftBox mb={3}>
               <SoftTypography variant="h6" fontWeight="regular" color="text">
                 참여중인 챌린지를 확인하고 이행 여부를 인증해보세요!
               </SoftTypography>
@@ -109,15 +106,15 @@ function Challenge() {
             </Grid>
           </SoftBox>
         </Card>
-        <SoftBox mt={3} mb={3}></SoftBox>
+        <SoftBox mt={5} mb={3}></SoftBox>
         <Card>
-          <SoftBox pt={2} px={2}>
+          <SoftBox pt={5} px={5}>
             <SoftBox mb={0.5}>
               <SoftTypography variant="h5" fontWeight="medium">
                 전체 챌린지 리스트
               </SoftTypography>
             </SoftBox>
-            <SoftBox mb={1}>
+            <SoftBox mb={3}>
               <SoftTypography variant="h6" fontWeight="regular" color="text">
                 진행중인 챌린지를 확인하고 참여해보세요!
               </SoftTypography>
