@@ -16,23 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `pt_qna`
+-- Table structure for table `grades`
 --
 
-DROP TABLE IF EXISTS `pt_qna`;
+DROP TABLE IF EXISTS `grades`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `pt_qna` (
-  `pt_qna_id` int NOT NULL AUTO_INCREMENT,
-  `unit_name` varchar(64) NOT NULL,
-  `question` varchar(1024) NOT NULL,
-  `answer` varchar(1024) NOT NULL,
-  `answer_at` datetime DEFAULT NULL,
-  `user_id` int DEFAULT NULL,
-  PRIMARY KEY (`pt_qna_id`),
-  KEY `user_id_idx` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb3;
+CREATE TABLE `grades` (
+  `grade_id` int NOT NULL AUTO_INCREMENT,
+  `grade_name` varchar(50) NOT NULL,
+  PRIMARY KEY (`grade_id`),
+  UNIQUE KEY `grade_name_UNIQUE` (`grade_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `grades`
+--
+
+LOCK TABLES `grades` WRITE;
+/*!40000 ALTER TABLE `grades` DISABLE KEYS */;
+INSERT INTO `grades` VALUES (3,'골드'),(1,'브론즈'),(2,'실버'),(4,'플레티넘');
+/*!40000 ALTER TABLE `grades` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -43,4 +49,4 @@ CREATE TABLE `pt_qna` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-11 17:33:39
+-- Dump completed on 2024-04-19 17:42:59

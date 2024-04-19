@@ -16,25 +16,12 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `pt`
+-- Dumping events for database 'gm'
 --
 
-DROP TABLE IF EXISTS `pt`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `pt` (
-  `pt_id` int NOT NULL AUTO_INCREMENT,
-  `plan_name` varchar(64) DEFAULT NULL,
-  `plan_desc` varchar(2048) DEFAULT NULL,
-  `user_id` int DEFAULT NULL,
-  `pt_log_id` int DEFAULT NULL,
-  PRIMARY KEY (`pt_id`),
-  KEY `pt_user_id_idx` (`user_id`),
-  KEY `pt_pt_log_id_idx` (`pt_log_id`),
-  CONSTRAINT `pt_pt_log_id` FOREIGN KEY (`pt_log_id`) REFERENCES `pt_log` (`pt_log_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `pt_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
-/*!40101 SET character_set_client = @saved_cs_client */;
+--
+-- Dumping routines for database 'gm'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -45,4 +32,4 @@ CREATE TABLE `pt` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-11 17:33:39
+-- Dump completed on 2024-04-19 17:43:00

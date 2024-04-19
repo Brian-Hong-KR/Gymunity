@@ -16,28 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `members`
+-- Table structure for table `point_aggr`
 --
 
-DROP TABLE IF EXISTS `members`;
+DROP TABLE IF EXISTS `point_aggr`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `members` (
-  `member_id` int NOT NULL AUTO_INCREMENT,
-  `archive_rate` float DEFAULT '0',
-  `reward_point` int DEFAULT NULL,
-  `mem_user_id` int DEFAULT NULL,
-  `mem_grade_id` int DEFAULT NULL,
-  `mem_ch_id` int DEFAULT NULL,
-  `registrant` char(1) DEFAULT 'N',
-  PRIMARY KEY (`member_id`),
-  KEY `ch_id_idx` (`mem_ch_id`),
-  KEY `user_id_idx` (`mem_user_id`),
-  KEY `grade_id_idx` (`mem_grade_id`),
-  CONSTRAINT `mem_cd_id` FOREIGN KEY (`mem_ch_id`) REFERENCES `challenges` (`ch_id`) ON DELETE CASCADE,
-  CONSTRAINT `mem_grade_id` FOREIGN KEY (`mem_grade_id`) REFERENCES `challenges` (`grade_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb3;
+CREATE TABLE `point_aggr` (
+  `point_aggr_id` int NOT NULL AUTO_INCREMENT,
+  `total_points` int DEFAULT NULL,
+  `current_points` int DEFAULT NULL,
+  `user_id` int DEFAULT NULL,
+  PRIMARY KEY (`point_aggr_id`),
+  UNIQUE KEY `user_id_UNIQUE` (`user_id`),
+  KEY `fg_user_id_idx` (`user_id`),
+  CONSTRAINT `pagg_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=122 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `point_aggr`
+--
+
+LOCK TABLES `point_aggr` WRITE;
+/*!40000 ALTER TABLE `point_aggr` DISABLE KEYS */;
+INSERT INTO `point_aggr` VALUES (14,420,420,73),(16,420,420,78),(18,2240,340,80),(24,500,500,82),(31,400,400,83),(32,400,400,84),(33,400,400,85),(34,400,400,86),(35,420,420,87),(36,40,-160,81),(44,420,420,91),(52,660,-140,92),(69,420,420,93),(73,400,400,94),(76,420,420,95),(82,420,420,96),(84,420,51,99),(90,420,420,100),(113,400,400,104),(116,420,420,106);
+/*!40000 ALTER TABLE `point_aggr` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -48,4 +53,4 @@ CREATE TABLE `members` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-11 17:33:40
+-- Dump completed on 2024-04-19 17:42:57

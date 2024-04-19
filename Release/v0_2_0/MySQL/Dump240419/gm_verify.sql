@@ -16,35 +16,37 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `profiles`
+-- Table structure for table `verify`
 --
 
-DROP TABLE IF EXISTS `profiles`;
+DROP TABLE IF EXISTS `verify`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `profiles` (
-  `pf_id` int NOT NULL AUTO_INCREMENT,
-  `password` varchar(100) NOT NULL,
-  `user_email` varchar(100) NOT NULL,
-  `user_id` int DEFAULT NULL,
-  `pl_id` int DEFAULT NULL,
-  `pt_id` int DEFAULT NULL,
-  `ch_id` int DEFAULT '0',
-  `mem_id` int DEFAULT NULL,
-  `update_date` datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`pf_id`),
-  KEY `pr_pl_id_idx` (`pl_id`),
-  KEY `pr_pt_id_idx` (`pt_id`),
-  KEY `pr_ch_id_idx` (`ch_id`),
-  KEY `pr_user_id_idx` (`user_id`),
-  KEY `mem_id_idx` (`mem_id`),
-  CONSTRAINT `fk_profile_mem_id` FOREIGN KEY (`mem_id`) REFERENCES `members` (`member_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `mem_id` FOREIGN KEY (`mem_id`) REFERENCES `members` (`member_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `pr_pl_id` FOREIGN KEY (`pl_id`) REFERENCES `pt_log` (`pt_log_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `pr_pt_id` FOREIGN KEY (`pt_id`) REFERENCES `pt` (`pt_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `pr_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb3;
+CREATE TABLE `verify` (
+  `vi_id` int NOT NULL AUTO_INCREMENT,
+  `vi_user_id` int NOT NULL,
+  `vi_ch_id` int NOT NULL,
+  `upload1` varchar(300) DEFAULT NULL,
+  `upload2` varchar(300) DEFAULT NULL,
+  `result` char(1) NOT NULL DEFAULT 'N',
+  `update_verify` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`vi_id`),
+  KEY `vi_user_id` (`vi_user_id`),
+  KEY `vi_ch_id` (`vi_ch_id`),
+  CONSTRAINT `verify_ibfk_1` FOREIGN KEY (`vi_user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `verify_ibfk_2` FOREIGN KEY (`vi_ch_id`) REFERENCES `challenges` (`ch_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `verify`
+--
+
+LOCK TABLES `verify` WRITE;
+/*!40000 ALTER TABLE `verify` DISABLE KEYS */;
+INSERT INTO `verify` VALUES (44,80,94,'/verify/80/80_94_DCAkqqR.png','/verify/80/80_94_2PRlDKE.png','N','2024-04-19 16:14:18');
+/*!40000 ALTER TABLE `verify` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -55,4 +57,4 @@ CREATE TABLE `profiles` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-11 17:33:40
+-- Dump completed on 2024-04-19 17:42:58
