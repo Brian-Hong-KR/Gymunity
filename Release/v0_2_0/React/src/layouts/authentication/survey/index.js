@@ -24,11 +24,11 @@ function Survey() {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    gender: "female",
+    gender: "male",
     age: "young",
-    goal: "Overall health improvement",
-    level: "Intermediate",
-    abnormal: "no health problems",
+    goal: "Body fat reduction",
+    level: "beginner",
+    abnormal: "cardiovascular disease",
   });
 
   const [planData, setPlanData] = useState({
@@ -135,10 +135,15 @@ function Survey() {
 
   return (
     <BasicLayout>
-        <AuthNavbar />
-            <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
-                <SoftTypography variant="h3">사전 설문</SoftTypography>
-            </SoftBox>
+      <AuthNavbar />
+      <SoftBox
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        p={3}
+      >
+        <SoftTypography variant="h3">사전 설문</SoftTypography>
+      </SoftBox>
       <Card>
         <SoftBox
           component="form"
@@ -236,15 +241,8 @@ function Survey() {
           </SoftBox>
         </SoftBox>
       </Card>
-
     </BasicLayout>
   );
 }
 
 export default Survey;
-
-
-
-
-
-
