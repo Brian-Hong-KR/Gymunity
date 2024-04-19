@@ -1,0 +1,9 @@
+
+GPU : NVIDIA Quadro P4000
+    - RAM :
+    - CUDA Core :
+
+nvidia -msi
+nvcc -V
+
+GPU 드라이버, Torch, Cuda 설치 확인
