@@ -237,338 +237,436 @@ function ChallengeDetail() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <SoftBox py={3} pt={2} px={2}>
-        <Card
-          sx={{
-            flexDirection: "column",
-            backgroundColor: "transparent",
-            boxShadow: "none",
-            overflow: "visible",
-            // position: "relative",
-            marginBottom: "30px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            padding: "25px",
-          }}
-        >
-          {/* 카테고리 */}
-          <SoftBox
-            mt={10}
-            mb={5}
-            position="relative"
-            width="400px"
-            height="auto"
-            shadow="xl"
-            borderRadius="xl"
-            style={{ zIndex: 1 }}
-            sx={{
-              maxWidth: "100%",
-              maxHeight: "100%",
-              margin: 0,
-              padding: "5px",
-              boxShadow: ({ boxShadows: { md } }) => md,
-              objectFit: "contain",
-              objectPosition: "center",
-              backgroundColor: "#FF3636",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              color: "#FFFFFF",
-            }}
-          >
-            <SoftTypography
-              variant="h6"
-              fontWeight="bold" // 폰트 굵기 설정
-              color="#FFFFFF" // 폰트 색상 설정
-            >
-              {category}
-            </SoftTypography>
-          </SoftBox>
-          {/* 카테고리 이미지 */}
-          <SoftBox
-            mt={5}
-            mb={3}
-            position="relative"
-            width="400px"
-            height="auto"
-            shadow="xl"
-            borderRadius="xl"
-            sx={{
-              bottom: "-17px",
-              maxWidth: "100%",
-              maxHeight: "100%",
-              margin: 0,
-              display: "flex",
-            }}
-          >
-            <CardMedia
-              src={image}
-              component="img"
-              sx={{
-                maxWidth: "100%",
-                height: "auto",
-                margin: 0,
-                boxShadow: ({ boxShadows: { md } }) => md,
-                objectFit: "cover",
-                objectPosition: "center",
-                aspectRatio: "16 / 9",
-              }}
-            />
-          </SoftBox>
-          {/* 챌린지 제목 */}
-          <SoftBox mt={5} mb={3}>
-            <SoftTypography variant="h3" align="center" gutterBottom>
-              {challengeDetail.title}
-            </SoftTypography>
-          </SoftBox>
-          <SoftBox
-            mt={6}
-            mb={3}
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            height="50px"
-          >
-            {/* 인증 주기, 챌린지 기간, 베팅 포인트 */}
-            <SoftBox
-              width="100%"
-              height="100%"
-              borderRadius="xl"
-              sx={{
-                border: "1px solid #999999",
-                justifyContent: "center", // 가로 방향 가운데 정렬
-                alignItems: "center", // 세로 방향 가운데 정렬
-                display: "flex",
-                marginRight: "10px",
-                textAlign: "center",
-              }}
-            >
-              <SoftTypography variant="h6" fontWeight="bold" color="#FFFFFF">
-                {verify_term}
-              </SoftTypography>
-            </SoftBox>
-            <SoftBox
-              width="100%"
-              height="100%"
-              borderRadius="xl"
-              sx={{
-                border: "1px solid #999999",
-                justifyContent: "center", // 가로 방향 가운데 정렬
-                alignItems: "center", // 세로 방향 가운데 정렬
-                display: "flex",
-                textAlign: "center",
-              }}
-            >
-              <SoftTypography variant="h6" fontWeight="bold" color="#FFFFFF">
-                {period}
-              </SoftTypography>
-            </SoftBox>
-            <SoftBox
-              width="100%"
-              height="100%"
-              borderRadius="xl"
-              sx={{
-                border: "1px solid #999999",
-                justifyContent: "center", // 가로 방향 가운데 정렬
-                alignItems: "center", // 세로 방향 가운데 정렬
-                display: "flex",
-                marginLeft: "10px",
-              }}
-            >
-              <CardMedia
-                src={icon_point}
-                component="img"
-                sx={{
-                  maxWidth: "28px",
-                  height: "auto",
-                  margin: "0 5px 0 0",
-                  objectFit: "cover",
-                  objectPosition: "center",
-                  borderRadius: 0,
-                  position: "relative",
-                }}
-              />
-              <SoftTypography
-                variant="h6"
-                fontWeight="bold"
-                color="#FFFFFF"
-                sx={{ marginRight: "7px" }}
-              >
-                {challengeDetail.betting_point}
-              </SoftTypography>
-            </SoftBox>
-          </SoftBox>
-
-          {/* Grid : 총 12개열 중 차지하는 열 수로 크기 표시
+      {/* Grid : 총 12개열 중 차지하는 열 수로 크기 표시
       xs 모바일 / md 중간 화면 / xl 큰 화면*/}
-          <Grid container spacing={3}>
-            <SoftBox
-              bg="rgba(255, 255, 255, 0.8)"
-              p={1}
-              borderRadius="xl"
-              position="absolute"
-              bottom="0px"
-              right="20px"
-              zIndex={3}
-              style={{
-                color: "#FFFFFF",
-                fontSize: "1.2rem",
-                fontWeight: "bold",
-                textShadow: "0 0 5px #000000",
+      <Grid container sx={{ justifyContent: "center" }}>
+        <Grid xs={12} md={12} xl={8}>
+          <Grid item py={3} pt={2} px={2}>
+            <Card
+              sx={{
+                flexDirection: "column",
+                backgroundColor: "transparent",
+                boxShadow: "none",
+                overflow: "visible",
+                // position: "relative",
+                marginBottom: "30px",
                 display: "flex",
+                justifyContent: "center",
                 alignItems: "center",
+                padding: "20px",
               }}
             >
-              <CardMedia
-                src={icon_count}
-                component="img"
-                sx={{
-                  maxWidth: "17px",
-                  height: "auto",
-                  margin: 0,
-                  boxShadow: ({ boxShadows: { md } }) => md,
-                  objectFit: "cover",
-                  objectPosition: "center",
-                  borderRadius: 0,
-                  marginRight: "15px",
-                  position: "relative",
-                  top: "-3px",
-                }}
-              />
-              {challengeDetail.count}
-            </SoftBox>
-            {ddayComponent}
-          </Grid>
-          <Grid item xs={12} md={6} xl={3}>
-            <SoftBox p={3} textAlign="center">
-              <Grid container spacing={3} justifyContent="center">
-                <Grid item xs={6} sm={4}>
+              <SoftBox
+                pt={1}
+                pb={5}
+                maxWidth="500px"
+                width="100%"
+                height="auto"
+                justifyContent="center"
+              >
+                {/* 카테고리 */}
+                <SoftBox
+                  mb={5}
+                  position="relative"
+                  maxWidth="400px"
+                  width="100%"
+                  height="auto"
+                  shadow="xl"
+                  borderRadius="xl"
+                  style={{ zIndex: 1 }}
+                  sx={{
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                    margin: 0,
+                    padding: "5px",
+                    boxShadow: ({ boxShadows: { md } }) => md,
+                    objectFit: "contain",
+                    objectPosition: "center",
+                    backgroundColor: "#FF3636",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    color: "#FFFFFF",
+                  }}
+                >
                   <SoftTypography
-                    component="label"
-                    variant="caption"
-                    fontWeight="bold"
+                    variant="h6"
+                    fontWeight="bold" // 폰트 굵기 설정
+                    color="#FFFFFF" // 폰트 색상 설정
                   >
-                    챌린지 시작일
+                    {category}
                   </SoftTypography>
+                </SoftBox>
+                {/* 카테고리 이미지 */}
+                <SoftBox
+                  mt={5}
+                  mb={3}
+                  position="relative"
+                  maxWidth="400px"
+                  width="100%"
+                  height="auto"
+                  shadow="xl"
+                  borderRadius="xl"
+                  sx={{
+                    bottom: "-17px",
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                    margin: 0,
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  <CardMedia
+                    src={image}
+                    component="img"
+                    sx={{
+                      maxWidth: "100%",
+                      height: "auto",
+                      margin: 0,
+                      boxShadow: ({ boxShadows: { md } }) => md,
+                      objectFit: "cover",
+                      objectPosition: "center",
+                      aspectRatio: "16 / 9",
+                    }}
+                  />
+                </SoftBox>
+                {/* 챌린지 제목 */}
+                <SoftBox mt={5} maxWidth="500px" width="100%" height="auto">
+                  <SoftTypography variant="h3" align="center" gutterBottom>
+                    {challengeDetail.title}
+                  </SoftTypography>
+                </SoftBox>
+                {/* 인증 주기, 챌린지 기간, 베팅 포인트 */}
+                <SoftBox
+                  spacing={3}
+                  mt={1}
+                  mb={3}
+                  maxWidth="500px"
+                  width="100%"
+                  height="50px"
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                >
+                  {/* 인증주기 */}
+                  <SoftBox
+                    width="100%"
+                    height="100%"
+                    sx={{
+                      justifyContent: "center", // 가로 방향 가운데 정렬
+                      textAlign: "center",
+                      flexDirection: "column",
+                      marginRight: "10px",
+                    }}
+                  >
+                    <SoftTypography
+                      component="label"
+                      variant="caption"
+                      fontWeight="bold"
+                    >
+                      인증 주기
+                    </SoftTypography>
+                    <SoftBox
+                      width="100%"
+                      height="100%"
+                      borderRadius="xl"
+                      sx={{
+                        border: "1px solid #999999",
+                        justifyContent: "center", // 가로 방향 가운데 정렬
+                        alignItems: "center", // 세로 방향 가운데 정렬
+                        display: "flex",
+                        marginRight: "10px",
+                        textAlign: "center",
+                      }}
+                    >
+                      <SoftTypography
+                        variant="h6"
+                        fontWeight="bold"
+                        color="#FFFFFF"
+                      >
+                        {verify_term}
+                      </SoftTypography>
+                    </SoftBox>
+                  </SoftBox>
+                  {/* 챌린지 기간 */}
+                  <SoftBox
+                    width="100%"
+                    height="100%"
+                    sx={{
+                      justifyContent: "center", // 가로 방향 가운데 정렬
+                      textAlign: "center",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <SoftTypography
+                      component="label"
+                      variant="caption"
+                      fontWeight="bold"
+                    >
+                      챌린지 기간
+                    </SoftTypography>
+                    <SoftBox
+                      width="100%"
+                      height="100%"
+                      borderRadius="xl"
+                      sx={{
+                        border: "1px solid #999999",
+                        justifyContent: "center", // 가로 방향 가운데 정렬
+                        alignItems: "center", // 세로 방향 가운데 정렬
+                        display: "flex",
+                        textAlign: "center",
+                      }}
+                    >
+                      <SoftTypography
+                        variant="h6"
+                        fontWeight="bold"
+                        color="#FFFFFF"
+                      >
+                        {period}
+                      </SoftTypography>
+                    </SoftBox>
+                  </SoftBox>
+                  {/* 베팅 포인트 */}
+                  <SoftBox
+                    width="100%"
+                    height="100%"
+                    sx={{
+                      justifyContent: "center", // 가로 방향 가운데 정렬
+                      textAlign: "center",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <SoftTypography
+                      component="label"
+                      variant="caption"
+                      fontWeight="bold"
+                      sx={{ paddingLeft: "10px", justifyContent: "center" }}
+                    >
+                      베팅 포인트
+                    </SoftTypography>
+                    <SoftBox
+                      width="100%"
+                      height="100%"
+                      borderRadius="xl"
+                      sx={{
+                        border: "1px solid #999999",
+                        justifyContent: "center", // 가로 방향 가운데 정렬
+                        alignItems: "center", // 세로 방향 가운데 정렬
+                        display: "flex",
+                        marginLeft: "10px",
+                      }}
+                    >
+                      <CardMedia
+                        src={icon_point}
+                        component="img"
+                        sx={{
+                          maxWidth: "28px",
+                          height: "auto",
+                          margin: "0 5px 0 0",
+                          objectFit: "cover",
+                          objectPosition: "center",
+                          borderRadius: 0,
+                          position: "relative",
+                        }}
+                      />
+                      <SoftTypography
+                        variant="h6"
+                        fontWeight="bold"
+                        color="#FFFFFF"
+                        sx={{ marginRight: "7px" }}
+                      >
+                        {challengeDetail.betting_point}
+                      </SoftTypography>
+                    </SoftBox>
+                  </SoftBox>
+                </SoftBox>
+
+                <SoftBox
+                  mt={7}
+                  mb={2}
+                  width="100%"
+                  height="100%"
+                  sx={{
+                    justifyContent: "center", // 가로 방향 가운데 정렬
+                    textAlign: "center",
+                    display: "flex",
+                  }}
+                >
+                  <CardMedia
+                    src={icon_point}
+                    component="img"
+                    sx={{
+                      maxWidth: "33px",
+                      height: "auto",
+                      margin: "0 5px 0 0",
+                      objectFit: "cover",
+                      objectPosition: "center",
+                      borderRadius: 0,
+                      position: "relative",
+                      marginRight: "10px",
+                    }}
+                  />
                   <SoftTypography variant="body1">
                     {challengeDetail.ch_start_date}
+                    {" ~ "}
+                    {challengeDetail.ch_start_date}
                   </SoftTypography>
-                </Grid>
-                <Grid item xs={6} sm={4}>
+                </SoftBox>
+                <hr style={{ width: "100%", border: "1px solid #999999" }} />
+                <SoftBox mt={3} mb={3} mx={5}>
                   <SoftTypography
-                    component="label"
-                    variant="caption"
+                    variant="h5"
                     fontWeight="bold"
+                    color="#FFFFFF"
                   >
-                    챌린지 기간
+                    챌린지 완료 보상
                   </SoftTypography>
-                  <SoftTypography variant="body1">
-                    {challengeDetail.challenge_term}
-                  </SoftTypography>
-                </Grid>
-                <Grid item xs={6} sm={4}>
                   <SoftTypography
-                    component="label"
-                    variant="caption"
-                    fontWeight="bold"
+                    variant="h6"
+                    // fontWeight="bold"
+                    color="#FFFFFF"
+                    sx={{ marginTop: "10px" }}
                   >
-                    배팅 포인트
+                    {`100% 완료 시 1억`}
+                    <br />
+                    {`80% 완료 시 5000만원`}
+                    <br />
+                    {`50% 완료 시 100원`}
+                    <br />
+                    {`그 이하는 더 노력하세요.`}
+                    <br />
                   </SoftTypography>
-                  <SoftTypography variant="body1">
-                    {challengeDetail.batting_point}
-                  </SoftTypography>
-                </Grid>
-                <Grid item xs={6} sm={4}>
+                </SoftBox>
+                <hr style={{ width: "100%", border: "1px solid #999999" }} />
+                <SoftBox mt={3} mb={3} mx={5}>
                   <SoftTypography
-                    component="label"
-                    variant="caption"
+                    variant="h5"
                     fontWeight="bold"
+                    color="#FFFFFF"
                   >
-                    인증 주기
+                    챌린지 소개
                   </SoftTypography>
-                  <SoftTypography variant="body1">
-                    {challengeDetail.verify_frequency}
+                  <SoftTypography
+                    variant="h6"
+                    // fontWeight="bold"
+                    color="#FFFFFF"
+                    sx={{ marginTop: "10px" }}
+                  >
+                    {challengeDetail.content}
                   </SoftTypography>
-                </Grid>
-              </Grid>
+                </SoftBox>
 
-              <SoftBox mt={6} textAlign="center">
-                {localStorageUserID === challengeDetail.user_id ? (
-                  <>
-                    <Link
-                      className="btn btn-primary"
-                      to={`/challenge/update/${ch_id}`}
-                    >
-                      수정
-                    </Link>
-                    <button className="btn btn-primary" onClick={handleDelete}>
-                      삭제
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <SoftButton
-                      variant="gradient"
-                      color="info"
-                      onClick={handleJoinButtonClick}
-                    >
-                      참여하기
-                    </SoftButton>
-                    {showAlert && (
-                      <SoftAlert
-                        color="success"
-                        dismissible
-                        onClose={handleAlertClose}
+                <SoftBox
+                  mt={3}
+                  mb={3}
+                  mx={5}
+                  position="relative"
+                  maxWidth="400px"
+                  width="100%"
+                  height="auto"
+                  shadow="xl"
+                  sx={{
+                    backgroundColor: "rgba(128, 128, 128, 0.3)",
+                    padding: "10px",
+                    bottom: "-17px",
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                    margin: 0,
+                    display: "flex",
+                    // justifyContent: "center",
+                    padding: "25px",
+                  }}
+                >
+                  <SoftTypography
+                    variant="h5"
+                    fontWeight="bold"
+                    color="#FFFFFF"
+                  >
+                    Master
+                  </SoftTypography>
+                  <CardMedia
+                    src={grade}
+                    component="img"
+                    sx={{
+                      maxWidth: "20px",
+                      height: "auto",
+                      margin: 0,
+                      objectFit: "cover",
+                      objectPosition: "center",
+                      borderRadius: 0,
+                      marginRight: "8px",
+                      marginLeft: "10px",
+                      position: "relative",
+                      top: "0px",
+                    }}
+                  />
+                  <SoftTypography
+                    variant="h6"
+                    fontWeight="regular"
+                    textTransform="capitalize"
+                    textGradient
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
+                    {challengeDetail.nick_name}
+                  </SoftTypography>
+                  <SoftTypography
+                    variant="h6"
+                    // fontWeight="bold"
+                    color="#FFFFFF"
+                    sx={{ marginTop: "10px" }}
+                  >
+                    sksksk
+                  </SoftTypography>
+                </SoftBox>
+
+                <SoftBox mt={6} textAlign="center">
+                  {localStorageUserID === challengeDetail.user_id ? (
+                    <>
+                      <Link
+                        className="btn btn-primary"
+                        to={`/challenge/update/${ch_id}`}
                       >
-                        참여 완료! 챌린지를 끝까지 완수해보세요.
-                      </SoftAlert>
-                    )}
-                  </>
-                )}
+                        수정
+                      </Link>
+                      <button
+                        className="btn btn-primary"
+                        onClick={handleDelete}
+                      >
+                        삭제
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <SoftButton
+                        variant="gradient"
+                        color="info"
+                        onClick={handleJoinButtonClick}
+                      >
+                        참여하기
+                      </SoftButton>
+                      {showAlert && (
+                        <SoftAlert
+                          color="success"
+                          dismissible
+                          onClose={handleAlertClose}
+                        >
+                          참여 완료! 챌린지를 끝까지 완수해보세요.
+                        </SoftAlert>
+                      )}
+                    </>
+                  )}
+                </SoftBox>
               </SoftBox>
-            </SoftBox>
+            </Card>
           </Grid>
-        </Card>
-      </SoftBox>
-
+        </Grid>
+      </Grid>
       <Footer />
     </DashboardLayout>
   );
 }
-
-// Setting default values for the props of ChallengeDetail
-ChallengeDetail.defaultProps = {
-  total_participants: 0,
-};
-
-// Typechecking props for the ChallengeDetail
-// ChallengeDetail.propTypes = {
-//   category: PropTypes.number.isRequired,
-//   image: PropTypes.string.isRequired,
-//   title: PropTypes.string.isRequired,
-//   master: PropTypes.string.isRequired,
-//   master_grade: PropTypes.number.isRequired,
-//   total_participants: PropTypes.number.isRequired,
-//   verify_frequency: PropTypes.string.isRequired,
-//   challenge_term: PropTypes.string.isRequired,
-//   action: PropTypes.shape({
-//     type: PropTypes.oneOf(["joined", "none"]).isRequired,
-//     // route: PropTypes.string.isRequired,
-//     proceed: PropTypes.oneOf(["rec", "pr", "done"]).isRequired,
-//     color: PropTypes.oneOf([
-//       "primary",
-//       "secondary",
-//       "info",
-//       "success",
-//       "warning",
-//       "error",
-//       "light",
-//       "dark",
-//       "white",
-//     ]).isRequired,
-//     label: PropTypes.string.isRequired,
-//   }).isRequired,
-// };
 
 export default ChallengeDetail;
