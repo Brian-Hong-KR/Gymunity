@@ -16,5 +16,4 @@ public class ChallengeCreateDTO {
 	private String chStartDate;
 	private String chEndDate;
 
-
 }//end class

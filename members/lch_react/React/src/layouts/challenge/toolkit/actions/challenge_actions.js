@@ -72,7 +72,7 @@ function getChallengeDownload(upload, config) {
 //수정하기
 function getChallengeUpdate(formData, config) {
   return async () => {
-    await axios.put(`/challenge/update`, formData, config).then((response) => response.data);
+    await axios.put(`/challenge/update/${ch_id}`, formData, config).then((response) => response.data);
   };
 }
 

@@ -60,9 +60,11 @@ const PersonalTraining = () => {
     };
 
   return (
-    <SoftBox>
-        <SoftTypography variant="h6"> 오늘 운동 진행률 (step : {index.current + 1}) </SoftTypography>
-        <SoftProgress value={progress} color="success" variant="gradient" label={false} />
+  <SoftBox py={3}>
+        <SoftBox mb={3}>
+            <SoftTypography variant="h6">오늘 운동 진행률</SoftTypography>
+            <SoftProgress value={progress} color="success" variant="gradient" label={false} />
+        </SoftBox>
         <div style={{ position:'relative', width:'100%', paddingBottom:'56.25%'}}>
             <div style={{ position:'absolute', width:'100%', height:'100%' }} id="YTP"></div>
         </div>

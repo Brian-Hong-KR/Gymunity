@@ -1,16 +1,21 @@
 package com.gymunity.challenge.controller;
 
+import java.util.List;
+
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.gymunity.challenge.dto.PhotoDTO;
 import com.gymunity.challenge.service.VerifyService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -33,7 +38,7 @@ public class VerifyController {
 			return (Integer) authentication.getPrincipal();
 		}
 		return null;
-	}
+	}// end extractUserId()
 
 	// 인증사진업로드
 	@Operation(summary = "인증사진 업로드")
@@ -63,6 +68,17 @@ public class VerifyController {
 			log.error("File upload error", e); // 로깅 추가
 			return ResponseEntity.internalServerError().body("Error uploading file.");
 		}
-	}
+	}// end verifyUpload()
+
+	@Operation(summary = "사진첩")
+	@GetMapping(value = "/photo")
+	public ResponseEntity<List<PhotoDTO>> getPhotosByUserId() {
+		// 인증 정보에서 사용자 ID 추출
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		Integer userId = extractUserId(authentication);
+		
+		List<PhotoDTO> photos = verifyService.getPhotosByUserId(userId);
+		return ResponseEntity.ok(photos);
+	}// end getPhotosByUserId()
 }
 // end class
