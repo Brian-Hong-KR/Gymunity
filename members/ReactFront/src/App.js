@@ -31,7 +31,8 @@ import routes from "routes";
 import { useSoftUIController, setMiniSidenav, setOpenConfigurator } from "context";
 
 // Images
-import brand from "assets/images/Logo_icon.png";
+import brand from "assets/images/logos/icon.png";
+
 
 export default function App() {
   const [controller, dispatch] = useSoftUIController();
@@ -130,8 +131,6 @@ export default function App() {
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}
           />
-          <Configurator />
-          {configsButton}
         </>
       )}
       {layout === "vr"}

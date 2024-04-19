@@ -1,5 +1,6 @@
 import axios from "axios";
 import { challengeReducers } from "../createSlice/challenge_createSlice";
+import { useState } from "react";
 
 //리스트 가져오기
 // function getChallengeList(currentPage) {
@@ -12,13 +13,13 @@ import { challengeReducers } from "../createSlice/challenge_createSlice";
 //     dispatch(challengeReducers.getChallengeList({ data }));
 //   };
 // }
-function getChallengeList(currentPage) {
+function getChallengeListAsync(currentPage) {
+  // console.log("currentPage: ", currentPage);
   return async (dispatch) => {
     try {
       const response = await axios.get(`/challenge/list/${currentPage}`);
-      const { challengeList, joinList } = response.data;
-
-      dispatch(challengeReducers.getChallengeList({ challengeList }));
+      const { challengeList, joinList, pv } = response.data;
+      dispatch(challengeReducers.getChallengeList({ challengeList, pv }));
       dispatch(challengeReducers.getJoinList({ joinList }));
     } catch (error) {
       console.error("챌린지 및 참여 목록 데이터를 가져오는 중 오류 발생:", error);
@@ -32,15 +33,12 @@ function getChallengeList(currentPage) {
 //     await axios.post(`/challenge/create`, formData, config).then((response) => response.data);
 //   };
 // }
-
-
 //챌린지 생성하기
 function getChallengeCreate(formData) {
   return async () => {
     await axios.post(`/challenge/create`, formData).then((response) => response.data);
   };
 }
-
 
 //챌린지 상세페이지
 // function getChallengeDetail(ch_id, config) {
@@ -76,8 +74,6 @@ function getChallengeUpdate(formData, config) {
   };
 }
 
-
-
 //삭제하기
 // function getChallengeDelete(ch_id, config) {
 //   return async () => {
@@ -91,7 +87,7 @@ function getChallengeDelete(ch_id) {
 }
 
 export const challengeActions = {
-  getChallengeList,
+  getChallengeListAsync,
   getChallengeCreate,
   getChallengeDetail,
   getChallengeDownload,

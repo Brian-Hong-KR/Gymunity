@@ -2,11 +2,16 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function TestP() {
-
   const [data, setData] = useState(null);
 
+  // 데이터 생성 로직 추가 (필요)
+
   useEffect(() => {
-    axios.get('http://localhost:5000/test')
+    const postData = {
+      "user_id":1,
+    };
+
+    axios.post('http://localhost:5000/test', postData)
       .then(response => setData(response.data))
       .catch(error => console.error(error));
   }, []);
@@ -15,9 +20,20 @@ function TestP() {
 
   return (
     <div>
+      <p>ID: {data.user_id}</p>
       <p>메시지: {data.message}</p>
     </div>
   );
 }
 
 export default TestP;
+
+//@bp.route('/test', methods=('POST',))
+//def test():
+//    data = request.get_json()
+//    user_id = data["user_id"]
+//    new_data = {
+//        'user_id': user_id,
+//        'message': 'Hello from Flask!'}
+//    return jsonify(new_data)
+//#
