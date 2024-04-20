@@ -24,7 +24,7 @@
 	<update id="updateLastSignin" parameterType="User">
 		UPDATE users
 		SET last_signin = #{lastSignin}
-		WHERE user_id = #{userId};
+		WHERE user_id = #{userId}
 	</update>
 	
 	<!-- userId로 users 조회-->

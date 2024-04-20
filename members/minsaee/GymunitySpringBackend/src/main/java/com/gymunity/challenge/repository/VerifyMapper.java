@@ -24,5 +24,7 @@ public interface VerifyMapper {
 	public void updateVerify(Verify dto);
 
 	public List<PhotoDTO> selectPhotosByUserId(int userId);
+	
+	public int deletePhoto(@Param("photoPath")String photoPath, @Param("userId") int userId);
 
 }// end interface

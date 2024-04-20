@@ -155,10 +155,16 @@ public class VerifyServiceImpl implements VerifyService {
 
 	}// end verifyUploadProcess()
 
-	// 사진첩
+	// 사진첩조회
 	@Override
 	public List<PhotoDTO> getPhotosByUserId(int userId) {
 		return verifyMapper.selectPhotosByUserId(userId);
 	}// end getPhotosByUserId()
-}
-// end class
+
+	// 사진삭제
+	@Override
+	public void deletePhotoProcess(String photoPath, int userId) {
+		verifyMapper.deletePhoto(photoPath, userId);
+		
+	}// deletePhotoProcess()
+}// end class

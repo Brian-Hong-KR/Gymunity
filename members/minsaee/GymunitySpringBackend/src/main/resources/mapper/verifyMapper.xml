@@ -38,7 +38,7 @@
 	</update>
 
 	<!-- 1주일 인증 카운트-->
-	<select id="countVerifiesThisWeek">
+	<select id="countVerifiesThisWeek" resultType="int">
 		SELECT COUNT(*)
 		FROM verify
 		WHERE vi_user_id = #{userId}
@@ -46,50 +46,23 @@
 		AND update_verify BETWEEN #{startOfWeek} AND #{endOfWeek}
 	</select>
 
-	<!-- 사진첩 보내주기-->
+	<!-- 사진첩 -->
 	<!-- userId로 사진 정보와 챌린지 정보 조회 -->
 	<select id="selectPhotosByUserId" resultType="PhotoDTO">
 		SELECT v.upload1 AS imagePath1, v.upload2 AS imagePath2, c.title AS
-		challengeTitle, v.update_verify AS dateUpdated
+		challengeTitle, c.proceed AS proceed, v.update_verify AS dateUpdated
 		FROM verify v
 		JOIN challenges c ON v.vi_ch_id = c.ch_id
 		WHERE v.vi_user_id = #{userId}
-		ORDER BY c.ch_id, v.update_verify DESC;
+		ORDER BY c.ch_id, v.update_verify DESC
 	</select>
 
-	<!-- 인증 Y값 카운트 -->
-	<select id="countVerified" parameterType="Verify">
-		SELECT COUNT(*) AS verified_count
-		FROM challenges c
-		INNER JOIN verify v ON c.ch_id = v.vi_ch_id
-		WHERE v.vi_user_id = #{userId} AND v.vi_ch_id = #{chId} AND v.result =
-		'Y';
-	</select>
-
-
-	<update id="updateMemRate" parameterType="Verify">
-		UPDATE members m
-		JOIN (
-		SELECT
-		cm.mem_user_id,
-		cm.mem_ch_id,
-		ROUND((COUNT(DISTINCT CASE WHEN v.result = 'Y' THEN v.vi_id ELSE NULL
-		END) / MAX(DATEDIFF(c.ch_end_date, c.ch_start_date))) * 100, 1) AS su
-		FROM
-		members cm
-		JOIN
-		challenges c ON cm.mem_ch_id = c.ch_id
-		JOIN
-		verify v ON v.vi_user_id = cm.mem_user_id AND v.vi_ch_id = cm.mem_ch_id
-		WHERE
-		v.vi_user_id = #{vi_user_id} AND v.vi_ch_id = #{vi_ch_id}
-		GROUP BY
-		cm.mem_user_id, cm.mem_ch_id
-		) AS su_data ON m.mem_user_id = su_data.mem_user_id AND m.mem_ch_id =
-		su_data.mem_ch_id
-		SET
-		m.archive_rate = su_data.su
+	<!-- verify 테이블에서 upload1 or upload2 삭제-->
+	<update id="deletePhoto">
+		UPDATE verify
+		SET upload1 = CASE WHEN upload1 = #{photoPath} THEN NULL ELSE upload1 END,
+		upload2 = CASE WHEN upload2 = #{photoPath} THEN NULL ELSE upload2 END
+		WHERE (upload1 = #{photoPath} OR upload2 = #{photoPath}) AND vi_user_id = #{userId}
 	</update>
-
 
 </mapper>   

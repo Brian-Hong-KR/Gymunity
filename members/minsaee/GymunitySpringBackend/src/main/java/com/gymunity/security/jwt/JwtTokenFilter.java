@@ -84,7 +84,6 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 		Integer userId = JwtProvider.getUserId(token);
 
 		String adminYn = JwtProvider.getAdminYn(token);
-		log.info("Bbbbbbbbbbbbb{} {}", userId, adminYn);
 
 		SigninResponse signinUser = signinServiceImpl.getByUserId(userId);
 

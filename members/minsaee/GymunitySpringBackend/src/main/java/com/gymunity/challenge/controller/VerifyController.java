@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -80,5 +81,15 @@ public class VerifyController {
 		List<PhotoDTO> photos = verifyService.getPhotosByUserId(userId);
 		return ResponseEntity.ok(photos);
 	}// end getPhotosByUserId()
-}
-// end class
+
+	// 사진첩 삭제
+	@Operation(summary = "사진첩 삭제")
+	@DeleteMapping("/photo/delete")
+	public ResponseEntity<?> deletePhoto(@RequestParam("photoPath") String photoPath) {
+		// Spring Security의 Authentication 객체를 통해 현재 로그인된 사용자의 정보를 가져옴
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
+		verifyService.deletePhotoProcess(photoPath, userId);
+		return ResponseEntity.ok("사진이 삭제되었습니다.");
+	}// end deleteChallenge()
+}// end class

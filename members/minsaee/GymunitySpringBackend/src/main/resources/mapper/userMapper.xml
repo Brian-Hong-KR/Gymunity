@@ -65,7 +65,7 @@
 		WHERE pa.user_id = #{userId}
 		)
 		)
-		WHERE user_id = #{userId};
+		WHERE user_id = #{userId}
 	</update>
 
 	<!-- 아이디, 비밀번호 확인 
@@ -113,14 +113,14 @@
 	<update id="updateUsers" parameterType="User">
 		UPDATE users
 		SET nick_name = #{nickName}
-		WHERE user_id = #{userId};
+		WHERE user_id = #{userId}
 	</update>
 
 	<!-- profiles 테이블 업데이트 -->
 	<update id="updateProfiles" parameterType="Profile">
 		UPDATE profiles
 		SET user_email = #{userEmail}
-		WHERE user_id = #{userId};
+		WHERE user_id = #{userId}
 	</update>
 
 	<!-- 회원 탈퇴 -->

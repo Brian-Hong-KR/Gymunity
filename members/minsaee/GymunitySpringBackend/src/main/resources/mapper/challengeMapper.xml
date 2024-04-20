@@ -13,6 +13,7 @@
 		<result column="ch_end_date" property="chEndDate" />
 		<result column="verify_term" property="verifyTerm" />
 		<result column="count" property="count" />
+		<result column="total_date" property="totalDate" />
 		<result column="user_id" property="userId" />
 	</resultMap>
 
@@ -22,8 +23,8 @@
 		useGeneratedKeys="true"
 		keyProperty="chId">
 	    <![CDATA[
-	    INSERT INTO challenges (title, content, category, betting_point, ch_start_date, ch_end_date, user_id)
-	    VALUES (#{title}, #{content}, #{category}, #{bettingPoint}, #{chStartDate}, #{chEndDate}, #{userId})
+	    INSERT INTO challenges (title, content, category, betting_point, ch_start_date, ch_end_date, verify_term, total_date, user_id)
+	    VALUES (#{title}, #{content}, #{category}, #{bettingPoint}, #{chStartDate}, #{chEndDate}, #{verifyTerm}, #{totalDate}, #{userId})
         ]]>
     </insert>
 

@@ -6,9 +6,10 @@ import axios from "axios";
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 import Table from "examples/Tables/Table";
+import SoftButton from "components/SoftButton";
 
 const PhotoList = () => {
-  const config = {
+  const baseConfig = {
     headers: {
       "Content-Type": "application/json",
       Authorization: localStorage.getItem("Authorization"),
@@ -22,40 +23,88 @@ const PhotoList = () => {
     { name: "사진1", align: "center" },
     { name: "사진2", align: "center" },
     { name: "챌린지", align: "center" },
+    { name: "진행여부", align: "center" },
     { name: "날짜", align: "left" },
   ];
 
   useEffect(() => {
-    // 이미지 정보를 불러오는 API 호출
+    fetchPhotos();
+  }, []);
+
+  const fetchPhotos = () => {
     axios
-      .get(`/photo`, config)
+      .get(`/photo`, baseConfig)
       .then((response) => {
-        // 받아온 데이터로 rows 상태 업데이트
-        setRows(
-          response.data.map((photo) => ({
-            사진1: (
+        const newRows = response.data.map((photo) => ({
+          사진1: photo.imagePath1 ? (
+            <>
               <img
                 src={`${process.env.PUBLIC_URL}/${photo.imagePath1}`}
                 alt="User Photo 1"
                 style={{ width: "50%", height: "auto" }}
               />
-            ),
-            사진2: photo.imagePath2 ? (
+              {photo.proceed === "rec" && (
+                <SoftButton
+                  type="submit"
+                  variant="gradient"
+                  color="dark"
+                  fullWidth
+                  onClick={() => deletePhoto(photo.imagePath1)}
+                >
+                  삭제
+                </SoftButton>
+              )}
+            </>
+          ) : (
+            <span>사진 없음</span>
+          ),
+          사진2: photo.imagePath2 ? (
+            <>
               <img
                 src={`${process.env.PUBLIC_URL}/${photo.imagePath2}`}
                 alt="User Photo 2"
                 style={{ width: "50%", height: "auto" }}
               />
-            ) : (
-              <span>No additional photo</span>
-            ),
-            챌린지: photo.challengeTitle,
-            날짜: photo.dateUpdated,
-          }))
-        );
+              {photo.proceed === "rec" && (
+                <SoftButton
+                  type="submit"
+                  variant="gradient"
+                  color="dark"
+                  fullWidth
+                  onClick={() => deletePhoto(photo.imagePath2)}
+                >
+                  삭제
+                </SoftButton>
+              )}
+            </>
+          ) : (
+            <span>사진 없음</span>
+          ),
+          챌린지: photo.challengeTitle,
+          날짜: photo.dateUpdated,
+          진행여부: photo.proceed,
+        }));
+        setRows(newRows);
       })
       .catch((error) => console.error("Error fetching photos", error));
-  }, []);
+  };
+
+  const deletePhoto = (photoPath) => {
+    const deleteConfig = {
+      ...baseConfig,
+      params: { photoPath },
+    };
+
+    axios
+      .delete(`/photo/delete`, deleteConfig)
+      .then(() => {
+        console.log("Photo deleted successfully");
+        fetchPhotos(); // 상태 업데이트를 위해 사진 목록 다시 불러오기
+      })
+      .catch((error) => {
+        console.error("Error deleting photo", error);
+      });
+  };
 
   return (
     <SoftBox py={1}>
