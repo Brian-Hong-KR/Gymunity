@@ -11,7 +11,8 @@ public class User {
 	private int userId;
 	private String userAccountId;
 	private String nickName;
-	private LocalDateTime lastSignin;
+	private String adminYn;
 	private String gradeName;
+	private LocalDateTime lastSignin;
 
 }// end class

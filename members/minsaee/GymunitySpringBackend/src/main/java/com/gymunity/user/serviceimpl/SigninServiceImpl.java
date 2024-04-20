@@ -55,12 +55,11 @@ public class SigninServiceImpl implements SigninService {
 
 				// 오늘 새벽 4시
 				LocalDateTime today4am = now.toLocalDate().atStartOfDay().plusHours(4);
-				
+
 				// 현재 시간이 새벽 4시 이전이면, '오늘'의 기준을 전날의 새벽 4시로 설정
 				if (now.isBefore(today4am)) {
 					today4am = today4am.minusDays(1);
 				}
-
 
 				// 마지막 로그인 시간이 오늘 새벽 4시 이전이라면 보상을 지급
 				if (lastSignin == null || lastSignin.isBefore(today4am)) {
@@ -80,14 +79,17 @@ public class SigninServiceImpl implements SigninService {
 				user.setLastSignin(now);
 				signinMapper.updateLastSignin(user);
 
-				// 토큰 생성 및 저장
-				String accessToken = JwtProperties.TOKEN_PREFIX + JwtProvider.createAccessToken(user.getUserId());
-				String refreshToken = JwtProvider.createRefreshToken(user.getUserId());
+				log.info("qqqqqqqqqqqqqq{}", user.getAdminYn());
 
+				// 토큰 생성 및 저장
+				String accessToken = JwtProperties.TOKEN_PREFIX + JwtProvider.createAccessToken(user.getUserId(), user.getAdminYn());
+				String refreshToken = JwtProvider.createRefreshToken(user.getUserId(), user.getAdminYn());
+
+				// redis 저장
 				tokenService.saveTokens(user.getUserAccountId(), accessToken, refreshToken);
 
 				return SigninResponse.builder().userId(user.getUserId()).userAccountId(user.getUserAccountId())
-						.nickName(user.getNickName()).accessToken(accessToken).refreshToken(refreshToken).build();
+						.nickName(user.getNickName()).adminYn(user.getAdminYn()).accessToken(accessToken).refreshToken(refreshToken).build();
 			}
 
 		} else {
@@ -96,20 +98,23 @@ public class SigninServiceImpl implements SigninService {
 
 	}// end getUserByAccountId()
 
+	// JwtTokenFilter
 	@Override
 	public SigninResponse getByUserId(Integer userId) {
 		User user = signinMapper.selectUsersByUserId(userId);
+
 		return SigninResponse.builder().userAccountId(user.getUserAccountId()).userId(user.getUserId())
-				.nickName(user.getNickName()).accessToken(JwtProvider.createAccessToken(userId))
-				.refreshToken(JwtProvider.createRefreshToken(userId)).build();
-	}
+				.nickName(user.getNickName()).accessToken(JwtProvider.createAccessToken(userId, user.getAdminYn()))
+				.refreshToken(JwtProvider.createRefreshToken(userId, user.getAdminYn())).build();
+	}// end getByUserId()
 
 	// 토큰생성 프로세스
 	@Override
 	public SigninResponse generateAndReturnUserAuthTokens(Integer userId) {
+		User user = signinMapper.selectUsersByUserId(userId);
 
-		String accessToken = JwtProvider.createAccessToken(userId);
-		String refreshToken = JwtProvider.createRefreshToken(userId);
+		String accessToken = JwtProvider.createAccessToken(userId, user.getAdminYn());
+		String refreshToken = JwtProvider.createRefreshToken(userId, user.getAdminYn());
 
 		return SigninResponse.builder().accessToken(accessToken).refreshToken(refreshToken).build();
 	}// end generateAndReturnUserAuthTokens()

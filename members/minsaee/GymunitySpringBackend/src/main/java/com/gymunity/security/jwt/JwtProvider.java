@@ -34,9 +34,10 @@ public class JwtProvider {
 	}// end init()
 
 	// AccessToken 생성
-	public static String createAccessToken(Integer userId) {
+	public static String createAccessToken(Integer userId, String adminYn) {
 		Map<String, Object> claims = new HashMap<>(); // JWT 클레임 설정
 		claims.put("userId", userId); // 사용자 ID를 클레임에 포함
+		claims.put("adminYn", adminYn);
 
 		return Jwts.builder().claims(claims).issuedAt(new Date(System.currentTimeMillis()))
 				.expiration(new Date(System.currentTimeMillis() + JwtProperties.EXPIRATION_TIME))
@@ -44,10 +45,10 @@ public class JwtProvider {
 	}// end createAccessToken()
 
 	// RefreshToken 생성
-	public static String createRefreshToken(Integer userId) {
+	public static String createRefreshToken(Integer userId, String adminYn) {
 		Map<String, Object> claims = new HashMap<>();
-//		claims.put("userId", String.valueOf(userId));
 		claims.put("userId", userId);
+		claims.put("adminYn", adminYn);
 
 		String refreshToken = Jwts.builder().claims(claims).issuedAt(new Date(System.currentTimeMillis()))
 				.expiration(new Date(System.currentTimeMillis() + JwtProperties.REFRESH_EXPIRATION_TIME))
@@ -55,6 +56,28 @@ public class JwtProvider {
 
 		return refreshToken;
 	}// end createRefreshToken()
+
+//	// AccessToken 생성
+//	public static String createAccessToken(Integer userId) {
+//		Map<String, Object> claims = new HashMap<>(); // JWT 클레임 설정
+//		claims.put("userId", userId); // 사용자 ID를 클레임에 포함
+//
+//		return Jwts.builder().claims(claims).issuedAt(new Date(System.currentTimeMillis()))
+//				.expiration(new Date(System.currentTimeMillis() + JwtProperties.EXPIRATION_TIME))
+//				.signWith(key, Jwts.SIG.HS512).subject("accessToken").compact();
+//	}// end createAccessToken()
+//
+//	// RefreshToken 생성
+//	public static String createRefreshToken(Integer userId) {
+//		Map<String, Object> claims = new HashMap<>();
+//		claims.put("userId", userId);
+//
+//		String refreshToken = Jwts.builder().claims(claims).issuedAt(new Date(System.currentTimeMillis()))
+//				.expiration(new Date(System.currentTimeMillis() + JwtProperties.REFRESH_EXPIRATION_TIME))
+//				.signWith(key, Jwts.SIG.HS512).subject("refreshToken").compact();
+//
+//		return refreshToken;
+//	}// end createRefreshToken()
 
 	// SecretKey로 Token Parsing 키로 서명 확인(verifyWith)
 	public static Claims extractClaims(String token) throws ExpiredJwtException {
@@ -64,15 +87,17 @@ public class JwtProvider {
 		return claims;
 	}// end extractClaims()
 
-	// Claims에서 userId 가져오기
-//	public static Integer getUserId(String token) {
-//		return extractClaims(token).get("userId").toString();
-//	} // end getUserId()
-	
-	public static Integer getUserId(String token) {
-	    Claims claims = extractClaims(token);
-	    return claims.get("userId", Integer.class);
+	public static int getUserId(String token) {
+		Claims claims = extractClaims(token);
+		return claims.get("userId", Integer.class);
 	} // end getUserId()
+
+	public static String getAdminYn(String token) {
+		Claims claims = extractClaims(token);
+
+		String adminYn = claims.get("adminYn", String.class);
+		return adminYn;
+	} // end getAdminYn()
 
 	// Token 만료시간 확인
 	public static boolean isExpired(String token) {

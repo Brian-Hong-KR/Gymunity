@@ -37,7 +37,7 @@
 		AND vi_id = #{viId}
 	</update>
 
-	<!-- 1주에 인증한 기간 확인하기-->
+	<!-- 1주일 인증 카운트-->
 	<select id="countVerifiesThisWeek">
 		SELECT COUNT(*)
 		FROM verify

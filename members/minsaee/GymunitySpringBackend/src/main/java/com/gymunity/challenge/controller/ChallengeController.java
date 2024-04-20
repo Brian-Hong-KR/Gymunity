@@ -18,17 +18,20 @@ import com.gymunity.challenge.response.ChallengeCreateResponse;
 import com.gymunity.challenge.response.ChallengeDetailResponse;
 import com.gymunity.challenge.response.ChallengeJoinResponse;
 import com.gymunity.challenge.service.ChallengeService;
+import com.gymunity.security.config.CustomUserDetails;
 
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @CrossOrigin("*")
 @RestController
 @RequiredArgsConstructor
 public class ChallengeController {
 
 	private final ChallengeService challengeService;
-	
+
 	// 챌린지 생성
 	@Operation(summary = "챌린지 생성")
 	@PostMapping("/challenge/create")
@@ -37,12 +40,24 @@ public class ChallengeController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
 
+//		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//		log.info("vvvvvvvvvvvvvvvvvvvvvvvv{}", authentication);
+//		Object principal = authentication.getPrincipal();
+//		String aa = authentication.getName();
+//		Object bb = authentication.getDetails();
+//		String cc = authentication.toString();
+//		log.info("getPrincipal {}, getName {}, getDetails {}, toString {}", principal, aa, bb, cc);
+//		CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+//		log.info("hhhhhhhhhhhhhhhhhhhhhhhh{}", userDetails);
+//		Integer userId = userDetails.getUserId(); // 사용자 ID 추출
+//		log.info("cccccccccccc{} {}", authentication, userId);
+
 		// 챌린지 생성 로직에 userId를 전달
 		ChallengeCreateResponse response = challengeService.createChallengeProcess(challengeDTO, userId);
 
 		return ResponseEntity.ok(response);
 	}// end createChallenge()
-	
+
 	// 챌린지 참가
 	@Operation(summary = "챌린지 참가")
 	@PostMapping("/challenge/join")
@@ -50,9 +65,9 @@ public class ChallengeController {
 		// Spring Security의 Authentication 객체를 통해 현재 로그인된 사용자의 정보를 가져옴
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
+//		String userDetails = (String) authentication.getPrincipal(); // 사용자 ID 추출
+		log.info("aaaaaaaa{} {} {}", authentication, userId);
 
-		// 챌린지 생성 로직에 userId를 전달
-//		challengeService.isMemberExists(ch_id, userId);
 		ChallengeJoinResponse response = challengeService.joinChallengeProcess(ch_id, userId);
 
 		return ResponseEntity.ok(response);

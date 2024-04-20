@@ -11,11 +11,14 @@
 			property="gradeName" column="grade_name" />
 		<result
 			property="nickName" column="nick_name" />
+		<result
+			property="adminYn" column="admin_yn" />
 	</resultMap>
 
 	<resultMap id="profileResultMap" type="Profile">
 		<result property="userId" column="user_id" />
-		<result property="password" column="password" />
+		<result property="password"
+			column="password" />
 		<result property="userEmail" column="user_email" />
 	</resultMap>
 
@@ -77,15 +80,15 @@
 	<!--userAccountId로 조회 -->
 	<select id="selectUsersByAccountId" parameterType="string"
 		resultMap="userResultMap">
-		SELECT user_id, user_account_id, nick_name, grade_name
+		SELECT *
 		FROM users
 		WHERE user_account_id = #{userAccountId}
 	</select>
-	
+
 	<!--userAccountId로 조회 -->
 	<select id="selectUsersByUserId" parameterType="int"
 		resultMap="userResultMap">
-		SELECT user_id, user_account_id, nick_name, grade_name
+		SELECT *
 		FROM users
 		WHERE user_id = #{userId}
 	</select>
@@ -124,8 +127,8 @@
 
 	<!-- users 테이블에서 사용자 데이터 삭제 -->
 	<delete id="deleteUsers" parameterType="int">
-		DELETE 
-		FROM users 
+		DELETE
+		FROM users
 		WHERE user_id = #{userId}
 	</delete>
 </mapper>
