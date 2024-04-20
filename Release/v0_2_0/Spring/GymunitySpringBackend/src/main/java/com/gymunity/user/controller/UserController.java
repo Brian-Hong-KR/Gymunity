@@ -2,7 +2,6 @@ package com.gymunity.user.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,9 +21,7 @@ import com.gymunity.user.service.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @CrossOrigin("*")
 @RestController
 @RequiredArgsConstructor
@@ -52,11 +49,7 @@ public class UserController {
 	@Operation(summary = "회원정보수정")
 	@PutMapping("/user/update")
 	public ResponseEntity<SigninResponse> updateUser(@RequestBody UserUpdateDTO dto) {
-		log.info("받은 데이터: {}", dto.getNickName());
-		log.info("받은 데이터: {}", dto.getPassword());
-		log.info("받은 데이터: {}", dto.getUserEmail());
 		SigninResponse update = userService.updateUserProcess(dto);
-
 		return ResponseEntity.ok(update);
 	}// end updateUser()
 

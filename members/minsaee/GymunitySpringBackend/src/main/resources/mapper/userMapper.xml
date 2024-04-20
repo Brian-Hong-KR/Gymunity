@@ -119,7 +119,7 @@
 	<!-- profiles 테이블 업데이트 -->
 	<update id="updateProfiles" parameterType="Profile">
 		UPDATE profiles
-		SET user_email = #{userEmail}
+		SET user_email = #{userEmail}, password=#{password}
 		WHERE user_id = #{userId}
 	</update>
 

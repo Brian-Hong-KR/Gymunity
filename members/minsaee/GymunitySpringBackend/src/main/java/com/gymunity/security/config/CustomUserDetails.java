@@ -18,12 +18,6 @@ public class CustomUserDetails implements UserDetails {
 	public CustomUserDetails() {
 	}
 
-//	// 생성자를 통해 userId와 adminYn, authorities를 받아 초기화합니다.
-//	public CustomUserDetails(Integer userId, String adminYn, Collection<? extends GrantedAuthority> authorities) {
-//		this.userId = userId;
-//		this.adminYn = adminYn;
-//		this.authorities = authorities;
-//	}
 
 	public CustomUserDetails(User user) {
 		this.user = user;
@@ -40,21 +34,6 @@ public class CustomUserDetails implements UserDetails {
         this.authorities = authorities;
     }
 
-//	@Override
-//	public Collection<? extends GrantedAuthority> getAuthorities() {
-//
-//		Collection<GrantedAuthority> collect = new ArrayList<GrantedAuthority>();
-//		collect.add(new GrantedAuthority() {
-//
-//			@Override
-//			public String getAuthority() {
-//				return null;
-//			}
-//		});
-//
-//		return collect;
-//
-//	}// end getAuthorities()
 
 	@Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

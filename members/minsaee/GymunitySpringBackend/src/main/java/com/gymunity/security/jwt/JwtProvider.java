@@ -57,28 +57,6 @@ public class JwtProvider {
 		return refreshToken;
 	}// end createRefreshToken()
 
-//	// AccessToken 생성
-//	public static String createAccessToken(Integer userId) {
-//		Map<String, Object> claims = new HashMap<>(); // JWT 클레임 설정
-//		claims.put("userId", userId); // 사용자 ID를 클레임에 포함
-//
-//		return Jwts.builder().claims(claims).issuedAt(new Date(System.currentTimeMillis()))
-//				.expiration(new Date(System.currentTimeMillis() + JwtProperties.EXPIRATION_TIME))
-//				.signWith(key, Jwts.SIG.HS512).subject("accessToken").compact();
-//	}// end createAccessToken()
-//
-//	// RefreshToken 생성
-//	public static String createRefreshToken(Integer userId) {
-//		Map<String, Object> claims = new HashMap<>();
-//		claims.put("userId", userId);
-//
-//		String refreshToken = Jwts.builder().claims(claims).issuedAt(new Date(System.currentTimeMillis()))
-//				.expiration(new Date(System.currentTimeMillis() + JwtProperties.REFRESH_EXPIRATION_TIME))
-//				.signWith(key, Jwts.SIG.HS512).subject("refreshToken").compact();
-//
-//		return refreshToken;
-//	}// end createRefreshToken()
-
 	// SecretKey로 Token Parsing 키로 서명 확인(verifyWith)
 	public static Claims extractClaims(String token) throws ExpiredJwtException {
 		Claims claims = Jwts.parser().verifyWith(key).build().parseSignedClaims(token).getPayload();

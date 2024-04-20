@@ -28,7 +28,7 @@ import lombok.RequiredArgsConstructor;
 public class UserController {
 
 	private final UserService userService;
-	
+
 	// 회원가입
 	@Operation(summary = "회원가입")
 	@PostMapping("/user/signup")
@@ -41,8 +41,8 @@ public class UserController {
 	@Operation(summary = "회원정보호출")
 	@GetMapping("/user/editinfo/{userAccountId}")
 	public ResponseEntity<UserInfoResponse> getUser(@PathVariable("userAccountId") String userAccountId) {
-		UserInfoResponse info = userService.userInfoProcess(userAccountId);
-		return ResponseEntity.ok(info);
+		UserInfoResponse response = userService.userInfoProcess(userAccountId);
+		return ResponseEntity.ok(response);
 	}
 
 	// 회원정보수정

@@ -102,8 +102,13 @@ public class UserServiceImpl implements UserService {
 	// 회원정보수정
 	@Override
 	public SigninResponse updateUserProcess(UserUpdateDTO dto) {
+		// 변경된 비밀번호가 있다면 암호화하여 저장
+		dto.encryptPassword(dto.getPassword(), passwordEncoder);
+
+		// users 테이블 업데이트
 		userMapper.updateUsers(dto);
 
+		// profiles 테이블 업데이트
 		userMapper.updateProfiles(dto);
 
 		return new SigninResponse(dto.getNickName(), dto.getUserEmail());

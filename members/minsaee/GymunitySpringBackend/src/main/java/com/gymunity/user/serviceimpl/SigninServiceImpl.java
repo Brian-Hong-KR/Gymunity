@@ -79,8 +79,6 @@ public class SigninServiceImpl implements SigninService {
 				user.setLastSignin(now);
 				signinMapper.updateLastSignin(user);
 
-				log.info("qqqqqqqqqqqqqq{}", user.getAdminYn());
-
 				// 토큰 생성 및 저장
 				String accessToken = JwtProperties.TOKEN_PREFIX + JwtProvider.createAccessToken(user.getUserId(), user.getAdminYn());
 				String refreshToken = JwtProvider.createRefreshToken(user.getUserId(), user.getAdminYn());
