@@ -1,18 +1,8 @@
 import React, { useState } from "react";
-import {
-  Card,
-  AppBar,
-  Tabs,
-  Tab,
-  FormGroup,
-  FormControlLabel,
-  Checkbox,
-  Box,
-} from "@mui/material";
+import { Card, AppBar, Tabs, Tab } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import SoftBox from "components/SoftBox";
 
-import backimage from "assets/images/youn/digdas.jpg";
 import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
 import axios from "axios";

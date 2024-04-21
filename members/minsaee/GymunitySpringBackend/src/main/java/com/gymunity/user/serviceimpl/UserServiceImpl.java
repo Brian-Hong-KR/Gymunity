@@ -1,6 +1,5 @@
 package com.gymunity.user.serviceimpl;
 
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,6 +9,7 @@ import com.gymunity.point.repository.PointMapper;
 import com.gymunity.point.service.PointService;
 import com.gymunity.user.dto.CheckUserIdPassword;
 import com.gymunity.user.dto.Profile;
+import com.gymunity.user.dto.Pt;
 import com.gymunity.user.dto.SignupDTO;
 import com.gymunity.user.dto.Survey;
 import com.gymunity.user.dto.User;
@@ -17,11 +17,9 @@ import com.gymunity.user.dto.UserUpdateDTO;
 import com.gymunity.user.repository.UserMapper;
 import com.gymunity.user.response.SigninResponse;
 import com.gymunity.user.response.SignupResponse;
-import com.gymunity.user.response.UserInfoResponse;
 import com.gymunity.user.service.UserService;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Transactional
@@ -63,6 +61,13 @@ public class UserServiceImpl implements UserService {
 		survey.setAbnormal(dto.getAbnormal());
 		userMapper.insertSurvey(survey);
 
+		// pt 등록
+		Pt pt = new Pt();
+		pt.setUserId(user.getUserId());
+		pt.setPlanName(dto.getPlanName());
+		pt.setPlanDesc(dto.getPlanDesc());
+		userMapper.insertPt(pt);
+
 		PointAdd pointAdd = new PointAdd();
 		pointAdd.setUserId(user.getUserId());
 		pointAdd.setPointsAdded(400);
@@ -74,30 +79,6 @@ public class UserServiceImpl implements UserService {
 
 		return new SignupResponse(dto.getUserAccountId(), dto.getNickName(), dto.getUserEmail());
 	}// end signupProcess()
-
-	// 회원정보호출
-	@Override
-	public UserInfoResponse userInfoProcess(String userAccountId) {
-		// userAccountId를 사용하여 User 정보 조회
-		User user = userMapper.selectUsersByAccountId(userAccountId);
-		if (user == null) {
-			// 사용자 정보가 없으면 예외 처리
-			throw new UsernameNotFoundException("User not found with accountId: " + userAccountId);
-		}
-
-		// user 객체의 userId를 사용하여 Profile 정보 조회
-		Profile profile = userMapper.selectProfilesByUserId(user.getUserId());
-
-		// User와 Profile 정보를 UserInfoDTO에 매핑
-		UserInfoResponse response = new UserInfoResponse();
-		response.setUserId(user.getUserId());
-		response.setUserAccountId(user.getUserAccountId());
-		response.setNickName(user.getNickName());
-		response.setGradeName(user.getGradeName());
-		response.setUserEmail(profile.getUserEmail());
-
-		return response;
-	}// UserInfoProcess()
 
 	// 회원정보수정
 	@Override
