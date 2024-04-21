@@ -35,6 +35,7 @@ const PhotoList = () => {
     axios
       .get(`/photo`, baseConfig)
       .then((response) => {
+        console.log("Received data:", response.data);
         const newRows = response.data.map((photo) => ({
           사진1: photo.imagePath1 ? (
             <>

@@ -11,7 +11,6 @@ import Store from "layouts/Store";
 import Shop from "examples/Icons/Shop";
 import Office from "examples/Icons/Office";
 import Settings from "examples/Icons/Settings";
-import Document from "examples/Icons/Document";
 import SpaceShip from "examples/Icons/SpaceShip";
 import CustomerSupport from "examples/Icons/CustomerSupport";
 import CreditCard from "examples/Icons/CreditCard";
@@ -21,7 +20,6 @@ import ChallengeCreate from "layouts/challenge/layout_create";
 import ChallengeDetail from "layouts/challenge/layout_detail";
 import ChallengeVerify from "layouts/challenge/layaout_verify";
 import PointPage from "layouts/dashboard/info/PointPage";
-import PhotoPage from "layouts/profile/info/photopage";
 import UserManagePage from "layouts/dashboard/info/UserManagePage";
 import VerifyPage from "layouts/dashboard/info/VerifyPage";
 import ModifyPlanPage from "layouts/profile/info/ModifyPlanPage";
@@ -29,6 +27,8 @@ import MainPage from "layouts/main";
 import Survey from "layouts/authentication/survey";
 import PlanPage from "layouts/authentication/plan";
 import EditUser from "layouts/profile/info/EditUser";
+import UserPhotoPage from "layouts/profile/info/userphotopage";
+import UserPointPage from "layouts/profile/info/userpointpage";
 
 const routes = [
   {
@@ -116,10 +116,18 @@ const routes = [
     component: <PointPage />,
   },
 
+  // 유저 사진첩
   {
-    key: "photo",
-    route: "/photo",
-    component: <PhotoPage />,
+    key: "userphoto",
+    route: "/profile/photo",
+    component: <UserPhotoPage />,
+  },
+
+  // 유저 포인트 상세 내역
+  {
+    key: "userpoint",
+    route: "/profile/point",
+    component: <UserPointPage />,
   },
 
   {

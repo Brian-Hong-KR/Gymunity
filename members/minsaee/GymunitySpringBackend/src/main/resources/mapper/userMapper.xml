@@ -15,8 +15,7 @@
 			property="adminYn" column="admin_yn" />
 	</resultMap>
 
-	<resultMap
-		id="profileResultMap" type="Profile">
+	<resultMap id="profileResultMap" type="Profile">
 		<result property="userId" column="user_id" />
 		<result property="password"
 			column="password" />
@@ -25,8 +24,7 @@
 
 	<!-- 회원가입-->
 	<!-- users 테이블에 데이터 삽입 -->
-	<insert
-		id="insertUsers" parameterType="User" useGeneratedKeys="true"
+	<insert id="insertUsers" parameterType="User" useGeneratedKeys="true"
 		keyProperty="userId">
 	    <![CDATA[
 	    INSERT INTO users (user_account_id, nick_name)
@@ -35,8 +33,7 @@
     </insert>
 
 	<!-- profiles 테이블에 데이터 삽입 -->
-	<insert id="insertProfiles"
-		parameterType="Profile">
+	<insert id="insertProfiles" parameterType="Profile">
         <![CDATA[
         INSERT INTO profiles (user_id, password, user_email)
         VALUES (#{userId}, #{password}, #{userEmail})
@@ -44,8 +41,7 @@
     </insert>
 
 	<!-- survey 테이블에 데이터 삽입 -->
-	<insert id="insertSurvey"
-		parameterType="Survey">
+	<insert id="insertSurvey" parameterType="Survey">
 		<![CDATA[ 
 		INSERT INTO survey (user_id, gender, age, goal, level, abnormal)
 		VALUES (#{userId}, #{gender}, #{age}, #{goal}, #{level}, #{abnormal})
@@ -61,8 +57,7 @@
 	</insert>
 
 	<!-- 회원 등급 업데이트 -->
-	<update
-		id="updateUserGradeName" parameterType="int">
+	<update id="updateUserGradeName" parameterType="int">
 		UPDATE users
 		SET grade_name = (
 		SELECT g.grade_name
@@ -82,8 +77,7 @@
 	</update>
 
 	<!--userAccountId로 조회 -->
-	<select
-		id="selectUsersByAccountId" parameterType="string"
+	<select id="selectUsersByAccountId" parameterType="string"
 		resultMap="userResultMap">
 		SELECT *
 		FROM users
@@ -91,8 +85,7 @@
 	</select>
 
 	<!--userAccountId로 조회 -->
-	<select
-		id="selectUsersByUserId" parameterType="int"
+	<select id="selectUsersByUserId" parameterType="int"
 		resultMap="userResultMap">
 		SELECT *
 		FROM users
@@ -108,16 +101,14 @@
 	</select>
 
 	<!-- users 테이블 업데이트 -->
-	<update
-		id="updateUsers" parameterType="User">
+	<update id="updateUsers" parameterType="User">
 		UPDATE users
 		SET nick_name = #{nickName}
 		WHERE user_id = #{userId}
 	</update>
 
 	<!-- profiles 테이블 업데이트 -->
-	<update
-		id="updateProfiles" parameterType="Profile">
+	<update id="updateProfiles" parameterType="Profile">
 		UPDATE profiles
 		SET user_email = #{userEmail}, password=#{password}
 		WHERE user_id = #{userId}
@@ -126,8 +117,7 @@
 	<!-- 회원 탈퇴 -->
 
 	<!-- users 테이블에서 사용자 데이터 삭제 -->
-	<delete
-		id="deleteUsers" parameterType="int">
+	<delete id="deleteUsers" parameterType="int">
 		DELETE
 		FROM users
 		WHERE user_id = #{userId}

@@ -4,7 +4,7 @@ import GymunityNavbar from "examples/Navbars/GymunityNavbar";
 
 import PhotoList from "./components";
 
-function PhotoPage() {
+function UserPhotoPage() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -14,4 +14,4 @@ function PhotoPage() {
   );
 }
 
-export default PhotoPage;
+export default UserPhotoPage;

@@ -182,7 +182,7 @@ const ProfileData = () => {
           </SoftButton>
         </Link>
 
-        <Link to="/photo">
+        <Link to="/profile/photo">
           <SoftButton type="submit" variant="gradient" color="dark" fullWidth>
             나의 사진첩
           </SoftButton>

@@ -48,6 +48,14 @@
 		]]>
 	</insert>
 
+	<!-- pt 테이블에 데이터 삽입-->
+	<insert id="insertPt" parameterType="Pt">
+		<![CDATA[ 
+		INSERT INTO pt (user_id, plan_name, plan_desc)
+		VALUES (#{userId}, #{planName}, #{planDesc})
+		]]>
+	</insert>
+
 	<!-- 회원 등급 업데이트 -->
 	<update id="updateUserGradeName" parameterType="int">
 		UPDATE users
@@ -68,15 +76,6 @@
 		WHERE user_id = #{userId}
 	</update>
 
-	<!-- 아이디, 비밀번호 확인 
-	<select id="selectByAccountId" parameterType="string"
-		resultMap="userResultMap">
-		SELECT u.user_id, u.user_account_id, p.password
-		FROM users u
-		JOIN profiles p ON u.user_id = p.user_id
-		WHERE u.user_account_id = #{userAccountId}
-	</select> -->
-
 	<!--userAccountId로 조회 -->
 	<select id="selectUsersByAccountId" parameterType="string"
 		resultMap="userResultMap">
@@ -90,14 +89,6 @@
 		resultMap="userResultMap">
 		SELECT *
 		FROM users
-		WHERE user_id = #{userId}
-	</select>
-
-	<!-- userId로 profiles 조회-->
-	<select id="selectProfilesByUserId" parameterType="int"
-		resultMap="profileResultMap">
-		SELECT user_email
-		FROM profiles
 		WHERE user_id = #{userId}
 	</select>
 
@@ -132,12 +123,3 @@
 		WHERE user_id = #{userId}
 	</delete>
 </mapper>
-
-<!-- pt 테이블에 데이터 삽입 -->
-<!-- 
-	<insert id="insertPt" parameterType="Survey">
-		<![CDATA[ 
-		INSERT INTO pt (user_id, plan_name, plan_desc)
-		VALUES (#{userId}, #{planName}, #{planDesc})
-		]]>
-	</insert> -->

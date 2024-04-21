@@ -5,7 +5,6 @@ import com.gymunity.user.dto.SignupDTO;
 import com.gymunity.user.dto.UserUpdateDTO;
 import com.gymunity.user.response.SigninResponse;
 import com.gymunity.user.response.SignupResponse;
-import com.gymunity.user.response.UserInfoResponse;
 
 public interface UserService {
 
@@ -16,7 +15,5 @@ public interface UserService {
 	public boolean validateUserIdPassword(CheckUserIdPassword dto);
 
 	public void deleteUserProcess(String userAccountId);
-
-	public UserInfoResponse userInfoProcess(String userAccountId);
 
 }// end interface
