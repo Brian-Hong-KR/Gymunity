@@ -1,6 +1,5 @@
-from langchain.llms import Ollama
+import ollama
 import json, re
-
 import dotenv, os
 
 f = dotenv.find_dotenv()
@@ -8,8 +7,6 @@ dotenv.load_dotenv(f)
 pt_plan_file_path = os.environ["pt_plan_file_path"]
 daily_plan_file_path = os.environ["daily_plan_file_path"]
 product_list_file_path = os.environ["product_list_file_path"]
-
-llm = Ollama(model="llama3", temperature=0.2)
 
 pt_guide_list = []
 with open( pt_plan_file_path , "r", encoding='utf-8') as f:
@@ -40,21 +37,8 @@ def generate_daily_program (gender, age, goal, level, abnormal):
     return f"플랜 생성 오류 : {gender} {age} {goal} {level} {abnormal}"
 
 def generate_answer (unit_name, question):
-
-    prompt = f"""You are a personal trainer. Your A client asks you the following question about {unit_name}. Give a three-sentence in korean colloquial response.:\n\nClient's question: {question}"""
-
-    response = llm.invoke (prompt)
-    
-    return response
-
-def generate_product_list ( gender, age, goal, level, abnormal ) :
-    
-    my_product_list = [
-        item for item in product_list
-        if item["except"] not in (gender, age, goal, level, abnormal)
-    ]
-
-    return my_product_list
+    response = ollama.chat (model='llama3', messages = [{"role":"system","content": f"""Answer about {unit_name} like a professional trainer. """},{"role":"user","content":question}] )
+    return response['message']['content']
     
 if __name__ == "__main__":
     print ( generate_answer( unit_name="push-ups", question="허리가 아프다") )
