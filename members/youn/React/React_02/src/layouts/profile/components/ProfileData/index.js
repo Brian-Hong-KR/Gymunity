@@ -140,11 +140,6 @@ const ProfileData = () => {
           <Grid item xs={12} lg={5}>
             <ReportsBarChart
               title='Weekly Point'
-              description={
-                <>
-                  (<strong>+23%</strong>) than last week
-                </>
-              }
               chart={chart}
             />
           </Grid>

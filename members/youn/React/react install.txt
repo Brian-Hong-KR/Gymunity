@@ -11,3 +11,10 @@ npm install react-redux
 npm install --global yarn
 
 yarn install
+
+
+yarn add reactstrap
+
+yarn add recharts mdi-react
+
+yarn add mdi-react
