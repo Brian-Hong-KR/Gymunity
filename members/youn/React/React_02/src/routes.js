@@ -28,8 +28,9 @@ import ModifyPlanPage from "layouts/profile/info/ModifyPlanPage";
 import MainPage from "layouts/main";
 import Survey from "layouts/authentication/survey";
 import PlanPage from "layouts/authentication/plan";
-import ModifyUserPage from 'layouts/profile/info/ModifyUserPage';
+import EditUser from 'layouts/profile/info/EditUser';
 import DeleteUser from 'layouts/profile/info/DeleteUser';
+
 
 
 
@@ -162,13 +163,13 @@ const routes = [
   },
 
   {
-    key: 'modifyUser',
-    route: '/profile/modifyUser',
-    component: <ModifyUserPage />,
+    key: 'editUser',
+    route: '/profile/editUser',
+    component: <EditUser />,
   },
 
   {
-    key: 'DeleteUser',
+    key: 'deleteUser',
     route: '/profile/deleteUser',
     component: <DeleteUser />,
   },
