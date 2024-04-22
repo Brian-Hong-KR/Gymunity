@@ -1,5 +1,10 @@
 package com.gymunity.challenge.serviceimpl;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.stream.Stream;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,12 +38,43 @@ public class ChallengeServiceImpl implements ChallengeService {
 	private final PointMapper pointMapper;
 	private final PointService pointService;
 
+	// 총 인증 가능 일수를 계산하는 메서드
+	private int calculateTotalVerificationDays(LocalDate startDate, LocalDate endDate, int verifyTerm) {
+		switch (verifyTerm) {
+		case 1:
+			return (int) ChronoUnit.DAYS.between(startDate, endDate) + 1;
+		case 2:
+			return (int) Stream.iterate(startDate, date -> date.plusDays(1))
+					.limit(ChronoUnit.DAYS.between(startDate, endDate.plusDays(1)))
+					.filter(date -> date.getDayOfWeek().getValue() >= DayOfWeek.MONDAY.getValue()
+							&& date.getDayOfWeek().getValue() <= DayOfWeek.FRIDAY.getValue())
+					.count();
+		case 3:
+			return (int) Stream.iterate(startDate, date -> date.plusDays(1))
+					.limit(ChronoUnit.DAYS.between(startDate, endDate.plusDays(1)))
+					.filter(date -> date.getDayOfWeek() == DayOfWeek.SATURDAY
+							|| date.getDayOfWeek() == DayOfWeek.SUNDAY)
+					.count();
+		case 4:
+		case 5:
+		case 6:
+			long weeks = ChronoUnit.WEEKS.between(startDate, endDate) + 1;
+			return (int) weeks * (verifyTerm - 3);
+		default:
+			throw new IllegalArgumentException("Invalid verification term");
+		}
+
+	}// end calculateTotalVerificationDays()
+
 	// 챌린지 생성
 	@Override
 	public ChallengeCreateResponse createChallengeProcess(ChallengeCreateDTO dto, int userId) {
 
 		// userId로 기존 챌린지 정보 조회
 		Challenge existingChallenge = challengeMapper.selectChallengesByUserId(userId);
+
+		int totalVerificationDays = calculateTotalVerificationDays(dto.getChStartDate(), dto.getChEndDate(),
+				dto.getVerifyTerm());
 
 		// 이미 챌린지가 등록된 경우 예외 처리
 		if (existingChallenge != null) {
@@ -53,6 +89,8 @@ public class ChallengeServiceImpl implements ChallengeService {
 		challenge.setBettingPoint(dto.getBettingPoint());
 		challenge.setChStartDate(dto.getChStartDate());
 		challenge.setChEndDate(dto.getChEndDate());
+		challenge.setVerifyTerm(dto.getVerifyTerm());
+		challenge.setTotalDate(totalVerificationDays);
 		challenge.setUserId(userId);
 		challengeMapper.insertChallenges(challenge);
 

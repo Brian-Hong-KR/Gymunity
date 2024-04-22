@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import com.gymunity.user.dto.Profile;
+import com.gymunity.user.dto.Pt;
 import com.gymunity.user.dto.Survey;
 import com.gymunity.user.dto.User;
 import com.gymunity.user.dto.UserUpdateDTO;
@@ -17,7 +18,7 @@ public interface UserMapper {
 
 	public int insertSurvey(Survey dto);
 	
-	public int updateSurvey(Survey dto);
+	public int insertPt(Pt dto);
 
 	public void updateUsers(UserUpdateDTO dto);
 

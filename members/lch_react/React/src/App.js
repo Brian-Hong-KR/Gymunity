@@ -133,7 +133,7 @@ export default function App() {
           />
         </>
       )}
-      {layout === "vr" }
+      {layout === "vr"}
       <Routes>
         <Route path="*" element={<Navigate to="/profile" />} />
         {getRoutes(routes)}

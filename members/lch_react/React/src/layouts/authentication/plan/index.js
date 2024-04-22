@@ -10,10 +10,7 @@ import { Card } from "@mui/material";
 import BasicLayout from "layouts/authentication/components/BasicLayout";
 import AuthNavbar from "examples/Navbars/AuthNavbar";
 
-
 const PlanPage = () => {
-  const { d1, h2, fontWeightMedium } = typography;
-
   const navigate = useNavigate();
   const location = useLocation();
   const [formData, setFormData] = useState(null);
@@ -51,9 +48,14 @@ const PlanPage = () => {
   };
 
   return (
-  <BasicLayout>
-    <AuthNavbar />
-      <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
+    <BasicLayout>
+      <AuthNavbar />
+      <SoftBox
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        p={3}
+      >
         <SoftTypography variant="h3">맞춤 운동 플랜</SoftTypography>
       </SoftBox>
 

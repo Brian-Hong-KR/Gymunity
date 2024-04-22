@@ -1,7 +1,5 @@
-from langchain.llms import Ollama
+import ollama
 import json, time, re
-
-from googletrans import Translator
 from youtubesearchpython import VideosSearch
 
 file_path = "pre_build_data.json"
@@ -12,7 +10,6 @@ goal_list = ["Body fat reduction", "Muscle gain", "Overall health improvement"]
 level_list = ["beginner", "Intermediate", "advanced"]
 abnormal_list = ["cardiovascular disease", "musculoskeletal disorders", "respiratory diseases", "no health problems"]
 
-llm = Ollama(model="llama3", temperature=0.1) 
 
 start_time = time.time()
 
@@ -29,35 +26,32 @@ for gender in gender_list:
                 for abnormal in abnormal_list:
                     
                     step_start_time = time.time()
+                    #
+                    # response = ollama.chat(model='llama3', messages=[
+                    #     {"role": "system", "content": f"""Based on user's information, Create a comprehensive home workout plan like a professional trainer."""},
+                    #     {"role": "user", "content": f"""My Information > Gender: {gender}\nAge : {age}\nGoal : {goal}\nExercise Level {level}\nHealth abnormalities: {abnormal}"""}
+                    # ])
+                    #
+                    # plan_desc = response['message']['content']
+                    #
+                    # print ("plan : ", plan_desc)
 
-                    plan_prompt = f"""You are a personal trainer. Answer the training guide based on the client information. :\n\n
-                    The client Information >\n\nGender: {gender}\nAge : {age}\nGoal : {goal}\nExercise Level {level}\nHealth abnormalities: {abnormal}"""
-                    result = llm.invoke( plan_prompt )
+                    response = ollama.chat(model='llama3', format="python", messages=[
+                        {"role": "system", "content": """Create today's home workout program. List only the names of the exercises, like this example: ["Dynamic stretches","squats","Lunges","Push-ups","Planks","Static stretches"]"""},
+                        {"role": "user", "content": f"""My Information > Gender: {gender}\nAge : {age}\nGoal : {goal}\nExercise Level {level}\nHealth abnormalities: {abnormal}"""}
+                    ])
 
-                    tran = Translator()
-                    plan_desc = tran.translate(text=result.replace("\n", "<br>"), src="en", dest="ko").text  
+                    print ( response['message']['content'] )
 
-                    program_prompt = f"""Write a home training program for today based on the client information. The result is only output in python list format as shown in the example :\n\The client Information >\n\nGender: {gender}\nAge : {age}\nGoal : {goal}\nExercise Level {level}\nHealth abnormalities: {abnormal}\n\nSample Results >\n\n[ "스트레칭", "버피", "런지", "푸쉬업", "플랭크", "스트레칭"]"""
-
-                    plan = llm.invoke( program_prompt )
-                    
-                    matches = []
-                    matches = re.findall( r"\[(.*?)\]" , str(plan))
-                    
-                    print (matches)
-                    
-                    if len(matches) == 0:
-                        daily_program = "default"
-                    else:
-                        daily_program = eval(matches[0])
-                        
-                        videoList = []
-                        for unit_name in daily_program:
-
-                            videosSearch = VideosSearch(f"""홈트레이닝+"{unit_name}"+"{level}"+{gender}+{goal}+{abnormal}""" , limit=1)
-
-                            for video in videosSearch.result()['result']:
-                                videoList.append ( video['id'] )
+                    # videoList = []
+                    # for unit_name in daily_program:
+                    #
+                    #     videosSearch = VideosSearch(f"""홈트레이닝+"{unit_name}"+"{level}"+{gender}+{goal}+{abnormal}""", limit=1)
+                    #
+                    #     for video in videosSearch.result()['result']:
+                    #         videoList.append ( video['id'] )
+                    #
+                    # print (videoList)
 
                     new_data = {
                         "gender": gender,

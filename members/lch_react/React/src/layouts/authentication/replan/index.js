@@ -39,11 +39,12 @@ const ReplanPage = () => {
   }, [location.state]);
 
   const handleRegister = () => {
-    navigate("/profile")
+    navigate("/profile");
+    console.log("planPage후 프로필로 이동:", formData, planData);;
   };
 
   const handleSurveyReset = () => {
-    navigate("/authentication/survey");
+    navigate("/authentication/resurvey");
   };
 
   return (

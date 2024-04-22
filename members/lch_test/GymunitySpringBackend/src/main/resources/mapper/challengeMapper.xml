@@ -9,24 +9,26 @@
 		<result column="content" property="content" />
 		<result column="category" property="category" />
 		<result column="betting_point" property="bettingPoint" />
-		<result column="ch_start_date" property="chStartDate"/>
-		<result column="ch_end_date" property="chEndDate"/>
+		<result column="ch_start_date" property="chStartDate" />
+		<result column="ch_end_date" property="chEndDate" />
+		<result column="verify_term" property="verifyTerm" />
 		<result column="count" property="count" />
+		<result column="total_date" property="totalDate" />
 		<result column="user_id" property="userId" />
 	</resultMap>
 
 	<!-- 챌린지 생성-->
-	<!-- challenges 테이블에 데이터 삽입-->
+	<!-- challenges 테이블 데이터 삽입-->
 	<insert id="insertChallenges" parameterType="Challenge"
 		useGeneratedKeys="true"
 		keyProperty="chId">
 	    <![CDATA[
-	    INSERT INTO challenges (title, content, category, betting_point, ch_start_date, ch_end_date, user_id)
-	    VALUES (#{title}, #{content}, #{category}, #{bettingPoint}, #{chStartDate}, #{chEndDate}, #{userId})
+	    INSERT INTO challenges (title, content, category, betting_point, ch_start_date, ch_end_date, verify_term, total_date, user_id)
+	    VALUES (#{title}, #{content}, #{category}, #{bettingPoint}, #{chStartDate}, #{chEndDate}, #{verifyTerm}, #{totalDate}, #{userId})
         ]]>
     </insert>
 
-	<!-- members 테이블에 데이터 삽입 -->
+	<!-- members 테이블 데이터 삽입 -->
 	<insert id="insertMembers" parameterType="Member">
         <![CDATA[
         INSERT INTO members (mem_user_id, mem_ch_id, registrant)
