@@ -1,70 +1,78 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
-import Chatbot from 'react-simple-chatbot';
+import ChatBot, { Loading } from 'react-simple-chatbot';
 import { ThemeProvider } from 'styled-components';
 
-const PTChatbot = () => {
-  const [previousValue, setPreviousValue] = useState('');
+class DBPedia extends Component {
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      loading: true,
+      result: '',
+    };
+  }
 
-  const triggerNextStep = (userInput) => {
-    setPreviousValue(userInput);
-    // Potentially update steps or trigger based on userInput
-    return '2'; // Or adjust based on logic
-  };
+  componentWillMount() {
+    const { steps } = this.props;
+    const questionText = steps.question.value;
 
-  const ServerInteraction = ({ message }) => {
-    const [responseData, setResponseData] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState(null);
+    axios.post('http://localhost:5000/question',{ user_id:1, unit_name:"push-ups", question: questionText }) // Use axios.get to fetch data
+      .then(response => {
+        const bindings = response.data.answer;
+        console.log (bindings)
 
-    useEffect(() => {
-      const fetchData = async () => {
-        setIsLoading(true);
-        try {
-          const response = await axios.post(
-            'http://localhost:5000/question',
-            { question: message }
-          );
-          setResponseData(response.data); // Assuming data is in response.data
-        } catch (err) {
-          setError(err);
-        } finally {
-          setIsLoading(false);
+        if (bindings && bindings.length > 0) {
+          this.setState({ loading: false, result: bindings });
+        } else {
+          this.setState({ loading: false, result: 'Not found.' });
         }
-      };
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+        this.setState({ loading: false, result: 'Error fetching data.' });
+      });
+  }
 
-      fetchData();
-    }, [message]);
 
-    if (isLoading) {
-      return <div>처리 중입니다...</div>;
-    }
+  render() {
+    const {  loading, result } = this.state;
 
-    if (error) {
-      return <div>오류가 발생했습니다: {error.message}</div>;
-    }
+    return (
+      <div className="dbpedia"> {loading ? <Loading /> : result} </div>
 
-    // Handle successful response data here (e.g., display feedback)
-    return <div>운동 완료 여부를 서버에 전송했습니다 (데이터: {JSON.stringify(responseData)})</div>;
-  };
+    );
+  }
+}
+
+
+DBPedia.propTypes = {
+  steps: PropTypes.object,
+};
+
+DBPedia.defaultProps = {
+  steps: undefined,
+};
+
+const PTChatbot = () => {
 
   const steps = [
     {
-      id: '0',
+      id: 'hi',
       message: "안녕하세요. 무엇이든 물어보세요.",
-      trigger: '1',
+      trigger: 'question',
     },
     {
-      id: '1',
+      id: 'question',
       user: true,
-      trigger: (userInput) => triggerNextStep(userInput),
+      trigger: 'answer',
     },
     {
-      id: '2',
-      // Handle server interaction here
-      component: <ServerInteraction message={previousValue} />,
-      trigger: '1', // Update trigger based on server response or logic
+      id: 'answer',
+      component: <DBPedia />,
+      asMessage: true,
+      trigger: 'question',
     },
   ];
 
@@ -78,7 +86,7 @@ const PTChatbot = () => {
 
   return (
     <ThemeProvider theme={theme}>
-        <Chatbot steps={steps} hideHeader={true} placeholder={'질문'} />
+        <ChatBot steps={steps} hideHeader={true} placeholder={'질문'} />
     </ThemeProvider>
   );
 };

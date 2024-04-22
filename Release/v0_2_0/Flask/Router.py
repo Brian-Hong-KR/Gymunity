@@ -52,12 +52,17 @@ def exercise():
 def chatbot_response():
 
     data = request.get_json()
+    user_id = data["user_id"]
+    unit_name = data["unit_name"]
     question = data["question"]
-    # user_id = data["user_id"]
-    # unit_name = data["unit_name"]
-    unit_name = "푸쉬업"
+
+    print(user_id)
+    print (unit_name)
+    print(question)
 
     answer = Chatbot.generate_answer(unit_name=unit_name, question=question )
+
+    print(answer)
 
     response_data = {
         'answer': answer,
