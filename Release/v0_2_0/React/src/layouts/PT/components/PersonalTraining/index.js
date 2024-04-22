@@ -15,7 +15,7 @@ const PersonalTraining = () => {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await axios.post('http://localhost:5000/exercise', { "user_id": 1 });
+            const response = await axios.post('http://192.168.0.60:5000/exercise', { "user_id": 1 });
             setVideoList(response.data.videoList);
           } catch (error) {
             console.error(error);

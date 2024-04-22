@@ -18,7 +18,7 @@ class DBPedia extends Component {
     const { steps } = this.props;
     const questionText = steps.question.value;
 
-    axios.post('http://localhost:5000/question',{ user_id:1, unit_name:"push-ups", question: questionText }) // Use axios.get to fetch data
+    axios.post('http://192.168.0.60:5000/question',{ user_id:1, unit_name:"push-ups", question: questionText }) // Use axios.get to fetch data
       .then(response => {
         const bindings = response.data.answer;
         console.log (bindings)
