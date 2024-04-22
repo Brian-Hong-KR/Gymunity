@@ -13,12 +13,11 @@ const challengeSlice = createSlice({
   initialState,
   reducers: {
     getChallengeList(state, action) {
-      state.challengeList = action.payload.data.challengeList;
-      state.pv = action.payload.data.pv;
-      console.log(action.payload.data);
+      state.challengeList = action.payload.challengeList;
+      state.pv = action.payload.pv;
     },
     getJoinList(state, action) {
-      state.joinList = action.payload.data.joinList;
+      state.joinList = action.payload.joinList;
     },
     getChallengeDetail(state, action) {
       state.challengeDetail = action.payload.data;

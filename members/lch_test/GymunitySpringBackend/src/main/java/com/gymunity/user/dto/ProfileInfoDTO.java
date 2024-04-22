@@ -5,14 +5,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class UserInfoDTO {
-	// User 정보
-	private String userAccountId;
+public class ProfileInfoDTO {
 	private String nickName;
-	private int userId;
-	private String gradeName;
-
-	// Profile 정보
 	private String userEmail;
+	private String gradeName;
+	private int currentPoints;
+	private String planName;
 
 }// end class

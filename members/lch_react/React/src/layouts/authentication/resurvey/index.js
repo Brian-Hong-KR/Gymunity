@@ -112,20 +112,32 @@ function Survey() {
     }));
   };
 
+
+
+ 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${localStorage.getItem("Authorization")}`,
+        "Authorization-refresh": localStorage.getItem("Authorization-refresh"),
+      },
+    };
     console.log("Form submitting", formData);
     try {
-      const response = await axios.post("/survey", formData);
+      const response = await axios.post("/resurvey", formData, config);
       console.log("Response data:", response.data);
-      setPlanData({
-        planName: response.data.planName,
-        planDesc: response.data.planDesc,
-      });
-
+       setPlanData({
+         planName: response.data.planName,
+         planDesc: response.data.planDesc,
+       });
       // Plan 페이지로 이동
-      navigate("authentication/replan");
-     
+      navigate("/authentication/replan", {
+        state: { formData: formData, planData: response.data },
+      });
+      console.log("설문조사 후 plan 페이지 이동:", formData, planData);
     } catch (error) {
       console.error("Error fetching data:", error);
     }

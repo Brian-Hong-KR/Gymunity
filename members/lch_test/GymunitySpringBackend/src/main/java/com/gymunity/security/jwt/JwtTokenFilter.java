@@ -1,8 +1,12 @@
 package com.gymunity.security.jwt;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -79,10 +83,19 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
 		Integer userId = JwtProvider.getUserId(token);
 
+		String adminYn = JwtProvider.getAdminYn(token);
+
 		SigninResponse signinUser = signinServiceImpl.getByUserId(userId);
 
+		List<GrantedAuthority> authorities = new ArrayList<>();
+		if ("y".equals(adminYn)) {
+			authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+		} else {
+			authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+		}
+
 		UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-				signinUser.getUserId(), null, null);
+				signinUser.getUserId(), null, authorities);
 
 		authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
