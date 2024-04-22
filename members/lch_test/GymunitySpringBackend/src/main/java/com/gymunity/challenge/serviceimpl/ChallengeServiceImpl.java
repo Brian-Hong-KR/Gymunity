@@ -42,24 +42,33 @@ public class ChallengeServiceImpl implements ChallengeService {
 	private int calculateTotalVerificationDays(LocalDate startDate, LocalDate endDate, int verifyTerm) {
 		switch (verifyTerm) {
 		case 1:
+			// 매일
 			return (int) ChronoUnit.DAYS.between(startDate, endDate) + 1;
 		case 2:
+			// 평일
 			return (int) Stream.iterate(startDate, date -> date.plusDays(1))
 					.limit(ChronoUnit.DAYS.between(startDate, endDate.plusDays(1)))
 					.filter(date -> date.getDayOfWeek().getValue() >= DayOfWeek.MONDAY.getValue()
 							&& date.getDayOfWeek().getValue() <= DayOfWeek.FRIDAY.getValue())
 					.count();
 		case 3:
+			// 주말
 			return (int) Stream.iterate(startDate, date -> date.plusDays(1))
-					.limit(ChronoUnit.DAYS.between(startDate, endDate.plusDays(1)))
-					.filter(date -> date.getDayOfWeek() == DayOfWeek.SATURDAY
-							|| date.getDayOfWeek() == DayOfWeek.SUNDAY)
-					.count();
+			        .limit(ChronoUnit.DAYS.between(startDate, endDate.plusDays(1)))
+			        .filter(date -> date.getDayOfWeek() == DayOfWeek.SATURDAY || date.getDayOfWeek() == DayOfWeek.SUNDAY)
+			        .count();
 		case 4:
+			// 주 1일
+			long weeks1 = ChronoUnit.WEEKS.between(startDate, endDate) + 1;
+			return (int) weeks1 * 1;
 		case 5:
+			// 주 2일
+			long weeks2 = ChronoUnit.WEEKS.between(startDate, endDate) + 1;
+			return (int) weeks2 * 2;
 		case 6:
-			long weeks = ChronoUnit.WEEKS.between(startDate, endDate) + 1;
-			return (int) weeks * (verifyTerm - 3);
+			// 주 3일
+			long weeks3 = ChronoUnit.WEEKS.between(startDate, endDate) + 1;
+			return (int) weeks3 * 3;
 		default:
 			throw new IllegalArgumentException("Invalid verification term");
 		}

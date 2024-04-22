@@ -29,7 +29,6 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import categoryToLoseWeight from "assets/images/category/category_toloseweight.jpg";
 
 // Overview page components
-import Header from "../components/Header/index";
 
 function ChallengeVerify({
   category,

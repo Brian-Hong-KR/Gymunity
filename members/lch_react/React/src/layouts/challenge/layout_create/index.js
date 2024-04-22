@@ -31,7 +31,6 @@ import Settings from "examples/Icons/Settings";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 
 // Overview page components
-import Header from "./../components/Header/index";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 import { useNavigate, useLocation } from "react-router-dom";
@@ -48,15 +47,15 @@ function ChallengeCreate() {
   const [challenge, setChallenge] = useState({
     title: "",
     content: "",
-    category: 0,
-    bettingPoint: 0,
+    category: 1,
+    bettingPoint: 200,
     chStartDate: "",
     chEndDate: "",
+    verifyTerm : 1,
   });
 
   // 탭 
   
-  const handleSetTabValue1 = (event, newValue) => setTabValue1(newValue);
 
 
   const [tabsOrientation, setTabsOrientation] = useState("horizontal");
@@ -90,6 +89,27 @@ const handleSetTabValue = (event, newValue) => {
   console.log("카테고리 값:", newCategory);
 };
 
+const handleSetTabValue1 = (event, newValue) => {
+  setTabValue1(newValue);
+
+  const termOptions = {
+    0: 1,
+    1: 2,
+    2: 3,
+    3: 4,
+    4: 5,
+    5: 6
+  };
+  const newTerm = termOptions[newValue];
+  
+  setChallenge((prev) => ({
+    ...prev,
+    verifyTerm: newTerm,
+  }));
+  console.log("빈도 값:", newTerm);
+};
+
+
 // 챌린지 기간
 const handleSetTabValue2 = (event, newValue) => {
   setTabValue2(newValue);
@@ -100,6 +120,10 @@ const handleSetTabValue2 = (event, newValue) => {
     2: 4,
     3: 8
   };
+
+
+
+
 
   const periodInWeeks = dateOptions[newValue];
 
@@ -119,6 +143,8 @@ const handleSetTabValue2 = (event, newValue) => {
 
   const endDate = new Date(startDate);
   endDate.setDate(endDate.getDate() + periodInWeeks * 7);
+
+  endDate.setDate(endDate.getDate() - 1);
 
   setChallenge((prev) => ({
     ...prev,
@@ -271,7 +297,7 @@ const handleValueChange = (event) => {
             </Grid>
           </SoftBox>
 
-          {/* <SoftBox mb={2}>
+          <SoftBox mb={2}>
             <SoftBox mb={1} ml={0.5}>
               <SoftTypography component="label" variant="caption" fontWeight="bold">
                 인증 빈도
@@ -294,7 +320,7 @@ const handleValueChange = (event) => {
                 </Tabs>
               </AppBar>
             </Grid>
-          </SoftBox> */}
+          </SoftBox>
 
           
 

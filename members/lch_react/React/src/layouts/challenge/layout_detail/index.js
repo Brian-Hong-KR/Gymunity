@@ -8,7 +8,6 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import { Card, CardMedia, Grid } from "@mui/material";
 
 // Overview page components
-import Header from "./../components/Header/index";
 import Socials from "layouts/authentication/components/Socials";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 
