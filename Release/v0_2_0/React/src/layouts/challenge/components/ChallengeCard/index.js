@@ -84,16 +84,28 @@ function ChallengeCard({ challenge }) {
     );
   } else if (challenge.proceed === "pr" && challenge.isJoined) {
     buttonComponent = (
-      <SoftButton
-        component={Link}
-        to={`/challenge/verify/${challenge.ch_id}`}
-        variant="outlined"
-        size="small"
-        color="error"
-        sx={{ minWidth: "280px" }}
-      >
-        인증하기
-      </SoftButton>
+      <>
+        <SoftButton
+          component={Link}
+          to={`/challenge/detail/${challenge.ch_id}`}
+          variant="outlined"
+          size="small"
+          color="primary"
+          sx={{ minWidth: "140px", marginRight: "10px" }}
+        >
+          자세히 보기
+        </SoftButton>
+        <SoftButton
+          component={Link}
+          to={`/challenge/verify/${challenge.ch_id}`}
+          variant="outlined"
+          size="small"
+          color="error"
+          sx={{ minWidth: "140px" }}
+        >
+          인증하기
+        </SoftButton>
+      </>
     );
     ddayComponent = (
       <SoftBox

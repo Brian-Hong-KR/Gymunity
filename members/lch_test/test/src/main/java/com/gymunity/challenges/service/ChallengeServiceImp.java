@@ -53,7 +53,11 @@ public class ChallengeServiceImp implements ChallengeService {
 	public List<ChallengeDTO> joinListProcess(int user_id) {
 		return challengeRepository.joinList(user_id);
 	}
-
+	
+	@Override
+	public int totalParticipantsProcess(int ch_id) {
+		return challengeRepository.totalParticipants(ch_id);
+	}
 
 	@Override
 	public void insertProcess(ChallengeDTO dto) {
@@ -98,9 +102,6 @@ public class ChallengeServiceImp implements ChallengeService {
 		challengeRepository.totalP(ch_id);
 		
 	}
-
-
-
 	
 
 }

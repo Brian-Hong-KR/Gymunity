@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams, useHistory } from "react-router-dom";
 import { challengeActions } from "../toolkit/actions/challenge_actions";
 
 // @mui icons
@@ -42,21 +42,29 @@ function ChallengeDetail() {
   //     "Authorization-refresh": localStorage.getItem("Authorization-refresh"),
   //   },
 
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
   //삭제버튼
+
   const handleDelete = async (e) => {
     e.preventDefault();
-    await dispatch(challengeActions.getChallengeDelete(ch_id));
-    navigate(`/challenge/list/${pv.currentPage}`);
+    await dispatch(challengeActions.getChallengeDelete(ch_id)).then(
+      (response) => {
+        if (response.payload === "삭제 실패") {
+          setAlertMessage("다른 참여자가 있을 경우 삭제가 불가합니다.");
+        } else {
+          navigate(`/challenge/list/${pv.currentPage}`);
+        }
+      }
+    );
   };
 
   useEffect(() => {
     dispatch(challengeActions.getChallengeDetail(ch_id));
   }, []);
 
-  const [showAlert, setShowAlert] = useState(false);
-
   // SoftButton 클릭 시 SoftAlert을 보여주는 함수
-  const handleJoinButtonClick = () => {
+  const handleShowAlert = () => {
     setShowAlert(true);
   };
 
@@ -622,28 +630,77 @@ function ChallengeDetail() {
                   </SoftTypography>
                 </SoftBox>
 
-                <SoftBox mt={6} textAlign="center">
-                  {localStorageUserID === challengeDetail.user_id ? (
+                <SoftBox
+                  mt={6}
+                  textAlign="center"
+                  sx={{
+                    display: "flex",
+                    gap: "10px",
+                    justifyContent: "center",
+                  }}
+                >
+                  <SoftButton
+                    variant="gradient"
+                    color="info"
+                    component={Link}
+                    to={`/challenge/list/${pv.currentPage}`}
+                  >
+                    뒤로
+                  </SoftButton>
+                  {localStorageUserID === challengeDetail.user_id ||
+                  challengeDetail.admin_yn === "y" ? (
+                    // 작성자일 경우 삭제
                     <>
-                      <Link
-                        className="btn btn-primary"
-                        to={`/challenge/update/${ch_id}`}
-                      >
-                        수정
-                      </Link>
-                      <button
-                        className="btn btn-primary"
-                        onClick={handleDelete}
+                      <SoftButton
+                        variant="gradient"
+                        color="info"
+                        onClick={handleShowAlert}
                       >
                         삭제
-                      </button>
+                      </SoftButton>
+                      {showAlert && (
+                        <SoftAlert color="white">
+                          정말 삭제하시겠습니까?
+                          <SoftButton
+                            variant="gradient"
+                            color="info"
+                            onClick={handleDelete}
+                          >
+                            삭제
+                          </SoftButton>
+                          <SoftButton
+                            variant="gradient"
+                            color="info"
+                            onClick={handleAlertClose}
+                          >
+                            취소
+                          </SoftButton>
+                        </SoftAlert>
+                      )}
+                      {alertMessage && ( // 새로운 조건 추가
+                        <SoftAlert color="error" dismissible>
+                          {alertMessage}
+                        </SoftAlert>
+                      )}
                     </>
+                  ) : null}
+                  {challengeDetail.proceed === "pr" &&
+                  challengeDetail.isJoined ? (
+                    // 참여중이면서 진행중일 경우 '인증하기', 아닐 경우 '참여하기'
+                    <SoftButton
+                      variant="gradient"
+                      color="info"
+                      component={Link}
+                      to={`/challenge/verify/${challengeDetail.ch_id}`}
+                    >
+                      인증하기
+                    </SoftButton>
                   ) : (
                     <>
                       <SoftButton
                         variant="gradient"
                         color="info"
-                        onClick={handleJoinButtonClick}
+                        onClick={handleShowAlert}
                       >
                         참여하기
                       </SoftButton>

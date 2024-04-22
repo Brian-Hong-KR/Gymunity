@@ -16,6 +16,7 @@ import SoftPagination from "components/SoftPagination";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import ChallengeCard from "../components/ChallengeCard";
 import PlaceholderCard from "examples/Cards/PlaceholderCard";
+import JoinChIdList from "./../components/JoinChIdList/index";
 
 // Overview page components
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
@@ -44,7 +45,6 @@ function Challenge() {
 
   const pv = useSelector((state) => state.challenge.pv || {});
 
-  // 1번
   const challengeList = useSelector(
     (state) => state.challenge.challengeList || []
   );

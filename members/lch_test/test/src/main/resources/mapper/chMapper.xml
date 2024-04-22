@@ -5,8 +5,16 @@
 
 <mapper namespace="com.gymunity.challenges.repository.ChallengeRepository">
 	
+  <!-- 챌린지 총 개수 -->
   <select id="count" resultType="int">
-	SELECT count(*) FROM challenges     
+	SELECT COUNT(*) FROM challenges    
+  </select>
+
+  <!-- 챌린지 참여자 수 -->
+  <select id="totalParticipants" resultType="int" parameterType="int">
+	SELECT COUNT(mem_ch_id)
+	FROM members
+	WHERE mem_ch_id = #{ch_id};     
   </select>
   
   <select id="list" resultType="ChallengeDTO" parameterType="PageDTO">

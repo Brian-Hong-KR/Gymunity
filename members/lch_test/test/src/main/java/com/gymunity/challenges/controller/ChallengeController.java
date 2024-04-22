@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -71,7 +72,7 @@ public class ChallengeController {
 		Map<String, Object> map = new HashMap<>();
 		int totalRecord = challengeService.countProcess();
 		log.info("totalRecord:{}", totalRecord);
-
+		
 		if (totalRecord >= 1) {
 
 			map.put("joinList", challengeService.joinListProcess(currentUserId));
@@ -107,15 +108,21 @@ public class ChallengeController {
 	@PutMapping("/challenge/update")
 	public ResponseEntity<Object> updateExecute(ChallengeDTO dto, VerifyService vdto, HttpServletRequest req) {
 		log.info("ch_id:{}, title:{}", dto.getCh_id(), dto.getTitle());
-		challengeService.updateProcess(dto);
-
+		challengeService.updateProcess(dto);		
 		return ResponseEntity.ok(null);
 	}
 
 	@DeleteMapping("/challenge/delete/{ch_id}")
 	public ResponseEntity<Object> deleteExecute(@PathVariable("ch_id") int ch_id) {
-		challengeService.deleteProcess(ch_id);
-		return ResponseEntity.ok(null);
+		int total_participants = challengeService.totalParticipantsProcess(ch_id);
+		
+		if (total_participants==1) {
+				challengeService.deleteProcess(ch_id);
+				return ResponseEntity.ok(null);
+		} else {
+			String message = "삭제 실패";
+			 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(message);
+		} 
 	}
 
 }
