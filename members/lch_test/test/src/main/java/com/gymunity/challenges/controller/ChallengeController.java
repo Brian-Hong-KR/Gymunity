@@ -1,5 +1,6 @@
 package com.gymunity.challenges.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,34 +59,47 @@ public class ChallengeController {
 	@Autowired
 	private PageDTO pdto;
 	private int currentPage;
+	
+//	TODO 추후 인증 정보에서 user_id 받아오기
+//public ResponseEntity<Map<String, Object>> listExecute(@PathVariable("currentPage") int currentPage, 
+//             @AuthenticationPrincipal Principal principal) {
+//// Principal 객체에서 사용자 ID 추출
+//String currentUserId = /* Extract user ID from principal */;
+	int currentUserId = 81;
 
 	@GetMapping("/challenge/list/{currentPage}")
 	public ResponseEntity<Map<String, Object>> listExecute(@PathVariable("currentPage") int currentPage) {
-
-//		TODO 추후 인증 정보에서 user_id 받아오기
-//  public ResponseEntity<Map<String, Object>> listExecute(@PathVariable("currentPage") int currentPage, 
-//                 @AuthenticationPrincipal Principal principal) {
-//  // Principal 객체에서 사용자 ID 추출
-//  String currentUserId = /* Extract user ID from principal */;
-		int currentUserId = 81;
-
 		Map<String, Object> map = new HashMap<>();
 		int totalRecord = challengeService.countProcess();
+		
 		log.info("totalRecord:{}", totalRecord);
 		
 		if (totalRecord >= 1) {
-
-			map.put("joinList", challengeService.joinListProcess(currentUserId));
 			this.currentPage = currentPage;
 			this.pdto = new PageDTO(this.currentPage, totalRecord);
 			map.put("pv", this.pdto);
 			map.put("challengeList", challengeService.listProcess(pdto));
-			
 		}
+		map.put("joinList",challengeService.joinListProcess(currentUserId));
+    
 		log.info("challengeList:{}", map.get("challengeList"));
 		log.info("joinList:{}", map.get("joinList"));
 		return ResponseEntity.ok(map);
 	}
+	
+	@GetMapping("/challenge/detail/{ch_id}")
+	public ResponseEntity<Map<String, Object>> viewExecute(@PathVariable("ch_id") int ch_id) {
+		 Map<String, Object> map = new HashMap<>();
+		 
+		 // 챌린지 상세 정보 가져오기
+		    ChallengeDTO dto = challengeService.contentProcess(ch_id);
+		    map.put("challengeDetail", dto);
+		    
+		    List<ProfileDTO> joinList = challengeService.joinListProcess(currentUserId);
+		    map.put("joinList", joinList);
+		    
+		    return ResponseEntity.ok(map);
+		}
 
 	@PostMapping("/challenge/create")
 	public ResponseEntity<String> writeProExecute(@RequestBody ChallengeDTO dto, PageDTO pv, MemDTO mdto,
@@ -97,12 +111,6 @@ public class ChallengeController {
 		memService.insertProcess(mdto); // 멤버 등록
 
 		return ResponseEntity.ok(String.valueOf(1));
-	}
-
-	@GetMapping("/challenge/detail/{ch_id}")
-	public ResponseEntity<ChallengeDTO> viewExecute(@PathVariable("ch_id") int ch_id) {
-		ChallengeDTO dto = challengeService.contentProcess(ch_id);
-		return ResponseEntity.ok(dto);
 	}
 
 	@PutMapping("/challenge/update")

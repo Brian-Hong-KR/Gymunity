@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, useParams, useHistory } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { challengeActions } from "../toolkit/actions/challenge_actions";
 
 // @mui icons
@@ -36,6 +36,24 @@ function ChallengeDetail() {
   );
   const pv = useSelector((state) => state.challenge.pv);
 
+  const joinList = useSelector((state) => state.challenge.joinList || []);
+  console.log("joinList:", joinList);
+
+  const joinChIdList =
+    joinList.length > 0 && typeof joinList[0] === "object"
+      ? Object.values(joinList[0])
+      : [];
+  console.log("joinChIdList:", joinChIdList);
+
+  const isJoined = () => {
+    return challengeDetail.ch_id === joinChIdList[0] ||
+      challengeDetail.ch_id === joinChIdList[1]
+      ? true
+      : false;
+  };
+
+  console.log("challengeDetail.ch_id:", challengeDetail.ch_id);
+  console.log("isJoined:", isJoined);
   // const config = {
   //   headers: {
   //     Authorization: localStorage.getItem("Authorization"),
@@ -131,11 +149,11 @@ function ChallengeDetail() {
         D - {remainingDays}
       </SoftBox>
     );
-  } else if (challengeDetail.proceed === "pr" && challengeDetail.isJoined) {
+  } else if (challengeDetail.proceed === "pr" && isJoined) {
     buttonComponent = (
       <SoftButton
         component={Link}
-        to={`/challenge/verify/${challenge.ch_id}`}
+        to={`/challenge/verify/${challengeDetail.ch_id}`}
         variant="outlined"
         size="small"
         color="error"
@@ -179,7 +197,7 @@ function ChallengeDetail() {
         진행중
       </SoftBox>
     );
-  } else if (challengeDetail.proceed === "pr" && !challengeDetail.isJoined) {
+  } else if (challengeDetail.proceed === "pr" && !isJoined) {
     buttonComponent = (
       <SoftButton
         component={Link}
@@ -658,34 +676,9 @@ function ChallengeDetail() {
                       >
                         삭제
                       </SoftButton>
-                      {showAlert && (
-                        <SoftAlert color="white">
-                          정말 삭제하시겠습니까?
-                          <SoftButton
-                            variant="gradient"
-                            color="info"
-                            onClick={handleDelete}
-                          >
-                            삭제
-                          </SoftButton>
-                          <SoftButton
-                            variant="gradient"
-                            color="info"
-                            onClick={handleAlertClose}
-                          >
-                            취소
-                          </SoftButton>
-                        </SoftAlert>
-                      )}
-                      {alertMessage && ( // 새로운 조건 추가
-                        <SoftAlert color="error" dismissible>
-                          {alertMessage}
-                        </SoftAlert>
-                      )}
                     </>
                   ) : null}
-                  {challengeDetail.proceed === "pr" &&
-                  challengeDetail.isJoined ? (
+                  {challengeDetail.proceed === "pr" && isJoined ? (
                     // 참여중이면서 진행중일 경우 '인증하기', 아닐 경우 '참여하기'
                     <SoftButton
                       variant="gradient"
@@ -717,6 +710,37 @@ function ChallengeDetail() {
                   )}
                 </SoftBox>
               </SoftBox>
+              {showAlert && (
+                <SoftAlert
+                  color="white"
+                  position="fixed"
+                  top="0"
+                  left="50%"
+                  transform="translateX(-50%)"
+                  z-index="9999"
+                >
+                  정말 삭제하시겠습니까?
+                  <SoftButton
+                    variant="gradient"
+                    color="info"
+                    onClick={handleDelete}
+                  >
+                    삭제
+                  </SoftButton>
+                  <SoftButton
+                    variant="gradient"
+                    color="info"
+                    onClick={handleAlertClose}
+                  >
+                    취소
+                  </SoftButton>
+                </SoftAlert>
+              )}
+              {alertMessage && ( // 새로운 조건 추가
+                <SoftAlert color="error" dismissible>
+                  {alertMessage}
+                </SoftAlert>
+              )}
             </Card>
           </Grid>
         </Grid>

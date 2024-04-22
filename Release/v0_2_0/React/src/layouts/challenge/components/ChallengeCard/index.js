@@ -23,6 +23,7 @@ import icon_point from "assets/images/icon/point.png";
 function ChallengeCard({ challenge }) {
   // console.log("isJoined: ", challenge.isJoined);
   // console.log("ch_id: ", challenge.ch_id);
+  // console.log("ch_id: ", typeof challenge.ch_id);
 
   // 예시 81번 나나
 
@@ -397,7 +398,7 @@ function ChallengeCard({ challenge }) {
                 textAlign: "center",
               }}
             >
-              <SoftTypography variant="h6" fontWeight="bold" color="#FFFFFF">
+              <SoftTypography variant="h6" fontWeight="bold">
                 {verify_term}
               </SoftTypography>
             </SoftBox>
@@ -413,7 +414,7 @@ function ChallengeCard({ challenge }) {
                 textAlign: "center",
               }}
             >
-              <SoftTypography variant="h6" fontWeight="bold" color="#FFFFFF">
+              <SoftTypography variant="h6" fontWeight="bold">
                 {period}
               </SoftTypography>
             </SoftBox>
@@ -445,7 +446,6 @@ function ChallengeCard({ challenge }) {
               <SoftTypography
                 variant="h6"
                 fontWeight="bold"
-                color="#FFFFFF"
                 sx={{ marginRight: "7px" }}
               >
                 {challenge.betting_point}

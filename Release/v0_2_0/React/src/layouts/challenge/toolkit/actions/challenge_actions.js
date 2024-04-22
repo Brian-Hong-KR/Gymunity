@@ -22,7 +22,10 @@ function getChallengeListAsync(currentPage) {
       dispatch(challengeReducers.getChallengeList({ challengeList, pv }));
       dispatch(challengeReducers.getJoinList({ joinList }));
     } catch (error) {
-      console.error("챌린지 및 참여 목록 데이터를 가져오는 중 오류 발생:", error);
+      console.error(
+        "챌린지 및 참여 목록 데이터를 가져오는 중 오류 발생:",
+        error
+      );
     }
   };
 }
@@ -36,7 +39,9 @@ function getChallengeListAsync(currentPage) {
 //챌린지 생성하기
 function getChallengeCreate(formData) {
   return async () => {
-    await axios.post(`/challenge/create`, formData).then((response) => response.data);
+    await axios
+      .post(`/challenge/create`, formData)
+      .then((response) => response.data);
   };
 }
 
@@ -51,7 +56,9 @@ function getChallengeCreate(formData) {
 // }
 function getChallengeDetail(ch_id) {
   return async (dispatch) => {
-    const data = await axios.get(`/challenge/detail/${ch_id}`).then((response) => response.data);
+    const data = await axios
+      .get(`/challenge/detail/${ch_id}`)
+      .then((response) => response.data);
     dispatch(challengeReducers.getChallengeDetail({ data }));
   };
 }
@@ -70,7 +77,9 @@ function getChallengeDownload(upload, config) {
 //수정하기
 function getChallengeUpdate(formData, config) {
   return async () => {
-    await axios.put(`/challenge/update`, formData, config).then((response) => response.data);
+    await axios
+      .put(`/challenge/update`, formData, config)
+      .then((response) => response.data);
   };
 }
 
@@ -82,7 +91,9 @@ function getChallengeUpdate(formData, config) {
 // }
 function getChallengeDelete(ch_id) {
   return async () => {
-    await axios.delete(`/challenge/delete/${ch_id}`).then((response) => response.data);
+    await axios
+      .delete(`/challenge/delete/${ch_id}`)
+      .then((response) => response.data);
   };
 }
 
