@@ -72,13 +72,17 @@ public class ChallengeServiceImpl implements ChallengeService {
 
 		// userId로 기존 챌린지 정보 조회
 		Challenge existingChallenge = challengeMapper.selectChallengesByUserId(userId);
+		
+		// String 날짜를 LocalDate로 변환
+        LocalDate startDate = LocalDate.parse(dto.getChStartDate());
+        LocalDate endDate = LocalDate.parse(dto.getChEndDate());
 
-		int totalVerificationDays = calculateTotalVerificationDays(dto.getChStartDate(), dto.getChEndDate(),
+		int totalVerificationDays = calculateTotalVerificationDays(startDate, endDate,
 				dto.getVerifyTerm());
 
 		// 이미 챌린지가 등록된 경우 예외 처리
-		if (existingChallenge != null) {
-			throw new ChallengeDuplicateEntryException("이 사용자는 이미 챌린지에 등록되어 있습니다.");
+		if (existingChallenge != null && !"done".equals(existingChallenge.getProceed())) {
+			throw new ChallengeDuplicateEntryException("이미 챌린지를 생성하였습니다.");
 		}
 
 		// challenge 등록

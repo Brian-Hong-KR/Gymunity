@@ -72,7 +72,7 @@ public class VerifyController {
 	}// end verifyUpload()
 
 	@Operation(summary = "사진첩")
-	@GetMapping(value = "/photo")
+	@GetMapping(value = "/user/photo")
 	public ResponseEntity<List<PhotoDTO>> getPhotosByUserId() {
 		// 인증 정보에서 사용자 ID 추출
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -84,7 +84,7 @@ public class VerifyController {
 
 	// 사진첩 삭제
 	@Operation(summary = "사진첩 삭제")
-	@DeleteMapping("/photo/delete")
+	@DeleteMapping("/user/photo/delete")
 	public ResponseEntity<?> deletePhoto(@RequestParam("photoPath") String photoPath) {
 		// Spring Security의 Authentication 객체를 통해 현재 로그인된 사용자의 정보를 가져옴
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
