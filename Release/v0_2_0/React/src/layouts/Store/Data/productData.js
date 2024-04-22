@@ -27,6 +27,8 @@ import strech_stick from "assets/images/store/strech_stick.JPG"
 import trampulin from "assets/images/store/trampulin.JPG"
 import yoga_mat from "assets/images/store/yoga_mat.JPG"
 import push_up_bar from "assets/images/store/push_up_bar.JPG"
+import chair from "assets/images/store/chair.JPG"
+
 export default function data() {
 
   return {
