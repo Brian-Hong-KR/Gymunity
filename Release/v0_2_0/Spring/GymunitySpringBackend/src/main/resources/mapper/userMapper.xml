@@ -76,6 +76,15 @@
 		WHERE user_id = #{userId}
 	</update>
 
+	<!-- 아이디, 비밀번호 확인 
+	<select id="selectByAccountId" parameterType="string"
+		resultMap="userResultMap">
+		SELECT u.user_id, u.user_account_id, p.password
+		FROM users u
+		JOIN profiles p ON u.user_id = p.user_id
+		WHERE u.user_account_id = #{userAccountId}
+	</select> -->
+
 	<!--userAccountId로 조회 -->
 	<select id="selectUsersByAccountId" parameterType="string"
 		resultMap="userResultMap">
@@ -89,6 +98,14 @@
 		resultMap="userResultMap">
 		SELECT *
 		FROM users
+		WHERE user_id = #{userId}
+	</select>
+
+	<!-- userId로 profiles 조회-->
+	<select id="selectProfilesByUserId" parameterType="int"
+		resultMap="profileResultMap">
+		SELECT user_email
+		FROM profiles
 		WHERE user_id = #{userId}
 	</select>
 

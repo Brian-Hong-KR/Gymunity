@@ -32,8 +32,12 @@ public interface UserMapper {
 	
 	public User selectUsersByUserId(int userId);
 
+	public Profile selectProfilesByUserId(int userId);
+
 	public Profile selectPasswordByUserId(int userId);
 
 	public int deleteUsers(int userId);
+	
+	public User selectSurveyByUserId(int userId);
 
 }// end interface

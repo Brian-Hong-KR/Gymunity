@@ -91,78 +91,106 @@ const ProfileData = () => {
   const handleDeleteAccount = () => {
     const isConfirmed = window.confirm("정말 떠나시겠습니까?");
     if (isConfirmed) {
-      // 여기에 회원탈퇴 로직을 추가하세요.
+      
     }
   };
+
+  const isLoggedIn = localStorage.getItem('isLogin') === 'true';
+
+  const handleLogout = () => {
+     localStorage.clear();
+  };
+
   return (
     <SoftBox py={3}>
       <SoftBox mb={3}>
         <SoftBox
-          display="flex"
-          justifyContent="space-between"
-          alignItems="center"
+          display='flex'
+          justifyContent='space-between'
+          alignItems='center'
           p={3}
         >
-          <SoftTypography variant="h5">{profileInfo.nickName}</SoftTypography>
-          <SoftTypography variant="body2" color="text">
-            {" "}
+          <SoftTypography variant='h5'>{profileInfo.nickName}</SoftTypography>
+          <SoftTypography variant='body2' color='text'>
+            {' '}
             {profileInfo.userEmail}
           </SoftTypography>
         </SoftBox>
         <SoftBox
-          display="flex"
-          justifyContent="space-between"
-          alignItems="center"
+          display='flex'
+          justifyContent='space-between'
+          alignItems='center'
           p={3}
         >
-          <Link to="editUser">
-            <SoftButton type="submit" variant="gradient" color="dark" fullWidth>
+          <Link to='editUser'>
+            <SoftButton type='submit' variant='gradient' color='dark' fullWidth>
               회원정보수정
             </SoftButton>
           </Link>
 
-          <Link to="/authentication/sign-in">
-            <SoftButton type="submit" variant="gradient" color="dark" fullWidth>
-              로그아웃
-            </SoftButton>
-          </Link>
+          <SoftBox>
+            {isLoggedIn ? (
+              <Link to='/main'>
+                <SoftButton
+                  type='submit'
+                  variant='gradient'
+                  color='dark'
+                  fullWidth
+                  onClick={handleLogout}
+                >
+                  로그아웃
+                </SoftButton>
+              </Link>
+            ) : (
+              <Link to='/authentication/sign-in'>
+                <SoftButton
+                  type='submit'
+                  variant='gradient'
+                  color='dark'
+                  fullWidth
+                >
+                  로그인
+                </SoftButton>
+              </Link>
+            )}
+          </SoftBox> 
         </SoftBox>
 
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} xl={3}>
             <MiniStatisticsCard
-              title={{ text: "Grade" }}
+              title={{ text: 'Grade' }}
               count={profileInfo.gradeName}
-              icon={{ color: "dark", component: "paid" }}
+              icon={{ color: 'dark', component: 'paid' }}
               text={`다음 등급까지 ${profileInfo.pointToNextGrade.toString()} point`}
-              percentage={{ color: "success", text: "" }}
+              percentage={{ color: 'success', text: '' }}
             />
           </Grid>
 
           <Grid item xs={12} sm={6} xl={3}>
             <MiniStatisticsCard
-              title={{ text: "Point" }}
+              title={{ text: 'Point' }}
               count={profileInfo.currentPoints}
-              icon={{ color: "dark", component: "paid" }}
+              icon={{ color: 'dark', component: 'paid' }}
             />
           </Grid>
 
           <Grid item xs={12} sm={6} xl={3}>
             <MiniStatisticsCard
-              title={{ text: "Plan" }}
+              title={{ text: 'Plan' }}
               count={profileInfo.planName}
-              icon={{ color: "dark", component: "public" }}
+              icon={{ color: 'dark', component: 'public' }}
             />
           </Grid>
 
           {profileInfo.challenges.map((challenge, index) => (
             <Grid item xs={12} sm={6} xl={3} key={index}>
               <MiniStatisticsCard
-                title={{ text: "Challenge" }}
+                title={{ text: 'Challenge' }}
                 count={challenge.title}
-                icon={{ color: "dark", component: "emoji_events" }}
+                icon={{ color: 'dark', component: 'emoji_events' }}
                 text={`카테고리 : ${
-                  categoryMapping[challenge.category] || "기타"
+                  categoryMapping[challenge.category] || '기타'
                 }`}
               />
             </Grid>

@@ -4,6 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gymunity.user.dto.CheckUserIdPassword;
 import com.gymunity.user.dto.SignupDTO;
+import com.gymunity.user.dto.UserInfoDTO;
 import com.gymunity.user.dto.UserUpdateDTO;
 import com.gymunity.user.response.SigninResponse;
 import com.gymunity.user.response.SignupResponse;
@@ -34,6 +37,14 @@ public class UserController {
 		return ResponseEntity.ok(signup);
 	}// end signupUser()
 
+	// 회원정보호출
+	@Operation(summary = "회원정보호출")
+	@GetMapping("/user/editinfo/{userAccountId}")
+	public ResponseEntity<UserInfoDTO> getUser(@PathVariable("userAccountId") String userAccountId) {
+		UserInfoDTO userInfoDTO = userService.userInfoProcess(userAccountId);
+		return ResponseEntity.ok(userInfoDTO);
+	}
+	
 	// 회원정보수정
 	@Operation(summary = "회원정보수정")
 	@PutMapping("/user/update")
