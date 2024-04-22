@@ -21,5 +21,9 @@ public class SignupDTO {
 	private String goal;
 	private String level;
 	private String abnormal;
+	
+	// pt 정보
+	private String planName;
+	private String planDesc;
 
 }// end class

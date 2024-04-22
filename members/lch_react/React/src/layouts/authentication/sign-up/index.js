@@ -36,8 +36,8 @@ function SignUp() {
     ? location.state.formData[0]
     : location.state?.formData;
 
-  // const planData = location.state?.planData;
-  // console.log("Registration successful:", planData);
+  const planData = location.state?.planData;
+  console.log("Registration successful:", planData);
 
   const [user, setUser] = useState({
     userAccountId: "",
@@ -49,6 +49,8 @@ function SignUp() {
     goal: formData?.goal || "",
     level: formData?.level || "",
     abnormal: formData?.abnormal || "",
+    planName: planData?.plan_name || "",
+    planDesc: planData?.plan_desc || "",
   });
 
   const handleValueChange = (e) => {
@@ -78,10 +80,14 @@ function SignUp() {
   };
 
   return (
-
-  <BasicLayout>
-    <AuthNavbar />
-      <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
+    <BasicLayout>
+      <AuthNavbar />
+      <SoftBox
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        p={3}
+      >
         <SoftTypography variant="h3">회원 가입</SoftTypography>
       </SoftBox>
 

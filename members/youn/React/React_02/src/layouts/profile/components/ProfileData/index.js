@@ -43,6 +43,8 @@ const ProfileData = () => {
     }
   };
 
+  const isLoggedIn = localStorage.getItem('isLogin') === 'true';
+
 
 
   return (
@@ -72,11 +74,32 @@ const ProfileData = () => {
             </SoftButton>
           </Link>
 
-          <Link to='/authentication/sign-in'>
-            <SoftButton type='submit' variant='gradient' color='dark' fullWidth>
+          {isLoggedIn ? (
+            <SoftButton
+              type='submit'
+              variant='gradient'
+              color='dark'
+              fullWidth
+              onClick={() => {
+                // 로그아웃 로직 구현
+                localStorage.setItem('isLogin', 'false');
+                // 다른 로그아웃 작업들도 수행할 수 있습니다.
+              }}
+            >
               로그아웃
             </SoftButton>
-          </Link>
+          ) : (
+            <Link to='/authentication/sign-in'>
+              <SoftButton
+                type='submit'
+                variant='gradient'
+                color='dark'
+                fullWidth
+              >
+                로그인
+              </SoftButton>
+            </Link>
+          )}
         </SoftBox>
 
         <Grid container spacing={3}>
@@ -138,10 +161,7 @@ const ProfileData = () => {
       <SoftBox mb={3}>
         <Grid container spacing={3}>
           <Grid item xs={12} lg={5}>
-            <ReportsBarChart
-              title='Weekly Point'
-              chart={chart}
-            />
+            <ReportsBarChart title='Weekly Point' chart={chart} />
           </Grid>
         </Grid>
       </SoftBox>
