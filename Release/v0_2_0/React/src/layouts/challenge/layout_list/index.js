@@ -57,7 +57,7 @@ function Challenge() {
   //   );
   // });
 
-  // const joinChIdList = joinList.map((item) => item.ch_id);
+  // const joinChIdList = joinList.map((item) => item.chId);
   // console.log("joinChIdList:", joinChIdList);
 
   const joinList = useSelector((state) => state.challenge.joinList || []);
@@ -74,8 +74,7 @@ function Challenge() {
     return {
       ...challenge,
       isJoined:
-        challenge.ch_id == joinChIdList[0] ||
-        challenge.ch_id == joinChIdList[1],
+        challenge.chId == joinChIdList[0] || challenge.chId == joinChIdList[1],
     };
   });
 
@@ -111,7 +110,7 @@ function Challenge() {
                   {updatedChallengeList.map(
                     (challenge) =>
                       challenge.isJoined && (
-                        <Grid item xs={12} md={6} xl={3} key={challenge.ch_id}>
+                        <Grid item xs={12} md={6} xl={3} key={challenge.chId}>
                           <ChallengeCard challenge={challenge} />
                         </Grid>
                       )
@@ -152,7 +151,7 @@ function Challenge() {
           <SoftBox p={2}>
             <Grid container spacing={3}>
               {updatedChallengeList.map((challenge) => (
-                <Grid item xs={12} md={6} xl={3} key={challenge.ch_id}>
+                <Grid item xs={12} md={6} xl={3} key={challenge.chId}>
                   <ChallengeCard challenge={challenge} />
                 </Grid>
               ))}

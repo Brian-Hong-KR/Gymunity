@@ -5,16 +5,17 @@
 	<!-- java.sql.Date 타입에서 LocalDate 타입 객체로 변환 -->
 	<resultMap id="challengeResultMap" type="Challenge">
 		<id column="ch_id" property="chId" />
-		<result column="title" property="title" />
-		<result column="content" property="content" />
-		<result column="category" property="category" />
+		<result column="ch_id" property="chId" />
 		<result column="betting_point" property="bettingPoint" />
 		<result column="ch_start_date" property="chStartDate" />
 		<result column="ch_end_date" property="chEndDate" />
 		<result column="verify_term" property="verifyTerm" />
-		<result column="count" property="count" />
+		<result column="challenge_period" property="challengePeriod" />
 		<result column="total_date" property="totalDate" />
 		<result column="user_id" property="userId" />
+		<result column="nick_name" property="nickName" />
+		<result column="grade_name" property="gradeName" />
+		<result column="admin_yn" property="adminYN" />
 	</resultMap>
 	
 	<!-- 챌린지 총 개수 -->
@@ -34,7 +35,7 @@
     </insert>
 
 	<!-- members 테이블 데이터 삽입 -->
-	<insert id="insertMembers" parameterType="Member">
+	<insert id="insertMembers" parameterType="Member" >
         <![CDATA[
         INSERT INTO members (mem_user_id, mem_ch_id, registrant)
         VALUES (#{memUserId}, #{memChId}, #{registrant})
@@ -43,7 +44,7 @@
     
    <!-- 챌린지 리스트-->
    <!-- 챌린지 리스트 불러오기 --> 
-   <select id="list" resultType="Challenge" parameterType="PageDTO">
+   <select id="list" resultType="Challenge" parameterType="PageDTO" resultMap="challengeResultMap">
 	SELECT c.*, u.nick_name, u.grade_name, u.admin_yn
 	FROM challenges c
 	JOIN users u ON c.user_id = u.user_id
@@ -55,7 +56,7 @@
   <select id="joinList" resultType="ProfileDTO" parameterType="int">
 	SELECT ch_id1, ch_id2
 	FROM profiles
-	WHERE user_id=#{user_id}
+	WHERE user_id=#{userId}
   </select>
 
 	<!-- 챌린지 참가-->
@@ -82,9 +83,11 @@
 	</select>
 
 	<!-- chId로 challenges 테이블 조회-->
-	<select id="selectChallengesByChId" parameterType="int"
+	<select id="selectChallengesByChId" resultType="Challenge" parameterType="int"
 		resultMap="challengeResultMap">
-		SELECT * FROM challenges
+		SELECT c.*, u.nick_name, u.grade_name, u.admin_yn
+		FROM challenges c
+		JOIN users u ON c.user_id = u.user_id
 		WHERE ch_id=#{chId}
 	</select>
 

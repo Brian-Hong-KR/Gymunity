@@ -22,13 +22,21 @@ import icon_point from "assets/images/icon/point.png";
 
 function ChallengeCard({ challenge }) {
   // console.log("isJoined: ", challenge.isJoined);
-  // console.log("ch_id: ", challenge.ch_id);
-  // console.log("ch_id: ", typeof challenge.ch_id);
+  // console.log("chId: ", challenge.chId);
+  // console.log("chId: ", typeof challenge.chId);
 
   // 예시 81번 나나
 
-  const { image, category, grade, verify_term, period, remainingDays } =
-    DataConverter(challenge);
+  const {
+    image,
+    category,
+    grade,
+    verifyTerm,
+    period,
+    remainingDays,
+    days,
+    endDate,
+  } = DataConverter(challenge);
 
   let buttonComponent;
   let ddayComponent;
@@ -38,7 +46,7 @@ function ChallengeCard({ challenge }) {
     buttonComponent = (
       <SoftButton
         component={Link}
-        to={`/challenge/detail/${challenge.ch_id}`}
+        to={`/challenge/detail/${challenge.chId}`}
         variant="outlined"
         size="small"
         color="primary"
@@ -88,7 +96,7 @@ function ChallengeCard({ challenge }) {
       <>
         <SoftButton
           component={Link}
-          to={`/challenge/detail/${challenge.ch_id}`}
+          to={`/challenge/detail/${challenge.chId}`}
           variant="outlined"
           size="small"
           color="primary"
@@ -98,7 +106,7 @@ function ChallengeCard({ challenge }) {
         </SoftButton>
         <SoftButton
           component={Link}
-          to={`/challenge/verify/${challenge.ch_id}`}
+          to={`/challenge/verify/${challenge.chId}`}
           variant="outlined"
           size="small"
           color="error"
@@ -148,7 +156,7 @@ function ChallengeCard({ challenge }) {
     buttonComponent = (
       <SoftButton
         component={Link}
-        to={`/challenge/detail/${challenge.ch_id}`}
+        to={`/challenge/detail/${challenge.chId}`}
         variant="outlined"
         size="small"
         color="primary"
@@ -197,7 +205,7 @@ function ChallengeCard({ challenge }) {
     buttonComponent = (
       <SoftButton
         component={Link}
-        to={`/challenge/detail/${challenge.ch_id}`}
+        to={`/challenge/detail/${challenge.chId}`}
         variant="outlined"
         size="small"
         color="light"
@@ -329,7 +337,7 @@ function ChallengeCard({ challenge }) {
         <SoftBox mb={1}>
           <SoftTypography
             component={Link}
-            to={`/challenge/detail/${challenge.ch_id}`}
+            to={`/challenge/detail/${challenge.chId}`}
             variant="h5"
             textTransform="capitalize"
           >
@@ -373,7 +381,7 @@ function ChallengeCard({ challenge }) {
                 top: "0px",
               }}
             />
-            {challenge.nick_name}
+            {challenge.nickName}
           </SoftTypography>
         </SoftBox>
         <SoftBox mb={3} lineHeight={0}>
@@ -399,7 +407,7 @@ function ChallengeCard({ challenge }) {
               }}
             >
               <SoftTypography variant="h6" fontWeight="bold">
-                {verify_term}
+                {verifyTerm}
               </SoftTypography>
             </SoftBox>
             <SoftBox
@@ -448,7 +456,7 @@ function ChallengeCard({ challenge }) {
                 fontWeight="bold"
                 sx={{ marginRight: "7px" }}
               >
-                {challenge.betting_point}
+                {challenge.bettingPoint}
               </SoftTypography>
             </SoftBox>
           </SoftBox>
@@ -477,7 +485,7 @@ ChallengeCard.defaultProps = {
 
 ChallengeCard.propTypes = {
   challenge: PropTypes.shape({
-    ch_id: PropTypes.number.isRequired,
+    chId: PropTypes.number.isRequired,
     color: PropTypes.oneOf([
       "primary",
       "secondary",
