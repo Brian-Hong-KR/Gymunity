@@ -3,6 +3,7 @@ package com.gymunity.challenge.serviceimpl;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 import java.util.stream.Stream;
 
 import org.springframework.stereotype.Service;
@@ -11,10 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gymunity.challenge.dto.Challenge;
 import com.gymunity.challenge.dto.ChallengeCreateDTO;
 import com.gymunity.challenge.dto.Member;
+import com.gymunity.challenge.dto.PageDTO;
+import com.gymunity.challenge.dto.ProfileDTO;
 import com.gymunity.challenge.repository.ChallengeMapper;
 import com.gymunity.challenge.response.ChallengeCreateResponse;
-import com.gymunity.challenge.response.ChallengeDetailResponse;
-import com.gymunity.challenge.response.ChallengeJoinResponse;
 import com.gymunity.challenge.service.ChallengeService;
 import com.gymunity.common.exception.ChallengeDuplicateEntryException;
 import com.gymunity.common.exception.ChallengeException;
@@ -26,7 +27,6 @@ import com.gymunity.user.dto.User;
 import com.gymunity.user.repository.UserMapper;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
@@ -140,7 +140,7 @@ public class ChallengeServiceImpl implements ChallengeService {
 
 	// 챌린지 참가
 	@Override
-	public ChallengeJoinResponse joinChallengeProcess(int chId, int userId) {
+	public void joinChallengeProcess(int chId, int userId) {
 
 		// 이미 참여중인지 확인
 		int count = challengeMapper.countMembersByUserIdAndChId(chId, userId);
@@ -158,28 +158,12 @@ public class ChallengeServiceImpl implements ChallengeService {
 
 		// challenges count 추가
 		challengeMapper.updateChallengeCount(chId);
-
-		return null;
 	}// end joinChallengeProcess()
 
-	// 챌린지 상세
+	// 챌린지 상세보기
 	@Override
-	public ChallengeDetailResponse detailChallengeProcess(int chId) {
-
-		// chId를 사용해서 Challenge 정보 조회
-		Challenge challenge = challengeMapper.selectChallengesByChId(chId);
-
-		ChallengeDetailResponse challengeDetailResponse = new ChallengeDetailResponse();
-		challengeDetailResponse.setTitle(challenge.getTitle());
-		challengeDetailResponse.setContent(challenge.getContent());
-		challengeDetailResponse.setCategory(challenge.getCategory());
-		challengeDetailResponse.setBettingPoint(challenge.getBettingPoint());
-		challengeDetailResponse.setProceed(challenge.getProceed());
-		challengeDetailResponse.setChStartDate(challenge.getChStartDate());
-		challengeDetailResponse.setChEndDate(challenge.getChEndDate());
-		challengeDetailResponse.setCount(challenge.getCount());
-
-		return challengeDetailResponse;
+	public Challenge detailChallengeProcess(int chId) {
+		return challengeMapper.selectChallengesByChId(chId);
 	}// end detailChallengeProcess()
 
 	// 챌린지 수정
@@ -227,5 +211,23 @@ public class ChallengeServiceImpl implements ChallengeService {
 		}
 
 	}// end deleteChallengeProcess()
+	
+	//챌린지 개수 세기
+	@Override
+	public int countProcess() {
+		return challengeMapper.count();
+	}
+	
+	//챌린지 리스트 조회
+	@Override
+	public List<Challenge> listProcess(PageDTO pv) {
+		return challengeMapper.list(pv);
+	}
+
+	//참가중인 챌린지id 리스트 조회
+	@Override
+	public List<ProfileDTO> joinListProcess(int userId) {
+		return challengeMapper.joinList(userId);
+	}
 
 }// end class

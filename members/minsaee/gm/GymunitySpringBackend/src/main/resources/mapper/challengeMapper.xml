@@ -16,6 +16,11 @@
 		<result column="total_date" property="totalDate" />
 		<result column="user_id" property="userId" />
 	</resultMap>
+	
+	<!-- 챌린지 총 개수 -->
+    <select id="count" resultType="int">
+	  SELECT COUNT(*) FROM challenges    
+    </select>
 
 	<!-- 챌린지 생성-->
 	<!-- challenges 테이블 데이터 삽입-->
@@ -35,6 +40,23 @@
         VALUES (#{memUserId}, #{memChId}, #{registrant})
         ]]> 
     </insert>
+    
+   <!-- 챌린지 리스트-->
+   <!-- 챌린지 리스트 불러오기 --> 
+   <select id="list" resultType="Challenge" parameterType="PageDTO" resultMap="challengeResultMap">
+	SELECT c.*, u.nick_name, u.grade_name, u.admin_yn
+	FROM challenges c
+	JOIN users u ON c.user_id = u.user_id
+	ORDER BY FIELD(c.proceed, 'rec', 'pr', 'done'), c.ch_id DESC
+	LIMIT #{startRow}, #{blockCount}
+  </select>
+  
+  <!-- 참가중인 챌린지id 리스트 불러오기-->
+  <select id="joinList" resultType="ProfileDTO" parameterType="int">
+	SELECT ch_id1, ch_id2
+	FROM profiles
+	WHERE user_id=#{user_id}
+  </select>
 
 	<!-- 챌린지 참가-->
 	<!-- members 테이블에서 user_id와 ch_id로 검색 -->
@@ -75,7 +97,6 @@
 		WHERE user_id = #{userId}
 	</update>
 
-
 	<!-- 챌린지 삭제-->
 	<!-- challenges 테이블에 데이터 삭제-->
 	<delete id="deleteChallenges" parameterType="int">
@@ -83,12 +104,5 @@
 		WHERE user_id=#{userId}
 	</delete>
 
-	<!-- 
-  <select id="list" resultType="Challenge" parameterType="PageDTO">
-	SELECT c.*
-	FROM challenges c
-	ORDER BY c.ch_id DESC
-	LIMIT #{startRow}, #{blockCount}
-  </select>
-  -->
+
 </mapper>

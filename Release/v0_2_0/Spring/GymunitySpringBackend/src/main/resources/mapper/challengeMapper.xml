@@ -43,7 +43,7 @@
     
    <!-- 챌린지 리스트-->
    <!-- 챌린지 리스트 불러오기 --> 
-   <select id="list" resultType="Challenge" parameterType="PageDTO">
+   <select id="list" resultType="Challenge" parameterType="PageDTO" resultMap="challengeResultMap">
 	SELECT c.*, u.nick_name, u.grade_name, u.admin_yn
 	FROM challenges c
 	JOIN users u ON c.user_id = u.user_id

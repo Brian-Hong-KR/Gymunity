@@ -13,7 +13,6 @@ import SoftTypography from "components/SoftTypography";
 import SoftInput from "components/SoftInput";
 import SoftButton from "components/SoftButton";
 
-
 import BasicLayout from "layouts/authentication/components/BasicLayout";
 import AuthNavbar from "examples/Navbars/AuthNavbar";
 
@@ -36,8 +35,8 @@ function SignUp() {
     ? location.state.formData[0]
     : location.state?.formData;
 
-  // const planData = location.state?.planData;
-  // console.log("Registration successful:", planData);
+  const planData = location.state?.planData;
+  console.log("Registration successful:", planData);
 
   const [user, setUser] = useState({
     userAccountId: "",
@@ -49,6 +48,8 @@ function SignUp() {
     goal: formData?.goal || "",
     level: formData?.level || "",
     abnormal: formData?.abnormal || "",
+    planName: planData?.plan_name || "",
+    planDesc: planData?.plan_desc || "",
   });
 
   const handleValueChange = (e) => {
@@ -69,7 +70,7 @@ function SignUp() {
     // const surveyData = Array.isArray(planData) ? planData[0] : planData;
 
     try {
-      const response = await axios.post("/user/signup", user);
+      const response = await axios.post("http://192.168.0.60:8090/user/signup", user);
       console.log("Registration successful:", response);
       navigate("/dashboard"); // 회원가입 후 메인 페이지로 이동
     } catch (error) {
@@ -78,10 +79,14 @@ function SignUp() {
   };
 
   return (
-
-  <BasicLayout>
-    <AuthNavbar />
-      <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
+    <BasicLayout>
+      <AuthNavbar />
+      <SoftBox
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        p={3}
+      >
         <SoftTypography variant="h3">회원 가입</SoftTypography>
       </SoftBox>
 

@@ -21,6 +21,13 @@
 			column="password" />
 		<result property="userEmail" column="user_email" />
 	</resultMap>
+	
+	<!-- survey_submissions 테이블에 데이터 삽입-->
+	<insert id="insertSurveySubmissions">
+        <![CDATA[
+        INSERT INTO survey_submissions (timestamp) VALUES (DEFAULT)
+        ]]>
+    </insert>
 
 	<!-- 회원가입-->
 	<!-- users 테이블에 데이터 삽입 -->
@@ -35,8 +42,8 @@
 	<!-- profiles 테이블에 데이터 삽입 -->
 	<insert id="insertProfiles" parameterType="Profile">
         <![CDATA[
-        INSERT INTO profiles (user_id, password, user_email)
-        VALUES (#{userId}, #{password}, #{userEmail})
+        INSERT INTO profiles (user_id, password, user_email, referrer_id)
+        VALUES (#{userId}, #{password}, #{userEmail}, #{referrerId})
         ]]>
     </insert>
 
@@ -75,15 +82,6 @@
 		)
 		WHERE user_id = #{userId}
 	</update>
-
-	<!-- 아이디, 비밀번호 확인 
-	<select id="selectByAccountId" parameterType="string"
-		resultMap="userResultMap">
-		SELECT u.user_id, u.user_account_id, p.password
-		FROM users u
-		JOIN profiles p ON u.user_id = p.user_id
-		WHERE u.user_account_id = #{userAccountId}
-	</select> -->
 
 	<!--userAccountId로 조회 -->
 	<select id="selectUsersByAccountId" parameterType="string"

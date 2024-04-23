@@ -22,6 +22,6 @@ public class Challenge {
 	private String nick_name;
 	private String  grade_name;
 	private char admin_yn;
-	private int totalDate; //성공률 계산용
+	private int totalDate;
 
 }// end class

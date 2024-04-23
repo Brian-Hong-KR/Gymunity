@@ -5,9 +5,6 @@ import java.util.List;
 import com.gymunity.challenge.dto.Challenge;
 import com.gymunity.challenge.dto.ChallengeCreateDTO;
 import com.gymunity.challenge.response.ChallengeCreateResponse;
-import com.gymunity.challenge.response.ChallengeDetailResponse;
-import com.gymunity.challenge.response.ChallengeJoinResponse;
-import com.gymunity.challenge.dto.Challenge;
 import com.gymunity.challenge.dto.PageDTO;
 import com.gymunity.challenge.dto.ProfileDTO;
 
@@ -25,7 +22,7 @@ public interface ChallengeService {
 	
 //	public boolean isMemberExists(int userId, int chId);
 	
-	public ChallengeJoinResponse joinChallengeProcess(int chId, int userId);
+	public void joinChallengeProcess(int chId, int userId);
 	
 	public void updateChallengeProcess(Challenge dto, int userId);
 	

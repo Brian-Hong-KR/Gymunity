@@ -9,6 +9,7 @@ import Icon from "@mui/material/Icon";
 // Soft UI Dashboard React components
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
+import { useNavigate } from "react-router-dom";
 
 function MiniStatisticsCard({
   bgColor,
@@ -18,7 +19,15 @@ function MiniStatisticsCard({
   percentage,
   icon,
   direction,
+  navigateTo, // 추가한부분(민호)
 }) {
+  const navigate = useNavigate(); // 추가한부분(민호)
+
+  // 추가한부분(민호)
+  const handleIconClick = () => {
+    navigate(navigateTo);
+  };
+
   return (
     <Card>
       <SoftBox bgColor={bgColor} variant="gradient">
@@ -27,6 +36,8 @@ function MiniStatisticsCard({
             {direction === "left" ? (
               <Grid item>
                 <SoftBox
+                  onClick={handleIconClick} // 추가한부분(민호)
+                  style={{ cursor: "pointer" }} // 추가한부분(민호)
                   variant="gradient"
                   bgColor={bgColor === "white" ? icon.color : "white"}
                   color={bgColor === "white" ? "white" : "dark"}

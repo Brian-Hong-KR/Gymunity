@@ -15,9 +15,13 @@ public class Challenge {
 //	private LocalDateTime registDate;
 	private String chStartDate;
 	private String chEndDate;
+	private int challenge_period;
+	private int verifyTerm;
 	private int count;
 	private int userId;
-	private int verifyTerm;
+	private String nick_name;
+	private String  grade_name;
+	private char admin_yn;
 	private int totalDate;
 
 }// end class

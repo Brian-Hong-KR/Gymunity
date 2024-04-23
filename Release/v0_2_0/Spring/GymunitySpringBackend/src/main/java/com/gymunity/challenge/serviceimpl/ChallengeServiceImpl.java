@@ -16,8 +16,6 @@ import com.gymunity.challenge.dto.PageDTO;
 import com.gymunity.challenge.dto.ProfileDTO;
 import com.gymunity.challenge.repository.ChallengeMapper;
 import com.gymunity.challenge.response.ChallengeCreateResponse;
-import com.gymunity.challenge.response.ChallengeDetailResponse;
-import com.gymunity.challenge.response.ChallengeJoinResponse;
 import com.gymunity.challenge.service.ChallengeService;
 import com.gymunity.common.exception.ChallengeDuplicateEntryException;
 import com.gymunity.common.exception.ChallengeException;
@@ -29,7 +27,6 @@ import com.gymunity.user.dto.User;
 import com.gymunity.user.repository.UserMapper;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
@@ -143,7 +140,7 @@ public class ChallengeServiceImpl implements ChallengeService {
 
 	// 챌린지 참가
 	@Override
-	public ChallengeJoinResponse joinChallengeProcess(int chId, int userId) {
+	public void joinChallengeProcess(int chId, int userId) {
 
 		// 이미 참여중인지 확인
 		int count = challengeMapper.countMembersByUserIdAndChId(chId, userId);
@@ -161,8 +158,6 @@ public class ChallengeServiceImpl implements ChallengeService {
 
 		// challenges count 추가
 		challengeMapper.updateChallengeCount(chId);
-
-		return null;
 	}// end joinChallengeProcess()
 
 	// 챌린지 상세보기

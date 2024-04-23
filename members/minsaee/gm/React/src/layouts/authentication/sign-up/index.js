@@ -43,6 +43,7 @@ function SignUp() {
     nickName: "",
     password: "",
     userEmail: "",
+    referrerAccountId: "",
     gender: formData?.gender || "",
     age: formData?.age || "",
     goal: formData?.goal || "",
@@ -74,7 +75,11 @@ function SignUp() {
       console.log("Registration successful:", response);
       navigate("/dashboard"); // 회원가입 후 메인 페이지로 이동
     } catch (error) {
-      console.error("Registration failed:", error);
+      if (error.response) {
+        alert(`${error.response.data}`);
+      } else {
+        alert("Please try again later.");
+      }
     }
   };
 
@@ -128,6 +133,15 @@ function SignUp() {
                 value={user.nickName}
                 onChange={handleValueChange}
                 placeholder="닉네임"
+              />
+            </SoftBox>
+            <SoftBox mb={2}>
+              <SoftInput
+                type="text"
+                name="referrerAccountId"
+                value={user.referrerAccountId}
+                onChange={handleValueChange}
+                placeholder="추천인"
               />
             </SoftBox>
             <SoftBox display="flex" flexDirection="column">

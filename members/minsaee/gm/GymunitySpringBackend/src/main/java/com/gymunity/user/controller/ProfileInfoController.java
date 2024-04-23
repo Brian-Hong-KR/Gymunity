@@ -33,7 +33,7 @@ public class ProfileInfoController {
 		return ResponseEntity.ok(response);
 	}// end getMyPage()
 
-	// 회원정보호출
+	// 포인트상세페이지
 	@Operation(summary = "포인트상세페이지")
 	@GetMapping("/editinfo/pointdetail")
 	public ResponseEntity<PointDetailResponse> getPointDetail() {

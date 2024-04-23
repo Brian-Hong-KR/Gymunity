@@ -12,6 +12,8 @@ import com.gymunity.user.dto.UserUpdateDTO;
 @Mapper
 @Repository
 public interface UserMapper {
+	public int insertSurveySubmissions();
+	
 	public int insertUsers(User dto);
 
 	public int insertProfiles(Profile dto);

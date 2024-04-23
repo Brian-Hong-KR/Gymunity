@@ -20,14 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.gymunity.challenge.dto.Challenge;
 import com.gymunity.challenge.dto.ChallengeCreateDTO;
 import com.gymunity.challenge.response.ChallengeCreateResponse;
-import com.gymunity.challenge.response.ChallengeDetailResponse;
-import com.gymunity.challenge.response.ChallengeJoinResponse;
 import com.gymunity.challenge.service.ChallengeService;
 import com.gymunity.challenge.controller.ChallengeController;
-import com.gymunity.challenge.dto.Challenge;
 import com.gymunity.challenge.dto.ProfileDTO;
 import com.gymunity.challenge.dto.PageDTO;
-import com.gymunity.security.config.CustomUserDetails;
 
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -84,14 +80,14 @@ public class ChallengeController {
 	// 챌린지 참가
 	@Operation(summary = "챌린지 참가")
 	@PostMapping("/challenge/join")
-	public ResponseEntity<ChallengeJoinResponse> joinChallenge(@RequestBody int chId) {
+	public ResponseEntity<Object> joinChallenge(@RequestBody int chId) {
 		// Spring Security의 Authentication 객체를 통해 현재 로그인된 사용자의 정보를 가져옴
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
 
-		ChallengeJoinResponse response = challengeService.joinChallengeProcess(chId, userId);
+		challengeService.joinChallengeProcess(chId, userId);
 
-		return ResponseEntity.ok(response);
+		return ResponseEntity.ok("챌린지가 생성되었습니다.");
 	}// end joinChallenge()
 
 	// 챌린지 상세정보

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import com.gymunity.challenge.dto.Challenge;
 import com.gymunity.challenge.dto.Member;
 import com.gymunity.challenge.dto.ProfileDTO;
-import com.gymunity.challenge.dto.Challenge;
 import com.gymunity.challenge.dto.PageDTO;
 
 @Mapper

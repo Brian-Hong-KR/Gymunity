@@ -28,6 +28,12 @@ import lombok.RequiredArgsConstructor;
 public class UserController {
 
 	private final UserService userService;
+	
+	// 유입자
+	@PostMapping("/submissions")
+	public void submissions() {
+		userService.submissionsProcess();
+	}
 
 	// 회원가입
 	@Operation(summary = "회원가입")

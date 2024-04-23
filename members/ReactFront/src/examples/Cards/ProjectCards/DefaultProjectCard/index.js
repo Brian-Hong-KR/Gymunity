@@ -25,7 +25,7 @@ function DefaultProjectCard({ challenge }) {
   console.log("isJoined: ", challenge.isJoined);
   console.log("ch_id: ", challenge.ch_id);
 
-  //카테고리명 변환
+  //카테고리 변환
   let image;
   let category;
   switch (challenge.category) {
@@ -71,6 +71,49 @@ function DefaultProjectCard({ challenge }) {
       break;
     case "플래티넘":
       grade = icon_bronze;
+      break;
+  }
+
+  //인증주기 변환
+  let verify_term;
+  switch (challenge.verify_term) {
+    case 1:
+      verify_term = "매일";
+      break;
+    case 2:
+      verify_term = "평일";
+      break;
+    case 3:
+      verify_term = "주말";
+      break;
+    case 4:
+      verify_term = "주 1일";
+      break;
+    case 5:
+      verify_term = "주 2일";
+      break;
+    case 6:
+      verify_term = "주 3일";
+      break;
+  }
+
+  //챌린지 기간 변환
+  let period;
+  switch (challenge.challenge_period) {
+    case 1:
+      period = "1주간";
+      break;
+    case 2:
+      period = "2주간";
+      break;
+    case 3:
+      period = "4주간";
+      break;
+    case 4:
+      period = "6주간";
+      break;
+    case 5:
+      period = "8주간";
       break;
   }
 
@@ -298,7 +341,6 @@ function DefaultProjectCard({ challenge }) {
           </SoftTypography>
         </SoftBox>
         <SoftBox
-          borderRadius="xl"
           position="absolute"
           style={{
             color: "#FFFFFF",
@@ -339,14 +381,43 @@ function DefaultProjectCard({ challenge }) {
             {challenge.nick_name}
           </SoftTypography>
         </SoftBox>
-        <SoftBox mb={1}>{/* {verify_term} {challenge_period} */}</SoftBox>
-
+        <SoftBox mb={3} lineHeight={0}>
+          <SoftBox display="flex" justifyContent="center" alignItems="center">
+            <SoftBox
+              width="100%"
+              borderRadius="xl"
+              marginTop="40px"
+              sx={{
+                border: "1px solid #999999",
+                padding: "18px" /* 내부 여백 설정 */,
+                display: "inline-block",
+                marginRight: "10px" /* 간격 설정 */,
+                textAlign: "center" /* 텍스트 가운데 정렬 */,
+              }}
+            >
+              {verify_term}
+            </SoftBox>
+            <SoftBox
+              width="100%"
+              borderRadius="xl"
+              marginTop="40px"
+              sx={{
+                border: "1px solid #999999",
+                padding: "18px" /* 내부 여백 설정 */,
+                display: "inline-block",
+                textAlign: "center" /* 텍스트 가운데 정렬 */,
+              }}
+            >
+              {period}
+            </SoftBox>
+          </SoftBox>
+        </SoftBox>
         <SoftBox mb={3} lineHeight={0}>
           <SoftBox
             display="flex"
-            justifyContent="space-between"
+            justifyContent="center"
             alignItems="center"
-            marginTop="50px"
+            marginTop="25px"
           >
             {buttonComponent}
           </SoftBox>

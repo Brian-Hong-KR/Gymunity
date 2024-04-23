@@ -242,9 +242,9 @@ function ChallengeCreate() {
       alert("챌린지가 성공적으로 생성되었습니다.");
       navigate("/Challenge/list/1");
     } catch (error) {
-      if (error.response && error.response.data === 409) {
+      if (error.response && error.response.status === 409) {
         // 서버가 409를 반환할 때 이미 챌린지가 생성되었음을 알리는 팝업 표시
-        alert("이미 챌린지가 생성되었습니다.");
+        alert(`${error.response.data}`);
       } else {
         console.error("Registration failed:", error);
       }

@@ -18,5 +18,7 @@ public interface UserService {
 	public void deleteUserProcess(String userAccountId);
 	
 	public UserInfoDTO userInfoProcess(String userAccountId);
+	
+	public void submissionsProcess();
 
 }// end interface

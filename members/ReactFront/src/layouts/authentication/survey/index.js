@@ -1,18 +1,8 @@
 import React, { useState } from "react";
-import {
-  Card,
-  AppBar,
-  Tabs,
-  Tab,
-  FormGroup,
-  FormControlLabel,
-  Checkbox,
-  Box,
-} from "@mui/material";
+import { Card, AppBar, Tabs, Tab } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import SoftBox from "components/SoftBox";
 
-import backimage from "assets/images/youn/digdas.jpg";
 import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
 import axios from "axios";
@@ -24,11 +14,11 @@ function Survey() {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    gender: "female",
+    gender: "male",
     age: "young",
-    goal: "Overall health improvement",
-    level: "Intermediate",
-    abnormal: "no health problems",
+    goal: "Body fat reduction",
+    level: "beginner",
+    abnormal: "cardiovascular disease",
   });
 
   const [planData, setPlanData] = useState({
@@ -116,7 +106,7 @@ function Survey() {
     e.preventDefault();
     console.log("Form submitting", formData);
     try {
-      const response = await axios.post("/survey", formData);
+      const response = await axios.post("http://192.168.0.60:8090/survey", formData);
       console.log("Response data:", response.data);
       setPlanData({
         planName: response.data.planName,
@@ -135,10 +125,15 @@ function Survey() {
 
   return (
     <BasicLayout>
-        <AuthNavbar />
-            <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
-                <SoftTypography variant="h3">사전 설문</SoftTypography>
-            </SoftBox>
+      <AuthNavbar />
+      <SoftBox
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        p={3}
+      >
+        <SoftTypography variant="h3">사전 설문</SoftTypography>
+      </SoftBox>
       <Card>
         <SoftBox
           component="form"
@@ -236,15 +231,8 @@ function Survey() {
           </SoftBox>
         </SoftBox>
       </Card>
-
     </BasicLayout>
   );
 }
 
 export default Survey;
-
-
-
-
-
-

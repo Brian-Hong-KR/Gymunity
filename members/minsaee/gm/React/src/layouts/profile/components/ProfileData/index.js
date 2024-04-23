@@ -171,6 +171,7 @@ const ProfileData = () => {
               title={{ text: "Point" }}
               count={profileInfo.currentPoints}
               icon={{ color: "dark", component: "paid" }}
+              navigateTo="/points" // 추가한부분(민호)
             />
           </Grid>
 

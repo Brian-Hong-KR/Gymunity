@@ -15,6 +15,9 @@ public class SignupDTO {
 	private String password;
 	private String userEmail;
 
+	// 추천인 정보
+	private String referrerAccountId;
+	
 	// Survey 정보
 	private String gender;
 	private String age;

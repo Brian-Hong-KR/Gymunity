@@ -22,7 +22,6 @@ import com.gymunity.user.response.SignupResponse;
 import com.gymunity.user.service.UserService;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Transactional
@@ -33,6 +32,12 @@ public class UserServiceImpl implements UserService {
 	private final PointMapper pointMapper;
 	private final PasswordEncoder passwordEncoder;
 	private final PointService pointService;
+
+	// 유입자
+	@Override
+	public void submissionsProcess() {
+		userMapper.insertSurveySubmissions();
+	}
 
 	// 회원가입
 	@Override
@@ -47,11 +52,45 @@ public class UserServiceImpl implements UserService {
 		// 비밀번호 암호화
 		String encodedPassword = passwordEncoder.encode(dto.getPassword());
 
+		PointAdd pointAdd = new PointAdd();
+		pointAdd.setUserId(user.getUserId());
+		pointAdd.setPointsAdded(400);
+		pointAdd.setAddedReason("회원가입 보상");
+		pointMapper.addPoint(pointAdd);
+
+		// 회원포인트업데이트
+		pointService.addOrUpdatePointsAggr(user.getUserId());
+
 		// profile 등록
 		Profile profile = new Profile();
 		profile.setUserId(user.getUserId());
 		profile.setPassword(encodedPassword);
 		profile.setUserEmail(dto.getUserEmail());
+		// 추천인 로직
+		if (dto.getReferrerAccountId() != null && !dto.getReferrerAccountId().isEmpty()) {
+			User referrer = userMapper.selectUsersByAccountId(dto.getReferrerAccountId());
+			if (referrer != null) {
+				// 추천인 userId 등록
+				profile.setReferrerId(referrer.getUserId());
+				// 추천한 사람 보상
+				pointAdd.setUserId(user.getUserId());
+				pointAdd.setPointsAdded(100);
+				pointAdd.setAddedReason("신규 가입 선물");
+				pointMapper.addPoint(pointAdd);
+
+				pointService.addOrUpdatePointsAggr(user.getUserId());
+				// 추천받은 사람 보상
+				pointAdd.setUserId(referrer.getUserId());
+				pointAdd.setPointsAdded(200);
+				pointAdd.setAddedReason("추천인 보상");
+				pointMapper.addPoint(pointAdd);
+
+				pointService.addOrUpdatePointsAggr(referrer.getUserId());
+			} else {
+				// referrerAccountId는 유효하지만 일치하는 사용자가 없을 때
+				throw new IllegalArgumentException("제공된 추천인 아이디가 유효하지 않습니다.");
+			}
+		}
 		userMapper.insertProfiles(profile);
 
 		// survey 등록
@@ -71,43 +110,32 @@ public class UserServiceImpl implements UserService {
 		pt.setPlanDesc(dto.getPlanDesc());
 		userMapper.insertPt(pt);
 
-		PointAdd pointAdd = new PointAdd();
-		pointAdd.setUserId(user.getUserId());
-		pointAdd.setPointsAdded(400);
-		pointAdd.setAddedReason("회원가입 보상");
-		pointMapper.addPoint(pointAdd);
-
-		// 회원포인트업데이트
-		pointService.addOrUpdatePointsAggr(user.getUserId());
-
 		return new SignupResponse(dto.getUserAccountId(), dto.getNickName(), dto.getUserEmail());
 	}// end signupProcess()
 
 	// 회원정보호출
-		@Override
-		public UserInfoDTO userInfoProcess(String userAccountId) {
-			// userAccountId를 사용하여 User 정보 조회
-			User user = userMapper.selectUsersByAccountId(userAccountId);
-			if (user == null) {
-				// 사용자 정보가 없으면 예외 처리
-				throw new UsernameNotFoundException("User not found with accountId: " + userAccountId);
-			}
+	@Override
+	public UserInfoDTO userInfoProcess(String userAccountId) {
+		// userAccountId를 사용하여 User 정보 조회
+		User user = userMapper.selectUsersByAccountId(userAccountId);
+		if (user == null) {
+			// 사용자 정보가 없으면 예외 처리
+			throw new UsernameNotFoundException("User not found with accountId: " + userAccountId);
+		}
 
-			// user 객체의 userId를 사용하여 Profile 정보 조회
-			Profile profile = userMapper.selectProfilesByUserId(user.getUserId());
+		// user 객체의 userId를 사용하여 Profile 정보 조회
+		Profile profile = userMapper.selectProfilesByUserId(user.getUserId());
 
-			// User와 Profile 정보를 UserInfoDTO에 매핑
-			UserInfoDTO userInfoDTO = new UserInfoDTO();
-			userInfoDTO.setUserId(user.getUserId());
-			userInfoDTO.setUserAccountId(user.getUserAccountId());
-			userInfoDTO.setNickName(user.getNickName());
-			userInfoDTO.setGradeName(user.getGradeName());
-			userInfoDTO.setUserEmail(profile.getUserEmail());
+		// User와 Profile 정보를 UserInfoDTO에 매핑
+		UserInfoDTO userInfoDTO = new UserInfoDTO();
+		userInfoDTO.setUserId(user.getUserId());
+		userInfoDTO.setUserAccountId(user.getUserAccountId());
+		userInfoDTO.setNickName(user.getNickName());
+		userInfoDTO.setGradeName(user.getGradeName());
+		userInfoDTO.setUserEmail(profile.getUserEmail());
 
-			return userInfoDTO;
-		}// UserInfoProcess()
-	
-
+		return userInfoDTO;
+	}// UserInfoProcess()
 
 	// 회원정보수정
 	@Override

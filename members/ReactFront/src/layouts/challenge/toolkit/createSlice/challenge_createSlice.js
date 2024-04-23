@@ -5,7 +5,6 @@ let initialState = {
   pv: { currentPage: 1 },
   joinList: [],
   challengeDetail: {},
-  challengeFile: null,
 };
 
 const challengeSlice = createSlice({
@@ -20,7 +19,8 @@ const challengeSlice = createSlice({
       state.joinList = action.payload.joinList;
     },
     getChallengeDetail(state, action) {
-      state.challengeDetail = action.payload.data;
+      state.challengeDetail = action.payload.data.challengeDetail;
+      state.joinList = action.payload.data.joinList;
     },
   },
 });

@@ -3,12 +3,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import Footer from "examples/Footer";
-
-
 
 function PointPage() {
   const [userPoints, setUserPoints] = useState([]);
@@ -29,9 +26,10 @@ function PointPage() {
 
   return (
     <DashboardLayout>
-      
       <div>
-        <h1>유저 포인트 관리 페이지 - UserAccountId 입력시 포인트 내역 뜨고..,,</h1>
+        <h1>
+          유저 포인트 관리 페이지 - UserAccountId 입력시 포인트 내역 뜨고..,,
+        </h1>
         <ul>
           {userPoints.map((point) => (
             <li key={point.id}>
