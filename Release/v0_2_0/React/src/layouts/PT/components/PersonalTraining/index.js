@@ -54,7 +54,7 @@ const PersonalTraining = () => {
             setProgress ( (index.current) / (videoList.length -1) * 100 );
 
           } else {
-            axios.post('http://localhost:5000/exercise_done', {"user_id":1});
+            axios.post('http://http://192.168.0.60:5000/exercise_done', {"user_id":1});
           }
         }
     };
