@@ -45,7 +45,7 @@ function SignIn() {
         localStorage.setItem("userAccountId", response.data.userAccountId);
         localStorage.setItem("nickName", response.data.nickName);
         localStorage.setItem("userId", response.data.userId);
-        localStorage.setItem("isLogin", true);
+        localStorage.setItem("isLogin", true);`a`
 
         setInputs({ userAccountId: "", password: "" });
         //return response.data.memberEmail;
