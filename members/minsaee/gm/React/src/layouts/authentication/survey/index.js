@@ -11,6 +11,7 @@ import BasicLayout from "layouts/authentication/components/BasicLayout";
 import AuthNavbar from "examples/Navbars/AuthNavbar";
 
 function Survey() {
+
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
