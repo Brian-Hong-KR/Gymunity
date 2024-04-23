@@ -11,7 +11,6 @@ import BasicLayout from "layouts/authentication/components/BasicLayout";
 import AuthNavbar from "examples/Navbars/AuthNavbar";
 
 function Survey() {
-
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -107,7 +106,7 @@ function Survey() {
     e.preventDefault();
     console.log("Form submitting", formData);
     try {
-      const response = await axios.post("http://192.168.0.60:8090/survey", formData);
+      const response = await axios.post("/survey", formData);
       console.log("Response data:", response.data);
       setPlanData({
         planName: response.data.planName,

@@ -29,7 +29,7 @@ function SignIn() {
   const onSubmit = async (e) => {
     e.preventDefault();
     await axios
-      .post("/user/signin", inputs)
+      .post("/spring/user/signin", inputs)
       .then((response) => {
         //console.log(response);
         //let jwtToken = response.headers["authorization"];
@@ -58,87 +58,99 @@ function SignIn() {
   };
 
   return (
-
     <BasicLayout>
-    <AuthNavbar />
-      <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
+      <AuthNavbar />
+      <SoftBox
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        p={3}
+      >
         <SoftTypography variant="h3">로그인</SoftTypography>
       </SoftBox>
-    <Card>
-      <SoftBox pt={2} pb={3} px={3}>
-
-      <SoftBox component="form" role="form" onSubmit={onSubmit}>
-        <SoftBox mb={2}>
-          <SoftBox mb={1} ml={0.5}>
-            <SoftTypography
-              component="label"
-              variant="caption"
-              fontWeight="bold"
-            >
-              아이디
-            </SoftTypography>
+      <Card>
+        <SoftBox pt={2} pb={3} px={3}>
+          <SoftBox component="form" role="form" onSubmit={onSubmit}>
+            <SoftBox mb={2}>
+              <SoftBox mb={1} ml={0.5}>
+                <SoftTypography
+                  component="label"
+                  variant="caption"
+                  fontWeight="bold"
+                >
+                  아이디
+                </SoftTypography>
+              </SoftBox>
+              <SoftInput
+                type="text"
+                placeholder="아이디"
+                value={inputs.userAccountId}
+                onChange={(e) =>
+                  setInputs({ ...inputs, userAccountId: e.target.value })
+                }
+              />
+            </SoftBox>
+            <SoftBox mb={2}>
+              <SoftBox mb={1} ml={0.5}>
+                <SoftTypography
+                  component="label"
+                  variant="caption"
+                  fontWeight="bold"
+                >
+                  Password
+                </SoftTypography>
+              </SoftBox>
+              <SoftInput
+                type="password"
+                placeholder="비밀번호"
+                value={inputs.password}
+                onChange={(e) =>
+                  setInputs({ ...inputs, password: e.target.value })
+                }
+              />
+            </SoftBox>
+            <SoftBox display="flex" alignItems="center">
+              <Switch checked={rememberMe} onChange={handleSetRememberMe} />
+              <SoftTypography
+                variant="button"
+                fontWeight="regular"
+                onClick={handleSetRememberMe}
+                sx={{ cursor: "pointer", userSelect: "none" }}
+              >
+                &nbsp;&nbsp;아이디 기억하기
+              </SoftTypography>
+            </SoftBox>
+            <SoftBox mt={4} mb={1}>
+              <SoftButton
+                type="submit"
+                variant="gradient"
+                color="dark"
+                fullWidth
+              >
+                로그인
+              </SoftButton>
+            </SoftBox>
+            <SoftBox mt={3} textAlign="center">
+              <SoftTypography
+                variant="button"
+                color="text"
+                fontWeight="regular"
+              >
+                Don&apos;t have an account?{" "}
+                <SoftTypography
+                  component={Link}
+                  to="/authentication/sign-up"
+                  variant="button"
+                  color="info"
+                  fontWeight="medium"
+                  textGradient
+                >
+                  회원가입
+                </SoftTypography>
+              </SoftTypography>
+            </SoftBox>
           </SoftBox>
-          <SoftInput
-            type="text"
-            placeholder="아이디"
-            value={inputs.userAccountId}
-            onChange={(e) =>
-              setInputs({ ...inputs, userAccountId: e.target.value })
-            }
-          />
         </SoftBox>
-        <SoftBox mb={2}>
-          <SoftBox mb={1} ml={0.5}>
-            <SoftTypography
-              component="label"
-              variant="caption"
-              fontWeight="bold"
-            >
-              Password
-            </SoftTypography>
-          </SoftBox>
-          <SoftInput
-            type="password"
-            placeholder="비밀번호"
-            value={inputs.password}
-            onChange={(e) => setInputs({ ...inputs, password: e.target.value })}
-          />
-        </SoftBox>
-        <SoftBox display="flex" alignItems="center">
-          <Switch checked={rememberMe} onChange={handleSetRememberMe} />
-          <SoftTypography
-            variant="button"
-            fontWeight="regular"
-            onClick={handleSetRememberMe}
-            sx={{ cursor: "pointer", userSelect: "none" }}
-          >
-            &nbsp;&nbsp;아이디 기억하기
-          </SoftTypography>
-        </SoftBox>
-        <SoftBox mt={4} mb={1}>
-          <SoftButton type="submit" variant="gradient" color="dark" fullWidth>
-            로그인
-          </SoftButton>
-        </SoftBox>
-        <SoftBox mt={3} textAlign="center">
-          <SoftTypography variant="button" color="text" fontWeight="regular">
-            Don&apos;t have an account?{" "}
-            <SoftTypography
-              component={Link}
-              to="/authentication/sign-up"
-              variant="button"
-              color="info"
-              fontWeight="medium"
-              textGradient
-            >
-              회원가입
-            </SoftTypography>
-          </SoftTypography>
-        </SoftBox>
-      </SoftBox>
-
-
-      </SoftBox>
       </Card>
     </BasicLayout>
   );

@@ -17,7 +17,7 @@ function getChallengeListAsync(currentPage) {
   // console.log("currentPage: ", currentPage);
   return async (dispatch) => {
     try {
-      const response = await axios.get("http://192.168.0.60:8090" + `/challenge/list/${currentPage}`);
+      const response = await axios.get(`/challenge/list/${currentPage}`);
       const { challengeList, joinList, pv } = response.data;
       dispatch(challengeReducers.getChallengeList({ challengeList, pv }));
       dispatch(challengeReducers.getJoinList({ joinList }));
