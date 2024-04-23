@@ -21,6 +21,13 @@
 			column="password" />
 		<result property="userEmail" column="user_email" />
 	</resultMap>
+	
+	<resultMap id="inquiriesResultMap" type="Customer">
+		<result property="userId" column="user_id" />
+		<result property="title" column="inquiry_title" />
+		<result property="content" column="inquiry_content" />
+		<result property="inquiryDate" column="inquiry_date" />
+	</resultMap>
 
 	<!-- 회원가입-->
 	<!-- users 테이블에 데이터 삽입 -->
@@ -139,6 +146,14 @@
 		FROM users
 		WHERE user_id = #{userId}
 	</delete>
+	
+	
+	
+	<!-- 고객 문의  -->
+	<insert id="insertInquiries" parameterType="Customer" useGeneratedKeys="true" keyProperty="userId">  
+		INSERT INTO inquiries(inquiry_title, inquiry_content, inquiry_date, user_id)
+		VALUES( #{title}, #{content}, #{inquiryDate}, #{userId});
+	</insert>
 </mapper>
 
 <!-- pt 테이블에 데이터 삽입 -->

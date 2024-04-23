@@ -83,8 +83,8 @@ import axios from "axios";
           setErrorMessage('오늘 인증을 모두 하셨습니다.');
           console.error(error);
           console.log('오류 응답:', error.response);
-console.log('오류 상태:', error.response.status);
-console.log('오류 데이터:', error.response.data);
+          console.log('오류 상태:', error.response.status);
+          console.log('오류 데이터:', error.response.data);
         }  else {
           setErrorMessage('사진 업로드 중 오류가 발생했습니다.');
         }
