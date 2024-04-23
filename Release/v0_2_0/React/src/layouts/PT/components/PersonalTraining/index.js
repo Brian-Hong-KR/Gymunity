@@ -16,7 +16,7 @@ const PersonalTraining = () => {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await axios.post('http://192.168.0.60:5000/exercise', { "user_id": localStorage.getItem("userId") });
+            const response = await axios.post('/flask/exercise', { "user_id": localStorage.getItem("userId") });
             setVideoList(response.data.videoList);
           } catch (error) {
             console.error(error);
@@ -55,7 +55,7 @@ const PersonalTraining = () => {
             setProgress ( (index.current) / (videoList.length -1) * 100 );
 
           } else {
-            axios.post('http://http://192.168.0.60:5000/exercise_done', {"user_id":1});
+            axios.post('/flask/exercise_done', {"user_id":1});
           }
         }
     };

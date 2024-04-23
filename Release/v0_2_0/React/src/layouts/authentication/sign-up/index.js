@@ -70,7 +70,7 @@ function SignUp() {
     // const surveyData = Array.isArray(planData) ? planData[0] : planData;
 
     try {
-      const response = await axios.post("http://192.168.0.60:8090/user/signup", user);
+      const response = await axios.post("/spring/user/signup", user);
       console.log("Registration successful:", response);
       navigate("/dashboard"); // 회원가입 후 메인 페이지로 이동
     } catch (error) {
