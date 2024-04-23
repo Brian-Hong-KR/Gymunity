@@ -1,5 +1,4 @@
 from flask import Blueprint, request, jsonify
-from youtubesearchpython import VideosSearch
 import Chatbot, DataBase
 
 bp = Blueprint('pt_server', __name__, url_prefix='/')
@@ -12,7 +11,7 @@ def exercise():
 
     videoList = Chatbot.generate_daily_program(gender=gender, age=age, goal=goal, level=level, abnormal=abnormal)
 
-    # DataBase.SavePTLog(user_id = user_id, daily_program=str(daily_program))
+    DataBase.SavePTLog(user_id = user_id, daily_program=str(videoList))
 
     response_data = {
         'videoList': videoList
@@ -28,7 +27,8 @@ def chatbot_response():
 
     data = request.get_json()
     user_id = data["user_id"]
-    unit_name = data["unit_name"]
+    unit_name = "push-ups"
+    # data["unit_name"]
     question = data["question"]
 
     answer = Chatbot.generate_answer(unit_name=unit_name, question=question )
@@ -39,7 +39,7 @@ def chatbot_response():
         'answer': answer,
     }
 
-    # DataBase.SavePTQnA(user_id=user_id, unit_name=unit_name, question=question, answer=answer)
+    DataBase.SavePTQnA(user_id=user_id, unit_name=unit_name, question=question, answer=answer)
 
     return jsonify(response_data)
 

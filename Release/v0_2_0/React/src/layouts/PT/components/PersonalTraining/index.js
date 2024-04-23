@@ -12,10 +12,11 @@ const PersonalTraining = () => {
     const [videoList, setVideoList] = useState(null);
     const [progress, setProgress] = useState(0);
 
+//localStorage.getItem("Authorization")
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await axios.post('http://192.168.0.60:5000/exercise', { "user_id": 1 });
+            const response = await axios.post('http://192.168.0.60:5000/exercise', { "user_id": localStorage.getItem("userId") });
             setVideoList(response.data.videoList);
           } catch (error) {
             console.error(error);
