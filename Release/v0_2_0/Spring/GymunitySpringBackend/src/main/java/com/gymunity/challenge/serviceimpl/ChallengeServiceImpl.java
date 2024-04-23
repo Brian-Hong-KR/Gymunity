@@ -3,6 +3,7 @@ package com.gymunity.challenge.serviceimpl;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 import java.util.stream.Stream;
 
 import org.springframework.stereotype.Service;
@@ -11,6 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gymunity.challenge.dto.Challenge;
 import com.gymunity.challenge.dto.ChallengeCreateDTO;
 import com.gymunity.challenge.dto.Member;
+import com.gymunity.challenge.dto.PageDTO;
+import com.gymunity.challenge.dto.ProfileDTO;
 import com.gymunity.challenge.repository.ChallengeMapper;
 import com.gymunity.challenge.response.ChallengeCreateResponse;
 import com.gymunity.challenge.response.ChallengeDetailResponse;
@@ -42,24 +45,33 @@ public class ChallengeServiceImpl implements ChallengeService {
 	private int calculateTotalVerificationDays(LocalDate startDate, LocalDate endDate, int verifyTerm) {
 		switch (verifyTerm) {
 		case 1:
+			// 매일
 			return (int) ChronoUnit.DAYS.between(startDate, endDate) + 1;
 		case 2:
+			// 평일
 			return (int) Stream.iterate(startDate, date -> date.plusDays(1))
 					.limit(ChronoUnit.DAYS.between(startDate, endDate.plusDays(1)))
 					.filter(date -> date.getDayOfWeek().getValue() >= DayOfWeek.MONDAY.getValue()
 							&& date.getDayOfWeek().getValue() <= DayOfWeek.FRIDAY.getValue())
 					.count();
 		case 3:
+			// 주말
 			return (int) Stream.iterate(startDate, date -> date.plusDays(1))
-					.limit(ChronoUnit.DAYS.between(startDate, endDate.plusDays(1)))
-					.filter(date -> date.getDayOfWeek() == DayOfWeek.SATURDAY
-							|| date.getDayOfWeek() == DayOfWeek.SUNDAY)
-					.count();
+			        .limit(ChronoUnit.DAYS.between(startDate, endDate.plusDays(1)))
+			        .filter(date -> date.getDayOfWeek() == DayOfWeek.SATURDAY || date.getDayOfWeek() == DayOfWeek.SUNDAY)
+			        .count();
 		case 4:
+			// 주 1일
+			long weeks1 = ChronoUnit.WEEKS.between(startDate, endDate) + 1;
+			return (int) weeks1 * 1;
 		case 5:
+			// 주 2일
+			long weeks2 = ChronoUnit.WEEKS.between(startDate, endDate) + 1;
+			return (int) weeks2 * 2;
 		case 6:
-			long weeks = ChronoUnit.WEEKS.between(startDate, endDate) + 1;
-			return (int) weeks * (verifyTerm - 3);
+			// 주 3일
+			long weeks3 = ChronoUnit.WEEKS.between(startDate, endDate) + 1;
+			return (int) weeks3 * 3;
 		default:
 			throw new IllegalArgumentException("Invalid verification term");
 		}
@@ -72,13 +84,17 @@ public class ChallengeServiceImpl implements ChallengeService {
 
 		// userId로 기존 챌린지 정보 조회
 		Challenge existingChallenge = challengeMapper.selectChallengesByUserId(userId);
+		
+		// String 날짜를 LocalDate로 변환
+        LocalDate startDate = LocalDate.parse(dto.getChStartDate());
+        LocalDate endDate = LocalDate.parse(dto.getChEndDate());
 
-		int totalVerificationDays = calculateTotalVerificationDays(dto.getChStartDate(), dto.getChEndDate(),
+		int totalVerificationDays = calculateTotalVerificationDays(startDate, endDate,
 				dto.getVerifyTerm());
 
 		// 이미 챌린지가 등록된 경우 예외 처리
-		if (existingChallenge != null) {
-			throw new ChallengeDuplicateEntryException("이 사용자는 이미 챌린지에 등록되어 있습니다.");
+		if (existingChallenge != null && !"done".equals(existingChallenge.getProceed())) {
+			throw new ChallengeDuplicateEntryException("이미 챌린지를 생성하였습니다.");
 		}
 
 		// challenge 등록
@@ -149,24 +165,10 @@ public class ChallengeServiceImpl implements ChallengeService {
 		return null;
 	}// end joinChallengeProcess()
 
-	// 챌린지 상세
+	// 챌린지 상세보기
 	@Override
-	public ChallengeDetailResponse detailChallengeProcess(int chId) {
-
-		// chId를 사용해서 Challenge 정보 조회
-		Challenge challenge = challengeMapper.selectChallengesByChId(chId);
-
-		ChallengeDetailResponse challengeDetailResponse = new ChallengeDetailResponse();
-		challengeDetailResponse.setTitle(challenge.getTitle());
-		challengeDetailResponse.setContent(challenge.getContent());
-		challengeDetailResponse.setCategory(challenge.getCategory());
-		challengeDetailResponse.setBettingPoint(challenge.getBettingPoint());
-		challengeDetailResponse.setProceed(challenge.getProceed());
-		challengeDetailResponse.setChStartDate(challenge.getChStartDate());
-		challengeDetailResponse.setChEndDate(challenge.getChEndDate());
-		challengeDetailResponse.setCount(challenge.getCount());
-
-		return challengeDetailResponse;
+	public Challenge detailChallengeProcess(int chId) {
+		return challengeMapper.selectChallengesByChId(chId);
 	}// end detailChallengeProcess()
 
 	// 챌린지 수정
@@ -214,5 +216,23 @@ public class ChallengeServiceImpl implements ChallengeService {
 		}
 
 	}// end deleteChallengeProcess()
+	
+	//챌린지 개수 세기
+	@Override
+	public int countProcess() {
+		return challengeMapper.count();
+	}
+	
+	//챌린지 리스트 조회
+	@Override
+	public List<Challenge> listProcess(PageDTO pv) {
+		return challengeMapper.list(pv);
+	}
+
+	//참가중인 챌린지id 리스트 조회
+	@Override
+	public List<ProfileDTO> joinListProcess(int userId) {
+		return challengeMapper.joinList(userId);
+	}
 
 }// end class

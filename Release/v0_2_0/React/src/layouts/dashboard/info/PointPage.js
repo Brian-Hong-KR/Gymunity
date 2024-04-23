@@ -17,7 +17,7 @@ function PointPage() {
   useEffect(() => {
     const fetchUserPoints = async () => {
       try {
-        const response = await axios.get(`/api/points?userId=${userId}`);
+        const response = await axios.get(`spring/api/points?userId=${userId}`);
         setUserPoints(response.data);
       } catch (error) {
         console.error("Error fetching user points:", error);

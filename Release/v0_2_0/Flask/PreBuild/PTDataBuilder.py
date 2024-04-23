@@ -99,6 +99,8 @@ for gender in gender_list:
 
 with open(file_path, "a", encoding='utf-8') as f:
     f.write("]")
-    
+
+
+# TODO : Copy to classpath (Spring / resources / pre_build_data.json )
 print ("DONE !\n    Total Elapsed Time : ", time.time() - start_time)
 

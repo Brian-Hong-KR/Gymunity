@@ -49,15 +49,7 @@ NginX, Gunicorn
  - sudo apt install nginx
  - sudo apt install net-tools
  - sudo nano /etc/nginx/sites-available/myproject
-     server {
-            listen 80;
-            server_name 192.168.0.60;
-
-            location / {
-                    include proxy_params;
-                    proxy_pass http://localhost:5000/;
-            }
-    }
+ - sudo ln -s /etc/nginx/sites-available/myproject /home/utopos/ezen/Release/v0_2_0/Flask/NginX
 
  - sudo systemctl start nginx
  - sudo systemctl enable nginx
@@ -97,17 +89,17 @@ sudo systemctl restart ollama.service
 sudo systemctl restart nginx
 sudo systemctl restart mysql
 
-cd /home/utopos/Gymunity/Release/v0_2_0/
+cd /home/utopos/ezen/Release/v0_2_0/
 
 Port = { "Spring":8080,
         "Flask":5000,
         "MySQL":3306,
         "React":3000}
 
-cd Spring
-java -jar GymunitySpringBackend-0.0.2-SNAPSHOT.jar
+cd Spring/Bin
+java -jar GymunitySpringBackend-0.0.4-SNAPSHOT.jar
 
-cd ../Flask
+cd ../../Flask
 gunicorn --bind 0:5000 "__init__:create_app()"
 
 cd ../React
