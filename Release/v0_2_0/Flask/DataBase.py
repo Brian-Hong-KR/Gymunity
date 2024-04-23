@@ -4,7 +4,9 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 
 from datetime import datetime, time
 
-engine = create_engine("mysql+pymysql://gm:1234@localhost/gymunity")
+engine = create_engine("mysql+pymysql://gm:1234@112.169.231.62:6060/gm")
+# engine = create_engine("mysql+pymysql://gm:1234@localhost/gymunity")
+
 Base = declarative_base()
 session_maker = sessionmaker(bind=engine)
 session = session_maker()
@@ -74,14 +76,14 @@ def AddPoint(user_id, amount ):
     return True
 
 
-def SavePTLog(daily_program):
+def SavePTLog(user_id, daily_program):
     #TODO : user_id 는 user table 이 생성된 이후에
-    log_unit = PTLog(daily_program=daily_program, done_datetime=datetime.now())
+    log_unit = PTLog(user_id=user_id, daily_program=daily_program, done_datetime=datetime.now())
     session.add(log_unit)
     session.commit()
 
-def SavePTQnA(unit_name, question, answer):
-    qna_unit = PTQnA(unit_name=unit_name, question=question, answer=answer, answer_at=datetime.now())
+def SavePTQnA(user_id, unit_name, question, answer):
+    qna_unit = PTQnA(user_id=user_id, unit_name=unit_name, question=question, answer=answer, answer_at=datetime.now())
     session.add(qna_unit)
     session.commit()
 

@@ -10,13 +10,12 @@ server {
 	}
 
 	location /spring {
-    include proxy_params;
-    proxy_pass http://localhost:8090/;
-    add_header 'Access-Control-Allow-Origin' '*';
-    add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
-    add_header 'Access-Control-Allow-Headers' 'Content-Type, Authorization';
-    add_header 'Access-Control-Allow-Credentials' 'true';
-}
+		include proxy_params;
+		proxy_pass http://localhost:8090/;
+		add_header 'Access-Control-Allow-Origin' '*';
+		add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+		add_header 'Access-Control-Allow-Headers' 'Content-Type, Authorization';
+	}
 
 	location /flask {
 		include proxy_params;

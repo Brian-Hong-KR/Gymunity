@@ -237,7 +237,7 @@ function ChallengeCreate() {
 
     console.log("Form submitting", challenge);
     try {
-      const response = await axios.post("/spring/challenge/create", challenge, config);
+      const response = await axios.post("http://192.168.0.60:8090/challenge/create", challenge, config);
       console.log("Registration successful:", response);
       alert("챌린지가 성공적으로 생성되었습니다.");
       navigate("/Challenge/list/1");
