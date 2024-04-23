@@ -17,7 +17,6 @@ const PointDetail = () => {
   const [rows, setRows] = useState([]);
 
   const columns = [
-    { name: "타입", align: "center" },
     { name: "포인트", align: "center" },
     { name: "이유", align: "center" },
     { name: "날짜", align: "center" },
@@ -33,8 +32,16 @@ const PointDetail = () => {
       .then((response) => {
         const details = response.data.details;
         const newRows = details.map((pointdetail) => ({
-          타입: pointdetail.type,
-          포인트: pointdetail.points,
+          포인트: (
+            <span
+              style={{
+                color: pointdetail.points >= 0 ? "blue" : "red",
+                fontWeight: "bold",
+              }}
+            >
+              {pointdetail.points}
+            </span>
+          ),
           이유: pointdetail.reason,
           날짜: pointdetail.time,
         }));
