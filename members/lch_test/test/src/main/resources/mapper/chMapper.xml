@@ -25,13 +25,13 @@
 	LIMIT #{startRow}, #{blockCount}
   </select>
   
-  <select id="join_" resultType="ProfileDTO" parameterType="int">
+  <select id="joinList" resultType="ProfileDTO" parameterType="int">
 	SELECT ch_id1, ch_id2
 	FROM profiles
 	WHERE user_id=#{user_id}
   </select>
   
-  <select id="joinList" resultType="ChallengeDTO" parameterType="int">
+  <select id="join_List" resultType="ChallengeDTO" parameterType="int">
 	SELECT c.*, u.nick_name, u.grade_name, u.admin_yn
 	FROM challenges c
 	JOIN users u ON c.user_id = u.user_id

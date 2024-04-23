@@ -28,156 +28,188 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 // Images
 import categoryToLoseWeight from "assets/images/category/category_toloseweight.jpg";
 
+import { useParams } from "react-router-dom";
+import axios from "axios";
+
 // Overview page components
 
-function ChallengeVerify({
-  category,
-  image,
-  title,
-  master,
-  master_grade,
-  total_participants,
-  verify_frequency,
-  challenge_term,
-  action,
-}) {
-  // 예시
-  const challenge = {
-    ch_id: "1",
-    category: "체지방 감소",
-    title: "매일 러닝머신 30분",
-    image: require("assets/images/category/category_toloseweight.jpg"),
-    master: "뱃살대마왕",
-    master_grade: "브론즈",
-    total_participants: "3",
-    challenge_term: "2주간",
-    ch_start_date: "2024-05-01",
-    // ch_end_date: "2024-05-15", //ch_start_date + challenge_term 계산식으로 수정
-    verify_frequency: "매일",
-    verify_times: "일일 1번",
-    batting_point: "10000",
-    verify_explain: "30분 이상 러닝 기록이 찍힌 러닝머신 화면을 찍어서 올림",
-    verify_example1: require("assets/images/category/category_toloseweight.jpg"),
-    verify_example2: require("assets/images/category/category_toloseweight.jpg"),
-  };
 
-  const [showAlert, setShowAlert] = useState(false); // SoftAlert의 표시 여부를 관리할 상태
-
-  // SoftButton 클릭 시 SoftAlert을 보여주는 함수
-  const handleVerifyButtonClick = () => {
-    setShowAlert(true); // showAlert 상태를 true로 변경하여 SoftAlert을 보이도록 설정
-  };
-
-  // SoftAlert의 닫기 버튼 클릭 시 SoftAlert을 닫는 함수
-  const handleAlertClose = () => {
-    setShowAlert(false); // showAlert 상태를 false로 변경하여 SoftAlert을 숨기도록 설정
-  };
-
-  useEffect(() => {
-    if (showAlert) {
-      const timeout = setTimeout(() => {
-        setShowAlert(false);
-      }, 1000);
-
-      return () => clearTimeout(timeout);
-    }
-  }, [showAlert]);
-
-
+  function ChallengeVerify() {
+    const { ch_id } = useParams(); // URL에서 챌린지 ID를 가져옵니다.
+    const [upload1, setFile1] = useState(null);
+    const [upload2, setFile2] = useState(null);
+  
+    const handleFile1Change = (e) => {
+      setFile1(e.target.files[0]);
+    };
+  
+    const handleFile2Change = (e) => {
+      setFile2(e.target.files[0]);
+    };
+  
+    const handleVerifyUpload = async () => {
+      if (!upload1 || !upload2 || !ch_id) {
+        alert("챌린지 ID와 파일을 선택하세요.");
+        return;
+      }
+  
+      const formData = new FormData();
+      formData.append("chId", ch_id); // 챌린지 ID를 FormData에 추가합니다.
+      formData.append("file", upload1); // 파일을 FormData에 추가합니다.
+      formData.append("file", upload2); // 파일을 FormData에 추가합니다.
+      console.log(formData)
+      try {
+        const response = await axios.post("/verify/upload", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `${localStorage.getItem("Authorization")}`,
+            "Authorization-refresh": localStorage.getItem("Authorization-refresh"),
+          },
+        });
+        console.log("File upload successful:", response.data);
+        alert("파일 업로드 성공!");
+      } catch (error) {
+       
+        console.error("File upload failed:", error);
+        alert("파일 업로드 실패!");
+      }
+    };
+  
 
   return (
-    <DashboardLayout>
-      <DashboardNavbar />
-      <div style={{ marginBottom: "30px" }}></div>{" "}
-      {/* 헤더와 카드 사이 간격 조정 */}
-      <Card style={{ textAlign: "center" }}>
-        <SoftBox mb={2} style={{ width: "400px", margin: "0 auto" }}>
-          <SoftBox mb={1} ml={1.5}>
-            <SoftTypography
-              component="label"
-              variant="caption"
-              fontWeight="bold"
-            >
-              첫 번째 인증사진을 등록하세요.
-            </SoftTypography>
-          </SoftBox>
-          <SoftInput type="file" placeholder="파일 선택" />
-        </SoftBox>
-
-        <SoftBox mb={2} style={{ width: "400px", margin: "0 auto" }}>
-          <SoftBox mb={1} ml={1.5}>
-            <SoftTypography
-              component="label"
-              variant="caption"
-              fontWeight="bold"
-            >
-              두 번째 인증사진을 등록하세요.
-            </SoftTypography>
-          </SoftBox>
-          <SoftInput type="file" placeholder="파일 선택" />
-        </SoftBox>
-
-        <SoftBox mt={4} mb={1}>
-          <SoftButton
-            variant="gradient"
-            color="info"
-            fullWidth
-            onClick={handleVerifyButtonClick}
-          >
-            인증하기
-          </SoftButton>
-          {showAlert && (
-            <SoftBox
-              style={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-              }}
-            >
-              <SoftAlert color="success" dismissible onClose={handleAlertClose}>
-                인증이 완료되었습니다.
-              </SoftAlert>
-            </SoftBox>
-          )}
-        </SoftBox>
-      </Card>
-    </DashboardLayout>
+    <div>
+      <input type="file" onChange={handleFile1Change} />
+      <input type="file" onChange={handleFile2Change} />
+      <button onClick={handleVerifyUpload}>업로드</button>
+    </div>
   );
 }
 
-// // Setting default values for the props of ChallengeDetail
-// ChallengeDetail.defaultProps = {
-//   total_participants: 0,
-// };
-
-// // Typechecking props for the ChallengeDetail
-// ChallengeDetail.propTypes = {
-//   category: PropTypes.number.isRequired,
-//   image: PropTypes.string.isRequired,
-//   title: PropTypes.string.isRequired,
-//   master: PropTypes.string.isRequired,
-//   master_grade: PropTypes.number.isRequired,
-//   total_participants: PropTypes.number.isRequired,
-//   verify_frequency: PropTypes.string.isRequired,
-//   challenge_term: PropTypes.string.isRequired,
-//   action: PropTypes.shape({
-//     type: PropTypes.oneOf(["joined", "none"]).isRequired,
-//     // route: PropTypes.string.isRequired,
-//     proceed: PropTypes.oneOf(["rec", "pr", "done"]).isRequired,
-//     color: PropTypes.oneOf([
-//       "primary",
-//       "secondary",
-//       "info",
-//       "success",
-//       "warning",
-//       "error",
-//       "light",
-//       "dark",
-//       "white",
-//     ]).isRequired,
-//     label: PropTypes.string.isRequired,
-//   }).isRequired,
-// };
-
 export default ChallengeVerify;
+// function ChallengeVerify() {
+//   const { ch_id } = useParams();
+//   const [verify, setVerify] = useState({
+//     upload1:"",
+//     upload2:"",
+//   });
+
+//   const [upload1, setUpload1] = useState(null); // 첫 번째 인증사진 파일 상태
+//   const [upload2, setUpload2] = useState(null); // 두 번째 인증사진 파일 상태
+//   const [showAlert, setShowAlert] = useState(false); // SoftAlert의 표시 여부를 관리할 상태
+
+//   // // SoftButton 클릭 시 SoftAlert을 보여주는 함수
+//   // const handleVerifyButtonClick = () => {
+//   //   setShowAlert(true); // showAlert 상태를 true로 변경하여 SoftAlert을 보이도록 설정
+//   // };
+
+//   // SoftAlert의 닫기 버튼 클릭 시 SoftAlert을 닫는 함수
+//   const handleAlertClose = () => {
+//     setShowAlert(false); // showAlert 상태를 false로 변경하여 SoftAlert을 숨기도록 설정
+//   };
+
+//   const handleFileChange = (e, name) => {
+//     // 파일 선택 시 상태 업데이트
+//     if (e.target.files.length > 0) {
+//       const file = e.target.files[0];
+//       if (name === "upload1") {
+//         setUpload1({...verify, upload1 : file});
+//       } else if (name === "upload2") {
+//         setUpload2({...verify, upload2 : file});
+//       }
+//     }
+//   };
+
+//   const handleVerify = async (e) => {
+//     e.preventDefault();
+
+//     try {
+//       const formData = new FormData();
+//       formData.append("upload1", upload1);
+//       formData.append("upload2", upload2);
+
+//       const response = await axios.post("/verify/upload", formData, {
+//         headers: {
+//           "Content-Type": "multipart/form-data",
+//           Authorization: `${localStorage.getItem("Authorization")}`,
+//           "Authorization-refresh": localStorage.getItem("Authorization-refresh"),
+//         },
+//       });
+
+//       console.log("Verification successful:", response.data);
+//       alert("인증이 성공적으로 되었습니다.");
+//     } catch (error) {
+//       console.error("Verification failed:", error);
+//       alert("인증에 실패했습니다.");
+//     }
+//   };
+
+
+  
+//   return (
+//     <DashboardLayout>
+//       <DashboardNavbar />
+//       <div style={{ marginBottom: "30px" }}></div>{" "}
+//       {/* 헤더와 카드 사이 간격 조정 */}
+//       <Card style={{ textAlign: "center" }} >
+//         <SoftBox mb={2} style={{ width: "400px", margin: "0 auto" }}>
+//           <SoftBox mb={1} ml={1.5}>
+//             <SoftTypography
+//               component="label"
+//               variant="caption"
+//               fontWeight="bold"
+//               value = {verify.upload1}
+//               onChange ={handleFileChange}
+//             >
+//               첫 번째 인증사진을 등록하세요.
+//             </SoftTypography>
+//           </SoftBox>
+//           <SoftInput type="file" placeholder="파일 선택" />
+//         </SoftBox>
+
+//         <SoftBox mb={2} style={{ width: "400px", margin: "0 auto" }}>
+//           <SoftBox mb={1} ml={1.5}>
+//             <SoftTypography
+//               component="label"
+//               variant="caption"
+//               fontWeight="bold"
+//               value = {verify.upload2}
+//               onChange={(e) => handleFileChange(e, "upload2")}
+//             >
+//               두 번째 인증사진을 등록하세요.
+//             </SoftTypography>
+//           </SoftBox>
+//           <SoftInput type="file" placeholder="파일 선택" />
+//         </SoftBox>
+
+//         <SoftBox mt={4} mb={1}>
+//           <SoftButton
+//             type = "submit" 
+//             variant="gradient"
+//             color="info"
+//             fullWidth
+//             onSubmit={handleVerify}
+//           >
+//             인증하기
+//           </SoftButton>
+//           {showAlert && (
+//             <SoftBox
+//               style={{
+//                 position: "absolute",
+//                 top: "50%",
+//                 left: "50%",
+//                 transform: "translate(-50%, -50%)",
+//               }}
+//             >
+//               <SoftAlert color="success" dismissible onClose={handleAlertClose}>
+//                 인증이 완료되었습니다.
+//               </SoftAlert>
+//             </SoftBox>
+//           )}
+//         </SoftBox>
+//       </Card>
+//     </DashboardLayout>
+//   );
+// }
+
+
+// export default ChallengeVerify;
