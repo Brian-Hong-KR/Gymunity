@@ -34,30 +34,35 @@ public class EditPointServiceImpl implements EditPointService {
     }
 
     @Override
-    public void adjustPoints(PointAdjustAddSubtract pointAdjustAddSubtract) {
-        int pointsAdjusted = pointAdjustAddSubtract.getPointsAdjusted();
+    public void adjustPoints(PointAdjustAddSubtract dto) {
+    	
+    	PointAdjustAddSubtract pointAdjust = new PointAdjustAddSubtract();
+    	pointAdjust.setPointsAdjusted(dto.getPointsAdjusted());
+    	pointAdjust.setUserId(dto.getUserId());
+    	pointAdjust.setReason(dto.getReason());
+    	pointAdjust.setTotalPoint(dto.getTotalPoint());
+    	pointAdjust.setCurrentPoint(dto.getCurrentPoint());
+    	pointAdjust.setPointsAdded(dto.getPointsAdded());
+    	pointAdjust.setAddedReason(dto.getAddedReason());
+    	pointAdjust.setPointsSubtracted(dto.getPointsSubtracted());
+    	pointAdjust.setSubtractedReason(dto.getSubtractedReason());
+    	
+    	
+        int pointsAdjusted = dto.getPointsAdjusted();
+        
+        
+        
         if (pointsAdjusted != 0) {
             if (pointsAdjusted > 0) {
-                // 양수인 경우
-                PointAdjustAndAdd pointAdjustAndAdd = new PointAdjustAndAdd();
-                pointAdjustAndAdd.setPointsAdjusted(pointsAdjusted);
-                pointAdjustAndAdd.setReason(pointAdjustAddSubtract.getReason());
-                pointAdjustAndAdd.setUserId(pointAdjustAddSubtract.getUserId());
-                pointAdjustAndAdd.setPointsAdded(pointsAdjusted);
-                pointAdjustAndAdd.setAddedReason(pointAdjustAddSubtract.getAddedReason());
-                editPointMapper.adjustAndAddPoints(pointAdjustAndAdd);
+                editPointMapper.insertPointAdjust(dto);
+                editPointMapper.updateTotalPoints(dto);
+                editPointMapper.insertPointAdd(dto);
             } else {
-                // 음수인 경우
-                PointAdjustAndSubtract pointAdjustAndSubtract = new PointAdjustAndSubtract();
-                pointAdjustAndSubtract.setPointsAdjusted(pointsAdjusted);
-                pointAdjustAndSubtract.setReason(pointAdjustAddSubtract.getReason());
-                pointAdjustAndSubtract.setUserId(pointAdjustAddSubtract.getUserId());
-                pointAdjustAndSubtract.setPointsSubtracted(-pointsAdjusted); // 음수로 변환
-                pointAdjustAndSubtract.setSubtractedReason(pointAdjustAddSubtract.getSubtractedReason());
-                editPointMapper.adjustAndSubtractPoints(pointAdjustAndSubtract);
+                editPointMapper.insertPointAdjust(dto);
+                editPointMapper.updateCurrentPoints(dto);
+                editPointMapper.insertPointSubtract(dto);
             }
         } else {
-            // 0인 경우
             throw new IllegalArgumentException("Adjustment points should be non-zero.");
         }
     }

@@ -2,6 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.gymunity.point.repository.EditPointMapper">
+	
+	
+	<resultMap id="pointAdjustAddSubtractResultMap" type="com.gymunity.point.dto.PointAdjustAddSubtract">
+    <result property="pointsAdjusted" column="points_adjusted" />
+    <result property="reason" column="reason" />
+    <result property="userId" column="user_id" />
+    <result property="totalPoint" column="total_points" />
+    <result property="currentPoint" column="current_points" />
+    <result property="pointsAdded" column="points_added" />
+    <result property="addedReason" column="added_reason" />
+    <result property="pointsSubtracted" column="points_subtracted" />
+    <result property="subtractedReason" column="subtracted_reason" />
+</resultMap>
+
+
 	<!-- User point 수정하기-->
 	
 	<!-- user_id 찾기 -->
@@ -35,28 +50,33 @@
 	
 	
 	<!-- 양수일 때 -->
-	<insert id="adjustAndAddPoints" parameterType="PointAdjustAddSubtract">
+	<insert id="insertPointAdjust" parameterType="PointAdjustAddSubtract">
 	    INSERT INTO point_adjust (user_id, points_adjusted, reason)
 	    VALUES (#{userId}, #{pointsAdjusted}, #{reason});
-	    
-	    UPDATE point_aggr
-	    SET total_points = total_points + #{pointsAdjusted},
-	        current_points = current_points + #{pointsAdjusted}
-	    WHERE user_id = #{userId};
-	    
-	    
 	</insert>
 	
+	<update id="updateTotalPoints" parameterType="PointAdjustAddSubtract">
+	    UPDATE point_aggr
+	    SET total_points = total_points + #{pointsAdjusted},
+	    current_points = current_points + #{pointsAdjusted}
+	    WHERE user_id = #{userId};
+	</update>
 	
-	<!-- 음수일 때 -->
-	<insert id="adjustAndSubtractPoints" parameterType="PointAdjustAddSubtract">
-	    INSERT INTO point_adjust (user_id, points_adjusted, reason)
-	    VALUES (#{userId}, #{pointsAdjusted}, #{reason});
-	    
+	<update id="updateCurrentPoints" parameterType="PointAdjustAddSubtract">
 	    UPDATE point_aggr
 	    SET current_points = current_points + #{pointsAdjusted}
 	    WHERE user_id = #{userId};
-	    ;
+	</update>
+	
+	<insert id="insertPointAdd" parameterType="PointAdjustAddSubtract">
+	    INSERT INTO point_add (user_id, points_added, added_reason)
+	    VALUES (#{userId}, #{pointsAdjusted}, #{reason});
+	</insert>
+
+	<!-- 음수일 때 -->
+	<insert id="insertPointSubtract" parameterType="PointAdjustAddSubtract">
+	    INSERT INTO point_subtract (user_id, points_subtracted, subtracted_reason)
+	    VALUES (#{userId}, #{pointsAdjusted}, #{reason});
 	</insert>
 
 </mapper>
