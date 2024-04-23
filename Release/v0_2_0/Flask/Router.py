@@ -11,7 +11,7 @@ def exercise():
 
     videoList = Chatbot.generate_daily_program(gender=gender, age=age, goal=goal, level=level, abnormal=abnormal)
 
-    DataBase.SavePTLog(user_id = user_id, daily_program=str(videoList))
+    # DataBase.SavePTLog(user_id = user_id, daily_program=str(videoList))
 
     response_data = {
         'videoList': videoList
@@ -39,7 +39,7 @@ def chatbot_response():
         'answer': answer,
     }
 
-    DataBase.SavePTQnA(user_id=user_id, unit_name=unit_name, question=question, answer=answer)
+    # DataBase.SavePTQnA(user_id=user_id, unit_name=unit_name, question=question, answer=answer)
 
     return jsonify(response_data)
 

@@ -11,7 +11,7 @@ function TestP() {
       "user_id":1,
     };
 
-    axios.post('http://192.168.0.60:5000/test', postData)
+    axios.post('/spring/test', postData)
       .then(response => setData(response.data))
       .catch(error => console.error(error));
   }, []);
