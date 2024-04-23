@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gymunity.point.repository.EditPointMapper">
+	<!-- User point 수정하기-->
+	
+	<!-- user_id 찾기 -->
+	<select id="getUserIDByAccountID" resultType="int" parameterType="String">
+	    SELECT user_id FROM users WHERE user_account_id = #{userAccountId}
+	</select>
+	
+	
+	<!-- point 내역-->
+	<select id="getPointsHistoryByUserID" resultType="Map" parameterType="int">
+	    SELECT
+	        '+' AS type,
+	        points_added AS points,
+	        added_reason AS reason,
+	        added_at AS time
+	    FROM point_add
+	    WHERE user_id = #{userId}
+	    
+	    UNION ALL
+	    
+	    SELECT
+	        '-' AS type,
+	        points_subtracted AS points,
+	        subtracted_reason AS reason,
+	        subtracted_at AS time
+	    FROM point_subtract
+	    WHERE user_id = #{userId}
+	    
+	    ORDER BY time DESC;
+	</select>
+	
+	
+	<!-- 양수일 때 -->
+	<insert id="adjustAndAddPoints" parameterType="PointAdjustAddSubtract">
+	    INSERT INTO point_adjust (user_id, points_adjusted, reason)
+	    VALUES (#{userId}, #{pointsAdjusted}, #{reason});
+	    
+	    UPDATE point_aggr
+	    SET total_points = total_points + #{pointsAdjusted},
+	        current_points = current_points + #{pointsAdjusted}
+	    WHERE user_id = #{userId};
+	    
+	    
+	</insert>
+	
+	
+	<!-- 음수일 때 -->
+	<insert id="adjustAndSubtractPoints" parameterType="PointAdjustAddSubtract">
+	    INSERT INTO point_adjust (user_id, points_adjusted, reason)
+	    VALUES (#{userId}, #{pointsAdjusted}, #{reason});
+	    
+	    UPDATE point_aggr
+	    SET current_points = current_points + #{pointsAdjusted}
+	    WHERE user_id = #{userId};
+	    ;
+	</insert>
+
+</mapper>

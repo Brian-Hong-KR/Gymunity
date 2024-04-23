@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gymunity.user.repository.UserMapper">
+
+	<resultMap id="userResultMap" type="User">
+		<result property="userId" column="user_id" jdbcType="INTEGER" />
+		<result
+			property="userAccountId" column="user_account_id" />
+		<result
+			property="gradeName" column="grade_name" />
+		<result
+			property="nickName" column="nick_name" />
+		<result
+			property="adminYn" column="admin_yn" />
+	</resultMap>
+
+	<resultMap id="profileResultMap" type="Profile">
+		<result property="userId" column="user_id" />
+		<result property="password"
+			column="password" />
+		<result property="userEmail" column="user_email" />
+	</resultMap>
+
+	<!-- 회원가입-->
+	<!-- users 테이블에 데이터 삽입 -->
+	<insert id="insertUsers" parameterType="User" useGeneratedKeys="true"
+		keyProperty="userId">
+	    <![CDATA[
+	    INSERT INTO users (user_account_id, nick_name)
+	    VALUES (#{userAccountId}, #{nickName})
+        ]]>
+    </insert>
+
+	<!-- profiles 테이블에 데이터 삽입 -->
+	<insert id="insertProfiles" parameterType="Profile">
+        <![CDATA[
+        INSERT INTO profiles (user_id, password, user_email)
+        VALUES (#{userId}, #{password}, #{userEmail})
+        ]]>
+    </insert>
+
+	<!-- survey 테이블에 데이터 삽입 -->
+	<insert id="insertSurvey" parameterType="Survey">
+		<![CDATA[ 
+		INSERT INTO survey (user_id, gender, age, goal, level, abnormal)
+		VALUES (#{userId}, #{gender}, #{age}, #{goal}, #{level}, #{abnormal})
+		]]>
+	</insert>
+
+	<!-- pt 테이블에 데이터 삽입-->
+	<insert id="insertPt" parameterType="Pt">
+		<![CDATA[ 
+		INSERT INTO pt (user_id, plan_name, plan_desc)
+		VALUES (#{userId}, #{planName}, #{planDesc})
+		]]>
+	</insert>
+
+	<!-- 회원 등급 업데이트 -->
+	<update id="updateUserGradeName" parameterType="int">
+		UPDATE users
+		SET grade_name = (
+		SELECT g.grade_name
+		FROM grades g
+		WHERE g.grade_id = (
+		SELECT CASE
+		WHEN pa.total_points >= 3000 THEN 4
+		WHEN pa.total_points >= 1500 THEN 3
+		WHEN pa.total_points >= 600 THEN 2
+		ELSE 1
+		END
+		FROM point_aggr pa
+		WHERE pa.user_id = #{userId}
+		)
+		)
+		WHERE user_id = #{userId}
+	</update>
+
+	<!-- 아이디, 비밀번호 확인 
+	<select id="selectByAccountId" parameterType="string"
+		resultMap="userResultMap">
+		SELECT u.user_id, u.user_account_id, p.password
+		FROM users u
+		JOIN profiles p ON u.user_id = p.user_id
+		WHERE u.user_account_id = #{userAccountId}
+	</select> -->
+
+	<!--userAccountId로 조회 -->
+	<select id="selectUsersByAccountId" parameterType="string"
+		resultMap="userResultMap">
+		SELECT *
+		FROM users
+		WHERE user_account_id = #{userAccountId}
+	</select>
+
+	<!--userAccountId로 조회 -->
+	<select id="selectUsersByUserId" parameterType="int"
+		resultMap="userResultMap">
+		SELECT *
+		FROM users
+		WHERE user_id = #{userId}
+	</select>
+
+	<!-- userId로 profiles 조회-->
+	<select id="selectProfilesByUserId" parameterType="int"
+		resultMap="profileResultMap">
+		SELECT user_email
+		FROM profiles
+		WHERE user_id = #{userId}
+	</select>
+
+	<!-- 비밀번호 확인 -->
+	<select id="selectPasswordByUserId" parameterType="int"
+		resultMap="profileResultMap">
+		SELECT password
+		FROM profiles
+		WHERE user_id = #{userId}
+	</select>
+
+	<!-- users 테이블 업데이트 -->
+	<update id="updateUsers" parameterType="User">
+		UPDATE users
+		SET nick_name = #{nickName}
+		WHERE user_id = #{userId}
+	</update>
+
+	<!-- profiles 테이블 업데이트 -->
+	<update id="updateProfiles" parameterType="Profile">
+		UPDATE profiles
+		SET user_email = #{userEmail}, password=#{password}
+		WHERE user_id = #{userId}
+	</update>
+
+	<!-- 회원 탈퇴 -->
+
+	<!-- users 테이블에서 사용자 데이터 삭제 -->
+	<delete id="deleteUsers" parameterType="int">
+		DELETE
+		FROM users
+		WHERE user_id = #{userId}
+	</delete>
+</mapper>
