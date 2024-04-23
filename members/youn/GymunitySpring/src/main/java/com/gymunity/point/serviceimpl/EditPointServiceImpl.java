@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.gymunity.point.dto.PointAdd;
-import com.gymunity.point.dto.PointAdjust;
-import com.gymunity.point.dto.PointSubtract;
+import com.gymunity.point.dto.PointAdjustAddSubtract;
+import com.gymunity.point.dto.PointAdjustAndAdd;
+import com.gymunity.point.dto.PointAdjustAndSubtract;
 import com.gymunity.point.repository.EditPointMapper;
 import com.gymunity.point.service.EditPointService;
 
@@ -21,44 +21,45 @@ import lombok.RequiredArgsConstructor;
 public class EditPointServiceImpl implements EditPointService {
 
     @Autowired
-    private EditPointMapper adminEditPointMapper;
+    private EditPointMapper editPointMapper;
 
     @Override
     public int getUserIDByAccountID(String userAccountId) {
-        return adminEditPointMapper.getUserIDByAccountID(userAccountId);
+        return editPointMapper.getUserIDByAccountID(userAccountId);
     }
 
     @Override
     public List<Map<String, Object>> getPointsHistoryByUserID(int userId) {
-        return adminEditPointMapper.getPointsHistoryByUserID(userId);
+        return editPointMapper.getPointsHistoryByUserID(userId);
     }
 
     @Override
-    public void adjustPoints(PointAdjust pointAdjust) {
-        if (pointAdjust.getPointsAdjusted() > 0) {
-            adjustPointsPositive(pointAdjust);
-        } else if (pointAdjust.getPointsAdjusted() < 0) {
-            adjustPointsNegative(pointAdjust);
+    public void adjustPoints(PointAdjustAddSubtract pointAdjustAddSubtract) {
+        int pointsAdjusted = pointAdjustAddSubtract.getPointsAdjusted();
+        if (pointsAdjusted != 0) {
+            if (pointsAdjusted > 0) {
+                // 양수인 경우
+                PointAdjustAndAdd pointAdjustAndAdd = new PointAdjustAndAdd();
+                pointAdjustAndAdd.setPointsAdjusted(pointsAdjusted);
+                pointAdjustAndAdd.setReason(pointAdjustAddSubtract.getReason());
+                pointAdjustAndAdd.setUserId(pointAdjustAddSubtract.getUserId());
+                pointAdjustAndAdd.setPointsAdded(pointsAdjusted);
+                pointAdjustAndAdd.setAddedReason(pointAdjustAddSubtract.getAddedReason());
+                editPointMapper.adjustAndAddPoints(pointAdjustAndAdd);
+            } else {
+                // 음수인 경우
+                PointAdjustAndSubtract pointAdjustAndSubtract = new PointAdjustAndSubtract();
+                pointAdjustAndSubtract.setPointsAdjusted(pointsAdjusted);
+                pointAdjustAndSubtract.setReason(pointAdjustAddSubtract.getReason());
+                pointAdjustAndSubtract.setUserId(pointAdjustAddSubtract.getUserId());
+                pointAdjustAndSubtract.setPointsSubtracted(-pointsAdjusted); // 음수로 변환
+                pointAdjustAndSubtract.setSubtractedReason(pointAdjustAddSubtract.getSubtractedReason());
+                editPointMapper.adjustAndSubtractPoints(pointAdjustAndSubtract);
+            }
         } else {
-            throw new IllegalArgumentException("Invalid adjustment type. Points adjusted should be either positive or negative.");
+            // 0인 경우
+            throw new IllegalArgumentException("Adjustment points should be non-zero.");
         }
     }
 
-    private void adjustPointsPositive(PointAdjust pointAdjust) {
-        adminEditPointMapper.adjustPointsPositive(pointAdjust);
-    }
-
-    private void adjustPointsNegative(PointAdjust pointAdjust) {
-        adminEditPointMapper.adjustPointsNegative(pointAdjust);
-    }
-
-    @Override
-    public void addPoints(PointAdd pointAdd) {
-        adminEditPointMapper.addPoints(pointAdd);
-    }
-    
-    @Override
-    public void subtractPoints(PointSubtract pointSubtract) {
-        adminEditPointMapper.subtractPoints(pointSubtract);
-    }
 }

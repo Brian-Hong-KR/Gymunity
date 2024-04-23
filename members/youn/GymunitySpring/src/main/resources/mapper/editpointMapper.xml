@@ -35,7 +35,7 @@
 	
 	
 	<!-- 양수일 때 -->
-	<insert id="adjustPointsPositive" parameterType="Map">
+	<insert id="adjustAndAddPoints" parameterType="PointAdjustAddSubtract">
 	    INSERT INTO point_adjust (user_id, points_adjusted, reason)
 	    VALUES (#{userId}, #{pointsAdjusted}, #{reason});
 	    
@@ -44,22 +44,19 @@
 	        current_points = current_points + #{pointsAdjusted}
 	    WHERE user_id = #{userId};
 	    
-	    INSERT INTO point_add (user_id, points_added, added_reason)
-	    VALUES (#{userId}, #{pointsAdjusted}, #{reason});
+	    
 	</insert>
 	
 	
 	<!-- 음수일 때 -->
-	<insert id="adjustPointsNegative" parameterType="Map">
+	<insert id="adjustAndSubtractPoints" parameterType="PointAdjustAddSubtract">
 	    INSERT INTO point_adjust (user_id, points_adjusted, reason)
 	    VALUES (#{userId}, #{pointsAdjusted}, #{reason});
 	    
 	    UPDATE point_aggr
 	    SET current_points = current_points + #{pointsAdjusted}
 	    WHERE user_id = #{userId};
-	    
-	    INSERT INTO point_subtract (user_id, points_subtracted, subtracted_reason)
-	    VALUES (#{userId}, #{pointsAdjusted}, #{reason});
+	    ;
 	</insert>
 
 </mapper>
