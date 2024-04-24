@@ -66,7 +66,7 @@ function SignUp() {
   };
 
   const onSubmit = async (e) => {
-    e.preventDefault(); // 폼 제출 방지
+    e.preventDefault(); 
 
     // 입력란이 비어 있는지 확인
     if (!isFormValid()) {

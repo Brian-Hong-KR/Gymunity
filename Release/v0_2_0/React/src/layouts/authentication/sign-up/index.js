@@ -147,6 +147,7 @@ function SignUp() {
                 placeholder="닉네임"
               />
             </SoftBox>
+       
             <SoftBox mb={2}>
               <SoftInput
                 type="text"
