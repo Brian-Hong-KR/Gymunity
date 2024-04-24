@@ -29,7 +29,7 @@ function SignIn() {
   const onSubmit = async (e) => {
     e.preventDefault();
     await axios
-      .post("http://192.168.0.60:8090/user/signin", inputs)
+      .post('/user/signin', inputs)
       .then((response) => {
         //console.log(response);
         //let jwtToken = response.headers["authorization"];
@@ -38,21 +38,21 @@ function SignIn() {
         //console.log(jwtToken);
         let accessToken = response.data.accessToken;
         let refreshToken = response.data.refreshToken;
-        console.log("accessToken", accessToken);
-        console.log("refreshToken", refreshToken);
-        localStorage.setItem("Authorization", accessToken);
-        localStorage.setItem("Authorization-refresh", refreshToken);
-        localStorage.setItem("userAccountId", response.data.userAccountId);
-        localStorage.setItem("nickName", response.data.nickName);
-        localStorage.setItem("userId", response.data.userId);
-        localStorage.setItem("isLogin", true);
+        console.log('accessToken', accessToken);
+        console.log('refreshToken', refreshToken);
+        localStorage.setItem('Authorization', accessToken);
+        localStorage.setItem('Authorization-refresh', refreshToken);
+        localStorage.setItem('userAccountId', response.data.userAccountId);
+        localStorage.setItem('nickName', response.data.nickName);
+        localStorage.setItem('userId', response.data.userId);
+        localStorage.setItem('isLogin', true);
 
-        setInputs({ userAccountId: "", password: "" });
+        setInputs({ userAccountId: '', password: '' });
         //return response.data.memberEmail;
       })
       .then((response) => {
         //console.log("then", response);
-        window.location.replace("/");
+        window.location.replace('/');
       })
       .catch((error) => console.log(error));
   };

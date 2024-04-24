@@ -26,9 +26,8 @@
 	
 	
 	<!-- point 내역-->
-	<select id="getPointsHistoryByUserID" resultType="Map" parameterType="int">
+	<select id="getPointsHistoryByUserID" resultType="PointEditDTO" parameterType="int">
 	    SELECT
-	        '+' AS type,
 	        points_added AS points,
 	        added_reason AS reason,
 	        added_at AS time
@@ -38,7 +37,6 @@
 	    UNION ALL
 	    
 	    SELECT
-	        '-' AS type,
 	        points_subtracted AS points,
 	        subtracted_reason AS reason,
 	        subtracted_at AS time
