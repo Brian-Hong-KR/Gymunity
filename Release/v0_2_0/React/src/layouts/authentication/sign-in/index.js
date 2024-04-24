@@ -45,10 +45,6 @@ function SignIn() {
         setInputs({ userAccountId: "", password: "" });
       })
       .then((response) => {
-<<<<<<< Updated upstream
-        //console.log("then", response);
-=======
->>>>>>> Stashed changes
         window.location.replace("/profile");
       })
       .catch((error) => console.log(error));
