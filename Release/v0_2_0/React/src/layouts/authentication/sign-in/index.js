@@ -52,7 +52,7 @@ function SignIn() {
       })
       .then((response) => {
         //console.log("then", response);
-        window.location.replace("/");
+        window.location.replace("/profile");
       })
       .catch((error) => console.log(error));
   };
