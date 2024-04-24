@@ -22,9 +22,9 @@ public class Challenge {
 	private int verifyTerm;
 	private int count;
 	private int userId;
-	private String nick_name;
-	private String  grade_name;
-	private char admin_yn;
+	private String nickName;
+	private String  gradeName;
+	private char adminYn;
 	private int totalDate;
 
 }// end class

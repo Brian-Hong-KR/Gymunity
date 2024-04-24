@@ -17,13 +17,14 @@ function getChallengeListAsync(currentPage) {
   // console.log("currentPage: ", currentPage);
   return async (dispatch) => {
     try {
-      const response = await axios.get(`/challenge/list/${currentPage}`);
+      const response = await axios.get("http://192.168.0.60:8090" + `/challenge/list/${currentPage}`);
+
       const { challengeList, joinList, pv } = response.data;
       dispatch(challengeReducers.getChallengeList({ challengeList, pv }));
       dispatch(challengeReducers.getJoinList({ joinList }));
     } catch (error) {
       console.error(
-        "챌린지 및 참여 목록 데이터를 가져오는 중 오류 발생:",
+        "챌린지 및 참여 목록 데이터를 가져오록는 중 오류 발생:",
         error
       );
     }
@@ -40,7 +41,7 @@ function getChallengeListAsync(currentPage) {
 function getChallengeCreate(formData) {
   return async () => {
     await axios
-      .post(`/challenge/create`, formData)
+      .post("http://192.168.0.60:8090/challenge/create", formData)
       .then((response) => response.data);
   };
 }
@@ -57,7 +58,7 @@ function getChallengeCreate(formData) {
 function getChallengeDetail(chId) {
   return async (dispatch) => {
     const data = await axios
-      .get(`/challenge/detail/${chId}`)
+      .get("http://192.168.0.60:8090" + `/challenge/detail/${chId}`)
       .then((response) => response.data);
     dispatch(challengeReducers.getChallengeDetail({ data }));
   };
@@ -67,7 +68,7 @@ function getChallengeDetail(chId) {
 function getChallengeDownload(upload, config) {
   return async (dispatch) => {
     const data = await axios
-      .get(`/challenge/contentdownload/${upload}`, config)
+      .get("http://192.168.0.60:8090" + `/challenge/contentdownload/${upload}`, config)
       .then((response) => response.data);
     // dispatch(challengeActions.getChallengeDownload(data));
     return data;
@@ -78,7 +79,7 @@ function getChallengeDownload(upload, config) {
 function getChallengeUpdate(formData, config) {
   return async () => {
     await axios
-      .put(`/challenge/update`, formData, config)
+      .put("http://192.168.0.60:8090/challenge/update", formData, config)
       .then((response) => response.data);
   };
 }
@@ -92,7 +93,7 @@ function getChallengeUpdate(formData, config) {
 function getChallengeDelete(chId) {
   return async () => {
     await axios
-      .delete(`/challenge/delete/${chId}`)
+      .delete("http://192.168.0.60:8090" + `/challenge/delete/${chId}`)
       .then((response) => response.data);
   };
 }

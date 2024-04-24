@@ -18,7 +18,7 @@ const MainPage = () => {
 
   const handleSurveySubmit = async () => {
     try {
-      const response = await axios.post("/submissions");
+      const response = await axios.post("http://192.168.0.60:8090/submissions");
       navigate("/authentication/survey");
     } catch (error) {}
   };
