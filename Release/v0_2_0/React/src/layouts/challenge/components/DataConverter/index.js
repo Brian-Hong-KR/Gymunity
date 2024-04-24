@@ -12,30 +12,17 @@ const getDaysRemaining = (startDate) => {
   return Math.ceil(diffInMs / (1000 * 60 * 60 * 24));
 };
 
-//종료일 날짜 구하기
-const getEndDate = (startDate, days) => {
-  // 1. startDate 유효성 검사
-  if (isNaN(Date.parse(startDate))) {
-    return null; // Indicate invalid date with null return
-  }
-  const startDateObject = new Date(startDate);
-  const endDateObject = new Date(
-    startDateObject.getTime() + days * 24 * 60 * 60 * 1000
-  );
-  return endDateObject.toISOString().split("T")[0];
-};
-
 function DataConverter(challenge) {
   //카테고리 변환
   let image;
   let category;
   switch (challenge.category) {
     case 1:
-      category = "체지방 감소";
+      category = "체중 감소";
       image = categoryToLoseWeight;
       break;
     case 2:
-      category = "근육량 증가";
+      category = "근력 향상";
       image = categoryToIncreaseMuscle;
       break;
     case 3:
@@ -90,30 +77,23 @@ function DataConverter(challenge) {
   switch (challenge.challengePeriod) {
     case 1:
       period = "1주간";
-      days = 6;
       break;
     case 2:
       period = "2주간";
-      days = 13;
       break;
     case 3:
       period = "4주간";
-      days = 27;
       break;
     case 4:
       period = "6주간";
-      days = 41;
       break;
     case 5:
       period = "8주간";
-      days = 55;
       break;
   }
 
   //시작일을 D-day로 변환
   const remainingDays = getDaysRemaining(challenge.chStartDate);
-
-  const endDate = getEndDate(challenge.chStartDate, days);
 
   return {
     image,
@@ -123,7 +103,6 @@ function DataConverter(challenge) {
     period,
     remainingDays,
     days,
-    endDate,
   };
 }
 

@@ -27,16 +27,8 @@ function ChallengeCard({ challenge }) {
 
   // 예시 81번 나나
 
-  const {
-    image,
-    category,
-    grade,
-    verifyTerm,
-    period,
-    remainingDays,
-    days,
-    endDate,
-  } = DataConverter(challenge);
+  const { image, category, grade, verifyTerm, period, remainingDays } =
+    DataConverter(challenge);
 
   let buttonComponent;
   let ddayComponent;

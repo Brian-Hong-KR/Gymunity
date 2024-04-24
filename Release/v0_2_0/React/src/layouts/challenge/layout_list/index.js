@@ -20,7 +20,7 @@ import PlaceholderCard from "examples/Cards/PlaceholderCard";
 // Overview page components
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import GymunityNavbar from "examples/Navbars/GymunityNavbar";
-import ItemListButton from "../components/FilteringByCategory";
+import FilteringByCategory from "../components/FilteringByCategory";
 
 function Challenge() {
   const { currentPage = 1 } = useParams();
@@ -77,6 +77,12 @@ function Challenge() {
         challenge.chId == joinChIdList[0] || challenge.chId == joinChIdList[1],
     };
   });
+
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const handleItemClick = (item) => {
+    setSelectedItem(item);
+  };
 
   //TODO localStorage.getItem("userAccount")로 바꾸기
   const localStorageUserID = 81;
@@ -136,7 +142,10 @@ function Challenge() {
         <SoftBox mt={5} mb={3}></SoftBox>
         <Card>
           <SoftBox pt={5} px={5}>
-            <ItemListButton />
+            <FilteringByCategory
+              selectedItem={selectedItem}
+              onSelectItem={handleItemClick}
+            />
             <SoftBox mb={0.5}>
               <SoftTypography variant="h5" fontWeight="medium">
                 전체 챌린지 리스트
@@ -150,11 +159,19 @@ function Challenge() {
           </SoftBox>
           <SoftBox p={2}>
             <Grid container spacing={3}>
-              {updatedChallengeList.map((challenge) => (
-                <Grid item xs={12} md={6} xl={3} key={challenge.chId}>
-                  <ChallengeCard challenge={challenge} />
-                </Grid>
-              ))}
+              {updatedChallengeList
+                .filter((challenge) => {
+                  if (selectedItem === null) {
+                    return true; // selectedItem이 null일 때는 모든 요소 표시
+                  } else {
+                    return selectedItem.id === challenge.category;
+                  }
+                })
+                .map((challenge) => (
+                  <Grid item xs={12} md={6} xl={3} key={challenge.chId}>
+                    <ChallengeCard challenge={challenge} />
+                  </Grid>
+                ))}
             </Grid>
           </SoftBox>
         </Card>

@@ -94,16 +94,8 @@ function ChallengeDetail() {
   //TODO localStorage.getItem("userAccount")로 바꾸기
   const localStorageUserID = 81;
 
-  const {
-    image,
-    category,
-    grade,
-    verifyTerm,
-    period,
-    remainingDays,
-    days,
-    endDate,
-  } = DataConverter(challengeDetail);
+  const { image, category, grade, verifyTerm, period, remainingDays } =
+    DataConverter(challengeDetail);
 
   let buttonComponent;
   let ddayComponent;
@@ -543,7 +535,7 @@ function ChallengeDetail() {
                   <SoftTypography variant="body1">
                     {challengeDetail.chStartDate}
                     {" ~ "}
-                    {endDate}
+                    {challengeDetail.chEndDate}
                   </SoftTypography>
                 </SoftBox>
                 <hr style={{ width: "100%", border: "1px solid #999999" }} />
@@ -674,7 +666,7 @@ function ChallengeDetail() {
                     뒤로
                   </SoftButton>
                   {localStorageUserID === challengeDetail.userId ||
-                  challengeDetail.adminYN === "y" ? (
+                  challengeDetail.adminYn === "y" ? (
                     // 작성자일 경우 삭제
                     <>
                       <SoftButton
