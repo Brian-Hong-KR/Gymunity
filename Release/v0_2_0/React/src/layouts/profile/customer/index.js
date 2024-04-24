@@ -82,6 +82,7 @@ function CustomerCreate(){
             const response = await axios.post("http://192.168.0.60:8090/user/inquiries", customer, config);
             console.log("Registration successful:", response);
             alert('문의가 성공적으로 작성되었습니다.');
+            navigate("/profile");
           } catch (error) {
             
             
