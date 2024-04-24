@@ -15,7 +15,7 @@
 		<result column="user_id" property="userId" />
 		<result column="nick_name" property="nickName" />
 		<result column="grade_name" property="gradeName" />
-		<result column="admin_yn" property="adminYN" />
+		<result column="admin_yn" property="adminYn" />
 	</resultMap>
 	
 	<!-- 챌린지 총 개수 -->
