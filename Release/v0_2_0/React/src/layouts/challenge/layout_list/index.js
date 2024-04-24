@@ -172,7 +172,7 @@ function Challenge() {
                   }
                 })
                 .map((challenge) => (
-                  <Grid item xs={12} md={6} xl={3} key={challenge.chId}>
+                  <Grid item xs={12} md={4} xl={4} key={challenge.chId}>
                     <ChallengeCard challenge={challenge} />
                   </Grid>
                 ))}

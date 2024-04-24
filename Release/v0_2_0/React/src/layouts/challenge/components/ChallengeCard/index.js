@@ -41,8 +41,8 @@ function ChallengeCard({ challenge }) {
         to={`/challenge/detail/${challenge.chId}`}
         variant="outlined"
         size="small"
-        color="primary"
-        sx={{ minWidth: "280px" }}
+        color="info"
+        sx={{ minWidth: "250px" }}
       >
         자세히 보기
       </SoftButton>
@@ -215,7 +215,7 @@ function ChallengeCard({ challenge }) {
         backgroundColor: "transparent",
         boxShadow: "none",
         overflow: "visible",
-        // position: "relative",
+        position: "relative",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -263,7 +263,7 @@ function ChallengeCard({ challenge }) {
             boxShadow: ({ boxShadows: { md } }) => md,
             objectFit: "contain",
             objectPosition: "center",
-            backgroundColor: "#FF3636",
+            backgroundColor: "#C00000",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -272,14 +272,14 @@ function ChallengeCard({ challenge }) {
             fontWeight: "bold",
           }}
         >
-          {category}
+              {category}
         </SoftBox>
         <CardMedia
           src={image}
           component="img"
           sx={{
             maxWidth: "100%",
-            height: "auto",
+            height: "100%",
             margin: "0 auto",
             boxShadow: ({ boxShadows: { md } }) => md,
             objectFit: "cover",
@@ -303,6 +303,7 @@ function ChallengeCard({ challenge }) {
             display: "flex",
             alignItems: "center",
           }}
+
         >
           <CardMedia
             src={icon_count}
@@ -324,7 +325,7 @@ function ChallengeCard({ challenge }) {
         </SoftBox>
         {ddayComponent}
       </SoftBox>
-      <SoftBox pt={2} px={0.5} style={{ marginTop: "10px" }}>
+      <SoftBox pt={1} pb={1} px={3}>
         <SoftBox mb={1}>
           <SoftTypography
             component={Link}
