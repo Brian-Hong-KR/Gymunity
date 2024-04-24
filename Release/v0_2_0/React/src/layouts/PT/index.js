@@ -13,7 +13,6 @@ function PT() {
         <DashboardNavbar />
         <PersonalTraining />
         <PTChatbot />
-        <GymunityNavbar />
     </DashboardLayout>
   );
 }

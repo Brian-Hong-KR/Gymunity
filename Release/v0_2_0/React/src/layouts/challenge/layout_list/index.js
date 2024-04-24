@@ -179,7 +179,6 @@ function Challenge() {
         {/* TODO SoftPagination 설정 */}
         {pv && <SoftPagination getChallengeList={getChallengeList} />}
       </SoftBox>
-      <GymunityNavbar />
     </DashboardLayout>
   );
 }

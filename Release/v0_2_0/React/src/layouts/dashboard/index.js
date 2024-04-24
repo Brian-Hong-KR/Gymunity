@@ -86,7 +86,6 @@ function Dashboard() {
             </Grid>
           </Grid>
         </SoftBox>
-      <GymunityNavbar />
     </DashboardLayout>
   );
 }
