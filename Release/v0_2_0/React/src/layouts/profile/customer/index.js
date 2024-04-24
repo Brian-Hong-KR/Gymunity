@@ -47,12 +47,20 @@ function CustomerCreate(){
         content : "",
      });
 
-    const handleTitleChange = (e) => {
-        setTitle(e.target.value);
+     const handleTitleChange = (e) => {
+        const newTitle = e.target.value;
+        setCustomer(prevState => ({
+            ...prevState,
+            title: newTitle
+        }));
     };
-
+    
     const handleContentChange = (e) => {
-        setContent(e.target.value);
+        const newContent = e.target.value;
+        setCustomer(prevState => ({
+            ...prevState,
+            content: newContent
+        }));
     };
 
     const handleSubmit =  async (e)  => {
