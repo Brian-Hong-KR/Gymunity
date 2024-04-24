@@ -30,6 +30,7 @@ import EditUser from "layouts/profile/info/EditUser";
 import UserPhotoPage from "layouts/profile/info/userphotopage";
 import UserPointPage from "layouts/profile/info/userpointpage";
 import CustomerCreate from "layouts/profile/customer";
+import Cs from "layouts/dashboard/info/CsPage";
 
 const routes = [
   {
@@ -177,6 +178,12 @@ const routes = [
     key: "customer",
     route: "/profile/customer",
     component: <CustomerCreate />,
+  },
+
+  {
+    key: "cs",
+    route: "/dashboard/cs",
+    component: <Cs />,
   },
 ];
 

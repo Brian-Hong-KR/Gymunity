@@ -1,5 +1,8 @@
 package com.gymunity.user.serviceimpl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,13 +22,16 @@ import com.gymunity.user.dto.User;
 import com.gymunity.user.dto.UserInfoDTO;
 import com.gymunity.user.dto.UserUpdateDTO;
 import com.gymunity.user.repository.UserMapper;
+import com.gymunity.user.response.CustomerDetailResponse;
 import com.gymunity.user.response.CustomerResponse;
 import com.gymunity.user.response.SigninResponse;
 import com.gymunity.user.response.SignupResponse;
 import com.gymunity.user.service.UserService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -181,21 +187,48 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public CustomerResponse insertCustomerProcess(CustomerDTO dto, int userId) {
+		
+		User user = userMapper.selectUsersByUserId(userId);
+		Profile profile = userMapper.selectProfilesByUserId(user.getUserId());
+		
 		Customer customer = new Customer();
 		customer.setTitle(dto.getTitle());
 		customer.setContent(dto.getContent());
 		customer.setInquiryDate(dto.getInquiryDate());
 		customer.setUserId(userId);
+		customer.setUserEmail(profile.getUserEmail());
 		userMapper.insertInquiries(customer);
 		
-		User user = userMapper.selectUsersByUserId(userId);
+		
 		
 		CustomerResponse response = new CustomerResponse();
 		response.setTitle(customer.getTitle());
 		response.setContent(customer.getContent());
 		
 		return response;
-	}// end validateUserIdPassword()
+	}
+
+	@Override
+	public CustomerDetailResponse getCustomerProcess() {
+		CustomerDetailResponse response = new CustomerDetailResponse();
+		
+		 
+		// 조회된 고객 정보를 처리하고 response에 추가
+	    List<Customer> dto = userMapper.selectInquiries();
+	    
+	    
+	        response.setCs(dto);
+	        log.info("sss:{}",dto);
+	        return response;
+	}
+
+
+
+
+	// CS관리
+
+	
+	
 	
 	
 

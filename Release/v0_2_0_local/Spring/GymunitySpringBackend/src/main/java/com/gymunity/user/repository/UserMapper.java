@@ -1,5 +1,7 @@
 package com.gymunity.user.repository;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -44,5 +46,7 @@ public interface UserMapper {
 	public User selectSurveyByUserId(int userId);
 	
 	public int insertInquiries(Customer dto);
+	
+	public List<Customer> selectInquiries();
 
 }// end interface

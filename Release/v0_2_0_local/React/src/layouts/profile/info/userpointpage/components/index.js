@@ -28,7 +28,7 @@ const PointDetail = () => {
 
   const fetchPoints = () => {
     axios
-      .get(`/editinfo/pointdetail`, baseConfig)
+      .get(`http://127.0.0.1:8090/editinfo/pointdetail`, baseConfig)
       .then((response) => {
         const details = response.data.details;
         const newRows = details.map((pointdetail) => ({
