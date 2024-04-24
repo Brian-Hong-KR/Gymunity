@@ -30,9 +30,7 @@ import com.gymunity.user.service.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @CrossOrigin("*")
 @RestController
 @RequiredArgsConstructor
@@ -43,7 +41,7 @@ public class UserController {
 	// 유입자
 	@PostMapping("/submissions")
 	public void submissions() {
-		userService.submissionsProcess();
+		userService.newVisitProcess();
 	}
 
 	// 회원가입

@@ -22,6 +22,7 @@ import com.gymunity.user.dto.CustomerDTO;
 import com.gymunity.user.dto.SignupDTO;
 import com.gymunity.user.dto.UserInfoDTO;
 import com.gymunity.user.dto.UserUpdateDTO;
+import com.gymunity.user.response.CustomerDetailResponse;
 import com.gymunity.user.response.CustomerResponse;
 import com.gymunity.user.response.SigninResponse;
 import com.gymunity.user.response.SignupResponse;
@@ -92,6 +93,15 @@ public class UserController {
         dto.setInquiryDate(now);
         
 		CustomerResponse response = userService.insertCustomerProcess(dto, userId);
+		return ResponseEntity.ok(response);
+	}
+	
+	@Operation(summary = "고객 문의 리스트")
+	@GetMapping("/user/inquirieslist")
+	public ResponseEntity<CustomerDetailResponse> getCsList(){
+		
+		CustomerDetailResponse response = userService.getCustomerProcess();
+		
 		return ResponseEntity.ok(response);
 	}
 

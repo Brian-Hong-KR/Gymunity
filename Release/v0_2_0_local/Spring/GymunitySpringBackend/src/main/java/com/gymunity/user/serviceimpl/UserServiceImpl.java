@@ -29,9 +29,7 @@ import com.gymunity.user.response.SignupResponse;
 import com.gymunity.user.service.UserService;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -44,8 +42,8 @@ public class UserServiceImpl implements UserService {
 
 	// 유입자
 	@Override
-	public void submissionsProcess() {
-		userMapper.insertSurveySubmissions();
+	public void newVisitProcess() {
+		userMapper.insertNewVisit();
 	}
 
 	// 회원가입

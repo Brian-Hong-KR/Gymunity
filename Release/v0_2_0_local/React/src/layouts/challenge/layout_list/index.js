@@ -142,20 +142,24 @@ function Challenge() {
         <SoftBox mt={5} mb={3}></SoftBox>
         <Card>
           <SoftBox pt={5} px={5}>
-            <FilteringByCategory
-              selectedItem={selectedItem}
-              onSelectItem={handleItemClick}
-            />
+
             <SoftBox mb={0.5}>
               <SoftTypography variant="h5" fontWeight="medium">
                 전체 챌린지 리스트
               </SoftTypography>
             </SoftBox>
+
             <SoftBox mb={3}>
               <SoftTypography variant="h6" fontWeight="regular" color="text">
                 진행중인 챌린지를 확인하고 참여해보세요!
               </SoftTypography>
             </SoftBox>
+
+            <FilteringByCategory
+              selectedItem={selectedItem}
+              onSelectItem={handleItemClick}
+            />
+
           </SoftBox>
           <SoftBox p={2}>
             <Grid container spacing={3}>
@@ -168,7 +172,7 @@ function Challenge() {
                   }
                 })
                 .map((challenge) => (
-                  <Grid item xs={12} md={6} xl={3} key={challenge.chId}>
+                  <Grid item xs={12} md={8} xl={4} key={challenge.chId}>
                     <ChallengeCard challenge={challenge} />
                   </Grid>
                 ))}

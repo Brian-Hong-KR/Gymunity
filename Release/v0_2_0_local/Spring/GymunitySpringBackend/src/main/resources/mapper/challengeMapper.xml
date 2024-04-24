@@ -29,8 +29,8 @@
 		useGeneratedKeys="true"
 		keyProperty="chId">
 	    <![CDATA[
-	    INSERT INTO challenges (title, content, category, betting_point, ch_start_date, ch_end_date, verify_term, total_date, user_id)
-	    VALUES (#{title}, #{content}, #{category}, #{bettingPoint}, #{chStartDate}, #{chEndDate}, #{verifyTerm}, #{totalDate}, #{userId})
+	    INSERT INTO challenges (title, content, category, betting_point, ch_start_date, ch_end_date, verify_term, challenge_period, total_date, user_id)
+	    VALUES (#{title}, #{content}, #{category}, #{bettingPoint}, #{chStartDate}, #{chEndDate}, #{verifyTerm}, #{challengePeriod}, #{totalDate}, #{userId})
         ]]>
     </insert>
 

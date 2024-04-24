@@ -22,9 +22,9 @@ public interface UserService {
 	public void deleteUserProcess(String userAccountId);
 	
 	public UserInfoDTO userInfoProcess(String userAccountId);
-	
-	public void submissionsProcess();
-	
+
+	public void newVisitProcess();
+
 	public CustomerResponse insertCustomerProcess(CustomerDTO dto, int userId);
 	
 	public CustomerDetailResponse getCustomerProcess();

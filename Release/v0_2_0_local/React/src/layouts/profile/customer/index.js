@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 // @mui material components
 import Switch from "@mui/material/Switch";
 import Grid from "@mui/material/Grid";
+import Card from "@mui/material/Card";
 import AppBar from "@mui/material/AppBar";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -78,7 +79,7 @@ function CustomerCreate(){
 
           console.log("Form submitting", customer);
           try {
-            const response = await axios.post("http://127.0.0.1:8090/user/inquiries", customer, config);
+            const response = await axios.post("http://192.168.0.60:8090/user/inquiries", customer, config);
             console.log("Registration successful:", response);
             alert('문의가 성공적으로 작성되었습니다.');
           } catch (error) {
@@ -103,7 +104,8 @@ function CustomerCreate(){
                     </SoftBox>
                 </SoftBox>
 
-                <SoftBox component="form" role="form"> 
+            <Card>
+                <SoftBox component="form" role="form" pt={2} pb={3} px={3}>
 
                 <SoftBox mb={2}>
                     <SoftBox mb={1} ml={0.5}>
@@ -142,7 +144,7 @@ function CustomerCreate(){
                 <SoftBox mt={4} mb={1}>
                     <SoftButton type = "submit" 
                                 variant="gradient" 
-                                color="dark" 
+                                color="dark"
                                 fullWidth 
                                 onClick = {handleSubmit}
                                 >
@@ -150,8 +152,8 @@ function CustomerCreate(){
                     </SoftButton>
                 </SoftBox>
                 </SoftBox>
-
-            </DashboardLayout>
+            </Card>
+        </DashboardLayout>
       );
 }
 export default CustomerCreate;

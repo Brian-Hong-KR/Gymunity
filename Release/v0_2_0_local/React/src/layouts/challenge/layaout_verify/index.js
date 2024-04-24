@@ -71,7 +71,7 @@ import axios from "axios";
       };
   
       try {
-        const response = await axios.post('http://127.0.0.1:8090/verify/upload', formData, config);
+        const response = await axios.post('http://192.168.0.60:8090/verify/upload', formData, config);
         console.log(response.data);
         
         alert('사진이 성공적으로 업로드되었습니다.');

@@ -75,7 +75,7 @@ const EditUser = () => {
     }
 
     try {
-      const response = await axios.put("http://127.0.0.1:8090/user/update", users, config);
+      const response = await axios.put("http://192.168.0.60:8090/user/update", users, config);
       localStorage.setItem("userEmail", userEmail);
       localStorage.setItem("nickName", nickName);
       navigate("/"); // 수정 후 메인 페이지로 이동
@@ -151,7 +151,7 @@ const EditUser = () => {
                   <SoftButton
                     type="submit"
                     variant="gradient"
-                    color="info"
+                    color="dark"
                     fullWidth
                   >
                     회원정보 수정

@@ -659,7 +659,7 @@ function ChallengeDetail() {
                 >
                   <SoftButton
                     variant="gradient"
-                    color="info"
+                    color="dark"
                     component={Link}
                     to={`/challenge/list/${pv.currentPage}`}
                   >
@@ -671,7 +671,7 @@ function ChallengeDetail() {
                     <>
                       <SoftButton
                         variant="gradient"
-                        color="info"
+                        color="white"
                         onClick={handleShowAlert}
                       >
                         삭제
@@ -682,7 +682,7 @@ function ChallengeDetail() {
                     // 참여중이면서 진행중일 경우 '인증하기', 아닐 경우 '참여하기'
                     <SoftButton
                       variant="gradient"
-                      color="info"
+                      color="dark"
                       component={Link}
                       to={`/challenge/verify/${challengeDetail.chId}`}
                     >
@@ -692,7 +692,7 @@ function ChallengeDetail() {
                     <>
                       <SoftButton
                         variant="gradient"
-                        color="info"
+                        color="dark"
                         onClick={handleShowAlert}
                       >
                         참여하기

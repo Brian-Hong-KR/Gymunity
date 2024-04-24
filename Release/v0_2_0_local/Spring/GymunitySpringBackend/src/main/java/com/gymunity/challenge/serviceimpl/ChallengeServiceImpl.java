@@ -103,6 +103,7 @@ public class ChallengeServiceImpl implements ChallengeService {
 		challenge.setChStartDate(dto.getChStartDate());
 		challenge.setChEndDate(dto.getChEndDate());
 		challenge.setVerifyTerm(dto.getVerifyTerm());
+		challenge.setChallengePeriod(dto.getChallengePeriod());
 		challenge.setTotalDate(totalVerificationDays);
 		challenge.setUserId(userId);
 		challengeMapper.insertChallenges(challenge);
