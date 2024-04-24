@@ -19,7 +19,6 @@ import CreditCard from "examples/Icons/CreditCard";
 import ChallengeCreate from "layouts/challenge/layout_create";
 import ChallengeDetail from "layouts/challenge/layout_detail";
 import ChallengeVerify from "layouts/challenge/layaout_verify";
-import PointPage from "layouts/dashboard/info/PointPage";
 import UserManagePage from "layouts/dashboard/info/UserManagePage";
 import VerifyPage from "layouts/dashboard/info/VerifyPage";
 import ModifyPlanPage from "layouts/profile/info/ModifyPlanPage";
@@ -32,6 +31,7 @@ import UserPointPage from "layouts/profile/info/userpointpage";
 import AdminInfo from "layouts/admin";
 import CustomerCreate from "layouts/profile/customer";
 import Cs from "layouts/dashboard/info/CsPage";
+import EditPointPage from 'layouts/dashboard/info/EditPointPage';
 
 const routes = [
   {
@@ -115,9 +115,9 @@ const routes = [
     component: <ChallengeVerify />,
   },
   {
-    key: "point",
-    route: "/point",
-    component: <PointPage />,
+    key: "editpoint",
+    route: "/dashboard/editpoint",
+    component: <EditPointPage />,
   },
 
   // 유저 사진첩
