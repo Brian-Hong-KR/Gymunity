@@ -61,8 +61,18 @@ function SignUp() {
     });
   };
 
+  const isFormValid = () => {
+    return Object.values(user).every(value => value.trim() !== "");
+  };
+
   const onSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
+
+    // 입력란이 비어 있는지 확인
+    if (!isFormValid()) {
+      alert("모든 입력란을 채워주세요.");
+      return;
+    }
 
     if (!agreement) {
       alert("You must agree to the terms and conditions.");
