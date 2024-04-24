@@ -25,6 +25,8 @@ public interface AdminMapper {
 	
 	public List<LocalDate> selectAllSignupDates();
 	
+	public List<LocalDate> selectAllSigninDates();
+	
 	public List<LocalDate> selectReferrerSignupDates();
 
 }

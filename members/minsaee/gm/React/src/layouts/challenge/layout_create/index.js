@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 // @mui material components
 import Switch from "@mui/material/Switch";
 import Grid from "@mui/material/Grid";
+import Card from "@mui/material/Card";
 import AppBar from "@mui/material/AppBar";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -52,6 +53,7 @@ function ChallengeCreate() {
     chStartDate: "",
     chEndDate: "",
     verifyTerm: 1,
+    challengePeriod : 1,
   });
 
   // 탭
@@ -112,10 +114,18 @@ function ChallengeCreate() {
       0: 1,
       1: 2,
       2: 4,
-      3: 8,
+      3: 6,
+      4: 8,
     };
 
     const periodInWeeks = dateOptions[newValue];
+
+    setChallenge((prev) => ({
+      ...prev,
+      challengePeriod: periodInWeeks,
+    }));
+
+    console.log("기간 값:", periodInWeeks);
 
     if (!challenge.chStartDate) {
       console.error(
@@ -254,13 +264,17 @@ function ChallengeCreate() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
+        <SoftBox py={3}>
+          <SoftBox mb={3}>
+              <SoftTypography variant="h5">챌린지 만들기</SoftTypography>
+              <SoftTypography variant="body2" color="text">
+                건전하고 공정한 챌린지로 모두 즐겁게 운동할 수 있게 해주세요.
+              </SoftTypography>
+            </SoftBox>
+        </SoftBox>
 
-      <CoverLayout
-        title="챌린지 만들기"
-        description="건전하고 공정한 챌린지로 모두 즐겁게 운동할 수 있게 해주세요."
-        image={curved9}
-      >
-        <SoftBox component="form" role="form" onSubmit={handleCreateChallenge}>
+        <Card>
+        <SoftBox component="form" role="form" pt={2} pb={3} px={3} onSubmit={handleCreateChallenge}>
           <SoftBox mb={2}>
             <SoftBox mb={1} ml={0.5}>
               <SoftTypography
@@ -377,6 +391,7 @@ function ChallengeCreate() {
                   <Tab label="1주간" icon={<Cube />} />
                   <Tab label="2주간" icon={<Cube />} />
                   <Tab label="4주간" icon={<Document />} />
+                  <Tab label="6주간" icon={<Document />} />
                   <Tab label="8주간" icon={<Settings />} />
                 </Tabs>
               </AppBar>
@@ -426,7 +441,7 @@ function ChallengeCreate() {
             <SoftButton
               type="submit"
               variant="gradient"
-              color="info"
+              color="dark"
               fullWidth
               // onClick={handleCreateChallenge}>
             >
@@ -434,7 +449,8 @@ function ChallengeCreate() {
             </SoftButton>
           </SoftBox>
         </SoftBox>
-      </CoverLayout>
+      </Card>
+
     </DashboardLayout>
   );
 }

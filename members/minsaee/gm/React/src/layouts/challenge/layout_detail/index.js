@@ -94,16 +94,8 @@ function ChallengeDetail() {
   //TODO localStorage.getItem("userAccount")로 바꾸기
   const localStorageUserID = 81;
 
-  const {
-    image,
-    category,
-    grade,
-    verifyTerm,
-    period,
-    remainingDays,
-    days,
-    endDate,
-  } = DataConverter(challengeDetail);
+  const { image, category, grade, verifyTerm, period, remainingDays } =
+    DataConverter(challengeDetail);
 
   let buttonComponent;
   let ddayComponent;
@@ -543,7 +535,7 @@ function ChallengeDetail() {
                   <SoftTypography variant="body1">
                     {challengeDetail.chStartDate}
                     {" ~ "}
-                    {endDate}
+                    {challengeDetail.chEndDate}
                   </SoftTypography>
                 </SoftBox>
                 <hr style={{ width: "100%", border: "1px solid #999999" }} />
@@ -667,19 +659,19 @@ function ChallengeDetail() {
                 >
                   <SoftButton
                     variant="gradient"
-                    color="info"
+                    color="dark"
                     component={Link}
                     to={`/challenge/list/${pv.currentPage}`}
                   >
                     뒤로
                   </SoftButton>
                   {localStorageUserID === challengeDetail.userId ||
-                  challengeDetail.adminYN === "y" ? (
+                  challengeDetail.adminYn === "y" ? (
                     // 작성자일 경우 삭제
                     <>
                       <SoftButton
                         variant="gradient"
-                        color="info"
+                        color="white"
                         onClick={handleShowAlert}
                       >
                         삭제
@@ -690,7 +682,7 @@ function ChallengeDetail() {
                     // 참여중이면서 진행중일 경우 '인증하기', 아닐 경우 '참여하기'
                     <SoftButton
                       variant="gradient"
-                      color="info"
+                      color="dark"
                       component={Link}
                       to={`/challenge/verify/${challengeDetail.chId}`}
                     >
@@ -700,7 +692,7 @@ function ChallengeDetail() {
                     <>
                       <SoftButton
                         variant="gradient"
-                        color="info"
+                        color="dark"
                         onClick={handleShowAlert}
                       >
                         참여하기

@@ -40,6 +40,7 @@ function SignIn() {
         localStorage.setItem("userAccountId", response.data.userAccountId);
         localStorage.setItem("nickName", response.data.nickName);
         localStorage.setItem("userId", response.data.userId);
+        localStorage.setItem("isAdmin", response.data.adminYn);
         localStorage.setItem("isLogin", true);
 
         setInputs({ userAccountId: "", password: "" });

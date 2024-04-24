@@ -27,6 +27,7 @@
 		<result property="title" column="inquiry_title" />
 		<result property="content" column="inquiry_content" />
 		<result property="inquiryDate" column="inquiry_date" />
+		<result property="userEmail" column="user_email" />
 	</resultMap>
 	
 	<!-- survey_submissions 테이블에 데이터 삽입-->

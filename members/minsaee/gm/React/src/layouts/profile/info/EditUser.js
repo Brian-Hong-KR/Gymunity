@@ -151,7 +151,7 @@ const EditUser = () => {
                   <SoftButton
                     type="submit"
                     variant="gradient"
-                    color="info"
+                    color="dark"
                     fullWidth
                   >
                     회원정보 수정

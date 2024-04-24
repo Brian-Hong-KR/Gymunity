@@ -9,7 +9,6 @@ function Overview() {
     <DashboardLayout>
       <DashboardNavbar />
       <ProfileData />
-      <GymunityNavbar />
     </DashboardLayout>
   );
 }

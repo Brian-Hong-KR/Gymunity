@@ -9,7 +9,6 @@ function UserPhotoPage() {
     <DashboardLayout>
       <DashboardNavbar />
       <PhotoList />
-      <GymunityNavbar />
     </DashboardLayout>
   );
 }

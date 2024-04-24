@@ -10,4 +10,6 @@ import lombok.Setter;
 public class CustomerResponse {
 	private String title;
 	private String content;
+	private String usrEmail;
+	private LocalDate inquiryDate;
 }

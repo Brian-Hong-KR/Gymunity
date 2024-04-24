@@ -12,4 +12,5 @@ public class Customer {
 	private String content;
 	private LocalDate inquiryDate;
 	private int userId;
+	private String userEmail;
 }

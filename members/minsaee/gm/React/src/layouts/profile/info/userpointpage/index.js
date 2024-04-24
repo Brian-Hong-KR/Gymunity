@@ -8,7 +8,6 @@ function UserPointPage() {
     <DashboardLayout>
       <DashboardNavbar />
       <PointDetail />
-      <GymunityNavbar />
     </DashboardLayout>
   );
 }
