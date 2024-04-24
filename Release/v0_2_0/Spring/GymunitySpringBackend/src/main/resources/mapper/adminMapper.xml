@@ -43,5 +43,30 @@
 		WHERE mem_user_id = #{userId}
 		AND mem_ch_id = #{chId}
 	</update>
+	
+	<!-- AARRR -->
+	<!-- 유입자데이터 가져오기-->
+	<select id="selectAllSubmissions" resultType="java.time.LocalDate">
+		SELECT timestamp
+		FROM user_events
+		WHERE event_type = 001
+	</select>
+	<!-- 회원가입데이터 가져오기-->
+	<select id="selectAllSignupDates" resultType="java.time.LocalDate">
+		SELECT signup_date
+		FROM profiles
+	</select>
+	<!-- 로그인데이터 가져오기-->
+	<select id="selectAllSigninDates" resultType="java.time.LocalDate">
+		SELECT timestamp
+		FROM user_events
+		WHERE event_type = 002
+	</select>
+	<!-- 추천인등록 회원가입데이터 가져오기-->
+	<select id="selectReferrerSignupDates" resultType="java.time.LocalDate">
+		SELECT signup_date
+		FROM profiles
+		WHERE referrer_id IS NOT NULL AND referrer_id != 0
+	</select>
 
 </mapper>

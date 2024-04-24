@@ -21,8 +21,12 @@ public interface UserService {
 	
 	public UserInfoDTO userInfoProcess(String userAccountId);
 	
+<<<<<<< Updated upstream
 	public void submissionsProcess();
 	
 	public CustomerResponse insertCustomerProcess(CustomerDTO dto, int userId);
+=======
+	public void newVisitProcess();
+>>>>>>> Stashed changes
 
 }// end interface

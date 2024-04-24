@@ -53,7 +53,7 @@ const routes = [
     type: "collapse",
     name: "Challenge",
     key: "Challenge",
-    route: "/Challenge/list/1",
+    route: "/challenge/list/1",
     icon: <SpaceShip size="12px" />,
     component: <Challenge />,
     noCollapse: true,
@@ -86,6 +86,7 @@ const routes = [
     icon: <Settings size="12px" />,
     component: <Dashboard />,
     noCollapse: true,
+    isAdmin: true, // 이 라인을 추가하여 라우트가 관리자용임을 명시
   },
 
   {
@@ -102,12 +103,12 @@ const routes = [
   },
   {
     key: "ChallengeDetail",
-    route: "/challenge/detail/:ch_id",
+    route: "/challenge/detail/:chId",
     component: <ChallengeDetail />,
   },
   {
     key: "ChallengeVerify",
-    route: "/challenge/verify/:ch_id",
+    route: "/challenge/verify/:chId",
     component: <ChallengeVerify />,
   },
   {

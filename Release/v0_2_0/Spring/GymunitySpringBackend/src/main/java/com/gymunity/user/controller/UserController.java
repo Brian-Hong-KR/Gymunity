@@ -40,7 +40,7 @@ public class UserController {
 	// 유입자
 	@PostMapping("/submissions")
 	public void submissions() {
-		userService.submissionsProcess();
+		userService.newVisitProcess();
 	}
 
 	// 회원가입

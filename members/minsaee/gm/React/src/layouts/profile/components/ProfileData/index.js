@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import Grid from "@mui/material/Grid";
@@ -171,7 +171,7 @@ const ProfileData = () => {
               title={{ text: "Point" }}
               count={profileInfo.currentPoints}
               icon={{ color: "dark", component: "paid" }}
-              navigateTo="/points" // 추가한부분(민호)
+              navigateTo="/profile/point"
             />
           </Grid>
 

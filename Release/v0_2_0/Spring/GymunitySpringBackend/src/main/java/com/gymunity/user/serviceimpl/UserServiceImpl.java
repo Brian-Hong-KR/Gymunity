@@ -38,8 +38,8 @@ public class UserServiceImpl implements UserService {
 
 	// 유입자
 	@Override
-	public void submissionsProcess() {
-		userMapper.insertSurveySubmissions();
+	public void newVisitProcess() {
+		userMapper.insertNewVisit();
 	}
 
 	// 회원가입
