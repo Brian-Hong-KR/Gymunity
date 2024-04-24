@@ -20,6 +20,8 @@ public interface UserService {
 	public void deleteUserProcess(String userAccountId);
 	
 	public UserInfoDTO userInfoProcess(String userAccountId);
+
+        public void newVisitProcess();
 	
 	public void submissionsProcess();
 	

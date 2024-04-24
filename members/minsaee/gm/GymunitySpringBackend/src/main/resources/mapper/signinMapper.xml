@@ -27,7 +27,7 @@
 		WHERE user_id = #{userId}
 	</update>
 	
-	<!-- survey_submissions 테이블에 데이터 삽입-->
+	<!-- user_events 테이블에 데이터 삽입-->
 	<insert id="insertSignin">
         <![CDATA[
         INSERT INTO user_events (event_type) VALUES (2)
