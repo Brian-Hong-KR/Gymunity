@@ -123,7 +123,7 @@ function Survey() {
     };
     console.log("Form submitting", formData);
     try {
-      const response = await axios.post("http://192.168.0.60:8090/resurvey", formData, config);
+      const response = await axios.post("http://127.0.0.1:8090/resurvey", formData, config);
       console.log("Response data:", response.data);
       setPlanData({
         planName: response.data.planName,

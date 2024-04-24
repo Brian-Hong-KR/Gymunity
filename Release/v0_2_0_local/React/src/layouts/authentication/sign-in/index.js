@@ -29,7 +29,7 @@ function SignIn() {
   const onSubmit = async (e) => {
     e.preventDefault();
     await axios
-      .post("http://192.168.0.60:8090/user/signin", inputs)
+      .post("http://127.0.0.1:8090/user/signin", inputs)
       .then((response) => {
         //console.log(response);
         //let jwtToken = response.headers["authorization"];

@@ -70,7 +70,7 @@ function CustomerCreate(){
 
           console.log("Form submitting", customer);
           try {
-            const response = await axios.post("http://192.168.0.60:8090/user/inquiries", customer, config);
+            const response = await axios.post("http://127.0.0.1:8090/user/inquiries", customer, config);
             console.log("Registration successful:", response);
             alert('문의가 성공적으로 작성되었습니다.');
           } catch (error) {
