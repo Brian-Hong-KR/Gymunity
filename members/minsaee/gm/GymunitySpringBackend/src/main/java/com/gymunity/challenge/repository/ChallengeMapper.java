@@ -19,7 +19,7 @@ public interface ChallengeMapper {
 	
 	public List<Challenge> list(PageDTO pv);
 	
-	public List<ProfileDTO> joinList(int user_id);
+	public List<ProfileDTO> joinList(int userId);
 	
 	public int insertChallenges(Challenge dto);
 

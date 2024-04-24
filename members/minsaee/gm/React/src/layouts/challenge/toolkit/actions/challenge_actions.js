@@ -54,10 +54,10 @@ function getChallengeCreate(formData) {
 //     dispatch(challengeReducers.getChallengeDetail({ data }));
 //   };
 // }
-function getChallengeDetail(ch_id) {
+function getChallengeDetail(chId) {
   return async (dispatch) => {
     const data = await axios
-      .get(`/challenge/detail/${ch_id}`)
+      .get(`/challenge/detail/${chId}`)
       .then((response) => response.data);
     dispatch(challengeReducers.getChallengeDetail({ data }));
   };
@@ -89,7 +89,7 @@ function getChallengeUpdate(formData, config) {
 //     await axios.delete(`/challenge/delete/${ch_id}`, config).then((response) => response.data);
 //   };
 // }
-function getChallengeDelete(ch_id) {
+function getChallengeDelete(chId) {
   return async () => {
     await axios
       .delete(`/challenge/delete/${ch_id}`)

@@ -1,7 +1,10 @@
 package com.gymunity.admin.controller;
 
+import java.util.Map;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,5 +30,10 @@ public class adminController {
 		adminService.verifyCheckProcess(dto.getViId(), dto.getResult());
 		return ResponseEntity.ok("인증확인 업데이트 되었습니다.");
 	}// end verifyCheck()
+	
+	@GetMapping("/admin/info")
+	public Map<String, Map<String, Integer>> getAllDataByWeek() {
+        return adminService.getAllDataByWeek();
+    }// end getAllDataByWeek()
 
 }// end class

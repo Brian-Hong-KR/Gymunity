@@ -93,7 +93,7 @@ function PlatformSettings() {
         </SoftBox>
         <SoftBox mt={4} mb={1}>
           <Link to='editUser'>
-            <SoftButton type='submit' variant='gradient' color='info' fullWidth>
+            <SoftButton type='submit' variant='gradient' color='dark' fullWidth>
               회원정보 수정
             </SoftButton>
           </Link>

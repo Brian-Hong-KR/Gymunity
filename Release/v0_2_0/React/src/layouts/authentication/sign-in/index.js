@@ -31,11 +31,6 @@ function SignIn() {
     await axios
       .post("http://192.168.0.60:8090/user/signin", inputs)
       .then((response) => {
-        //console.log(response);
-        //let jwtToken = response.headers["authorization"];
-        //let jwtToken = response.headers.get('authorization');
-        //let refreshToken = response.headers.get('refreshToken');
-        //console.log(jwtToken);
         let accessToken = response.data.accessToken;
         let refreshToken = response.data.refreshToken;
         console.log("accessToken", accessToken);
@@ -48,11 +43,9 @@ function SignIn() {
         localStorage.setItem("isLogin", true);
 
         setInputs({ userAccountId: "", password: "" });
-        //return response.data.memberEmail;
       })
       .then((response) => {
-        //console.log("then", response);
-        window.location.replace("/");
+        window.location.replace("/profile");
       })
       .catch((error) => console.log(error));
   };

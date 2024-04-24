@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 // @mui material components
 import Switch from "@mui/material/Switch";
 import Grid from "@mui/material/Grid";
+import Card from "@mui/material/Card";
 import AppBar from "@mui/material/AppBar";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -103,7 +104,8 @@ function CustomerCreate(){
                     </SoftBox>
                 </SoftBox>
 
-                <SoftBox component="form" role="form"> 
+            <Card>
+                <SoftBox component="form" role="form" pt={2} pb={3} px={3}>
 
                 <SoftBox mb={2}>
                     <SoftBox mb={1} ml={0.5}>
@@ -142,7 +144,7 @@ function CustomerCreate(){
                 <SoftBox mt={4} mb={1}>
                     <SoftButton type = "submit" 
                                 variant="gradient" 
-                                color="info" 
+                                color="dark"
                                 fullWidth 
                                 onClick = {handleSubmit}
                                 >
@@ -150,8 +152,8 @@ function CustomerCreate(){
                     </SoftButton>
                 </SoftBox>
                 </SoftBox>
-
-            </DashboardLayout>
+            </Card>
+        </DashboardLayout>
       );
 }
 export default CustomerCreate;
