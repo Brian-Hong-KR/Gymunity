@@ -211,12 +211,11 @@ function ChallengeCard({ challenge }) {
   return (
     <Card
       sx={{
-        flexDirection: "column",
+        flexDirection: "row",
         backgroundColor: "transparent",
         boxShadow: "none",
         overflow: "visible",
         // position: "relative",
-        marginBottom: "30px",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",

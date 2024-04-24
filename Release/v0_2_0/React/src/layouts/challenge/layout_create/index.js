@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 // @mui material components
 import Switch from "@mui/material/Switch";
 import Grid from "@mui/material/Grid";
+import Card from "@mui/material/Card";
 import AppBar from "@mui/material/AppBar";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -263,7 +264,8 @@ function ChallengeCreate() {
             </SoftBox>
         </SoftBox>
 
-        <SoftBox component="form" role="form" onSubmit={handleCreateChallenge}>
+        <Card>
+        <SoftBox component="form" role="form" pt={2} pb={3} px={3} onSubmit={handleCreateChallenge}>
           <SoftBox mb={2}>
             <SoftBox mb={1} ml={0.5}>
               <SoftTypography
@@ -437,6 +439,7 @@ function ChallengeCreate() {
             </SoftButton>
           </SoftBox>
         </SoftBox>
+      </Card>
 
     </DashboardLayout>
   );

@@ -229,19 +229,19 @@ const ProfileData = () => {
               </SoftBox>
               </Grid>
 
-              <Grid item xs={12} sm={6} xl={3}>
-                  <ReportsBarChart
-                  title="Weekly Point"
-                  description={
-                    <>
-                      (<strong>+23%</strong>) than last week
-                    </>
-                  }
-                  chart={chartData}
-                  />
-              </Grid>
-
             </Grid>
+
+              <ReportsBarChart
+              title="Weekly Point"
+              description={
+                <>
+                  (<strong>+23%</strong>) than last week
+                </>
+              }
+              chart={chartData}
+              />
+
+
           </Card>
           <SoftBox py={3}>
         <SoftBox mb={3}>
