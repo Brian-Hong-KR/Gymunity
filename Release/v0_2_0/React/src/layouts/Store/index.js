@@ -11,7 +11,6 @@ function Store() {
     <DashboardLayout>
         <DashboardNavbar />
         <ProductList />
-        <GymunityNavbar />
     </DashboardLayout>
   );
 }

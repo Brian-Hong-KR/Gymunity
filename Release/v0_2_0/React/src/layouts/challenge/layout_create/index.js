@@ -254,12 +254,15 @@ function ChallengeCreate() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
+        <SoftBox py={3}>
+          <SoftBox mb={3}>
+              <SoftTypography variant="h5">챌린지 만들기</SoftTypography>
+              <SoftTypography variant="body2" color="text">
+                건전하고 공정한 챌린지로 모두 즐겁게 운동할 수 있게 해주세요.
+              </SoftTypography>
+            </SoftBox>
+        </SoftBox>
 
-      <CoverLayout
-        title="챌린지 만들기"
-        description="건전하고 공정한 챌린지로 모두 즐겁게 운동할 수 있게 해주세요."
-        image={curved9}
-      >
         <SoftBox component="form" role="form" onSubmit={handleCreateChallenge}>
           <SoftBox mb={2}>
             <SoftBox mb={1} ml={0.5}>
@@ -426,7 +429,7 @@ function ChallengeCreate() {
             <SoftButton
               type="submit"
               variant="gradient"
-              color="info"
+              color="dark"
               fullWidth
               // onClick={handleCreateChallenge}>
             >
@@ -434,7 +437,7 @@ function ChallengeCreate() {
             </SoftButton>
           </SoftBox>
         </SoftBox>
-      </CoverLayout>
+
     </DashboardLayout>
   );
 }

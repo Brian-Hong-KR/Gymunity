@@ -85,11 +85,15 @@ function CustomerCreate(){
     return (
         <DashboardLayout>
             <DashboardNavbar/>
-            <div style={{ textAlign: 'center' }}>
-            <CoverLayout
-                title="고객 문의 작성"
-                image={curved9}
-            >
+
+                <SoftBox py={3}>
+                  <SoftBox mb={3}>
+                      <SoftTypography variant="h5">고객 문의</SoftTypography>
+                      <SoftTypography variant="body2" color="text">
+                        소중한 의견을 남겨주세요. (불편사항, 개선사항, 비지니스 문의 등)
+                      </SoftTypography>
+                    </SoftBox>
+                </SoftBox>
 
                 <SoftBox component="form" role="form"> 
 
@@ -138,8 +142,7 @@ function CustomerCreate(){
                     </SoftButton>
                 </SoftBox>
                 </SoftBox>
-            </CoverLayout>
-            </div>
+
             </DashboardLayout>
       );
 }
