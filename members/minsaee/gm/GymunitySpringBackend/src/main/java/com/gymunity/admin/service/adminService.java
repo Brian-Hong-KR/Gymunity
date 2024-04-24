@@ -14,7 +14,9 @@ public interface adminService {
 	
 	public Map<String, Integer> countAllSignUpByWeek();
 	
-	public Map<String, Integer> countReferrerSignupByWeek();
+	public Map<String, Integer> countAllSignInByWeek();
+	
+	public Map<String, Integer> countReferrerSignUpByWeek();
 	
 	public Map<String, Map<String, Integer>> getAllDataByWeek();
 	

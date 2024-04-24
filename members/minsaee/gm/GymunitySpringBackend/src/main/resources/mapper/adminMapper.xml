@@ -51,17 +51,20 @@
 		FROM user_events
 		WHERE event_type = 001
 	</select>
+	
 	<!-- 회원가입데이터 가져오기-->
 	<select id="selectAllSignupDates" resultType="java.time.LocalDate">
 		SELECT signup_date
 		FROM profiles
 	</select>
+	
 	<!-- 로그인데이터 가져오기-->
 	<select id="selectAllSigninDates" resultType="java.time.LocalDate">
 		SELECT timestamp
 		FROM user_events
 		WHERE event_type = 002
 	</select>
+	
 	<!-- 추천인등록 회원가입데이터 가져오기-->
 	<select id="selectReferrerSignupDates" resultType="java.time.LocalDate">
 		SELECT signup_date
