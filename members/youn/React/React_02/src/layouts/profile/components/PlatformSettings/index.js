@@ -105,7 +105,7 @@ function PlatformSettings() {
             color='error'
             fullWidth
             onClick={handleDeleteAccount}
-            to='deleteUser'
+            to='/profile/deleteUser'
           >
             회원탈퇴
           </SoftButton>

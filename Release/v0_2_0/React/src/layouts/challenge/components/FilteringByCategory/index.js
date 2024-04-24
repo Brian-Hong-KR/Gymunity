@@ -3,9 +3,9 @@ import styled from "styled-components";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 
 const items = [
-  { id: 1, title: "체지방 감소" },
-  { id: 2, title: "근육량 증가" },
-  { id: 3, title: "종합건강증진" },
+  { id: 1, title: "체중 감량" },
+  { id: 2, title: "근력 향상" },
+  { id: 3, title: "종합 건강 증진" },
 ];
 
 const ItemList = styled.div`
@@ -52,16 +52,15 @@ const ArrowIcon = styled.div`
   margin-left: auto;
 `;
 
-const ItemListButton = () => {
+const FilteringByCategory = ({ selectedItem, onSelectItem }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
 
   const toggleList = () => {
     setIsOpen(!isOpen);
   };
 
   const handleItemClick = (item) => {
-    setSelectedItem(item);
+    onSelectItem(item); // 부모 컴포넌트의 함수 호출
     setIsOpen(false); // 아이템을 클릭하면 리스트 닫기
   };
 
@@ -88,4 +87,4 @@ const ItemListButton = () => {
   );
 };
 
-export default ItemListButton;
+export default FilteringByCategory;
