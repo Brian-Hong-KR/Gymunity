@@ -23,9 +23,9 @@
 	</resultMap>
 	
 	<!-- survey_submissions 테이블에 데이터 삽입-->
-	<insert id="insertSurveySubmissions">
+	<insert id="insertNewVisit">
         <![CDATA[
-        INSERT INTO survey_submissions (timestamp) VALUES (DEFAULT)
+        INSERT INTO user_events (event_type) VALUES (1)
         ]]>
     </insert>
 

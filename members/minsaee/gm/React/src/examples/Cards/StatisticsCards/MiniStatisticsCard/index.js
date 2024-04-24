@@ -24,20 +24,23 @@ function MiniStatisticsCard({
   const navigate = useNavigate(); // 추가한부분(민호)
 
   // 추가한부분(민호)
-  const handleIconClick = () => {
-    navigate(navigateTo);
+  const handleBoxClick = () => {
+    if (navigateTo) {
+      navigate(navigateTo);
+    }
   };
+
+  // 클릭 가능한 상태 스타일 설정
+  const clickableStyle = navigateTo ? { cursor: "pointer" } : {};
 
   return (
     <Card>
       <SoftBox bgColor={bgColor} variant="gradient">
-        <SoftBox p={2}>
+        <SoftBox p={2} onClick={handleBoxClick} style={clickableStyle}>
           <Grid container alignItems="center">
             {direction === "left" ? (
               <Grid item>
                 <SoftBox
-                  onClick={handleIconClick} // 추가한부분(민호)
-                  style={{ cursor: "pointer" }} // 추가한부분(민호)
                   variant="gradient"
                   bgColor={bgColor === "white" ? icon.color : "white"}
                   color={bgColor === "white" ? "white" : "dark"}
