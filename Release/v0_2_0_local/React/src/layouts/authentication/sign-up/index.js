@@ -23,9 +23,11 @@ import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 
 function SignUp() {
-  const [agreement, setAgremment] = useState(true);
+  const [termAgreement, setTermAgreement] = useState(true);
+  const [privacyAgreement, setPrivacyAgreement] = useState(true);
 
-  const handleSetAgremment = () => setAgremment(!agreement);
+  const handleSetTermAgreement = () => setTermAgreement(!termAgreement);
+  const handleSetPrivacyAgreement = () => setPrivacyAgreement(!privacyAgreement);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -146,22 +148,22 @@ function SignUp() {
             </SoftBox>
             <SoftBox display="flex" flexDirection="column">
               <SoftBox mb={1} display="flex" alignItems="center">
-                <Checkbox checked={agreement} onChange={handleSetAgremment} />
+                <Checkbox checked={termAgreement} onChange={handleSetTermAgreement} />
                 <SoftTypography
                   variant="button"
                   fontWeight="regular"
-                  onClick={handleSetAgremment}
+                  onClick={handleSetTermAgreement}
                   sx={{ cursor: "pointer", userSelect: "none" }}
                 >
                   이용 약관 동의 (필수)
                 </SoftTypography>
               </SoftBox>
               <SoftBox display="flex" alignItems="center">
-                <Checkbox checked={agreement} onChange={handleSetAgremment} />
+                <Checkbox checked={privacyAgreement} onChange={handleSetPrivacyAgreement} />
                 <SoftTypography
                   variant="button"
                   fontWeight="regular"
-                  onClick={handleSetAgremment}
+                  onClick={handleSetPrivacyAgreement}
                   sx={{ cursor: "pointer", userSelect: "none" }}
                 >
                   개인정보 수집 및 이용 동의 (필수)
