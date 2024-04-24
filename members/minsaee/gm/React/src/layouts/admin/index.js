@@ -134,7 +134,7 @@ function AdminInfo() {
       <DashboardNavbar />
       <SoftBox mb={3}>
         <Grid container spacing={3}>
-          <Grid item xs={12} lg={5}>
+          {/* <Grid item xs={12} lg={5}>
             <ReportsBarChart
               title="PT"
               description={
@@ -145,7 +145,7 @@ function AdminInfo() {
               chart={chart}
               items={items}
             />
-          </Grid>
+          </Grid> */}
           <Grid item xs={12} lg={7}>
             <GradientLineChart
               title="유입자 회원가입"
