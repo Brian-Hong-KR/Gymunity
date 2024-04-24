@@ -1,5 +1,11 @@
 package com.gymunity.user.controller;
 
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
+import java.time.LocalDate;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,9 +18,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gymunity.user.dto.CheckUserIdPassword;
+import com.gymunity.user.dto.CustomerDTO;
 import com.gymunity.user.dto.SignupDTO;
 import com.gymunity.user.dto.UserInfoDTO;
 import com.gymunity.user.dto.UserUpdateDTO;
+import com.gymunity.user.response.CustomerResponse;
 import com.gymunity.user.response.SigninResponse;
 import com.gymunity.user.response.SignupResponse;
 import com.gymunity.user.service.UserService;
@@ -70,5 +78,21 @@ public class UserController {
 		}
 		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 	}// end deleteUser()
+	
+	// 고객 문의
+	@Operation(summary = "고객 문의")
+	@PostMapping("/user/inquiries")
+	public ResponseEntity<CustomerResponse> createCustomer(@RequestBody CustomerDTO dto){
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		Integer userId = (Integer) authentication.getPrincipal();
+		
+		LocalDate now = LocalDate.now();
+
+        // Customer 객체에 현재 시간 설정
+        dto.setInquiryDate(now);
+        
+		CustomerResponse response = userService.insertCustomerProcess(dto, userId);
+		return ResponseEntity.ok(response);
+	}
 
 }// end class

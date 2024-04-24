@@ -9,6 +9,8 @@ import com.gymunity.point.dto.PointAdd;
 import com.gymunity.point.repository.PointMapper;
 import com.gymunity.point.service.PointService;
 import com.gymunity.user.dto.CheckUserIdPassword;
+import com.gymunity.user.dto.Customer;
+import com.gymunity.user.dto.CustomerDTO;
 import com.gymunity.user.dto.Profile;
 import com.gymunity.user.dto.Pt;
 import com.gymunity.user.dto.SignupDTO;
@@ -17,6 +19,7 @@ import com.gymunity.user.dto.User;
 import com.gymunity.user.dto.UserInfoDTO;
 import com.gymunity.user.dto.UserUpdateDTO;
 import com.gymunity.user.repository.UserMapper;
+import com.gymunity.user.response.CustomerResponse;
 import com.gymunity.user.response.SigninResponse;
 import com.gymunity.user.response.SignupResponse;
 import com.gymunity.user.service.UserService;
@@ -174,6 +177,26 @@ public class UserServiceImpl implements UserService {
 			return isPasswordMatch;
 		}
 		return false;
+	}
+
+	@Override
+	public CustomerResponse insertCustomerProcess(CustomerDTO dto, int userId) {
+		Customer customer = new Customer();
+		customer.setTitle(dto.getTitle());
+		customer.setContent(dto.getContent());
+		customer.setInquiryDate(dto.getInquiryDate());
+		customer.setUserId(userId);
+		userMapper.insertInquiries(customer);
+		
+		User user = userMapper.selectUsersByUserId(userId);
+		
+		CustomerResponse response = new CustomerResponse();
+		response.setTitle(customer.getTitle());
+		response.setContent(customer.getContent());
+		
+		return response;
 	}// end validateUserIdPassword()
+	
+	
 
 }// end class

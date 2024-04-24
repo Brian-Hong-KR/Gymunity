@@ -237,7 +237,7 @@ const ProfileData = () => {
         alignItems="center"
         p={3}
       >
-        <Link to="/customService">
+        <Link to="/profile/customer">
           <SoftButton type="submit" variant="gradient" color="dark">
             고객 문의
           </SoftButton>

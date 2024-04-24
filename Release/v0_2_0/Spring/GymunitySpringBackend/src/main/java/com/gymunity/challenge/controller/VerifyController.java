@@ -46,7 +46,7 @@ public class VerifyController {
 //	public ResponseEntity<String> verifyUpload(@RequestParam("chId") int chId, @RequestPart("file") MultipartFile file,
 //			HttpServletRequest req, HttpSession session)
 	public ResponseEntity<String> verifyUpload(@RequestParam("chId") int chId,
-			@RequestPart("file") MultipartFile file) {
+			@RequestParam("file") MultipartFile file) {
 
 		if (file.isEmpty()) {
 			return ResponseEntity.badRequest().body("No file uploaded.");

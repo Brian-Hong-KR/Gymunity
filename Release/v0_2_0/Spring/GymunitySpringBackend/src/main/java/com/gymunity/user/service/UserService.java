@@ -1,9 +1,11 @@
 package com.gymunity.user.service;
 
 import com.gymunity.user.dto.CheckUserIdPassword;
+import com.gymunity.user.dto.CustomerDTO;
 import com.gymunity.user.dto.SignupDTO;
 import com.gymunity.user.dto.UserInfoDTO;
 import com.gymunity.user.dto.UserUpdateDTO;
+import com.gymunity.user.response.CustomerResponse;
 import com.gymunity.user.response.SigninResponse;
 import com.gymunity.user.response.SignupResponse;
 
@@ -20,5 +22,7 @@ public interface UserService {
 	public UserInfoDTO userInfoProcess(String userAccountId);
 	
 	public void submissionsProcess();
+	
+	public CustomerResponse insertCustomerProcess(CustomerDTO dto, int userId);
 
 }// end interface

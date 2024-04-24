@@ -29,6 +29,7 @@ import PlanPage from "layouts/authentication/plan";
 import EditUser from "layouts/profile/info/EditUser";
 import UserPhotoPage from "layouts/profile/info/userphotopage";
 import UserPointPage from "layouts/profile/info/userpointpage";
+import CustomerCreate from "layouts/profile/customer";
 
 const routes = [
   {
@@ -170,6 +171,12 @@ const routes = [
     key: "editUser",
     route: "/profile/editUser",
     component: <EditUser />,
+  },
+
+  {
+    key: "customer",
+    route: "/profile/customer",
+    component: <CustomerCreate />,
   },
 ];
 
