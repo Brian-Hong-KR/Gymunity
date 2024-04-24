@@ -216,7 +216,7 @@ public class UserServiceImpl implements UserService {
 	    
 	    
 	        response.setCs(dto);
-	        log.info("sss:{}",dto);
+	       
 	        return response;
 	}
 
