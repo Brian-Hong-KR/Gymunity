@@ -53,6 +53,7 @@ function ChallengeCreate() {
     chStartDate: "",
     chEndDate: "",
     verifyTerm: 1,
+    challengePeriod : 1,
   });
 
   // 탭
@@ -113,10 +114,18 @@ function ChallengeCreate() {
       0: 1,
       1: 2,
       2: 4,
-      3: 8,
+      3: 6,
+      4: 8,
     };
 
     const periodInWeeks = dateOptions[newValue];
+
+    setChallenge((prev) => ({
+      ...prev,
+      challengePeriod: periodInWeeks,
+    }));
+
+    console.log("기간 값:", periodInWeeks);
 
     if (!challenge.chStartDate) {
       console.error(
@@ -382,6 +391,7 @@ function ChallengeCreate() {
                   <Tab label="1주간" icon={<Cube />} />
                   <Tab label="2주간" icon={<Cube />} />
                   <Tab label="4주간" icon={<Document />} />
+                  <Tab label="6주간" icon={<Document />} />
                   <Tab label="8주간" icon={<Settings />} />
                 </Tabs>
               </AppBar>
