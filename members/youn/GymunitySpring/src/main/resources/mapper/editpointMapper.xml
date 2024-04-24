@@ -49,12 +49,14 @@
 	</select>
 	
 	
-	<!-- 양수일 때 -->
+	
+	<!-- Pointadjust에 내역 추가 -->
 	<insert id="insertPointAdjust" parameterType="PointAdjustAddSubtract">
 	    INSERT INTO point_adjust (user_id, points_adjusted, reason)
 	    VALUES (#{userId}, #{pointsAdjusted}, #{reason});
 	</insert>
 	
+	<!-- 양수일 때 total_points와 current_points 업데이트 -->
 	<update id="updateTotalPoints" parameterType="PointAdjustAddSubtract">
 	    UPDATE point_aggr
 	    SET total_points = total_points + #{pointsAdjusted},
@@ -62,18 +64,20 @@
 	    WHERE user_id = #{userId};
 	</update>
 	
+	<!-- 음수일 때 current_points만 업데이트 -->
 	<update id="updateCurrentPoints" parameterType="PointAdjustAddSubtract">
 	    UPDATE point_aggr
 	    SET current_points = current_points + #{pointsAdjusted}
 	    WHERE user_id = #{userId};
 	</update>
 	
+	<!-- 양수일 때 point_add에 업데이트에 내역 추가 -->
 	<insert id="insertPointAdd" parameterType="PointAdjustAddSubtract">
 	    INSERT INTO point_add (user_id, points_added, added_reason)
 	    VALUES (#{userId}, #{pointsAdjusted}, #{reason});
 	</insert>
 
-	<!-- 음수일 때 -->
+	<!-- 음수일 때 point_subtract에 업데이트에 내역 추가 -->
 	<insert id="insertPointSubtract" parameterType="PointAdjustAddSubtract">
 	    INSERT INTO point_subtract (user_id, points_subtracted, subtracted_reason)
 	    VALUES (#{userId}, #{pointsAdjusted}, #{reason});
