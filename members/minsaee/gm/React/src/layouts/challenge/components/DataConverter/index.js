@@ -1,14 +1,28 @@
 // 이미지
 import categoryToLoseWeight from "assets/images/category/category_toloseweight.jpg";
 import categoryToIncreaseMuscle from "assets/images/category/category_toincreasemuscle.jpg";
-import categoryPhsicalStrength from "assets/images/category/category_physicalstrength.jpg";
+import categoryPhysicalStrength from "assets/images/category/category_physicalstrength.jpg";
 import icon_bronze from "assets/images/grade/grade_bronze.png";
 
+//시작일을 D-day로 변환
 const getDaysRemaining = (startDate) => {
   const today = new Date();
   const targetDate = new Date(startDate);
   const diffInMs = targetDate - today;
   return Math.ceil(diffInMs / (1000 * 60 * 60 * 24));
+};
+
+//종료일 날짜 구하기
+const getEndDate = (startDate, days) => {
+  // 1. startDate 유효성 검사
+  if (isNaN(Date.parse(startDate))) {
+    return null; // Indicate invalid date with null return
+  }
+  const startDateObject = new Date(startDate);
+  const endDateObject = new Date(
+    startDateObject.getTime() + days * 24 * 60 * 60 * 1000
+  );
+  return endDateObject.toISOString().split("T")[0];
 };
 
 function DataConverter(challenge) {
@@ -26,13 +40,13 @@ function DataConverter(challenge) {
       break;
     case 3:
       category = "종합 건강 증진";
-      image = categoryPhsicalStrength;
+      image = categoryPhysicalStrength;
       break;
   }
 
   //등급이미지 변환
   let grade;
-  switch (challenge.grade_name) {
+  switch (challenge.gradeName) {
     case "브론즈":
       grade = icon_bronze;
       break;
@@ -48,58 +62,68 @@ function DataConverter(challenge) {
   }
 
   //인증주기 변환
-  let verify_term;
-  switch (challenge.verify_term) {
+  let verifyTerm;
+  switch (challenge.verifyTerm) {
     case 1:
-      verify_term = "매일";
+      verifyTerm = "매일";
       break;
     case 2:
-      verify_term = "평일";
+      verifyTerm = "평일";
       break;
     case 3:
-      verify_term = "주말";
+      verifyTerm = "주말";
       break;
     case 4:
-      verify_term = "주 1일";
+      verifyTerm = "주 1일";
       break;
     case 5:
-      verify_term = "주 2일";
+      verifyTerm = "주 2일";
       break;
     case 6:
-      verify_term = "주 3일";
+      verifyTerm = "주 3일";
       break;
   }
 
   //챌린지 기간 변환
   let period;
-  switch (challenge.challenge_period) {
+  let days;
+  switch (challenge.challengePeriod) {
     case 1:
       period = "1주간";
+      days = 6;
       break;
     case 2:
       period = "2주간";
+      days = 13;
       break;
     case 3:
       period = "4주간";
+      days = 27;
       break;
     case 4:
       period = "6주간";
+      days = 41;
       break;
     case 5:
       period = "8주간";
+      days = 55;
       break;
   }
 
   //시작일을 D-day로 변환
-  const remainingDays = getDaysRemaining(challenge.ch_start_date);
+  const remainingDays = getDaysRemaining(challenge.chStartDate);
+
+  const endDate = getEndDate(challenge.chStartDate, days);
 
   return {
     image,
     category,
     grade,
-    verify_term,
+    verifyTerm,
     period,
     remainingDays,
+    days,
+    endDate,
   };
 }
 

@@ -1,5 +1,8 @@
 package com.gymunity.user.serviceimpl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -9,6 +12,8 @@ import com.gymunity.point.dto.PointAdd;
 import com.gymunity.point.repository.PointMapper;
 import com.gymunity.point.service.PointService;
 import com.gymunity.user.dto.CheckUserIdPassword;
+import com.gymunity.user.dto.Customer;
+import com.gymunity.user.dto.CustomerDTO;
 import com.gymunity.user.dto.Profile;
 import com.gymunity.user.dto.Pt;
 import com.gymunity.user.dto.SignupDTO;
@@ -17,6 +22,8 @@ import com.gymunity.user.dto.User;
 import com.gymunity.user.dto.UserInfoDTO;
 import com.gymunity.user.dto.UserUpdateDTO;
 import com.gymunity.user.repository.UserMapper;
+import com.gymunity.user.response.CustomerDetailResponse;
+import com.gymunity.user.response.CustomerResponse;
 import com.gymunity.user.response.SigninResponse;
 import com.gymunity.user.response.SignupResponse;
 import com.gymunity.user.service.UserService;
@@ -35,8 +42,8 @@ public class UserServiceImpl implements UserService {
 
 	// 유입자
 	@Override
-	public void submissionsProcess() {
-		userMapper.insertSurveySubmissions();
+	public void newVisitProcess() {
+		userMapper.insertNewVisit();
 	}
 
 	// 회원가입
@@ -174,6 +181,53 @@ public class UserServiceImpl implements UserService {
 			return isPasswordMatch;
 		}
 		return false;
-	}// end validateUserIdPassword()
+	}
+
+	@Override
+	public CustomerResponse insertCustomerProcess(CustomerDTO dto, int userId) {
+		
+		User user = userMapper.selectUsersByUserId(userId);
+		Profile profile = userMapper.selectProfilesByUserId(user.getUserId());
+		
+		Customer customer = new Customer();
+		customer.setTitle(dto.getTitle());
+		customer.setContent(dto.getContent());
+		customer.setInquiryDate(dto.getInquiryDate());
+		customer.setUserId(userId);
+		customer.setUserEmail(profile.getUserEmail());
+		userMapper.insertInquiries(customer);
+		
+		
+		
+		CustomerResponse response = new CustomerResponse();
+		response.setTitle(customer.getTitle());
+		response.setContent(customer.getContent());
+		
+		return response;
+	}
+
+	@Override
+	public CustomerDetailResponse getCustomerProcess() {
+		CustomerDetailResponse response = new CustomerDetailResponse();
+		
+		 
+		// 조회된 고객 정보를 처리하고 response에 추가
+	    List<Customer> dto = userMapper.selectInquiries();
+	    
+	    
+	        response.setCs(dto);
+	       
+	        return response;
+	}
+
+
+
+
+	// CS관리
+
+	
+	
+	
+	
 
 }// end class

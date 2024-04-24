@@ -1,0 +1,100 @@
+1. Install & Config
+
+Ubuntu Server 22.04.4 LTS
+
+Ubuntu GUI
+ - sudo apt-get update
+ - sudo apt-get upgrade
+ - sudo apt-get install ubuntu-desktop
+ - sudo apt-get install indicator-appmenu-tools
+ - sudo system reboot
+ - Setting > Region & Language 
+ - Setting > Keyboard > Input Sources
+ - sudo system reboot
+ - sudo snap install snap-store
+ - Firefox > Korean
+
+Editor (PyCharm, Meld)
+ - sudo snap install pycharm-community --classic
+ - sudo apt-get -y install meld
+
+Github Desktop
+ - wget -qO - https://mirror.mwt.me/ghd/gpgkey | sudo tee /etc/apt/trusted.gpg.d/shiftkey-desktop.asc > /dev/null
+ - sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/shiftkey/desktop/any/ any main" > /etc/apt/sources.list.d/packagecloud-shiftkey-desktop.list'
+ - sudo apt update && sudo apt install github-desktop
+ - clone project to local folder
+
+React
+ - curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+ - sudo apt install nodejs
+ - sudo apt install npm
+ - sudo npm install yarn
+ - cd /project/react
+ - yarn install
+ - yarn start
+
+Python Flask 
+ - sudo apt install python3.10
+ - pip install flask
+ - pip install flask-cors
+ - pip install sqlalchemy
+ - pip install pymysql
+ - pip install python-dotenv
+ - pip install youtube-search-python googletrans
+ - pip install ollama
+
+NginX, Gunicorn
+ - sudo apt-get update
+ - sudo apt install gunicorn
+ - sudo apt install nginx
+ - sudo apt install net-tools
+ - sudo nano /etc/nginx/sites-available/myproject
+ - sudo ln -s /etc/nginx/sites-available/myproject /home/utopos/ezen/Release/v0_2_0/Flask/NginX
+
+ - sudo systemctl start nginx
+ - sudo systemctl enable nginx
+  (변경시
+  - sudo systemctl stop nginx
+  - sudo nano /etc/nginx/sites-available/myproject
+  - sudo rm /etc/nginx/sites-enabled/myproject
+  - sudo ln -s /etc/nginx/sites-available/myproject /etc/nginx/sites-enabled
+  - sudo systemctl restart nginx )
+
+MySQL
+ - sudo apt-get install mysql-server
+ - sudo systemctl start mysql
+ - sudo systemctl enable mysql
+ (계정 및 DB 생성
+ - sudo mysql -u root -p
+ - create database gymunity DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+ - create user 'gm'@'%' identified by '1234';
+ - GRANT ALL PRIVILEGES ON gymunity.* TO 'gm'@'%';
+ - flush privileges;
+ - eixt
+ - (Dump 폴더로 복사 후) bash create_db.sh (비번 1234 연속으로 입력 필요, num lock 꺼져있는지 확인)
+ - sudo mysql -u gm -p gymunity
+ - SHOW tables;
+
+LLM
+ - curl -fsSL https://ollama.com/install.sh | sh
+ - ollama pull llama3
+
+Spring (Java)
+ - sudo apt install openjdk-17*
+ - sudo apt install gradle
+
+// Port = { "Spring":8080,
+        "Flask":5000,
+        "MySQL":3306,
+        "React":3000}
+
+2. Run (bash RunGymunityServer.sh)
+
+
+
+3. Test
+(web browser) http://192.168.0.60 -> (domain ) https://gymunity.site
+
+4. Backup
+sudo apt install timeshift
+

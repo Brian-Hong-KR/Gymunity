@@ -77,6 +77,9 @@ public class SigninServiceImpl implements SigninService {
 				// 로그인 시간 업데이트
 				user.setLastSignin(now);
 				signinMapper.updateLastSignin(user);
+				
+				// 로그인 카운트
+				signinMapper.insertSignin();
 
 				// 토큰 생성 및 저장
 				String accessToken = JwtProperties.TOKEN_PREFIX + JwtProvider.createAccessToken(user.getUserId(), user.getAdminYn());

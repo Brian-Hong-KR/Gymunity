@@ -1,0 +1,29 @@
+server {
+	listen 80;
+	server_name 192.168.0.60;
+
+	location = /favicon.ico { access_log off; log_not_found off; }
+
+	location / {
+		include proxy_params;
+		proxy_pass http://localhost:3000/;
+	}
+
+	location /spring {
+		include proxy_params;
+		proxy_pass http://localhost:8090/;
+		add_header 'Access-Control-Allow-Origin' '*';
+		add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+		add_header 'Access-Control-Allow-Headers' 'Content-Type, Authorization';
+	}
+
+	location /flask {
+		include proxy_params;
+		proxy_pass http://localhost:5000/;
+	}
+
+	location /mysql {
+		include proxy_params;
+		proxy_pass https://localhost:3306/;
+	}
+}

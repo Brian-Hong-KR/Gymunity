@@ -1,0 +1,3759 @@
+[
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Body fat reduction",
+        "level": "beginner",
+        "abnormal": "cardiovascular disease",
+        "daily_program": [
+            "Running in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Bodyweight squats (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Running in place": "GYM0SC79eFY",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Bodyweight squats (3 sets x max reps)": "jU4LNw9b11g",
+            "Lunges (3 sets x 10 reps each leg)": "ZUziQHnABks",
+            "Push-ups (3 sets x max reps)": "h1Xfkhss6pg",
+            "Planks (3 sets x 30 seconds)": "nDNOZCoBFqg",
+            "Mountain climbers (3 sets x 30 seconds)": "TbrF84r4J1E",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Body fat reduction",
+        "level": "beginner",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Wall push-ups (3 sets x max reps)",
+            "Modified lunges (3 sets x 10 reps each leg)",
+            "Seated rowing machine (3 sets x 8-12 reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Calf raises (3 sets x 15 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jogging in place": "HRgPsDI_eMU",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Wall push-ups (3 sets x max reps)": "HVgBWSOPx0I",
+            "Modified lunges (3 sets x 10 reps each leg)": "GY1JhB9BEkk",
+            "Seated rowing machine (3 sets x 8-12 reps)": "ZyTiUVpnG5M",
+            "Planks (3 sets x 30 seconds)": "nDNOZCoBFqg",
+            "Calf raises (3 sets x 15 reps)": "l4THcKL-sPM",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Body fat reduction",
+        "level": "beginner",
+        "abnormal": "respiratory diseases",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches for neck, shoulders, arms, and lower back",
+            "Beginner-level push-ups (3 sets x max reps)",
+            "Alternating lunges (3 sets x 10 reps each leg)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches for neck, shoulders, arms, and lower back",
+            "Yoga poses to improve respiratory health"
+        ],
+        "videoList": {
+            "Jogging in place": "HRgPsDI_eMU",
+            "Dynamic stretches for neck, shoulders, arms, and lower back": "fFTCnquxJbA",
+            "Beginner-level push-ups (3 sets x max reps)": "6B9s1lgz7bY",
+            "Alternating lunges (3 sets x 10 reps each leg)": "vc1E5CfRfos",
+            "Planks (3 sets x 30 seconds)": "nDNOZCoBFqg",
+            "Mountain climbers (3 sets x 30 seconds)": "TbrF84r4J1E",
+            "Static stretches for neck, shoulders, arms, and lower back": "ehXOS9mMrcU",
+            "Yoga poses to improve respiratory health": "JhSZw8fiTLc"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Body fat reduction",
+        "level": "beginner",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squats (3 sets x 15 reps)",
+            "Bicep curls with resistance band (3 sets x 10 reps each arm)",
+            "Tricep pushdowns with resistance band (3 sets x 10 reps each arm)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jogging in place": "unfwk5fu8_M",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squats (3 sets x 15 reps)": "bfBm4JLtJz8",
+            "Bicep curls with resistance band (3 sets x 10 reps each arm)": "rqzIJR2mbUQ",
+            "Tricep pushdowns with resistance band (3 sets x 10 reps each arm)": "tS2r4cDiZXA",
+            "Planks (3 sets x 30 seconds)": "QDUklXQJ_6E",
+            "Mountain climbers (3 sets x 30 seconds)": "TbrF84r4J1E",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Body fat reduction",
+        "level": "Intermediate",
+        "abnormal": "cardiovascular disease",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Burpees (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jogging in place": "unfwk5fu8_M",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Burpees (3 sets x max reps)": "xrB3kraCd6Q",
+            "Lunges (3 sets x 10 reps each leg)": "yac8e2-77pE",
+            "Push-ups (3 sets x max reps)": "WWYKWBsE9f4",
+            "Planks (3 sets x 30 seconds)": "sntfjdzTj84",
+            "Mountain climbers (3 sets x 30 seconds)": "oG7vx7RLSHU",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Body fat reduction",
+        "level": "Intermediate",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": [
+            "Warm up with dynamic stretching focusing on the problem areas (musculoskeletal disorders)",
+            "Jumping jacks or High knees to increase heart rate",
+            "Plank variations to engage core and strengthen back muscles",
+            "Squats for lower body strength and endurance",
+            "Step-ups or lunges for glute and quadriceps development",
+            "Push-ups with different variations (wide, narrow, diamond) to target chest, triceps, and shoulders",
+            "Tricep dips on a bench or chair",
+            "Calf raises for calf muscle strength and definition",
+            "Static stretching for neck, shoulders, arms, lower back, legs to improve flexibility and prevent injury"
+        ],
+        "videoList": {
+            "Jumping jacks or High knees to increase heart rate": "ygX0pQWgDRY",
+            "Plank variations to engage core and strengthen back muscles": "0rL2496zybs",
+            "Squats for lower body strength and endurance": "xyN3yhfTerI",
+            "Step-ups or lunges for glute and quadriceps development": "MUqd4gMZnnY",
+            "Push-ups with different variations (wide, narrow, diamond) to target chest, triceps, and shoulders": "PI1jkxzqAv0",
+            "Tricep dips on a bench or chair": "r3AEIByoyS0",
+            "Calf raises for calf muscle strength and definition": "-tJSMx4n6-g",
+            "Static stretching for neck, shoulders, arms, lower back, legs to improve flexibility and prevent injury": "_owcJER7u48"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Body fat reduction",
+        "level": "Intermediate",
+        "abnormal": "respiratory diseases",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Cycling intervals (15 minutes, moderate intensity)",
+            "Squats with dumbbell shoulder presses (3 sets x 8 reps each leg)",
+            "Chair dips (3 sets x max reps)",
+            "Plank hold (4 sets x 20 seconds)",
+            "Bicycle crunches (3 sets x 15 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jogging in place": "unfwk5fu8_M",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Cycling intervals (15 minutes, moderate intensity)": "k5N3BqLHMKI",
+            "Squats with dumbbell shoulder presses (3 sets x 8 reps each leg)": "irfw1gQ0foQ",
+            "Chair dips (3 sets x max reps)": "317zLEy88Nk",
+            "Plank hold (4 sets x 20 seconds)": "oG7vx7RLSHU",
+            "Bicycle crunches (3 sets x 15 reps)": "TbrF84r4J1E",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Body fat reduction",
+        "level": "Intermediate",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Running in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Burpees (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Running in place": "unfwk5fu8_M",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Burpees (3 sets x max reps)": "xrB3kraCd6Q",
+            "Lunges (3 sets x 10 reps each leg)": "yac8e2-77pE",
+            "Push-ups (3 sets x max reps)": "WWYKWBsE9f4",
+            "Planks (3 sets x 30 seconds)": "sntfjdzTj84",
+            "Mountain climbers (3 sets x 30 seconds)": "sjvT0mHkCQA",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Body fat reduction",
+        "level": "advanced",
+        "abnormal": "cardiovascular disease",
+        "daily_program": [
+            "Jumping jacks",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squat thrusts (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Incline push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Reverse crunches (3 sets x 20 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jumping jacks": "hlk1adYWKjQ",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squat thrusts (3 sets x max reps)": "hb0RQU1UvWw",
+            "Lunges (3 sets x 10 reps each leg)": "vc1E5CfRfos",
+            "Incline push-ups (3 sets x max reps)": "KBsNSPtartQ",
+            "Planks (3 sets x 30 seconds)": "xdmvae0tKdI",
+            "Reverse crunches (3 sets x 20 reps)": "C5HrydHUrQU",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Body fat reduction",
+        "level": "advanced",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": [
+            "Running in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Burpees (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Running in place": "GYM0SC79eFY",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Burpees (3 sets x max reps)": "lPtENEtGDYU",
+            "Lunges (3 sets x 10 reps each leg)": "ygYoqkWJRlI",
+            "Push-ups (3 sets x max reps)": "Tbc_MAFP20Y",
+            "Planks (3 sets x 30 seconds)": "xdmvae0tKdI",
+            "Mountain climbers (3 sets x 30 seconds)": "xf0chSpKwJY",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Body fat reduction",
+        "level": "advanced",
+        "abnormal": "respiratory diseases",
+        "daily_program": [
+            "Jogging (10 minutes)",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Advanced burpees with push-ups (3 sets x max reps each)",
+            "Squats with barbell or bodyweight (3 sets x 10 reps each leg)",
+            "Bench press or incline dumbbell bench press (3 sets x max reps)",
+            "Planks (3 sets x 45 seconds)",
+            "Mountain climbers (3 sets x 60 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jogging (10 minutes)": "bqVBMv_nqJ4",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Advanced burpees with push-ups (3 sets x max reps each)": "MfEQIAt3Xxg",
+            "Squats with barbell or bodyweight (3 sets x 10 reps each leg)": "ygYoqkWJRlI",
+            "Bench press or incline dumbbell bench press (3 sets x max reps)": "ptpmRrzRtWQ",
+            "Planks (3 sets x 45 seconds)": "Ow4tKbM5uyw",
+            "Mountain climbers (3 sets x 60 seconds)": "NBkETGbRVQk",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Body fat reduction",
+        "level": "advanced",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Jumping jacks",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squat thrusts (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Diamond push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Russian twists (3 sets x 20 rotations)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jumping jacks": "P8vsH0UNHR0",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squat thrusts (3 sets x max reps)": "hb0RQU1UvWw",
+            "Lunges (3 sets x 10 reps each leg)": "vc1E5CfRfos",
+            "Diamond push-ups (3 sets x max reps)": "AhdtowFDKT0",
+            "Planks (3 sets x 30 seconds)": "7hnPTflm2dg",
+            "Russian twists (3 sets x 20 rotations)": "mNnOiBynl2k",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Muscle gain",
+        "level": "beginner",
+        "abnormal": "cardiovascular disease",
+        "daily_program": [
+            "Jogging in place (10 minutes warm-up)",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Curl-ups (3 sets x 15 reps)",
+            "Wall sit (3 sets x 30 seconds)",
+            "Incline push-ups (3 sets x 10 reps each set)",
+            "Planks (3 sets x 45 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jogging in place (10 minutes warm-up)": "HRgPsDI_eMU",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Curl-ups (3 sets x 15 reps)": "2fCKd-BQOhw",
+            "Wall sit (3 sets x 30 seconds)": "I9HTiygnzIc",
+            "Incline push-ups (3 sets x 10 reps each set)": "vc1E5CfRfos",
+            "Planks (3 sets x 45 seconds)": "sntfjdzTj84",
+            "Mountain climbers (3 sets x 30 seconds)": "TbrF84r4J1E",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Muscle gain",
+        "level": "beginner",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Wall push-ups (3 sets x max reps)",
+            "Squats with a chair (3 sets x 10 reps each leg)",
+            "Seated shoulder press (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Bicycle crunches (3 sets x 20 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jogging in place": "unfwk5fu8_M",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Wall push-ups (3 sets x max reps)": "HVgBWSOPx0I",
+            "Squats with a chair (3 sets x 10 reps each leg)": "bfBm4JLtJz8",
+            "Seated shoulder press (3 sets x max reps)": "l4THcKL-sPM",
+            "Planks (3 sets x 30 seconds)": "nDNOZCoBFqg",
+            "Bicycle crunches (3 sets x 20 reps)": "QDUklXQJ_6E",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Muscle gain",
+        "level": "beginner",
+        "abnormal": "respiratory diseases",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Wall push-ups (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Incline planks with elbows on a bench (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jogging in place": "unfwk5fu8_M",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Wall push-ups (3 sets x max reps)": "HVgBWSOPx0I",
+            "Lunges (3 sets x 10 reps each leg)": "ZUziQHnABks",
+            "Incline planks with elbows on a bench (3 sets x 30 seconds)": "1-gjYqugfxg",
+            "Mountain climbers (3 sets x 30 seconds)": "TbrF84r4J1E",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Muscle gain",
+        "level": "beginner",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Jumping jacks",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Wall push-ups (3 sets x max reps)",
+            "Bodyweight squats (3 sets x 10 reps)",
+            "Incline plank rows (3 sets x 8 reps)",
+            "Planks (3 sets x 20 seconds)",
+            "Glute bridges (3 sets x 15 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jumping jacks": "wZs96UWFpUU",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Wall push-ups (3 sets x max reps)": "HVgBWSOPx0I",
+            "Bodyweight squats (3 sets x 10 reps)": "jU4LNw9b11g",
+            "Incline plank rows (3 sets x 8 reps)": "vc1E5CfRfos",
+            "Planks (3 sets x 20 seconds)": "QDUklXQJ_6E",
+            "Glute bridges (3 sets x 15 reps)": "29OfN4ztW_g",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Muscle gain",
+        "level": "Intermediate",
+        "abnormal": "cardiovascular disease",
+        "daily_program": [
+            "Jumping Jacks",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squat jumps (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Bench dips with resistance bands (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jumping Jacks": "1x5czhDjT5E",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squat jumps (3 sets x max reps)": "PpvvA1LtnqM",
+            "Lunges (3 sets x 10 reps each leg)": "yac8e2-77pE",
+            "Bench dips with resistance bands (3 sets x max reps)": "2XhP25ZmDJY",
+            "Planks (3 sets x 30 seconds)": "sntfjdzTj84",
+            "Mountain climbers (3 sets x 30 seconds)": "sjvT0mHkCQA",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Muscle gain",
+        "level": "Intermediate",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": [
+            "Running in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Burpees (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Incline push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Running in place": "v90OnJi-HgQ",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Burpees (3 sets x max reps)": "xrB3kraCd6Q",
+            "Lunges (3 sets x 10 reps each leg)": "yac8e2-77pE",
+            "Incline push-ups (3 sets x max reps)": "aT-B_eJZMr8",
+            "Planks (3 sets x 30 seconds)": "sntfjdzTj84",
+            "Mountain climbers (3 sets x 30 seconds)": "sjvT0mHkCQA",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Muscle gain",
+        "level": "Intermediate",
+        "abnormal": "respiratory diseases",
+        "daily_program": [
+            "Jumping jacks",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Incline push-ups (3 sets x max reps)",
+            "Squats with dumbbells (3 sets x 10 reps each leg)",
+            "Overhead presses with dumbbells (3 sets x max reps)",
+            "Planks (3 sets x 45 seconds)",
+            "Mountain climbers (3 sets x 60 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jumping jacks": "1x5czhDjT5E",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Incline push-ups (3 sets x max reps)": "aT-B_eJZMr8",
+            "Squats with dumbbells (3 sets x 10 reps each leg)": "irfw1gQ0foQ",
+            "Overhead presses with dumbbells (3 sets x max reps)": "TuqxAV6lzfg",
+            "Planks (3 sets x 45 seconds)": "bSyrLu6RFCY",
+            "Mountain climbers (3 sets x 60 seconds)": "6sYMrAWBxs0",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Muscle gain",
+        "level": "Intermediate",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Incline push-ups (3 sets x 12 reps)",
+            "Single leg squats (3 sets x 8 reps each leg)",
+            "Dumbbell shoulder presses (3 sets x 10 reps)",
+            "Planks (3 sets x 45 seconds)",
+            "Mountain climbers (3 sets x 60 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jogging in place": "unfwk5fu8_M",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Incline push-ups (3 sets x 12 reps)": "WWYKWBsE9f4",
+            "Single leg squats (3 sets x 8 reps each leg)": "vc1E5CfRfos",
+            "Dumbbell shoulder presses (3 sets x 10 reps)": "hmnvQmUPsto",
+            "Planks (3 sets x 45 seconds)": "sntfjdzTj84",
+            "Mountain climbers (3 sets x 60 seconds)": "6sYMrAWBxs0",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Muscle gain",
+        "level": "advanced",
+        "abnormal": "cardiovascular disease",
+        "daily_program": [
+            "Jumping jacks",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Advanced burpees with push-ups (3 sets x max reps)",
+            "Lunges with squat jump (3 sets x 10 reps each leg)",
+            "Incline push-ups (3 sets x max reps)",
+            "Planks (3 sets x 45 seconds)",
+            "Mountain climbers (3 sets x 60 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jumping jacks": "P8vsH0UNHR0",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Advanced burpees with push-ups (3 sets x max reps)": "SFw0U4pw11E",
+            "Lunges with squat jump (3 sets x 10 reps each leg)": "SFw0U4pw11E",
+            "Incline push-ups (3 sets x max reps)": "aT-B_eJZMr8",
+            "Planks (3 sets x 45 seconds)": "Ow4tKbM5uyw",
+            "Mountain climbers (3 sets x 60 seconds)": "NBkETGbRVQk",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Muscle gain",
+        "level": "advanced",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": [
+            "Running in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Advanced pull-ups (3 sets x max reps)",
+            "Barbell row (3 sets x 10 reps each side)",
+            "Bench press (3 sets x 8 reps)",
+            "Leg press (3 sets x 12 reps)",
+            "Squats with barbell (3 sets x 15 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Running in place": "GYM0SC79eFY",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Advanced pull-ups (3 sets x max reps)": "zhXCIIrfBxc",
+            "Barbell row (3 sets x 10 reps each side)": "ksQc-aEBG5M",
+            "Bench press (3 sets x 8 reps)": "yI2tVLpyWXs",
+            "Leg press (3 sets x 12 reps)": "l4THcKL-sPM",
+            "Squats with barbell (3 sets x 15 reps)": "ygYoqkWJRlI",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Muscle gain",
+        "level": "advanced",
+        "abnormal": "respiratory diseases",
+        "daily_program": [
+            "Warm up: Jogging in place",
+            "Dynamic stretches (shoulders, triceps, chest, lats, biceps, neck, lower back, hamstrings)",
+            "Advanced pull-ups (3 sets x max reps)",
+            "Barbell squats (3 sets x 10 reps each leg)",
+            "Incline bench presses (3 sets x 8 reps)",
+            "Planks (3 sets x 45 seconds)",
+            "Side plank hip abductions (3 sets x 20 reps each side)",
+            "Static stretches (shoulders, triceps, chest, lats, biceps, neck, lower back, hamstrings)"
+        ],
+        "videoList": {
+            "Warm up: Jogging in place": "bqVBMv_nqJ4",
+            "Dynamic stretches (shoulders, triceps, chest, lats, biceps, neck, lower back, hamstrings)": "Kpd9ik93Sxk",
+            "Advanced pull-ups (3 sets x max reps)": "zhXCIIrfBxc",
+            "Barbell squats (3 sets x 10 reps each leg)": "ygYoqkWJRlI",
+            "Incline bench presses (3 sets x 8 reps)": "TuqxAV6lzfg",
+            "Planks (3 sets x 45 seconds)": "Ow4tKbM5uyw",
+            "Side plank hip abductions (3 sets x 20 reps each side)": "lPtENEtGDYU",
+            "Static stretches (shoulders, triceps, chest, lats, biceps, neck, lower back, hamstrings)": "Kpd9ik93Sxk"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Muscle gain",
+        "level": "advanced",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Jumping jacks",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squats with overhead press (3 sets x 10 reps each leg)",
+            "Bench dips (3 sets x max reps)",
+            "Pull-ups or lat pulldowns (3 sets x max reps)",
+            "Planks (3 sets x 60 seconds)",
+            "Russian twists (3 sets x 20 reps each side)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jumping jacks": "P8vsH0UNHR0",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squats with overhead press (3 sets x 10 reps each leg)": "XuM1Eokmw8s",
+            "Bench dips (3 sets x max reps)": "2z8JmcrW-As",
+            "Pull-ups or lat pulldowns (3 sets x max reps)": "PAXkl-AdJFg",
+            "Planks (3 sets x 60 seconds)": "DEOx_DzyfV4",
+            "Russian twists (3 sets x 20 reps each side)": "eRZ3eFU1Pr8",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Overall health improvement",
+        "level": "beginner",
+        "abnormal": "cardiovascular disease",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Bodyweight squats (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Wall sits (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jogging in place": "unfwk5fu8_M",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Bodyweight squats (3 sets x max reps)": "jU4LNw9b11g",
+            "Lunges (3 sets x 10 reps each leg)": "ZUziQHnABks",
+            "Push-ups (3 sets x max reps)": "AhdtowFDKT0",
+            "Planks (3 sets x 30 seconds)": "nDNOZCoBFqg",
+            "Wall sits (3 sets x 30 seconds)": "I9HTiygnzIc",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Overall health improvement",
+        "level": "beginner",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Modified burpees (3 sets x max reps)",
+            "Leg raises (3 sets x 10 reps each leg)",
+            "Wall push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Seated mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jogging in place": "unfwk5fu8_M",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Leg raises (3 sets x 10 reps each leg)": "jWyD_Ri93YE",
+            "Wall push-ups (3 sets x max reps)": "HVgBWSOPx0I",
+            "Planks (3 sets x 30 seconds)": "nDNOZCoBFqg",
+            "Seated mountain climbers (3 sets x 30 seconds)": "lPtENEtGDYU",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Overall health improvement",
+        "level": "beginner",
+        "abnormal": "respiratory diseases",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squats (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Wall push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jogging in place": "unfwk5fu8_M",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squats (3 sets x max reps)": "bfBm4JLtJz8",
+            "Lunges (3 sets x 10 reps each leg)": "ZUziQHnABks",
+            "Wall push-ups (3 sets x max reps)": "HVgBWSOPx0I",
+            "Planks (3 sets x 30 seconds)": "nDNOZCoBFqg",
+            "Mountain climbers (3 sets x 30 seconds)": "TbrF84r4J1E",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Overall health improvement",
+        "level": "beginner",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Bodyweight squats (3 sets x 12 reps)",
+            "Calf raises (3 sets x 10 reps)",
+            "Wall push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jogging in place": "unfwk5fu8_M",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Bodyweight squats (3 sets x 12 reps)": "jU4LNw9b11g",
+            "Calf raises (3 sets x 10 reps)": "DpDsRqQ6Bcc",
+            "Wall push-ups (3 sets x max reps)": "HVgBWSOPx0I",
+            "Planks (3 sets x 30 seconds)": "nDNOZCoBFqg",
+            "Mountain climbers (3 sets x 30 seconds)": "TbrF84r4J1E",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Overall health improvement",
+        "level": "Intermediate",
+        "abnormal": "cardiovascular disease",
+        "daily_program": [
+            "Jumping jacks",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squats with resistance bands (3 sets x 15 reps)",
+            "Hamstring curls on swiss ball (3 sets x 10 reps each leg)",
+            "Rowing machine for cardio (20 minutes at moderate intensity)",
+            "Planks (3 sets x 30 seconds)",
+            "Wall sit with shoulder presses (3 sets x 1 minute)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jumping jacks": "1x5czhDjT5E",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squats with resistance bands (3 sets x 15 reps)": "vc1E5CfRfos",
+            "Hamstring curls on swiss ball (3 sets x 10 reps each leg)": "OFFCNTIJWac",
+            "Planks (3 sets x 30 seconds)": "7hnPTflm2dg",
+            "Wall sit with shoulder presses (3 sets x 1 minute)": "Ow4tKbM5uyw",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Overall health improvement",
+        "level": "Intermediate",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Intermediate level bodyweight squats (3 sets x 10 reps)",
+            "Calf raises with resistance bands (3 sets x 15 reps)",
+            "Incline push-ups (3 sets x max reps)",
+            "Side planks (3 sets x 45 seconds each side)",
+            "Reverse crunches (3 sets x 20 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jogging in place": "unfwk5fu8_M",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Intermediate level bodyweight squats (3 sets x 10 reps)": "vc1E5CfRfos",
+            "Calf raises with resistance bands (3 sets x 15 reps)": "jJsyPJ39ZzQ",
+            "Incline push-ups (3 sets x max reps)": "aT-B_eJZMr8",
+            "Side planks (3 sets x 45 seconds each side)": "sntfjdzTj84",
+            "Reverse crunches (3 sets x 20 reps)": "C5HrydHUrQU",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Overall health improvement",
+        "level": "Intermediate",
+        "abnormal": "respiratory diseases",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Burpees (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jogging in place": "unfwk5fu8_M",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Burpees (3 sets x max reps)": "xrB3kraCd6Q",
+            "Lunges (3 sets x 10 reps each leg)": "eZCqu-QCs9c",
+            "Push-ups (3 sets x max reps)": "WWYKWBsE9f4",
+            "Planks (3 sets x 30 seconds)": "sntfjdzTj84",
+            "Mountain climbers (3 sets x 30 seconds)": "sjvT0mHkCQA",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Overall health improvement",
+        "level": "Intermediate",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squats with overhead press (3 sets x 10 reps each set)",
+            "Lunges (3 sets x 15 reps each leg)",
+            "Diamond push-ups (3 sets x max reps)",
+            "Plank holds (3 sets x 30 seconds)",
+            "Alternating reverse lunges with bicep curl (3 sets x 12 reps each leg)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jogging in place": "unfwk5fu8_M",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squats with overhead press (3 sets x 10 reps each set)": "-GJMwcES45A",
+            "Lunges (3 sets x 15 reps each leg)": "vc1E5CfRfos",
+            "Diamond push-ups (3 sets x max reps)": "aT-B_eJZMr8",
+            "Plank holds (3 sets x 30 seconds)": "xrB3kraCd6Q",
+            "Alternating reverse lunges with bicep curl (3 sets x 12 reps each leg)": "vc1E5CfRfos",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Overall health improvement",
+        "level": "advanced",
+        "abnormal": "cardiovascular disease",
+        "daily_program": [
+            "Jumping jacks",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squat thrusts (3 sets x max reps)",
+            "Lunges (3 sets x 12 reps each leg)",
+            "Bench dips (3 sets x max reps)",
+            "Planks (3 sets x 45 seconds)",
+            "Jumping lunges (3 sets x 10 reps each leg)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jumping jacks": "P8vsH0UNHR0",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squat thrusts (3 sets x max reps)": "hb0RQU1UvWw",
+            "Lunges (3 sets x 12 reps each leg)": "vc1E5CfRfos",
+            "Bench dips (3 sets x max reps)": "2z8JmcrW-As",
+            "Planks (3 sets x 45 seconds)": "Ow4tKbM5uyw",
+            "Jumping lunges (3 sets x 10 reps each leg)": "KBsNSPtartQ",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Overall health improvement",
+        "level": "advanced",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": "default",
+        "videoList": {
+            "d": "PFK9eQqdmuU",
+            "e": "Tbc_MAFP20Y",
+            "f": "hlk1adYWKjQ",
+            "a": "PFK9eQqdmuU",
+            "u": "JxCvhEPm0hg",
+            "l": "hlk1adYWKjQ",
+            "t": "hlk1adYWKjQ"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Overall health improvement",
+        "level": "advanced",
+        "abnormal": "respiratory diseases",
+        "daily_program": [
+            "Running in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Burpees (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Running in place": "GYM0SC79eFY",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Burpees (3 sets x max reps)": "Cc7ZbxTA6fE",
+            "Lunges (3 sets x 10 reps each leg)": "vc1E5CfRfos",
+            "Push-ups (3 sets x max reps)": "w7LABJgtZsI",
+            "Planks (3 sets x 30 seconds)": "xdmvae0tKdI",
+            "Mountain climbers (3 sets x 30 seconds)": "ChGP5ahvvN4",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "young",
+        "goal": "Overall health improvement",
+        "level": "advanced",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Jumping jacks",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squat thrusts (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Incline push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Reverse crunches (3 sets x 20 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jumping jacks": "P8vsH0UNHR0",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squat thrusts (3 sets x max reps)": "hb0RQU1UvWw",
+            "Lunges (3 sets x 10 reps each leg)": "vc1E5CfRfos",
+            "Incline push-ups (3 sets x max reps)": "KBsNSPtartQ",
+            "Planks (3 sets x 30 seconds)": "xdmvae0tKdI",
+            "Reverse crunches (3 sets x 20 reps)": "C5HrydHUrQU",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Body fat reduction",
+        "level": "beginner",
+        "abnormal": "cardiovascular disease",
+        "daily_program": [
+            "Walking at a comfortable pace",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Wall squats (3 sets x 15 reps)",
+            "Modified push-ups (3 sets x 10 reps)",
+            "Bridge exercise (3 sets x 20 reps)",
+            "Seated row machine (3 sets x 8 reps)",
+            "Leg press machine (3 sets x 12 reps)",
+            "Calf raises on step (3 sets x 15 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking at a comfortable pace": "eRZ3eFU1Pr8",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Wall squats (3 sets x 15 reps)": "rptMcZ9nE5A",
+            "Modified push-ups (3 sets x 10 reps)": "AhdtowFDKT0",
+            "Bridge exercise (3 sets x 20 reps)": "CsQUlqLUdYs",
+            "Seated row machine (3 sets x 8 reps)": "eppTwxOicew",
+            "Leg press machine (3 sets x 12 reps)": "l4THcKL-sPM",
+            "Calf raises on step (3 sets x 15 reps)": "Xy38-utbnpk",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Body fat reduction",
+        "level": "beginner",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": "default",
+        "videoList": {
+            "d": "N-15wUPnqpc",
+            "e": "wpDq6pxj45o",
+            "f": "fpob4_GMfhg",
+            "a": "5Yk7zBBpA8Q",
+            "u": "GYM0SC79eFY",
+            "l": "Lr9-MUbRbkc",
+            "t": "2sC8kDBzGt8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Body fat reduction",
+        "level": "beginner",
+        "abnormal": "respiratory diseases",
+        "daily_program": [
+            "Walking at a comfortable pace",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Wall squats (3 sets x 15 reps each leg)",
+            "Modified push-ups (3 sets x max reps)",
+            "Seated oblique twists with dumbbells (3 sets x 10 reps each side)",
+            "Side planks (3 sets x 20 seconds)",
+            "Bridges (3 sets x 15 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking at a comfortable pace": "eRZ3eFU1Pr8",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Wall squats (3 sets x 15 reps each leg)": "lPtENEtGDYU",
+            "Modified push-ups (3 sets x max reps)": "wfZf74_XFMA",
+            "Seated oblique twists with dumbbells (3 sets x 10 reps each side)": "v63EThbKUz8",
+            "Side planks (3 sets x 20 seconds)": "QFA7Nwrah14",
+            "Bridges (3 sets x 15 reps)": "u9o71FbiDdM",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Body fat reduction",
+        "level": "beginner",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Running in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Wall Squats (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Incline Push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Running in place": "GYM0SC79eFY",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Wall Squats (3 sets x max reps)": "lPtENEtGDYU",
+            "Lunges (3 sets x 10 reps each leg)": "ZUziQHnABks",
+            "Incline Push-ups (3 sets x max reps)": "AhdtowFDKT0",
+            "Planks (3 sets x 30 seconds)": "nDNOZCoBFqg",
+            "Mountain climbers (3 sets x 30 seconds)": "TbrF84r4J1E",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Body fat reduction",
+        "level": "Intermediate",
+        "abnormal": "cardiovascular disease",
+        "daily_program": [
+            "Walking at a moderate pace",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Bodyweight squats (3 sets x 15 reps)",
+            "Shoulder presses (3 sets x 10 reps)",
+            "Calf raises (3 sets x 20 reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Bicycle crunches (3 sets x 20 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking at a moderate pace": "SOdD4ftS3wg",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Bodyweight squats (3 sets x 15 reps)": "vc1E5CfRfos",
+            "Shoulder presses (3 sets x 10 reps)": "hmnvQmUPsto",
+            "Calf raises (3 sets x 20 reps)": "vc1E5CfRfos",
+            "Planks (3 sets x 30 seconds)": "sntfjdzTj84",
+            "Bicycle crunches (3 sets x 20 reps)": "K_aCx5_9KMQ",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Body fat reduction",
+        "level": "Intermediate",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Cycling (15 minutes at moderate intensity)",
+            "Reverse lunges with dumbbells (3 sets x 10 reps each leg)",
+            "Incline push-ups (3 sets x max reps)",
+            "Side planks (3 sets x 30 seconds)",
+            "Resistance band rowing (3 sets x 15 repetitions)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jogging in place": "unfwk5fu8_M",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Cycling (15 minutes at moderate intensity)": "xyN3yhfTerI",
+            "Reverse lunges with dumbbells (3 sets x 10 reps each leg)": "SaohpJ1o_Lg",
+            "Incline push-ups (3 sets x max reps)": "aT-B_eJZMr8",
+            "Side planks (3 sets x 30 seconds)": "sntfjdzTj84",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Body fat reduction",
+        "level": "Intermediate",
+        "abnormal": "respiratory diseases",
+        "daily_program": [
+            "Walking for 15 minutes",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squats with dumbbells (3 sets x 10 reps)",
+            "Reverse lunges with dumbbells (3 sets x 10 reps each leg)",
+            "Chest press on stability ball (3 sets x max reps)",
+            "Side planks (3 sets x 20 seconds each side)",
+            "Diamond push-ups (3 sets x max reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking for 15 minutes": "BGXGdUj93BM",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squats with dumbbells (3 sets x 10 reps)": "2fCKd-BQOhw",
+            "Reverse lunges with dumbbells (3 sets x 10 reps each leg)": "wGzEnEvvV5w",
+            "Chest press on stability ball (3 sets x max reps)": "Vw9RLXTUCIc",
+            "Side planks (3 sets x 20 seconds each side)": "xdmvae0tKdI",
+            "Diamond push-ups (3 sets x max reps)": "aT-B_eJZMr8",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Body fat reduction",
+        "level": "Intermediate",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Jumping jacks",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squat thrusts (3 sets x max reps)",
+            "Step-ups (3 sets x 10 reps each leg)",
+            "Diamond push-ups (3 sets x max reps)",
+            "Side planks (3 sets x 30 seconds)",
+            "Inchworms (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jumping jacks": "1x5czhDjT5E",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squat thrusts (3 sets x max reps)": "bWw8_I39QsA",
+            "Step-ups (3 sets x 10 reps each leg)": "vc1E5CfRfos",
+            "Diamond push-ups (3 sets x max reps)": "aT-B_eJZMr8",
+            "Side planks (3 sets x 30 seconds)": "sntfjdzTj84",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Body fat reduction",
+        "level": "advanced",
+        "abnormal": "cardiovascular disease",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches for neck, shoulders, upper back, and legs",
+            "Advanced burpees with added exercises like push-ups or squat thrusts (3 sets x max reps)",
+            "Lunges focusing on balance and stability (3 sets x 10 reps each leg)",
+            "Push-ups with variations to target different muscle groups (3 sets x max reps)",
+            "Planks for core strength (3 sets x 45 seconds)",
+            "Mountain climbers with increased intensity (3 sets x 60 seconds)",
+            "Static stretches for neck, shoulders, arms, lower back, and legs"
+        ],
+        "videoList": {
+            "Jogging in place": "k5N3BqLHMKI",
+            "Dynamic stretches for neck, shoulders, upper back, and legs": "ehXOS9mMrcU",
+            "Lunges focusing on balance and stability (3 sets x 10 reps each leg)": "Yuuo6LVps6I",
+            "Push-ups with variations to target different muscle groups (3 sets x max reps)": "3RuPQ9VW_x8",
+            "Planks for core strength (3 sets x 45 seconds)": "xdmvae0tKdI",
+            "Mountain climbers with increased intensity (3 sets x 60 seconds)": "dwKRIDGwwCA",
+            "Static stretches for neck, shoulders, arms, lower back, and legs": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Body fat reduction",
+        "level": "advanced",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": [
+            "Warm-up: Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squats with weights (3 sets x 10 reps)",
+            "Lateral lunges with barbell (3 sets x 8 reps each leg)",
+            "Incline push-ups (3 sets x max reps)",
+            "Planks (3 sets x 60 seconds)",
+            "Mountain climbers (3 sets x 45 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Warm-up: Jogging in place": "In6gmyBJB58",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squats with weights (3 sets x 10 reps)": "vc1E5CfRfos",
+            "Lateral lunges with barbell (3 sets x 8 reps each leg)": "-GJMwcES45A",
+            "Incline push-ups (3 sets x max reps)": "KBsNSPtartQ",
+            "Planks (3 sets x 60 seconds)": "DEOx_DzyfV4",
+            "Mountain climbers (3 sets x 45 seconds)": "PMoPEa8yh8k",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Body fat reduction",
+        "level": "advanced",
+        "abnormal": "respiratory diseases",
+        "daily_program": [
+            "Running in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Burpees (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)",
+            "Cycling (15 minutes moderate intensity)"
+        ],
+        "videoList": {
+            "Running in place": "GYM0SC79eFY",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Burpees (3 sets x max reps)": "lPtENEtGDYU",
+            "Lunges (3 sets x 10 reps each leg)": "ygYoqkWJRlI",
+            "Push-ups (3 sets x max reps)": "w7LABJgtZsI",
+            "Planks (3 sets x 30 seconds)": "xdmvae0tKdI",
+            "Mountain climbers (3 sets x 30 seconds)": "ChGP5ahvvN4",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8",
+            "Cycling (15 minutes moderate intensity)": "xyN3yhfTerI"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Body fat reduction",
+        "level": "advanced",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Jumping jacks",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squat thrusts (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Bench press (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jumping jacks": "P8vsH0UNHR0",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squat thrusts (3 sets x max reps)": "hb0RQU1UvWw",
+            "Lunges (3 sets x 10 reps each leg)": "vc1E5CfRfos",
+            "Bench press (3 sets x max reps)": "ptpmRrzRtWQ",
+            "Planks (3 sets x 30 seconds)": "xdmvae0tKdI",
+            "Mountain climbers (3 sets x 30 seconds)": "ChGP5ahvvN4",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Muscle gain",
+        "level": "beginner",
+        "abnormal": "cardiovascular disease",
+        "daily_program": [
+            "Walking briskly",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Burpees (2 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Modified push-ups (3 sets x 10 reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking briskly": "rptMcZ9nE5A",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Burpees (2 sets x max reps)": "2fCKd-BQOhw",
+            "Lunges (3 sets x 10 reps each leg)": "ZUziQHnABks",
+            "Modified push-ups (3 sets x 10 reps)": "AhdtowFDKT0",
+            "Planks (3 sets x 30 seconds)": "nDNOZCoBFqg",
+            "Mountain climbers (3 sets x 30 seconds)": "TbrF84r4J1E",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Muscle gain",
+        "level": "beginner",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": [
+            "Running in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Burpees (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Running in place": "GYM0SC79eFY",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Burpees (3 sets x max reps)": "fr24FaGU_Qc",
+            "Lunges (3 sets x 10 reps each leg)": "ZUziQHnABks",
+            "Push-ups (3 sets x max reps)": "h1Xfkhss6pg",
+            "Planks (3 sets x 30 seconds)": "8V15pqBW014",
+            "Mountain climbers (3 sets x 30 seconds)": "TbrF84r4J1E",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Muscle gain",
+        "level": "beginner",
+        "abnormal": "respiratory diseases",
+        "daily_program": "default",
+        "videoList": {
+            "d": "N-15wUPnqpc",
+            "e": "wpDq6pxj45o",
+            "f": "fpob4_GMfhg",
+            "a": "5Yk7zBBpA8Q",
+            "u": "yY_dHHTMDvA",
+            "l": "Lr9-MUbRbkc",
+            "t": "2sC8kDBzGt8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Muscle gain",
+        "level": "beginner",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Running in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Burpees (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Running in place": "GYM0SC79eFY",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Burpees (3 sets x max reps)": "fr24FaGU_Qc",
+            "Lunges (3 sets x 10 reps each leg)": "ZUziQHnABks",
+            "Push-ups (3 sets x max reps)": "h1Xfkhss6pg",
+            "Planks (3 sets x 30 seconds)": "nDNOZCoBFqg",
+            "Mountain climbers (3 sets x 30 seconds)": "TbrF84r4J1E",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Muscle gain",
+        "level": "Intermediate",
+        "abnormal": "cardiovascular disease",
+        "daily_program": [
+            "Walking lunges (3 sets x 12 reps each leg)",
+            "Squats with dumbbells (3 sets x 15 reps)",
+            "Dumbbell bench press (3 sets x 8 reps)",
+            "Barbell curls (3 sets x 10 reps)",
+            "Tricep pushdowns (3 sets x 12 reps)",
+            "Leg extensions (3 sets x 15 reps)",
+            "Deadlifts (3 sets x 10 reps)",
+            "Crunches with dumbbells (3 sets x 12 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking lunges (3 sets x 12 reps each leg)": "SOdD4ftS3wg",
+            "Squats with dumbbells (3 sets x 15 reps)": "2fCKd-BQOhw",
+            "Dumbbell bench press (3 sets x 8 reps)": "WBAeJq_v4M8",
+            "Barbell curls (3 sets x 10 reps)": "v07X1a7nOAE",
+            "Tricep pushdowns (3 sets x 12 reps)": "35sCLbtYXtI",
+            "Leg extensions (3 sets x 15 reps)": "vc1E5CfRfos",
+            "Deadlifts (3 sets x 10 reps)": "L1kS5I99dlM",
+            "Crunches with dumbbells (3 sets x 12 reps)": "Yuuo6LVps6I",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Muscle gain",
+        "level": "Intermediate",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": [
+            "Running in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Burpees (2 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (2 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Running in place": "unfwk5fu8_M",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Burpees (2 sets x max reps)": "xrB3kraCd6Q",
+            "Lunges (3 sets x 10 reps each leg)": "yac8e2-77pE",
+            "Push-ups (3 sets x max reps)": "WWYKWBsE9f4",
+            "Planks (3 sets x 30 seconds)": "Ow4tKbM5uyw",
+            "Mountain climbers (2 sets x 30 seconds)": "sjvT0mHkCQA",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Muscle gain",
+        "level": "Intermediate",
+        "abnormal": "respiratory diseases",
+        "daily_program": "default",
+        "videoList": {
+            "d": "PFK9eQqdmuU",
+            "e": "O9w6KhKI-pM",
+            "f": "-956vy_VNqI",
+            "a": "PFK9eQqdmuU",
+            "u": "yJm9SGS2IhA",
+            "l": "PFK9eQqdmuU",
+            "t": "JxCvhEPm0hg"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Muscle gain",
+        "level": "Intermediate",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Incline push-ups (3 sets x max reps)",
+            "Squats with barbell (3 sets x 10 reps)",
+            "Lateral pulldowns (3 sets x 10 reps)",
+            "Deadlifts (3 sets x 8 reps)",
+            "Barbell bent over rows (3 sets x 8 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jogging in place": "unfwk5fu8_M",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Incline push-ups (3 sets x max reps)": "aT-B_eJZMr8",
+            "Squats with barbell (3 sets x 10 reps)": "irfw1gQ0foQ",
+            "Lateral pulldowns (3 sets x 10 reps)": "vc1E5CfRfos",
+            "Deadlifts (3 sets x 8 reps)": "yI2tVLpyWXs",
+            "Barbell bent over rows (3 sets x 8 reps)": "bgoJXc9HaOg",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Muscle gain",
+        "level": "advanced",
+        "abnormal": "cardiovascular disease",
+        "daily_program": [
+            "Cycling",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squats (3 sets x 12 reps)",
+            "Bench press (3 sets x max reps)",
+            "Pull-ups (3 sets x max reps)",
+            "Planks (3 sets x 60 seconds)",
+            "Reverse lunges with dumbbells (3 sets x 8 reps each leg)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Cycling": "50S6e9aNa9w",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squats (3 sets x 12 reps)": "jU4LNw9b11g",
+            "Bench press (3 sets x max reps)": "ptpmRrzRtWQ",
+            "Pull-ups (3 sets x max reps)": "aXIbyf4EnDU",
+            "Planks (3 sets x 60 seconds)": "DEOx_DzyfV4",
+            "Reverse lunges with dumbbells (3 sets x 8 reps each leg)": "--YXD9A2YWQ",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Muscle gain",
+        "level": "advanced",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": [
+            "Warm up: Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Advanced squats with barbell for muscle gain (3 sets x 10 reps)",
+            "Bench press with barbell for muscle gain (3 sets x max reps)",
+            "Pull-ups or lat pulldowns for muscle gain (3 sets x max reps)",
+            "Deadlifts or Romanian deadlifts for muscle gain (3 sets x 10 reps)",
+            "Barbell row with wide grip for muscle gain (3 sets x max reps)",
+            "Calf raises with barbell on leg press machine (3 sets x 20 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Warm up: Jogging in place": "In6gmyBJB58",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Advanced squats with barbell for muscle gain (3 sets x 10 reps)": "ygYoqkWJRlI",
+            "Bench press with barbell for muscle gain (3 sets x max reps)": "ptpmRrzRtWQ",
+            "Pull-ups or lat pulldowns for muscle gain (3 sets x max reps)": "O94yEoGXtBY",
+            "Deadlifts or Romanian deadlifts for muscle gain (3 sets x 10 reps)": "cf5UHCCRIDo",
+            "Barbell row with wide grip for muscle gain (3 sets x max reps)": "bgoJXc9HaOg",
+            "Calf raises with barbell on leg press machine (3 sets x 20 reps)": "-qsRtp_PbVM",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Muscle gain",
+        "level": "advanced",
+        "abnormal": "respiratory diseases",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Advanced pull-ups or assisted dips for chest and triceps (3 sets x max reps)",
+            "Squats with barbell or leg press for quadriceps (3 sets x 10 reps)",
+            "Deadlifts or Romanian deadlifts for hamstrings and glutes (3 sets x 8-10 reps)",
+            "Barbell bench press or dumbbell chest flyes for pectoral muscles (3 sets x max reps)",
+            "Reverse crunches or hanging leg raises for lower abs",
+            "Static stretches (neck, shoulders, arms, lower back, legs) while focusing on breathing techniques to help with respiratory concerns"
+        ],
+        "videoList": {
+            "Jogging in place": "k5N3BqLHMKI",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Advanced pull-ups or assisted dips for chest and triceps (3 sets x max reps)": "9hC5ojPbqWc",
+            "Squats with barbell or leg press for quadriceps (3 sets x 10 reps)": "0VtJnWm2PSU",
+            "Deadlifts or Romanian deadlifts for hamstrings and glutes (3 sets x 8-10 reps)": "FqpgA9BwxJU",
+            "Reverse crunches or hanging leg raises for lower abs": "nM2L36JQtkY"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Muscle gain",
+        "level": "advanced",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Warm-up: Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Pull-ups (3 sets x max reps)",
+            "Barbell bench press (3 sets x 10 reps)",
+            "Deadlifts (3 sets x 10 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)",
+            "Cool down: Yoga poses"
+        ],
+        "videoList": {
+            "Warm-up: Jogging in place": "In6gmyBJB58",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Pull-ups (3 sets x max reps)": "aXIbyf4EnDU",
+            "Barbell bench press (3 sets x 10 reps)": "Uu01FXGCni8",
+            "Deadlifts (3 sets x 10 reps)": "7zZlbElg95Q",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8",
+            "Cool down: Yoga poses": "k6zn0GjlVlY"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Overall health improvement",
+        "level": "beginner",
+        "abnormal": "cardiovascular disease",
+        "daily_program": [
+            "Walking",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Wall sit (3 sets x 1 minute)",
+            "Bicep curls with resistance band (3 sets x 10 reps each arm)",
+            "Tricep extensions with resistance band (3 sets x 10 reps each arm)",
+            "Planks (3 sets x 20 seconds)",
+            "Seated row with elastic bands (3 sets x 10 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking": "GYM0SC79eFY",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Wall sit (3 sets x 1 minute)": "Tbc_MAFP20Y",
+            "Bicep curls with resistance band (3 sets x 10 reps each arm)": "rqzIJR2mbUQ",
+            "Tricep extensions with resistance band (3 sets x 10 reps each arm)": "vc1E5CfRfos",
+            "Planks (3 sets x 20 seconds)": "QDUklXQJ_6E",
+            "Seated row with elastic bands (3 sets x 10 reps)": "ZfawH9NsTtI",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Overall health improvement",
+        "level": "beginner",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": [
+            "Walking",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Wall push-ups (3 sets x max reps)",
+            "Seated leg extensions (3 sets x 10 reps each leg)",
+            "Tricep dips (3 sets x max reps)",
+            "Bird dogs (3 sets x 30 seconds)",
+            "Calf raises (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking": "GYM0SC79eFY",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Wall push-ups (3 sets x max reps)": "HVgBWSOPx0I",
+            "Seated leg extensions (3 sets x 10 reps each leg)": "vc1E5CfRfos",
+            "Tricep dips (3 sets x max reps)": "M76qO1ziCjw",
+            "Bird dogs (3 sets x 30 seconds)": "oVLxMiMyKqk",
+            "Calf raises (3 sets x 30 seconds)": "kKBU2HjF8Xk",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "yOxDeD4sPcE"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Overall health improvement",
+        "level": "beginner",
+        "abnormal": "respiratory diseases",
+        "daily_program": [
+            "Walking at a comfortable pace",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Leg raises (3 sets x max reps)",
+            "Wall squats (3 sets x 10 reps each leg)",
+            "Modified push-ups (beginner version) (3 sets x max reps)",
+            "Cobra pose hold (3 sets x 30 seconds)",
+            "Seated knee lifts (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking at a comfortable pace": "eRZ3eFU1Pr8",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Leg raises (3 sets x max reps)": "JGNJnMpxHgQ",
+            "Wall squats (3 sets x 10 reps each leg)": "Ow4tKbM5uyw",
+            "Modified push-ups (beginner version) (3 sets x max reps)": "YZJvKTqmMR0",
+            "Cobra pose hold (3 sets x 30 seconds)": "I9HTiygnzIc",
+            "Seated knee lifts (3 sets x 30 seconds)": "BqEKyFzzxBs",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Overall health improvement",
+        "level": "beginner",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Walking at a comfortable pace",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squats (3 sets x 12 reps)",
+            "Bicep curls (3 sets x 10 reps)",
+            "Tricep dips (3 sets x 10 reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Side plank leg raises (3 sets x 15 reps each side)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking at a comfortable pace": "eRZ3eFU1Pr8",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squats (3 sets x 12 reps)": "jU4LNw9b11g",
+            "Bicep curls (3 sets x 10 reps)": "2fCKd-BQOhw",
+            "Tricep dips (3 sets x 10 reps)": "Yqn5cjYiG-I",
+            "Planks (3 sets x 30 seconds)": "nDNOZCoBFqg",
+            "Side plank leg raises (3 sets x 15 reps each side)": "hby5WYtJlvw",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Overall health improvement",
+        "level": "Intermediate",
+        "abnormal": "cardiovascular disease",
+        "daily_program": "default",
+        "videoList": {
+            "d": "PFK9eQqdmuU",
+            "e": "O9w6KhKI-pM",
+            "f": "-956vy_VNqI",
+            "a": "PFK9eQqdmuU",
+            "u": "yJm9SGS2IhA",
+            "l": "PFK9eQqdmuU",
+            "t": "JxCvhEPm0hg"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Overall health improvement",
+        "level": "Intermediate",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": [
+            "Running in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Burpees (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Running in place": "unfwk5fu8_M",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Burpees (3 sets x max reps)": "xrB3kraCd6Q",
+            "Lunges (3 sets x 10 reps each leg)": "yac8e2-77pE",
+            "Push-ups (3 sets x max reps)": "AhdtowFDKT0",
+            "Planks (3 sets x 30 seconds)": "sntfjdzTj84",
+            "Mountain climbers (3 sets x 30 seconds)": "oG7vx7RLSHU",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Overall health improvement",
+        "level": "Intermediate",
+        "abnormal": "respiratory diseases",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Burpees (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jogging in place": "unfwk5fu8_M",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Burpees (3 sets x max reps)": "xrB3kraCd6Q",
+            "Lunges (3 sets x 10 reps each leg)": "yac8e2-77pE",
+            "Push-ups (3 sets x max reps)": "WWYKWBsE9f4",
+            "Planks (3 sets x 30 seconds)": "sntfjdzTj84",
+            "Mountain climbers (3 sets x 30 seconds)": "oG7vx7RLSHU",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Overall health improvement",
+        "level": "Intermediate",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squat jumps (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Modified push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jogging in place": "unfwk5fu8_M",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squat jumps (3 sets x max reps)": "rptMcZ9nE5A",
+            "Lunges (3 sets x 10 reps each leg)": "yac8e2-77pE",
+            "Modified push-ups (3 sets x max reps)": "3RuPQ9VW_x8",
+            "Planks (3 sets x 30 seconds)": "sntfjdzTj84",
+            "Mountain climbers (3 sets x 30 seconds)": "oG7vx7RLSHU",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Overall health improvement",
+        "level": "advanced",
+        "abnormal": "cardiovascular disease",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Advanced squats (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Bench press (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jogging in place": "k5N3BqLHMKI",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Advanced squats (3 sets x max reps)": "bfBm4JLtJz8",
+            "Lunges (3 sets x 10 reps each leg)": "ygYoqkWJRlI",
+            "Bench press (3 sets x max reps)": "ptpmRrzRtWQ",
+            "Planks (3 sets x 30 seconds)": "xdmvae0tKdI",
+            "Mountain climbers (3 sets x 30 seconds)": "ChGP5ahvvN4",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Overall health improvement",
+        "level": "advanced",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": [
+            "Warm-up: Jogging in place for 5 minutes",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Burpees (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Modified push-ups (3 sets x max reps) focusing on shoulder health",
+            "Planks (3 sets x 30 seconds)",
+            "Alternating side plank holds (2 sets x 30 seconds per side)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Warm-up: Jogging in place for 5 minutes": "In6gmyBJB58",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Burpees (3 sets x max reps)": "Cc7ZbxTA6fE",
+            "Lunges (3 sets x 10 reps each leg)": "vc1E5CfRfos",
+            "Modified push-ups (3 sets x max reps) focusing on shoulder health": "3RuPQ9VW_x8",
+            "Planks (3 sets x 30 seconds)": "xdmvae0tKdI",
+            "Alternating side plank holds (2 sets x 30 seconds per side)": "KBsNSPtartQ",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Overall health improvement",
+        "level": "advanced",
+        "abnormal": "respiratory diseases",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Advanced burpees with a twist (3 sets x max reps)",
+            "Lunges focusing on balance and stability (3 sets x 10 reps each leg)",
+            "Modified push-ups to reduce stress on the joints (3 sets x max reps)",
+            "Planks with side breathing exercises (3 sets x 30 seconds)",
+            "Mountain climbers for cardio and core strength (3 sets x 30 seconds)",
+            "Static stretches focusing on respiratory health (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jogging in place": "k5N3BqLHMKI",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Advanced burpees with a twist (3 sets x max reps)": "lPtENEtGDYU",
+            "Lunges focusing on balance and stability (3 sets x 10 reps each leg)": "Yuuo6LVps6I",
+            "Planks with side breathing exercises (3 sets x 30 seconds)": "sntfjdzTj84",
+            "Mountain climbers for cardio and core strength (3 sets x 30 seconds)": "XCOHQ3xwgdQ"
+        }
+    },
+    {
+        "gender": "male",
+        "age": "old",
+        "goal": "Overall health improvement",
+        "level": "advanced",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squat jumps (5 sets x 20 reps)",
+            "Lunges with weight (3 sets x 10 reps each leg)",
+            "Incline push-ups (3 sets x max reps)",
+            "Planks (4 sets x 60 seconds)",
+            "Mountain climbers (4 sets x 45 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jogging in place": "k5N3BqLHMKI",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squat jumps (5 sets x 20 reps)": "bfBm4JLtJz8",
+            "Lunges with weight (3 sets x 10 reps each leg)": "vc1E5CfRfos",
+            "Incline push-ups (3 sets x max reps)": "KBsNSPtartQ",
+            "Planks (4 sets x 60 seconds)": "DEOx_DzyfV4",
+            "Mountain climbers (4 sets x 45 seconds)": "7R6HRYiRY40",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Body fat reduction",
+        "level": "beginner",
+        "abnormal": "cardiovascular disease",
+        "daily_program": "default",
+        "videoList": {
+            "d": "N-15wUPnqpc",
+            "e": "wpDq6pxj45o",
+            "f": "fpob4_GMfhg",
+            "a": "5Yk7zBBpA8Q",
+            "u": "GYM0SC79eFY",
+            "l": "Lr9-MUbRbkc",
+            "t": "2sC8kDBzGt8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Body fat reduction",
+        "level": "beginner",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": [
+            "Walking in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squats (3 sets x 12 reps)",
+            "Calf raises (3 sets x 10 reps)",
+            "Bicep curls with water bottle (3 sets x 15 reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking in place": "GYM0SC79eFY",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squats (3 sets x 12 reps)": "jU4LNw9b11g",
+            "Calf raises (3 sets x 10 reps)": "l4THcKL-sPM",
+            "Bicep curls with water bottle (3 sets x 15 reps)": "x1hsIpcuXqU",
+            "Planks (3 sets x 30 seconds)": "nDNOZCoBFqg",
+            "Mountain climbers (3 sets x 30 seconds)": "TbrF84r4J1E",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Body fat reduction",
+        "level": "beginner",
+        "abnormal": "respiratory diseases",
+        "daily_program": [
+            "Walking on the spot",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squats (3 sets x 15 reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Tricep dips (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking on the spot": "GYM0SC79eFY",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squats (3 sets x 15 reps)": "bfBm4JLtJz8",
+            "Lunges (3 sets x 10 reps each leg)": "ZUziQHnABks",
+            "Tricep dips (3 sets x max reps)": "TuqxAV6lzfg",
+            "Planks (3 sets x 30 seconds)": "nDNOZCoBFqg",
+            "Mountain climbers (3 sets x 30 seconds)": "TbrF84r4J1E",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Body fat reduction",
+        "level": "beginner",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Wall squats (3 sets x 15 repetitions)",
+            "Bicep curls with resistance bands (3 sets x max reps)",
+            "Plank hold (3 sets x 20 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jogging in place": "unfwk5fu8_M",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Wall squats (3 sets x 15 repetitions)": "u9o71FbiDdM",
+            "Bicep curls with resistance bands (3 sets x max reps)": "2fCKd-BQOhw",
+            "Plank hold (3 sets x 20 seconds)": "wpDq6pxj45o",
+            "Mountain climbers (3 sets x 30 seconds)": "TbrF84r4J1E",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Body fat reduction",
+        "level": "Intermediate",
+        "abnormal": "cardiovascular disease",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squat pulses (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Modified push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jogging in place": "unfwk5fu8_M",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "fFTCnquxJbA",
+            "Squat pulses (3 sets x max reps)": "Yuuo6LVps6I",
+            "Lunges (3 sets x 10 reps each leg)": "yac8e2-77pE",
+            "Modified push-ups (3 sets x max reps)": "3RuPQ9VW_x8",
+            "Planks (3 sets x 30 seconds)": "sntfjdzTj84",
+            "Mountain climbers (3 sets x 30 seconds)": "oG7vx7RLSHU",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Body fat reduction",
+        "level": "Intermediate",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": [
+            "Elliptical machine (15 minutes at moderate intensity)",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Seated row machine (3 sets x 10 reps)",
+            "Leg press machine (3 sets x 12 reps)",
+            "Chest press machine (3 sets x 8 reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Tricep pushdowns (3 sets x 15 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Elliptical machine (15 minutes at moderate intensity)": "k5N3BqLHMKI",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Seated row machine (3 sets x 10 reps)": "xrB3kraCd6Q",
+            "Leg press machine (3 sets x 12 reps)": "l4THcKL-sPM",
+            "Chest press machine (3 sets x 8 reps)": "PJEn3vkp2PI",
+            "Planks (3 sets x 30 seconds)": "sntfjdzTj84",
+            "Tricep pushdowns (3 sets x 15 reps)": "35sCLbtYXtI",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Body fat reduction",
+        "level": "Intermediate",
+        "abnormal": "respiratory diseases",
+        "daily_program": "default",
+        "videoList": {
+            "d": "PFK9eQqdmuU",
+            "e": "O9w6KhKI-pM",
+            "f": "-956vy_VNqI",
+            "a": "PFK9eQqdmuU",
+            "u": "yJm9SGS2IhA",
+            "l": "PFK9eQqdmuU",
+            "t": "JxCvhEPm0hg"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Body fat reduction",
+        "level": "Intermediate",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Jumping jacks",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squat pulses (3 sets x max reps)",
+            "Side lunges (3 sets x 10 reps each leg)",
+            "Modified push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jumping jacks": "1x5czhDjT5E",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squat pulses (3 sets x max reps)": "Yuuo6LVps6I",
+            "Side lunges (3 sets x 10 reps each leg)": "yac8e2-77pE",
+            "Modified push-ups (3 sets x max reps)": "3RuPQ9VW_x8",
+            "Planks (3 sets x 30 seconds)": "sntfjdzTj84",
+            "Mountain climbers (3 sets x 30 seconds)": "oG7vx7RLSHU",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Body fat reduction",
+        "level": "advanced",
+        "abnormal": "cardiovascular disease",
+        "daily_program": [
+            "Running in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Burpees (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Running in place": "GYM0SC79eFY",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Burpees (3 sets x max reps)": "lPtENEtGDYU",
+            "Lunges (3 sets x 10 reps each leg)": "vc1E5CfRfos",
+            "Push-ups (3 sets x max reps)": "w7LABJgtZsI",
+            "Planks (3 sets x 30 seconds)": "xdmvae0tKdI",
+            "Mountain climbers (3 sets x 30 seconds)": "ChGP5ahvvN4",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Body fat reduction",
+        "level": "advanced",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": [
+            "Jumping jacks",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squats (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Modified push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jumping jacks": "P8vsH0UNHR0",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squats (3 sets x max reps)": "bfBm4JLtJz8",
+            "Lunges (3 sets x 10 reps each leg)": "vc1E5CfRfos",
+            "Modified push-ups (3 sets x max reps)": "3RuPQ9VW_x8",
+            "Planks (3 sets x 30 seconds)": "xdmvae0tKdI",
+            "Mountain climbers (3 sets x 30 seconds)": "ChGP5ahvvN4",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Body fat reduction",
+        "level": "advanced",
+        "abnormal": "respiratory diseases",
+        "daily_program": [
+            "Jumping jacks",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Burpees (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Tricep dips (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jumping jacks": "P8vsH0UNHR0",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Burpees (3 sets x max reps)": "lPtENEtGDYU",
+            "Lunges (3 sets x 10 reps each leg)": "vc1E5CfRfos",
+            "Tricep dips (3 sets x max reps)": "s-FMYsVeu1I",
+            "Planks (3 sets x 30 seconds)": "xdmvae0tKdI",
+            "Mountain climbers (3 sets x 30 seconds)": "ChGP5ahvvN4",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Body fat reduction",
+        "level": "advanced",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Jumping jacks",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squat thrusts (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Tricep dips (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jumping jacks": "P8vsH0UNHR0",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squat thrusts (3 sets x max reps)": "hb0RQU1UvWw",
+            "Lunges (3 sets x 10 reps each leg)": "ygYoqkWJRlI",
+            "Tricep dips (3 sets x max reps)": "s-FMYsVeu1I",
+            "Planks (3 sets x 30 seconds)": "xdmvae0tKdI",
+            "Mountain climbers (3 sets x 30 seconds)": "ChGP5ahvvN4",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Muscle gain",
+        "level": "beginner",
+        "abnormal": "cardiovascular disease",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Wall squats (3 sets x 15 reps)",
+            "Incline push-ups (3 sets x max reps)",
+            "Tricep dips (3 sets x max reps)",
+            "Side plank with leg raises (3 sets x 20 seconds each side)",
+            "Bridge pose (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jogging in place": "HRgPsDI_eMU",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Wall squats (3 sets x 15 reps)": "bfBm4JLtJz8",
+            "Incline push-ups (3 sets x max reps)": "AhdtowFDKT0",
+            "Tricep dips (3 sets x max reps)": "M76qO1ziCjw",
+            "Side plank with leg raises (3 sets x 20 seconds each side)": "DEOx_DzyfV4",
+            "Bridge pose (3 sets x 30 seconds)": "I9HTiygnzIc",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Muscle gain",
+        "level": "beginner",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": "default",
+        "videoList": {
+            "d": "N-15wUPnqpc",
+            "e": "wpDq6pxj45o",
+            "f": "fpob4_GMfhg",
+            "a": "5Yk7zBBpA8Q",
+            "u": "GYM0SC79eFY",
+            "l": "Lr9-MUbRbkc",
+            "t": "2sC8kDBzGt8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Muscle gain",
+        "level": "beginner",
+        "abnormal": "respiratory diseases",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squats with dumbbell overhead presses (3 sets x 10 reps each)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Wall push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Side plank hip abductions (3 sets x 20 reps each side)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jogging in place": "unfwk5fu8_M",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squats with dumbbell overhead presses (3 sets x 10 reps each)": "c-zEP3n43hs",
+            "Lunges (3 sets x 10 reps each leg)": "ksQc-aEBG5M",
+            "Wall push-ups (3 sets x max reps)": "HVgBWSOPx0I",
+            "Planks (3 sets x 30 seconds)": "QDUklXQJ_6E",
+            "Side plank hip abductions (3 sets x 20 reps each side)": "lPtENEtGDYU",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Muscle gain",
+        "level": "beginner",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squats (3 sets x 15 reps)",
+            "Tricep dips (3 sets x 10 reps)",
+            "Wall push-ups (3 sets x max reps)",
+            "Side planks (3 sets x 30 seconds each side)",
+            "Bicycle crunches (3 sets x 20 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jogging in place": "unfwk5fu8_M",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squats (3 sets x 15 reps)": "bfBm4JLtJz8",
+            "Tricep dips (3 sets x 10 reps)": "Yqn5cjYiG-I",
+            "Wall push-ups (3 sets x max reps)": "HVgBWSOPx0I",
+            "Side planks (3 sets x 30 seconds each side)": "Ow4tKbM5uyw",
+            "Bicycle crunches (3 sets x 20 reps)": "QDUklXQJ_6E",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Muscle gain",
+        "level": "Intermediate",
+        "abnormal": "cardiovascular disease",
+        "daily_program": [
+            "Jumping jacks",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Lunges (3 sets x 12 reps each leg)",
+            "Incline push-ups (3 sets x max reps)",
+            "Planks (3 sets x 60 seconds)",
+            "Squats with resistance band (3 sets x 15 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jumping jacks": "1x5czhDjT5E",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Lunges (3 sets x 12 reps each leg)": "yac8e2-77pE",
+            "Incline push-ups (3 sets x max reps)": "aT-B_eJZMr8",
+            "Planks (3 sets x 60 seconds)": "DEOx_DzyfV4",
+            "Squats with resistance band (3 sets x 15 reps)": "hLKh7DXOiHk",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Muscle gain",
+        "level": "Intermediate",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Step-ups using a bench or staircase (3 sets x 10 reps each leg)",
+            "Seated rows with resistance bands (3 sets x 15 reps)",
+            "Tricep dips on the floor (3 sets x max reps)",
+            "Side planks (3 sets x 30 seconds per side)",
+            "Glute bridges with resistance band (3 sets x 20 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jogging in place": "unfwk5fu8_M",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Step-ups using a bench or staircase (3 sets x 10 reps each leg)": "2fCKd-BQOhw",
+            "Seated rows with resistance bands (3 sets x 15 reps)": "vc1E5CfRfos",
+            "Tricep dips on the floor (3 sets x max reps)": "zhXCIIrfBxc",
+            "Side planks (3 sets x 30 seconds per side)": "jrHiJ8heFTw",
+            "Glute bridges with resistance band (3 sets x 20 reps)": "fdajRzzWqec",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Muscle gain",
+        "level": "Intermediate",
+        "abnormal": "respiratory diseases",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Bodyweight squats (3 sets x 15 reps)",
+            "Tricep dips (3 sets x max reps)",
+            "Incline push-ups or modified push-ups (3 sets x max reps)",
+            "Plank variations (3 sets x 40 seconds)",
+            "Side planks (3 sets x 30 seconds per side)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jogging in place": "unfwk5fu8_M",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Bodyweight squats (3 sets x 15 reps)": "vc1E5CfRfos",
+            "Tricep dips (3 sets x max reps)": "TuqxAV6lzfg",
+            "Plank variations (3 sets x 40 seconds)": "fUXcwnIYnaQ",
+            "Side planks (3 sets x 30 seconds per side)": "jrHiJ8heFTw",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Muscle gain",
+        "level": "Intermediate",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Jumping jacks",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squat to overhead press (3 sets x 10 reps)",
+            "Reverse lunges with bicep curl (3 sets x 10 each leg)",
+            "Incline push-ups (3 sets x max reps)",
+            "Side plank with hip abduction (3 sets x 20 seconds)",
+            "Tricep dips (3 sets x 15 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jumping jacks": "1x5czhDjT5E",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squat to overhead press (3 sets x 10 reps)": "6UnPimkaoPk",
+            "Reverse lunges with bicep curl (3 sets x 10 each leg)": "wGzEnEvvV5w",
+            "Incline push-ups (3 sets x max reps)": "aT-B_eJZMr8",
+            "Side plank with hip abduction (3 sets x 20 seconds)": "wHdz0liYcHE",
+            "Tricep dips (3 sets x 15 reps)": "317zLEy88Nk",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Muscle gain",
+        "level": "advanced",
+        "abnormal": "cardiovascular disease",
+        "daily_program": [
+            "Jumping jacks",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squat variations (3 sets x 10 reps each set)",
+            "Step-ups with dumbbells (3 sets x 8 reps per leg)",
+            "Bench press or chest flyes (3 sets x max reps)",
+            "Planks (3 sets x 45 seconds)",
+            "Reverse crunches (3 sets x 12 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jumping jacks": "hlk1adYWKjQ",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squat variations (3 sets x 10 reps each set)": "bfBm4JLtJz8",
+            "Step-ups with dumbbells (3 sets x 8 reps per leg)": "2fCKd-BQOhw",
+            "Bench press or chest flyes (3 sets x max reps)": "J8hVZBITB_Y",
+            "Planks (3 sets x 45 seconds)": "Ow4tKbM5uyw",
+            "Reverse crunches (3 sets x 12 reps)": "C5HrydHUrQU",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Muscle gain",
+        "level": "advanced",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": [
+            "Running in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Burpees (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)",
+            "Additional exercises based on personal preference or needs:",
+            "Resistance band workouts for musculoskeletal disorders prevention:",
+            "Cool down and stretch to prevent muscle soreness:"
+        ],
+        "videoList": {
+            "Running in place": "GYM0SC79eFY",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Burpees (3 sets x max reps)": "lPtENEtGDYU",
+            "Lunges (3 sets x 10 reps each leg)": "vc1E5CfRfos",
+            "Push-ups (3 sets x max reps)": "aXIbyf4EnDU",
+            "Planks (3 sets x 30 seconds)": "xdmvae0tKdI",
+            "Mountain climbers (3 sets x 30 seconds)": "ChGP5ahvvN4",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8",
+            "Additional exercises based on personal preference or needs:": "-tld0bc0t3k",
+            "Cool down and stretch to prevent muscle soreness:": "vl_oKLQXyFA"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Muscle gain",
+        "level": "advanced",
+        "abnormal": "respiratory diseases",
+        "daily_program": [
+            "Warm up with dynamic stretching (15 minutes)",
+            "Jumping jacks (2 sets x 60 reps)",
+            "Advanced squats (3 sets x 12 reps each set)",
+            "Single-leg deadlifts (3 sets x 8 reps each leg)",
+            "Incline push-ups (4 sets x max reps)",
+            "Plank variations (5 sets x 30 seconds)",
+            "Reverse crunches (4 sets x 15 reps)",
+            "Static stretching routine (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Warm up with dynamic stretching (15 minutes)": "ehXOS9mMrcU",
+            "Jumping jacks (2 sets x 60 reps)": "xrB3kraCd6Q",
+            "Advanced squats (3 sets x 12 reps each set)": "bfBm4JLtJz8",
+            "Single-leg deadlifts (3 sets x 8 reps each leg)": "Yuuo6LVps6I",
+            "Incline push-ups (4 sets x max reps)": "KBsNSPtartQ",
+            "Plank variations (5 sets x 30 seconds)": "nDNOZCoBFqg",
+            "Reverse crunches (4 sets x 15 reps)": "ygYoqkWJRlI",
+            "Static stretching routine (neck, shoulders, arms, lower back, legs)": "Sl6q1igrxpk"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Muscle gain",
+        "level": "advanced",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Running in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Advanced Squats (4 sets x 15 reps)",
+            "Leg Presses (3 sets x 10 reps)",
+            "Bench presses (3 sets x 8 reps)",
+            "Pull-ups (3 sets x max reps)",
+            "Deadlifts (3 sets x 6 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Running in place": "GYM0SC79eFY",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Advanced Squats (4 sets x 15 reps)": "bfBm4JLtJz8",
+            "Leg Presses (3 sets x 10 reps)": "lPtENEtGDYU",
+            "Bench presses (3 sets x 8 reps)": "ptpmRrzRtWQ",
+            "Pull-ups (3 sets x max reps)": "aXIbyf4EnDU",
+            "Deadlifts (3 sets x 6 reps)": "eppTwxOicew",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Overall health improvement",
+        "level": "beginner",
+        "abnormal": "cardiovascular disease",
+        "daily_program": [
+            "Walking for cardio",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Wall squats (3 sets x 15 repetitions)",
+            "Bicep curls with resistance bands (3 sets x max reps)",
+            "Tricep extensions with resistance bands (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Glute bridges (3 sets x 20 repetitions)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking for cardio": "GYM0SC79eFY",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Wall squats (3 sets x 15 repetitions)": "u9o71FbiDdM",
+            "Bicep curls with resistance bands (3 sets x max reps)": "2fCKd-BQOhw",
+            "Tricep extensions with resistance bands (3 sets x max reps)": "vc1E5CfRfos",
+            "Planks (3 sets x 30 seconds)": "nDNOZCoBFqg",
+            "Glute bridges (3 sets x 20 repetitions)": "29OfN4ztW_g",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Overall health improvement",
+        "level": "beginner",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": [
+            "Walking at a comfortable pace",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Wall squats (3 sets x 15 repetitions)",
+            "Seated rows with elastic bands (3 sets x 10 repetitions)",
+            "Wall push-ups (3 sets x 10 repetitions)",
+            "Bird dogs (3 sets x 15 repetitions each side)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking at a comfortable pace": "eRZ3eFU1Pr8",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Wall squats (3 sets x 15 repetitions)": "u9o71FbiDdM",
+            "Wall push-ups (3 sets x 10 repetitions)": "HVgBWSOPx0I",
+            "Bird dogs (3 sets x 15 repetitions each side)": "MdJjd38JTU8",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Overall health improvement",
+        "level": "beginner",
+        "abnormal": "respiratory diseases",
+        "daily_program": [
+            "Walking in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squats (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Modified push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Seated knee lifts (3 sets x 20 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking in place": "GYM0SC79eFY",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squats (3 sets x max reps)": "bfBm4JLtJz8",
+            "Lunges (3 sets x 10 reps each leg)": "ZUziQHnABks",
+            "Modified push-ups (3 sets x max reps)": "wfZf74_XFMA",
+            "Planks (3 sets x 30 seconds)": "8V15pqBW014",
+            "Seated knee lifts (3 sets x 20 reps)": "C5HrydHUrQU",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Overall health improvement",
+        "level": "beginner",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Walking or light jogging",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Bodyweight squats (3 sets x 15 reps)",
+            "Wall sits (3 sets x 60 seconds)",
+            "Modified push-ups (3 sets x max reps)",
+            "Side planks (3 sets x 30 seconds each side)",
+            "Seated abductor exercises (3 sets x 20 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking or light jogging": "emekH9GwG-w",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Bodyweight squats (3 sets x 15 reps)": "ygYoqkWJRlI",
+            "Wall sits (3 sets x 60 seconds)": "Tbc_MAFP20Y",
+            "Modified push-ups (3 sets x max reps)": "wfZf74_XFMA",
+            "Side planks (3 sets x 30 seconds each side)": "oG7vx7RLSHU",
+            "Seated abductor exercises (3 sets x 20 reps)": "hLKh7DXOiHk",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Overall health improvement",
+        "level": "Intermediate",
+        "abnormal": "cardiovascular disease",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Burpees (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)",
+            "Cardiovascular exercises such as cycling or rowing machine for 20 minutes",
+            "Heart rate monitoring and recording to track progress"
+        ],
+        "videoList": {
+            "Jogging in place": "unfwk5fu8_M",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Burpees (3 sets x max reps)": "xrB3kraCd6Q",
+            "Lunges (3 sets x 10 reps each leg)": "yac8e2-77pE",
+            "Push-ups (3 sets x max reps)": "WWYKWBsE9f4",
+            "Planks (3 sets x 30 seconds)": "sntfjdzTj84",
+            "Mountain climbers (3 sets x 30 seconds)": "oG7vx7RLSHU",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8",
+            "Heart rate monitoring and recording to track progress": "21OSts-WuUg"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Overall health improvement",
+        "level": "Intermediate",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": [
+            "Walking at a moderate pace",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Side plank leg lifts (3 sets x 10 reps each side)",
+            "Glute bridges (3 sets x 15 reps)",
+            "Seated rows (3 sets x 12 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking at a moderate pace": "SOdD4ftS3wg",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Side plank leg lifts (3 sets x 10 reps each side)": "sjvT0mHkCQA",
+            "Glute bridges (3 sets x 15 reps)": "0t_I9uVO7mA",
+            "Seated rows (3 sets x 12 reps)": "vc1E5CfRfos",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Overall health improvement",
+        "level": "Intermediate",
+        "abnormal": "respiratory diseases",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Alternating lunges (3 sets x 10 reps each leg)",
+            "Incline push-ups (3 sets x max reps)",
+            "Side planks (3 sets x 20 seconds each side)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jogging in place": "unfwk5fu8_M",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Alternating lunges (3 sets x 10 reps each leg)": "vc1E5CfRfos",
+            "Incline push-ups (3 sets x max reps)": "aT-B_eJZMr8",
+            "Side planks (3 sets x 20 seconds each side)": "xdmvae0tKdI",
+            "Mountain climbers (3 sets x 30 seconds)": "sjvT0mHkCQA",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Overall health improvement",
+        "level": "Intermediate",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Walking lunges",
+            "Jogging in place",
+            "Skipping rope (5 minutes)",
+            "Plank variations (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 1 minute)",
+            "Side planks (3 sets x 30 seconds, each side)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking lunges": "SOdD4ftS3wg",
+            "Jogging in place": "unfwk5fu8_M",
+            "Skipping rope (5 minutes)": "6KyYMSFqS00",
+            "Plank variations (3 sets x 30 seconds)": "yac8e2-77pE",
+            "Mountain climbers (3 sets x 1 minute)": "iZhmwQgeAyQ",
+            "Side planks (3 sets x 30 seconds, each side)": "xdmvae0tKdI",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Overall health improvement",
+        "level": "advanced",
+        "abnormal": "cardiovascular disease",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Advanced burpees with variations (3 sets x max reps)",
+            "Lunges (3 sets x 12-15 reps each leg)",
+            "Push-ups with different grips (3 sets x max reps)",
+            "Planks with progressions (3 sets x 45 seconds)",
+            "Mountain climbers with speed variations (3 sets x 60 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs), focusing on flexibility and mobility"
+        ],
+        "videoList": {
+            "Jogging in place": "k5N3BqLHMKI",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Advanced burpees with variations (3 sets x max reps)": "Cc7ZbxTA6fE",
+            "Lunges (3 sets x 12-15 reps each leg)": "ygYoqkWJRlI",
+            "Planks with progressions (3 sets x 45 seconds)": "fkemG0HUdrg",
+            "Mountain climbers with speed variations (3 sets x 60 seconds)": "xQQ1SpUhUA8",
+            "Static stretches (neck, shoulders, arms, lower back, legs), focusing on flexibility and mobility": "Igzmhbghcd4"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Overall health improvement",
+        "level": "advanced",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": [
+            "Jumping jacks",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squats with overhead presses (3 sets x 10 reps each leg)",
+            "Single-leg deadlifts (3 sets x 10 reps each leg)",
+            "Incline push-ups (3 sets x max reps)",
+            "Side planks (3 sets x 30 seconds)",
+            "Bicycle crunches (3 sets x 20 each side)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jumping jacks": "P8vsH0UNHR0",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squats with overhead presses (3 sets x 10 reps each leg)": "c-zEP3n43hs",
+            "Single-leg deadlifts (3 sets x 10 reps each leg)": "7rKdIIBYicQ",
+            "Incline push-ups (3 sets x max reps)": "KBsNSPtartQ",
+            "Side planks (3 sets x 30 seconds)": "7hnPTflm2dg",
+            "Bicycle crunches (3 sets x 20 each side)": "C5HrydHUrQU",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Overall health improvement",
+        "level": "advanced",
+        "abnormal": "respiratory diseases",
+        "daily_program": [
+            "Warm up with light jogging",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Cycling or rowing machine for 20 minutes (intensity based on comfort level)",
+            "Resistance band exercises (biceps curls, triceps extensions, shoulder presses)",
+            "Plank variations (regular, side planks, forearm planks) with 3 sets x 45 seconds each",
+            "Glute bridges with resistance bands (3 sets x 10 reps)",
+            "Yoga poses for respiratory health (cat-cow stretch, cobra pose)",
+            "Cooldown with static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Warm up with light jogging": "Xewf0Ecyrfs",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Resistance band exercises (biceps curls, triceps extensions, shoulder presses)": "6ii7JgpQV60",
+            "Glute bridges with resistance bands (3 sets x 10 reps)": "hLKh7DXOiHk",
+            "Cooldown with static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "young",
+        "goal": "Overall health improvement",
+        "level": "advanced",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Jumping jacks",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Burpees (2 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jumping jacks": "P8vsH0UNHR0",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Burpees (2 sets x max reps)": "ws5Lcm7JhDs",
+            "Lunges (3 sets x 10 reps each leg)": "vc1E5CfRfos",
+            "Push-ups (3 sets x max reps)": "Tbc_MAFP20Y",
+            "Planks (3 sets x 30 seconds)": "xdmvae0tKdI",
+            "Mountain climbers (3 sets x 30 seconds)": "ChGP5ahvvN4",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Body fat reduction",
+        "level": "beginner",
+        "abnormal": "cardiovascular disease",
+        "daily_program": [
+            "Walking or light jogging",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Burpees (2 sets x max reps)",
+            "Lunges (2 sets x 10 reps each leg)",
+            "Modified push-ups (2 sets x max reps)",
+            "Planks (2 sets x 30 seconds)",
+            "Mountain climbers (2 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking or light jogging": "emekH9GwG-w",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Burpees (2 sets x max reps)": "2fCKd-BQOhw",
+            "Lunges (2 sets x 10 reps each leg)": "ksQc-aEBG5M",
+            "Modified push-ups (2 sets x max reps)": "3RuPQ9VW_x8",
+            "Planks (2 sets x 30 seconds)": "QDUklXQJ_6E",
+            "Mountain climbers (2 sets x 30 seconds)": "TbrF84r4J1E",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Body fat reduction",
+        "level": "beginner",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": [
+            "Walking for warm-up",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squats (3 sets x 12 reps)",
+            "Calf raises (3 sets x 12 reps)",
+            "Tricep dips (3 sets x 10 reps)",
+            "Plank holds (3 sets x 60 seconds)",
+            "Side planks (3 sets x 60 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking for warm-up": "7PsInjpX_LM",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squats (3 sets x 12 reps)": "jU4LNw9b11g",
+            "Calf raises (3 sets x 12 reps)": "l4THcKL-sPM",
+            "Tricep dips (3 sets x 10 reps)": "Yqn5cjYiG-I",
+            "Plank holds (3 sets x 60 seconds)": "C1MbRWFAM54",
+            "Side planks (3 sets x 60 seconds)": "I_u8DsKUXIQ",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Body fat reduction",
+        "level": "beginner",
+        "abnormal": "respiratory diseases",
+        "daily_program": [
+            "Walking at a comfortable pace",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squats (3 sets x 15 reps)",
+            "Bicep curls with resistance bands (3 sets x 10 reps each arm)",
+            "Tricep pushdowns with resistance bands (3 sets x 10 reps each arm)",
+            "Planks (3 sets x 20 seconds)",
+            "Wall sits (3 sets x 60 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking at a comfortable pace": "eRZ3eFU1Pr8",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squats (3 sets x 15 reps)": "bfBm4JLtJz8",
+            "Bicep curls with resistance bands (3 sets x 10 reps each arm)": "rqzIJR2mbUQ",
+            "Tricep pushdowns with resistance bands (3 sets x 10 reps each arm)": "tS2r4cDiZXA",
+            "Planks (3 sets x 20 seconds)": "QDUklXQJ_6E",
+            "Wall sits (3 sets x 60 seconds)": "Tbc_MAFP20Y",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Body fat reduction",
+        "level": "beginner",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Walking in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squats (3 sets x 15 reps)",
+            "Bicep curls (3 sets x 12 reps per arm)",
+            "Tricep dips (3 sets x 10 reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Wall sits (3 sets x 45 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking in place": "GYM0SC79eFY",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squats (3 sets x 15 reps)": "bfBm4JLtJz8",
+            "Bicep curls (3 sets x 12 reps per arm)": "2fCKd-BQOhw",
+            "Tricep dips (3 sets x 10 reps)": "Yqn5cjYiG-I",
+            "Planks (3 sets x 30 seconds)": "nDNOZCoBFqg",
+            "Wall sits (3 sets x 45 seconds)": "I9HTiygnzIc",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Body fat reduction",
+        "level": "Intermediate",
+        "abnormal": "cardiovascular disease",
+        "daily_program": "default",
+        "videoList": {
+            "d": "PFK9eQqdmuU",
+            "e": "O9w6KhKI-pM",
+            "f": "-956vy_VNqI",
+            "a": "PFK9eQqdmuU",
+            "u": "yJm9SGS2IhA",
+            "l": "PFK9eQqdmuU",
+            "t": "JxCvhEPm0hg"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Body fat reduction",
+        "level": "Intermediate",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": [
+            "Walking at a moderate pace",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Modified burpees (3 sets x max reps)",
+            "Seated hamstring stretch (3 sets x 10 reps each leg)",
+            "Resistance band rows (3 sets x max reps)",
+            "Side planks (3 sets x 30 seconds)",
+            "Tricep dips (3 sets x max reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking at a moderate pace": "SOdD4ftS3wg",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Seated hamstring stretch (3 sets x 10 reps each leg)": "u5OgcZdNbMo",
+            "Resistance band rows (3 sets x max reps)": "vc1E5CfRfos",
+            "Side planks (3 sets x 30 seconds)": "sntfjdzTj84",
+            "Tricep dips (3 sets x max reps)": "TuqxAV6lzfg",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Body fat reduction",
+        "level": "Intermediate",
+        "abnormal": "respiratory diseases",
+        "daily_program": [
+            "Walking at a moderate pace",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Side lunges (3 sets x 15 reps each leg)",
+            "Modified push-ups (3 sets x max reps)",
+            "Planks (3 sets x 20 seconds)",
+            "Seated hip abduction with resistance band (3 sets x 15 reps)",
+            "Seated row with resistance band (3 sets x 10 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking at a moderate pace": "SOdD4ftS3wg",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Side lunges (3 sets x 15 reps each leg)": "yac8e2-77pE",
+            "Modified push-ups (3 sets x max reps)": "3RuPQ9VW_x8",
+            "Planks (3 sets x 20 seconds)": "DEOx_DzyfV4",
+            "Seated hip abduction with resistance band (3 sets x 15 reps)": "hLKh7DXOiHk",
+            "Seated row with resistance band (3 sets x 10 reps)": "vc1E5CfRfos",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Body fat reduction",
+        "level": "Intermediate",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Walking or light jogging",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Burpees (3 sets x max reps)",
+            "Leg lifts (3 sets x 10 reps each leg)",
+            "Modified push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking or light jogging": "solO3M9L4ds",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Burpees (3 sets x max reps)": "xrB3kraCd6Q",
+            "Leg lifts (3 sets x 10 reps each leg)": "yac8e2-77pE",
+            "Modified push-ups (3 sets x max reps)": "3RuPQ9VW_x8",
+            "Planks (3 sets x 30 seconds)": "Ow4tKbM5uyw",
+            "Mountain climbers (3 sets x 30 seconds)": "sjvT0mHkCQA",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Body fat reduction",
+        "level": "advanced",
+        "abnormal": "cardiovascular disease",
+        "daily_program": [
+            "Cycling or Brisk walking",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Advanced squats (3 sets x 10 reps)",
+            "Reverse lunges with weight (3 sets x 10 reps each leg)",
+            "Incline push-ups (3 sets x max reps)",
+            "Planks (3 sets x 45 seconds)",
+            "Mountain climbers (3 sets x 45 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Cycling or Brisk walking": "Tbc_MAFP20Y",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Advanced squats (3 sets x 10 reps)": "bfBm4JLtJz8",
+            "Reverse lunges with weight (3 sets x 10 reps each leg)": "yac8e2-77pE",
+            "Incline push-ups (3 sets x max reps)": "KBsNSPtartQ",
+            "Planks (3 sets x 45 seconds)": "Ow4tKbM5uyw",
+            "Mountain climbers (3 sets x 45 seconds)": "7R6HRYiRY40",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Body fat reduction",
+        "level": "advanced",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": [
+            "Elliptical training (15 minutes)",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Advanced squats (3 sets x 12 reps)",
+            "Resistance band tricep extension (3 sets x 10 reps each arm)",
+            "Single-leg deadlifts (3 sets x 8 reps each leg)",
+            "Planks (3 sets x 60 seconds)",
+            "Side plank with rotation (3 sets x 30 seconds each side)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Elliptical training (15 minutes)": "sAY-dua1XJ8",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Advanced squats (3 sets x 12 reps)": "jU4LNw9b11g",
+            "Resistance band tricep extension (3 sets x 10 reps each arm)": "tS2r4cDiZXA",
+            "Single-leg deadlifts (3 sets x 8 reps each leg)": "q1_yGuUKe4o",
+            "Planks (3 sets x 60 seconds)": "DEOx_DzyfV4",
+            "Side plank with rotation (3 sets x 30 seconds each side)": "nDNOZCoBFqg",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Body fat reduction",
+        "level": "advanced",
+        "abnormal": "respiratory diseases",
+        "daily_program": [
+            "Walking lunges (3 sets x 15 reps each leg)",
+            "Jump squats with resistance bands (3 sets x max reps)",
+            "Reverse push-ups on a stability ball (3 sets x max reps)",
+            "Side planks with hip abduction (3 sets x 20 seconds each side)",
+            "Bicycle crunches (3 sets x max reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)",
+            "Yoga poses for respiratory health",
+            "Meditation and breathing exercises"
+        ],
+        "videoList": {
+            "Walking lunges (3 sets x 15 reps each leg)": "Ty297Ikd00g",
+            "Jump squats with resistance bands (3 sets x max reps)": "hLKh7DXOiHk",
+            "Reverse push-ups on a stability ball (3 sets x max reps)": "g0guaczz6PY",
+            "Bicycle crunches (3 sets x max reps)": "8stWle0UgD0",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8",
+            "Yoga poses for respiratory health": "Lec8mbl88YQ",
+            "Meditation and breathing exercises": "_xwmEXDEUJQ"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Body fat reduction",
+        "level": "advanced",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Jumping jacks",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squat jumps (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Incline push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Reverse crunches (3 sets x 20 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jumping jacks": "hlk1adYWKjQ",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squat jumps (3 sets x max reps)": "PpvvA1LtnqM",
+            "Lunges (3 sets x 10 reps each leg)": "vc1E5CfRfos",
+            "Incline push-ups (3 sets x max reps)": "KBsNSPtartQ",
+            "Planks (3 sets x 30 seconds)": "xdmvae0tKdI",
+            "Reverse crunches (3 sets x 20 reps)": "C5HrydHUrQU",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Muscle gain",
+        "level": "beginner",
+        "abnormal": "cardiovascular disease",
+        "daily_program": [
+            "Walking at a moderate pace",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squats (3 sets x 12 reps)",
+            "Bicep curls with dumbbells (3 sets x 10 reps each arm)",
+            "Seated row machine (3 sets x 10 reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Tricep extensions with dumbbells (3 sets x 12 reps each arm)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking at a moderate pace": "xjXvX-QBN_Y",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squats (3 sets x 12 reps)": "jU4LNw9b11g",
+            "Bicep curls with dumbbells (3 sets x 10 reps each arm)": "2fCKd-BQOhw",
+            "Seated row machine (3 sets x 10 reps)": "OJevd3OyNNo",
+            "Planks (3 sets x 30 seconds)": "8V15pqBW014",
+            "Tricep extensions with dumbbells (3 sets x 12 reps each arm)": "_gsUck-7M74",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Muscle gain",
+        "level": "beginner",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": [
+            "Walking uphill",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squats (3 sets x 10 reps)",
+            "Seated rows (3 sets x 10 reps)",
+            "Bicep curls (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Tricep dips (3 sets x 10 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking uphill": "GYM0SC79eFY",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squats (3 sets x 10 reps)": "bfBm4JLtJz8",
+            "Seated rows (3 sets x 10 reps)": "vc1E5CfRfos",
+            "Bicep curls (3 sets x max reps)": "2fCKd-BQOhw",
+            "Planks (3 sets x 30 seconds)": "nDNOZCoBFqg",
+            "Tricep dips (3 sets x 10 reps)": "Yqn5cjYiG-I",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Muscle gain",
+        "level": "beginner",
+        "abnormal": "respiratory diseases",
+        "daily_program": [
+            "Running in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Burpees (2 sets x 15 reps)",
+            "Lunges (3 sets x 8 reps each leg)",
+            "Modified push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Running in place": "GYM0SC79eFY",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Burpees (2 sets x 15 reps)": "fr24FaGU_Qc",
+            "Lunges (3 sets x 8 reps each leg)": "ZUziQHnABks",
+            "Modified push-ups (3 sets x max reps)": "wfZf74_XFMA",
+            "Planks (3 sets x 30 seconds)": "nDNOZCoBFqg",
+            "Mountain climbers (3 sets x 30 seconds)": "TbrF84r4J1E",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Muscle gain",
+        "level": "beginner",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Walking with high knees",
+            "Arm circles forward and backward",
+            "Seated rows (3 sets x 12 reps)",
+            "Bicep curls (3 sets x 10 reps each arm)",
+            "Tricep extensions (3 sets x 8 reps each arm)",
+            "Side plank hip abduction (3 sets x 15 seconds each side)",
+            "Glute bridges (3 sets x 12 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking with high knees": "HRgPsDI_eMU",
+            "Arm circles forward and backward": "CHGZ_P_hYps",
+            "Seated rows (3 sets x 12 reps)": "vc1E5CfRfos",
+            "Bicep curls (3 sets x 10 reps each arm)": "2fCKd-BQOhw",
+            "Tricep extensions (3 sets x 8 reps each arm)": "vc1E5CfRfos",
+            "Side plank hip abduction (3 sets x 15 seconds each side)": "sjvT0mHkCQA",
+            "Glute bridges (3 sets x 12 reps)": "29OfN4ztW_g",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Muscle gain",
+        "level": "Intermediate",
+        "abnormal": "cardiovascular disease",
+        "daily_program": [
+            "Walking for cardiovascular health",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Resistance band shoulder presses (3 sets x 10 reps each arm)",
+            "Lunges (3 sets x 12 reps each leg)",
+            "Modified push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Tricep dips (3 sets x 15 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking for cardiovascular health": "vnBXaCsoEPU",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Resistance band shoulder presses (3 sets x 10 reps each arm)": "fdajRzzWqec",
+            "Lunges (3 sets x 12 reps each leg)": "yac8e2-77pE",
+            "Modified push-ups (3 sets x max reps)": "3RuPQ9VW_x8",
+            "Planks (3 sets x 30 seconds)": "7hnPTflm2dg",
+            "Tricep dips (3 sets x 15 reps)": "317zLEy88Nk",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Muscle gain",
+        "level": "Intermediate",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": "default",
+        "videoList": {
+            "d": "PFK9eQqdmuU",
+            "e": "O9w6KhKI-pM",
+            "f": "-956vy_VNqI",
+            "a": "PFK9eQqdmuU",
+            "u": "yJm9SGS2IhA",
+            "l": "PFK9eQqdmuU",
+            "t": "JxCvhEPm0hg"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Muscle gain",
+        "level": "Intermediate",
+        "abnormal": "respiratory diseases",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Seated bicep curls (3 sets x 10 reps)",
+            "Tricep dips (3 sets x 10 reps)",
+            "Shoulder presses (3 sets x 10 reps)",
+            "Planks (3 sets x 45 seconds)",
+            "Reverse lunges with dumbbells (3 sets x 10 reps each leg)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jogging in place": "unfwk5fu8_M",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Seated bicep curls (3 sets x 10 reps)": "gygpvdC7-ws",
+            "Tricep dips (3 sets x 10 reps)": "Yqn5cjYiG-I",
+            "Shoulder presses (3 sets x 10 reps)": "hmnvQmUPsto",
+            "Planks (3 sets x 45 seconds)": "bSyrLu6RFCY",
+            "Reverse lunges with dumbbells (3 sets x 10 reps each leg)": "XEn2kLxz2_k",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Muscle gain",
+        "level": "Intermediate",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squats with weights (3 sets x 12 reps)",
+            "Reverse lunges with dumbbells (3 sets x 10 reps each leg)",
+            "Incline push-ups (3 sets x max reps)",
+            "Planks on elbows (3 sets x 60 seconds)",
+            "Tricep dips with resistance band (3 sets x 12 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jogging in place": "unfwk5fu8_M",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squats with weights (3 sets x 12 reps)": "wOHcsCzO2_U",
+            "Reverse lunges with dumbbells (3 sets x 10 reps each leg)": "XEn2kLxz2_k",
+            "Incline push-ups (3 sets x max reps)": "aT-B_eJZMr8",
+            "Planks on elbows (3 sets x 60 seconds)": "DEOx_DzyfV4",
+            "Tricep dips with resistance band (3 sets x 12 reps)": "mvs3gSAwpDQ",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Muscle gain",
+        "level": "advanced",
+        "abnormal": "cardiovascular disease",
+        "daily_program": [
+            "Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Advanced squats with barbell or dumbbells (3 sets x 10 reps)",
+            "Advanced bench presses (3 sets x max reps)",
+            "Tricep pushdowns (3 sets x max reps)",
+            "Planks (3 sets x 45 seconds)",
+            "Crunches with medicine ball or barbell (3 sets x max reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Jogging in place": "k5N3BqLHMKI",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Advanced squats with barbell or dumbbells (3 sets x 10 reps)": "ygYoqkWJRlI",
+            "Advanced bench presses (3 sets x max reps)": "vcBig73ojpE",
+            "Planks (3 sets x 45 seconds)": "Ow4tKbM5uyw",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Muscle gain",
+        "level": "advanced",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": [
+            "Warm up: Jogging in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Advanced Squats with Dumbbells (3 sets x 10 reps)",
+            "Bent-over Rows with Barbell (3 sets x 8 reps)",
+            "Single-arm Dumbbell Bench Press (3 sets x 6 reps each arm)",
+            "Planks on Forearms (3 sets x 45 seconds)",
+            "Reverse Lunges with Dumbbells (3 sets x 10 reps each leg)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Warm up: Jogging in place": "In6gmyBJB58",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Advanced Squats with Dumbbells (3 sets x 10 reps)": "irfw1gQ0foQ",
+            "Bent-over Rows with Barbell (3 sets x 8 reps)": "bgoJXc9HaOg",
+            "Single-arm Dumbbell Bench Press (3 sets x 6 reps each arm)": "4pET4k_vtI4",
+            "Planks on Forearms (3 sets x 45 seconds)": "C1MbRWFAM54",
+            "Reverse Lunges with Dumbbells (3 sets x 10 reps each leg)": "--YXD9A2YWQ",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Muscle gain",
+        "level": "advanced",
+        "abnormal": "respiratory diseases",
+        "daily_program": [
+            "Warm-up: Jogging in place for 5 minutes",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Advanced Squats with Dumbbells (3 sets x 12 reps each set)",
+            "Incline Bench Press on a machine (3 sets x 8 reps each set)",
+            "Reverse Grip Pull-ups or Lat Pulldowns (3 sets x max reps)",
+            "Planks (3 sets x 60 seconds)",
+            "Stability Ball Hamstring Curls (3 sets x 15 reps each leg)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Warm-up: Jogging in place for 5 minutes": "In6gmyBJB58",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Advanced Squats with Dumbbells (3 sets x 12 reps each set)": "ygYoqkWJRlI",
+            "Incline Bench Press on a machine (3 sets x 8 reps each set)": "TuqxAV6lzfg",
+            "Planks (3 sets x 60 seconds)": "DEOx_DzyfV4",
+            "Stability Ball Hamstring Curls (3 sets x 15 reps each leg)": "JGNJnMpxHgQ",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Muscle gain",
+        "level": "advanced",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Running in place",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Advanced dumbbell shoulder press (3 sets x 10 reps)",
+            "Deadlifts (3 sets x 10 reps)",
+            "Reverse lunges with barbell (3 sets x 8 reps each leg)",
+            "Push-ups (3 sets x max reps)",
+            "Planks (3 sets x 60 seconds)",
+            "Barbell rows (3 sets x 12 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Running in place": "GYM0SC79eFY",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Advanced dumbbell shoulder press (3 sets x 10 reps)": "F6NKLSqR1F0",
+            "Deadlifts (3 sets x 10 reps)": "7zZlbElg95Q",
+            "Reverse lunges with barbell (3 sets x 8 reps each leg)": "cB06p5Gke-Y",
+            "Push-ups (3 sets x max reps)": "w7LABJgtZsI",
+            "Planks (3 sets x 60 seconds)": "DEOx_DzyfV4",
+            "Barbell rows (3 sets x 12 reps)": "eE7dzM0iexc",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Overall health improvement",
+        "level": "beginner",
+        "abnormal": "cardiovascular disease",
+        "daily_program": [
+            "Walking",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squats (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Modified push-ups (3 sets x max reps)",
+            "Seated rotational trunk twists (3 sets x 20 twists)",
+            "Bird dog (3 sets x 15 repetitions per side)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking": "GYM0SC79eFY",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squats (3 sets x max reps)": "ygYoqkWJRlI",
+            "Lunges (3 sets x 10 reps each leg)": "ZUziQHnABks",
+            "Modified push-ups (3 sets x max reps)": "wfZf74_XFMA",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Overall health improvement",
+        "level": "beginner",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": [
+            "Walking at a comfortable pace",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Leg lifts (3 sets x 15 reps each leg)",
+            "Seated calf raises (3 sets x 10 reps)",
+            "Wall sits (3 sets x 30 seconds)",
+            "Plank variations (3 sets x 20 seconds)",
+            "Bird dog exercises (3 sets x 10 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking at a comfortable pace": "eRZ3eFU1Pr8",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Leg lifts (3 sets x 15 reps each leg)": "ksQc-aEBG5M",
+            "Seated calf raises (3 sets x 10 reps)": "DpDsRqQ6Bcc",
+            "Wall sits (3 sets x 30 seconds)": "I9HTiygnzIc",
+            "Plank variations (3 sets x 20 seconds)": "nDNOZCoBFqg",
+            "Bird dog exercises (3 sets x 10 reps)": "sxNamshXh6o",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Overall health improvement",
+        "level": "beginner",
+        "abnormal": "respiratory diseases",
+        "daily_program": [
+            "Walking",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Seated leg lifts (3 sets x 15 reps each leg)",
+            "Wall sits (3 sets x 20 seconds)",
+            "Arm circles (3 sets x max reps)",
+            "Bird dogs (3 sets x 10 reps each side)",
+            "Quadruped arm and leg raises (3 sets x 8 reps each side)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking": "GYM0SC79eFY",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Seated leg lifts (3 sets x 15 reps each leg)": "jWyD_Ri93YE",
+            "Wall sits (3 sets x 20 seconds)": "I9HTiygnzIc",
+            "Arm circles (3 sets x max reps)": "Tbc_MAFP20Y",
+            "Bird dogs (3 sets x 10 reps each side)": "oVLxMiMyKqk",
+            "Quadruped arm and leg raises (3 sets x 8 reps each side)": "rptMcZ9nE5A",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Overall health improvement",
+        "level": "beginner",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Walking for warm-up",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squats (3 sets x 15 reps)",
+            "Leg raises (3 sets x 20 reps)",
+            "Bicep curls with resistance band (3 sets x 12 reps each arm)",
+            "Tricep kickbacks with resistance band (3 sets x 12 reps each arm)",
+            "Planks (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking for warm-up": "7PsInjpX_LM",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squats (3 sets x 15 reps)": "bfBm4JLtJz8",
+            "Leg raises (3 sets x 20 reps)": "rzrprAv7x7s",
+            "Bicep curls with resistance band (3 sets x 12 reps each arm)": "rqzIJR2mbUQ",
+            "Tricep kickbacks with resistance band (3 sets x 12 reps each arm)": "A4NlPwcmWmM",
+            "Planks (3 sets x 30 seconds)": "nDNOZCoBFqg",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "yOxDeD4sPcE"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Overall health improvement",
+        "level": "Intermediate",
+        "abnormal": "cardiovascular disease",
+        "daily_program": [
+            "Walking at a comfortable pace",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Burpees (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 20 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking at a comfortable pace": "1puSZE9mM38",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Burpees (3 sets x max reps)": "xrB3kraCd6Q",
+            "Lunges (3 sets x 10 reps each leg)": "yac8e2-77pE",
+            "Push-ups (3 sets x max reps)": "WWYKWBsE9f4",
+            "Planks (3 sets x 30 seconds)": "sntfjdzTj84",
+            "Mountain climbers (3 sets x 20 seconds)": "6sYMrAWBxs0",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Overall health improvement",
+        "level": "Intermediate",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": [
+            "Walking for warm-up",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Leg lifts (3 sets x 15 reps each leg)",
+            "Seated rows (3 sets x 10 reps)",
+            "Planks (3 sets x 45 seconds)",
+            "Mountain climbers (3 sets x 60 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking for warm-up": "v90OnJi-HgQ",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Leg lifts (3 sets x 15 reps each leg)": "eZCqu-QCs9c",
+            "Seated rows (3 sets x 10 reps)": "vc1E5CfRfos",
+            "Planks (3 sets x 45 seconds)": "sntfjdzTj84",
+            "Mountain climbers (3 sets x 60 seconds)": "6sYMrAWBxs0",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Overall health improvement",
+        "level": "Intermediate",
+        "abnormal": "respiratory diseases",
+        "daily_program": [
+            "Walking in the park",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Side lunges with arm raises (3 sets x 10 reps each leg)",
+            "Wall push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Calf raises (3 sets x 15 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking in the park": "xx6NaUQss4g",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Side lunges with arm raises (3 sets x 10 reps each leg)": "SzenyXeNIV8",
+            "Wall push-ups (3 sets x max reps)": "vc1E5CfRfos",
+            "Planks (3 sets x 30 seconds)": "sntfjdzTj84",
+            "Calf raises (3 sets x 15 reps)": "Zf9ElVivHC4",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Overall health improvement",
+        "level": "Intermediate",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Walking for warm-up",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squats with weights (3 sets x 10 reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Reverse crunches with resistance bands (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Side plank hip abduction (3 sets x 20 seconds each side)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking for warm-up": "v90OnJi-HgQ",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squats with weights (3 sets x 10 reps)": "vc1E5CfRfos",
+            "Lunges (3 sets x 10 reps each leg)": "yac8e2-77pE",
+            "Planks (3 sets x 30 seconds)": "sntfjdzTj84",
+            "Side plank hip abduction (3 sets x 20 seconds each side)": "bSyrLu6RFCY",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Overall health improvement",
+        "level": "advanced",
+        "abnormal": "cardiovascular disease",
+        "daily_program": [
+            "Walking at a moderate pace",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Advanced step-ups (3 sets x 10 reps each leg)",
+            "Incline push-ups (3 sets x max reps)",
+            "Planks (3 sets x 30 seconds)",
+            "Mountain climbers (3 sets x 30 seconds)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking at a moderate pace": "Ssb3vYh6ssM",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Advanced step-ups (3 sets x 10 reps each leg)": "vc1E5CfRfos",
+            "Incline push-ups (3 sets x max reps)": "KBsNSPtartQ",
+            "Planks (3 sets x 30 seconds)": "xdmvae0tKdI",
+            "Mountain climbers (3 sets x 30 seconds)": "ChGP5ahvvN4",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Overall health improvement",
+        "level": "advanced",
+        "abnormal": "musculoskeletal disorders",
+        "daily_program": [
+            "Walking uphill",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Lateral lunges with dumbbells (3 sets x 10 reps each leg)",
+            "Overhead presses with dumbbells (3 sets x max reps)",
+            "Tricep dips on chair (3 sets x max reps)",
+            "Side planks (3 sets x 30 seconds)",
+            "Clamshells (3 sets x 20 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking uphill": "y8nesgGj8Dg",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Lateral lunges with dumbbells (3 sets x 10 reps each leg)": "rIwUOwYDSWI",
+            "Overhead presses with dumbbells (3 sets x max reps)": "2fCKd-BQOhw",
+            "Side planks (3 sets x 30 seconds)": "sntfjdzTj84",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Overall health improvement",
+        "level": "advanced",
+        "abnormal": "respiratory diseases",
+        "daily_program": [
+            "Swimming laps",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Advanced plank variations (3 sets x 60 seconds)",
+            "Resistance band exercises (chest press, bicep curls, triceps extensions, leg abductions)",
+            "Glute bridges with resistance bands",
+            "Yoga poses focusing on core and balance",
+            "Pilates mat workouts",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Swimming laps": "EUZUMTNLcIU",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Advanced plank variations (3 sets x 60 seconds)": "KBsNSPtartQ",
+            "Glute bridges with resistance bands": "7_M0iX7a4GQ",
+            "Yoga poses focusing on core and balance": "_w5dnUseQvs",
+            "Pilates mat workouts": "ZYYxxf74qjk",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    },
+    {
+        "gender": "female",
+        "age": "old",
+        "goal": "Overall health improvement",
+        "level": "advanced",
+        "abnormal": "no health problems",
+        "daily_program": [
+            "Walking or light jogging",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)",
+            "Squats (3 sets x max reps)",
+            "Lunges (3 sets x 10 reps each leg)",
+            "Modified push-ups (3 sets x max reps)",
+            "Side planks (3 sets x 30 seconds)",
+            "Crunches or sit-ups (3 sets x 25 reps)",
+            "Static stretches (neck, shoulders, arms, lower back, legs)"
+        ],
+        "videoList": {
+            "Walking or light jogging": "emekH9GwG-w",
+            "Dynamic stretches (neck, shoulders, arms, lower back, legs)": "ehXOS9mMrcU",
+            "Squats (3 sets x max reps)": "bfBm4JLtJz8",
+            "Lunges (3 sets x 10 reps each leg)": "vc1E5CfRfos",
+            "Modified push-ups (3 sets x max reps)": "3RuPQ9VW_x8",
+            "Side planks (3 sets x 30 seconds)": "7hnPTflm2dg",
+            "Crunches or sit-ups (3 sets x 25 reps)": "F6PhNnlb-14",
+            "Static stretches (neck, shoulders, arms, lower back, legs)": "STa6UZ3X4b8"
+        }
+    }
+]

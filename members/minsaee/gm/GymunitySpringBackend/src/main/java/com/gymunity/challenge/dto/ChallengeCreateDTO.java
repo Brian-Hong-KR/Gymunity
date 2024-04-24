@@ -13,6 +13,7 @@ public class ChallengeCreateDTO {
 	private int bettingPoint;
 	private String chStartDate;
 	private String chEndDate;
+	private int challengePeriod;
 	private int verifyTerm;
 
 }//end class

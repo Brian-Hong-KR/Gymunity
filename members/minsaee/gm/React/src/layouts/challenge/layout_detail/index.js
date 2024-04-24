@@ -27,7 +27,7 @@ import icon_start from "assets/images/icon/start.png";
 import icon_point from "assets/images/icon/point.png";
 
 function ChallengeDetail() {
-  const { ch_id } = useParams();
+  const { chId } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -46,13 +46,13 @@ function ChallengeDetail() {
   console.log("joinChIdList:", joinChIdList);
 
   const isJoined = () => {
-    return challengeDetail.ch_id === joinChIdList[0] ||
-      challengeDetail.ch_id === joinChIdList[1]
+    return challengeDetail.chId === joinChIdList[0] ||
+      challengeDetail.chId === joinChIdList[1]
       ? true
       : false;
   };
 
-  console.log("challengeDetail.ch_id:", challengeDetail.ch_id);
+  console.log("challengeDetail.chId:", challengeDetail.chId);
   console.log("isJoined:", isJoined);
   // const config = {
   //   headers: {
@@ -66,7 +66,7 @@ function ChallengeDetail() {
 
   const handleDelete = async (e) => {
     e.preventDefault();
-    await dispatch(challengeActions.getChallengeDelete(ch_id)).then(
+    await dispatch(challengeActions.getChallengeDelete(chId)).then(
       (response) => {
         if (response.payload === "삭제 실패") {
           setAlertMessage("다른 참여자가 있을 경우 삭제가 불가합니다.");
@@ -78,7 +78,7 @@ function ChallengeDetail() {
   };
 
   useEffect(() => {
-    dispatch(challengeActions.getChallengeDetail(ch_id));
+    dispatch(challengeActions.getChallengeDetail(chId));
   }, []);
 
   // SoftButton 클릭 시 SoftAlert을 보여주는 함수
@@ -94,8 +94,16 @@ function ChallengeDetail() {
   //TODO localStorage.getItem("userAccount")로 바꾸기
   const localStorageUserID = 81;
 
-  const { image, category, grade, verify_term, period, remainingDays } =
-    DataConverter(challengeDetail);
+  const {
+    image,
+    category,
+    grade,
+    verifyTerm,
+    period,
+    remainingDays,
+    days,
+    endDate,
+  } = DataConverter(challengeDetail);
 
   let buttonComponent;
   let ddayComponent;
@@ -105,7 +113,7 @@ function ChallengeDetail() {
     buttonComponent = (
       <SoftButton
         component={Link}
-        to={`/challenge/detail/${challengeDetail.ch_id}`}
+        to={`/challenge/detail/${challengeDetail.chId}`}
         variant="outlined"
         size="small"
         color="primary"
@@ -153,7 +161,7 @@ function ChallengeDetail() {
     buttonComponent = (
       <SoftButton
         component={Link}
-        to={`/challenge/verify/${challengeDetail.ch_id}`}
+        to={`/challenge/verify/${challengeDetail.chId}`}
         variant="outlined"
         size="small"
         color="error"
@@ -201,7 +209,7 @@ function ChallengeDetail() {
     buttonComponent = (
       <SoftButton
         component={Link}
-        to={`/challenge/detail/${challengeDetail.ch_id}`}
+        to={`/challenge/detail/${challengeDetail.chId}`}
         variant="outlined"
         size="small"
         color="primary"
@@ -249,7 +257,7 @@ function ChallengeDetail() {
     buttonComponent = (
       <SoftButton
         component={Link}
-        to={`/challenge/detail/${challengeDetail.ch_id}`}
+        to={`/challenge/detail/${challengeDetail.chId}`}
         variant="outlined"
         size="small"
         color="light"
@@ -410,7 +418,7 @@ function ChallengeDetail() {
                         fontWeight="bold"
                         color="#FFFFFF"
                       >
-                        {verify_term}
+                        {verifyTerm}
                       </SoftTypography>
                     </SoftBox>
                   </SoftBox>
@@ -501,7 +509,7 @@ function ChallengeDetail() {
                         color="#FFFFFF"
                         sx={{ marginRight: "7px" }}
                       >
-                        {challengeDetail.betting_point}
+                        {challengeDetail.bettingPoint}
                       </SoftTypography>
                     </SoftBox>
                   </SoftBox>
@@ -533,9 +541,9 @@ function ChallengeDetail() {
                     }}
                   />
                   <SoftTypography variant="body1">
-                    {challengeDetail.ch_start_date}
+                    {challengeDetail.chStartDate}
                     {" ~ "}
-                    {challengeDetail.ch_start_date}
+                    {endDate}
                   </SoftTypography>
                 </SoftBox>
                 <hr style={{ width: "100%", border: "1px solid #999999" }} />
@@ -636,7 +644,7 @@ function ChallengeDetail() {
                       alignItems: "center",
                     }}
                   >
-                    {challengeDetail.nick_name}
+                    {challengeDetail.nickName}
                   </SoftTypography>
                   <SoftTypography
                     variant="h6"
@@ -644,7 +652,7 @@ function ChallengeDetail() {
                     color="#FFFFFF"
                     sx={{ marginTop: "10px" }}
                   >
-                    sksksk
+                    마스터 인사말
                   </SoftTypography>
                 </SoftBox>
 
@@ -665,8 +673,8 @@ function ChallengeDetail() {
                   >
                     뒤로
                   </SoftButton>
-                  {localStorageUserID === challengeDetail.user_id ||
-                  challengeDetail.admin_yn === "y" ? (
+                  {localStorageUserID === challengeDetail.userId ||
+                  challengeDetail.adminYN === "y" ? (
                     // 작성자일 경우 삭제
                     <>
                       <SoftButton
@@ -684,7 +692,7 @@ function ChallengeDetail() {
                       variant="gradient"
                       color="info"
                       component={Link}
-                      to={`/challenge/verify/${challengeDetail.ch_id}`}
+                      to={`/challenge/verify/${challengeDetail.chId}`}
                     >
                       인증하기
                     </SoftButton>

@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 
 // react-router components
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
@@ -6,23 +6,12 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 // @mui material components
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import Icon from "@mui/material/Icon";
-
-// Soft UI Dashboard React components
-import SoftBox from "components/SoftBox";
 
 // Soft UI Dashboard React examples
 import Sidenav from "examples/Sidenav";
-import Configurator from "examples/Configurator";
 
 // Soft UI Dashboard React themes
 import theme from "assets/theme";
-import themeRTL from "assets/theme/theme-rtl";
-
-// RTL plugins
-import rtlPlugin from "stylis-plugin-rtl";
-import { CacheProvider } from "@emotion/react";
-import createCache from "@emotion/cache";
 
 // Soft UI Dashboard React routes
 import routes from "routes";

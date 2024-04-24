@@ -1,5 +1,4 @@
 // Soft UI Dashboard React layouts
-import Dashboard from "layouts/dashboard";
 import PT from "layouts/PT";
 import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
@@ -29,6 +28,7 @@ import PlanPage from "layouts/authentication/plan";
 import EditUser from "layouts/profile/info/EditUser";
 import UserPhotoPage from "layouts/profile/info/userphotopage";
 import UserPointPage from "layouts/profile/info/userpointpage";
+import AdminInfo from "layouts/admin";
 
 const routes = [
   {
@@ -53,7 +53,7 @@ const routes = [
     type: "collapse",
     name: "Challenge",
     key: "Challenge",
-    route: "/Challenge/list/1",
+    route: "/challenge/list/1",
     icon: <SpaceShip size="12px" />,
     component: <Challenge />,
     noCollapse: true,
@@ -81,11 +81,12 @@ const routes = [
   {
     type: "collapse",
     name: "Admin",
-    key: "dashboard",
-    route: "/dashboard",
+    key: "admin",
+    route: "/admin",
     icon: <Settings size="12px" />,
-    component: <Dashboard />,
+    component: <AdminInfo />,
     noCollapse: true,
+    isAdmin: true, // 이 라인을 추가하여 라우트가 관리자용임을 명시
   },
 
   {
@@ -102,12 +103,12 @@ const routes = [
   },
   {
     key: "ChallengeDetail",
-    route: "/challenge/detail/:ch_id",
+    route: "/challenge/detail/:chId",
     component: <ChallengeDetail />,
   },
   {
     key: "ChallengeVerify",
-    route: "/challenge/verify/:ch_id",
+    route: "/challenge/verify/:chId",
     component: <ChallengeVerify />,
   },
   {
