@@ -21,10 +21,8 @@ public interface UserService {
 	
 	public UserInfoDTO userInfoProcess(String userAccountId);
 
-        public void newVisitProcess();
-	
-	public void submissionsProcess();
-	
+	public void newVisitProcess();
+
 	public CustomerResponse insertCustomerProcess(CustomerDTO dto, int userId);
 
 }// end interface

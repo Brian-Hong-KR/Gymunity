@@ -18,13 +18,11 @@ public interface UserService {
 	public boolean validateUserIdPassword(CheckUserIdPassword dto);
 
 	public void deleteUserProcess(String userAccountId);
-	
+
 	public UserInfoDTO userInfoProcess(String userAccountId);
 
-        public void newVisitProcess();
-	
-	public void submissionsProcess();
-	
+	public void newVisitProcess();
+
 	public CustomerResponse insertCustomerProcess(CustomerDTO dto, int userId);
 
 }// end interface
