@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom'; // react-router-dom을 사용하여 링
 
 // Data
 import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
+import SoftButton from 'components/SoftButton';
 
 function Dashboard() {
   const { size } = typography;
@@ -22,6 +23,46 @@ function Dashboard() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
+      <Grid item xs={12} lg={5}>
+        <SoftBox
+          display='flex'
+          justifyContent='space-between'
+          alignItems='center'
+          p={3}
+        >
+          <SoftButton
+            type='submit'
+            variant='gradient'
+            color='dark'
+            fullWidth
+            style={{ width: '30%' }}
+          >
+            회원 관리
+          </SoftButton>
+
+          <SoftButton
+            type='submit'
+            variant='gradient'
+            color='dark'
+            fullWidth
+            style={{ width: '30%' }}
+            href='/dashboard/editpoint'
+          >
+            포인트 관리
+          </SoftButton>
+
+          <SoftButton
+            type='submit'
+            variant='gradient'
+            color='dark'
+            fullWidth
+            style={{ width: '30%' }}
+          >
+            CS 관리
+          </SoftButton>
+        </SoftBox>
+      </Grid>
+
       <SoftBox mb={3}>
           <Grid container spacing={3}>
             <Grid item xs={12} lg={5}>

@@ -25,6 +25,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 function SignUp() {
   const [termAgreement, setTermAgreement] = useState(true);
   const [privacyAgreement, setPrivacyAgreement] = useState(true);
+  const [message, setMessage] = useState("");
 
   const handleSetTermAgreement = () => setTermAgreement(!termAgreement);
   const handleSetPrivacyAgreement = () => setPrivacyAgreement(!privacyAgreement);
@@ -61,10 +62,45 @@ function SignUp() {
     });
   };
 
+  
+  const clearInputField = () => {
+    // 아이디 입력 필드를 비웁니다.
+    setUser(prevUser => ({ ...prevUser, userAccountId: '' }));
+  };
+
+
+  const handleCheckUsername = async () => {
+
+     // 입력값이 비어 있는지 확인
+  if (!user.userAccountId.trim()) {
+    alert("아이디를 입력하세요.");
+    return;
+  }
+
+    try {
+    const response = await axios.get(`http://192.168.0.60:8090/checkUsername/${user.userAccountId}`);
+    
+    if (response.status === 200) {
+      alert("사용할 수 있는 아이디입니다.");
+    } else {
+      console.error("Unexpected status code:", response.status);
+      showErrorAlert();
+    }
+  } catch (error) {
+    if (error.response && error.response.status === 409) {
+      alert("이미 존재하는 아이디입니다.");
+      clearInputField(); // 아이디 입력 필드 비우기
+    } else {
+      console.error("Error checking username:", error);
+      showErrorAlert();
+    }
+  }
+  };
+
   const requiredFields = ["userAccountId", "userEmail", "password", "nickName"];
 
   const isFormValid = (fieldsToCheck) => {
-    return fieldsToCheck.every(field => user[field].trim() !== "");
+    return fieldsToCheck.every((field) => user[field].trim() !== "");
   };
 
   const onSubmit = async (e) => {
@@ -140,7 +176,7 @@ function SignUp() {
         <SoftBox pt={2} pb={3} px={3}>
           <SoftBox component="form" role="form" onSubmit={onSubmit}>
             <SoftBox mb={2}></SoftBox>
-            <SoftBox mb={2}>
+            <SoftBox mb={2} display="flex" alignItems="center">
               <SoftInput
                 type="text"
                 name="userAccountId"
@@ -148,6 +184,9 @@ function SignUp() {
                 onChange={handleValueChange}
                 placeholder="아이디"
               />
+              <SoftButton onClick={handleCheckUsername} variant="text" color="dark">
+                중복 확인
+              </SoftButton>
             </SoftBox>
             <SoftBox mb={2}>
               <SoftInput

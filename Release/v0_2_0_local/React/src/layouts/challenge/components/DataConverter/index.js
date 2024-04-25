@@ -18,7 +18,7 @@ function DataConverter(challenge) {
   let category;
   switch (challenge.category) {
     case 1:
-      category = "체중 감소";
+      category = "체중 감량";
       image = categoryToLoseWeight;
       break;
     case 2:
@@ -81,13 +81,13 @@ function DataConverter(challenge) {
     case 2:
       period = "2주간";
       break;
-    case 3:
+    case 4:
       period = "4주간";
       break;
-    case 4:
+    case 6:
       period = "6주간";
       break;
-    case 5:
+    case 8:
       period = "8주간";
       break;
   }
