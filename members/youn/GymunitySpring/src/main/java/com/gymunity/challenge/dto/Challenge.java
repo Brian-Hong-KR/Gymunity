@@ -1,12 +1,13 @@
 package com.gymunity.challenge.dto;
 
-import java.time.LocalDate;
+import org.apache.ibatis.type.Alias;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+//@Alias("Challenge")
 public class Challenge {
 	private int chId;
 	private String title;
@@ -17,9 +18,13 @@ public class Challenge {
 //	private LocalDateTime registDate;
 	private String chStartDate;
 	private String chEndDate;
+	private int challengePeriod;
+	private int verifyTerm;
 	private int count;
 	private int userId;
-//	private int grade;
-//	private String nickName;
+	private String nickName;
+	private String  gradeName;
+	private char adminYn;
+	private int totalDate;
 
-}//end class
+}// end class

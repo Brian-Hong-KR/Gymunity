@@ -1,15 +1,26 @@
 package com.gymunity.challenge.repository;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.gymunity.challenge.dto.Challenge;
 import com.gymunity.challenge.dto.Member;
+import com.gymunity.challenge.dto.ProfileDTO;
+import com.gymunity.challenge.dto.PageDTO;
 
 @Mapper
 @Repository
 public interface ChallengeMapper {
+	
+	public int count();
+	
+	public List<Challenge> list(PageDTO pv);
+	
+	public List<ProfileDTO> joinList(int userId);
+	
 	public int insertChallenges(Challenge dto);
 
 	public int insertMembers(Member dto);

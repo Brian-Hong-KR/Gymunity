@@ -17,6 +17,11 @@ public class GlobalExceptionHandler {
 		return ResponseEntity.badRequest().body(ex.getMessage());
 	}
 
+	@ExceptionHandler(IllegalArgumentException.class)
+	public ResponseEntity<Object> handleIllegalArgumentException(IllegalArgumentException ex) {
+		return ResponseEntity.badRequest().body(ex.getMessage());
+	}
+
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<String> handleException(Exception ex) {
 		// 로그를 추가하여 예외 내용을 확인
