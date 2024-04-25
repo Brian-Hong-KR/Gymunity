@@ -1,23 +1,14 @@
 import axios from "axios";
 import { challengeReducers } from "../createSlice/challenge_createSlice";
-import { useState } from "react";
+
+const url = "http://127.0.0.1:8090";
 
 //리스트 가져오기
-// function getChallengeList(currentPage) {
-//   console.log(currentPage);
-//   return async (dispatch) => {
-//     const data = await axios
-//       .get(`/challenge/list/${currentPage}`)
-//       .then((response) => response.data);
-//     console.log(data);
-//     dispatch(challengeReducers.getChallengeList({ data }));
-//   };
-// }
 function getChallengeListAsync(currentPage) {
-  // console.log("currentPage: ", currentPage);
+  console.log("currentPage: ", currentPage);
   return async (dispatch) => {
     try {
-      const response = await axios.get("http://192.168.0.60:8090" + `/challenge/list/${currentPage}`);
+      const response = await axios.get(`${url}/challenge/list/${currentPage}`);
 
       const { challengeList, joinList, pv } = response.data;
       dispatch(challengeReducers.getChallengeList({ challengeList, pv }));
@@ -38,27 +29,39 @@ function getChallengeListAsync(currentPage) {
 //   };
 // }
 //챌린지 생성하기
-function getChallengeCreate(formData) {
+function getChallengeCreate(formData, config) {
   return async () => {
     await axios
-      .post("http://192.168.0.60:8090/challenge/create", formData)
+      .post(`${url}/challenge/create`, formData, config)
       .then((response) => response.data);
   };
 }
 
+//챌린지 참여하기
+function getChallengeJoin(chId, config) {
+  return async () => {
+    try {
+      const response = await axios.post(
+        `${url}/challenge/join/${chId}`,
+        {
+          chId,
+        },
+        config
+      );
+      // console.log("parsedChId: ", typeof parsedChId);
+      return response.data;
+    } catch (error) {
+      console.error("챌린지 참여하기 중 오류 발생:", error);
+      throw error;
+    }
+  };
+}
+
 //챌린지 상세페이지
-// function getChallengeDetail(ch_id, config) {
-//   return async (dispatch) => {
-//     const data = await axios
-//       .get(`/challenge/detail/${ch_id}`, config)
-//       .then((response) => response.data);
-//     dispatch(challengeReducers.getChallengeDetail({ data }));
-//   };
-// }
 function getChallengeDetail(chId) {
   return async (dispatch) => {
     const data = await axios
-      .get("http://192.168.0.60:8090" + `/challenge/detail/${chId}`)
+      .get(`${url}/challenge/detail/${chId}`)
       .then((response) => response.data);
     dispatch(challengeReducers.getChallengeDetail({ data }));
   };
@@ -68,7 +71,7 @@ function getChallengeDetail(chId) {
 function getChallengeDownload(upload, config) {
   return async (dispatch) => {
     const data = await axios
-      .get("http://192.168.0.60:8090" + `/challenge/contentdownload/${upload}`, config)
+      .get(`${url}/challenge/contentdownload/${upload}`, config)
       .then((response) => response.data);
     // dispatch(challengeActions.getChallengeDownload(data));
     return data;
@@ -79,21 +82,15 @@ function getChallengeDownload(upload, config) {
 function getChallengeUpdate(formData, config) {
   return async () => {
     await axios
-      .put("http://192.168.0.60:8090/challenge/update", formData, config)
+      .put(`${url}/challenge/update`, formData, config)
       .then((response) => response.data);
   };
 }
 
-//삭제하기
-// function getChallengeDelete(ch_id, config) {
-//   return async () => {
-//     await axios.delete(`/challenge/delete/${ch_id}`, config).then((response) => response.data);
-//   };
-// }
-function getChallengeDelete(chId) {
+function getChallengeDelete(chId, config) {
   return async () => {
     await axios
-      .delete("http://192.168.0.60:8090" + `/challenge/delete/${chId}`)
+      .delete(`${url}/challenge/delete/${chId}`, config)
       .then((response) => response.data);
   };
 }
@@ -101,6 +98,7 @@ function getChallengeDelete(chId) {
 export const challengeActions = {
   getChallengeListAsync,
   getChallengeCreate,
+  getChallengeJoin,
   getChallengeDetail,
   getChallengeDownload,
   getChallengeUpdate,
