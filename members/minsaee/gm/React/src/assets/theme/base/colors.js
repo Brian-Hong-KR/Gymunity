@@ -113,7 +113,7 @@ const colors = {
     },
 
     success: {
-      main: "#ea0606",
+      main: "#C00000",
       state: "#eaaaaa",
     },
 
@@ -232,7 +232,7 @@ const colors = {
     },
 
     error: {
-      main: "#ea0606",
+      main: "#C00000",
       state: "#ff3d59",
       border: "#f9b4b4",
     },
