@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,13 +16,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gymunity.challenge.dto.Challenge;
 import com.gymunity.challenge.dto.ChallengeCreateDTO;
 import com.gymunity.challenge.response.ChallengeCreateResponse;
 import com.gymunity.challenge.service.ChallengeService;
+import com.gymunity.security.config.CustomUserDetails;
+import com.gymunity.security.jwt.JwtProvider;
 import com.gymunity.challenge.controller.ChallengeController;
 import com.gymunity.challenge.dto.ProfileDTO;
 import com.gymunity.challenge.dto.PageDTO;
@@ -42,9 +45,30 @@ public class ChallengeController {
 	private PageDTO pdto;
 	private int currentPage;
 
-//	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	int userId;
+//
+//    public void getUserIdFromToken(@RequestHeader("Authorization") String authHeader){
+//        String token = authHeader.split(" ")[1].trim(); // "Bearer <토큰 값>" 형식에서 토큰 값만 추출
+//        userId = JwtProvider.getUserId(token);
+//    }
+//	
+	public void getUserIdFromToken() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal = authentication.getPrincipal();
+
+        // Principal이 CustomUserDetails 객체인지 확인하고 userId 가져오기
+        if (principal instanceof CustomUserDetails) {
+            CustomUserDetails userDetails = (CustomUserDetails) principal;
+            userId = userDetails.getUserId();
+            // userId를 사용하여 원하는 작업 수행
+        }else {
+            // CustomUserDetails가 아닌 경우에 대한 처리
+            userId = 131;
+        }
+    }
+//	authentication = SecurityContextHolder.getContext().getAuthentication();
 //	Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
-	int userId = 131;
+//	int userId = 131;
 
 	// 챌린지 리스트 조회
 	@GetMapping("/challenge/list/{currentPage}")
@@ -60,6 +84,9 @@ public class ChallengeController {
 			map.put("pv", this.pdto);
 			map.put("challengeList", challengeService.listProcess(pdto));
 		}
+		getUserIdFromToken();
+		log.info("userId:{}", map.get("userId"));
+		
 		if (userId != 0) {
 			map.put("joinList", challengeService.joinListProcess(userId));
 		}
@@ -101,8 +128,7 @@ public class ChallengeController {
 	@Operation(summary = "챌린지 참가")
 	@PostMapping("/challenge/join/{chId}")
 //	public ResponseEntity<Object> joinChallenge(@RequestBody int chId) {
-	public ResponseEntity<String> joinChallenge(@PathVariable int chId) {
-//		int userId = 131;
+	public ResponseEntity<String> joinChallenge(@PathVariable("chId") int chId) {
 		challengeService.joinChallengeProcess(chId, userId);
 //		log.info("challengeList:{}", map.get("challengeList"));
 

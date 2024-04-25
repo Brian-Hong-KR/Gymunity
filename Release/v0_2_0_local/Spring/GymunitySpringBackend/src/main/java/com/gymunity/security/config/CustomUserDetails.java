@@ -4,6 +4,7 @@ package com.gymunity.security.config;
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.gymunity.user.dto.User;
@@ -23,6 +24,7 @@ public class CustomUserDetails implements UserDetails {
 		this.user = user;
 		this.userId = user.getUserId();
 		this.adminYn = user.getAdminYn();
+		this.authorities = AuthorityUtils.createAuthorityList(user.getAdminYn()); //진
 	}
 
 	public User getUser() {
@@ -74,4 +76,34 @@ public class CustomUserDetails implements UserDetails {
 		return true;
 	}
 
+	//진 게터세터
+	public Integer getUserId() {
+		return userId;
+	}
+
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
+
+	public String getAdminYn() {
+		return adminYn;
+	}
+
+
+	public void setAdminYn(String adminYn) {
+		this.adminYn = adminYn;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
+	public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
+		this.authorities = authorities;
+	}
+	
 }
