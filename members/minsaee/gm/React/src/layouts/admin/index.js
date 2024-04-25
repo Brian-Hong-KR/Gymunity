@@ -121,7 +121,7 @@ function AdminInfo() {
           },
           {
             label: "추천인가입수",
-            color: "dark",
+            color: "error",
             data: dataReferrerSignUps,
           },
         ],
