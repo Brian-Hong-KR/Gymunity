@@ -40,7 +40,7 @@ const { size, fontWeightBold } = typography;
 
   const getUserIDByAccountID = async () => {
     try {
-      const response = await axios.get(`/admin/points/user/${userAccountId}`);
+      const response = await axios.get(`http://127.0.0.1:8090/admin/points/user/${userAccountId}`);
       setUserId(response.data);
     } catch (error) {
       console.error('Error fetching user ID:', error);
@@ -49,7 +49,7 @@ const { size, fontWeightBold } = typography;
 
   const getPointsHistoryByUserID = async () => {
     try {
-      const response = await axios.get(`/admin/points/history/${userId}`);
+      const response = await axios.get(`http://127.0.0.1:8090/admin/points/history/${userId}`);
       setPointsHistory(response.data);
     } catch (error) {
       console.error('Error fetching points history:', error);
@@ -58,7 +58,7 @@ const { size, fontWeightBold } = typography;
 
   const adjustPoints = async () => {
     try {
-      await axios.post('/admin/points/adjustPoints', {
+      await axios.post('http://127.0.0.1:8090/admin/points/adjustPoints', {
         pointsAdjusted: pointAdjust,
         reason: reason,
         userId: userId,
