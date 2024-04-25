@@ -21,7 +21,6 @@ public class SigninResponse {
 	private int userId;
 	private String accessToken;
 	private String refreshToken;
-	private String adminYn;
 
 	public SigninResponse(String nickName, String userEmail) {
 		super();

@@ -1,7 +1,5 @@
 package com.gymunity.user.dto;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Getter;
@@ -20,7 +18,4 @@ public class SurveyData {
 	private String planName;
 	@JsonProperty("plan_desc")
 	private String planDesc;
-	@JsonProperty("daily_program")
-	private List<String> dailyProgram;
-	private List<String> videoList;
 }

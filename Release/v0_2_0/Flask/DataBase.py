@@ -20,7 +20,7 @@ class PointAdd(Base):
     __tablename__ = "point_add"
     point_add_id = Column(Integer, primary_key=True)
     points_added = Column(Integer)
-    added_reason = Column(String(255))
+    reason = Column(String(255))
     added_at = Column(DateTime)
     user_id = Column(Integer)
 
@@ -52,7 +52,7 @@ class PTQnA(Base):
 
 def AddPoint(user_id, amount ):
 
-    done_sign = "오늘 운동 완료 보상"
+    done_sign = "Today Workout Complete"
     now_time = datetime.now()
     today_4am = datetime.combine(now_time.date(), time(hour=4))
     
@@ -63,14 +63,14 @@ def AddPoint(user_id, amount ):
         return False
 
     # TODO : order_by ( date. desc)
-    add_logs = session.query(PointAdd).filter(PointAdd.user_id == user_id, PointAdd.added_reason == done_sign).all()
+    add_logs = session.query(PointAdd).filter(PointAdd.user_id == user_id, PointAdd.reason == done_sign).all()
 
     for add_log_unit in add_logs:
         if add_log_unit.added_at > today_4am:
             print ( "중복 보상")
             return False
 
-    point_add_unit = PointAdd(points_added=amount, added_reason=done_sign, added_at=now_time, user_id=user_id)
+    point_add_unit = PointAdd(points_added=amount, reason=done_sign, added_at=now_time, user_id=user_id)
     session.add(point_add_unit)
     session.commit()
     return True

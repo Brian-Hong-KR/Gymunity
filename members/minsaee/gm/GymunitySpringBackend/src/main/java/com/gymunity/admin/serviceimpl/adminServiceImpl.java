@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gymunity.admin.repository.AdminMapper;
 import com.gymunity.admin.service.adminService;
 import com.gymunity.challenge.dto.Challenge;
-import com.gymunity.challenge.dto.PhotoDTO;
 import com.gymunity.challenge.dto.Verify;
 import com.gymunity.challenge.repository.ChallengeMapper;
 
@@ -26,11 +25,6 @@ public class adminServiceImpl implements adminService {
 
 	private final AdminMapper adminMapper;
 	private final ChallengeMapper challengeMapper;
-	
-	@Override
-	public List<PhotoDTO> getPhotosByResultNProcess() {		
-		return adminMapper.selectPhotosByResultN();
-	}
 
 	@Override
 	public void verifyCheckProcess(int viId, String result) {

@@ -85,36 +85,9 @@ function SignUp() {
     // const surveyData = Array.isArray(planData) ? planData[0] : planData;
 
     try {
-      const signupResponse = await axios.post("/user/signup", user);
-      console.log("Registration successful:", signupResponse);
-
-      const loginResponse = await axios.post("/user/signin", {
-        userAccountId: user.userAccountId,
-        password: user.password,
-      });
-
-      // 로그인 성공 후 로컬 스토리지에 토큰 및 사용자 정보 저장
-      const {
-        accessToken,
-        refreshToken,
-        userAccountId,
-        nickName,
-        userId,
-        adminYn,
-      } = loginResponse.data;
-      console.log("accessToken", accessToken);
-      console.log("refreshToken", refreshToken);
-
-      localStorage.setItem("Authorization", accessToken);
-      localStorage.setItem("Authorization-refresh", refreshToken);
-      localStorage.setItem("userAccountId", userAccountId);
-      localStorage.setItem("nickName", nickName);
-      localStorage.setItem("userId", userId);
-      localStorage.setItem("isAdmin", adminYn);
-      localStorage.setItem("isLogin", true);
-
-      // 로그인 성공 후 프로필 페이지로 이동
-      navigate("/profile");
+      const response = await axios.post("/user/signup", user);
+      console.log("Registration successful:", response);
+      navigate("/dashboard"); // 회원가입 후 메인 페이지로 이동
     } catch (error) {
       if (error.response) {
         alert(`${error.response.data}`);
@@ -176,7 +149,6 @@ function SignUp() {
                 placeholder="닉네임"
               />
             </SoftBox>
-       
             <SoftBox mb={2}>
               <SoftInput
                 type="text"

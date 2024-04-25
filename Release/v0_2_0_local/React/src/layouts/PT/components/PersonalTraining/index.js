@@ -4,7 +4,7 @@ import axios from 'axios';
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 import SoftProgress from "components/SoftProgress";
-import SoftButton from "components/SoftButton";
+
 const PersonalTraining = () => {
     const player = useRef(null);
     const index = useRef(0);
@@ -60,21 +60,10 @@ const PersonalTraining = () => {
         }
     };
 
-    const handleSkipClick = () => {
-      if (index.current < videoList.length - 1) {
-        index.current += 1;
-        player.current.loadVideoById(videoList[index.current]);
-        setProgress((index.current) / (videoList.length - 1) * 100);
-      } else {
-        // Handle scenario when user skips the last video (already in onPlayerStateChange)
-      }
-    };
-
   return (
   <SoftBox py={3}>
         <SoftBox mb={3}>
             <SoftTypography variant="h6">오늘 운동 진행률</SoftTypography>
-            <SoftButton onClick={() => handleSkipClick()}>Skip</SoftButton>
             <SoftProgress value={progress} color="success" variant="gradient" label={false} />
         </SoftBox>
         <div style={{ position:'relative', width:'100%', paddingBottom:'56.25%'}}>

@@ -5,9 +5,6 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,12 +12,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gymunity.point.dto.PointAdd;
+import com.gymunity.point.dto.PointAdjust;
 import com.gymunity.point.dto.PointAdjustAddSubtract;
+//import com.gymunity.point.dto.PointAdjustAndAdd;
+//import com.gymunity.point.dto.PointAdjustAndSubtract;
+import com.gymunity.point.dto.PointSubtract;
 import com.gymunity.point.service.EditPointService;
 
-@CrossOrigin("*")
 @RestController
-@RequestMapping("/points")
+@RequestMapping("/admin/points")
 public class EditPointController {
 
     @Autowired
@@ -29,7 +30,7 @@ public class EditPointController {
     // userId 찾기
     @GetMapping("/user/{userAccountId}")
     public ResponseEntity<?> getUserIDByAccountID(@PathVariable("userAccountId") String userAccountId) {
-    	int userId = editPointService.getUserIDByAccountID(userAccountId);
+        int userId = editPointService.getUserIDByAccountID(userAccountId);
         return ResponseEntity.ok(userId);
     }
 

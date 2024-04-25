@@ -85,7 +85,7 @@ const routes = [
     type: "collapse",
     name: "Admin",
     key: "admin",
-    route: "/admin/info",
+    route: "/admin",
     icon: <Settings size="12px" />,
     component: <AdminInfo />,
     noCollapse: true,

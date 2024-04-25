@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class Member {
 	private int memberId;
-	private double achieveRate;
+	private double archiveRate;
 	private int memUserId;
 	private int memChId;
 //	private int gradeId;

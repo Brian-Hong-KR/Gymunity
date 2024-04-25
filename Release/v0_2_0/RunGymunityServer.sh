@@ -7,7 +7,7 @@ sudo systemctl restart mysql
 gnome-terminal --working-directory=/home/utopos/ezen/Release/v0_2_0/Flask -- bash -c "gunicorn --bind 0:5000 '__init__:create_app()'" &
 
 # Move to React directory and run yarn start in another terminal
-gnome-terminal --working-directory=/home/utopos/ezen/Release/v0_2_0/React -- bash -c "yarn install; yarn start" &
+gnome-terminal --working-directory=/home/utopos/ezen/Release/v0_2_0/React -- bash -c "yarn start" &
 
 cd /home/utopos/ezen/Release/v0_2_0/Spring/GymunitySpringBackend
 sudo rm -rf build/

@@ -3,9 +3,6 @@ package com.gymunity.user.serviceimpl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -44,7 +41,6 @@ public class UserServiceImpl implements UserService {
 	private final PointMapper pointMapper;
 	private final PasswordEncoder passwordEncoder;
 	private final PointService pointService;
-	 private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
 	// 유입자
 	@Override
@@ -222,27 +218,14 @@ public class UserServiceImpl implements UserService {
 	    
 	    
 	        response.setCs(dto);
-	       
+	        log.info("sss:{}",dto);
 	        return response;
 	}
 
-	@Override
-	public boolean isUserAccountIdExists(String userAccountId) {
-		
-		User user = userMapper.selectUsersByAccountId(userAccountId);
-		boolean exists = user != null; // 사용자 정보가 존재하는 경우 true, 아니면 false
-		    
-		return exists;
-	}
 
 
 
-
-
-
-
-
-
+	// CS관리
 
 	
 	

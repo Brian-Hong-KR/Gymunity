@@ -14,7 +14,5 @@ public interface SigninMapper {
 	public User selectUsersByUserId(int userId);
 
 	public void updateLastSignin(User dto);
-	
-	public int insertSignin();
 
 }// end interface

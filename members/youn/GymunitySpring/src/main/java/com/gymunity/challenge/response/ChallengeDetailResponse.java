@@ -1,14 +1,12 @@
 package com.gymunity.challenge.response;
 
-import java.time.LocalDate;
-
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 public class ChallengeDetailResponse {
-	private int chId;
+//	private int chId;
 	private String title;
 	private String content;
 	private int category;
@@ -18,9 +16,8 @@ public class ChallengeDetailResponse {
 	private String chStartDate;
 	private String chEndDate;
 	private int count;
-	private int userId;
-	private int grade;
-	private String nickName;
-	private char admin_yn;
+//	private int userId;
+//	private int grade;
+//	private String nickName;
 
 }//end class

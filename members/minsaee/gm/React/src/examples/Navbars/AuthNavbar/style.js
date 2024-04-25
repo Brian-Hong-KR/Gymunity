@@ -11,7 +11,7 @@ function navbar(theme, ownerState) {
   return {
     boxShadow: transparentNavbar || absolute ? "none" : navbarBoxShadow,
     backdropFilter: transparentNavbar || absolute ? "none" : `saturate(200%) blur(${pxToRem(30)})`,
-    backgroundColor:"#C00000",
+    backgroundColor:"#ea0606",
     color: "white",
     top: absolute ? 0 : pxToRem(12),
     minHeight: pxToRem(75),

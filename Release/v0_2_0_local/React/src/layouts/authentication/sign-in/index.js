@@ -29,7 +29,7 @@ function SignIn() {
   const onSubmit = async (e) => {
     e.preventDefault();
     await axios
-      .post("/user/signin", inputs)
+      .post("http://192.168.0.60:8090/user/signin", inputs)
       .then((response) => {
         let accessToken = response.data.accessToken;
         let refreshToken = response.data.refreshToken;
@@ -40,7 +40,6 @@ function SignIn() {
         localStorage.setItem("userAccountId", response.data.userAccountId);
         localStorage.setItem("nickName", response.data.nickName);
         localStorage.setItem("userId", response.data.userId);
-        localStorage.setItem("isAdmin", response.data.adminYn);
         localStorage.setItem("isLogin", true);
 
         setInputs({ userAccountId: "", password: "" });

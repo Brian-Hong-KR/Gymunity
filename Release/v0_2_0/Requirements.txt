@@ -42,7 +42,6 @@ Python Flask
  - pip install python-dotenv
  - pip install youtube-search-python googletrans
  - pip install ollama
- - pip install groq
 
 NginX, Gunicorn
  - sudo apt-get update

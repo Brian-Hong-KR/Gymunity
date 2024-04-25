@@ -2,7 +2,7 @@ package com.gymunity.security.jwt;
 
 public interface JwtProperties {
 
-	public String SECRET_KEY = "dskskdskdjflkasdjfkleiwj12312312111111111113423523135246234gghjtyjfgnvv3135jdlgfjnsdlgkjeprigjerlk2j35k245klndgfgfgn23k03u94l1lllsdfl";
+	public String SECRET_KEY = "dskskdskdjflkasdjfkleiwj123123123135jdlgfjnsdlgkjeprigjerlk2j35k245klndgfgfgn23k03u94l1lllsdfl";
 
 	public int EXPIRATION_TIME = 86400000;// 1일
 	public int REFRESH_EXPIRATION_TIME = 864000000; // 10일

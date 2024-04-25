@@ -81,12 +81,12 @@ function AdminInfo() {
         labels,
         datasets: [
           {
-            label: "유입수",
+            label: "Submissions",
             color: "error",
             data: dataSubmissions,
           },
           {
-            label: "회원가입수",
+            label: "Sign Ins",
             color: "warning",
             data: dataSignUps,
           },
@@ -98,12 +98,12 @@ function AdminInfo() {
         labels,
         datasets: [
           {
-            label: "회원가입수",
+            label: "Sign Ups",
             color: "info",
             data: dataSignUps,
           },
           {
-            label: "활동수",
+            label: "Sign Ins",
             color: "error",
             data: dataSignIns,
           },
@@ -115,13 +115,13 @@ function AdminInfo() {
         labels,
         datasets: [
           {
-            label: "회원가입수",
+            label: "Sign Ups",
             color: "info",
             data: dataSignUps,
           },
           {
-            label: "추천인가입수",
-            color: "error",
+            label: "Referrer Sign Ups",
+            color: "dark",
             data: dataReferrerSignUps,
           },
         ],

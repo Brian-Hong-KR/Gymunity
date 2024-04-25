@@ -28,7 +28,5 @@ public interface UserService {
 	public CustomerResponse insertCustomerProcess(CustomerDTO dto, int userId);
 	
 	public CustomerDetailResponse getCustomerProcess();
-	
-	public boolean isUserAccountIdExists(String userAccountId);
 
 }// end interface

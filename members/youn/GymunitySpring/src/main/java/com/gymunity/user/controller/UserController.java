@@ -1,13 +1,11 @@
 package com.gymunity.user.controller;
 
+import java.util.List;
 
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-
-import java.time.LocalDate;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,35 +13,32 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gymunity.user.dto.CheckUserIdPassword;
-import com.gymunity.user.dto.CustomerDTO;
 import com.gymunity.user.dto.SignupDTO;
 import com.gymunity.user.dto.UserInfoDTO;
+import com.gymunity.user.dto.UserPointsWithinWeek;
 import com.gymunity.user.dto.UserUpdateDTO;
-import com.gymunity.user.response.CustomerDetailResponse;
-import com.gymunity.user.response.CustomerResponse;
 import com.gymunity.user.response.SigninResponse;
 import com.gymunity.user.response.SignupResponse;
 import com.gymunity.user.service.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @CrossOrigin("*")
 @RestController
 @RequiredArgsConstructor
 public class UserController {
 
-	private final UserService userService;
 	
-	// 유입자
-	@PostMapping("/submissions")
-	public void submissions() {
-		userService.newVisitProcess();
-	}
-
+	private final UserService userService;
+	private final PasswordEncoder passwordEncoder;
+	
 	// 회원가입
 	@Operation(summary = "회원가입")
 	@PostMapping("/user/signup")
@@ -59,50 +54,43 @@ public class UserController {
 		UserInfoDTO userInfoDTO = userService.userInfoProcess(userAccountId);
 		return ResponseEntity.ok(userInfoDTO);
 	}
+
+	
+	
+	
 	
 	// 회원정보수정
 	@Operation(summary = "회원정보수정")
 	@PutMapping("/user/update")
-	public ResponseEntity<SigninResponse> updateUser(@RequestBody UserUpdateDTO dto) {
+	public ResponseEntity<SigninResponse> updateUser(@RequestBody UserUpdateDTO dto) {	
+		log.info("받은 데이터: {}", dto.getNickName());
+		log.info("받은 데이터: {}", dto.getPassword());
+		log.info("받은 데이터: {}", dto.getUserEmail());
 		SigninResponse update = userService.updateUserProcess(dto);
+		
 		return ResponseEntity.ok(update);
 	}// end updateUser()
 
+	
+	
 	// 회원탈퇴
 	@Operation(summary = "회원탈퇴")
-	@DeleteMapping("/user/delete")
-	public ResponseEntity<?> deleteUser(@RequestBody CheckUserIdPassword dto) {
-
-		if (userService.validateUserIdPassword(dto)) {
-			userService.deleteUserProcess(dto.getUserAccountId());
-			return ResponseEntity.ok().build();
-		}
-		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+	@DeleteMapping("/user/delete/{userId}")
+	public ResponseEntity<?> deleteUser(@PathVariable("userId") int userId){
+		userService.deleteUserProcess(userId);
+		return ResponseEntity.ok(null);
 	}// end deleteUser()
-	
-	// 고객 문의
-	@Operation(summary = "고객 문의")
-	@PostMapping("/user/inquiries")
-	public ResponseEntity<CustomerResponse> createCustomer(@RequestBody CustomerDTO dto){
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		Integer userId = (Integer) authentication.getPrincipal();
-		
-		LocalDate now = LocalDate.now();
 
-        // Customer 객체에 현재 시간 설정
-        dto.setInquiryDate(now);
-        
-		CustomerResponse response = userService.insertCustomerProcess(dto, userId);
-		return ResponseEntity.ok(response);
-	}
 	
-	@Operation(summary = "고객 문의 리스트")
-	@GetMapping("/user/inquirieslist")
-	public ResponseEntity<CustomerDetailResponse> getCsList(){
-		
-		CustomerDetailResponse response = userService.getCustomerProcess();
-		
-		return ResponseEntity.ok(response);
-	}
-
+	
+	//일주일 유저 포인트
+	@GetMapping("/{userId}/weekpoints")
+    public ResponseEntity<List<UserPointsWithinWeek>> getUserPointsWithinLastWeek(@PathVariable("userId") String userId) {
+        List<UserPointsWithinWeek> userPointsWithinWeek = userService.getUserPointsWithinLastWeek(userId);
+        return ResponseEntity.ok(userPointsWithinWeek);
+    }
+	
+	
+	
+	
 }// end class

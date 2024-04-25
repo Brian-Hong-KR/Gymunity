@@ -55,7 +55,7 @@ const colors = {
   },
 
   info: {
-    main: "#C00000",
+    main: "#ea0606",
     focus: "#3acaeb",
   },
 
@@ -113,7 +113,7 @@ const colors = {
     },
 
     success: {
-      main: "#C00000",
+      main: "#ea0606",
       state: "#eaaaaa",
     },
 
@@ -123,7 +123,7 @@ const colors = {
     },
 
     error: {
-      main: "#C00000",
+      main: "#ea0606",
       state: "#ff667c",
     },
 
@@ -232,7 +232,7 @@ const colors = {
     },
 
     error: {
-      main: "#C00000",
+      main: "#ea0606",
       state: "#ff3d59",
       border: "#f9b4b4",
     },

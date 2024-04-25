@@ -6,16 +6,15 @@ bp = Blueprint('pt_server', __name__, url_prefix='/')
 @bp.route('/exercise', methods=('POST',))
 def exercise():
     data = request.get_json()
-    user_id = data['user_id']
-
+    # user_id = data['user_id']
+    user_id = 73
     gender, age, goal, level, abnormal = DataBase.LoadSurveyData(user_id=user_id)
 
-    daily_program, videoList = Chatbot.generate_daily_program(gender=gender, age=age, goal=goal, level=level, abnormal=abnormal)
+    videoList = Chatbot.generate_daily_program(gender=gender, age=age, goal=goal, level=level, abnormal=abnormal)
 
-    DataBase.SavePTLog(user_id = user_id, daily_program=str(daily_program))
+    DataBase.SavePTLog(user_id = user_id, daily_program=str(videoList))
 
     response_data = {
-        'daily_program': daily_program,
         'videoList': videoList
     }
 
@@ -28,8 +27,10 @@ def exercise():
 def chatbot_response():
 
     data = request.get_json()
-    unit_name = data["unit_name"]
-    user_id = data["user_id"]
+    user_id = 73
+    unit_name = "push-ups"
+    # user_id = data["user_id"]
+    # data["unit_name"]
     question = data["question"]
 
     answer = Chatbot.generate_answer(unit_name=unit_name, question=question )

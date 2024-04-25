@@ -78,7 +78,7 @@ public class VerifyController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Integer userId = extractUserId(authentication);
 
-		List<PhotoDTO> photos = verifyService.getPhotosByUserIdProcess(userId);
+		List<PhotoDTO> photos = verifyService.getPhotosByUserId(userId);
 		return ResponseEntity.ok(photos);
 	}// end getPhotosByUserId()
 

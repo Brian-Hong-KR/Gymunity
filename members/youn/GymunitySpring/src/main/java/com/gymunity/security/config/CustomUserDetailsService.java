@@ -1,11 +1,5 @@
 package com.gymunity.security.config;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,9 +9,7 @@ import com.gymunity.user.dto.User;
 import com.gymunity.user.repository.UserMapper;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 
@@ -33,13 +25,15 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String userAccountId) throws UsernameNotFoundException {
+
 		User user = userMapper.selectUsersByAccountId(userAccountId);
 
 		if (user == null) {
-			throw new UsernameNotFoundException("사용자를 찾을 수 없습니다.");
+			throw new UsernameNotFoundException("커스텀유저디테일서비스");
 		}
 
 		return new CustomUserDetails(user);
-	}// end loadUsersByUsername()
+
+	} // end loadUsersByUsername()
 
 }// end class

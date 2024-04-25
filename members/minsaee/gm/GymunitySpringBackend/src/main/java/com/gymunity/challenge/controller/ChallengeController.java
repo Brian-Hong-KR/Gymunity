@@ -55,7 +55,7 @@ public class ChallengeController {
 		return ResponseEntity.ok(response);
 	}// end createChallenge()
 	
-	int currentUserId = 131;
+	int currentUserId = 81;
 	// 챌린지 리스트 조회
 	@GetMapping("/challenge/list/{currentPage}")
 	public ResponseEntity<Map<String, Object>> listExecute(@PathVariable("currentPage") int currentPage) {

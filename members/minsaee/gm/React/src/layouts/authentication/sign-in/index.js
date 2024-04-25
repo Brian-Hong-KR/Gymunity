@@ -33,6 +33,8 @@ function SignIn() {
       .then((response) => {
         let accessToken = response.data.accessToken;
         let refreshToken = response.data.refreshToken;
+        console.log("accessToken", accessToken);
+        console.log("refreshToken", refreshToken);
         localStorage.setItem("Authorization", accessToken);
         localStorage.setItem("Authorization-refresh", refreshToken);
         localStorage.setItem("userAccountId", response.data.userAccountId);
