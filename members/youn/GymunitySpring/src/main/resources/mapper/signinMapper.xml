@@ -7,13 +7,14 @@
 		<result property="userId" column="user_id" />
 		<result property="userAccountId" column="user_account_id" />
 		<result property="nickName" column="nick_name" />
+		<result property="adminYn" column="admin_yn" />
 		<result property="lastSignin" column="last_signin" />
 	</resultMap>
 
 	<!--회원정보 가져오기-->
 	<select id="findUserByAccountId" parameterType="string"
 		resultMap="userResultMap">
-		SELECT user_id, user_account_id, nick_name, last_signin
+		SELECT *
 		FROM users
 		WHERE user_account_id = #{userAccountId}
 	</select>
@@ -23,8 +24,15 @@
 	<update id="updateLastSignin" parameterType="User">
 		UPDATE users
 		SET last_signin = #{lastSignin}
-		WHERE user_id = #{userId};
+		WHERE user_id = #{userId}
 	</update>
+	
+	<!-- user_events 테이블에 데이터 삽입-->
+	<insert id="insertSignin">
+        <![CDATA[
+        INSERT INTO user_events (event_type) VALUES (2)
+        ]]>
+    </insert>
 	
 	<!-- userId로 users 조회-->
 	<select id="selectUsersByUserId" parameterType="int"

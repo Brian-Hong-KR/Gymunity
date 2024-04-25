@@ -159,5 +159,11 @@
 	</select>
 	
 	
+	<!-- 아이디 중복체크 -->
+	
+	<select id="Idcheck" resultType="int" parameterType="String">
+    		SELECT COUNT(*) FROM users WHERE user_account_id = #{userAccountId}
+	</select>
+	
 	
 </mapper>

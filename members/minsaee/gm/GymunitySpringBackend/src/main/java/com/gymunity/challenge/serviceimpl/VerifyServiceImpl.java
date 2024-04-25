@@ -157,7 +157,7 @@ public class VerifyServiceImpl implements VerifyService {
 
 	// 사진첩조회
 	@Override
-	public List<PhotoDTO> getPhotosByUserId(int userId) {
+	public List<PhotoDTO> getPhotosByUserIdProcess(int userId) {
 		return verifyMapper.selectPhotosByUserId(userId);
 	}// end getPhotosByUserId()
 

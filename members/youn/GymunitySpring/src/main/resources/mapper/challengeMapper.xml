@@ -5,34 +5,59 @@
 	<!-- java.sql.Date 타입에서 LocalDate 타입 객체로 변환 -->
 	<resultMap id="challengeResultMap" type="Challenge">
 		<id column="ch_id" property="chId" />
-		<result column="title" property="title" />
-		<result column="content" property="content" />
-		<result column="category" property="category" />
+		<result column="ch_id" property="chId" />
 		<result column="betting_point" property="bettingPoint" />
-		<result column="ch_start_date" property="chStartDate"/>
-		<result column="ch_end_date" property="chEndDate"/>
-		<result column="count" property="count" />
+		<result column="ch_start_date" property="chStartDate" />
+		<result column="ch_end_date" property="chEndDate" />
+		<result column="verify_term" property="verifyTerm" />
+		<result column="challenge_period" property="challengePeriod" />
+		<result column="total_date" property="totalDate" />
 		<result column="user_id" property="userId" />
+		<result column="nick_name" property="nickName" />
+		<result column="grade_name" property="gradeName" />
+		<result column="admin_yn" property="adminYn" />
 	</resultMap>
+	
+	<!-- 챌린지 총 개수 -->
+    <select id="count" resultType="int">
+	  SELECT COUNT(*) FROM challenges    
+    </select>
 
 	<!-- 챌린지 생성-->
-	<!-- challenges 테이블에 데이터 삽입-->
+	<!-- challenges 테이블 데이터 삽입-->
 	<insert id="insertChallenges" parameterType="Challenge"
 		useGeneratedKeys="true"
 		keyProperty="chId">
 	    <![CDATA[
-	    INSERT INTO challenges (title, content, category, betting_point, ch_start_date, ch_end_date, user_id)
-	    VALUES (#{title}, #{content}, #{category}, #{bettingPoint}, #{chStartDate}, #{chEndDate}, #{userId})
+	    INSERT INTO challenges (title, content, category, betting_point, ch_start_date, ch_end_date, verify_term, challenge_period, total_date, user_id)
+	    VALUES (#{title}, #{content}, #{category}, #{bettingPoint}, #{chStartDate}, #{chEndDate}, #{verifyTerm}, #{challengePeriod}, #{totalDate}, #{userId})
         ]]>
     </insert>
 
-	<!-- members 테이블에 데이터 삽입 -->
-	<insert id="insertMembers" parameterType="Member">
+	<!-- members 테이블 데이터 삽입 -->
+	<insert id="insertMembers" parameterType="Member" >
         <![CDATA[
         INSERT INTO members (mem_user_id, mem_ch_id, registrant)
         VALUES (#{memUserId}, #{memChId}, #{registrant})
         ]]> 
     </insert>
+    
+   <!-- 챌린지 리스트-->
+   <!-- 챌린지 리스트 불러오기 --> 
+   <select id="list" resultType="Challenge" parameterType="PageDTO" resultMap="challengeResultMap">
+	SELECT c.*, u.nick_name, u.grade_name, u.admin_yn
+	FROM challenges c
+	JOIN users u ON c.user_id = u.user_id
+	ORDER BY FIELD(c.proceed, 'rec', 'pr', 'done'), c.ch_id DESC
+	LIMIT #{startRow}, #{blockCount}
+  </select>
+  
+  <!-- 참가중인 챌린지id 리스트 불러오기-->
+  <select id="joinList" resultType="ProfileDTO" parameterType="int">
+	SELECT ch_id1, ch_id2
+	FROM profiles
+	WHERE user_id=#{userId}
+  </select>
 
 	<!-- 챌린지 참가-->
 	<!-- members 테이블에서 user_id와 ch_id로 검색 -->
@@ -58,9 +83,11 @@
 	</select>
 
 	<!-- chId로 challenges 테이블 조회-->
-	<select id="selectChallengesByChId" parameterType="int"
+	<select id="selectChallengesByChId" resultType="Challenge" parameterType="int"
 		resultMap="challengeResultMap">
-		SELECT * FROM challenges
+		SELECT c.*, u.nick_name, u.grade_name, u.admin_yn
+		FROM challenges c
+		JOIN users u ON c.user_id = u.user_id
 		WHERE ch_id=#{chId}
 	</select>
 
@@ -73,7 +100,6 @@
 		WHERE user_id = #{userId}
 	</update>
 
-
 	<!-- 챌린지 삭제-->
 	<!-- challenges 테이블에 데이터 삭제-->
 	<delete id="deleteChallenges" parameterType="int">
@@ -81,20 +107,5 @@
 		WHERE user_id=#{userId}
 	</delete>
 
-	<!-- 
-  <select id="list" resultType="Challenge" parameterType="PageDTO">
-	SELECT c.*
-	FROM challenges c
-	ORDER BY c.ch_id DESC
-	LIMIT #{startRow}, #{blockCount}
-  </select>
-  -->
-
-	<update id="countCH" parameterType="int">
-		UPDATE challenges
-		SET count = count + 1
-		WHERE ch_id=#{ch_id}
-
-	</update>
 
 </mapper>

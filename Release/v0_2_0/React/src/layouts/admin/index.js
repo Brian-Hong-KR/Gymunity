@@ -17,6 +17,7 @@ import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
 import GradientLineChart from "examples/Charts/LineCharts/GradientLineChart";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import SoftButton from 'components/SoftButton';
 
 function AdminInfo() {
   // const { size } = typography;
@@ -84,12 +85,12 @@ function AdminInfo() {
         labels,
         datasets: [
           {
-            label: "Submissions",
+            label: "유입수",
             color: "error",
             data: dataSubmissions,
           },
           {
-            label: "Sign Ins",
+            label: "회원가입수",
             color: "warning",
             data: dataSignUps,
           },
@@ -101,12 +102,12 @@ function AdminInfo() {
         labels,
         datasets: [
           {
-            label: "Sign Ups",
+            label: "회원가입수",
             color: "info",
             data: dataSignUps,
           },
           {
-            label: "Sign Ins",
+            label: "활동수",
             color: "error",
             data: dataSignIns,
           },
@@ -118,12 +119,12 @@ function AdminInfo() {
         labels,
         datasets: [
           {
-            label: "Sign Ups",
+            label: "회원가입수",
             color: "info",
             data: dataSignUps,
           },
           {
-            label: "Referrer Sign Ups",
+            label: "추천인가입수",
             color: "dark",
             data: dataReferrerSignUps,
           },
@@ -135,11 +136,51 @@ function AdminInfo() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
+      <Grid item xs={12} lg={5}>
+        <SoftBox
+          display='flex'
+          justifyContent='space-between'
+          alignItems='center'
+          p={3}
+        >
+          <SoftButton
+            type='submit'
+            variant='gradient'
+            color='dark'
+            fullWidth
+            style={{ width: '30%' }}
+          >
+            회원 관리
+          </SoftButton>
+
+          <SoftButton
+            type='submit'
+            variant='gradient'
+            color='dark'
+            fullWidth
+            style={{ width: '30%' }}
+            href='/dashboard/editpoint'
+          >
+            포인트 관리
+          </SoftButton>
+
+          <SoftButton
+            type='submit'
+            variant='gradient'
+            color='dark'
+            fullWidth
+            style={{ width: '30%' }}
+          >
+            CS 관리
+          </SoftButton>
+        </SoftBox>
+      </Grid>
+
       <SoftBox mb={3}>
         <Grid container spacing={3}>
-          <Grid item xs={12} lg={5}>
+          {/* <Grid item xs={12} lg={5}>
             <ReportsBarChart
-              title="PT"
+              title='PT'
               description={
                 <>
                   (<strong>+23%</strong>) than last week
@@ -148,25 +189,25 @@ function AdminInfo() {
               chart={chart}
               items={items}
             />
-          </Grid>
+          </Grid> */}
           <Grid item xs={12} lg={7}>
             <GradientLineChart
-              title="유입자 회원가입"
-              height="20.25rem"
+              title='유입자 회원가입'
+              height='20.25rem'
               chart={chartData1}
             />
           </Grid>
           <Grid item xs={12} lg={7}>
             <GradientLineChart
-              title="회원가입 로그인"
-              height="20.25rem"
+              title='회원가입 로그인'
+              height='20.25rem'
               chart={chartData2}
             />
           </Grid>
           <Grid item xs={12} lg={7}>
             <GradientLineChart
-              title="회원가입 추천가입"
-              height="20.25rem"
+              title='회원가입 추천가입'
+              height='20.25rem'
               chart={chartData3}
             />
           </Grid>

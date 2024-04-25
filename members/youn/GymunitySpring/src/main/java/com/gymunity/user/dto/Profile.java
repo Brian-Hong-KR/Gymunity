@@ -8,6 +8,7 @@ import lombok.Setter;
 public class Profile {
 	private String password;
 	private String userEmail;
+	private int referrerId;
 	private int userId;
 
 }// end class

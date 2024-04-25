@@ -7,12 +7,14 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gymunity.admin.repository.AdminMapper;
 import com.gymunity.admin.service.adminService;
 import com.gymunity.challenge.dto.Challenge;
+import com.gymunity.challenge.dto.PhotoDTO;
 import com.gymunity.challenge.dto.Verify;
 import com.gymunity.challenge.repository.ChallengeMapper;
 
@@ -25,6 +27,11 @@ public class adminServiceImpl implements adminService {
 
 	private final AdminMapper adminMapper;
 	private final ChallengeMapper challengeMapper;
+	
+	@Override
+	public List<PhotoDTO> getPhotosByResultNProcess() {		
+		return adminMapper.selectPhotosByResultN();
+	}
 
 	@Override
 	public void verifyCheckProcess(int viId, String result) {
@@ -102,5 +109,12 @@ public class adminServiceImpl implements adminService {
 
 		return allData;
 	}// getAllDataByWeek()
-
+	
+	
+	 @Override
+	    public void adminDeleteUsers(String userAccountId) {
+	        adminMapper.adminDeleteUsers(userAccountId);
+	    }
+	
+	
 }// end class
