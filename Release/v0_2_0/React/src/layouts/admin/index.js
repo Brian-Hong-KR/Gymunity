@@ -43,7 +43,10 @@ function AdminInfo() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(""http://192.168.0.60:8090/admin/info", config);
+        const response = await axios.get(
+          "http://192.168.0.60:8090/admin/info",
+          config
+        );
         const data = response.data;
         console.log(data);
         setAdminInfo(data);

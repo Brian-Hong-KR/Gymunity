@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.gymunity.point.dto.PointAdd;
 import com.gymunity.point.dto.PointAdjust;
 import com.gymunity.point.dto.PointAdjustAddSubtract;
-import com.gymunity.point.dto.PointAdjustAndAdd;
-import com.gymunity.point.dto.PointAdjustAndSubtract;
+//import com.gymunity.point.dto.PointAdjustAndAdd;
+//import com.gymunity.point.dto.PointAdjustAndSubtract;
 import com.gymunity.point.dto.PointSubtract;
 import com.gymunity.point.service.EditPointService;
 
