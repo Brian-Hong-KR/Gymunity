@@ -47,7 +47,8 @@ class DBPedia extends Component {
     const {  loading, result } = this.state;
 
     return (
-      <div className="dbpedia"> {loading ? <Loading /> : result} </div>
+
+      <div className="dbpedia"> {loading ? <Loading /> : result } </div>
 
     );
   }
