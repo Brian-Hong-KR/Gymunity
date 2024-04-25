@@ -53,15 +53,12 @@ function ChallengeDetail() {
   };
 
   console.log("challengeDetail.chId:", challengeDetail.chId);
-  console.log("challengeDetail.isJoined:", challengeDetail.isJoined);
-
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `${localStorage.getItem("Authorization")}`,
-      "Authorization-refresh": localStorage.getItem("Authorization-refresh"),
-    },
-  };
+  console.log("isJoined:", isJoined);
+  // const config = {
+  //   headers: {
+  //     Authorization: localStorage.getItem("Authorization"),
+  //     "Authorization-refresh": localStorage.getItem("Authorization-refresh"),
+  //   },
 
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
@@ -82,7 +79,7 @@ function ChallengeDetail() {
 
   useEffect(() => {
     dispatch(challengeActions.getChallengeDetail(chId));
-  }, [dispatch, chId]);
+  }, []);
 
   // SoftButton 클릭 시 SoftAlert을 보여주는 함수
   const handleShowAlert = () => {
@@ -97,14 +94,6 @@ function ChallengeDetail() {
   //TODO localStorage.getItem("userAccount")로 바꾸기
   const localStorageUserID = 81;
 
-  const handleClickJoinButton = async (e) => {
-    e.preventDefault();
-    // await dispatch(boardActions.getBoardWrite(formData, config));
-    await dispatch(challengeActions.getChallengeJoin(chId, config));
-    // SoftButton 클릭 시 SoftAlert을 보여주는 함수
-    setShowAlert(true);
-  };
-
   const { image, category, grade, verifyTerm, period, remainingDays } =
     DataConverter(challengeDetail);
 
@@ -116,7 +105,7 @@ function ChallengeDetail() {
     buttonComponent = (
       <SoftButton
         component={Link}
-        to={`/challenge/detail/${chId}`}
+        to={`/challenge/detail/${challengeDetail.chId}`}
         variant="outlined"
         size="small"
         color="primary"
@@ -704,7 +693,7 @@ function ChallengeDetail() {
                       <SoftButton
                         variant="gradient"
                         color="dark"
-                        onClick={handleClickJoinButton}
+                        onClick={handleShowAlert}
                       >
                         참여하기
                       </SoftButton>

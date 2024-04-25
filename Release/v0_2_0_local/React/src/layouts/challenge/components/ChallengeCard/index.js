@@ -17,12 +17,12 @@ import DataConverter from "../DataConverter";
 
 // Image
 import icon_count from "assets/images/icon/count_person.png";
-import icon_start from "assets/images/icon/start_bk.png";
+import icon_start from "assets/images/icon/start.png";
 import icon_point from "assets/images/icon/point.png";
 
 function ChallengeCard({ challenge }) {
-  console.log("isJoined: ", challenge.isJoined);
-  console.log("chId: ", challenge.chId);
+  // console.log("isJoined: ", challenge.isJoined);
+  // console.log("chId: ", challenge.chId);
   // console.log("chId: ", typeof challenge.chId);
 
   // 예시 81번 나나
@@ -41,10 +41,10 @@ function ChallengeCard({ challenge }) {
         to={`/challenge/detail/${challenge.chId}`}
         variant="outlined"
         size="small"
-        color="primary"
-        sx={{ width: "100%", height: "100px", padding: 0 }}
+        color="info"
+        sx={{ minWidth: "250px" }}
       >
-        자세히
+        자세히 보기
       </SoftButton>
     );
     ddayComponent = (
@@ -53,14 +53,14 @@ function ChallengeCard({ challenge }) {
         p={1}
         borderRadius="xl"
         position="absolute"
-        bottom="-6px"
-        left="0px"
+        bottom="0px"
+        left="18px"
         zIndex={3}
         style={{
-          // color: "#FFFFFF",
-          fontSize: "1rem",
+          color: "#FFFFFF",
+          fontSize: "1.2rem",
           fontWeight: "bold",
-          // textShadow: "0 0 5px #000000",
+          textShadow: "0 0 5px #000000",
           display: "flex",
           alignItems: "center",
         }}
@@ -69,7 +69,7 @@ function ChallengeCard({ challenge }) {
           src={icon_start}
           component="img"
           sx={{
-            maxWidth: "24px",
+            maxWidth: "28px",
             height: "auto",
             margin: 0,
             objectFit: "cover",
@@ -217,246 +217,173 @@ function ChallengeCard({ challenge }) {
         overflow: "visible",
         position: "relative",
         display: "flex",
-        justifyContent: "flex-start", // 좌측 정렬
-        alignItems: "flex-start", // 상단 정렬
-        // border: "1px solid #ccc", // 임시 테두리
+        justifyContent: "center",
+        alignItems: "center",
       }}
     >
-      <SoftBox //image + count + button
-        mb={3}
-        position="relative"
-        width="80px"
-        height="220px"
-        style={{
-          textAlign: "center",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-        <SoftBox //image + count
-          position="relative"
-          width="80px"
-          height="80px"
-          borderRadius="xl"
-          style={{
-            zIndex: 1,
-            textAlign: "center",
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          <CardMedia
-            src={image}
-            component="img"
-            sx={{
-              maxWidth: "100%",
-              height: "100px",
-              margin: "0 auto",
-              boxShadow: ({ boxShadows: { md } }) => md,
-              objectFit: "cover",
-              objectPosition: "center",
-              aspectRatio: "16 / 9",
-            }}
-          />
-          <SoftBox
-            bg="rgba(255, 255, 255, 0.8)"
-            p={1}
-            borderRadius="xl"
-            position="absolute"
-            bottom="-3px"
-            right="3px"
-            zIndex={3}
-            style={{
-              color: "#FFFFFF",
-              fontSize: "1.2rem",
-              fontWeight: "bold",
-              textShadow: "0 0 5px #000000",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <CardMedia
-              src={icon_count}
-              component="img"
-              sx={{
-                maxWidth: "17px",
-                height: "auto",
-                margin: 0,
-                boxShadow: ({ boxShadows: { md } }) => md,
-                objectFit: "cover",
-                objectPosition: "center",
-                borderRadius: 0,
-                marginRight: "9px",
-                position: "relative",
-                top: "-3px",
-              }}
-            />
-            {challenge.count}
-          </SoftBox>
-        </SoftBox>
-
-        {/* <SoftBox sx={{ flex: 1 }} mb={3} lineHeight={0}> */}
-        <SoftBox
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          marginTop="20px"
-        >
-          {buttonComponent}
-        </SoftBox>
-        {/* </SoftBox> */}
-      </SoftBox>
-      <SoftBox //title + user + term + period + point + dday
-        pt={1}
-        pb={1}
-        ml={2}
-        position="relative"
-        minWidth="230px"
+      <SoftBox
+        position="absolute"
+        top="0"
+        left="0"
         width="100%"
-        height="220px"
+        height="170px"
+        zIndex={2}
         style={{
-          flexDirection: "column",
-          display: "flex",
-          alignItems: "center",
-          // border: "1px solid #ccc", // 임시 테두리
+          position: "absolute",
+          top: "0",
+          left: "0",
+          width: "100%",
+          height: "170px",
+          zIndex: 2,
         }}
+      ></SoftBox>
+      <SoftBox
+        position="relative"
+        width="310px"
+        height="170px"
+        shadow="xl"
+        borderRadius="xl"
+        style={{ zIndex: 1, textAlign: "center" }}
       >
         <SoftBox
-          my={4}
-          mx={3}
           position="absolute"
-          minWidth="230px"
-          width="100%"
+          width="180px"
           height="30px"
+          shadow="xl"
           borderRadius="xl"
+          style={{ zIndex: 1 }}
+          component="div"
           sx={{
             ...typography.h6,
+            top: "-10px",
+            left: "5px",
             maxWidth: "100%",
             maxHeight: "100%",
             margin: 0,
-            // boxShadow: ({ boxShadows: { md } }) => md,
+            boxShadow: ({ boxShadows: { md } }) => md,
             objectFit: "contain",
-            backgroundColor: "#FFFFFF",
-            border: "1px solid #FF0000",
+            objectPosition: "center",
+            backgroundColor: "#C00000",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            color: "#444444",
+            // border: "2px solid #FF3636",
+            color: "#FFFFFF",
             fontWeight: "bold",
           }}
         >
-          {category}
+              {category}
         </SoftBox>
+        <CardMedia
+          src={image}
+          component="img"
+          sx={{
+            maxWidth: "100%",
+            height: "100%",
+            margin: "0 auto",
+            boxShadow: ({ boxShadows: { md } }) => md,
+            objectFit: "cover",
+            objectPosition: "center",
+            aspectRatio: "16 / 9",
+          }}
+        />
         <SoftBox
-          mt={3}
-          mb={2}
-          ml={2}
-          position="absolute" // position을 absolute로 설정
-          top="25px"
-          minWidth="230px"
-          width="100%"
-          height="30px"
+          bg="rgba(255, 255, 255, 0.8)"
+          p={1}
           borderRadius="xl"
-          sx={
-            {
-              // border: "1px solid #ccc", // 임시 테두리
-            }
-          }
+          position="absolute"
+          bottom="0px"
+          right="20px"
+          zIndex={3}
+          style={{
+            color: "#FFFFFF",
+            fontSize: "1.2rem",
+            fontWeight: "bold",
+            textShadow: "0 0 5px #000000",
+            display: "flex",
+            alignItems: "center",
+          }}
+
         >
+          <CardMedia
+            src={icon_count}
+            component="img"
+            sx={{
+              maxWidth: "17px",
+              height: "auto",
+              margin: 0,
+              boxShadow: ({ boxShadows: { md } }) => md,
+              objectFit: "cover",
+              objectPosition: "center",
+              borderRadius: 0,
+              marginRight: "15px",
+              position: "relative",
+              top: "-3px",
+            }}
+          />
+          {challenge.count}
+        </SoftBox>
+        {ddayComponent}
+      </SoftBox>
+      <SoftBox pt={1} pb={1} px={3}>
+        <SoftBox mb={1}>
           <SoftTypography
             component={Link}
             to={`/challenge/detail/${challenge.chId}`}
-            variant="title"
+            variant="h5"
             textTransform="capitalize"
-            sx={{
-              fontSize: "1.25rem", // 폰트 사이즈 지정
-              fontWeight: 700, // 폰트 굵기 지정 (700 = bold)
-            }}
           >
             {challenge.title}
           </SoftTypography>
         </SoftBox>
-        <SoftBox // dday + userinfo
-          mt={6}
-          mb={3}
+        <SoftBox
           position="absolute"
-          top="45px"
-          minWidth="230px"
-          width="100%"
-          height="30px"
           style={{
             color: "#FFFFFF",
             fontSize: "1.2rem",
             fontWeight: "bold",
             display: "flex",
             alignItems: "center",
-            flexDirection: "row",
-            // border: "1px solid #ccc", // 임시 테두리
           }}
         >
-          {ddayComponent}
-          <SoftBox //userinfo
-            position="absolute"
-            minWidth="150px"
-            width="100%"
-            height="30px"
-            left="80px"
+          <SoftTypography
+            variant="h6"
+            fontWeight="regular"
+            textTransform="capitalize"
+            textGradient
             style={{
-              color: "#FFFFFF",
-              fontSize: "1.2rem",
-              fontWeight: "bold",
               display: "flex",
               alignItems: "center",
-              // border: "1px solid #ccc", // 임시 테두리
             }}
           >
-            <SoftTypography
-              variant="caption"
-              fontWeight="regular"
-              textTransform="capitalize"
-              textGradient
-              style={{
-                display: "flex",
-                alignItems: "center",
+            master:
+            <CardMedia
+              src={grade}
+              component="img"
+              sx={{
+                maxWidth: "20px",
+                height: "auto",
+                margin: 0,
+                objectFit: "cover",
+                objectPosition: "center",
+                borderRadius: 0,
+                marginRight: "8px",
+                marginLeft: "10px",
+                position: "relative",
+                top: "0px",
               }}
-            >
-              master:
-              <CardMedia
-                src={grade}
-                component="img"
-                sx={{
-                  maxWidth: "20px",
-                  height: "auto",
-                  margin: 0,
-                  objectFit: "cover",
-                  objectPosition: "center",
-                  borderRadius: 0,
-                  marginRight: "4px",
-                  marginLeft: "5px",
-                  position: "relative",
-                  top: "-1px",
-                }}
-              />
-              {challenge.nickName}
-            </SoftTypography>
-          </SoftBox>
+            />
+            {challenge.nickName}
+          </SoftTypography>
         </SoftBox>
-        <SoftBox
-          mt={7}
-          mb={3}
-          position="absolute"
-          top="28px"
-          minWidth="230px"
-          width="100%"
-          height="30px"
-        >
+        <SoftBox mb={3} lineHeight={0}>
           <SoftBox
             mt={6}
             mb={3}
             display="flex"
             justifyContent="center"
             alignItems="center"
-            height="70px"
+            height="50px"
           >
             <SoftBox
               width="100%"
@@ -524,6 +451,16 @@ function ChallengeCard({ challenge }) {
                 {challenge.bettingPoint}
               </SoftTypography>
             </SoftBox>
+          </SoftBox>
+        </SoftBox>
+        <SoftBox mb={3} lineHeight={0}>
+          <SoftBox
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            marginTop="25px"
+          >
+            {buttonComponent}
           </SoftBox>
         </SoftBox>
       </SoftBox>

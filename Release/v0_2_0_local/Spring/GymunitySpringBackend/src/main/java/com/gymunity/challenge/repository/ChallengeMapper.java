@@ -28,15 +28,10 @@ public interface ChallengeMapper {
 	public Challenge selectChallengesByUserId(int userId);
 
 	public Challenge selectChallengesByChId(int chId);
-	
-	//챌린지 참가
-	public void updateProfile(@Param("chId") int chId, @Param("userId") int userId);
-	
-	public int getUpdateCount();
+
+	public void updateChallenges(Challenge dto);
 
 	public void updateChallengeCount(int chId);
-	
-//	public void updateChallenges(Challenge dto);
 
 	public int countMembersByUserIdAndChId(@Param("chId") int chId, @Param("userId") int userId);
 

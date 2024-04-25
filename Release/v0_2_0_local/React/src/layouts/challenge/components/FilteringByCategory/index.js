@@ -3,22 +3,20 @@ import styled from "styled-components";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 
 const items = [
-  { id: 0, title: "카테고리를 선택하세요." },
   { id: 1, title: "체중 감량" },
   { id: 2, title: "근력 향상" },
   { id: 3, title: "종합 건강 증진" },
 ];
 
 const ItemList = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: ${({ isOpen }) => (isOpen ? "block" : "none")};
   position: absolute;
   top: 40px;
-  left: 0; /* 왼쪽 정렬을 위해 추가 */
+  right: 0;
+  width: 200px;
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
-  z-index: 5;
 `;
 
 const ItemButton = styled.button`
@@ -28,6 +26,7 @@ const ItemButton = styled.button`
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+
   &:hover {
     background-color: #e0e0e0;
   }
@@ -43,6 +42,7 @@ const DropdownButton = styled.button`
   cursor: pointer;
   margin-bottom: 10px;
   transition: background-color 0.3s ease;
+
   &:hover {
     background-color: #e0e0e0;
   }
@@ -53,7 +53,7 @@ const ArrowIcon = styled.div`
 `;
 
 const FilteringByCategory = ({ selectedItem, onSelectItem }) => {
-  const [isOpen, setIsOpen] = useState(false); // 초기 상태를 false로 설정
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleList = () => {
     setIsOpen(!isOpen);
@@ -82,8 +82,7 @@ const FilteringByCategory = ({ selectedItem, onSelectItem }) => {
         {selectedItem ? selectedItem.title : "카테고리를 선택하세요"}
         <ArrowIcon>{isOpen ? <FaAngleUp /> : <FaAngleDown />}</ArrowIcon>
       </DropdownButton>
-      {isOpen && <ItemList>{renderItems()}</ItemList>}{" "}
-      {/* isOpen 상태에 따라 렌더링 */}
+      <ItemList isOpen={isOpen}>{renderItems()}</ItemList>
     </div>
   );
 };
