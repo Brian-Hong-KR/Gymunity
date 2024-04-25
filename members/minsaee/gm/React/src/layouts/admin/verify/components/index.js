@@ -9,7 +9,7 @@ import SoftButton from "components/SoftButton";
 const AdminVerify = () => {
   const imgStyle = {
     width: "100%",
-    maxWidth: "400px",
+    maxWidth: "100px",
     height: "auto",
   };
 
@@ -154,9 +154,7 @@ const AdminVerify = () => {
           justifyContent="space-between"
           alignItems="center"
           p={3}
-        >
-          <SoftTypography variant="h5">포인트 내역</SoftTypography>
-        </SoftBox>
+        ></SoftBox>
 
         <SoftBox
           sx={{

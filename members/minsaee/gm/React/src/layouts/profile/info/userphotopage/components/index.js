@@ -9,6 +9,12 @@ import Table from "examples/Tables/Table";
 import SoftButton from "components/SoftButton";
 
 const PhotoList = () => {
+  const imgStyle = {
+    width: "100%",
+    maxWidth: "100px",
+    height: "auto",
+  };
+
   const baseConfig = {
     headers: {
       "Content-Type": "application/json",
@@ -42,7 +48,7 @@ const PhotoList = () => {
               <img
                 src={`${process.env.PUBLIC_URL}/${photo.imagePath1}`}
                 alt="User Photo 1"
-                style={{ width: "50%", height: "auto" }}
+                style={imgStyle}
               />
               {photo.proceed === "rec" && (
                 <SoftButton
@@ -64,7 +70,7 @@ const PhotoList = () => {
               <img
                 src={`${process.env.PUBLIC_URL}/${photo.imagePath2}`}
                 alt="User Photo 2"
-                style={{ width: "50%", height: "auto" }}
+                style={imgStyle}
               />
               {photo.proceed === "rec" && (
                 <SoftButton
