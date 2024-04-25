@@ -1,14 +1,14 @@
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import PointDetail from "./components";
+import AdminVerify from "./components";
 
-function UserPointPage() {
+function AdminVerifyPage() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <PointDetail />
+      <AdminVerify />
     </DashboardLayout>
   );
 }
 
-export default UserPointPage;
+export default AdminVerifyPage;

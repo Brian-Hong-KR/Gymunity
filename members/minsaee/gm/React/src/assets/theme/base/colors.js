@@ -55,7 +55,7 @@ const colors = {
   },
 
   info: {
-    main: "#ea0606",
+    main: "#C00000",
     focus: "#3acaeb",
   },
 
@@ -123,7 +123,7 @@ const colors = {
     },
 
     error: {
-      main: "#ea0606",
+      main: "#C00000",
       state: "#ff667c",
     },
 

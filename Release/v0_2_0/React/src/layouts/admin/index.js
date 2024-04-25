@@ -84,12 +84,12 @@ function AdminInfo() {
         labels,
         datasets: [
           {
-            label: "Submissions",
+            label: "유입수",
             color: "error",
             data: dataSubmissions,
           },
           {
-            label: "Sign Ins",
+            label: "회원가입수",
             color: "warning",
             data: dataSignUps,
           },
@@ -101,12 +101,12 @@ function AdminInfo() {
         labels,
         datasets: [
           {
-            label: "Sign Ups",
+            label: "회원가입수",
             color: "info",
             data: dataSignUps,
           },
           {
-            label: "Sign Ins",
+            label: "활동수",
             color: "error",
             data: dataSignIns,
           },
@@ -118,12 +118,12 @@ function AdminInfo() {
         labels,
         datasets: [
           {
-            label: "Sign Ups",
+            label: "회원가입수",
             color: "info",
             data: dataSignUps,
           },
           {
-            label: "Referrer Sign Ups",
+            label: "추천인가입수",
             color: "dark",
             data: dataReferrerSignUps,
           },
@@ -137,7 +137,7 @@ function AdminInfo() {
       <DashboardNavbar />
       <SoftBox mb={3}>
         <Grid container spacing={3}>
-          <Grid item xs={12} lg={5}>
+          {/* <Grid item xs={12} lg={5}>
             <ReportsBarChart
               title="PT"
               description={
@@ -148,7 +148,7 @@ function AdminInfo() {
               chart={chart}
               items={items}
             />
-          </Grid>
+          </Grid> */}
           <Grid item xs={12} lg={7}>
             <GradientLineChart
               title="유입자 회원가입"

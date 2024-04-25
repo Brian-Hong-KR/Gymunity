@@ -31,6 +31,7 @@ import UserPointPage from "layouts/profile/info/userpointpage";
 import AdminInfo from "layouts/admin";
 import CustomerCreate from "layouts/profile/customer";
 import Cs from "layouts/dashboard/info/CsPage";
+import AdminVerify from "layouts/admin/verify/components";
 
 const routes = [
   {
@@ -87,6 +88,17 @@ const routes = [
     route: "/admin",
     icon: <Settings size="12px" />,
     component: <AdminInfo />,
+    noCollapse: true,
+    isAdmin: true, // 이 라인을 추가하여 라우트가 관리자용임을 명시
+  },
+
+  {
+    type: "collapse",
+    name: "AdminVerfiy",
+    key: "adminVerify",
+    route: "/admin/verify",
+    icon: <Settings size="12px" />,
+    component: <AdminVerify />,
     noCollapse: true,
     isAdmin: true, // 이 라인을 추가하여 라우트가 관리자용임을 명시
   },
