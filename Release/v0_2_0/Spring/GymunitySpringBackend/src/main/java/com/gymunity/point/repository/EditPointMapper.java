@@ -7,8 +7,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import com.gymunity.point.dto.PointAdjustAddSubtract;
-import com.gymunity.point.dto.PointAdjustAndAdd;
-import com.gymunity.point.dto.PointAdjustAndSubtract;
+//import com.gymunity.point.dto.PointAdjustAndAdd;
+//import com.gymunity.point.dto.PointAdjustAndSubtract;
 
 
 @Mapper

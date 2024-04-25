@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gymunity.point.dto.PointAdjustAddSubtract;
-import com.gymunity.point.dto.PointAdjustAndAdd;
-import com.gymunity.point.dto.PointAdjustAndSubtract;
+//import com.gymunity.point.dto.PointAdjustAndAdd;
+//import com.gymunity.point.dto.PointAdjustAndSubtract;
 import com.gymunity.point.repository.EditPointMapper;
 import com.gymunity.point.service.EditPointService;
 
