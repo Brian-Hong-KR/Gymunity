@@ -3,23 +3,27 @@ package com.gymunity.user.repository;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import com.gymunity.user.dto.Customer;
 import com.gymunity.user.dto.Profile;
+import com.gymunity.user.dto.Pt;
 import com.gymunity.user.dto.Survey;
 import com.gymunity.user.dto.User;
-import com.gymunity.user.dto.UserPointsWithinWeek;
 import com.gymunity.user.dto.UserUpdateDTO;
 
 @Mapper
 @Repository
 public interface UserMapper {
+	public int insertNewVisit();
+	
 	public int insertUsers(User dto);
 
 	public int insertProfiles(Profile dto);
 
 	public int insertSurvey(Survey dto);
+	
+	public int insertPt(Pt dto);
 
 	public void updateUsers(UserUpdateDTO dto);
 
@@ -38,6 +42,11 @@ public interface UserMapper {
 	public Profile selectPasswordByUserId(int userId);
 
 	public int deleteUsers(int userId);
+	
+	public User selectSurveyByUserId(int userId);
+	
+	public int insertInquiries(Customer dto);
+	
+	public List<Customer> selectInquiries();
 
-	List<UserPointsWithinWeek> getUserPointsWithinLastWeek(@Param("userId") String userId);
 }// end interface

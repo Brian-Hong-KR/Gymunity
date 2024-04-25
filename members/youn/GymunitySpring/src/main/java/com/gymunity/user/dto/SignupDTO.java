@@ -15,11 +15,18 @@ public class SignupDTO {
 	private String password;
 	private String userEmail;
 
+	// 추천인 정보
+	private String referrerAccountId;
+	
 	// Survey 정보
 	private String gender;
 	private String age;
 	private String goal;
 	private String level;
 	private String abnormal;
+	
+	// pt 정보
+	private String planName;
+	private String planDesc;
 
 }// end class

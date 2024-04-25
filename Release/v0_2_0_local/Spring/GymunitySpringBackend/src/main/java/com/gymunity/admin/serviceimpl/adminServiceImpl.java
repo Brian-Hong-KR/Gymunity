@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gymunity.admin.repository.AdminMapper;
 import com.gymunity.admin.service.adminService;
 import com.gymunity.challenge.dto.Challenge;
+import com.gymunity.challenge.dto.PhotoDTO;
 import com.gymunity.challenge.dto.Verify;
 import com.gymunity.challenge.repository.ChallengeMapper;
 
@@ -25,6 +26,11 @@ public class adminServiceImpl implements adminService {
 
 	private final AdminMapper adminMapper;
 	private final ChallengeMapper challengeMapper;
+	
+	@Override
+	public List<PhotoDTO> getPhotosByResultNProcess() {		
+		return adminMapper.selectPhotosByResultN();
+	}
 
 	@Override
 	public void verifyCheckProcess(int viId, String result) {
@@ -51,7 +57,7 @@ public class adminServiceImpl implements adminService {
 		adminMapper.updateAchieveRate(userId, chId, achieveRate);
 
 	}// end verifyCheckProcess()
-	
+
 	@Override
 	public Map<String, Integer> countByWeek(List<LocalDate> dates) {
 		Map<String, Integer> weeklyCounts = new TreeMap<>();
@@ -63,37 +69,44 @@ public class adminServiceImpl implements adminService {
 		}
 		return weeklyCounts;
 	}// end countByWeek()
-	
+
 	@Override
 	public Map<String, Integer> countSubmissionsByWeek() {
 		List<LocalDate> submissionDates = adminMapper.selectAllSubmissions();
-		
+
 		return countByWeek(submissionDates);
 	}// end countSubmissionsByWeek()
-	
+
 	@Override
 	public Map<String, Integer> countAllSignUpByWeek() {
-List<LocalDate> signupDates = adminMapper.selectAllSignupDates();
-		
+		List<LocalDate> signupDates = adminMapper.selectAllSignupDates();
+
 		return countByWeek(signupDates);
 	}// end countSignUpByWeek()
-	
+
 	@Override
-	public Map<String, Integer> countReferrerSignupByWeek() {
-List<LocalDate> ReferrerSignupDates = adminMapper.selectReferrerSignupDates();
-		
+	public Map<String, Integer> countAllSignInByWeek() {
+		List<LocalDate> signinDates = adminMapper.selectAllSigninDates();
+
+		return countByWeek(signinDates);
+	}// end countAllSignInByWeek()
+
+	@Override
+	public Map<String, Integer> countReferrerSignUpByWeek() {
+		List<LocalDate> ReferrerSignupDates = adminMapper.selectReferrerSignupDates();
+
 		return countByWeek(ReferrerSignupDates);
 	}// end countReferrerSignupByWeek()
-	
+
 	@Override
 	public Map<String, Map<String, Integer>> getAllDataByWeek() {
 		Map<String, Map<String, Integer>> allData = new TreeMap<>();
 		allData.put("submissions", countSubmissionsByWeek());
 		allData.put("signUp", countAllSignUpByWeek());
-		allData.put("referrerSignUp", countReferrerSignupByWeek());
-	
+		allData.put("signIn", countAllSignInByWeek());
+		allData.put("referrerSignUp", countReferrerSignUpByWeek());
+
 		return allData;
 	}// getAllDataByWeek()
-	
-	
+
 }// end class

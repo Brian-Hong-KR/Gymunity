@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gymunity.user.repository.ProfileInfoMapper">
+	<!-- MyPage 데이터 조회하기-->
+	<!--등급명, 현재포인트, 플랜이름 가져오기 -->
+	<select id="selectBasicInfo" parameterType="int"
+		resultType="ProfileInfoDTO">
+		SELECT u.nick_name AS nickName, u.grade_name AS gradeName, pr.user_email
+		AS userEmail, pa.current_points AS currentPoints,
+		p.plan_name AS planName
+		FROM users u
+		LEFT JOIN profiles pr ON u.user_id = pr.user_id
+		LEFT JOIN point_aggr pa ON u.user_id = pa.user_id
+		LEFT JOIN pt p ON u.user_id = p.user_id
+		WHERE u.user_id = #{userId}
+	</select>
+
+	<!-- 다음등급까지 남은 포인트 가져오기 -->
+	<select id="getPointsToNextGrade" parameterType="int"
+		resultType="int">
+		SELECT
+		CASE
+		WHEN total_points >= 3000 THEN 0
+		WHEN total_points >= 1500 THEN 3000 - total_points
+		WHEN total_points >= 600 THEN 1500 - total_points
+		ELSE 600 - total_points
+		END AS pointToNextGrade
+		FROM point_aggr
+		WHERE user_id = #{userId}
+	</select>
+
+	<!-- 모집중, 진행중 챌린지 가져오기-->
+	<select id="selectRecOrPrChallnege" parameterType="int"
+		resultType="ProfileInfoChallengeDTO">
+		SELECT c.title AS title, c.category AS category
+		FROM members m
+		LEFT JOIN challenges c ON m.mem_ch_id = c.ch_id
+		WHERE m.mem_user_id = #{userId}
+		AND c.proceed IN ('rec', 'pr')
+		ORDER BY c.ch_id DESC
+		LIMIT 2
+	</select>
+
+	<!-- 요일별 포인트 합계 가져오기 -->
+	<select id="getWeeklyNetPoints" parameterType="int"
+		resultType="WeeklyPointsDTO">
+		 <![CDATA[
+		SELECT dayname, SUM(points_added) - SUM(points_subtracted) AS netPoints
+		FROM (
+		    SELECT DAYNAME(added_at) AS dayname, points_added, 0 AS points_subtracted
+		    FROM point_add
+		    WHERE user_id = #{userId}
+		    AND WEEK(added_at, 1) = WEEK(CURRENT_DATE(), 1)
+		    AND added_at <= CURRENT_DATE() + INTERVAL 1 DAY
+		    
+		    UNION ALL
+		    
+		    SELECT DAYNAME(subtracted_at) AS dayname, 0 AS points_added, points_subtracted
+		    FROM point_subtract
+		    WHERE user_id = #{userId}
+		    AND WEEK(subtracted_at, 1) = WEEK(CURRENT_DATE(), 1)
+		    AND subtracted_at <= CURRENT_DATE() + INTERVAL 1 DAY
+		    ) AS points_data
+		GROUP BY dayname
+		ORDER BY FIELD(dayname, 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday')
+		]]>
+	</select>
+
+	<!-- Point 상세 페이지-->
+	<select id="getPointDetail" parameterType="int" resultType="PointDetailDTO">
+		SELECT
+		points_added AS points,
+		added_reason AS reason,
+		added_at AS time
+		FROM
+		point_add
+		WHERE
+		user_id = #{userId}
+
+		UNION ALL
+
+		SELECT
+		-points_subtracted AS points,
+		subtracted_reason AS reason,
+		subtracted_at AS time
+		FROM
+		point_subtract
+		WHERE
+		user_id = #{userId}
+
+		ORDER BY
+		time DESC
+	</select>
+
+
+</mapper>

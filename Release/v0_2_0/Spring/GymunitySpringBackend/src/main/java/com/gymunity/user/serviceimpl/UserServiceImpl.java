@@ -220,6 +220,14 @@ public class UserServiceImpl implements UserService {
 	        return response;
 	}
 
+	@Override
+	public boolean isUserAccountIdExists(String userAccountId) {
+		
+		User user = userMapper.selectUsersByAccountId(userAccountId);
+		boolean exists = user != null; // 사용자 정보가 존재하는 경우 true, 아니면 false
+		    
+		return exists;
+	}
 
 
 

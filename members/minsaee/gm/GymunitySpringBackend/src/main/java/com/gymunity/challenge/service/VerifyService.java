@@ -14,7 +14,7 @@ public interface VerifyService {
 	
 	public void verifyUploadProcess(int userId, int chId, MultipartFile file);
 	
-	public List<PhotoDTO> getPhotosByUserId(int userId);
+	public List<PhotoDTO> getPhotosByUserIdProcess(int userId);
 	
 	public void deletePhotoProcess(String photoPath, int userId);
 
