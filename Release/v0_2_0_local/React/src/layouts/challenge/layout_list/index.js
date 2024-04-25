@@ -48,33 +48,23 @@ function Challenge() {
   const challengeList = useSelector(
     (state) => state.challenge.challengeList || []
   );
-  // const joinList = useSelector((state) => {
-  //   return (
-  //     state.challenge.joinList.map((item) => ({
-  //       ...item,
-  //       isJoined: true,
-  //     })) || []
-  //   );
-  // });
-
-  // const joinChIdList = joinList.map((item) => item.chId);
-  // console.log("joinChIdList:", joinChIdList);
 
   const joinList = useSelector((state) => state.challenge.joinList || []);
-  // console.log("joinList:", joinList);
+  console.log("joinList:", joinList);
 
   const joinChIdList =
     joinList.length > 0 && typeof joinList[0] === "object"
       ? Object.values(joinList[0])
       : [];
-  // console.log("joinChIdList:", joinChIdList);
+  console.log("joinChIdList:", joinChIdList);
   // console.log("joinChIdList:", typeof joinChIdList[0]);
 
   const updatedChallengeList = challengeList.map((challenge) => {
     return {
       ...challenge,
       isJoined:
-        challenge.chId == joinChIdList[0] || challenge.chId == joinChIdList[1],
+        challenge.chId === joinChIdList[0] ||
+        challenge.chId === joinChIdList[1],
     };
   });
 
@@ -85,7 +75,7 @@ function Challenge() {
   };
 
   //TODO localStorage.getItem("userAccount")로 바꾸기
-  const localStorageUserID = 81;
+  const localStorageUserID = 131;
 
   return (
     <DashboardLayout>
@@ -111,21 +101,22 @@ function Challenge() {
                   </SoftTypography>
                 </SoftBox>
               </SoftBox>
-              <SoftBox p={2}>
-                <Grid container spacing={3}>
-                  {updatedChallengeList.map(
-                    (challenge) =>
-                      challenge.isJoined && (
-                        <Grid item xs={12} md={6} xl={3} key={challenge.chId}>
-                          <ChallengeCard challenge={challenge} />
-                        </Grid>
-                      )
-                  )}
+              <SoftBox p={1} m={2}>
+                <Grid container spacing={5}>
+                  {joinChIdList.length > 0 &&
+                    updatedChallengeList.map(
+                      (challenge) =>
+                        challenge.isJoined && (
+                          <Grid item xs={12} md={8} xl={4} key={challenge.chId}>
+                            <ChallengeCard challenge={challenge} />
+                          </Grid>
+                        )
+                    )}
                   <Grid
                     item
                     xs={12}
-                    md={6}
-                    xl={3}
+                    md={12}
+                    xl={6}
                     component={Link}
                     to="/challenge/create"
                   >
@@ -139,11 +130,10 @@ function Challenge() {
             </Card>
           </>
         )}
-        <SoftBox mt={5} mb={3}></SoftBox>
+        <SoftBox mt={3} mb={3}></SoftBox>
         <Card>
-          <SoftBox pt={5} px={5}>
-
-            <SoftBox mb={0.5}>
+          <SoftBox pt={5} px={3}>
+            <SoftBox mb={0.5} mt={3}>
               <SoftTypography variant="h5" fontWeight="medium">
                 전체 챌린지 리스트
               </SoftTypography>
@@ -159,16 +149,17 @@ function Challenge() {
               selectedItem={selectedItem}
               onSelectItem={handleItemClick}
             />
-
           </SoftBox>
-          <SoftBox p={2}>
-            <Grid container spacing={3}>
+          <SoftBox p={1} m={2}>
+            <Grid container spacing={5}>
               {updatedChallengeList
                 .filter((challenge) => {
-                  if (selectedItem === null) {
-                    return true; // selectedItem이 null일 때는 모든 요소 표시
-                  } else {
+                  if (selectedItem && selectedItem.id === 0) {
+                    return true;
+                  } else if (selectedItem) {
                     return selectedItem.id === challenge.category;
+                  } else {
+                    return true; // 선택된 항목이 없는 경우 모든 항목을 반환
                   }
                 })
                 .map((challenge) => (

@@ -30,7 +30,9 @@ import com.gymunity.user.service.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @CrossOrigin("*")
 @RestController
 @RequiredArgsConstructor
@@ -60,6 +62,27 @@ public class UserController {
 		return ResponseEntity.ok(userInfoDTO);
 	}
 	
+	@GetMapping("/checkUsername/{userAccountId}")
+	 public ResponseEntity<String> checkUsername(@PathVariable("userAccountId")String userAccountId) {
+		try {
+	        // 아이디 중복 확인을 위해 UserService의 메서드 호출
+	        boolean isExists = userService.isUserAccountIdExists(userAccountId);
+	        
+	        if (isExists) {
+	            // 아이디가 이미 존재하는 경우
+	            return ResponseEntity.status(HttpStatus.CONFLICT).body("이미 존재하는 아이디입니다.");
+	        } else {
+	            // 아이디가 존재하지 않는 경우
+	            return ResponseEntity.ok("사용할 수 있는 아이디입니다.");
+	        }
+	    } catch (Exception e) {
+	        // 예외 발생 시
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("서버 오류가 발생했습니다.");
+	    }
+	 
+       
+	}
+	 
 	// 회원정보수정
 	@Operation(summary = "회원정보수정")
 	@PutMapping("/user/update")

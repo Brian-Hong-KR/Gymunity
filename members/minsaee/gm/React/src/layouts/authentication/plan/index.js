@@ -4,11 +4,11 @@ import { useNavigate, useLocation } from "react-router-dom";
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
-import typography from "assets/theme/base/typography";
 import { Card } from "@mui/material";
 
 import BasicLayout from "layouts/authentication/components/BasicLayout";
 import AuthNavbar from "examples/Navbars/AuthNavbar";
+import ReactMarkdown from "react-markdown";
 
 const PlanPage = () => {
   const navigate = useNavigate();
@@ -17,30 +17,14 @@ const PlanPage = () => {
   const [planData, setPlanData] = useState(null);
 
   useEffect(() => {
-    if (
-      location.state &&
-      location.state.planData &&
-      location.state.planData.length > 0
-    ) {
-      console.log("Plan data received:", location.state.planData[0]);
-      setPlanData(location.state.planData[0]);
-    } else {
-      console.log("No plan data received.");
-    }
-
-    // Check and set formData if it's present in the location state
-    if (location.state && location.state.formData) {
-      console.log("Form data received:", location.state.formData);
-      setFormData(location.state.formData);
-    }
+    setPlanData(location.state?.planData?.[0] || null);
+    setFormData(location.state?.formData || null);
   }, [location.state]);
 
   const handleRegister = () => {
-    // 현재 location 상태를 `/authentication/sign-in` 페이지로 전달
     navigate("/authentication/sign-up", {
-      state: { planData: planData, formData: formData },
+      state: { planData, formData },
     });
-    console.log("planPage후 회원가입페이지 이동:", formData, planData);
   };
 
   const handleSurveyReset = () => {
@@ -66,7 +50,7 @@ const PlanPage = () => {
               <>
                 <p>{planData.plan_name}</p>
                 <hr />
-                <div dangerouslySetInnerHTML={{ __html: planData.plan_desc }} />
+                <ReactMarkdown children={planData.plan_desc} />
                 <hr />
               </>
             )}

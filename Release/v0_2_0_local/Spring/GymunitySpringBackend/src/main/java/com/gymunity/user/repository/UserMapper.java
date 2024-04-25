@@ -48,5 +48,7 @@ public interface UserMapper {
 	public int insertInquiries(Customer dto);
 	
 	public List<Customer> selectInquiries();
+	
+	public int Idcheck(String userAccountId);
 
 }// end interface
