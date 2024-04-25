@@ -6,6 +6,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.stream.Stream;
 
+import org.apache.ibatis.exceptions.PersistenceException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -54,9 +55,10 @@ public class ChallengeServiceImpl implements ChallengeService {
 		case 3:
 			// 주말
 			return (int) Stream.iterate(startDate, date -> date.plusDays(1))
-			        .limit(ChronoUnit.DAYS.between(startDate, endDate.plusDays(1)))
-			        .filter(date -> date.getDayOfWeek() == DayOfWeek.SATURDAY || date.getDayOfWeek() == DayOfWeek.SUNDAY)
-			        .count();
+					.limit(ChronoUnit.DAYS.between(startDate, endDate.plusDays(1)))
+					.filter(date -> date.getDayOfWeek() == DayOfWeek.SATURDAY
+							|| date.getDayOfWeek() == DayOfWeek.SUNDAY)
+					.count();
 		case 4:
 			// 주 1일
 			long weeks1 = ChronoUnit.WEEKS.between(startDate, endDate) + 1;
@@ -81,13 +83,12 @@ public class ChallengeServiceImpl implements ChallengeService {
 
 		// userId로 기존 챌린지 정보 조회
 		Challenge existingChallenge = challengeMapper.selectChallengesByUserId(userId);
-		
-		// String 날짜를 LocalDate로 변환
-        LocalDate startDate = LocalDate.parse(dto.getChStartDate());
-        LocalDate endDate = LocalDate.parse(dto.getChEndDate());
 
-		int totalVerificationDays = calculateTotalVerificationDays(startDate, endDate,
-				dto.getVerifyTerm());
+		// String 날짜를 LocalDate로 변환
+		LocalDate startDate = LocalDate.parse(dto.getChStartDate());
+		LocalDate endDate = LocalDate.parse(dto.getChEndDate());
+
+		int totalVerificationDays = calculateTotalVerificationDays(startDate, endDate, dto.getVerifyTerm());
 
 		// 이미 챌린지가 등록된 경우 예외 처리
 		if (existingChallenge != null && !"done".equals(existingChallenge.getProceed())) {
@@ -139,27 +140,39 @@ public class ChallengeServiceImpl implements ChallengeService {
 		return response;
 	}// end createChallengeProcess()
 
+//    // 이미 참여중인지 확인
+//    int count = challengeMapper.countMembersByUserIdAndChId(chId, userId);
+//
+//    if (count != 0) {
+//        throw new ChallengeException("이미 참가한 챌린지입니다.");
+//    }
 	// 챌린지 참가
 	@Override
 	public void joinChallengeProcess(int chId, int userId) {
+		try {
+			// Profile 테이블에 ch_id1, ch_id2 중 0값이 있으면 chId를 업데이트
+			challengeMapper.updateProfile(chId, userId);
+			int rowsUpdated = challengeMapper.getUpdateCount(); // 업데이트된 행의 수
+			if (rowsUpdated == 0) {
+				// 만약 업데이트된 행이 없는 경우, 즉 두 컬럼 모두 값이 0이 아닌 경우
+				throw new RuntimeException("프로필 업데이트 중 오류가 발생했습니다. 이미 다른 챌린지에 참여 중입니다.");
+			}
 
-		// 이미 참여중인지 확인
-		int count = challengeMapper.countMembersByUserIdAndChId(chId, userId);
+			// member 등록
+			Member member = new Member();
+			member.setMemChId(chId);
+			member.setMemUserId(userId);
+			member.setRegistrant("N");
+			challengeMapper.insertMembers(member);
 
-		if (count != 0) {
-			throw new ChallengeException("이미 참가한 챌린지입니다.");
+			// challenges count 추가
+			challengeMapper.updateChallengeCount(chId);
+		} catch (Exception ex) {
+			// 다른 예외 처리
+			// 예외 메시지 로깅 또는 다른 처리
+			throw new RuntimeException("챌린지 참여 중 오류가 발생했습니다.", ex);
 		}
-
-		// member 등록
-		Member member = new Member();
-		member.setMemChId(chId);
-		member.setMemUserId(userId);
-		member.setRegistrant("N");
-		challengeMapper.insertMembers(member);
-
-		// challenges count 추가
-		challengeMapper.updateChallengeCount(chId);
-	}// end joinChallengeProcess()
+	}
 
 	// 챌린지 상세보기
 	@Override
@@ -167,25 +180,24 @@ public class ChallengeServiceImpl implements ChallengeService {
 		return challengeMapper.selectChallengesByChId(chId);
 	}// end detailChallengeProcess()
 
-	// 챌린지 수정
-	@Override
-	public void updateChallengeProcess(Challenge dto, int userId) {
-
-		// userId를 사용해서 Challenge 정보 조회
-		Challenge challenge = challengeMapper.selectChallengesByUserId(userId);
-
-		// dto에 userId set
-		dto.setUserId(userId);
-
-		// 회원 카운트가 1이면
-		if (challenge.getCount() == 1) {
-			// 챌린지 수정
-			challengeMapper.updateChallenges(dto);
-		} else {
-			throw new ChallengeException("사용자에 대한 챌린지 정보가 하나만 존재하지 않습니다.");
-		}
-
-	}// end updateChallengeProcess()
+//	// 챌린지 수정
+//	@Override
+//	public void updateChallengeProcess(Challenge dto, int userId) {
+//
+//		// userId를 사용해서 Challenge 정보 조회
+//		Challenge challenge = challengeMapper.selectChallengesByUserId(userId);
+//
+//		// dto에 userId set
+//		dto.setUserId(userId);
+//
+//		// 회원 카운트가 1이면
+//		if (challenge.getCount() == 1) {
+//			// 챌린지 수정
+//			challengeMapper.updateChallenges(dto);
+//		} else {
+//			throw new ChallengeException("사용자에 대한 챌린지 정보가 하나만 존재하지 않습니다.");
+//		}
+//	}// end updateChallengeProcess()
 
 	// 챌린지 삭제
 	@Override
@@ -212,23 +224,24 @@ public class ChallengeServiceImpl implements ChallengeService {
 		}
 
 	}// end deleteChallengeProcess()
-	
-	//챌린지 개수 세기
+
+	// 챌린지 개수 세기
 	@Override
 	public int countProcess() {
 		return challengeMapper.count();
 	}
-	
-	//챌린지 리스트 조회
+
+	// 챌린지 리스트 조회
 	@Override
 	public List<Challenge> listProcess(PageDTO pv) {
 		return challengeMapper.list(pv);
 	}
 
-	//참가중인 챌린지id 리스트 조회
+	// 참가중인 챌린지id 리스트 조회
 	@Override
 	public List<ProfileDTO> joinListProcess(int userId) {
 		return challengeMapper.joinList(userId);
 	}
+
 
 }// end class
