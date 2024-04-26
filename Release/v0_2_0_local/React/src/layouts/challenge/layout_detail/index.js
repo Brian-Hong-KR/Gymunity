@@ -45,24 +45,18 @@ function ChallengeDetail() {
       : [];
   console.log("joinChIdList:", joinChIdList);
 
-  const isJoined = () => {
-    return challengeDetail.chId === joinChIdList[0] ||
-      challengeDetail.chId === joinChIdList[1]
+  const isJoined =
+    challengeDetail.chId === joinChIdList[0] ||
+    challengeDetail.chId === joinChIdList[1]
       ? true
       : false;
-  };
+
   console.log("challengeDetail.chId:", challengeDetail.chId);
   console.log("challengeDetail.isJoined:", isJoined);
 
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `${localStorage.getItem("Authorization")}`,
-      "Authorization-refresh": localStorage.getItem("Authorization-refresh"),
-    },
-  };
-
-  const localUserId = localStorage.getItem("userId");
+  const localUserId = parseInt(localStorage.getItem("userId"));
+  console.log("localUserId:", localUserId);
+  console.log("register_UserId:", challengeDetail.userId);
 
   const { image, category, grade, verifyTerm, remainingDays } =
     DataConverter(challengeDetail);
@@ -589,7 +583,7 @@ function ChallengeDetail() {
               <>
                 <SoftButton
                   variant="gradient"
-                  color="white"
+                  color="dark"
                   onClick={handleShowAlert}
                 >
                   삭제
