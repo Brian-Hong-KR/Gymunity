@@ -19,7 +19,6 @@ import CreditCard from "examples/Icons/CreditCard";
 import ChallengeCreate from "layouts/challenge/layout_create";
 import ChallengeDetail from "layouts/challenge/layout_detail";
 import ChallengeVerify from "layouts/challenge/layaout_verify";
-import PointPage from "layouts/dashboard/info/PointPage";
 import UserManagePage from "layouts/dashboard/info/UserManagePage";
 import VerifyPage from "layouts/dashboard/info/VerifyPage";
 import ModifyPlanPage from "layouts/profile/info/ModifyPlanPage";
@@ -86,7 +85,7 @@ const routes = [
     type: "collapse",
     name: "Admin",
     key: "admin",
-    route: "/admin",
+    route: "/admin/info",
     icon: <Settings size="12px" />,
     component: <AdminInfo />,
     noCollapse: true,

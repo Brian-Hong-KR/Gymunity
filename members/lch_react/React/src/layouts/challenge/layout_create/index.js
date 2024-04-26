@@ -168,9 +168,6 @@ function ChallengeCreate() {
     console.log("계산된 종료일:", endDate.toISOString().split("T")[0]);
   };
 
-
-
-
   const handleChangeDate = (event) => {
     let input = event.target.value;
 

@@ -84,7 +84,7 @@ function SignUp() {
       alert("사용할 수 있는 아이디입니다.");
     } else {
       console.error("Unexpected status code:", response.status);
-      showErrorAlert();
+      clearInputField();
     }
   } catch (error) {
     if (error.response && error.response.status === 409) {
@@ -92,7 +92,8 @@ function SignUp() {
       clearInputField(); // 아이디 입력 필드 비우기
     } else {
       console.error("Error checking username:", error);
-      showErrorAlert();
+      alert("아이디 중복 확인에 실패했습니다.");
+      clearInputField();
     }
   }
   };

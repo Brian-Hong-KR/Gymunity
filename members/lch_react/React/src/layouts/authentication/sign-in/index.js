@@ -23,7 +23,7 @@ import AuthNavbar from "examples/Navbars/AuthNavbar";
 function SignIn() {
   const [rememberMe, setRememberMe] = useState(true);
   const [inputs, setInputs] = useState({ userAccountId: "", password: "" });
-  
+
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
   const onSubmit = async (e) => {
