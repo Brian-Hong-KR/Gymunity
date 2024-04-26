@@ -124,8 +124,23 @@
 	<!-- challenges 테이블에 데이터 삭제-->
 	<delete id="deleteChallenges" parameterType="int">
 		DELETE FROM challenges
-		WHERE user_id=#{userId}
+		WHERE ch_id=#{chId}
 	</delete>
+	
+	<!-- profile 테이블 ch_id 업데이트-->
+    <update id="updateProfile" parameterType="int">
+    	UPDATE profiles
+    	SET
+			ch_id1 = CASE
+            	       WHEN ch_id1 = 0 THEN #{chId}
+                	   ELSE ch_id1
+    		       END,
+  	      	ch_id2 = CASE
+     	               WHEN ch_id2 = 0 THEN #{chId}
+     	               ELSE ch_id2
+              	   END
+    	WHERE user_id = #{userId}
+	</update>
 
 
 </mapper>

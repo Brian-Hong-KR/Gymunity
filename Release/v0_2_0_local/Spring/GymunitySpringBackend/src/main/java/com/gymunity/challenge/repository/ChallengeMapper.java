@@ -40,6 +40,6 @@ public interface ChallengeMapper {
 
 	public int countMembersByUserIdAndChId(@Param("chId") int chId, @Param("userId") int userId);
 
-	public int deleteChallenges(int chId);
+	public void deleteChallenges(int chId);
 
 }// end class
