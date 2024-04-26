@@ -93,5 +93,55 @@
 		FROM profiles
 		WHERE referrer_id IS NOT NULL AND referrer_id != 0
 	</select>
+	
+	<!-- 포인트 조회, 업데이트-->
+	<!-- userAccountId로 포인트 조회하기-->
+	<select id="getPointsByUserAccountId" resultType="PointDetailDTO"
+		parameterType="String">
+		SELECT
+		points,
+		reason,
+		time
+		FROM (
+		SELECT
+		points_added AS points,
+		added_reason AS reason,
+		added_at AS time,
+		u.user_id
+		FROM
+		point_add pa
+		INNER JOIN users u ON pa.user_id = u.user_id
+		WHERE
+		u.user_account_id = #{userAccountId}
+
+		UNION ALL
+
+		SELECT
+		-points_subtracted AS points,
+		subtracted_reason AS reason,
+		subtracted_at AS time,
+		u.user_id
+		FROM
+		point_subtract ps
+		INNER JOIN users u ON ps.user_id = u.user_id
+		WHERE
+		u.user_account_id = #{userAccountId}
+
+		UNION ALL
+
+		SELECT
+		points_adjusted AS points,
+		reason AS reason,
+		adjusted_at AS time,
+		u.user_id
+		FROM
+		point_adjust pj
+		INNER JOIN users u ON pj.user_id = u.user_id
+		WHERE
+		u.user_account_id = #{userAccountId}
+		) AS point_history
+		ORDER BY
+		time DESC
+	</select>
 
 </mapper>

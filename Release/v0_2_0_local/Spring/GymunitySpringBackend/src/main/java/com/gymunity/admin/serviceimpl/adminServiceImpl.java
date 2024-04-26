@@ -16,6 +16,8 @@ import com.gymunity.challenge.dto.Challenge;
 import com.gymunity.challenge.dto.PhotoDTO;
 import com.gymunity.challenge.dto.Verify;
 import com.gymunity.challenge.repository.ChallengeMapper;
+import com.gymunity.user.dto.PointDetailDTO;
+import com.gymunity.user.response.PointDetailResponse;
 
 import lombok.RequiredArgsConstructor;
 
@@ -26,9 +28,9 @@ public class adminServiceImpl implements adminService {
 
 	private final AdminMapper adminMapper;
 	private final ChallengeMapper challengeMapper;
-	
+
 	@Override
-	public List<PhotoDTO> getPhotosByResultNProcess() {		
+	public List<PhotoDTO> getPhotosByResultNProcess() {
 		return adminMapper.selectPhotosByResultN();
 	}
 
@@ -108,5 +110,16 @@ public class adminServiceImpl implements adminService {
 
 		return allData;
 	}// getAllDataByWeek()
+
+	@Override
+	public PointDetailResponse getPointsProcess(String userAccountId) {
+
+		PointDetailResponse response = new PointDetailResponse();
+
+		List<PointDetailDTO> dto = adminMapper.getPointsByUserAccountId(userAccountId);
+		response.setDetails(dto);
+
+		return response;
+	}
 
 }// end class

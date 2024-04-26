@@ -45,23 +45,21 @@ function ChallengeDetail() {
       : [];
   console.log("joinChIdList:", joinChIdList);
 
-  const isJoined = () => {
-    return challengeDetail.chId === joinChIdList[0] ||
-      challengeDetail.chId === joinChIdList[1]
+  const isJoined =
+    challengeDetail.chId === joinChIdList[0] ||
+    challengeDetail.chId === joinChIdList[1]
       ? true
       : false;
-  };
 
   console.log("challengeDetail.chId:", challengeDetail.chId);
-  console.log("challengeDetail.isJoined:", challengeDetail.isJoined);
+  console.log("challengeDetail.isJoined:", isJoined);
 
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `${localStorage.getItem("Authorization")}`,
-      "Authorization-refresh": localStorage.getItem("Authorization-refresh"),
-    },
-  };
+  const localUserId = parseInt(localStorage.getItem("userId"));
+  console.log("localUserId:", localUserId);
+  console.log("register_UserId:", challengeDetail.userId);
+
+  const { image, category, grade, verifyTerm, remainingDays } =
+    DataConverter(challengeDetail);
 
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
@@ -94,9 +92,6 @@ function ChallengeDetail() {
     setShowAlert(false);
   };
 
-  //TODO localStorage.getItem("userAccount")로 바꾸기
-  const localStorageUserID = 81;
-
   const handleClickJoinButton = async (e) => {
     e.preventDefault();
     // await dispatch(boardActions.getBoardWrite(formData, config));
@@ -104,172 +99,6 @@ function ChallengeDetail() {
     // SoftButton 클릭 시 SoftAlert을 보여주는 함수
     setShowAlert(true);
   };
-
-  const { image, category, grade, verifyTerm, remainingDays } =
-    DataConverter(challengeDetail);
-
-  let buttonComponent;
-  let ddayComponent;
-
-  //모집중
-  if (challengeDetail.proceed === "rec") {
-    buttonComponent = (
-      <SoftButton
-        component={Link}
-        to={`/challenge/detail/${chId}`}
-        variant="outlined"
-        size="small"
-        color="primary"
-      >
-        자세히 보기
-      </SoftButton>
-    );
-    ddayComponent = (
-      <SoftBox
-        bg="rgba(255, 255, 255, 0.8)"
-        p={1}
-        borderRadius="xl"
-        position="absolute"
-        bottom="0px"
-        left="18px"
-        zIndex={3}
-        style={{
-          color: "#FFFFFF",
-          fontSize: "1.2rem",
-          fontWeight: "bold",
-          textShadow: "0 0 5px #000000",
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        <CardMedia
-          src={icon_start}
-          component="img"
-          sx={{
-            maxWidth: "28px",
-            height: "auto",
-            margin: 0,
-            objectFit: "cover",
-            objectPosition: "center",
-            borderRadius: 0,
-            position: "relative",
-            bottom: "1px",
-            right: "8px",
-          }}
-        />
-        D - {remainingDays}
-      </SoftBox>
-    );
-  } else if (challengeDetail.proceed === "pr" && isJoined) {
-    buttonComponent = (
-      <SoftButton
-        component={Link}
-        to={`/challenge/verify/${challengeDetail.chId}`}
-        variant="outlined"
-        size="small"
-        color="error"
-      >
-        인증하기
-      </SoftButton>
-    );
-    ddayComponent = (
-      <SoftBox
-        bg="rgba(255, 255, 255, 0.8)"
-        p={1}
-        borderRadius="xl"
-        position="absolute"
-        bottom="0px"
-        left="18px"
-        zIndex={3}
-        style={{
-          color: "#FFFFFF",
-          fontSize: "1.2rem",
-          fontWeight: "bold",
-          textShadow: "0 0 5px #000000",
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        <CardMedia
-          src={icon_start}
-          component="img"
-          sx={{
-            maxWidth: "28px",
-            height: "auto",
-            margin: 0,
-            objectFit: "cover",
-            objectPosition: "center",
-            borderRadius: 0,
-            position: "relative",
-            bottom: "1px",
-            right: "8px",
-          }}
-        />
-        진행중
-      </SoftBox>
-    );
-  } else if (challengeDetail.proceed === "pr" && !isJoined) {
-    buttonComponent = (
-      <SoftButton
-        component={Link}
-        to={`/challenge/detail/${challengeDetail.chId}`}
-        variant="outlined"
-        size="small"
-        color="primary"
-      >
-        자세히 보기
-      </SoftButton>
-    );
-    ddayComponent = (
-      <SoftBox
-        bg="rgba(255, 255, 255, 0.8)"
-        p={1}
-        borderRadius="xl"
-        position="absolute"
-        bottom="0px"
-        left="18px"
-        zIndex={3}
-        style={{
-          color: "#FFFFFF",
-          fontSize: "1.2rem",
-          fontWeight: "bold",
-          textShadow: "0 0 5px #000000",
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        <CardMedia
-          src={icon_start}
-          component="img"
-          sx={{
-            maxWidth: "28px",
-            height: "auto",
-            margin: 0,
-            objectFit: "cover",
-            objectPosition: "center",
-            borderRadius: 0,
-            position: "relative",
-            bottom: "1px",
-            right: "8px",
-          }}
-        />
-        진행중
-      </SoftBox>
-    );
-  } else {
-    buttonComponent = (
-      <SoftButton
-        component={Link}
-        to={`/challenge/detail/${challengeDetail.chId}`}
-        variant="outlined"
-        size="small"
-        color="light"
-      >
-        참여 종료
-      </SoftButton>
-    );
-    ddayComponent = null;
-  }
 
   return (
     <DashboardLayout>
@@ -359,6 +188,110 @@ function ChallengeDetail() {
                 aspectRatio: "16 / 9",
               }}
             />
+            <SoftBox // dday + count
+              position="absolute"
+              minWidth="350px"
+              width="100%"
+              height="30px"
+              bottom="70px"
+              style={{
+                zIndex: 5,
+                textAlign: "center",
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
+              <SoftBox //dday
+                position="absolute"
+                minWidth="350px"
+                width="100%"
+                height="30px"
+                left="8px"
+                bottom="-64px"
+                color="#FFFFFF"
+                style={{
+                  fontSize: "1.7rem",
+                  fontWeight: 700,
+                  textShadow: "0 0 4px #000000",
+                  display: "flex",
+                  alignItems: "center",
+                  zIndex: 5,
+                  flexDirection: "row",
+                }}
+              >
+                {challengeDetail.proceed === "done" ? (
+                  <SoftBox>
+                    <SoftTypography
+                      color="#FFFFFF"
+                      sx={{
+                        fontSize: "1.7rem",
+                      }}
+                    >
+                      Finished
+                    </SoftTypography>
+                  </SoftBox>
+                ) : (
+                  <>
+                    <CardMedia
+                      src={icon_start}
+                      component="img"
+                      sx={{
+                        maxWidth: "25px",
+                        height: "auto",
+                        objectFit: "cover",
+                        objectPosition: "center",
+                        position: "relative",
+                        bottom: "10px",
+                        right: "8px",
+                        marginRight: "3px",
+                        zIndex: 5,
+                      }}
+                    />
+
+                    {challengeDetail.proceed === "rec" ? (
+                      <>D - {remainingDays}</>
+                    ) : (
+                      "진행중"
+                    )}
+                  </>
+                )}
+              </SoftBox>
+              <SoftBox
+                position="absolute"
+                width="100%"
+                height="30px"
+                bottom="-62px"
+                color="#FFFFFF"
+                right="-290px"
+                style={{
+                  fontSize: "1.7rem",
+                  fontWeight: 700,
+                  textShadow: "0 0 4px #000000",
+                  display: "flex",
+                  alignItems: "center",
+                  zIndex: 5,
+                  flexDirection: "row",
+                }}
+              >
+                <CardMedia
+                  src={icon_count}
+                  component="img"
+                  sx={{
+                    maxWidth: "20px",
+                    height: "auto",
+                    margin: 0,
+                    objectFit: "cover",
+                    objectPosition: "center",
+                    borderRadius: 0,
+                    position: "relative",
+                    bottom: "2px",
+                    right: "13px",
+                    zIndex: 5,
+                  }}
+                />
+                {challengeDetail.count}
+              </SoftBox>
+            </SoftBox>
           </SoftBox>
           {/* 챌린지 제목 */}
           <SoftBox mt={5} maxWidth="500px" width="100%" height="auto">
@@ -633,6 +566,7 @@ function ChallengeDetail() {
               display: "flex",
               gap: "10px",
               justifyContent: "center",
+              flexDirection: "row",
             }}
           >
             <SoftButton
@@ -643,20 +577,20 @@ function ChallengeDetail() {
             >
               뒤로
             </SoftButton>
-            {localStorageUserID === challengeDetail.userId ||
+            {localUserId === challengeDetail.userId ||
             challengeDetail.adminYn === "y" ? (
-              // 작성자일 경우 삭제
+              // 작성자 또는 관리자일 경우 삭제
               <>
                 <SoftButton
                   variant="gradient"
-                  color="white"
+                  color="dark"
                   onClick={handleShowAlert}
                 >
                   삭제
                 </SoftButton>
               </>
             ) : null}
-            {challengeDetail.proceed === "pr" && isJoined ? (
+            {isJoined && challengeDetail.proceed === "pr" ? (
               // 참여중이면서 진행중일 경우 '인증하기', 아닐 경우 '참여하기'
               <SoftButton
                 variant="gradient"
@@ -666,7 +600,7 @@ function ChallengeDetail() {
               >
                 인증하기
               </SoftButton>
-            ) : (
+            ) : !isJoined && challengeDetail.proceed === "rec" ? (
               <>
                 <SoftButton
                   variant="gradient"
@@ -685,7 +619,7 @@ function ChallengeDetail() {
                   </SoftAlert>
                 )}
               </>
-            )}
+            ) : null}
           </SoftBox>
         </SoftBox>
         {showAlert && (

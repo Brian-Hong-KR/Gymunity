@@ -99,7 +99,7 @@
 		WHERE user_account_id = #{userAccountId}
 	</select>
 
-	<!--userAccountId로 조회 -->
+	<!--userId로 조회 -->
 	<select id="selectUsersByUserId" parameterType="int"
 		resultMap="userResultMap">
 		SELECT *
@@ -164,6 +164,22 @@
 	<select id="Idcheck" resultType="int" parameterType="String">
     		SELECT COUNT(*) FROM users WHERE user_account_id = #{userAccountId}
 	</select>
+	
+	<!-- 설문조사 다시하기 -->
+	<!-- surveyTable 업데이트-->
+	<update id="updateSurvey" parameterType="survey">
+		UPDATE survey
+		SET gender = #{gender}, age=#{age}, goal=#{goal}, level=#{level}, abnormal=#{abnormal}
+		WHERE user_id = #{userId}
+	</update>
+	
+	<!-- PtTable 업데이트-->
+	<update id="updatePt" parameterType="Pt">
+		UPDATE pt
+		SET plan_name = #{planName}, plan_desc=#{planDesc}
+		WHERE user_id = #{userId}
+	</update>
+	
 	
 	
 </mapper>

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.gymunity.challenge.dto.PhotoDTO;
 import com.gymunity.challenge.dto.Verify;
+import com.gymunity.user.dto.PointDetailDTO;
 
 @Mapper
 @Repository
@@ -32,5 +33,8 @@ public interface AdminMapper {
 	public List<LocalDate> selectAllSigninDates();
 	
 	public List<LocalDate> selectReferrerSignupDates();
+	
+	// 포인트 조회
+	public List<PointDetailDTO> getPointsByUserAccountId(String userAccountId);
 
 }

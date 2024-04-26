@@ -1,9 +1,6 @@
 import axios from "axios";
 import { challengeReducers } from "../createSlice/challenge_createSlice";
 
-const url = "http://127.0.0.1:8090";
-// const url = "http://127.0.0.1:8090";
-
 const config = {
   headers: {
     "Content-Type": "application/json",
@@ -18,7 +15,7 @@ function getChallengeListAsync(currentPage) {
   return async (dispatch) => {
     try {
       const response = await axios.get(
-        `${url}/challenge/list/${currentPage}`,
+        `/challenge/list/${currentPage}`,
         config
       );
 
@@ -44,7 +41,7 @@ function getChallengeListAsync(currentPage) {
 function getChallengeCreate(formData, config) {
   return async () => {
     await axios
-      .post(`${url}/challenge/create`, formData, config)
+      .post(`/challenge/create`, formData, config)
       .then((response) => response.data);
   };
 }
@@ -54,7 +51,7 @@ function getChallengeJoin(chId) {
   return async () => {
     try {
       const response = await axios.post(
-        `${url}/challenge/join/${chId}`,
+        `/challenge/join/${chId}`,
         {
           chId,
         },
@@ -73,7 +70,7 @@ function getChallengeJoin(chId) {
 function getChallengeDetail(chId) {
   return async (dispatch) => {
     const data = await axios
-      .get(`${url}/challenge/detail/${chId}`, config)
+      .get(`/challenge/detail/${chId}`, config)
       .then((response) => response.data);
     dispatch(challengeReducers.getChallengeDetail({ data }));
   };
@@ -83,7 +80,7 @@ function getChallengeDetail(chId) {
 function getChallengeDownload(upload, config) {
   return async (dispatch) => {
     const data = await axios
-      .get(`${url}/challenge/contentdownload/${upload}`, config)
+      .get(`/challenge/contentdownload/${upload}`, config)
       .then((response) => response.data);
     // dispatch(challengeActions.getChallengeDownload(data));
     return data;
@@ -94,7 +91,7 @@ function getChallengeDownload(upload, config) {
 function getChallengeUpdate(formData, config) {
   return async () => {
     await axios
-      .put(`${url}/challenge/update`, formData, config)
+      .put(`/challenge/update`, formData, config)
       .then((response) => response.data);
   };
 }
@@ -103,7 +100,7 @@ function getChallengeUpdate(formData, config) {
 function getChallengeDelete(chId) {
   return async () => {
     await axios
-      .delete(`${url}/challenge/delete/${chId}`, config)
+      .delete(`/challenge/delete/${chId}`, config)
       .then((response) => response.data);
   };
 }

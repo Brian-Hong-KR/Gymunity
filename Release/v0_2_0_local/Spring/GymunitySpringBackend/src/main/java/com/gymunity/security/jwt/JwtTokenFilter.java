@@ -35,10 +35,10 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 			throws ServletException, IOException {
 
 		String accessToken = request.getHeader("Authorization");
-		log.info("accessToken:{}", accessToken);
+		log.info("bbb:{}", accessToken);
 
 		String refreshToken = request.getHeader("Authorization-refresh");
-		log.info("refreshToken:{}", refreshToken);
+		log.info("aaa:{}", refreshToken);
 
 		Boolean isAccessToken = null;
 		Boolean isRefreshToken = null;

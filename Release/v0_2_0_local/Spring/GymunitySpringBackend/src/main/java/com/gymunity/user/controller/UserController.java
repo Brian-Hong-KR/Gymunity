@@ -1,6 +1,5 @@
 package com.gymunity.user.controller;
 
-
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -20,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.gymunity.user.dto.CheckUserIdPassword;
 import com.gymunity.user.dto.CustomerDTO;
 import com.gymunity.user.dto.SignupDTO;
+import com.gymunity.user.dto.SurveyData;
 import com.gymunity.user.dto.UserInfoDTO;
 import com.gymunity.user.dto.UserUpdateDTO;
 import com.gymunity.user.response.CustomerDetailResponse;
@@ -39,7 +39,7 @@ import lombok.extern.slf4j.Slf4j;
 public class UserController {
 
 	private final UserService userService;
-	
+
 	// 유입자
 	@PostMapping("/submissions")
 	public void submissions() {
@@ -61,28 +61,27 @@ public class UserController {
 		UserInfoDTO userInfoDTO = userService.userInfoProcess(userAccountId);
 		return ResponseEntity.ok(userInfoDTO);
 	}
-	
+
 	@GetMapping("/checkUsername/{userAccountId}")
-	 public ResponseEntity<String> checkUsername(@PathVariable("userAccountId")String userAccountId) {
+	public ResponseEntity<String> checkUsername(@PathVariable("userAccountId") String userAccountId) {
 		try {
-	        // 아이디 중복 확인을 위해 UserService의 메서드 호출
-	        boolean isExists = userService.isUserAccountIdExists(userAccountId);
-	        
-	        if (isExists) {
-	            // 아이디가 이미 존재하는 경우
-	            return ResponseEntity.status(HttpStatus.CONFLICT).body("이미 존재하는 아이디입니다.");
-	        } else {
-	            // 아이디가 존재하지 않는 경우
-	            return ResponseEntity.ok("사용할 수 있는 아이디입니다.");
-	        }
-	    } catch (Exception e) {
-	        // 예외 발생 시
-	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("서버 오류가 발생했습니다.");
-	    }
-	 
-       
+			// 아이디 중복 확인을 위해 UserService의 메서드 호출
+			boolean isExists = userService.isUserAccountIdExists(userAccountId);
+
+			if (isExists) {
+				// 아이디가 이미 존재하는 경우
+				return ResponseEntity.status(HttpStatus.CONFLICT).body("이미 존재하는 아이디입니다.");
+			} else {
+				// 아이디가 존재하지 않는 경우
+				return ResponseEntity.ok("사용할 수 있는 아이디입니다.");
+			}
+		} catch (Exception e) {
+			// 예외 발생 시
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("서버 오류가 발생했습니다.");
+		}
+
 	}
-	 
+
 	// 회원정보수정
 	@Operation(summary = "회원정보수정")
 	@PutMapping("/user/update")
@@ -102,30 +101,41 @@ public class UserController {
 		}
 		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 	}// end deleteUser()
-	
+
 	// 고객 문의
 	@Operation(summary = "고객 문의")
 	@PostMapping("/user/inquiries")
-	public ResponseEntity<CustomerResponse> createCustomer(@RequestBody CustomerDTO dto){
+	public ResponseEntity<CustomerResponse> createCustomer(@RequestBody CustomerDTO dto) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Integer userId = (Integer) authentication.getPrincipal();
-		
+
 		LocalDate now = LocalDate.now();
 
-        // Customer 객체에 현재 시간 설정
-        dto.setInquiryDate(now);
-        
+		// Customer 객체에 현재 시간 설정
+		dto.setInquiryDate(now);
+
 		CustomerResponse response = userService.insertCustomerProcess(dto, userId);
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@Operation(summary = "고객 문의 리스트")
 	@GetMapping("/user/inquirieslist")
-	public ResponseEntity<CustomerDetailResponse> getCsList(){
-		
+	public ResponseEntity<CustomerDetailResponse> getCsList() {
+
 		CustomerDetailResponse response = userService.getCustomerProcess();
-		
+
 		return ResponseEntity.ok(response);
 	}
+	
+	// 설문조사다시하기
+	@Operation(summary = "설문조사 다시하기")
+	@PutMapping("/user/resurvey")
+	public void resurvey(@RequestBody SurveyData dto) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		Integer userId = (Integer) authentication.getPrincipal();
+		log.info("aaaaA{}", userId);
+		
+		userService.updateSurveyProcess(dto, userId);
+	}// end updateUser()
 
 }// end class

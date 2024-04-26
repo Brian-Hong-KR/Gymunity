@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function TestP() {
   const [data, setData] = useState(null);
@@ -8,12 +8,13 @@ function TestP() {
 
   useEffect(() => {
     const postData = {
-      "user_id":1,
+      user_id: 1,
     };
 
-    axios.post('http://192.168.0.60:8090/test', postData)
-      .then(response => setData(response.data))
-      .catch(error => console.error(error));
+    axios
+      .post("/test", postData)
+      .then((response) => setData(response.data))
+      .catch((error) => console.error(error));
   }, []);
 
   if (!data) return <div>데이터를 불러오는 중입니다...</div>;
