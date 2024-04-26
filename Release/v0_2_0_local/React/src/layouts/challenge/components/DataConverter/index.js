@@ -71,27 +71,6 @@ function DataConverter(challenge) {
       break;
   }
 
-  //챌린지 기간 변환
-  let period;
-  let days;
-  switch (challenge.challengePeriod) {
-    case 1:
-      period = "1주간";
-      break;
-    case 2:
-      period = "2주간";
-      break;
-    case 4:
-      period = "4주간";
-      break;
-    case 6:
-      period = "6주간";
-      break;
-    case 8:
-      period = "8주간";
-      break;
-  }
-
   //시작일을 D-day로 변환
   const remainingDays = getDaysRemaining(challenge.chStartDate);
 
@@ -100,7 +79,6 @@ function DataConverter(challenge) {
     category,
     grade,
     verifyTerm,
-    period,
     remainingDays,
     days,
   };

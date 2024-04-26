@@ -27,7 +27,7 @@ function ChallengeCard({ challenge }) {
 
   // 예시 81번 나나
 
-  const { image, category, grade, verifyTerm, period, remainingDays } =
+  const { image, category, grade, verifyTerm, remainingDays } =
     DataConverter(challenge);
 
   return (
@@ -341,7 +341,7 @@ function ChallengeCard({ challenge }) {
               display: "flex",
               marginRight: "10px",
               textAlign: "center",
-              fontSize: "0.8rem",
+              fontSize: "0.9rem",
               fontWeight: 700,
               alignItems: "center",
               padding: "0",
@@ -361,14 +361,14 @@ function ChallengeCard({ challenge }) {
               display: "flex",
               marginRight: "10px",
               textAlign: "center",
-              fontSize: "0.8rem",
+              fontSize: "0.9rem",
               fontWeight: 700,
               alignItems: "center",
               padding: "0",
               color: "#808080",
             }}
           >
-            {period}
+            {challenge.challengePeriod}주간
           </SoftBox>
           <SoftBox
             flex={1}
@@ -381,7 +381,7 @@ function ChallengeCard({ challenge }) {
               display: "flex",
               marginRight: "10px",
               textAlign: "center",
-              fontSize: "0.8rem",
+              fontSize: "0.9rem",
               fontWeight: 700,
               alignItems: "center",
               padding: "0 2px 0 0",
@@ -427,7 +427,7 @@ function ChallengeCard({ challenge }) {
                 component={Link}
                 to={`/challenge/verify/${challenge.chId}`}
                 size="small"
-                color="error"
+                color="dark"
                 sx={{
                   padding: "0",
                   color: "transparent", // 배경색 투명
