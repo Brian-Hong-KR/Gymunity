@@ -20,7 +20,6 @@ import axios from "axios";
 import SoftButton from "components/SoftButton";
 
 function AdminInfo() {
-  // const { size } = typography;
   const { chart, items } = reportsBarChartData;
   const config = {
     headers: {
@@ -156,7 +155,7 @@ function AdminInfo() {
             color="dark"
             fullWidth
             style={{ width: "30%" }}
-            href="/dashboard/editpoint"
+            href="/admin/editpoint"
           >
             포인트 관리
           </SoftButton>

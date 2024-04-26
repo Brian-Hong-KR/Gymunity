@@ -36,6 +36,7 @@ import AdminVerify from "layouts/admin/verify/components";
 import EditPointPage from "layouts/dashboard/info/EditPointPage";
 import ReSurvey from "layouts/authentication/resurvey";
 import Replan from "layouts/authentication/replan";
+import AdminPointPage from "layouts/admin/adminpointpage";
 
 const routes = [
   {
@@ -103,6 +104,17 @@ const routes = [
     route: "/admin/verify",
     icon: <Settings size="12px" />,
     component: <AdminVerify />,
+    noCollapse: true,
+    isAdmin: true, // 이 라인을 추가하여 라우트가 관리자용임을 명시
+  },
+
+  {
+    type: "collapse",
+    name: "AdminPointPage",
+    key: "adminPointPage",
+    route: "/admin/editpoint",
+    icon: <Settings size="12px" />,
+    component: <AdminPointPage />,
     noCollapse: true,
     isAdmin: true, // 이 라인을 추가하여 라우트가 관리자용임을 명시
   },

@@ -2,83 +2,134 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.gymunity.point.repository.EditPointMapper">
-	
-	
-	<resultMap id="pointAdjustAddSubtractResultMap" type="com.gymunity.point.dto.PointAdjustAddSubtract">
-    <result property="pointsAdjusted" column="points_adjusted" />
-    <result property="reason" column="reason" />
-    <result property="userId" column="user_id" />
-    <result property="totalPoint" column="total_points" />
-    <result property="currentPoint" column="current_points" />
-    <result property="pointsAdded" column="points_added" />
-    <result property="addedReason" column="added_reason" />
-    <result property="pointsSubtracted" column="points_subtracted" />
-    <result property="subtractedReason" column="subtracted_reason" />
-</resultMap>
+
+
+	<resultMap id="pointAdjustAddSubtractResultMap"
+		type="com.gymunity.point.dto.PointAdjustAddSubtract">
+		<result property="pointsAdjusted" column="points_adjusted" />
+		<result property="reason" column="reason" />
+		<result property="userId" column="user_id" />
+		<result property="totalPoint" column="total_points" />
+		<result property="currentPoint" column="current_points" />
+		<result property="pointsAdded" column="points_added" />
+		<result property="addedReason" column="added_reason" />
+		<result property="pointsSubtracted" column="points_subtracted" />
+		<result property="subtractedReason" column="subtracted_reason" />
+	</resultMap>
 
 
 	<!-- User point 수정하기-->
-	
+
+	<!-- userAccountId로 포인트 조회하기-->
+	<select id="getPointsByUserAccountId" resultType="PointDetailDTO"
+		parameterType="String">
+		SELECT
+		points,
+		reason,
+		time
+		FROM (
+		SELECT
+		points_added AS points,
+		added_reason AS reason,
+		added_at AS time,
+		u.user_id
+		FROM
+		point_add pa
+		INNER JOIN users u ON pa.user_id = u.user_id
+		WHERE
+		u.user_account_id = #{userAccountId}
+
+		UNION ALL
+
+		SELECT
+		-points_subtracted AS points,
+		subtracted_reason AS reason,
+		subtracted_at AS time,
+		u.user_id
+		FROM
+		point_subtract ps
+		INNER JOIN users u ON ps.user_id = u.user_id
+		WHERE
+		u.user_account_id = #{userAccountId}
+
+		UNION ALL
+
+		SELECT
+		points_adjusted AS points,
+		reason AS reason,
+		adjusted_at AS time,
+		u.user_id
+		FROM
+		point_adjust pj
+		INNER JOIN users u ON pj.user_id = u.user_id
+		WHERE
+		u.user_account_id = #{userAccountId}
+		) AS point_history
+		ORDER BY
+		time DESC;
+	</select>
+
 	<!-- user_id 찾기 -->
 	<select id="getUserIDByAccountID" resultType="int" parameterType="String">
-	    SELECT user_id FROM users WHERE user_account_id = #{userAccountId}
+		SELECT user_id FROM users WHERE user_account_id = #{userAccountId}
 	</select>
-	
-	
+
+
 	<!-- point 내역-->
-	<select id="getPointsHistoryByUserID" resultType="PointEditDTO" parameterType="int">
-	    SELECT
-	        points_added AS points,
-	        added_reason AS reason,
-	        added_at AS time
-	    FROM point_add
-	    WHERE user_id = #{userId}
-	    
-	    UNION ALL
-	    
-	    SELECT
-	        points_subtracted AS points,
-	        subtracted_reason AS reason,
-	        subtracted_at AS time
-	    FROM point_subtract
-	    WHERE user_id = #{userId}
-	    
-	    ORDER BY time DESC;
+	<select id="getPointsHistoryByUserID" resultType="PointEditDTO"
+		parameterType="int">
+		SELECT
+		points_added AS points,
+		added_reason AS reason,
+		added_at AS time
+		FROM point_add
+		WHERE user_id = #{userId}
+
+		UNION ALL
+
+		SELECT
+		points_subtracted AS points,
+		subtracted_reason AS reason,
+		subtracted_at AS time
+		FROM point_subtract
+		WHERE user_id = #{userId}
+
+		ORDER BY time DESC;
 	</select>
-	
-	
-	
+
+
 	<!-- Pointadjust에 내역 추가 -->
 	<insert id="insertPointAdjust" parameterType="PointAdjustAddSubtract">
-	    INSERT INTO point_adjust (user_id, points_adjusted, reason)
-	    VALUES (#{userId}, #{pointsAdjusted}, #{reason});
+		INSERT INTO point_adjust (user_id, points_adjusted, reason)
+		VALUES (#{userId}, #{pointsAdjusted}, #{reason});
 	</insert>
-	
+
 	<!-- 양수일 때 total_points와 current_points 업데이트 -->
 	<update id="updateTotalPoints" parameterType="PointAdjustAddSubtract">
-	    UPDATE point_aggr
-	    SET total_points = total_points + #{pointsAdjusted},
-	    current_points = current_points + #{pointsAdjusted}
-	    WHERE user_id = #{userId};
+		UPDATE point_aggr
+		SET total_points = total_points + #{pointsAdjusted},
+		current_points = current_points + #{pointsAdjusted}
+		WHERE user_id = #{userId};
 	</update>
-	
+
 	<!-- 음수일 때 current_points만 업데이트 -->
 	<update id="updateCurrentPoints" parameterType="PointAdjustAddSubtract">
-	    UPDATE point_aggr
-	    SET current_points = current_points + #{pointsAdjusted}
-	    WHERE user_id = #{userId};
+		UPDATE point_aggr
+		SET current_points = current_points + #{pointsAdjusted}
+		WHERE user_id = #{userId};
 	</update>
-	
+
 	<!-- 양수일 때 point_add에 업데이트에 내역 추가 -->
 	<insert id="insertPointAdd" parameterType="PointAdjustAddSubtract">
-	    INSERT INTO point_add (user_id, points_added, added_reason)
-	    VALUES (#{userId}, #{pointsAdjusted}, #{reason});
+		INSERT INTO point_add (user_id, points_added, added_reason)
+		VALUES (#{userId}, #{pointsAdjusted}, #{reason});
 	</insert>
 
 	<!-- 음수일 때 point_subtract에 업데이트에 내역 추가 -->
 	<insert id="insertPointSubtract" parameterType="PointAdjustAddSubtract">
-	    INSERT INTO point_subtract (user_id, points_subtracted, subtracted_reason)
-	    VALUES (#{userId}, #{pointsAdjusted}, #{reason});
+		INSERT INTO point_subtract (user_id, points_subtracted,
+		subtracted_reason)
+		VALUES (#{userId}, #{pointsAdjusted}, #{reason});
 	</insert>
 
 </mapper>

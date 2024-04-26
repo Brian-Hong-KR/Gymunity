@@ -55,10 +55,6 @@ const Replan = () => {
   }, [formData, planData]);
 
   const handleRegister = async () => {
-    console.log(
-      "Sending survey data to server:",
-      JSON.stringify(surveyData, null, 2)
-    );
     try {
       await axios.put("/user/resurvey", surveyData, config);
       navigate("/profile");

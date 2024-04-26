@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.gymunity.challenge.dto.PhotoDTO;
+import com.gymunity.user.response.PointDetailResponse;
 
 public interface adminService {
 	
@@ -23,6 +24,8 @@ public interface adminService {
 	public Map<String, Integer> countReferrerSignUpByWeek();
 	
 	public Map<String, Map<String, Integer>> getAllDataByWeek();
+	
+	public PointDetailResponse getPointsProcess(String userAccountId);
 	
 
 }// end interface
