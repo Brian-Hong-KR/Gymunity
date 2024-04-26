@@ -30,5 +30,7 @@ public interface UserService {
 	public CustomerDetailResponse getCustomerProcess();
 	
 	public boolean isUserAccountIdExists(String userAccountId);
+	
+	public boolean isUserNameExists(String nickName);
 
 }// end interface

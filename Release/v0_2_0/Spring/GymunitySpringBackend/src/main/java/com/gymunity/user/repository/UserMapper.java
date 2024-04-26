@@ -49,6 +49,6 @@ public interface UserMapper {
 	
 	public List<Customer> selectInquiries();
 	
-	public int Idcheck(String userAccountId);
+	public User Namecheck(String nickName);
 
 }// end interface

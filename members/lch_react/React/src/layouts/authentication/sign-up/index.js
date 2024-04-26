@@ -25,8 +25,9 @@ import { useNavigate, useLocation } from "react-router-dom";
 function SignUp() {
   const [termAgreement, setTermAgreement] = useState(true);
   const [privacyAgreement, setPrivacyAgreement] = useState(true);
-  const [message, setMessage] = useState("");
-
+  const [checkedId, setCheckedId] = useState("");
+  const [checkedName, setCheckedName] = useState("");
+  
   const handleSetTermAgreement = () => setTermAgreement(!termAgreement);
   const handleSetPrivacyAgreement = () => setPrivacyAgreement(!privacyAgreement);
 
@@ -67,35 +68,73 @@ function SignUp() {
     // 아이디 입력 필드를 비웁니다.
     setUser(prevUser => ({ ...prevUser, userAccountId: '' }));
   };
+  
+  const clearNameInputField = () => {
+    // 닉네임 입력 필드를 비웁니다.
+    setUser(prevUser => ({ ...prevUser, nickName: '' }));
+  };
 
+  // 닉네임 중복 체크
+  const handleCheckName = async () => {
 
-  const handleCheckUsername = async () => {
-
-     // 입력값이 비어 있는지 확인
-  if (!user.userAccountId.trim()) {
-    alert("아이디를 입력하세요.");
-    return;
-  }
-
-    try {
-    const response = await axios.get(`/checkUsername/${user.userAccountId}`);
-    
-    if (response.status === 200) {
-      alert("사용할 수 있는 아이디입니다.");
-    } else {
-      console.error("Unexpected status code:", response.status);
-      clearInputField();
+    // 입력값이 비어 있는지 확인
+    if (!user.nickName.trim()) {
+      alert("닉네임을 입력하세요.");
+      return;
     }
-  } catch (error) {
-    if (error.response && error.response.status === 409) {
-      alert("이미 존재하는 아이디입니다.");
-      clearInputField(); // 아이디 입력 필드 비우기
-    } else {
-      console.error("Error checking username:", error);
-      alert("아이디 중복 확인에 실패했습니다.");
-      clearInputField();
+
+      try {
+      const response = await axios.get(`/checkUsername/${user.nickName}`);
+      
+      if (response.status === 200) {
+        alert("사용할 수 있는 닉네임입니다.");
+        setCheckedName("Y");
+      } else {
+        console.error("Unexpected status code:", response.status);
+        clearNameInputField();
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 409) {
+        alert("이미 존재하는 닉네임입니다.");
+        clearNameInputField(); 
+      } else {
+        console.error("Error checking username:", error);
+        alert("닉네임 중복 확인에 실패했습니다.");
+        clearNameInputField();
+      }
     }
-  }
+  };
+
+
+
+  const handleCheckId = async () => {
+
+    // 입력값이 비어 있는지 확인
+    if (!user.userAccountId.trim()) {
+      alert("아이디를 입력하세요.");
+      return;
+    }
+
+      try {
+      const response = await axios.get(`/checkUserId/${user.userAccountId}`);
+      
+      if (response.status === 200) {
+        alert("사용할 수 있는 아이디입니다.");
+        setCheckedId("Y");
+      } else {
+        console.error("Unexpected status code:", response.status);
+        clearInputField();
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 409) {
+        alert("이미 존재하는 아이디입니다.");
+        clearInputField(); // 아이디 입력 필드 비우기
+      } else {
+        console.error("Error checking username:", error);
+        alert("아이디 중복 확인에 실패했습니다.");
+        clearInputField();
+      }
+    }
   };
 
   const requiredFields = ["userAccountId", "userEmail", "password", "nickName"];
@@ -103,6 +142,9 @@ function SignUp() {
   const isFormValid = (fieldsToCheck) => {
     return fieldsToCheck.every((field) => user[field].trim() !== "");
   };
+
+
+  
 
   const onSubmit = async (e) => {
     e.preventDefault(); 
@@ -113,19 +155,33 @@ function SignUp() {
       return;
     }
 
+
+
     if (!termAgreement || !privacyAgreement) {
-      alert("You must agree to the terms and conditions.");
+      alert("이용 약관 및 개인정보 수집 동의가 필요합니다.");
       return;
     }
+
+    if (checkedId !== "Y" && checkedName !== "Y") {
+      alert("아이디와 닉네임 중복 확인이 필요합니다.");
+      return;
+    } else if (checkedId !== "Y") {
+      alert("아이디 중복 확인이 필요합니다.");
+      return;
+    } else if (checkedName !== "Y") {
+      alert("닉네임 중복 확인이 필요합니다.");
+      return;
+    }
+  
 
     // survey 데이터가 배열이면 첫 번째 요소를 사용하고, 배열이 아니면 그대로 사용
     // const surveyData = Array.isArray(planData) ? planData[0] : planData;
 
     try {
-      const signupResponse = await axios.post("http://192.168.0.60:8090/user/signup", user);
+      const signupResponse = await axios.post("/user/signup", user);
       console.log("Registration successful:", signupResponse);
 
-      const loginResponse = await axios.post("http://192.168.0.60:8090/user/signin", {
+      const loginResponse = await axios.post("/user/signin", {
         userAccountId: user.userAccountId,
         password: user.password,
       });
@@ -185,8 +241,10 @@ function SignUp() {
                 onChange={handleValueChange}
                 placeholder="아이디"
               />
-              <SoftButton onClick={handleCheckUsername} variant="text" color="dark">
+
+              <SoftButton onClick={handleCheckId} variant="text" color="dark">
                 중복 확인
+                <input type="hidden" name="checked_id" value={checkedId} />
               </SoftButton>
             </SoftBox>
             <SoftBox mb={2}>
@@ -207,7 +265,7 @@ function SignUp() {
                 placeholder="비밀번호"
               />
             </SoftBox>
-            <SoftBox mb={2}>
+            <SoftBox mb={2} display="flex" alignItems="center">
               <SoftInput
                 type="text"
                 name="nickName"
@@ -215,6 +273,11 @@ function SignUp() {
                 onChange={handleValueChange}
                 placeholder="닉네임"
               />
+
+               <SoftButton onClick={handleCheckName} variant="text" color="dark"  >
+                중복 확인
+                <input type="hidden" name="checked_name" value={checkedName} />
+              </SoftButton>
             </SoftBox>
        
             <SoftBox mb={2}>
