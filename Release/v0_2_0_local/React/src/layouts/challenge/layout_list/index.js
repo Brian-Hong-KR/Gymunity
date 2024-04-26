@@ -143,7 +143,6 @@ function Challenge() {
                 진행중인 챌린지를 확인하고 참여해보세요!
               </SoftTypography>
             </SoftBox>
-
             <FilteringByCategory
               selectedItem={selectedItem}
               onSelectItem={handleItemClick}
@@ -163,7 +162,9 @@ function Challenge() {
                 })
                 .map((challenge) => (
                   <Grid item xs={12} md={6} xl={3} key={challenge.chId}>
-                    <ChallengeCard challenge={challenge} />
+                    <Link to={`/challenge/detail/${challenge.chId}`}>
+                      <ChallengeCard challenge={challenge} />
+                    </Link>
                   </Grid>
                 ))}
             </Grid>

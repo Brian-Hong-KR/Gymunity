@@ -80,7 +80,6 @@ function DataConverter(challenge) {
     grade,
     verifyTerm,
     remainingDays,
-    days,
   };
 }
 
