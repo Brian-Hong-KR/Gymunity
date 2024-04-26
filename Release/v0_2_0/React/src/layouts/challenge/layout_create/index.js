@@ -42,6 +42,13 @@ function ChallengeCreate() {
   const [rememberMe, setRememberMe] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
+  const today = new Date(); // 현재 날짜 가져오기
+  const defaultStartDate = today.toISOString().split("T")[0];
+
+  // 시작일에서 1주일 더한 날짜 계산
+  const endDate = new Date(today);
+  endDate.setDate(endDate.getDate() + 7); // 시작일에서 7일(1주일)을 더함
+  const defaultEndDate = endDate.toISOString().split("T")[0]; // ISO 형식으로 변환하여 문자열로 가져오기
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
@@ -50,8 +57,8 @@ function ChallengeCreate() {
     content: "",
     category: 1,
     bettingPoint: 200,
-    chStartDate: "",
-    chEndDate: "",
+    chStartDate: defaultStartDate,
+    chEndDate: defaultEndDate,
     verifyTerm: 1,
     challengePeriod : 1,
   });
@@ -206,6 +213,10 @@ function ChallengeCreate() {
     }
   };
 
+  const handleClearErrorMessage = () => {
+    setErrorMessage("");
+  };
+
   const handleValueChange = (event) => {
     const { name, value } = event.target;
     // name이 'bettingPoint' 또는 'category'일 때는 value를 정수형으로 변환하여 상태에 설정
@@ -217,10 +228,14 @@ function ChallengeCreate() {
           ? parseInt(value) || ""
           : value,
     }));
+
+    handleClearErrorMessage();
   };
 
   const handleCreateChallenge = async (e) => {
     e.preventDefault();
+    
+    setErrorMessage("");
 
     if (
       !challenge.title.trim() ||
