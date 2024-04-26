@@ -99,7 +99,7 @@
 		WHERE user_account_id = #{userAccountId}
 	</select>
 
-	<!--userAccountId로 조회 -->
+	<!--userId로 조회 -->
 	<select id="selectUsersByUserId" parameterType="int"
 		resultMap="userResultMap">
 		SELECT *
