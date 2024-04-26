@@ -95,7 +95,14 @@
 	</select>
 	
 	
-	
+	<!-- 회원 user 테이블 확인하기-->
+	<select id="adminSelectUser" parameterType="String" resultType="AdminDeleteUserDTO"> 
+		SELECT user_account_id, nick_name, grade_name, last_signin
+		FROM users
+		WHERE user_account_id = #{user_account_id}
+	</select>
+
+	<!-- 회원 삭제하기-->
 	<delete id="adminDeleteUsers" parameterType="String">
 		DELETE
 		FROM users

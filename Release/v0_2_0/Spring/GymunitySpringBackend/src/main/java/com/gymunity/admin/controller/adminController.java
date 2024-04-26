@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gymunity.admin.dto.AdminDeleteUserDTO;
 import com.gymunity.admin.dto.VerifyCheckDTO;
 import com.gymunity.admin.service.adminService;
 import com.gymunity.challenge.dto.PhotoDTO;
@@ -47,6 +48,13 @@ public class adminController {
         return adminService.getAllDataByWeek();
     }// end getAllDataByWeek()
 
+	
+	 @GetMapping("/usersselect/{userAccountId}")
+	    public AdminDeleteUserDTO getUserById(@PathVariable("userAccountId") String userAccountId) {
+	        return adminService.getUserById(userAccountId);
+	    }
+	 
+	 
 	 @DeleteMapping("/usersdelete/{userAccountId}")
 	    public void deleteUser(@PathVariable("userAccountId") String userAccountId) {
 	        adminService.adminDeleteUsers(userAccountId);
