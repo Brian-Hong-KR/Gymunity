@@ -124,18 +124,47 @@ const AdminPointPage = () => {
               Point List
             </SoftButton>
           </SoftBox>
-          <SoftBox
-            sx={{
-              "& .MuiTableRow-root:not(:last-child)": {
-                "& td": {
-                  borderBottom: ({ borders: { borderWidth, borderColor } }) =>
-                    `${borderWidth[1]} solid ${borderColor}`,
-                },
-              },
-            }}
-          >
-            <Table columns={columns} rows={rows} />
-          </SoftBox>
+
+          {rows.length > 0 && (
+            <>
+              <SoftBox pt={2} pb={3} px={3}>
+                <SoftBox
+                  mb={2}
+                  style={{ display: "flex", alignItems: "center" }}
+                >
+                  <SoftTypography component="label" fontWeight="bold">
+                    Point:
+                  </SoftTypography>
+                  <SoftInput
+                    type="number"
+                    value={pointAdjust}
+                    // onChange={handlePointAdjustChange}
+                  />
+                  <SoftTypography component="label" fontWeight="bold">
+                    Reason:
+                  </SoftTypography>
+                  <SoftInput
+                    type="text"
+                    value={reason}
+                    // onChange={handleReasonChange}
+                  />
+                </SoftBox>
+              </SoftBox>
+              <SoftBox
+                sx={{
+                  "& .MuiTableRow-root:not(:last-child)": {
+                    "& td": {
+                      borderBottom: ({
+                        borders: { borderWidth, borderColor },
+                      }) => `${borderWidth[1]} solid ${borderColor}`,
+                    },
+                  },
+                }}
+              >
+                <Table columns={columns} rows={rows} />
+              </SoftBox>
+            </>
+          )}
         </SoftBox>
 
         {/* {userId !== null && (
