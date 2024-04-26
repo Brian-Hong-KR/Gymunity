@@ -6,6 +6,7 @@ import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
 import axios from "axios";
+import { gConst } from 'layouts/gConst';
 
 import BasicLayout from "layouts/authentication/components/BasicLayout";
 import AuthNavbar from "examples/Navbars/AuthNavbar";
@@ -106,7 +107,7 @@ function Survey() {
     e.preventDefault();
     console.log("Form submitting", formData);
     try {
-      const response = await axios.post("http://192.168.0.60:8090/survey", formData);
+      const response = await axios.post(`${gConst.API_BASE_URL}:8090/survey`, formData);
       console.log("Response data:", response.data);
       setPlanData({
         planName: response.data.planName,

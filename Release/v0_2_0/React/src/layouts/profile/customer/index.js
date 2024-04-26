@@ -37,6 +37,7 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import axios from 'axios';
+import { gConst } from 'layouts/gConst';
 
 function CustomerCreate(){
      const [title, setTitle] = useState("");
@@ -79,7 +80,7 @@ function CustomerCreate(){
 
           console.log("Form submitting", customer);
           try {
-            const response = await axios.post("http://192.168.0.60:8090/user/inquiries", customer, config);
+            const response = await axios.post(`${gConst.API_BASE_URL}:8090/user/inquiries`, customer, config);
             console.log("Registration successful:", response);
             alert('문의가 성공적으로 작성되었습니다.');
             navigate("/profile");

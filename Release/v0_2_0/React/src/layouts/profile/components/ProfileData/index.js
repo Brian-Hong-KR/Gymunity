@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import { gConst } from 'layouts/gConst';
 
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
@@ -48,7 +49,7 @@ const ProfileData = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get("http://192.168.0.60:8090/editinfo", config);
+        const response = await axios.get(`${gConst.API_BASE_URL}:8090/editinfo`, config);
         const data = response.data;
 
         // 프로필 정보 출력

@@ -17,6 +17,7 @@ import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
 import GradientLineChart from "examples/Charts/LineCharts/GradientLineChart";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { gConst } from 'layouts/gConst';
 import SoftButton from 'components/SoftButton';
 
 function AdminInfo() {
@@ -45,7 +46,7 @@ function AdminInfo() {
     async function fetchData() {
       try {
         const response = await axios.get(
-          "http://192.168.0.60:8090/admin/info",
+          `${gConst.API_BASE_URL}:8090/admin/info`,
           config
         );
         const data = response.data;

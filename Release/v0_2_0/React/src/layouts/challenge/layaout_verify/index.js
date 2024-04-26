@@ -32,6 +32,7 @@ import categoryToLoseWeight from "assets/images/category/category_toloseweight.j
 
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { gConst } from 'layouts/gConst';
 
 // Overview page components
 
@@ -71,7 +72,7 @@ import axios from "axios";
       };
   
       try {
-        const response = await axios.post('http://192.168.0.60:8090/verify/upload', formData, config);
+        const response = await axios.post(`${gConst.API_BASE_URL}:8090/verify/upload`, formData, config);
         console.log(response.data);
         
         alert('사진이 성공적으로 업로드되었습니다.');

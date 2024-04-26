@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { gConst } from 'layouts/gConst';
 
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
@@ -39,7 +40,7 @@ const PhotoList = () => {
 
   const fetchPhotos = () => {
     axios
-      .get("http://192.168.0.60:8090/user/photo", baseConfig)
+      .get(`${gConst.API_BASE_URL}:8090/user/photo`, baseConfig)
       .then((response) => {
         console.log("Received data:", response.data);
         const newRows = response.data.map((photo) => ({
@@ -103,7 +104,7 @@ const PhotoList = () => {
     };
 
     axios
-      .delete("http://192.168.0.60:8090/user/photo/delete", deleteConfig)
+      .delete(`${gConst.API_BASE_URL}:8090/user/photo/delete`, deleteConfig)
       .then(() => {
         console.log("Photo deleted successfully");
         fetchPhotos(); // 상태 업데이트를 위해 사진 목록 다시 불러오기

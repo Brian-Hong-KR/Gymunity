@@ -11,6 +11,7 @@ import { Link } from "react-router-dom"; // react-router-dom을 사용하여 링
 import BasicLayout from "layouts/authentication/components/BasicLayout";
 import AuthNavbar from "examples/Navbars/AuthNavbar";
 import axios from "axios";
+import { gConst } from 'layouts/gConst';
 
 const MainPage = () => {
   // const { d1, h2, fontWeightMedium } = typography;
@@ -18,7 +19,7 @@ const MainPage = () => {
 
   const handleSurveySubmit = async () => {
     try {
-      const response = await axios.post("http://192.168.0.60:8090/submissions");
+      const response = await axios.post(`${gConst.API_BASE_URL}:8090/submissions`);
       navigate("/authentication/survey");
     } catch (error) {}
   };

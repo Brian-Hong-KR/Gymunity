@@ -16,6 +16,7 @@ import backimage from "assets/images/youn/digdas.jpg";
 import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
 import axios from "axios";
+import { gConst } from 'layouts/gConst';
 
 import BasicLayout from "layouts/authentication/components/BasicLayout";
 import AuthNavbar from "examples/Navbars/AuthNavbar";
@@ -123,7 +124,7 @@ function Survey() {
     };
     console.log("Form submitting", formData);
     try {
-      const response = await axios.post("http://192.168.0.60:8090/resurvey", formData, config);
+      const response = await axios.post(`${gConst.API_BASE_URL}:8090/resurvey`, formData, config);
       console.log("Response data:", response.data);
       setPlanData({
         planName: response.data.planName,

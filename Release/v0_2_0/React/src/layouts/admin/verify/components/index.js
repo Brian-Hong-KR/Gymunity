@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { gConst } from 'layouts/gConst';
 
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
@@ -39,7 +40,7 @@ const AdminVerify = () => {
 
   const fetchVerify = () => {
     axios
-      .get(`http://192.168.0.60:8090/admin/verify/list`, baseConfig)
+      .get(`${gConst.API_BASE_URL}:8090/admin/verify/list`, baseConfig)
       .then((response) => {
         console.log(response.data);
         const newRows = response.data.map((verifyList) => ({
@@ -119,7 +120,7 @@ const AdminVerify = () => {
 
   const handleVerifyStatusChange = (viId, result) => {
     axios
-      .put("http://192.168.0.60:8090/admin/verify/check", { viId, result }, baseConfig)
+      .put(`${gConst.API_BASE_URL}:8090/admin/verify/check`, { viId, result }, baseConfig)
       .then((response) => {
         console.log("Status updated:", response.data);
         fetchVerify(); // 성공하면 목록을 다시 불러옵니다.
@@ -136,7 +137,7 @@ const AdminVerify = () => {
     };
 
     axios
-      .delete(`http://192.168.0.60:8090/user/photo/delete`, deleteConfig)
+      .delete(`${gConst.API_BASE_URL}:8090/user/photo/delete`, deleteConfig)
       .then(() => {
         console.log("Photo deleted successfully");
         fetchVerify(); // 상태 업데이트를 위해 사진 목록 다시 불러오기

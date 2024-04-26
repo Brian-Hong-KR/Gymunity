@@ -15,6 +15,7 @@ import SoftButton from "components/SoftButton";
 // Images
 import curved9 from "assets/images/curved-images/curved-6.jpg";
 import axios from "axios";
+import { gConst } from 'layouts/gConst';
 import { Card } from "@mui/material";
 
 import BasicLayout from "layouts/authentication/components/BasicLayout";
@@ -35,7 +36,7 @@ function SignIn() {
     }
 
     await axios
-      .post("http://192.168.0.60:8090/user/signin", inputs)
+      .post(`${gConst.API_BASE_URL}:8090/user/signin`, inputs)
       .then((response) => {
         let accessToken = response.data.accessToken;
         let refreshToken = response.data.refreshToken;

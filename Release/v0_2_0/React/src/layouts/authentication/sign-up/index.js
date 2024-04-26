@@ -18,6 +18,9 @@ import BasicLayout from "layouts/authentication/components/BasicLayout";
 import AuthNavbar from "examples/Navbars/AuthNavbar";
 
 import axios from "axios";
+import { gConst } from 'layouts/gConst';
+
+
 import { useNavigate, useLocation } from "react-router-dom";
 import PrivacyPolicyContent from "../texts/PrivacyPolicy";
 import TermsOfServiceContent from "../texts/TermsOfService";
@@ -96,7 +99,7 @@ function SignUp() {
     }
 
       try {
-      const response = await axios.get(`/checkUsername/${user.nickName}`);
+      const response = await axios.get(`${gConst.API_BASE_URL}:8090/checkUsername/${user.nickName}`);
       
       if (response.status === 200) {
         alert("사용할 수 있는 닉네임입니다.");
@@ -128,7 +131,7 @@ function SignUp() {
     }
 
       try {
-      const response = await axios.get(`http://192.168.0.60:8090/checkUserId/${user.userAccountId}`);
+      const response = await axios.get(`${gConst.API_BASE_URL}:8090/checkUserId/${user.userAccountId}`);
       
       if (response.status === 200) {
         alert("사용할 수 있는 아이디입니다.");
@@ -190,10 +193,10 @@ function SignUp() {
     // const surveyData = Array.isArray(planData) ? planData[0] : planData;
 
     try {
-      const signupResponse = await axios.post("http://192.168.0.60:8090/user/signup", user);
+      const signupResponse = await axios.post(`${gConst.API_BASE_URL}:8090/user/signup`, user);
       console.log("Registration successful:", signupResponse);
 
-      const loginResponse = await axios.post("http://192.168.0.60:8090/user/signin", {
+      const loginResponse = await axios.post(`${gConst.API_BASE_URL}:8090/user/signin`, {
         userAccountId: user.userAccountId,
         password: user.password,
       });

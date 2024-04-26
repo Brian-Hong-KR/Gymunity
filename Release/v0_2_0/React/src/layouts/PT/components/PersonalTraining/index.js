@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, Component } from 'react';
 import axios from 'axios';
+import { gConst } from 'layouts/gConst';
 
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
@@ -9,6 +10,7 @@ import SoftButton from "components/SoftButton";
 import PropTypes from 'prop-types';
 import ChatBot, { Loading } from 'react-simple-chatbot';
 import { ThemeProvider } from 'styled-components';
+
 
 class DBPedia extends Component {
   constructor(props) {
@@ -22,9 +24,8 @@ class DBPedia extends Component {
     const { steps } = this.props;
     const questionText = steps.question.value;
     const cur_unit_name = localStorage.getItem("current_unit_name");
-    console.log (cur_unit_name)
 
-    axios.post('http://192.168.0.60:5000/question',
+    axios.post(`${gConst.API_BASE_URL}:5000/question`,
     { user_id:localStorage.getItem("userId"), unit_name: cur_unit_name, question: questionText })
       .then(response => {
         const bindings = response.data.answer;
@@ -75,7 +76,7 @@ const PersonalTraining = () => {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await axios.post('http://192.168.0.60:5000/exercise', { "user_id": localStorage.getItem("userId") });
+            const response = await axios.post(`${gConst.API_BASE_URL}:5000/exercise`, { "user_id": localStorage.getItem("userId") });
             setVideoList(response.data.videoList);
             setDailyProgram(response.data.daily_program);
           } catch (error) {
@@ -116,7 +117,7 @@ const PersonalTraining = () => {
             setProgress ( (index.current) / (videoList.length -1) * 100 );
             localStorage.setItem("current_unit_name", dailyProgram[index.current]);
           } else {
-            axios.post('http://192.168.0.60:5000/exercise_done', {"user_id":localStorage.getItem("userId")});
+            axios.post(`${gConst.API_BASE_URL}:5000/exercise_done`, {"user_id":localStorage.getItem("userId")});
           }
         }
     };
