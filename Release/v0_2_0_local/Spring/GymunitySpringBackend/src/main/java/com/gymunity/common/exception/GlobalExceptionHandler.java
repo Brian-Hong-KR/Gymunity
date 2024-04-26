@@ -10,6 +10,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @ControllerAdvice
 public class GlobalExceptionHandler {
+	
+	@ExceptionHandler(AccountInactiveException.class)
+	public ResponseEntity<String> handleAccountInactiveException(AccountInactiveException ex) {
+		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ex.getMessage());
+	}
 
 	@ExceptionHandler(ChallengeException.class)
 	public ResponseEntity<String> handleChallengeException(ChallengeException ex) {

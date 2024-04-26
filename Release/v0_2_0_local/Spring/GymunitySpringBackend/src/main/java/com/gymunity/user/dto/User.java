@@ -14,5 +14,6 @@ public class User {
 	private String adminYn;
 	private String gradeName;
 	private LocalDateTime lastSignin;
+	private String isActive;
 
 }// end class

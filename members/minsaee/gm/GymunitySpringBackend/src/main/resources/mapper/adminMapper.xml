@@ -93,9 +93,5 @@
 		FROM profiles
 		WHERE referrer_id IS NOT NULL AND referrer_id != 0
 	</select>
-	
-	<!-- 회원관리-->
-	<!-- -->
-	<!-- 업데이트 닉네임,유저이메일,회원활성화비활성화-->
 
 </mapper>
