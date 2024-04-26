@@ -1,8 +1,7 @@
 import axios from "axios";
 import { challengeReducers } from "../createSlice/challenge_createSlice";
 
-// const url = "http://127.0.0.1:8090";
-const url = "http://192.168.0.60:8090";
+const url = "http://127.0.0.1:8090";
 const config = {
   headers: {
     "Content-Type": "application/json",
