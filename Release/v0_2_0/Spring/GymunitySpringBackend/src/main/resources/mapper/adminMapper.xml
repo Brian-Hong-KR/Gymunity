@@ -26,7 +26,10 @@
         JOIN 
            challenges c ON v.vi_ch_id = c.ch_id
         WHERE 
-            v.result = 'N'
+            v.result = 'N' AND 
+          (v.upload1 IS NOT NULL) AND 
+          (v.upload2 IS NOT NULL)
+            
         ORDER BY 
             c.ch_id, v.update_verify DESC
     </select>

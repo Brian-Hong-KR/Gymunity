@@ -9,6 +9,7 @@
 		<result property="nickName" column="nick_name" />
 		<result property="adminYn" column="admin_yn" />
 		<result property="lastSignin" column="last_signin" />
+		<result property="isActive" column="is_active" />
 	</resultMap>
 
 	<!--회원정보 가져오기-->
