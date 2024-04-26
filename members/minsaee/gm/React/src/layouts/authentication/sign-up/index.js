@@ -85,24 +85,26 @@ function SignUp() {
       return;
     }
 
-    try {
-      const response = await axios.get(`/checkUsername/${user.userAccountId}`);
 
-      if (response.status === 200) {
-        alert("사용할 수 있는 아이디입니다.");
-      } else {
-        console.error("Unexpected status code:", response.status);
-        showErrorAlert();
-      }
-    } catch (error) {
-      if (error.response && error.response.status === 409) {
-        alert("이미 존재하는 아이디입니다.");
-        clearInputField(); // 아이디 입력 필드 비우기
-      } else {
-        console.error("Error checking username:", error);
-        showErrorAlert();
-      }
+    try {
+    const response = await axios.get(`/checkUsername/${user.userAccountId}`);
+    
+    if (response.status === 200) {
+      alert("사용할 수 있는 아이디입니다.");
+    } else {
+      console.error("Unexpected status code:", response.status);
+      clearInputField();
     }
+  } catch (error) {
+    if (error.response && error.response.status === 409) {
+      alert("이미 존재하는 아이디입니다.");
+      clearInputField(); // 아이디 입력 필드 비우기
+    } else {
+      console.error("Error checking username:", error);
+      alert("아이디 중복 확인에 실패했습니다.");
+      clearInputField();
+    }
+  }
   };
 
   const requiredFields = ["userAccountId", "userEmail", "password", "nickName"];

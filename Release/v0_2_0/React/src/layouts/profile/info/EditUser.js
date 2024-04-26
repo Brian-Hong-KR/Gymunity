@@ -78,7 +78,7 @@ const EditUser = () => {
       const response = await axios.put("http://192.168.0.60:8090/user/update", users, config);
       localStorage.setItem("userEmail", userEmail);
       localStorage.setItem("nickName", nickName);
-      navigate("/"); // 수정 후 메인 페이지로 이동
+      navigate("/profile");
       console.log(config);
     } catch (error) {
       console.error("Error:", error);
