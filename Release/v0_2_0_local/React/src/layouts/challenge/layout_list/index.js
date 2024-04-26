@@ -98,13 +98,13 @@ function Challenge() {
                   </SoftTypography>
                 </SoftBox>
               </SoftBox>
-              <SoftBox p={1} m={2}>
+              <SoftBox p={1} m={1}>
                 <Grid container spacing={5}>
                   {joinChIdList.length > 0 &&
                     updatedChallengeList.map(
                       (challenge) =>
                         challenge.isJoined && (
-                          <Grid item xs={12} md={8} xl={4} key={challenge.chId}>
+                          <Grid item xs={12} md={6} xl={3} key={challenge.chId}>
                             <Link to={`/challenge/detail/${challenge.chId}`}>
                               <ChallengeCard challenge={challenge} />
                             </Link>
@@ -114,8 +114,8 @@ function Challenge() {
                   <Grid
                     item
                     xs={12}
-                    md={12}
-                    xl={6}
+                    md={6}
+                    xl={3}
                     component={Link}
                     to="/challenge/create"
                   >
@@ -162,7 +162,7 @@ function Challenge() {
                   }
                 })
                 .map((challenge) => (
-                  <Grid item xs={12} md={8} xl={4} key={challenge.chId}>
+                  <Grid item xs={12} md={6} xl={3} key={challenge.chId}>
                     <ChallengeCard challenge={challenge} />
                   </Grid>
                 ))}
