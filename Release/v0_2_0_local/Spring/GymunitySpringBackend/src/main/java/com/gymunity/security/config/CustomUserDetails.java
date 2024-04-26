@@ -76,34 +76,4 @@ public class CustomUserDetails implements UserDetails {
 		return true;
 	}
 
-	//진 게터세터
-	public Integer getUserId() {
-		return userId;
-	}
-
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
-
-
-	public String getAdminYn() {
-		return adminYn;
-	}
-
-
-	public void setAdminYn(String adminYn) {
-		this.adminYn = adminYn;
-	}
-
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-
-	public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
-		this.authorities = authorities;
-	}
-	
 }

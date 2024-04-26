@@ -45,29 +45,29 @@ public class ChallengeController {
 	private PageDTO pdto;
 	private int currentPage;
 
-	int userId;
-//
+//	int userId;
+
 //    public void getUserIdFromToken(@RequestHeader("Authorization") String authHeader){
 //        String token = authHeader.split(" ")[1].trim(); // "Bearer <토큰 값>" 형식에서 토큰 값만 추출
 //        userId = JwtProvider.getUserId(token);
 //    }
 //	
-	public void getUserIdFromToken() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Object principal = authentication.getPrincipal();
-
-        // Principal이 CustomUserDetails 객체인지 확인하고 userId 가져오기
-        if (principal instanceof CustomUserDetails) {
-            CustomUserDetails userDetails = (CustomUserDetails) principal;
-            userId = userDetails.getUserId();
-            // userId를 사용하여 원하는 작업 수행
-        }else {
-            // CustomUserDetails가 아닌 경우에 대한 처리
-            userId = 131;
-        }
-    }
-//	authentication = SecurityContextHolder.getContext().getAuthentication();
-//	Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
+//	public void getUserIdFromToken() {
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        Object principal = authentication.getPrincipal();
+//
+//        // Principal이 CustomUserDetails 객체인지 확인하고 userId 가져오기
+//        if (principal instanceof CustomUserDetails) {
+//            CustomUserDetails userDetails = (CustomUserDetails) principal;
+//            userId = userDetails.getUserId();
+//            // userId를 사용하여 원하는 작업 수행
+//        }else {
+//            // CustomUserDetails가 아닌 경우에 대한 처리
+//            userId = 131;
+//        }
+//    }
+	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
 //	int userId = 131;
 
 	// 챌린지 리스트 조회
@@ -84,7 +84,6 @@ public class ChallengeController {
 			map.put("pv", this.pdto);
 			map.put("challengeList", challengeService.listProcess(pdto));
 		}
-		getUserIdFromToken();
 		log.info("userId:{}", map.get("userId"));
 		
 		if (userId != 0) {

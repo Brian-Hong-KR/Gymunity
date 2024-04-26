@@ -2,13 +2,23 @@ import axios from "axios";
 import { challengeReducers } from "../createSlice/challenge_createSlice";
 
 const url = "http://127.0.0.1:8090";
+const config = {
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `${localStorage.getItem("Authorization")}`,
+    "Authorization-refresh": localStorage.getItem("Authorization-refresh"),
+  },
+};
 
 //리스트 가져오기
 function getChallengeListAsync(currentPage) {
   console.log("currentPage: ", currentPage);
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${url}/challenge/list/${currentPage}`);
+      const response = await axios.get(
+        `${url}/challenge/list/${currentPage}`,
+        config
+      );
 
       const { challengeList, joinList, pv } = response.data;
       dispatch(challengeReducers.getChallengeList({ challengeList, pv }));
