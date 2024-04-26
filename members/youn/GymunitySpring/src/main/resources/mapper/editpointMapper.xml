@@ -21,7 +21,10 @@
 	
 	<!-- user_id 찾기 -->
 	<select id="getUserIDByAccountID" resultType="int" parameterType="String">
-	    SELECT user_id FROM users WHERE user_account_id = #{userAccountId}
+	    SELECT user_id 
+	    FROM users 
+	    WHERE 
+	    user_account_id = #{userAccountId}
 	</select>
 	
 	

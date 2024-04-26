@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import com.gymunity.admin.dto.UserDetails;
+import com.gymunity.challenge.dto.PhotoDTO;
 import com.gymunity.challenge.dto.Verify;
 
 @Mapper
@@ -20,6 +22,9 @@ public interface AdminMapper {
 	
 	public void updateAchieveRate(@Param("userId") int userId, @Param("chId") int chId, @Param("achieveRate") double achieveRate);
 	
+	// 인증사진 확인
+	public List<PhotoDTO> selectPhotosByResultN();
+	
 	// AARRR
 	public List<LocalDate> selectAllSubmissions();
 	
@@ -28,7 +33,14 @@ public interface AdminMapper {
 	public List<LocalDate> selectAllSigninDates();
 	
 	public List<LocalDate> selectReferrerSignupDates();
+	
+	public int getUserIdByNickName(@Param("nickName") String nickName);
+	
+	public UserDetails getUserDetails(@Param("userId") int userId);
+	
+	public void updateNickName(@Param("userId") int userId, @Param("nickName") String nickName);
+	
+	public void updateIsActive(@Param("userId") int userId);
 
-	public void adminDeleteUsers(String userAccountId);
 
 }
