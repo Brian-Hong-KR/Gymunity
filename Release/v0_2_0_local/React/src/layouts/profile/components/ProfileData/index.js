@@ -40,9 +40,9 @@ const ProfileData = () => {
   });
 
   const categoryMapping = {
-    1: "안아프게해주세요.",
-    2: "근육짱짱맨",
-    3: "나는 살뺄거야",
+    1: "체중 감량",
+    2: "근력 향상",
+    3: "종합 건강 증진",
   };
 
   useEffect(() => {

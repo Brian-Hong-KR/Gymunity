@@ -23,7 +23,7 @@ import AuthNavbar from "examples/Navbars/AuthNavbar";
 function SignIn() {
   const [rememberMe, setRememberMe] = useState(true);
   const [inputs, setInputs] = useState({ userAccountId: "", password: "" });
-  
+
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
   const onSubmit = async (e) => {
@@ -48,11 +48,16 @@ function SignIn() {
         localStorage.setItem("isLogin", true);
 
         setInputs({ userAccountId: "", password: "" });
-      })
-      .then((response) => {
         window.location.replace("/profile");
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        if (error.response && error.response.status === 403) {
+          alert("접근이 거부되었습니다: " + error.response.data);
+        } else {
+          console.log(error);
+          alert("로그인 실패: 시스템 오류가 발생했습니다.");
+        }
+      });
   };
 
   return (

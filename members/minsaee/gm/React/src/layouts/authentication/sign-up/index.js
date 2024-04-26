@@ -78,6 +78,7 @@ function SignUp() {
     setUser((prevUser) => ({ ...prevUser, userAccountId: "" }));
   };
 
+
   const handleCheckUsername = async () => {
     // 입력값이 비어 있는지 확인
     if (!user.userAccountId.trim()) {
