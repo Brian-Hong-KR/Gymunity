@@ -130,12 +130,11 @@ public class ChallengeController {
 
 	// 챌린지 삭제
 	@Operation(summary = "챌린지 삭제")
-	@DeleteMapping("/challenge/delete")
-	public ResponseEntity<Object> deleteChallenge() {
-		// Spring Security의 Authentication 객체를 통해 현재 로그인된 사용자의 정보를 가져옴
+	@DeleteMapping("/challenge/delete/{chId}")
+	public ResponseEntity<Object> deleteChallenge(@PathVariable("chId") int chId) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
-		challengeService.deleteChallengeProcess(userId);
+		challengeService.deleteChallengeProcess(chId, userId);
 		return ResponseEntity.ok("챌린지가 삭제되었습니다.");
 	}// end deleteChallenge()
 
