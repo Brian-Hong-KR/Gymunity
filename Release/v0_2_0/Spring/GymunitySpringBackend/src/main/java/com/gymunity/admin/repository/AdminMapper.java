@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import com.gymunity.admin.dto.AdminDeleteUserDTO;
 import com.gymunity.challenge.dto.PhotoDTO;
 import com.gymunity.challenge.dto.Verify;
 
@@ -32,6 +33,8 @@ public interface AdminMapper {
 	public List<LocalDate> selectAllSigninDates();
 	
 	public List<LocalDate> selectReferrerSignupDates();
+	
+	public AdminDeleteUserDTO adminSelectUser(String userAccountId);
 
 	public void adminDeleteUsers(String userAccountId);
 

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.gymunity.admin.dto.AdminDeleteUserDTO;
 import com.gymunity.admin.repository.AdminMapper;
 import com.gymunity.admin.service.adminService;
 import com.gymunity.challenge.dto.Challenge;
@@ -110,7 +111,11 @@ public class adminServiceImpl implements adminService {
 		return allData;
 	}// getAllDataByWeek()
 	
-	
+	 @Override
+	    public AdminDeleteUserDTO getUserById(String userAccountId) {
+	        return adminMapper.adminSelectUser(userAccountId);
+	    }
+	 
 	 @Override
 	    public void adminDeleteUsers(String userAccountId) {
 	        adminMapper.adminDeleteUsers(userAccountId);

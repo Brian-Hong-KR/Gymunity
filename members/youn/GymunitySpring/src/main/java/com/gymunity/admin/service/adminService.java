@@ -4,9 +4,15 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
+import com.gymunity.admin.dto.AdminEditUserDTO;
+import com.gymunity.admin.dto.UserDetails;
+import com.gymunity.challenge.dto.PhotoDTO;
+
 public interface adminService {
 	
 	public void verifyCheckProcess(int viId, String result);
+	
+	public List<PhotoDTO> getPhotosByResultNProcess();
 	
 	public Map<String, Integer> countByWeek(List<LocalDate> dates);
 	
@@ -20,7 +26,13 @@ public interface adminService {
 	
 	public Map<String, Map<String, Integer>> getAllDataByWeek();
 
-	public void adminDeleteUsers(String userAccountId);
+	public int getUserIdByNickName(String nickName);
+	
+	public UserDetails getUserDetails(int userId);
+	
+	public void updateNickName(int userId, String nickName);
+	
+	public void updateIsActive(int userId);
 	
 
 }// end interface

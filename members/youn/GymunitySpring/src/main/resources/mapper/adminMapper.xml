@@ -10,8 +10,45 @@
 		<result column="upload2" property="upload2" />
 		<result column="update_verify" property="updateVerify" />
 	</resultMap>
+	
+	<resultMap id="userResultMap" type="User">
+		<result property="userId" column="user_id" jdbcType="INTEGER" />
+		<result
+			property="userAccountId" column="user_account_id" />
+		<result
+			property="gradeName" column="grade_name" />
+		<result
+			property="nickName" column="nick_name" />
+		<result
+			property="adminYn" column="admin_yn" />
+			<result
+			property="isActive" column="is_active" />
+			<result
+			property="lastSignin" column="last_signin" />
+			<result
+			property="userEmail" column="user_email" />
+	</resultMap>
 
 	<!-- 관리자 인증 사진 확인-->
+	<!-- 인증사진 목록가져오기 -->
+	<select id="selectPhotosByResultN" resultType="PhotoDTO">
+        SELECT 
+            v.vi_id AS viId,
+            v.upload1 AS imagePath1, 
+            v.upload2 AS imagePath2, 
+            c.title AS challengeTitle, 
+            c.proceed AS proceed, 
+            v.update_verify AS dateUpdated
+        FROM 
+           verify v
+        JOIN 
+           challenges c ON v.vi_ch_id = c.ch_id
+        WHERE 
+            v.result = 'N'
+        ORDER BY 
+            c.ch_id, v.update_verify DESC
+    </select>
+
 	<!-- verify 테이블 조회-->
 	<select id="selectVerifyByviId" parameterType="int"
 		resultMap="verifyResultMap">
@@ -74,10 +111,45 @@
 	
 	
 	
-	<delete id="adminDeleteUsers" parameterType="String">
-		DELETE
-		FROM users
-		WHERE user_account_id = #{user_account_id}
-	</delete>
+	<!-- 관리자 회원 수정-->
+	<!-- nick_name으로 user_id 확인하기-->
+	<select id="getUserIdByNickName" resultType="int" parameterType="String">
+        SELECT user_id 
+        FROM users 
+        WHERE nick_name = #{nickName}
+    </select>
+
+	<!-- 회원 정보 불러오기-->
+	<select id="getUserDetails" parameterType="int" resultType="UserDetails">
+        SELECT u.user_id AS userId, 
+            u.user_account_id AS userAccountId, 
+            u.grade_name AS gradeName, 
+            u.nick_name AS nickName, 
+            u.admin_yn AS adminYn,
+            u.is_active AS isActive, 
+            u.last_signin AS lastSignin, 
+            p.user_email AS userEmail
+        FROM users u
+        JOIN profiles p ON u.user_id = p.user_id
+        WHERE u.user_id = #{userId}
+    </select>
+    
+    <!-- nickName 수정-->
+    <update id="updateNickName">
+        UPDATE users
+        SET nick_name = #{nickName}
+        WHERE user_id = #{userId}
+    </update>
+    
+    <!-- is_active 수정-->
+    <update id="updateIsActive">
+        UPDATE users
+        SET is_active = CASE
+            WHEN is_active = 'y' THEN 'n'
+            WHEN is_active = 'n' THEN 'y'
+            ELSE is_active
+        END
+        WHERE user_id = #{userId}
+    </update>
 
 </mapper>
