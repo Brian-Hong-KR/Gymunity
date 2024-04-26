@@ -23,11 +23,17 @@ import AuthNavbar from "examples/Navbars/AuthNavbar";
 function SignIn() {
   const [rememberMe, setRememberMe] = useState(true);
   const [inputs, setInputs] = useState({ userAccountId: "", password: "" });
-
+  
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
   const onSubmit = async (e) => {
     e.preventDefault();
+
+    if (!inputs.userAccountId || !inputs.password) {
+      alert("아이디와 비밀번호를 입력해주세요.");
+      return;
+    }
+
     await axios
       .post("/user/signin", inputs)
       .then((response) => {
