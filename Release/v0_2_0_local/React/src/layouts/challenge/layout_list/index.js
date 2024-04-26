@@ -26,13 +26,10 @@ function Challenge() {
   const { currentPage = 1 } = useParams();
   const dispatch = useDispatch();
 
-  const getChallengeList = useCallback(
-    (page) => {
-      console.log("currentPage:", page);
-      dispatch(challengeActions.getChallengeListAsync(page));
-    },
-    [dispatch]
-  );
+  const getChallengeList = useCallback((page) => {
+    console.log("currentPage:", page);
+    dispatch(challengeActions.getChallengeListAsync(page));
+  }, []);
 
   const [isInitialRender, setIsInitialRender] = useState(true);
 
@@ -74,18 +71,18 @@ function Challenge() {
     setSelectedItem(item);
   };
 
-  //TODO localStorage.getItem("userAccount")로 바꾸기
-  const localStorageUserID = 131;
+  //TODO localStorage.getItem('userId');로 바꾸기
+  // const localStorage.getItem =131;
 
   return (
     <DashboardLayout>
       <DashboardNavbar />
       <SoftBox mt={5} mb={3}>
-        {localStorageUserID && (
+        {localStorage.getItem("userId") && (
           // 로그인 시에만 '참여중 챌린지' 표시
           <>
             <Card>
-              <SoftBox pt={5} px={5}>
+              <SoftBox pt={3} px={2}>
                 <SoftBox mb={0.5}>
                   <SoftTypography variant="h5" fontWeight="medium">
                     참여중인 챌린지
@@ -108,7 +105,9 @@ function Challenge() {
                       (challenge) =>
                         challenge.isJoined && (
                           <Grid item xs={12} md={8} xl={4} key={challenge.chId}>
-                            <ChallengeCard challenge={challenge} />
+                            <Link to={`/challenge/detail/${challenge.chId}`}>
+                              <ChallengeCard challenge={challenge} />
+                            </Link>
                           </Grid>
                         )
                     )}
