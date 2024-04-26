@@ -596,7 +596,7 @@ function ChallengeDetail() {
                 </SoftButton>
               </>
             ) : null}
-            {isJoined && challengeDetail.proceed === "rec" ? (
+            {isJoined && challengeDetail.proceed === "pr" ? (
               // 참여중이면서 진행중일 경우 '인증하기', 아닐 경우 '참여하기'
               <SoftButton
                 variant="gradient"
