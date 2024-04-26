@@ -28,6 +28,12 @@ function SignIn() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+
+    if (!inputs.userAccountId || !inputs.password) {
+      alert("아이디와 비밀번호를 입력해주세요.");
+      return;
+    }
+
     await axios
       .post("http://192.168.0.60:8090/user/signin", inputs)
       .then((response) => {
