@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-
-// react-router-dom components
 import { Link } from "react-router-dom";
 
-// @mui material components
 import Card from "@mui/material/Card";
 import Checkbox from "@mui/material/Checkbox";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 
-// Soft UI Dashboard React components
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 import SoftInput from "components/SoftInput";
@@ -16,18 +16,16 @@ import SoftButton from "components/SoftButton";
 import BasicLayout from "layouts/authentication/components/BasicLayout";
 import AuthNavbar from "examples/Navbars/AuthNavbar";
 
-import Socials from "layouts/authentication/components/Socials";
-import Separator from "layouts/authentication/components/Separator";
-
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
+import PrivacyPolicyContent from "../texts/PrivacyPolicy";
+import TermsOfServiceContent from "../texts/TermsOfService";
 
 function SignUp() {
-  const [termAgreement, setTermAgreement] = useState(true);
-  const [privacyAgreement, setPrivacyAgreement] = useState(true);
-
-  const handleSetTermAgreement = () => setTermAgreement(!termAgreement);
-  const handleSetPrivacyAgreement = () => setPrivacyAgreement(!privacyAgreement);
+  const [termAgreement, setTermAgreement] = useState(false);
+  const [privacyAgreement, setPrivacyAgreement] = useState(false);
+  const [showTermsModal, setShowTermsModal] = useState(false);
+  const [showPrivacyModal, setShowPrivacyModal] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -38,7 +36,6 @@ function SignUp() {
     : location.state?.formData;
 
   const planData = location.state?.planData;
-  console.log("Registration successful:", planData);
 
   const [user, setUser] = useState({
     userAccountId: "",
@@ -61,14 +58,61 @@ function SignUp() {
     });
   };
 
+  const handleOpenTermsModal = () => setShowTermsModal(true);
+  const handleCloseTermsModal = () => setShowTermsModal(false);
+  const handleOpenPrivacyModal = () => setShowPrivacyModal(true);
+  const handleClosePrivacyModal = () => setShowPrivacyModal(false);
+
+  const handleSetTermAgreement = () => {
+    setTermAgreement(!termAgreement);
+    handleOpenTermsModal();
+  };
+
+  const handleSetPrivacyAgreement = () => {
+    setPrivacyAgreement(!privacyAgreement);
+    handleOpenPrivacyModal();
+  };
+
+  const clearInputField = () => {
+    // 아이디 입력 필드를 비웁니다.
+    setUser((prevUser) => ({ ...prevUser, userAccountId: "" }));
+  };
+
+  const handleCheckUsername = async () => {
+    // 입력값이 비어 있는지 확인
+    if (!user.userAccountId.trim()) {
+      alert("아이디를 입력하세요.");
+      return;
+    }
+
+    try {
+      const response = await axios.get(`/checkUsername/${user.userAccountId}`);
+
+      if (response.status === 200) {
+        alert("사용할 수 있는 아이디입니다.");
+      } else {
+        console.error("Unexpected status code:", response.status);
+        showErrorAlert();
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 409) {
+        alert("이미 존재하는 아이디입니다.");
+        clearInputField(); // 아이디 입력 필드 비우기
+      } else {
+        console.error("Error checking username:", error);
+        showErrorAlert();
+      }
+    }
+  };
+
   const requiredFields = ["userAccountId", "userEmail", "password", "nickName"];
 
   const isFormValid = (fieldsToCheck) => {
-    return fieldsToCheck.every(field => user[field].trim() !== "");
+    return fieldsToCheck.every((field) => user[field].trim() !== "");
   };
 
   const onSubmit = async (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
 
     // 입력란이 비어 있는지 확인
     if (!isFormValid(requiredFields)) {
@@ -102,8 +146,6 @@ function SignUp() {
         userId,
         adminYn,
       } = loginResponse.data;
-      console.log("accessToken", accessToken);
-      console.log("refreshToken", refreshToken);
 
       localStorage.setItem("Authorization", accessToken);
       localStorage.setItem("Authorization-refresh", refreshToken);
@@ -140,7 +182,7 @@ function SignUp() {
         <SoftBox pt={2} pb={3} px={3}>
           <SoftBox component="form" role="form" onSubmit={onSubmit}>
             <SoftBox mb={2}></SoftBox>
-            <SoftBox mb={2}>
+            <SoftBox mb={2} display="flex" alignItems="center">
               <SoftInput
                 type="text"
                 name="userAccountId"
@@ -148,6 +190,13 @@ function SignUp() {
                 onChange={handleValueChange}
                 placeholder="아이디"
               />
+              <SoftButton
+                onClick={handleCheckUsername}
+                variant="text"
+                color="dark"
+              >
+                중복 확인
+              </SoftButton>
             </SoftBox>
             <SoftBox mb={2}>
               <SoftInput
@@ -176,7 +225,7 @@ function SignUp() {
                 placeholder="닉네임"
               />
             </SoftBox>
-       
+
             <SoftBox mb={2}>
               <SoftInput
                 type="text"
@@ -186,9 +235,12 @@ function SignUp() {
                 placeholder="추천인"
               />
             </SoftBox>
-            <SoftBox display="flex" flexDirection="column">
+            {/* <SoftBox display="flex" flexDirection="column">
               <SoftBox mb={1} display="flex" alignItems="center">
-                <Checkbox checked={termAgreement} onChange={handleSetTermAgreement} />
+                <Checkbox
+                  checked={termAgreement}
+                  onChange={handleSetTermAgreement}
+                />
                 <SoftTypography
                   variant="button"
                   fontWeight="regular"
@@ -199,7 +251,10 @@ function SignUp() {
                 </SoftTypography>
               </SoftBox>
               <SoftBox display="flex" alignItems="center">
-                <Checkbox checked={privacyAgreement} onChange={handleSetPrivacyAgreement} />
+                <Checkbox
+                  checked={privacyAgreement}
+                  onChange={handleSetPrivacyAgreement}
+                />
                 <SoftTypography
                   variant="button"
                   fontWeight="regular"
@@ -209,7 +264,111 @@ function SignUp() {
                   개인정보 수집 및 이용 동의 (필수)
                 </SoftTypography>
               </SoftBox>
-            </SoftBox>
+            </SoftBox> */}
+            <Card>
+              <SoftBox pt={2} pb={3} px={3}>
+                <SoftBox component="form" role="form" onSubmit={onSubmit}>
+                  {/* Inputs and other UI elements... */}
+
+                  <SoftBox display="flex" flexDirection="column">
+                    <SoftBox mb={1} display="flex" alignItems="center">
+                      <Checkbox
+                        checked={termAgreement}
+                        onChange={handleSetTermAgreement}
+                      />
+                      <SoftTypography
+                        variant="button"
+                        fontWeight="regular"
+                        onClick={handleOpenTermsModal}
+                        sx={{ cursor: "pointer", userSelect: "none" }}
+                      >
+                        이용 약관 동의 (필수)
+                      </SoftTypography>
+                    </SoftBox>
+                    <SoftBox display="flex" alignItems="center">
+                      <Checkbox
+                        checked={privacyAgreement}
+                        onChange={handleSetPrivacyAgreement}
+                      />
+                      <SoftTypography
+                        variant="button"
+                        fontWeight="regular"
+                        onClick={handleOpenPrivacyModal}
+                        sx={{ cursor: "pointer", userSelect: "none" }}
+                      >
+                        개인정보 수집 및 이용 동의 (필수)
+                      </SoftTypography>
+                    </SoftBox>
+                  </SoftBox>
+
+                  {/* Modal for Terms of Service */}
+                  <Modal
+                    open={showTermsModal}
+                    onClose={handleCloseTermsModal}
+                    aria-labelledby="terms-modal-title"
+                    aria-describedby="terms-modal-description"
+                  >
+                    <Box
+                      sx={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        width: 400,
+                        height: 500,
+                        bgcolor: "background.paper",
+                        border: "2px solid #000",
+                        boxShadow: 24,
+                        p: 4,
+                        overflowY: "auto",
+                      }}
+                    >
+                      <Typography
+                        id="terms-modal-title"
+                        variant="h6"
+                        component="h2"
+                      >
+                        이용 약관
+                      </Typography>
+                      <TermsOfServiceContent />
+                      <Button onClick={handleCloseTermsModal}>닫기</Button>
+                    </Box>
+                  </Modal>
+
+                  {/* Modal for Privacy Policy */}
+                  <Modal
+                    open={showPrivacyModal}
+                    onClose={handleClosePrivacyModal}
+                    aria-labelledby="privacy-modal-title"
+                    aria-describedby="privacy-modal-description"
+                  >
+                    <Box
+                      sx={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        width: 400,
+                        bgcolor: "background.paper",
+                        border: "2px solid #000",
+                        boxShadow: 24,
+                        p: 4,
+                      }}
+                    >
+                      <Typography
+                        id="privacy-modal-title"
+                        variant="h6"
+                        component="h2"
+                      >
+                        개인정보 수집 및 이용
+                      </Typography>
+                      <PrivacyPolicyContent />
+                      <Button onClick={handleClosePrivacyModal}>닫기</Button>
+                    </Box>
+                  </Modal>
+                </SoftBox>
+              </SoftBox>
+            </Card>
             <SoftBox mt={4} mb={1}>
               <SoftButton
                 type="submit"

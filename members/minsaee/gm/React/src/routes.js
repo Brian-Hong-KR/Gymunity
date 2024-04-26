@@ -32,6 +32,7 @@ import AdminInfo from "layouts/admin";
 import CustomerCreate from "layouts/profile/customer";
 import Cs from "layouts/dashboard/info/CsPage";
 import AdminVerify from "layouts/admin/verify/components";
+import EditPointPage from 'layouts/dashboard/info/EditPointPage';
 
 const routes = [
   {
@@ -126,9 +127,9 @@ const routes = [
     component: <ChallengeVerify />,
   },
   {
-    key: "point",
-    route: "/point",
-    component: <PointPage />,
+    key: "editpoint",
+    route: "/dashboard/editpoint",
+    component: <EditPointPage />,
   },
 
   // 유저 사진첩

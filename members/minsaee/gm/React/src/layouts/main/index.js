@@ -53,8 +53,8 @@ const MainPage = () => {
             <br />
           </SoftTypography>
           <SoftTypography variant="button" color="text" fontWeight="regular">
-            2. 챌린지를 통해 다른 사람들과 같은 목표로 함께 운동해보아요. <br />{" "}
-            성공률에 따라 추가 보상이 지급됩니다.
+            2. 챌린지를 통해 다른 사람들과 같은 목표로 함께 운동해요. <br />{" "}
+               성공률에 따라 추가 보상이 지급됩니다.
             <br /> <br />{" "}
           </SoftTypography>
           <SoftBox mt={4} mb={1}>

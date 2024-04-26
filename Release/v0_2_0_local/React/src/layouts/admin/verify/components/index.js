@@ -7,6 +7,12 @@ import Table from "examples/Tables/Table";
 import SoftButton from "components/SoftButton";
 
 const AdminVerify = () => {
+  const imgStyle = {
+    width: "100%",
+    maxWidth: "100px",
+    height: "auto",
+  };
+
   const baseConfig = {
     headers: {
       "Content-Type": "application/json",
@@ -43,7 +49,7 @@ const AdminVerify = () => {
               <img
                 src={`${process.env.PUBLIC_URL}/${verifyList.imagePath1}`}
                 alt="User Photo 1"
-                style={{ width: "50%", height: "auto" }}
+                style={imgStyle}
               />
               {verifyList.proceed === "rec" && (
                 <SoftButton
@@ -65,7 +71,7 @@ const AdminVerify = () => {
               <img
                 src={`${process.env.PUBLIC_URL}/${verifyList.imagePath2}`}
                 alt="User Photo 2"
-                style={{ width: "50%", height: "auto" }}
+                style={imgStyle}
               />
               {verifyList.proceed === "rec" && (
                 <SoftButton
@@ -148,9 +154,7 @@ const AdminVerify = () => {
           justifyContent="space-between"
           alignItems="center"
           p={3}
-        >
-          <SoftTypography variant="h5">포인트 내역</SoftTypography>
-        </SoftBox>
+        ></SoftBox>
 
         <SoftBox
           sx={{

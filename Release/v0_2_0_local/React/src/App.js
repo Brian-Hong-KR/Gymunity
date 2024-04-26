@@ -136,7 +136,7 @@ export default function App() {
         </>
       )}
       <Routes>
-        <Route path="*" element={<Navigate to="/main" />} />
+        <Route path="*" element={<Navigate to="/profile" />} />
         {getRoutes(routes)}
       </Routes>
     </ThemeProvider>

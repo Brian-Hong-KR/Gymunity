@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gymunity.challenge.repository.TestMapper">
+	<!-- 챌린지 총 개수 -->
+	<select id="count" resultType="int">
+		SELECT COUNT(*) FROM challenges
+	</select>
+
+	<!-- 챌린지 리스트-->
+	<!-- 챌린지 리스트 불러오기 -->
+	<select id="testList" parameterType="TestPageDTO" resultType="TestListDTO">
+		SELECT c.title AS title, c.category AS category, c.betting_point AS
+		bettingPoint, c.proceed AS proceed, c.verify_term AS verifyTerm,
+		c.challenge_period AS challengePeriod, c.count AS count, u.nick_name AS
+		nickName, u.grade_name AS gradeName FROM challenges c JOIN users u ON
+		c.user_id = u.user_id
+		ORDER BY FIELD(c.proceed, 'rec', 'pr', 'done'), c.ch_id DESC LIMIT
+		#{startRow}, #{size} </select>
+
+	<!-- 참가중인 챌린지id 리스트 불러오기-->
+	<select id="joinList" resultType="ProfileDTO" parameterType="int">
+		SELECT ch_id1, ch_id2
+		FROM profiles
+		WHERE user_id=#{userId}
+	</select>
+
+</mapper>

@@ -49,12 +49,3 @@
     </insert>
 
 </mapper>
-	
-	<!-- point_aggr 테이블에 데이터 업데이트 -->
-	<!-- 
-	<insert id="addOrUpdatePointsAggregate" parameterType="int">
-        INSERT INTO point_aggr (user_id, total_points)
-        VALUES (#{userId}, 0)
-        ON DUPLICATE KEY UPDATE
-        total_points = total_points + (SELECT points_added FROM point_add WHERE user_id = #{userId} ORDER BY added_at DESC LIMIT 1)
-    </insert> -->
