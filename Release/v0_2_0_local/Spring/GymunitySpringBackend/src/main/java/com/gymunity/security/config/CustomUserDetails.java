@@ -75,8 +75,5 @@ public class CustomUserDetails implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
-	
-	public int getUserId() { //진
-		return userId; 
-	}
+
 }

@@ -100,7 +100,7 @@ function ChallengeDetail() {
   const handleClickJoinButton = async (e) => {
     e.preventDefault();
     // await dispatch(boardActions.getBoardWrite(formData, config));
-    await dispatch(challengeActions.getChallengeJoin(chId));
+    await dispatch(challengeActions.getChallengeJoin(chId, config));
     // SoftButton 클릭 시 SoftAlert을 보여주는 함수
     setShowAlert(true);
   };

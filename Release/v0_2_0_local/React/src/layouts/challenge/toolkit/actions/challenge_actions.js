@@ -39,7 +39,7 @@ function getChallengeListAsync(currentPage) {
 //   };
 // }
 //챌린지 생성하기
-function getChallengeCreate(formData) {
+function getChallengeCreate(formData, config) {
   return async () => {
     await axios
       .post(`${url}/challenge/create`, formData, config)
@@ -48,7 +48,7 @@ function getChallengeCreate(formData) {
 }
 
 //챌린지 참여하기
-function getChallengeJoin(chId) {
+function getChallengeJoin(chId, config) {
   return async () => {
     try {
       const response = await axios.post(
@@ -71,7 +71,7 @@ function getChallengeJoin(chId) {
 function getChallengeDetail(chId) {
   return async (dispatch) => {
     const data = await axios
-      .get(`${url}/challenge/detail/${chId}`, config)
+      .get(`${url}/challenge/detail/${chId}`)
       .then((response) => response.data);
     dispatch(challengeReducers.getChallengeDetail({ data }));
   };
@@ -97,8 +97,7 @@ function getChallengeUpdate(formData, config) {
   };
 }
 
-//삭제하기
-function getChallengeDelete(chId) {
+function getChallengeDelete(chId, config) {
   return async () => {
     await axios
       .delete(`${url}/challenge/delete/${chId}`, config)

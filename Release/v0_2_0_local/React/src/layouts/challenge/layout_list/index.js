@@ -82,7 +82,7 @@ function Challenge() {
           // 로그인 시에만 '참여중 챌린지' 표시
           <>
             <Card>
-              <SoftBox pt={3} px={2}>
+              <SoftBox pt={5} px={5}>
                 <SoftBox mb={0.5}>
                   <SoftTypography variant="h5" fontWeight="medium">
                     참여중인 챌린지
@@ -105,9 +105,7 @@ function Challenge() {
                       (challenge) =>
                         challenge.isJoined && (
                           <Grid item xs={12} md={8} xl={4} key={challenge.chId}>
-                            <Link to={`/challenge/detail/${challenge.chId}`}>
-                              <ChallengeCard challenge={challenge} />
-                            </Link>
+                            <ChallengeCard challenge={challenge} />
                           </Grid>
                         )
                     )}
