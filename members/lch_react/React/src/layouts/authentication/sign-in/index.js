@@ -39,8 +39,6 @@ function SignIn() {
       .then((response) => {
         let accessToken = response.data.accessToken;
         let refreshToken = response.data.refreshToken;
-        console.log("accessToken", accessToken);
-        console.log("refreshToken", refreshToken);
         localStorage.setItem("Authorization", accessToken);
         localStorage.setItem("Authorization-refresh", refreshToken);
         localStorage.setItem("userAccountId", response.data.userAccountId);
@@ -50,11 +48,16 @@ function SignIn() {
         localStorage.setItem("isLogin", true);
 
         setInputs({ userAccountId: "", password: "" });
-      })
-      .then((response) => {
         window.location.replace("/profile");
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        if (error.response && error.response.status === 403) {
+          alert("접근이 거부되었습니다: " + error.response.data);
+        } else {
+          console.log(error);
+          alert("로그인 실패: 시스템 오류가 발생했습니다.");
+        }
+      });
   };
 
   return (

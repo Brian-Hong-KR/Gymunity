@@ -224,8 +224,14 @@ public class UserServiceImpl implements UserService {
 	public boolean isUserAccountIdExists(String userAccountId) {
 		
 		User user = userMapper.selectUsersByAccountId(userAccountId);
-		boolean exists = user != null; // 사용자 정보가 존재하는 경우 true, 아니면 false
-		    
+		boolean exists = user != null; // 사용자 정보가 존재하는 경우 true, 아니면 false   
+		return exists;
+	}
+
+	@Override
+	public boolean isUserNameExists(String nickName) {
+		User user = userMapper.Namecheck(nickName);
+		boolean exists = user != null; 
 		return exists;
 	}
 

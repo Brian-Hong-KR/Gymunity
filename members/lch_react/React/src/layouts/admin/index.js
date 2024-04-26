@@ -180,7 +180,7 @@ function AdminInfo() {
         <Grid container spacing={3}>
           {/* <Grid item xs={12} lg={5}>
             <ReportsBarChart
-              title='PT'
+              title="PT"
               description={
                 <>
                   (<strong>+23%</strong>) than last week
@@ -192,22 +192,22 @@ function AdminInfo() {
           </Grid> */}
           <Grid item xs={12} lg={7}>
             <GradientLineChart
-              title='유입자 회원가입'
-              height='20.25rem'
+              title="유입자 회원가입"
+              height="20.25rem"
               chart={chartData1}
             />
           </Grid>
           <Grid item xs={12} lg={7}>
             <GradientLineChart
-              title='회원가입 로그인'
-              height='20.25rem'
+              title="회원가입 로그인"
+              height="20.25rem"
               chart={chartData2}
             />
           </Grid>
           <Grid item xs={12} lg={7}>
             <GradientLineChart
-              title='회원가입 추천가입'
-              height='20.25rem'
+              title="회원가입 추천가입"
+              height="20.25rem"
               chart={chartData3}
             />
           </Grid>
