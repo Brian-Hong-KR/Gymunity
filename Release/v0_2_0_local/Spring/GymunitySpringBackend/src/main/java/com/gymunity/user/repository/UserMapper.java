@@ -50,5 +50,9 @@ public interface UserMapper {
 	public List<Customer> selectInquiries();
 	
 	public int Idcheck(String userAccountId);
+	
+	public void updateSurvey(Survey dto);
+	
+	public void updatePt(Pt dto);
 
 }// end interface

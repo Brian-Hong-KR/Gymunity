@@ -33,7 +33,9 @@ import AdminInfo from "layouts/admin";
 import CustomerCreate from "layouts/profile/customer";
 import Cs from "layouts/dashboard/info/CsPage";
 import AdminVerify from "layouts/admin/verify/components";
-import EditPointPage from 'layouts/dashboard/info/EditPointPage';
+import EditPointPage from "layouts/dashboard/info/EditPointPage";
+import ReSurvey from "layouts/authentication/resurvey";
+import Replan from "layouts/authentication/replan";
 
 const routes = [
   {
@@ -181,6 +183,18 @@ const routes = [
     key: "PlanPage",
     route: "/authentication/plan",
     component: <PlanPage />,
+  },
+
+  {
+    key: "resurvey",
+    route: "/authentication/resurvey",
+    component: <ReSurvey />,
+  },
+
+  {
+    key: "RePlan",
+    route: "/authentication/replan",
+    component: <Replan />,
   },
 
   {

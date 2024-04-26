@@ -21,6 +21,7 @@ import com.gymunity.user.dto.Profile;
 import com.gymunity.user.dto.Pt;
 import com.gymunity.user.dto.SignupDTO;
 import com.gymunity.user.dto.Survey;
+import com.gymunity.user.dto.SurveyData;
 import com.gymunity.user.dto.User;
 import com.gymunity.user.dto.UserInfoDTO;
 import com.gymunity.user.dto.UserUpdateDTO;
@@ -234,19 +235,29 @@ public class UserServiceImpl implements UserService {
 		    
 		return exists;
 	}
-
-
-
-
-
-
-
-
-
-
 	
-	
-	
-	
+	@Override
+	public void updateSurveyProcess(SurveyData dto, int userId) {
+		log.info("aaaa{} bbb{}", dto.getPlanDesc(), dto.getPlanName());
+			
+		// Survey 업데이트
+		Survey survey = new Survey();
+		survey.setUserId(userId);
+		survey.setGender(dto.getGender());
+		survey.setAge(dto.getAge());
+		survey.setGoal(dto.getGoal());
+		survey.setLevel(dto.getLevel());
+		survey.setAbnormal(dto.getAbnormal());
+		userMapper.updateSurvey(survey);
+		
+		// Pt 업데이트
+		Pt pt = new Pt();
+		pt.setUserId(userId);
+		pt.setPlanName(dto.getPlanName());
+		pt.setPlanDesc(dto.getPlanDesc());
+		log.info("aaaa{} bbb{}", pt.getPlanDesc(), pt.getPlanName());
+		userMapper.updatePt(pt);
+		
+	}// end updateSurveyProcess()
 
 }// end class

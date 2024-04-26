@@ -4,6 +4,7 @@ import com.gymunity.user.dto.CheckUserIdPassword;
 import com.gymunity.user.dto.Customer;
 import com.gymunity.user.dto.CustomerDTO;
 import com.gymunity.user.dto.SignupDTO;
+import com.gymunity.user.dto.SurveyData;
 import com.gymunity.user.dto.UserInfoDTO;
 import com.gymunity.user.dto.UserUpdateDTO;
 import com.gymunity.user.response.CustomerDetailResponse;
@@ -31,4 +32,5 @@ public interface UserService {
 	
 	public boolean isUserAccountIdExists(String userAccountId);
 
+	public void updateSurveyProcess(SurveyData dto, int userId);
 }// end interface
