@@ -8,18 +8,19 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ChallengeDetailResponse {
-//	private int chId;
+	private int chId;
 	private String title;
 	private String content;
 	private int category;
 	private int bettingPoint;
 	private String proceed;
 //	private LocalDateTime registDate;
-	private LocalDate chStartDate;
-	private LocalDate chEndDate;
+	private String chStartDate;
+	private String chEndDate;
 	private int count;
-//	private int userId;
-//	private int grade;
-//	private String nickName;
+	private int userId;
+	private int grade;
+	private String nickName;
+	private char admin_yn;
 
 }//end class

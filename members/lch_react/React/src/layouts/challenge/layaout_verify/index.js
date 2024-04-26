@@ -28,6 +28,8 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 // Images
 import categoryToLoseWeight from "assets/images/category/category_toloseweight.jpg";
 
+// Overview page components
+
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
@@ -69,7 +71,7 @@ import axios from "axios";
       };
   
       try {
-        const response = await axios.post('/verify/upload', formData, config);
+        const response = await axios.post('http://192.168.0.60:8090/verify/upload', formData, config);
         console.log(response.data);
         
         alert('사진이 성공적으로 업로드되었습니다.');
@@ -174,69 +176,4 @@ import axios from "axios";
   );
 }
 
-
-
-
 export default ChallengeVerify;
-// function ChallengeVerify() {
-//   const { ch_id } = useParams();
-//   const [verify, setVerify] = useState({
-//     upload1:"",
-//     upload2:"",
-//   });
-
-//   const [upload1, setUpload1] = useState(null); // 첫 번째 인증사진 파일 상태
-//   const [upload2, setUpload2] = useState(null); // 두 번째 인증사진 파일 상태
-//   const [showAlert, setShowAlert] = useState(false); // SoftAlert의 표시 여부를 관리할 상태
-
-//   // // SoftButton 클릭 시 SoftAlert을 보여주는 함수
-//   // const handleVerifyButtonClick = () => {
-//   //   setShowAlert(true); // showAlert 상태를 true로 변경하여 SoftAlert을 보이도록 설정
-//   // };
-
-//   // SoftAlert의 닫기 버튼 클릭 시 SoftAlert을 닫는 함수
-//   const handleAlertClose = () => {
-//     setShowAlert(false); // showAlert 상태를 false로 변경하여 SoftAlert을 숨기도록 설정
-//   };
-
-//   const handleFileChange = (e, name) => {
-//     // 파일 선택 시 상태 업데이트
-//     if (e.target.files.length > 0) {
-//       const file = e.target.files[0];
-//       if (name === "upload1") {
-//         setUpload1({...verify, upload1 : file});
-//       } else if (name === "upload2") {
-//         setUpload2({...verify, upload2 : file});
-//       }
-//     }
-//   };
-
-//   const handleVerify = async (e) => {
-//     e.preventDefault();
-
-//     try {
-//       const formData = new FormData();
-//       formData.append("upload1", upload1);
-//       formData.append("upload2", upload2);
-
-//       const response = await axios.post("/verify/upload", formData, {
-//         headers: {
-//           "Content-Type": "multipart/form-data",
-//           Authorization: `${localStorage.getItem("Authorization")}`,
-//           "Authorization-refresh": localStorage.getItem("Authorization-refresh"),
-//         },
-//       });
-
-//       console.log("Verification successful:", response.data);
-//       alert("인증이 성공적으로 되었습니다.");
-//     } catch (error) {
-//       console.error("Verification failed:", error);
-//       alert("인증에 실패했습니다.");
-//     }
-//   };
-
-
- 
-
-
-// export default ChallengeVerify;

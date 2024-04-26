@@ -9,7 +9,6 @@ import lombok.Setter;
 @Setter
 public class PointDetailDTO {
 	
-	private String type;
 	private int points;
 	private String reason;
 	private LocalDateTime time;

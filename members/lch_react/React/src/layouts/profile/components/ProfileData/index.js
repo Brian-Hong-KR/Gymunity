@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 import Grid from "@mui/material/Grid";
+import Card from "@mui/material/Card";
 import { Link } from "react-router-dom";
 
 import SoftBox from "components/SoftBox";
@@ -47,7 +48,7 @@ const ProfileData = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(`/editinfo`, config);
+        const response = await axios.get("/editinfo", config);
         const data = response.data;
 
         // 프로필 정보 출력
@@ -91,50 +92,54 @@ const ProfileData = () => {
   const handleDeleteAccount = () => {
     const isConfirmed = window.confirm("정말 떠나시겠습니까?");
     if (isConfirmed) {
-      
     }
   };
 
-  const isLoggedIn = localStorage.getItem('isLogin') === 'true';
+  const isLoggedIn = localStorage.getItem("isLogin") === "true";
 
   const handleLogout = () => {
-     localStorage.clear();
+    localStorage.clear();
   };
 
   return (
     <SoftBox py={3}>
       <SoftBox mb={3}>
+      <Card>
         <SoftBox
-          display='flex'
-          justifyContent='space-between'
-          alignItems='center'
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
           p={3}
         >
-          <SoftTypography variant='h5'>{profileInfo.nickName}</SoftTypography>
-          <SoftTypography variant='body2' color='text'>
-            {' '}
+          <SoftTypography variant="h5">{profileInfo.nickName}</SoftTypography>
+          <SoftTypography variant="body2" color="text">
+            {" "}
             {profileInfo.userEmail}
           </SoftTypography>
         </SoftBox>
         <SoftBox
-          display='flex'
-          justifyContent='space-between'
-          alignItems='center'
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
           p={3}
         >
-          <Link to='editUser'>
-            <SoftButton type='submit' variant='gradient' color='dark' fullWidth>
+          <Link to="editUser">
+            <SoftButton type="submit" variant="gradient" color="dark" fullWidth>
               회원정보수정
             </SoftButton>
           </Link>
-
+          <Link to="/profile/photo">
+              <SoftButton type="submit" variant="gradient" color="dark" fullWidth>
+                나의 사진첩
+              </SoftButton>
+          </Link>
           <SoftBox>
             {isLoggedIn ? (
-              <Link to='/main'>
+              <Link to="/main">
                 <SoftButton
-                  type='submit'
-                  variant='gradient'
-                  color='dark'
+                  type="submit"
+                  variant="gradient"
+                  color="dark"
                   fullWidth
                   onClick={handleLogout}
                 >
@@ -142,85 +147,91 @@ const ProfileData = () => {
                 </SoftButton>
               </Link>
             ) : (
-              <Link to='/authentication/sign-in'>
+              <Link to="/authentication/sign-in">
                 <SoftButton
-                  type='submit'
-                  variant='gradient'
-                  color='dark'
+                  type="submit"
+                  variant="gradient"
+                  color="dark"
                   fullWidth
                 >
                   로그인
                 </SoftButton>
               </Link>
             )}
-          </SoftBox> 
+          </SoftBox>
         </SoftBox>
+        </Card>
+      <SoftBox py={3}>
+        <SoftBox mb={3}>
+          <Card>
+              <Grid container spacing={3}>
 
-        <Grid container spacing={3}>
-          <Grid item xs={12} sm={6} xl={3}>
-            <MiniStatisticsCard
-              title={{ text: 'Grade' }}
-              count={profileInfo.gradeName}
-              icon={{ color: 'dark', component: 'paid' }}
-              text={`다음 등급까지 ${profileInfo.pointToNextGrade.toString()} point`}
-              percentage={{ color: 'success', text: '' }}
-            />
-          </Grid>
+              <Grid item xs={12} sm={6} xl={3}>
+              <SoftBox
+                  display="flex"
+                  justifyContent="space-between"
+                  alignItems="center"
+                  p={3}
+                >
+                <SoftTypography variant="h5">Grade</SoftTypography>
+                <SoftTypography variant="h6">{profileInfo.gradeName}</SoftTypography>
+                <SoftTypography variant="body2" color="text">다음 등급까지 {profileInfo.pointToNextGrade.toString()} point</SoftTypography>
+              </SoftBox>
+              </Grid>
+<Grid item xs={12} sm={6} xl={3}>
+              <SoftBox
+                  display="flex"
+                  justifyContent="space-between"
+                  alignItems="center"
+                  p={3}
+                >
+                <SoftTypography variant="h5">Plan</SoftTypography>
+                <SoftTypography variant="h6">{profileInfo.planName}</SoftTypography>
+                <Link to="/modifyPlan">
+                  <SoftButton type="submit" variant="gradient" color="dark" fullWidth>
+                    플랜 다시 세우기
+                  </SoftButton>
+                </Link>
+              </SoftBox>
+              </Grid>
 
-          <Grid item xs={12} sm={6} xl={3}>
-            <MiniStatisticsCard
-              title={{ text: 'Point' }}
-              count={profileInfo.currentPoints}
-              icon={{ color: 'dark', component: 'paid' }}
-            />
-          </Grid>
+              {profileInfo.challenges.map((challenge, index) => (
+                <Grid item xs={12} sm={6} xl={3} key={index}>
+                <SoftBox
+                  display="flex"
+                  justifyContent="space-between"
+                  alignItems="center"
+                  p={3}
+                >
+                  <SoftTypography variant="h5">Challenge</SoftTypography>
+                  <SoftTypography variant="h6">{challenge.title}</SoftTypography>
+                  <SoftTypography variant="body2" color="text">카테고리 : {
+                      categoryMapping[challenge.category] || "기타"
+                    }</SoftTypography>
+                </SoftBox>
+                </Grid>
+              ))}
 
-          <Grid item xs={12} sm={6} xl={3}>
-            <MiniStatisticsCard
-              title={{ text: 'Plan' }}
-              count={profileInfo.planName}
-              icon={{ color: 'dark', component: 'public' }}
-            />
-          </Grid>
+              <Grid item xs={12} sm={6} xl={3}>
+              <SoftBox
+                  display="flex"
+                  justifyContent="space-between"
+                  alignItems="center"
+                  p={3}
+                >
+                <SoftTypography variant="h5">Point</SoftTypography>
+                <SoftTypography variant="h6">{profileInfo.currentPoints}</SoftTypography>
+                <Link to="/profile/point">
+                  <SoftButton type="submit" variant="gradient" color="dark" fullWidth>
+                    상세 내역 보기
+                  </SoftButton>
+                </Link>
+              </SoftBox>
+              </Grid>
 
-          {profileInfo.challenges.map((challenge, index) => (
-            <Grid item xs={12} sm={6} xl={3} key={index}>
-              <MiniStatisticsCard
-                title={{ text: 'Challenge' }}
-                count={challenge.title}
-                icon={{ color: 'dark', component: 'emoji_events' }}
-                text={`카테고리 : ${
-                  categoryMapping[challenge.category] || '기타'
-                }`}
-              />
             </Grid>
-          ))}
-        </Grid>
-      </SoftBox>
 
-      <SoftBox
-        display="flex"
-        justifyContent="space-between"
-        alignItems="center"
-        p={3}
-      >
-        <Link to="/modifyPlan">
-          <SoftButton type="submit" variant="gradient" color="dark" fullWidth>
-            플랜 다시 세우기
-          </SoftButton>
-        </Link>
-
-        <Link to="/profile/photo">
-          <SoftButton type="submit" variant="gradient" color="dark" fullWidth>
-            나의 사진첩
-          </SoftButton>
-        </Link>
-      </SoftBox>
-
-      <SoftBox mb={3}>
-        <Grid container spacing={3}>
-          <Grid item xs={12} lg={5}>
-            <ReportsBarChart
+              <ReportsBarChart
               title="Weekly Point"
               description={
                 <>
@@ -228,30 +239,39 @@ const ProfileData = () => {
                 </>
               }
               chart={chartData}
-            />
-          </Grid>
-        </Grid>
-      </SoftBox>
-      <SoftBox
-        display="flex"
-        justifyContent="space-between"
-        alignItems="center"
-        p={3}
-      >
-        <Link to="/profile/customer">
-          <SoftButton type="submit" variant="gradient" color="dark">
-            고객 문의
-          </SoftButton>
-        </Link>
+              />
 
-        <SoftButton
-          type="submit"
-          variant="gradient"
-          color="white"
-          onClick={handleDeleteAccount}
-        >
-          회원탈퇴
-        </SoftButton>
+
+          </Card>
+          <SoftBox py={3}>
+        <SoftBox mb={3}>
+          <Card>
+              <SoftBox
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+                p={3}
+              >
+                <Link to="/profile/customer">
+                  <SoftButton type="submit" variant="gradient" color="dark">
+                    고객 문의
+                  </SoftButton>
+                </Link>
+
+                <SoftButton
+                  type="submit"
+                  variant="gradient"
+                  color="white"
+                  onClick={handleDeleteAccount}
+                >
+                  회원탈퇴
+                </SoftButton>
+               </SoftBox>
+          </Card>
+            </SoftBox>
+          </SoftBox>
+        </SoftBox>
+      </SoftBox>
       </SoftBox>
     </SoftBox>
   );

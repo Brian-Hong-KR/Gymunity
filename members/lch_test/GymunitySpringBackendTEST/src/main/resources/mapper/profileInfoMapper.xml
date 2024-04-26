@@ -70,7 +70,6 @@
 	<!-- Point 상세 페이지-->
 	<select id="getPointDetail" parameterType="int" resultType="PointDetailDTO">
 		SELECT
-		'추가 포인트' AS type,
 		points_added AS points,
 		added_reason AS reason,
 		added_at AS time
@@ -82,8 +81,7 @@
 		UNION ALL
 
 		SELECT
-		'차감 포인트' AS type,
-		points_subtracted AS points,
+		-points_subtracted AS points,
 		subtracted_reason AS reason,
 		subtracted_at AS time
 		FROM

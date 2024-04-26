@@ -112,10 +112,6 @@ function Survey() {
     }));
   };
 
-
-
- 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const config = {
@@ -127,12 +123,12 @@ function Survey() {
     };
     console.log("Form submitting", formData);
     try {
-      const response = await axios.post("/resurvey", formData, config);
+      const response = await axios.post("http://192.168.0.60:8090/resurvey", formData, config);
       console.log("Response data:", response.data);
-       setPlanData({
-         planName: response.data.planName,
-         planDesc: response.data.planDesc,
-       });
+      setPlanData({
+        planName: response.data.planName,
+        planDesc: response.data.planDesc,
+      });
       // Plan 페이지로 이동
       navigate("/authentication/replan", {
         state: { formData: formData, planData: response.data },
@@ -145,10 +141,15 @@ function Survey() {
 
   return (
     <BasicLayout>
-        <AuthNavbar />
-            <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
-                <SoftTypography variant="h3">사전 설문</SoftTypography>
-            </SoftBox>
+      <AuthNavbar />
+      <SoftBox
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        p={3}
+      >
+        <SoftTypography variant="h3">사전 설문</SoftTypography>
+      </SoftBox>
       <Card>
         <SoftBox
           component="form"
@@ -246,15 +247,9 @@ function Survey() {
           </SoftBox>
         </SoftBox>
       </Card>
-
     </BasicLayout>
   );
 }
 
 export default Survey;
-
-
-
-
-
 

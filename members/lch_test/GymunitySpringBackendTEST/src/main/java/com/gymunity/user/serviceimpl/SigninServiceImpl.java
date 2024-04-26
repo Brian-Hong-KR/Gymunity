@@ -24,7 +24,6 @@ import com.gymunity.user.service.SigninService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -52,7 +51,6 @@ public class SigninServiceImpl implements SigninService {
 
 				// 마지막 로그인 시간 가져오기
 				LocalDateTime lastSignin = user.getLastSignin();
-				log.info("DB로그인시간 {}", lastSignin);
 
 				// 오늘 새벽 4시
 				LocalDateTime today4am = now.toLocalDate().atStartOfDay().plusHours(4);
@@ -79,6 +77,9 @@ public class SigninServiceImpl implements SigninService {
 				// 로그인 시간 업데이트
 				user.setLastSignin(now);
 				signinMapper.updateLastSignin(user);
+				
+				// 로그인 카운트
+				signinMapper.insertSignin();
 
 				// 토큰 생성 및 저장
 				String accessToken = JwtProperties.TOKEN_PREFIX + JwtProvider.createAccessToken(user.getUserId(), user.getAdminYn());

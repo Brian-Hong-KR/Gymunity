@@ -16,7 +16,6 @@ public class CustomUserDetails implements UserDetails {
 	private Collection<? extends GrantedAuthority> authorities; // 권한 목록
 
 	public CustomUserDetails() {
-
 	}
 
 
@@ -54,28 +53,24 @@ public class CustomUserDetails implements UserDetails {
 	// 계정만료여부 리턴 - true(만료안됨)
 	@Override
 	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	// 계정잠김여부 리턴 - true(잠김X)
 	@Override
 	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	// 비밀번호잠김여부 리턴 - true(잠김X)
 	@Override
 	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	// 계정활성화여부 리턴 - true(활성화)
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 

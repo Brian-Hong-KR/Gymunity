@@ -29,7 +29,10 @@ import PlanPage from "layouts/authentication/plan";
 import EditUser from "layouts/profile/info/EditUser";
 import UserPhotoPage from "layouts/profile/info/userphotopage";
 import UserPointPage from "layouts/profile/info/userpointpage";
-import CustomerCreate from "layouts/profile/cutomer";
+import AdminInfo from "layouts/admin";
+import CustomerCreate from "layouts/profile/customer";
+import Cs from "layouts/dashboard/info/CsPage";
+import EditPointPage from 'layouts/dashboard/info/EditPointPage';
 
 const routes = [
   {
@@ -54,7 +57,7 @@ const routes = [
     type: "collapse",
     name: "Challenge",
     key: "Challenge",
-    route: "/Challenge/list/1",
+    route: "/challenge/list/1",
     icon: <SpaceShip size="12px" />,
     component: <Challenge />,
     noCollapse: true,
@@ -82,11 +85,12 @@ const routes = [
   {
     type: "collapse",
     name: "Admin",
-    key: "dashboard",
-    route: "/dashboard",
+    key: "admin",
+    route: "/admin",
     icon: <Settings size="12px" />,
-    component: <Dashboard />,
+    component: <AdminInfo />,
     noCollapse: true,
+    isAdmin: true, // 이 라인을 추가하여 라우트가 관리자용임을 명시
   },
 
   {
@@ -103,18 +107,18 @@ const routes = [
   },
   {
     key: "ChallengeDetail",
-    route: "/challenge/detail/:ch_id",
+    route: "/challenge/detail/:chId",
     component: <ChallengeDetail />,
   },
   {
     key: "ChallengeVerify",
-    route: "/challenge/verify/:ch_id",
+    route: "/challenge/verify/:chId",
     component: <ChallengeVerify />,
   },
   {
-    key: "point",
-    route: "/point",
-    component: <PointPage />,
+    key: "editpoint",
+    route: "/dashboard/editpoint",
+    component: <EditPointPage />,
   },
 
   // 유저 사진첩
@@ -177,6 +181,12 @@ const routes = [
     key: "customer",
     route: "/profile/customer",
     component: <CustomerCreate />,
+  },
+
+  {
+    key: "cs",
+    route: "/dashboard/cs",
+    component: <Cs />,
   },
 ];
 

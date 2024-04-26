@@ -106,7 +106,7 @@ function Survey() {
     e.preventDefault();
     console.log("Form submitting", formData);
     try {
-      const response = await axios.post("/survey", formData);
+      const response = await axios.post("http://192.168.0.60:8090/survey", formData);
       console.log("Response data:", response.data);
       setPlanData({
         planName: response.data.planName,
@@ -186,9 +186,9 @@ function Survey() {
               textColor="primary"
               centered
             >
-              <Tab label="체지방량 감소" />
-              <Tab label="근육량 증가" />
-              <Tab label="종합 건강" />
+               <Tab label={<span style={{ fontSize: "14px" }}>체지방량 감소</span>} />
+               <Tab label={<span style={{ fontSize: "14px" }}>근육량 증가</span>} />
+               <Tab label={<span style={{ fontSize: "14px" }}>종합 건강</span>} />
             </Tabs>
             <SoftBox p={3} mb={1} textAlign="center">
               <SoftTypography variant="h5" fontWeight="medium" textAlign="left">
@@ -231,15 +231,8 @@ function Survey() {
           </SoftBox>
         </SoftBox>
       </Card>
-
     </BasicLayout>
   );
 }
 
 export default Survey;
-
-
-
-
-
-

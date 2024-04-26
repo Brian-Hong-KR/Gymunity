@@ -27,7 +27,7 @@ import icon_start from "assets/images/icon/start.png";
 import icon_point from "assets/images/icon/point.png";
 
 function ChallengeDetail() {
-  const { ch_id } = useParams();
+  const { chId } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -36,27 +36,56 @@ function ChallengeDetail() {
   );
   const pv = useSelector((state) => state.challenge.pv);
 
-  // const config = {
-  //   headers: {
-  //     Authorization: localStorage.getItem("Authorization"),
-  //     "Authorization-refresh": localStorage.getItem("Authorization-refresh"),
-  //   },
+  const joinList = useSelector((state) => state.challenge.joinList || []);
+  console.log("joinList:", joinList);
 
+  const joinChIdList =
+    joinList.length > 0 && typeof joinList[0] === "object"
+      ? Object.values(joinList[0])
+      : [];
+  console.log("joinChIdList:", joinChIdList);
+
+  const isJoined = () => {
+    return challengeDetail.chId === joinChIdList[0] ||
+      challengeDetail.chId === joinChIdList[1]
+      ? true
+      : false;
+  };
+
+  console.log("challengeDetail.chId:", challengeDetail.chId);
+  console.log("challengeDetail.isJoined:", challengeDetail.isJoined);
+
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `${localStorage.getItem("Authorization")}`,
+      "Authorization-refresh": localStorage.getItem("Authorization-refresh"),
+    },
+  };
+
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
   //삭제버튼
+
   const handleDelete = async (e) => {
     e.preventDefault();
-    await dispatch(challengeActions.getChallengeDelete(ch_id));
-    navigate(`/challenge/list/${pv.currentPage}`);
+    await dispatch(challengeActions.getChallengeDelete(chId)).then(
+      (response) => {
+        if (response.payload === "삭제 실패") {
+          setAlertMessage("다른 참여자가 있을 경우 삭제가 불가합니다.");
+        } else {
+          navigate(`/challenge/list/${pv.currentPage}`);
+        }
+      }
+    );
   };
 
   useEffect(() => {
-    dispatch(challengeActions.getChallengeDetail(ch_id));
-  }, []);
-
-  const [showAlert, setShowAlert] = useState(false);
+    dispatch(challengeActions.getChallengeDetail(chId));
+  }, [dispatch, chId]);
 
   // SoftButton 클릭 시 SoftAlert을 보여주는 함수
-  const handleJoinButtonClick = () => {
+  const handleShowAlert = () => {
     setShowAlert(true);
   };
 
@@ -68,7 +97,15 @@ function ChallengeDetail() {
   //TODO localStorage.getItem("userAccount")로 바꾸기
   const localStorageUserID = 81;
 
-  const { image, category, grade, verify_term, period, remainingDays } =
+  const handleClickJoinButton = async (e) => {
+    e.preventDefault();
+    // await dispatch(boardActions.getBoardWrite(formData, config));
+    await dispatch(challengeActions.getChallengeJoin(chId));
+    // SoftButton 클릭 시 SoftAlert을 보여주는 함수
+    setShowAlert(true);
+  };
+
+  const { image, category, grade, verifyTerm, period, remainingDays } =
     DataConverter(challengeDetail);
 
   let buttonComponent;
@@ -79,7 +116,7 @@ function ChallengeDetail() {
     buttonComponent = (
       <SoftButton
         component={Link}
-        to={`/challenge/detail/${challengeDetail.ch_id}`}
+        to={`/challenge/detail/${chId}`}
         variant="outlined"
         size="small"
         color="primary"
@@ -123,11 +160,11 @@ function ChallengeDetail() {
         D - {remainingDays}
       </SoftBox>
     );
-  } else if (challengeDetail.proceed === "pr" && challengeDetail.isJoined) {
+  } else if (challengeDetail.proceed === "pr" && isJoined) {
     buttonComponent = (
       <SoftButton
         component={Link}
-        to={`/challenge/verify/${challenge.ch_id}`}
+        to={`/challenge/verify/${challengeDetail.chId}`}
         variant="outlined"
         size="small"
         color="error"
@@ -171,11 +208,11 @@ function ChallengeDetail() {
         진행중
       </SoftBox>
     );
-  } else if (challengeDetail.proceed === "pr" && !challengeDetail.isJoined) {
+  } else if (challengeDetail.proceed === "pr" && !isJoined) {
     buttonComponent = (
       <SoftButton
         component={Link}
-        to={`/challenge/detail/${challengeDetail.ch_id}`}
+        to={`/challenge/detail/${challengeDetail.chId}`}
         variant="outlined"
         size="small"
         color="primary"
@@ -223,7 +260,7 @@ function ChallengeDetail() {
     buttonComponent = (
       <SoftButton
         component={Link}
-        to={`/challenge/detail/${challengeDetail.ch_id}`}
+        to={`/challenge/detail/${challengeDetail.chId}`}
         variant="outlined"
         size="small"
         color="light"
@@ -384,7 +421,7 @@ function ChallengeDetail() {
                         fontWeight="bold"
                         color="#FFFFFF"
                       >
-                        {verify_term}
+                        {verifyTerm}
                       </SoftTypography>
                     </SoftBox>
                   </SoftBox>
@@ -475,7 +512,7 @@ function ChallengeDetail() {
                         color="#FFFFFF"
                         sx={{ marginRight: "7px" }}
                       >
-                        {challengeDetail.betting_point}
+                        {challengeDetail.bettingPoint}
                       </SoftTypography>
                     </SoftBox>
                   </SoftBox>
@@ -507,9 +544,9 @@ function ChallengeDetail() {
                     }}
                   />
                   <SoftTypography variant="body1">
-                    {challengeDetail.ch_start_date}
+                    {challengeDetail.chStartDate}
                     {" ~ "}
-                    {challengeDetail.ch_start_date}
+                    {challengeDetail.chEndDate}
                   </SoftTypography>
                 </SoftBox>
                 <hr style={{ width: "100%", border: "1px solid #999999" }} />
@@ -610,7 +647,7 @@ function ChallengeDetail() {
                       alignItems: "center",
                     }}
                   >
-                    {challengeDetail.nick_name}
+                    {challengeDetail.nickName}
                   </SoftTypography>
                   <SoftTypography
                     variant="h6"
@@ -618,32 +655,56 @@ function ChallengeDetail() {
                     color="#FFFFFF"
                     sx={{ marginTop: "10px" }}
                   >
-                    sksksk
+                    마스터 인사말
                   </SoftTypography>
                 </SoftBox>
 
-                <SoftBox mt={6} textAlign="center">
-                  {localStorageUserID === challengeDetail.user_id ? (
+                <SoftBox
+                  mt={6}
+                  textAlign="center"
+                  sx={{
+                    display: "flex",
+                    gap: "10px",
+                    justifyContent: "center",
+                  }}
+                >
+                  <SoftButton
+                    variant="gradient"
+                    color="dark"
+                    component={Link}
+                    to={`/challenge/list/${pv.currentPage}`}
+                  >
+                    뒤로
+                  </SoftButton>
+                  {localStorageUserID === challengeDetail.userId ||
+                  challengeDetail.adminYn === "y" ? (
+                    // 작성자일 경우 삭제
                     <>
-                      <Link
-                        className="btn btn-primary"
-                        to={`/challenge/update/${ch_id}`}
-                      >
-                        수정
-                      </Link>
-                      <button
-                        className="btn btn-primary"
-                        onClick={handleDelete}
+                      <SoftButton
+                        variant="gradient"
+                        color="white"
+                        onClick={handleShowAlert}
                       >
                         삭제
-                      </button>
+                      </SoftButton>
                     </>
+                  ) : null}
+                  {challengeDetail.proceed === "pr" && isJoined ? (
+                    // 참여중이면서 진행중일 경우 '인증하기', 아닐 경우 '참여하기'
+                    <SoftButton
+                      variant="gradient"
+                      color="dark"
+                      component={Link}
+                      to={`/challenge/verify/${challengeDetail.chId}`}
+                    >
+                      인증하기
+                    </SoftButton>
                   ) : (
                     <>
                       <SoftButton
                         variant="gradient"
-                        color="info"
-                        onClick={handleJoinButtonClick}
+                        color="dark"
+                        onClick={handleClickJoinButton}
                       >
                         참여하기
                       </SoftButton>
@@ -660,6 +721,37 @@ function ChallengeDetail() {
                   )}
                 </SoftBox>
               </SoftBox>
+              {showAlert && (
+                <SoftAlert
+                  color="white"
+                  position="fixed"
+                  top="0"
+                  left="50%"
+                  transform="translateX(-50%)"
+                  z-index="9999"
+                >
+                  정말 삭제하시겠습니까?
+                  <SoftButton
+                    variant="gradient"
+                    color="info"
+                    onClick={handleDelete}
+                  >
+                    삭제
+                  </SoftButton>
+                  <SoftButton
+                    variant="gradient"
+                    color="info"
+                    onClick={handleAlertClose}
+                  >
+                    취소
+                  </SoftButton>
+                </SoftAlert>
+              )}
+              {alertMessage && ( // 새로운 조건 추가
+                <SoftAlert color="error" dismissible>
+                  {alertMessage}
+                </SoftAlert>
+              )}
             </Card>
           </Grid>
         </Grid>
@@ -668,6 +760,5 @@ function ChallengeDetail() {
     </DashboardLayout>
   );
 }
-
 
 export default ChallengeDetail;

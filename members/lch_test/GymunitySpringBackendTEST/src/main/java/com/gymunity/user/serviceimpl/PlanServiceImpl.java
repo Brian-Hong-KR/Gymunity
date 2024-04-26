@@ -27,7 +27,7 @@ public class PlanServiceImpl implements PlanService {
 	@Override
 	public List<PlanResponse> findMatchingPlans(Survey formData) throws IOException {
 		// 클래스패스에 위치한 파일 로드
-		Resource resource = resourceLoader.getResource("classpath:pt_plan.json");
+		Resource resource = resourceLoader.getResource("classpath:pre_build_data.json");
 
 		// JSON -> Java 객체로 변환 (SurveyData 객체를 사용)
 		ObjectMapper mapper = new ObjectMapper();

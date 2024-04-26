@@ -27,7 +27,15 @@
 		<result property="title" column="inquiry_title" />
 		<result property="content" column="inquiry_content" />
 		<result property="inquiryDate" column="inquiry_date" />
+		<result property="userEmail" column="user_email" />
 	</resultMap>
+	
+	<!-- survey_submissions 테이블에 데이터 삽입-->
+	<insert id="insertNewVisit">
+        <![CDATA[
+        INSERT INTO user_events (event_type) VALUES (1)
+        ]]>
+    </insert>
 
 	<!-- 회원가입-->
 	<!-- users 테이블에 데이터 삽입 -->
@@ -42,8 +50,8 @@
 	<!-- profiles 테이블에 데이터 삽입 -->
 	<insert id="insertProfiles" parameterType="Profile">
         <![CDATA[
-        INSERT INTO profiles (user_id, password, user_email)
-        VALUES (#{userId}, #{password}, #{userEmail})
+        INSERT INTO profiles (user_id, password, user_email, referrer_id)
+        VALUES (#{userId}, #{password}, #{userEmail}, #{referrerId})
         ]]>
     </insert>
 
@@ -82,15 +90,6 @@
 		)
 		WHERE user_id = #{userId}
 	</update>
-
-	<!-- 아이디, 비밀번호 확인 
-	<select id="selectByAccountId" parameterType="string"
-		resultMap="userResultMap">
-		SELECT u.user_id, u.user_account_id, p.password
-		FROM users u
-		JOIN profiles p ON u.user_id = p.user_id
-		WHERE u.user_account_id = #{userAccountId}
-	</select> -->
 
 	<!--userAccountId로 조회 -->
 	<select id="selectUsersByAccountId" parameterType="string"
@@ -147,20 +146,24 @@
 		WHERE user_id = #{userId}
 	</delete>
 	
-	
-	
-	<!-- 고객 문의  -->
+	<!-- 고객 문의 작성 -->
 	<insert id="insertInquiries" parameterType="Customer" useGeneratedKeys="true" keyProperty="userId">  
-		INSERT INTO inquiries(inquiry_title, inquiry_content, inquiry_date, user_id)
-		VALUES( #{title}, #{content}, #{inquiryDate}, #{userId});
+		INSERT INTO inquiries(inquiry_title, inquiry_content, inquiry_date, user_id, user_email)
+		VALUES( #{title}, #{content}, #{inquiryDate}, #{userId}, #{userEmail});
 	</insert>
+	
+	<!-- 고객 문의 테이블 -->
+	<select id="selectInquiries" parameterType="Customer">
+		SELECT inquiry_title as title, inquiry_content as content, inquiry_date as inquiryDate, user_email as userEmail
+		FROM inquiries;
+	</select>
+	
+	
+	<!-- 아이디 중복체크 -->
+	
+	<select id="Idcheck" resultType="int" parameterType="String">
+    		SELECT COUNT(*) FROM users WHERE user_account_id = #{userAccountId}
+	</select>
+	
+	
 </mapper>
-
-<!-- pt 테이블에 데이터 삽입 -->
-<!-- 
-	<insert id="insertPt" parameterType="Survey">
-		<![CDATA[ 
-		INSERT INTO pt (user_id, plan_name, plan_desc)
-		VALUES (#{userId}, #{planName}, #{planDesc})
-		]]>
-	</insert> -->

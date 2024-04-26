@@ -1,5 +1,7 @@
 package com.gymunity.user.repository;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +15,8 @@ import com.gymunity.user.dto.UserUpdateDTO;
 @Mapper
 @Repository
 public interface UserMapper {
+	public int insertNewVisit();
+	
 	public int insertUsers(User dto);
 
 	public int insertProfiles(Profile dto);
@@ -42,5 +46,9 @@ public interface UserMapper {
 	public User selectSurveyByUserId(int userId);
 	
 	public int insertInquiries(Customer dto);
+	
+	public List<Customer> selectInquiries();
+	
+	public int Idcheck(String userAccountId);
 
 }// end interface

@@ -13,7 +13,6 @@ import SoftTypography from "components/SoftTypography";
 import SoftInput from "components/SoftInput";
 import SoftButton from "components/SoftButton";
 
-
 import BasicLayout from "layouts/authentication/components/BasicLayout";
 import AuthNavbar from "examples/Navbars/AuthNavbar";
 
@@ -24,9 +23,12 @@ import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 
 function SignUp() {
-  const [agreement, setAgremment] = useState(true);
+  const [termAgreement, setTermAgreement] = useState(true);
+  const [privacyAgreement, setPrivacyAgreement] = useState(true);
+  const [message, setMessage] = useState("");
 
-  const handleSetAgremment = () => setAgremment(!agreement);
+  const handleSetTermAgreement = () => setTermAgreement(!termAgreement);
+  const handleSetPrivacyAgreement = () => setPrivacyAgreement(!privacyAgreement);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -44,6 +46,7 @@ function SignUp() {
     nickName: "",
     password: "",
     userEmail: "",
+    referrerAccountId: "",
     gender: formData?.gender || "",
     age: formData?.age || "",
     goal: formData?.goal || "",
@@ -59,10 +62,58 @@ function SignUp() {
     });
   };
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
+  
+  const clearInputField = () => {
+    // 아이디 입력 필드를 비웁니다.
+    setUser(prevUser => ({ ...prevUser, userAccountId: '' }));
+  };
 
-    if (!agreement) {
+
+  const handleCheckUsername = async () => {
+
+     // 입력값이 비어 있는지 확인
+  if (!user.userAccountId.trim()) {
+    alert("아이디를 입력하세요.");
+    return;
+  }
+
+    try {
+    const response = await axios.get(`/checkUsername/${user.userAccountId}`);
+    
+    if (response.status === 200) {
+      alert("사용할 수 있는 아이디입니다.");
+    } else {
+      console.error("Unexpected status code:", response.status);
+      clearInputField();
+    }
+  } catch (error) {
+    if (error.response && error.response.status === 409) {
+      alert("이미 존재하는 아이디입니다.");
+      clearInputField(); // 아이디 입력 필드 비우기
+    } else {
+      console.error("Error checking username:", error);
+      alert("아이디 중복 확인에 실패했습니다.");
+      clearInputField();
+    }
+  }
+  };
+
+  const requiredFields = ["userAccountId", "userEmail", "password", "nickName"];
+
+  const isFormValid = (fieldsToCheck) => {
+    return fieldsToCheck.every((field) => user[field].trim() !== "");
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault(); 
+
+    // 입력란이 비어 있는지 확인
+    if (!isFormValid(requiredFields)) {
+      alert("모든 입력란을 채워주세요.");
+      return;
+    }
+
+    if (!termAgreement || !privacyAgreement) {
       alert("You must agree to the terms and conditions.");
       return;
     }
@@ -71,11 +122,42 @@ function SignUp() {
     // const surveyData = Array.isArray(planData) ? planData[0] : planData;
 
     try {
-      const response = await axios.post("/user/signup", user);
-      console.log("Registration successful:", response);
-      navigate("/dashboard"); // 회원가입 후 메인 페이지로 이동
+      const signupResponse = await axios.post("http://192.168.0.60:8090/user/signup", user);
+      console.log("Registration successful:", signupResponse);
+
+      const loginResponse = await axios.post("http://192.168.0.60:8090/user/signin", {
+        userAccountId: user.userAccountId,
+        password: user.password,
+      });
+
+      // 로그인 성공 후 로컬 스토리지에 토큰 및 사용자 정보 저장
+      const {
+        accessToken,
+        refreshToken,
+        userAccountId,
+        nickName,
+        userId,
+        adminYn,
+      } = loginResponse.data;
+      console.log("accessToken", accessToken);
+      console.log("refreshToken", refreshToken);
+
+      localStorage.setItem("Authorization", accessToken);
+      localStorage.setItem("Authorization-refresh", refreshToken);
+      localStorage.setItem("userAccountId", userAccountId);
+      localStorage.setItem("nickName", nickName);
+      localStorage.setItem("userId", userId);
+      localStorage.setItem("isAdmin", adminYn);
+      localStorage.setItem("isLogin", true);
+
+      // 로그인 성공 후 프로필 페이지로 이동
+      navigate("/profile");
     } catch (error) {
-      console.error("Registration failed:", error);
+      if (error.response) {
+        alert(`${error.response.data}`);
+      } else {
+        alert("Please try again later.");
+      }
     }
   };
 
@@ -95,7 +177,7 @@ function SignUp() {
         <SoftBox pt={2} pb={3} px={3}>
           <SoftBox component="form" role="form" onSubmit={onSubmit}>
             <SoftBox mb={2}></SoftBox>
-            <SoftBox mb={2}>
+            <SoftBox mb={2} display="flex" alignItems="center">
               <SoftInput
                 type="text"
                 name="userAccountId"
@@ -103,6 +185,9 @@ function SignUp() {
                 onChange={handleValueChange}
                 placeholder="아이디"
               />
+              <SoftButton onClick={handleCheckUsername} variant="text" color="dark">
+                중복 확인
+              </SoftButton>
             </SoftBox>
             <SoftBox mb={2}>
               <SoftInput
@@ -131,24 +216,34 @@ function SignUp() {
                 placeholder="닉네임"
               />
             </SoftBox>
+       
+            <SoftBox mb={2}>
+              <SoftInput
+                type="text"
+                name="referrerAccountId"
+                value={user.referrerAccountId}
+                onChange={handleValueChange}
+                placeholder="추천인"
+              />
+            </SoftBox>
             <SoftBox display="flex" flexDirection="column">
               <SoftBox mb={1} display="flex" alignItems="center">
-                <Checkbox checked={agreement} onChange={handleSetAgremment} />
+                <Checkbox checked={termAgreement} onChange={handleSetTermAgreement} />
                 <SoftTypography
                   variant="button"
                   fontWeight="regular"
-                  onClick={handleSetAgremment}
+                  onClick={handleSetTermAgreement}
                   sx={{ cursor: "pointer", userSelect: "none" }}
                 >
                   이용 약관 동의 (필수)
                 </SoftTypography>
               </SoftBox>
               <SoftBox display="flex" alignItems="center">
-                <Checkbox checked={agreement} onChange={handleSetAgremment} />
+                <Checkbox checked={privacyAgreement} onChange={handleSetPrivacyAgreement} />
                 <SoftTypography
                   variant="button"
                   fontWeight="regular"
-                  onClick={handleSetAgremment}
+                  onClick={handleSetPrivacyAgreement}
                   sx={{ cursor: "pointer", userSelect: "none" }}
                 >
                   개인정보 수집 및 이용 동의 (필수)

@@ -66,7 +66,7 @@ const PlanPage = () => {
               <>
                 <p>{planData.plan_name}</p>
                 <hr />
-                <div dangerouslySetInnerHTML={{ __html: planData.plan_desc }} />
+                <SoftTypography variant="body2" mb={1} dangerouslySetInnerHTML={{ __html: planData.plan_desc }} />
                 <hr />
               </>
             )}

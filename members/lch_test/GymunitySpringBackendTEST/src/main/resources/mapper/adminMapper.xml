@@ -12,6 +12,25 @@
 	</resultMap>
 
 	<!-- 관리자 인증 사진 확인-->
+	<!-- 인증사진 목록가져오기 -->
+	<select id="selectPhotosByResultN" resultType="PhotoDTO">
+        SELECT 
+            v.vi_id AS viId,
+            v.upload1 AS imagePath1, 
+            v.upload2 AS imagePath2, 
+            c.title AS challengeTitle, 
+            c.proceed AS proceed, 
+            v.update_verify AS dateUpdated
+        FROM 
+           verify v
+        JOIN 
+           challenges c ON v.vi_ch_id = c.ch_id
+        WHERE 
+            v.result = 'N'
+        ORDER BY 
+            c.ch_id, v.update_verify DESC
+    </select>
+
 	<!-- verify 테이블 조회-->
 	<select id="selectVerifyByviId" parameterType="int"
 		resultMap="verifyResultMap">
@@ -43,5 +62,41 @@
 		WHERE mem_user_id = #{userId}
 		AND mem_ch_id = #{chId}
 	</update>
+	
+	<!-- AARRR -->
+	<!-- 유입자데이터 가져오기-->
+	<select id="selectAllSubmissions" resultType="java.time.LocalDate">
+		SELECT timestamp
+		FROM user_events
+		WHERE event_type = 001
+	</select>
+	
+	<!-- 회원가입데이터 가져오기-->
+	<select id="selectAllSignupDates" resultType="java.time.LocalDate">
+		SELECT signup_date
+		FROM profiles
+	</select>
+	
+	<!-- 로그인데이터 가져오기-->
+	<select id="selectAllSigninDates" resultType="java.time.LocalDate">
+		SELECT timestamp
+		FROM user_events
+		WHERE event_type = 002
+	</select>
+	
+	<!-- 추천인등록 회원가입데이터 가져오기-->
+	<select id="selectReferrerSignupDates" resultType="java.time.LocalDate">
+		SELECT signup_date
+		FROM profiles
+		WHERE referrer_id IS NOT NULL AND referrer_id != 0
+	</select>
+	
+	
+	
+	<delete id="adminDeleteUsers" parameterType="String">
+		DELETE
+		FROM users
+		WHERE user_account_id = #{user_account_id}
+	</delete>
 
 </mapper>

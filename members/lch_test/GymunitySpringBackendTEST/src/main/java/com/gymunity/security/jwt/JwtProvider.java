@@ -47,7 +47,6 @@ public class JwtProvider {
 	// RefreshToken 생성
 	public static String createRefreshToken(Integer userId, String adminYn) {
 		Map<String, Object> claims = new HashMap<>();
-//		claims.put("userId", String.valueOf(userId));
 		claims.put("userId", userId);
 		claims.put("adminYn", adminYn);
 
