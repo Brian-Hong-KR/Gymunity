@@ -52,14 +52,6 @@
 	</select>
 
 	<!-- 챌린지 참가-->
-	<!-- members 테이블에서 user_id와 ch_id로 검색 -->
-	<select id="countMembersByUserIdAndChId" parameterType="int"
-		resultType="int">
-		SELECT COUNT(*)
-		FROM members
-		WHERE mem_user_id = #{userId} AND mem_ch_id = #{chId}
-	</select>
-
 	<!-- members 테이블 데이터 삽입 -->
 	<insert id="insertMembers" parameterType="Member" >
         <![CDATA[
@@ -82,6 +74,15 @@
               	   END
     	WHERE user_id = #{userId}
 	</update>
+	
+	<!-- members 테이블에서 user_id와 ch_id로 검색 -->
+	<select id="countMembersByUserIdAndChId" parameterType="int"
+		resultType="int">
+		SELECT COUNT(*)
+		FROM members
+		WHERE mem_user_id = #{userId} AND mem_ch_id = #{chId}
+	</select>
+
 	
 	<!-- 업데이트한 행의 수를 불러오기 -->
 	<select id="getUpdateCount" resultType="int">
