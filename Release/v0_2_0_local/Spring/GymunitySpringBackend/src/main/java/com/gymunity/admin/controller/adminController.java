@@ -9,10 +9,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gymunity.admin.dto.AddPointAdjustmentDTO;
 import com.gymunity.admin.dto.VerifyCheckDTO;
 import com.gymunity.admin.service.adminService;
 import com.gymunity.challenge.dto.PhotoDTO;
@@ -57,5 +59,11 @@ public class adminController {
 		PointDetailResponse response = adminService.getPointsProcess(userAccountId);
 		return ResponseEntity.ok(response);
 	}// end getMyPage()
+	
+	// 포인트 추가하기
+	@PostMapping("/admin/points/adjust")
+	public void adjustPoint(@RequestBody AddPointAdjustmentDTO dto) {
+		adminService.insertOrUpdateadjustPointsProcess(dto);
+	}
 
 }// end class

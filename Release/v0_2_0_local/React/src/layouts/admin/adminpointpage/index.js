@@ -1,6 +1,6 @@
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import SoftButton from "components/SoftButton";
 import SoftBox from "components/SoftBox";
@@ -50,7 +50,6 @@ const AdminPointPage = () => {
         `/admin/points/history/${userAccountId}`,
         config
       );
-      console.log("Received data:", response.data);
       const formattedRows = response.data.details.map((item) => ({
         이유: item.reason,
         포인트: (
@@ -67,31 +66,29 @@ const AdminPointPage = () => {
       }));
       setPointsHistory(response.data);
       setRows(formattedRows);
-      console.log("Received data:", response.data);
     } catch (error) {
       console.error("Error fetching points history:", error);
     }
   };
 
-  // const adjustPoints = async () => {
-  //   try {
-  //     await axios.post("/admin/points/adjustPoints", {
-  //       pointsAdjusted: pointAdjust,
-  //       reason: reason,
-  //       userId: userId,
-  //     });
-  //     // After adjusting points, fetch the updated points history
-  //     getPointsHistoryByUserID();
-  //   } catch (error) {
-  //     console.error("Error adjusting points:", error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   if (userId !== null) {
-  //     getPointsHistoryByUserID();
-  //   }
-  // }, [userId]);
+  const adjustPoints = async () => {
+    try {
+      await axios.post(
+        "/admin/points/adjust",
+        {
+          userAccountId,
+          pointsAdjusted: pointAdjust,
+          reason,
+        },
+        config
+      );
+      setPointAdjust(0);
+      setReason("");
+      getPointsHistoryByAccountId();
+    } catch (error) {
+      console.error("Error adjusting points:", error);
+    }
+  };
 
   return (
     <DashboardLayout>
@@ -138,7 +135,7 @@ const AdminPointPage = () => {
                   <SoftInput
                     type="number"
                     value={pointAdjust}
-                    // onChange={handlePointAdjustChange}
+                    onChange={handlePointAdjustChange}
                   />
                   <SoftTypography component="label" fontWeight="bold">
                     Reason:
@@ -146,8 +143,11 @@ const AdminPointPage = () => {
                   <SoftInput
                     type="text"
                     value={reason}
-                    // onChange={handleReasonChange}
+                    onChange={handleReasonChange}
                   />
+                  <SoftButton color="dark" onClick={adjustPoints} fullWidth>
+                    Adjust Points
+                  </SoftButton>
                 </SoftBox>
               </SoftBox>
               <SoftBox
@@ -166,64 +166,6 @@ const AdminPointPage = () => {
             </>
           )}
         </SoftBox>
-
-        {/* {userId !== null && (
-          <div>
-            <SoftBox pt={2} pb={3} px={3}>
-              <SoftBox mb={2} style={{ display: "flex", alignItems: "center" }}>
-                <SoftTypography component="label" fontWeight="bold">
-                  Point:
-                </SoftTypography>
-                <SoftInput
-                  type="number"
-                  value={pointAdjust}
-                  onChange={handlePointAdjustChange}
-                />
-                <SoftTypography component="label" fontWeight="bold">
-                  Reason:
-                </SoftTypography>
-                <SoftInput
-                  type="text"
-                  value={reason}
-                  onChange={handleReasonChange}
-                />
-              </SoftBox>
-            </SoftBox>
-
-            <SoftButton color="dark" onClick={adjustPoints} fullWidth>
-              Adjust Points
-            </SoftButton>
-            <SoftBox
-              pt={2}
-              pb={3}
-              px={3}
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <Table columns={columns} rows={rows} />
-              {pointsHistory.map((entry, index) => (
-                <SoftBox
-                  mb={2}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    width: "100%",
-                  }}
-                  key={index}
-                  fontSize={size.xs}
-                >
-                  <td style={{ marginRight: "auto" }}>{entry.reason}</td>
-                  <td style={{ marginRight: "auto" }}>{entry.points}</td>
-                  <td style={{ marginRight: "auto" }}>{entry.time}</td>
-                </SoftBox>
-              ))}
-            </SoftBox>
-          </div>
-        )} */}
       </div>
     </DashboardLayout>
   );

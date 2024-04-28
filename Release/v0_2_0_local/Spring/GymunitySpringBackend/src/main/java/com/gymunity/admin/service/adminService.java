@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
+import com.gymunity.admin.dto.AddPointAdjustmentDTO;
 import com.gymunity.challenge.dto.PhotoDTO;
 import com.gymunity.user.response.PointDetailResponse;
 
@@ -26,6 +27,8 @@ public interface adminService {
 	public Map<String, Map<String, Integer>> getAllDataByWeek();
 	
 	public PointDetailResponse getPointsProcess(String userAccountId);
+	
+	public void insertOrUpdateadjustPointsProcess(AddPointAdjustmentDTO dto);
 	
 
 }// end interface

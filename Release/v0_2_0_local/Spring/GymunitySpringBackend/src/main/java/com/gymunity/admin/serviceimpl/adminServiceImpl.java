@@ -10,13 +10,18 @@ import java.util.TreeMap;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.gymunity.admin.dto.AddPointAdjustmentDTO;
 import com.gymunity.admin.repository.AdminMapper;
 import com.gymunity.admin.service.adminService;
 import com.gymunity.challenge.dto.Challenge;
 import com.gymunity.challenge.dto.PhotoDTO;
 import com.gymunity.challenge.dto.Verify;
 import com.gymunity.challenge.repository.ChallengeMapper;
+import com.gymunity.point.dto.PointAdjust;
+import com.gymunity.point.repository.PointMapper;
 import com.gymunity.user.dto.PointDetailDTO;
+import com.gymunity.user.dto.User;
+import com.gymunity.user.repository.UserMapper;
 import com.gymunity.user.response.PointDetailResponse;
 
 import lombok.RequiredArgsConstructor;
@@ -28,6 +33,8 @@ public class adminServiceImpl implements adminService {
 
 	private final AdminMapper adminMapper;
 	private final ChallengeMapper challengeMapper;
+	private final PointMapper pointMapper;
+	private final UserMapper userMapper;
 
 	@Override
 	public List<PhotoDTO> getPhotosByResultNProcess() {
@@ -120,6 +127,22 @@ public class adminServiceImpl implements adminService {
 		response.setDetails(dto);
 
 		return response;
-	}
+	}// end getPointsProcess()
+
+	@Override
+	public void insertOrUpdateadjustPointsProcess(AddPointAdjustmentDTO dto) {
+		
+		User user = userMapper.selectUsersByAccountId(dto.getUserAccountId());
+
+		int userId = user.getUserId();
+		
+		PointAdjust pointAdjust = new PointAdjust();
+		pointAdjust.setUserId(userId);
+		pointAdjust.setPointsAdjusted(dto.getPointsAdjusted());
+		pointAdjust.setReason(dto.getReason());
+		pointMapper.adjustPoint(pointAdjust);
+
+		pointMapper.adjustPointsAggr(userId);
+	}// end insertOrUpdateadjustPointsProcess()
 
 }// end class

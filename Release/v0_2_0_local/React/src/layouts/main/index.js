@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
-import typography from "assets/theme/base/typography";
 import { Card } from "@mui/material";
-import { Link } from "react-router-dom"; // react-router-dom을 사용하여 링크를 관리합니다.
+import { Link } from "react-router-dom";
 
 import BasicLayout from "layouts/authentication/components/BasicLayout";
 import AuthNavbar from "examples/Navbars/AuthNavbar";
 import axios from "axios";
 
 const MainPage = () => {
-  // const { d1, h2, fontWeightMedium } = typography;
   const navigate = useNavigate();
 
   const handleSurveySubmit = async () => {

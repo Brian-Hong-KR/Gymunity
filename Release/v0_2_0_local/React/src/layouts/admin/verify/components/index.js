@@ -4,6 +4,7 @@ import axios from "axios";
 import SoftBox from "components/SoftBox";
 import Table from "examples/Tables/Table";
 import SoftButton from "components/SoftButton";
+import SoftTypography from "components/SoftTypography";
 
 const AdminVerify = () => {
   const imgStyle = {
@@ -40,7 +41,6 @@ const AdminVerify = () => {
     axios
       .get(`/admin/verify/list`, baseConfig)
       .then((response) => {
-        console.log(response.data);
         const newRows = response.data.map((verifyList) => ({
           인덱스: verifyList.viId,
           사진1: verifyList.imagePath1 ? (
@@ -120,7 +120,6 @@ const AdminVerify = () => {
     axios
       .put("/admin/verify/check", { viId, result }, baseConfig)
       .then((response) => {
-        console.log("Status updated:", response.data);
         fetchVerify(); // 성공하면 목록을 다시 불러옵니다.
       })
       .catch((error) => {
@@ -153,7 +152,9 @@ const AdminVerify = () => {
           justifyContent="space-between"
           alignItems="center"
           p={3}
-        ></SoftBox>
+        >
+          <SoftTypography variant="h5">인증사진목록</SoftTypography>
+        </SoftBox>
 
         <SoftBox
           sx={{

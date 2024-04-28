@@ -1,41 +1,12 @@
-// react-router-dom components
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-
-// @mui material components
-import Switch from "@mui/material/Switch";
-import Grid from "@mui/material/Grid";
+import { useState } from "react";
 import Card from "@mui/material/Card";
-import AppBar from "@mui/material/AppBar";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-
-// Soft UI Dashboard React components
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 import SoftInput from "components/SoftInput";
 import SoftButton from "components/SoftButton";
-
-// Soft UI Dashboard React base styles
-import breakpoints from "assets/theme/base/breakpoints";
-
-// Authentication layout components
-import CoverLayout from "layouts/authentication/components/CoverLayout";
-
-// Images
-import curved9 from "assets/images/curved-images/curved-6.jpg";
-
-// Soft UI Dashboard React icons
-import Cube from "examples/Icons/Cube";
-import Document from "examples/Icons/Document";
-import Settings from "examples/Icons/Settings";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-
-// Overview page components
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-
-import { useNavigate, useLocation } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function CustomerCreate() {

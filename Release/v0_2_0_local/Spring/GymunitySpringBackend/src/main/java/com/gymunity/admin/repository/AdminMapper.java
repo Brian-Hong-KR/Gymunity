@@ -36,5 +36,4 @@ public interface AdminMapper {
 	
 	// 포인트 조회
 	public List<PointDetailDTO> getPointsByUserAccountId(String userAccountId);
-
 }
