@@ -201,7 +201,7 @@ public class ChallengeServiceImpl implements ChallengeService {
 
 	// 챌린지 삭제
 	@Override
-	public void deleteChallengeProcess(int userId) {
+	public void deleteChallengeProcess(int chId, int userId) {
 		Challenge challenge = challengeMapper.selectChallengesByUserId(userId);
 
 		// 챌린지가 없는 경우 예외 처리
@@ -218,7 +218,7 @@ public class ChallengeServiceImpl implements ChallengeService {
 
 			pointService.addOrUpdatePointsAggr(userId);
 
-			challengeMapper.deleteChallenges(userId);
+			challengeMapper.deleteChallenges(chId);
 		} else {
 			throw new ChallengeException("사용자에 대한 챌린지 정보가 하나만 존재하지 않습니다.");
 		}
