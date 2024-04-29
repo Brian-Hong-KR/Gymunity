@@ -4,7 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
-import com.gymunity.admin.dto.AdminDeleteUserDTO;
+import com.gymunity.admin.dto.AdminEditUserDTO;
+import com.gymunity.admin.dto.UserDetails;
 import com.gymunity.challenge.dto.PhotoDTO;
 
 public interface adminService {
@@ -25,9 +26,13 @@ public interface adminService {
 	
 	public Map<String, Map<String, Integer>> getAllDataByWeek();
 
-	public AdminDeleteUserDTO getUserById(String userAccountId);
+	public int getUserIdByNickName(String nickName);
 	
-	public void adminDeleteUsers(String userAccountId);
+	public UserDetails getUserDetails(int userId);
+	
+	public void updateNickName(int userId, String nickName);
+	
+	public void updateIsActive(int userId);
 	
 
 }// end interface

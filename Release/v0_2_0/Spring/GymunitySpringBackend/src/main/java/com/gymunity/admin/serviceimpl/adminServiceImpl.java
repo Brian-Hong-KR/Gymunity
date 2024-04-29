@@ -11,7 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.gymunity.admin.dto.AdminDeleteUserDTO;
+import com.gymunity.admin.dto.AdminEditUserDTO;
+import com.gymunity.admin.dto.UserDetails;
 import com.gymunity.admin.repository.AdminMapper;
 import com.gymunity.admin.service.adminService;
 import com.gymunity.challenge.dto.Challenge;
@@ -111,15 +112,28 @@ public class adminServiceImpl implements adminService {
 		return allData;
 	}// getAllDataByWeek()
 	
-	 @Override
-	    public AdminDeleteUserDTO getUserById(String userAccountId) {
-	        return adminMapper.adminSelectUser(userAccountId);
-	    }
-	 
-	 @Override
-	    public void adminDeleteUsers(String userAccountId) {
-	        adminMapper.adminDeleteUsers(userAccountId);
-	    }
 	
+
+	@Override
+	public int getUserIdByNickName(String nickName) { // 추가
+	    return adminMapper.getUserIdByNickName(nickName);
+	}
+
+    @Override
+    public UserDetails getUserDetails(int userId) {
+        return adminMapper.getUserDetails(userId);
+    }
+
+
+    @Override
+    public void updateNickName(int userId, String nickName) {
+        adminMapper.updateNickName(userId, nickName);
+    }
+
+    @Override
+    public void updateIsActive(int userId) {
+        adminMapper.updateIsActive(userId);
+    }
+
 	
 }// end class
