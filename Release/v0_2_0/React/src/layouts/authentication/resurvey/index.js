@@ -6,7 +6,7 @@ import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
 import axios from "axios";
-import { gConst } from 'layouts/gConst';
+import { gConst } from "layouts/gConst";
 
 import BasicLayout from "layouts/authentication/components/BasicLayout";
 import AuthNavbar from "examples/Navbars/AuthNavbar";
@@ -100,7 +100,11 @@ function ReSurvey() {
       },
     };
     try {
-      const response = await axios.post(`${gConst.API_BASE_URL}:8090/resurvey`, formData, config);
+      const response = await axios.post(
+        `${gConst.API_BASE_URL}:8090/resurvey`,
+        formData,
+        config
+      );
       setPlanData({
         planName: response.data.planName,
         planDesc: response.data.planDesc,

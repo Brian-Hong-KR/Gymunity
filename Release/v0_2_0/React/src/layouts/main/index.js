@@ -10,14 +10,16 @@ import { Link } from "react-router-dom";
 import BasicLayout from "layouts/authentication/components/BasicLayout";
 import AuthNavbar from "examples/Navbars/AuthNavbar";
 import axios from "axios";
-import { gConst } from 'layouts/gConst';
+import { gConst } from "layouts/gConst";
 
 const MainPage = () => {
   const navigate = useNavigate();
 
   const handleSurveySubmit = async () => {
     try {
-      const response = await axios.post(`${gConst.API_BASE_URL}:8090/submissions`);
+      const response = await axios.post(
+        `${gConst.API_BASE_URL}:8090/submissions`
+      );
       navigate("/authentication/survey");
     } catch (error) {}
   };
@@ -71,16 +73,19 @@ const MainPage = () => {
           <SoftBox mt={3} textAlign="center">
             <SoftTypography variant="button" color="text" fontWeight="regular">
               이미 아이디가 있으신가요?&nbsp;
-              <SoftTypography
-                component={Link}
+              <Link
                 to="/authentication/sign-in"
-                variant="button"
-                color="dark"
-                fontWeight="bold"
-                textGradient
+                style={{ textDecoration: "none" }}
               >
-                로그인하기
-              </SoftTypography>
+                <SoftTypography
+                  variant="button"
+                  color="dark"
+                  fontWeight="bold"
+                  textGradient
+                >
+                  로그인하기
+                </SoftTypography>
+              </Link>
             </SoftTypography>
           </SoftBox>
         </SoftBox>

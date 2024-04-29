@@ -4,6 +4,7 @@ import axios from "axios";
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 import Table from "examples/Tables/Table";
+import { gConst } from "layouts/gConst";
 
 const PointDetail = () => {
   const baseConfig = {
@@ -28,7 +29,7 @@ const PointDetail = () => {
 
   const fetchPoints = () => {
     axios
-      .get(`/editinfo/pointdetail`, baseConfig)
+      .get(`${gConst.API_BASE_URL}:8090/editinfo/pointdetail`, baseConfig)
       .then((response) => {
         const details = response.data.details;
         const newRows = details.map((pointdetail) => ({
