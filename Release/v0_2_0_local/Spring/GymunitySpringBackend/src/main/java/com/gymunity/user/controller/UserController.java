@@ -60,26 +60,6 @@ public class UserController {
 		return ResponseEntity.ok(userInfoDTO);
 	}
 
-	@GetMapping("/checkUsername/{userAccountId}")
-	public ResponseEntity<String> checkUsername(@PathVariable("userAccountId") String userAccountId) {
-		try {
-			// 아이디 중복 확인을 위해 UserService의 메서드 호출
-			boolean isExists = userService.isUserAccountIdExists(userAccountId);
-
-			if (isExists) {
-				// 아이디가 이미 존재하는 경우
-				return ResponseEntity.status(HttpStatus.CONFLICT).body("이미 존재하는 아이디입니다.");
-			} else {
-				// 아이디가 존재하지 않는 경우
-				return ResponseEntity.ok("사용할 수 있는 아이디입니다.");
-			}
-		} catch (Exception e) {
-			// 예외 발생 시
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("서버 오류가 발생했습니다.");
-		}
-
-	}
-
 	// 회원정보수정
 	@Operation(summary = "회원정보수정")
 	@PutMapping("/user/update")
@@ -115,7 +95,7 @@ public class UserController {
 		CustomerResponse response = userService.insertCustomerProcess(dto, userId);
 		return ResponseEntity.ok(response);
 	}
-	
+
 	// 고객 문의 리스트
 	@Operation(summary = "고객 문의 리스트")
 	@GetMapping("/user/inquirieslist")
@@ -125,58 +105,57 @@ public class UserController {
 
 		return ResponseEntity.ok(response);
 	}
-	
+
 	// 설문조사다시하기
 	@Operation(summary = "설문조사 다시하기")
 	@PutMapping("/user/resurvey")
 	public void resurvey(@RequestBody SurveyData dto) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Integer userId = (Integer) authentication.getPrincipal();
-		
+
 		userService.updateSurveyProcess(dto, userId);
 	}// end updateUser()
 
 // 아이디 중복 체크
 	@Operation(summary = "아이디 중복 체크")
 	@GetMapping("/checkUserId/{userAccountId}")
-	 public ResponseEntity<String> checkUserId(@PathVariable("userAccountId")String userAccountId) {
+	public ResponseEntity<String> checkUserId(@PathVariable("userAccountId") String userAccountId) {
 		try {
-	        // 아이디 중복 확인을 위해 UserService의 메서드 호출
-	        boolean isExists = userService.isUserAccountIdExists(userAccountId);
-	        
-	        if (isExists) {
-	            // 아이디가 이미 존재하는 경우
-	            return ResponseEntity.status(HttpStatus.CONFLICT).body("이미 존재하는 아이디입니다.");
-	        } else {
-	            // 아이디가 존재하지 않는 경우
-	            return ResponseEntity.ok("사용할 수 있는 아이디입니다.");
-	        }
-	    } catch (Exception e) {
-	        // 예외 발생 시
-	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("서버 오류가 발생했습니다.");
-	    }
+			// 아이디 중복 확인을 위해 UserService의 메서드 호출
+			boolean isExists = userService.isUserAccountIdExists(userAccountId);
+
+			if (isExists) {
+				// 아이디가 이미 존재하는 경우
+				return ResponseEntity.status(HttpStatus.CONFLICT).body("이미 존재하는 아이디입니다.");
+			} else {
+				// 아이디가 존재하지 않는 경우
+				return ResponseEntity.ok("사용할 수 있는 아이디입니다.");
+			}
+		} catch (Exception e) {
+			// 예외 발생 시
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("서버 오류가 발생했습니다.");
+		}
 	}
-	
+
 	// 닉네임 중복 체크
 	@Operation(summary = "닉네임 중복 체크")
 	@GetMapping("/checkUsername/{nickName}")
-	 public ResponseEntity<String> checkUsername(@PathVariable("nickName")String nickName) {
+	public ResponseEntity<String> checkUsername(@PathVariable("nickName") String nickName) {
 		try {
-	        // 아이디 중복 확인을 위해 UserService의 메서드 호출
-	        boolean isExists = userService.isUserNameExists(nickName);
-	        
-	        if (isExists) {
-	            // 아이디가 이미 존재하는 경우
-	            return ResponseEntity.status(HttpStatus.CONFLICT).body("이미 존재하는 닉네임입니다.");
-	        } else {
-	            // 아이디가 존재하지 않는 경우
-	            return ResponseEntity.ok("사용할 수 있는 닉네임입니다.");
-	        }
-	    } catch (Exception e) {
-	        // 예외 발생 시
-	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("서버 오류가 발생했습니다.");
-	    }
+			// 아이디 중복 확인을 위해 UserService의 메서드 호출
+			boolean isExists = userService.isUserNameExists(nickName);
+
+			if (isExists) {
+				// 아이디가 이미 존재하는 경우
+				return ResponseEntity.status(HttpStatus.CONFLICT).body("이미 존재하는 닉네임입니다.");
+			} else {
+				// 아이디가 존재하지 않는 경우
+				return ResponseEntity.ok("사용할 수 있는 닉네임입니다.");
+			}
+		} catch (Exception e) {
+			// 예외 발생 시
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("서버 오류가 발생했습니다.");
+		}
 	}
-	 
 
 }// end class

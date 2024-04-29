@@ -21,10 +21,10 @@
             <!-- point_add 테이블에서 해당 userId에 대한 points_added의 합을 current_points에 계산하여 삽입 -->
             (SELECT COALESCE(SUM(points_added), 0) FROM point_add WHERE user_id = #{userId})
         )
-        ON DUPLICATE KEY UPDATE
         <!-- point_add 테이블에서 가장 최근에 추가된 points_added 값을 total_points와 current_points에 더함 -->
-        total_points = total_points + (SELECT points_added FROM point_add WHERE user_id = #{userId} ORDER BY added_at DESC LIMIT 1),
-        current_points = current_points + (SELECT points_added FROM point_add WHERE user_id = #{userId} ORDER BY added_at DESC LIMIT 1);
+        ON DUPLICATE KEY UPDATE
+        total_points = (SELECT COALESCE(SUM(points_added), 0) FROM point_add WHERE user_id = #{userId}),
+        current_points = (SELECT COALESCE(SUM(points_added), 0) FROM point_add WHERE user_id = #{userId});
     </insert>
     
     <!-- point_subtract 테이블에 데이터 삽입 -->
