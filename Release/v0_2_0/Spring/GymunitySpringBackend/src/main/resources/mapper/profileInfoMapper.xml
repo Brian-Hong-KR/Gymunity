@@ -88,6 +88,17 @@
 		point_subtract
 		WHERE
 		user_id = #{userId}
+		
+		UNION ALL
+
+		SELECT
+		points_adjusted AS points,
+		reason AS reason,
+		adjusted_at AS time
+		FROM
+		point_adjust
+		WHERE
+		user_id = #{userId}
 
 		ORDER BY
 		time DESC

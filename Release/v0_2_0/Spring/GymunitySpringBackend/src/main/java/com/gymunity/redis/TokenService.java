@@ -13,23 +13,23 @@ public class TokenService {
 	}// end TokenService()
 
 	// redisTemplate를 이용해서 데이터 저장
-	public void saveTokens(String userAccountId, String accessToken, String refreshToken) {
-		redisTemplate.opsForValue().set(userAccountId + ":accessToken", accessToken);
-		redisTemplate.opsForValue().set(userAccountId + ":refreshToken", refreshToken);
+	public void saveTokens(int userId, String accessToken, String refreshToken) {
+		redisTemplate.opsForValue().set(userId + ":accessToken", accessToken);
+		redisTemplate.opsForValue().set(userId + ":refreshToken", refreshToken);
 	}// end saveTokens()
 
 	// redisTemplate를 이용해서 데이터 조회
-	public Object getAccessToken(String userAccountId) {
-		return redisTemplate.opsForValue().get(userAccountId + ":accessToken");
+	public Object getAccessToken(int userId) {
+		return redisTemplate.opsForValue().get(userId + ":accessToken");
 	}// end getAccessToken()
-	public Object getRefreshToken(String userAccountId) {
-		return redisTemplate.opsForValue().get(userAccountId + ":refreshToken");
+	public Object getRefreshToken(int userId) {
+		return redisTemplate.opsForValue().get(userId + ":refreshToken");
 	}// end getRefreshToken()
 
 	// redisTemplate를 이용해서 데이터 삭제
-	public void deleteTokens(String userAccountId) {
-		redisTemplate.delete(userAccountId + ":accessToken");
-		redisTemplate.delete(userAccountId + ":refreshToken");
+	public void deleteTokens(int userId) {
+		redisTemplate.delete(userId + ":accessToken");
+		redisTemplate.delete(userId + ":refreshToken");
 	}// end deleteTokens()
 
 } // end class

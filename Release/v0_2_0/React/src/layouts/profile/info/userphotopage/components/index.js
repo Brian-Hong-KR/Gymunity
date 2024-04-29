@@ -1,5 +1,3 @@
-// React에서 백엔드 API 호출하고 사진 데이터 표시하는 코드
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { gConst } from 'layouts/gConst';
@@ -42,7 +40,6 @@ const PhotoList = () => {
     axios
       .get(`${gConst.API_BASE_URL}:8090/user/photo`, baseConfig)
       .then((response) => {
-        console.log("Received data:", response.data);
         const newRows = response.data.map((photo) => ({
           사진1: photo.imagePath1 ? (
             <>

@@ -22,9 +22,7 @@ import com.gymunity.challenge.service.VerifyService;
 import com.gymunity.common.file.RandomStringGenerator;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -33,7 +31,6 @@ public class VerifyServiceImpl implements VerifyService {
 	private final VerifyMapper verifyMapper;
 	private final ChallengeMapper challengeMapper;
 
-//	@Value("${spring.servlet.multipart.location}")
 	@Value("${react.public.verify}")
 	private String filePath;
 
@@ -124,7 +121,6 @@ public class VerifyServiceImpl implements VerifyService {
 			} else {
 				// 마지막 인증사진 업데이트 시간 가져오기
 				LocalDateTime lastUpdateDate = existingDto.getUpdateVerify();
-				log.info("aaaaaaaa {}", lastUpdateDate);
 				// 업데이트 시간이 오늘 새벽 4시 이후 일때
 				if (lastUpdateDate.isAfter(today4am)) {
 
@@ -165,6 +161,6 @@ public class VerifyServiceImpl implements VerifyService {
 	@Override
 	public void deletePhotoProcess(String photoPath, int userId) {
 		verifyMapper.deletePhoto(photoPath, userId);
-		
+
 	}// deletePhotoProcess()
 }// end class

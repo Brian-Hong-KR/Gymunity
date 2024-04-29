@@ -6,7 +6,9 @@ import java.util.Map;
 
 import com.gymunity.admin.dto.AdminEditUserDTO;
 import com.gymunity.admin.dto.UserDetails;
+import com.gymunity.admin.dto.AddPointAdjustmentDTO;
 import com.gymunity.challenge.dto.PhotoDTO;
+import com.gymunity.user.response.PointDetailResponse;
 
 public interface adminService {
 	
@@ -28,6 +30,10 @@ public interface adminService {
 
 	public int getUserIdByNickName(String nickName);
 	
+	public PointDetailResponse getPointsProcess(String userAccountId);
+	
+	public void insertOrUpdateadjustPointsProcess(AddPointAdjustmentDTO dto);
+
 	public UserDetails getUserDetails(int userId);
 	
 	public void updateNickName(int userId, String nickName);

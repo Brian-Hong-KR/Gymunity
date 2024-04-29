@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
+import com.gymunity.admin.dto.AdminEditUserDTO;
+import com.gymunity.admin.dto.UserDetails;
 import com.gymunity.admin.dto.AddPointAdjustmentDTO;
 import com.gymunity.challenge.dto.PhotoDTO;
 import com.gymunity.user.response.PointDetailResponse;
@@ -25,10 +27,18 @@ public interface adminService {
 	public Map<String, Integer> countReferrerSignUpByWeek();
 	
 	public Map<String, Map<String, Integer>> getAllDataByWeek();
+
+	public int getUserIdByNickName(String nickName);
 	
 	public PointDetailResponse getPointsProcess(String userAccountId);
 	
 	public void insertOrUpdateadjustPointsProcess(AddPointAdjustmentDTO dto);
+
+	public UserDetails getUserDetails(int userId);
+	
+	public void updateNickName(int userId, String nickName);
+	
+	public void updateIsActive(int userId);
 	
 
 }// end interface

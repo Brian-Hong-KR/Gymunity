@@ -21,7 +21,6 @@ import ChallengeDetail from "layouts/challenge/layout_detail";
 import ChallengeVerify from "layouts/challenge/layaout_verify";
 import UserManagePage from "layouts/dashboard/info/UserManagePage";
 import VerifyPage from "layouts/dashboard/info/VerifyPage";
-import ModifyPlanPage from "layouts/profile/info/ModifyPlanPage";
 import MainPage from "layouts/main";
 import Survey from "layouts/authentication/survey";
 import PlanPage from "layouts/authentication/plan";
@@ -31,8 +30,11 @@ import UserPointPage from "layouts/profile/info/userpointpage";
 import AdminInfo from "layouts/admin";
 import CustomerCreate from "layouts/profile/customer";
 import Cs from "layouts/dashboard/info/CsPage";
-import AdminVerify from "layouts/admin/verify/components";
-import EditPointPage from 'layouts/dashboard/info/EditPointPage';
+import EditPointPage from "layouts/dashboard/info/EditPointPage";
+import ReSurvey from "layouts/authentication/resurvey";
+import Replan from "layouts/authentication/replan";
+import AdminPointPage from "layouts/admin/adminpointpage";
+import AdminVerifyPage from "layouts/admin/verify";
 
 const routes = [
   {
@@ -99,7 +101,18 @@ const routes = [
     key: "adminVerify",
     route: "/admin/verify",
     icon: <Settings size="12px" />,
-    component: <AdminVerify />,
+    component: <AdminVerifyPage />,
+    noCollapse: true,
+    isAdmin: true, // 이 라인을 추가하여 라우트가 관리자용임을 명시
+  },
+
+  {
+    type: "collapse",
+    name: "AdminPointPage",
+    key: "adminPointPage",
+    route: "/admin/editpoint",
+    icon: <Settings size="12px" />,
+    component: <AdminPointPage />,
     noCollapse: true,
     isAdmin: true, // 이 라인을 추가하여 라우트가 관리자용임을 명시
   },
@@ -159,12 +172,6 @@ const routes = [
   },
 
   {
-    key: "modifyPlan",
-    route: "/modifyPlan",
-    component: <ModifyPlanPage />,
-  },
-
-  {
     key: "main",
     route: "/main",
     component: <MainPage />,
@@ -180,6 +187,18 @@ const routes = [
     key: "PlanPage",
     route: "/authentication/plan",
     component: <PlanPage />,
+  },
+
+  {
+    key: "resurvey",
+    route: "/authentication/resurvey",
+    component: <ReSurvey />,
+  },
+
+  {
+    key: "RePlan",
+    route: "/authentication/replan",
+    component: <Replan />,
   },
 
   {

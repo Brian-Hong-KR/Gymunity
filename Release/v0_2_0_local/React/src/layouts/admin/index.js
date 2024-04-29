@@ -134,17 +134,17 @@ function AdminInfo() {
       <DashboardNavbar />
       <Grid item xs={12} lg={5}>
         <SoftBox
-          display="flex"
-          justifyContent="space-between"
-          alignItems="center"
+          display='flex'
+          justifyContent='space-between'
+          alignItems='center'
           p={3}
         >
           <SoftButton
-            type="submit"
-            variant="gradient"
-            color="dark"
+            type='submit'
+            variant='gradient'
+            color='dark'
             fullWidth
-            style={{ width: "30%" }}
+            style={{ width: '30%' }}
           >
             회원 관리
           </SoftButton>

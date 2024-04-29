@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-
-// react-router-dom components
 import { Link } from "react-router-dom";
 
-// @mui material components
 import Card from "@mui/material/Card";
 import Checkbox from "@mui/material/Checkbox";
 import Modal from "@mui/material/Modal";
@@ -11,7 +8,6 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 
-// Soft UI Dashboard React components
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 import SoftInput from "components/SoftInput";
@@ -30,6 +26,8 @@ function SignUp() {
   const [privacyAgreement, setPrivacyAgreement] = useState(false);
   const [showTermsModal, setShowTermsModal] = useState(false);
   const [showPrivacyModal, setShowPrivacyModal] = useState(false);
+  const [checkedId, setCheckedId] = useState("");
+  const [checkedName, setCheckedName] = useState("");
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -76,7 +74,7 @@ function SignUp() {
     handleOpenPrivacyModal();
   };
 
-  const clearInputField = () => {
+ const clearInputField = () => {
     // 아이디 입력 필드를 비웁니다.
     setUser((prevUser) => ({ ...prevUser, userAccountId: "" }));
   };

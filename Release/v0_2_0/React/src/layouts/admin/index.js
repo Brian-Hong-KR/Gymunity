@@ -21,7 +21,6 @@ import { gConst } from 'layouts/gConst';
 import SoftButton from 'components/SoftButton';
 
 function AdminInfo() {
-  // const { size } = typography;
   const { chart, items } = reportsBarChartData;
   const config = {
     headers: {
@@ -126,7 +125,7 @@ function AdminInfo() {
           },
           {
             label: "추천인가입수",
-            color: "dark",
+            color: "error",
             data: dataReferrerSignUps,
           },
         ],
@@ -155,22 +154,22 @@ function AdminInfo() {
           </SoftButton>
 
           <SoftButton
-            type='submit'
-            variant='gradient'
-            color='dark'
+            type="submit"
+            variant="gradient"
+            color="dark"
             fullWidth
-            style={{ width: '30%' }}
-            href='/dashboard/editpoint'
+            style={{ width: "30%" }}
+            href="/admin/editpoint"
           >
             포인트 관리
           </SoftButton>
 
           <SoftButton
-            type='submit'
-            variant='gradient'
-            color='dark'
+            type="submit"
+            variant="gradient"
+            color="dark"
             fullWidth
-            style={{ width: '30%' }}
+            style={{ width: "30%" }}
           >
             CS 관리
           </SoftButton>
@@ -179,18 +178,6 @@ function AdminInfo() {
 
       <SoftBox mb={3}>
         <Grid container spacing={3}>
-          {/* <Grid item xs={12} lg={5}>
-            <ReportsBarChart
-              title="PT"
-              description={
-                <>
-                  (<strong>+23%</strong>) than last week
-                </>
-              }
-              chart={chart}
-              items={items}
-            />
-          </Grid> */}
           <Grid item xs={12} lg={7}>
             <GradientLineChart
               title="유입자 회원가입"

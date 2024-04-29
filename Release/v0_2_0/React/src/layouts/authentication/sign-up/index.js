@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-
 import Card from "@mui/material/Card";
 import Checkbox from "@mui/material/Checkbox";
 import Modal from "@mui/material/Modal";
@@ -20,7 +19,6 @@ import AuthNavbar from "examples/Navbars/AuthNavbar";
 import axios from "axios";
 import { gConst } from 'layouts/gConst';
 
-
 import { useNavigate, useLocation } from "react-router-dom";
 import PrivacyPolicyContent from "../texts/PrivacyPolicy";
 import TermsOfServiceContent from "../texts/TermsOfService";
@@ -36,7 +34,6 @@ function SignUp() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // location.state.planData가 배열인지 확인하고, 배열이면 첫 번째 요소를 사용하고, 아니면 그대로 사용
   const formData = Array.isArray(location.state?.formData)
     ? location.state.formData[0]
     : location.state?.formData;

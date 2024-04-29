@@ -105,10 +105,8 @@ function Survey() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitting", formData);
     try {
       const response = await axios.post(`${gConst.API_BASE_URL}:8090/survey`, formData);
-      console.log("Response data:", response.data);
       setPlanData({
         planName: response.data.planName,
         planDesc: response.data.planDesc,
@@ -118,7 +116,6 @@ function Survey() {
       navigate("/authentication/plan", {
         state: { formData: formData, planData: response.data },
       });
-      console.log("설문조사 후 plan 페이지 이동:", formData, planData);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -187,9 +184,15 @@ function Survey() {
               textColor="primary"
               centered
             >
-               <Tab label={<span style={{ fontSize: "14px" }}>체지방량 감소</span>} />
-               <Tab label={<span style={{ fontSize: "14px" }}>근육량 증가</span>} />
-               <Tab label={<span style={{ fontSize: "14px" }}>종합 건강</span>} />
+              <Tab
+                label={<span style={{ fontSize: "14px" }}>체지방량 감소</span>}
+              />
+              <Tab
+                label={<span style={{ fontSize: "14px" }}>근육량 증가</span>}
+              />
+              <Tab
+                label={<span style={{ fontSize: "14px" }}>종합 건강</span>}
+              />
             </Tabs>
             <SoftBox p={3} mb={1} textAlign="center">
               <SoftTypography variant="h5" fontWeight="medium" textAlign="left">

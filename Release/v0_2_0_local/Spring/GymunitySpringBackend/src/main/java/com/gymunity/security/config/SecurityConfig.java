@@ -35,13 +35,6 @@ public class SecurityConfig {
 	private final SigninServiceImpl signinServiceImpl;
 	private final TokenService tokenService;
 
-	private static SecretKey key;
-
-	@PostConstruct
-	public void init() {
-		this.key = Keys.hmacShaKeyFor(Decoders.BASE64URL.decode(JwtProperties.SECRET_KEY));
-	}
-
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
@@ -71,7 +64,6 @@ public class SecurityConfig {
 								String token = accessToken.split(" ")[1];
 								try {
 									int userId = JwtProvider.getUserId(token);
-									log.info("userId {} " + userId);
 									tokenService.deleteTokens(userId);
 								} catch (Exception e) {
 									log.error("Error parsing JWT: " + e.getMessage());

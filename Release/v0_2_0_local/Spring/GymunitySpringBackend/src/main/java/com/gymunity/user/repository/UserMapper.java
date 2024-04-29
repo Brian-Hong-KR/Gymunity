@@ -48,6 +48,8 @@ public interface UserMapper {
 	public int insertInquiries(Customer dto);
 	
 	public List<Customer> selectInquiries();
+
+	public User Namecheck(String nickName);
 	
 	public int Idcheck(String userAccountId);
 	

@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
-import typography from "assets/theme/base/typography";
 import { Card } from "@mui/material";
-import { Link } from "react-router-dom"; // react-router-dom을 사용하여 링크를 관리합니다.
+import { Link } from "react-router-dom";
 
 import BasicLayout from "layouts/authentication/components/BasicLayout";
 import AuthNavbar from "examples/Navbars/AuthNavbar";
@@ -14,7 +13,6 @@ import axios from "axios";
 import { gConst } from 'layouts/gConst';
 
 const MainPage = () => {
-  // const { d1, h2, fontWeightMedium } = typography;
   const navigate = useNavigate();
 
   const handleSurveySubmit = async () => {
@@ -55,7 +53,7 @@ const MainPage = () => {
           </SoftTypography>
           <SoftTypography variant="button" color="text" fontWeight="regular">
             2. 챌린지를 통해 다른 사람들과 같은 목표로 함께 운동해요. <br />{" "}
-               성공률에 따라 추가 보상이 지급됩니다.
+            성공률에 따라 추가 보상이 지급됩니다.
             <br /> <br />{" "}
           </SoftTypography>
           <SoftBox mt={4} mb={1}>

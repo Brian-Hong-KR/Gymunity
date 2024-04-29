@@ -91,8 +91,16 @@ const ProfileData = () => {
 
   const isLoggedIn = localStorage.getItem("isLogin") === "true";
 
-  const handleLogout = () => {
-    localStorage.clear();
+  const handleLogout = async () => {
+    try {
+      const accessToken = localStorage.getItem("Authorization");
+      if (accessToken) {
+        await axios.post("/user/logout", null, config); // config 객체 전달
+        localStorage.clear();
+      }
+    } catch (error) {
+      // 에러 처리 로직 추가
+    }
   };
 
   return (

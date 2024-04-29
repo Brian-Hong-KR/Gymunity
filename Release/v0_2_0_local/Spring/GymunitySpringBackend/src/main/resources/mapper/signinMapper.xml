@@ -44,6 +44,3 @@
 	</select>
 
 </mapper>
-<!-- 
-		 <result property="nickName" column="nick_name"/>
-		 <result property="lastLogin" column="last_login"/> -->

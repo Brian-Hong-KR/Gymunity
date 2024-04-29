@@ -18,6 +18,7 @@ import com.gymunity.user.dto.Profile;
 import com.gymunity.user.dto.Pt;
 import com.gymunity.user.dto.SignupDTO;
 import com.gymunity.user.dto.Survey;
+import com.gymunity.user.dto.SurveyData;
 import com.gymunity.user.dto.User;
 import com.gymunity.user.dto.UserInfoDTO;
 import com.gymunity.user.dto.UserUpdateDTO;
@@ -185,10 +186,10 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public CustomerResponse insertCustomerProcess(CustomerDTO dto, int userId) {
-		
+
 		User user = userMapper.selectUsersByUserId(userId);
 		Profile profile = userMapper.selectProfilesByUserId(user.getUserId());
-		
+
 		Customer customer = new Customer();
 		customer.setTitle(dto.getTitle());
 		customer.setContent(dto.getContent());
@@ -196,57 +197,62 @@ public class UserServiceImpl implements UserService {
 		customer.setUserId(userId);
 		customer.setUserEmail(profile.getUserEmail());
 		userMapper.insertInquiries(customer);
-		
-		
-		
+
 		CustomerResponse response = new CustomerResponse();
 		response.setTitle(customer.getTitle());
 		response.setContent(customer.getContent());
-		
+
 		return response;
 	}
 
 	@Override
 	public CustomerDetailResponse getCustomerProcess() {
 		CustomerDetailResponse response = new CustomerDetailResponse();
-		
-		 
+
 		// 조회된 고객 정보를 처리하고 response에 추가
-	    List<Customer> dto = userMapper.selectInquiries();
-	    
-	    
-	        response.setCs(dto);
-	       
-	        return response;
+		List<Customer> dto = userMapper.selectInquiries();
+
+		response.setCs(dto);
+
+		return response;
 	}
 
 	@Override
 	public boolean isUserAccountIdExists(String userAccountId) {
-		
+
 		User user = userMapper.selectUsersByAccountId(userAccountId);
-		boolean exists = user != null; // 사용자 정보가 존재하는 경우 true, 아니면 false   
+		boolean exists = user != null; // 사용자 정보가 존재하는 경우 true, 아니면 false
+
 		return exists;
 	}
 
 	@Override
+	public void updateSurveyProcess(SurveyData dto, int userId) {
+
+		// Survey 업데이트
+		Survey survey = new Survey();
+		survey.setUserId(userId);
+		survey.setGender(dto.getGender());
+		survey.setAge(dto.getAge());
+		survey.setGoal(dto.getGoal());
+		survey.setLevel(dto.getLevel());
+		survey.setAbnormal(dto.getAbnormal());
+		userMapper.updateSurvey(survey);
+
+		// Pt 업데이트
+		Pt pt = new Pt();
+		pt.setUserId(userId);
+		pt.setPlanName(dto.getPlanName());
+		pt.setPlanDesc(dto.getPlanDesc());
+		userMapper.updatePt(pt);
+
+	}// end updateSurveyProcess()
+
+@Override
 	public boolean isUserNameExists(String nickName) {
 		User user = userMapper.Namecheck(nickName);
 		boolean exists = user != null; 
 		return exists;
 	}
-
-
-
-
-
-
-
-
-
-
-	
-	
-	
-	
 
 }// end class

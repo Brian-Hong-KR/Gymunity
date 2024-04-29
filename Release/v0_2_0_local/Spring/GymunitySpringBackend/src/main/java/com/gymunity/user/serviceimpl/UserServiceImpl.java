@@ -251,4 +251,11 @@ public class UserServiceImpl implements UserService {
 
 	}// end updateSurveyProcess()
 
+@Override
+	public boolean isUserNameExists(String nickName) {
+		User user = userMapper.Namecheck(nickName);
+		boolean exists = user != null; 
+		return exists;
+	}
+
 }// end class

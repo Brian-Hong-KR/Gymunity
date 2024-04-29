@@ -13,9 +13,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.gymunity.redis.TokenService;
 import com.gymunity.security.jwt.JwtProperties;
+import com.gymunity.security.jwt.JwtProvider;
 import com.gymunity.security.jwt.JwtTokenFilter;
 import com.gymunity.user.serviceimpl.SigninServiceImpl;
-import com.gymunity.user.serviceimpl.UserServiceImpl;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -34,13 +34,6 @@ public class SecurityConfig {
 
 	private final SigninServiceImpl signinServiceImpl;
 	private final TokenService tokenService;
-
-	private static SecretKey key;
-
-	@PostConstruct
-	public void init() {
-		this.key = Keys.hmacShaKeyFor(Decoders.BASE64URL.decode(JwtProperties.SECRET_KEY));
-	}
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -67,16 +60,10 @@ public class SecurityConfig {
 						.logoutSuccessHandler((request, response, authentication) -> {
 							// 로그아웃 성공 시 처리 로직
 							String accessToken = request.getHeader("Authorization");
-							String refreshToken = request.getHeader("Authorization-refresh");
 							if (accessToken != null) {
 								String token = accessToken.split(" ")[1];
-								log.info("logout token : " + token);
-								log.info("refreshToken : " + refreshToken);
 								try {
-									Claims claims = Jwts.parser().verifyWith((SecretKey) key).build()
-											.parseSignedClaims(token).getPayload();
-									String userId = (String) claims.get("userAccountId");
-									log.info("userId : " + userId);
+									int userId = JwtProvider.getUserId(token);
 									tokenService.deleteTokens(userId);
 								} catch (Exception e) {
 									log.error("Error parsing JWT: " + e.getMessage());

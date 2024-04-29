@@ -23,7 +23,6 @@ import com.gymunity.user.response.SigninResponse;
 import com.gymunity.user.service.SigninService;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
@@ -91,7 +90,7 @@ public class SigninServiceImpl implements SigninService {
 					String refreshToken = JwtProvider.createRefreshToken(user.getUserId(), user.getAdminYn());
 
 					// redis 저장
-					tokenService.saveTokens(user.getUserAccountId(), accessToken, refreshToken);
+					tokenService.saveTokens(user.getUserId(), accessToken, refreshToken);
 
 					return SigninResponse.builder().userId(user.getUserId()).userAccountId(user.getUserAccountId())
 							.nickName(user.getNickName()).adminYn(user.getAdminYn()).accessToken(accessToken)

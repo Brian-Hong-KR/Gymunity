@@ -7,9 +7,12 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.gymunity.admin.dto.AdminEditUserDTO;
+import com.gymunity.admin.dto.UserDetails;
 import com.gymunity.admin.dto.AddPointAdjustmentDTO;
 import com.gymunity.admin.repository.AdminMapper;
 import com.gymunity.admin.service.adminService;
@@ -121,7 +124,13 @@ public class adminServiceImpl implements adminService {
 	@Override
 	public PointDetailResponse getPointsProcess(String userAccountId) {
 
-		PointDetailResponse response = new PointDetailResponse();
+    @Override
+    public UserDetails getUserDetails(int userId) {
+        return adminMapper.getUserDetails(userId);
+    }
+    public UserDetails getUserDetails(int userId) {
+        return adminMapper.getUserDetails(userId);
+    }
 
 		List<PointDetailDTO> dto = adminMapper.getPointsByUserAccountId(userAccountId);
 		response.setDetails(dto);
@@ -144,5 +153,27 @@ public class adminServiceImpl implements adminService {
 
 		pointMapper.adjustPointsAggr(userId);
 	}// end insertOrUpdateadjustPointsProcess()
+
+
+	@Override
+	public int getUserIdByNickName(String nickName) { // 추가
+	    return adminMapper.getUserIdByNickName(nickName);
+	}
+
+    @Override
+    public UserDetails getUserDetails(int userId) {
+        return adminMapper.getUserDetails(userId);
+    }
+
+
+    @Override
+    public void updateNickName(int userId, String nickName) {
+        adminMapper.updateNickName(userId, nickName);
+    }
+
+    @Override
+    public void updateIsActive(int userId) {
+        adminMapper.updateIsActive(userId);
+    }
 
 }// end class

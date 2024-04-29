@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.UnsupportedJwtException;
@@ -60,7 +59,6 @@ public class JwtProvider {
 	// SecretKey로 Token Parsing 키로 서명 확인(verifyWith)
 	public static Claims extractClaims(String token) throws ExpiredJwtException {
 		Claims claims = Jwts.parser().verifyWith(key).build().parseSignedClaims(token).getPayload();
-		log.info("claims: {}, {}", claims.getSubject(), claims.getExpiration());
 
 		return claims;
 	}// end extractClaims()
@@ -82,7 +80,6 @@ public class JwtProvider {
 		Date expiredDate = null;
 		try {
 			expiredDate = extractClaims(token).getExpiration();
-			log.info("expiredDate: {}", expiredDate);
 		} catch (ExpiredJwtException e) {
 			return true; // 토큰 만료 예외가 발생한 경우 만료된 것으로 판단
 		}
