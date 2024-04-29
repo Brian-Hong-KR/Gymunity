@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import SoftBox from "components/SoftBox";
@@ -13,6 +13,12 @@ import axios from "axios";
 
 const MainPage = () => {
   const navigate = useNavigate();
+  // 로컬 스토리지에서 isLogin이 없으면 false로 설정
+  useEffect(() => {
+    if (localStorage.getItem("isLogin") === null) {
+      localStorage.setItem("isLogin", "false");
+    }
+  }, []);
 
   const handleSurveySubmit = async () => {
     try {

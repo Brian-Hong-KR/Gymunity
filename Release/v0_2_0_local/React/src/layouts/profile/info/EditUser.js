@@ -2,6 +2,7 @@ import axios from "axios";
 import SoftBox from "components/SoftBox";
 import SoftButton from "components/SoftButton";
 import SoftInput from "components/SoftInput";
+import useAuth from "components/useAuth";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import React, { useEffect, useState } from "react";
@@ -10,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 const EditUser = () => {
   const navigate = useNavigate();
-  console.log("EditUser");
+  useAuth();
 
   const [users, setUsers] = useState({
     userEmail: localStorage.getItem("userEmail") || "",

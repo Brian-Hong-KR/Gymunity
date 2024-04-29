@@ -5,8 +5,10 @@ import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 import Table from "examples/Tables/Table";
 import SoftButton from "components/SoftButton";
+import useAuth from "components/useAuth";
 
 const PhotoList = () => {
+  useAuth();
   const imgStyle = {
     width: "100%",
     maxWidth: "100px",

@@ -94,7 +94,7 @@ function SignUp() {
 
     try {
       const response = await axios.get(
-        `${gConst.API_BASE_URL}:8090/checkUsername/${user.nickName}`
+        `/checkUsername/${user.nickName}`
       );
 
       if (response.status === 200) {
