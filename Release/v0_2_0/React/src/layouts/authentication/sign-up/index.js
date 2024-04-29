@@ -78,7 +78,7 @@ function SignUp() {
 
  const clearInputField = () => {
     // 아이디 입력 필드를 비웁니다.
-    setUser(prevUser => ({ ...prevUser, userAccountId: '' }));
+    setUser((prevUser) => ({ ...prevUser, userAccountId: "" }));
   };
   
   const clearNameInputField = () => {
@@ -155,9 +155,6 @@ function SignUp() {
     return fieldsToCheck.every((field) => user[field].trim() !== "");
   };
 
-
-  
-
   const onSubmit = async (e) => {
     e.preventDefault();
 
@@ -166,8 +163,6 @@ function SignUp() {
       alert("모든 입력란을 채워주세요.");
       return;
     }
-
-
 
     if (!termAgreement || !privacyAgreement) {
       alert("이용 약관 및 개인정보 수집 동의가 필요합니다.");
@@ -308,7 +303,7 @@ function SignUp() {
                 <SoftTypography
                   variant="button"
                   fontWeight="regular"
-                  onClick={handleSetTermAgreement}
+                  onClick={handleOpenTermsModal}
                   sx={{ cursor: "pointer", userSelect: "none" }}
                 >
                   이용 약관 동의 (필수)
@@ -322,7 +317,7 @@ function SignUp() {
                 <SoftTypography
                   variant="button"
                   fontWeight="regular"
-                  onClick={handleSetPrivacyAgreement}
+                  onClick={handleOpenPrivacyModal}
                   sx={{ cursor: "pointer", userSelect: "none" }}
                 >
                   개인정보 수집 및 이용 동의 (필수)
@@ -334,105 +329,65 @@ function SignUp() {
                 <SoftBox component="form" role="form" onSubmit={onSubmit}>
                   {/* Inputs and other UI elements... */}
 
-                  <SoftBox display="flex" flexDirection="column">
-                    <SoftBox mb={1} display="flex" alignItems="center">
-                      <Checkbox
-                        checked={termAgreement}
-                        onChange={handleSetTermAgreement}
-                      />
-                      <SoftTypography
-                        variant="button"
-                        fontWeight="regular"
-                        onClick={handleOpenTermsModal}
-                        sx={{ cursor: "pointer", userSelect: "none" }}
-                      >
-                        이용 약관 동의 (필수)
-                      </SoftTypography>
-                    </SoftBox>
-                    <SoftBox display="flex" alignItems="center">
-                      <Checkbox
-                        checked={privacyAgreement}
-                        onChange={handleSetPrivacyAgreement}
-                      />
-                      <SoftTypography
-                        variant="button"
-                        fontWeight="regular"
-                        onClick={handleOpenPrivacyModal}
-                        sx={{ cursor: "pointer", userSelect: "none" }}
-                      >
-                        개인정보 수집 및 이용 동의 (필수)
-                      </SoftTypography>
-                    </SoftBox>
-                  </SoftBox>
+            <Modal
+              open={showTermsModal}
+              onClose={handleCloseTermsModal}
+              aria-labelledby="terms-modal-title"
+              aria-describedby="terms-modal-description"
+            >
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  width: 400,
+                  height: 500,
+                  bgcolor: "background.paper",
+                  border: "2px solid #000",
+                  boxShadow: 24,
+                  p: 4,
+                  overflowY: "auto",
+                }}
+              >
+                <Typography id="terms-modal-title" variant="h6" component="h2">
+                  이용 약관
+                </Typography>
+                <TermsOfServiceContent />
+                <Button onClick={handleCloseTermsModal}>닫기</Button>
+              </Box>
+            </Modal>
 
-                  {/* Modal for Terms of Service */}
-                  <Modal
-                    open={showTermsModal}
-                    onClose={handleCloseTermsModal}
-                    aria-labelledby="terms-modal-title"
-                    aria-describedby="terms-modal-description"
-                  >
-                    <Box
-                      sx={{
-                        position: "absolute",
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)",
-                        width: 400,
-                        height: 500,
-                        bgcolor: "background.paper",
-                        border: "2px solid #000",
-                        boxShadow: 24,
-                        p: 4,
-                        overflowY: "auto",
-                      }}
-                    >
-                      <Typography
-                        id="terms-modal-title"
-                        variant="h6"
-                        component="h2"
-                      >
-                        이용 약관
-                      </Typography>
-                      <TermsOfServiceContent />
-                      <Button onClick={handleCloseTermsModal}>닫기</Button>
-                    </Box>
-                  </Modal>
-
-                  {/* Modal for Privacy Policy */}
-                  <Modal
-                    open={showPrivacyModal}
-                    onClose={handleClosePrivacyModal}
-                    aria-labelledby="privacy-modal-title"
-                    aria-describedby="privacy-modal-description"
-                  >
-                    <Box
-                      sx={{
-                        position: "absolute",
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)",
-                        width: 400,
-                        bgcolor: "background.paper",
-                        border: "2px solid #000",
-                        boxShadow: 24,
-                        p: 4,
-                      }}
-                    >
-                      <Typography
-                        id="privacy-modal-title"
-                        variant="h6"
-                        component="h2"
-                      >
-                        개인정보 수집 및 이용
-                      </Typography>
-                      <PrivacyPolicyContent />
-                      <Button onClick={handleClosePrivacyModal}>닫기</Button>
-                    </Box>
-                  </Modal>
-                </SoftBox>
-              </SoftBox>
-            </Card>
+            <Modal
+              open={showPrivacyModal}
+              onClose={handleClosePrivacyModal}
+              aria-labelledby="privacy-modal-title"
+              aria-describedby="privacy-modal-description"
+            >
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  width: 400,
+                  bgcolor: "background.paper",
+                  border: "2px solid #000",
+                  boxShadow: 24,
+                  p: 4,
+                }}
+              >
+                <Typography
+                  id="privacy-modal-title"
+                  variant="h6"
+                  component="h2"
+                >
+                  개인정보 수집 및 이용
+                </Typography>
+                <PrivacyPolicyContent />
+                <Button onClick={handleClosePrivacyModal}>닫기</Button>
+              </Box>
+            </Modal>
             <SoftBox mt={4} mb={1}>
               <SoftButton
                 type="submit"

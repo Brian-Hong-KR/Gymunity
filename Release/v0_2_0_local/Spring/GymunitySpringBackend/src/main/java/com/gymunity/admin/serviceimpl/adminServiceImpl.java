@@ -148,6 +148,7 @@ public class adminServiceImpl implements adminService {
 		pointMapper.adjustPointsAggr(userId);
 	}// end insertOrUpdateadjustPointsProcess()
 
+
 	@Override
 	public int getUserIdByNickName(String nickName) { // 추가
 		return adminMapper.getUserIdByNickName(nickName);
