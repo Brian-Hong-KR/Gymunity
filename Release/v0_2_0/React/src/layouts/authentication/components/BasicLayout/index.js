@@ -1,18 +1,10 @@
-// prop-types is a library for typechecking of props
 import PropTypes from "prop-types";
-
-// @mui material components
 import Grid from "@mui/material/Grid";
-
-// Soft UI Dashboard React components
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
-
-// Soft UI Dashboard React examples
-import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import PageLayout from "examples/LayoutContainers/PageLayout";
 
-function BasicLayout({ title, description, image, children }) {
+function BasicLayout({ title = "", description = "", children }) {
   return (
     <PageLayout>
       <SoftBox mx={2} my={2} pt={6} pb={10}>
@@ -56,13 +48,6 @@ function BasicLayout({ title, description, image, children }) {
   );
 }
 
-// Setting default values for the props of BasicLayout
-BasicLayout.defaultProps = {
-  title: "",
-  description: "",
-};
-
-// Typechecking props for the BasicLayout
 BasicLayout.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,

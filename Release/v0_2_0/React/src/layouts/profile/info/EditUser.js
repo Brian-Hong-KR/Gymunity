@@ -1,5 +1,5 @@
 import axios from "axios";
-import { gConst } from 'layouts/gConst';
+import { gConst } from "layouts/gConst";
 import SoftBox from "components/SoftBox";
 import SoftButton from "components/SoftButton";
 import SoftInput from "components/SoftInput";
@@ -47,7 +47,10 @@ const EditUser = () => {
 
   const info = async () => {
     await axios
-      .get(`${gConst.API_BASE_URL}:8090/user/editinfo/${localStorage.userAccountId}`, config)
+      .get(
+        `${gConst.API_BASE_URL}:8090/user/editinfo/${localStorage.userAccountId}`,
+        config
+      )
       .then((response) => {
         localStorage.setItem("userId", response.data.userId);
         // console.log(response);
@@ -76,7 +79,11 @@ const EditUser = () => {
     }
 
     try {
-      const response = await axios.put(`${gConst.API_BASE_URL}:8090/user/update`, users, config);
+      const response = await axios.put(
+        `${gConst.API_BASE_URL}:8090/user/update`,
+        users,
+        config
+      );
       localStorage.setItem("userEmail", userEmail);
       localStorage.setItem("nickName", nickName);
       navigate("/profile");
