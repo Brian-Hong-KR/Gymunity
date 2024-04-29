@@ -17,7 +17,7 @@ import BasicLayout from "layouts/authentication/components/BasicLayout";
 import AuthNavbar from "examples/Navbars/AuthNavbar";
 
 import axios from "axios";
-import { gConst } from 'layouts/gConst';
+import { gConst } from "layouts/gConst";
 
 import { useNavigate, useLocation } from "react-router-dom";
 import PrivacyPolicyContent from "../texts/PrivacyPolicy";
@@ -76,28 +76,29 @@ function SignUp() {
     handleOpenPrivacyModal();
   };
 
- const clearInputField = () => {
+  const clearInputField = () => {
     // 아이디 입력 필드를 비웁니다.
     setUser((prevUser) => ({ ...prevUser, userAccountId: "" }));
   };
-  
+
   const clearNameInputField = () => {
     // 닉네임 입력 필드를 비웁니다.
-    setUser(prevUser => ({ ...prevUser, nickName: '' }));
+    setUser((prevUser) => ({ ...prevUser, nickName: "" }));
   };
 
   // 닉네임 중복 체크
   const handleCheckName = async () => {
-
     // 입력값이 비어 있는지 확인
     if (!user.nickName.trim()) {
       alert("닉네임을 입력하세요.");
       return;
     }
 
-      try {
-      const response = await axios.get(`${gConst.API_BASE_URL}:8090/checkUsername/${user.nickName}`);
-      
+    try {
+      const response = await axios.get(
+        `${gConst.API_BASE_URL}:8090/checkUsername/${user.nickName}`
+      );
+
       if (response.status === 200) {
         alert("사용할 수 있는 닉네임입니다.");
         setCheckedName("Y");
@@ -108,7 +109,7 @@ function SignUp() {
     } catch (error) {
       if (error.response && error.response.status === 409) {
         alert("이미 존재하는 닉네임입니다.");
-        clearNameInputField(); 
+        clearNameInputField();
       } else {
         console.error("Error checking username:", error);
         alert("닉네임 중복 확인에 실패했습니다.");
@@ -117,19 +118,18 @@ function SignUp() {
     }
   };
 
-
-
   const handleCheckId = async () => {
-
     // 입력값이 비어 있는지 확인
     if (!user.userAccountId.trim()) {
       alert("아이디를 입력하세요.");
       return;
     }
 
-      try {
-      const response = await axios.get(`${gConst.API_BASE_URL}:8090/checkUserId/${user.userAccountId}`);
-      
+    try {
+      const response = await axios.get(
+        `${gConst.API_BASE_URL}:8090/checkUserId/${user.userAccountId}`
+      );
+
       if (response.status === 200) {
         alert("사용할 수 있는 아이디입니다.");
         setCheckedId("Y");
@@ -179,19 +179,24 @@ function SignUp() {
       alert("닉네임 중복 확인이 필요합니다.");
       return;
     }
-  
 
     // survey 데이터가 배열이면 첫 번째 요소를 사용하고, 배열이 아니면 그대로 사용
     // const surveyData = Array.isArray(planData) ? planData[0] : planData;
 
     try {
-      const signupResponse = await axios.post(`${gConst.API_BASE_URL}:8090/user/signup`, user);
+      const signupResponse = await axios.post(
+        `${gConst.API_BASE_URL}:8090/user/signup`,
+        user
+      );
       console.log("Registration successful:", signupResponse);
 
-      const loginResponse = await axios.post(`${gConst.API_BASE_URL}:8090/user/signin`, {
-        userAccountId: user.userAccountId,
-        password: user.password,
-      });
+      const loginResponse = await axios.post(
+        `${gConst.API_BASE_URL}:8090/user/signin`,
+        {
+          userAccountId: user.userAccountId,
+          password: user.password,
+        }
+      );
 
       // 로그인 성공 후 로컬 스토리지에 토큰 및 사용자 정보 저장
       const {
@@ -237,7 +242,6 @@ function SignUp() {
       <Card>
         <SoftBox pt={2} pb={3} px={3}>
           <SoftBox component="form" role="form" onSubmit={onSubmit}>
-            <SoftBox mb={2}></SoftBox>
             <SoftBox mb={2} display="flex" alignItems="center">
               <SoftInput
                 type="text"
@@ -279,12 +283,12 @@ function SignUp() {
                 placeholder="닉네임"
               />
 
-               <SoftButton onClick={handleCheckName} variant="text" color="dark"  >
+              <SoftButton onClick={handleCheckName} variant="text" color="dark">
                 중복 확인
                 <input type="hidden" name="checked_name" value={checkedName} />
               </SoftButton>
             </SoftBox>
-       
+
             <SoftBox mb={2}>
               <SoftInput
                 type="text"
@@ -323,11 +327,7 @@ function SignUp() {
                   개인정보 수집 및 이용 동의 (필수)
                 </SoftTypography>
               </SoftBox>
-            </SoftBox> */}
-            <Card>
-              <SoftBox pt={2} pb={3} px={3}>
-                <SoftBox component="form" role="form" onSubmit={onSubmit}>
-                  {/* Inputs and other UI elements... */}
+            </SoftBox>
 
             <Modal
               open={showTermsModal}
@@ -388,6 +388,7 @@ function SignUp() {
                 <Button onClick={handleClosePrivacyModal}>닫기</Button>
               </Box>
             </Modal>
+
             <SoftBox mt={4} mb={1}>
               <SoftButton
                 type="submit"
@@ -398,6 +399,7 @@ function SignUp() {
                 가입완료
               </SoftButton>
             </SoftBox>
+
             <SoftBox mt={3} textAlign="center">
               <SoftTypography
                 variant="button"
