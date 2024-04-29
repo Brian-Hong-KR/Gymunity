@@ -1,27 +1,15 @@
 import Grid from "@mui/material/Grid";
-import Icon from "@mui/material/Icon";
 import SoftBox from "components/SoftBox";
-import SoftTypography from "components/SoftTypography";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import GymunityNavbar from "examples/Navbars/GymunityNavbar";
-
-import typography from "assets/theme/base/typography";
-import ReportsBarChart from "examples/Charts/BarCharts/ReportsBarChart";
-import Table from "examples/Tables/Table";
-
-import { Link } from "react-router-dom"; // react-router-dom을 사용하여 링크를 관리합니다.
-
-// Data
-import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
+import { Link } from "react-router-dom"; //
 import GradientLineChart from "examples/Charts/LineCharts/GradientLineChart";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { gConst } from 'layouts/gConst';
-import SoftButton from 'components/SoftButton';
+import { gConst } from "layouts/gConst";
+import SoftButton from "components/SoftButton";
 
 function AdminInfo() {
-  const { chart, items } = reportsBarChartData;
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -49,7 +37,6 @@ function AdminInfo() {
           config
         );
         const data = response.data;
-        console.log(data);
         setAdminInfo(data);
       } catch (error) {
         console.error("Error fetching admin data:", error);
@@ -138,17 +125,17 @@ function AdminInfo() {
       <DashboardNavbar />
       <Grid item xs={12} lg={5}>
         <SoftBox
-          display='flex'
-          justifyContent='space-between'
-          alignItems='center'
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
           p={3}
         >
           <SoftButton
-            type='submit'
-            variant='gradient'
-            color='dark'
+            type="submit"
+            variant="gradient"
+            color="dark"
             fullWidth
-            style={{ width: '30%' }}
+            style={{ width: "30%" }}
           >
             회원 관리
           </SoftButton>
@@ -201,7 +188,6 @@ function AdminInfo() {
           </Grid>
         </Grid>
       </SoftBox>
-      <GymunityNavbar />
     </DashboardLayout>
   );
 }

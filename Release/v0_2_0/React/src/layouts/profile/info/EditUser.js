@@ -11,7 +11,6 @@ import { useNavigate } from "react-router-dom";
 
 const EditUser = () => {
   const navigate = useNavigate();
-  console.log("EditUser");
 
   const [users, setUsers] = useState({
     userEmail: localStorage.getItem("userEmail") || "",
@@ -24,7 +23,7 @@ const EditUser = () => {
   const config = {
     headers: {
       "Content-Type": "application/json",
-      Authorization: `${localStorage.getItem("Authorization")}`, // Bearer 토큰 사용 예
+      Authorization: `${localStorage.getItem("Authorization")}`,
       "Authorization-refresh": localStorage.getItem("Authorization-refresh"),
     },
   };
@@ -53,7 +52,6 @@ const EditUser = () => {
       )
       .then((response) => {
         localStorage.setItem("userId", response.data.userId);
-        // console.log(response);
         setUsers((prev) => {
           return { ...prev, ...response.data, password: "" };
         });
@@ -69,9 +67,6 @@ const EditUser = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-
-    // 로그 추가: 사용자 정보 확인
-    console.log("전송할 사용자 정보:", users);
 
     if (!password) {
       alert("비밀번호를 입력하세요.");

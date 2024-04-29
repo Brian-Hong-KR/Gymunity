@@ -188,7 +188,6 @@ function SignUp() {
         `${gConst.API_BASE_URL}:8090/user/signup`,
         user
       );
-      console.log("Registration successful:", signupResponse);
 
       const loginResponse = await axios.post(
         `${gConst.API_BASE_URL}:8090/user/signin`,

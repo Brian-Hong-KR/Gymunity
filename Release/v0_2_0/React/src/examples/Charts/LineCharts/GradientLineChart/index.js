@@ -1,28 +1,19 @@
 import { useRef, useEffect, useState, useMemo } from "react";
-
-// porp-types is a library for typechecking of props
 import PropTypes from "prop-types";
-
-// react-chartjs-2 components
 import { Line } from "react-chartjs-2";
-
-// @mui material components
 import Card from "@mui/material/Card";
-
-// Soft UI Dashboard React components
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
-
-// Soft UI Dashboard React helper functions
 import gradientChartLine from "assets/theme/functions/gradientChartLine";
-
-// GradientLineChart configurations
 import configs from "examples/Charts/LineCharts/GradientLineChart/configs";
-
-// Soft UI Dashboard React base styles
 import colors from "assets/theme/base/colors";
 
-function GradientLineChart({ title, description, height, chart }) {
+function GradientLineChart({
+  title = "",
+  description = "",
+  height = "19.125rem",
+  chart,
+}) {
   const chartRef = useRef(null);
   const [chartData, setChartData] = useState({});
   const { data, options } = chartData;
@@ -41,7 +32,9 @@ function GradientLineChart({ title, description, height, chart }) {
           maxBarThickness: 6,
           backgroundColor: gradientChartLine(
             chartRef.current.children[0],
-            colors[dataset.color] ? colors[dataset.color || "dark"].main : colors.dark.main
+            colors[dataset.color]
+              ? colors[dataset.color || "dark"].main
+              : colors.dark.main
           ),
         }))
       : [];
@@ -59,7 +52,12 @@ function GradientLineChart({ title, description, height, chart }) {
             </SoftBox>
           )}
           <SoftBox mb={2}>
-            <SoftTypography component="div" variant="button" fontWeight="regular" color="text">
+            <SoftTypography
+              component="div"
+              variant="button"
+              fontWeight="regular"
+              color="text"
+            >
               {description}
             </SoftTypography>
           </SoftBox>
@@ -79,14 +77,6 @@ function GradientLineChart({ title, description, height, chart }) {
   return title || description ? <Card>{renderChart}</Card> : renderChart;
 }
 
-// Setting default values for the props of GradientLineChart
-GradientLineChart.defaultProps = {
-  title: "",
-  description: "",
-  height: "19.125rem",
-};
-
-// Typechecking props for the GradientLineChart
 GradientLineChart.propTypes = {
   title: PropTypes.string,
   description: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
