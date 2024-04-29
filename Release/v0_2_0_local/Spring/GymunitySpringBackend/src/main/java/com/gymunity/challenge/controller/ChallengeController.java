@@ -50,9 +50,7 @@ public class ChallengeController {
 	public ResponseEntity<Map<String, Object>> listExecute(@PathVariable("currentPage") int currentPage) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
-
-		log.info("aaabbbb:{}", userId);
-		
+		log.info("list_userId :{}", userId);
 		
 		Map<String, Object> map = new HashMap<>();
 		int totalRecord = challengeService.countProcess();
@@ -68,7 +66,6 @@ public class ChallengeController {
 		if (userId != 0) {
 			map.put("joinList", challengeService.joinListProcess(userId));
 		}
-		log.info("aaabbbb:{}", map.get("userId"));
 		log.info("challengeList:{}", map.get("challengeList"));
 		log.info("joinList:{}", map.get("joinList"));
 		return ResponseEntity.ok(map);
@@ -86,8 +83,8 @@ public class ChallengeController {
 		Challenge challenge = challengeService.detailChallengeProcess(chId);
 		map.put("challengeDetail", challenge);
 
-		List<ProfileDTO> joinList = challengeService.joinListProcess(userId);
-		map.put("joinList", joinList);
+		List<ProfileDTO> joinChIdList = challengeService.joinChIdListProcess(userId);
+		map.put("joinChIdList", joinChIdList);
 
 		return ResponseEntity.ok(map);
 	}// end detailChallenge()
@@ -100,7 +97,8 @@ public class ChallengeController {
 		Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
 		// 챌린지 생성 로직에 userId를 전달
 		ChallengeCreateResponse response = challengeService.createChallengeProcess(challengeDTO, userId);
-
+		
+		
 		return ResponseEntity.ok(response);
 	}// end createChallenge()
 
@@ -113,7 +111,6 @@ public class ChallengeController {
 		Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
 		challengeService.joinChallengeProcess(chId, userId);
 //		log.info("challengeList:{}", map.get("challengeList"));
-
 		return ResponseEntity.ok("챌린지가 참여되었습니다.");
 	}// end joinChallenge()
 

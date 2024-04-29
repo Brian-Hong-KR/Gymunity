@@ -19,7 +19,9 @@ public interface ChallengeMapper {
 	
 	public List<Challenge> list(PageDTO pv);
 	
-	public List<ProfileDTO> joinList(int userId);
+	public List<Challenge> joinList(int userId);
+	
+	public List<ProfileDTO> joinChIdList(int userId);
 	
 	public int insertChallenges(Challenge dto);
 
@@ -40,6 +42,9 @@ public interface ChallengeMapper {
 
 	public int countMembersByUserIdAndChId(@Param("chId") int chId, @Param("userId") int userId);
 
+	//챌린지 삭제
 	public void deleteChallenges(int chId);
+	
+	public void updateProfileFinished(@Param("chId") int chId, @Param("userId") int userId);
 
 }// end class

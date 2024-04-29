@@ -44,9 +44,26 @@
 	<select id="count" resultType="int">
 		SELECT COUNT(*) FROM challenges
 	</select>
+	
+	<!-- 참가중인 챌린지 리스트 불러오기-->
+	<select id="joinList" resultType="Challenge" parameterType="int">
+		SELECT c.*, u.nick_name, u.grade_name, u.admin_yn
+		FROM challenges c
+		JOIN users u ON c.user_id = u.user_id
+		WHERE c.ch_id IN (
+			SELECT ch_id1 
+			FROM profiles
+			WHERE user_id = #{userId}
+			UNION
+			SELECT ch_id2
+			FROM profiles
+			WHERE user_id = #{userId}
+			)
+		ORDER BY c.ch_id DESC
+	  </select>
 
 	<!-- 참가중인 챌린지id 리스트 불러오기-->
-	<select id="joinList" resultType="ProfileDTO" parameterType="int">
+	<select id="joinChIdList" resultType="ProfileDTO" parameterType="int">
 		SELECT ch_id1, ch_id2
 		FROM profiles
 		WHERE user_id=#{userId}
@@ -128,6 +145,18 @@
 		DELETE FROM challenges
 		WHERE ch_id=#{chId}
 	</delete>
+<<<<<<< Updated upstream
 
 
+=======
+	<!-- profile 테이블 ch_id 업데이트-->
+    <update id="updateProfileFinished">
+	    UPDATE profiles
+	    SET
+	        ch_id1 = CASE WHEN ch_id1 = #{chId} THEN 0 ELSE ch_id1 END,
+	        ch_id2 = CASE WHEN ch_id2 = #{chId} THEN 0 ELSE ch_id2 END
+	    WHERE user_id = #{userId}
+	        AND (ch_id1 = #{chId} OR ch_id2 = #{chId})
+	</update>
+>>>>>>> Stashed changes
 </mapper>
