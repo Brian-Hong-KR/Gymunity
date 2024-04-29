@@ -24,7 +24,7 @@ public class CustomUserDetails implements UserDetails {
 		this.user = user;
 		this.userId = user.getUserId();
 		this.adminYn = user.getAdminYn();
-		this.authorities = AuthorityUtils.createAuthorityList(user.getAdminYn()); //진
+		this.authorities = AuthorityUtils.createAuthorityList(user.getAdminYn());
 	}
 
 	public User getUser() {

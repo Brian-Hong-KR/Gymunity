@@ -1,6 +1,5 @@
 package com.gymunity.user.serviceimpl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -33,9 +32,7 @@ import com.gymunity.user.response.SignupResponse;
 import com.gymunity.user.service.UserService;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -45,7 +42,7 @@ public class UserServiceImpl implements UserService {
 	private final PointMapper pointMapper;
 	private final PasswordEncoder passwordEncoder;
 	private final PointService pointService;
-	 private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+//	private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
 	// 유입자
 	@Override
@@ -192,10 +189,10 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public CustomerResponse insertCustomerProcess(CustomerDTO dto, int userId) {
-		
+
 		User user = userMapper.selectUsersByUserId(userId);
 		Profile profile = userMapper.selectProfilesByUserId(user.getUserId());
-		
+
 		Customer customer = new Customer();
 		customer.setTitle(dto.getTitle());
 		customer.setContent(dto.getContent());
@@ -203,43 +200,38 @@ public class UserServiceImpl implements UserService {
 		customer.setUserId(userId);
 		customer.setUserEmail(profile.getUserEmail());
 		userMapper.insertInquiries(customer);
-		
-		
-		
+
 		CustomerResponse response = new CustomerResponse();
 		response.setTitle(customer.getTitle());
 		response.setContent(customer.getContent());
-		
+
 		return response;
 	}
 
 	@Override
 	public CustomerDetailResponse getCustomerProcess() {
 		CustomerDetailResponse response = new CustomerDetailResponse();
-		
-		 
+
 		// 조회된 고객 정보를 처리하고 response에 추가
-	    List<Customer> dto = userMapper.selectInquiries();
-	    
-	    
-	        response.setCs(dto);
-	       
-	        return response;
+		List<Customer> dto = userMapper.selectInquiries();
+
+		response.setCs(dto);
+
+		return response;
 	}
 
 	@Override
 	public boolean isUserAccountIdExists(String userAccountId) {
-		
+
 		User user = userMapper.selectUsersByAccountId(userAccountId);
 		boolean exists = user != null; // 사용자 정보가 존재하는 경우 true, 아니면 false
-		    
+
 		return exists;
 	}
-	
+
 	@Override
 	public void updateSurveyProcess(SurveyData dto, int userId) {
-		log.info("aaaa{} bbb{}", dto.getPlanDesc(), dto.getPlanName());
-			
+
 		// Survey 업데이트
 		Survey survey = new Survey();
 		survey.setUserId(userId);
@@ -249,15 +241,14 @@ public class UserServiceImpl implements UserService {
 		survey.setLevel(dto.getLevel());
 		survey.setAbnormal(dto.getAbnormal());
 		userMapper.updateSurvey(survey);
-		
+
 		// Pt 업데이트
 		Pt pt = new Pt();
 		pt.setUserId(userId);
 		pt.setPlanName(dto.getPlanName());
 		pt.setPlanDesc(dto.getPlanDesc());
-		log.info("aaaa{} bbb{}", pt.getPlanDesc(), pt.getPlanName());
 		userMapper.updatePt(pt);
-		
+
 	}// end updateSurveyProcess()
 
 }// end class

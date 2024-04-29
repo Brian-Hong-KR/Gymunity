@@ -30,9 +30,7 @@ import com.gymunity.user.service.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @CrossOrigin("*")
 @RestController
 @RequiredArgsConstructor
@@ -133,7 +131,6 @@ public class UserController {
 	public void resurvey(@RequestBody SurveyData dto) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Integer userId = (Integer) authentication.getPrincipal();
-		log.info("aaaaA{}", userId);
 		
 		userService.updateSurveyProcess(dto, userId);
 	}// end updateUser()

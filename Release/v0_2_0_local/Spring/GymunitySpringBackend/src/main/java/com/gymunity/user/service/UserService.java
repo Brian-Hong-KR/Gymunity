@@ -1,7 +1,6 @@
 package com.gymunity.user.service;
 
 import com.gymunity.user.dto.CheckUserIdPassword;
-import com.gymunity.user.dto.Customer;
 import com.gymunity.user.dto.CustomerDTO;
 import com.gymunity.user.dto.SignupDTO;
 import com.gymunity.user.dto.SurveyData;
