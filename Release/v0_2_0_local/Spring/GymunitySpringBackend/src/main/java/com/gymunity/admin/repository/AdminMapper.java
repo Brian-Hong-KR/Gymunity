@@ -38,6 +38,7 @@ public interface AdminMapper {
 	// 포인트 조회
 	public List<PointDetailDTO> getPointsByUserAccountId(String userAccountId);
 
+	// 회원 수정
 	public int getUserIdByNickName(@Param("nickName") String nickName);
 	
 	public UserDetails getUserDetails(@Param("userId") int userId);
@@ -45,6 +46,6 @@ public interface AdminMapper {
 	public void updateNickName(@Param("userId") int userId, @Param("nickName") String nickName);
 	
 	public void updateIsActive(@Param("userId") int userId);
-
-
+	
+	public UserDetails Namecheck(String nickName);
 }

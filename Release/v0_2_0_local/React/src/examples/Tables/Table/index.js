@@ -38,6 +38,7 @@ import typography from "assets/theme/base/typography";
 import borders from "assets/theme/base/borders";
 
 function Table({ columns, rows }) {
+  
   const { light } = colors;
   const { size, fontWeightBold } = typography;
   const { borderWidth } = borders;
@@ -67,9 +68,9 @@ function Table({ columns, rows }) {
         pl={align === "left" ? pl : 3}
         pr={align === "right" ? pr : 3}
         textAlign={align}
-        fontSize={size.xxs}
+        fontSize="20px"
         fontWeight={fontWeightBold}
-        color="secondary"
+        color="dark"
         opacity={0.7}
         borderBottom={`${borderWidth[1]} solid ${light.main}`}
       >
@@ -114,7 +115,7 @@ function Table({ columns, rows }) {
             <SoftTypography
               variant="button"
               fontWeight="regular"
-              color="secondary"
+              color="dark"
               sx={{ display: "inline-block", width: "max-content" }}
             >
               {row[name]}

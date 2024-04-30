@@ -155,7 +155,7 @@
 	<!-- 고객 문의 테이블 -->
 	<select id="selectInquiries" parameterType="Customer">
 		SELECT inquiry_title as title, inquiry_content as content, inquiry_date as inquiryDate, user_email as userEmail
-		FROM inquiries;
+		FROM inquiries ORDER BY inquiry_date DESC;
 	</select>
 	
 	<!-- 닉네임 중복 체크 -->

@@ -134,11 +134,11 @@ public class adminServiceImpl implements adminService {
 
 	@Override
 	public void insertOrUpdateadjustPointsProcess(AddPointAdjustmentDTO dto) {
-
+		
 		User user = userMapper.selectUsersByAccountId(dto.getUserAccountId());
 
 		int userId = user.getUserId();
-
+		
 		PointAdjust pointAdjust = new PointAdjust();
 		pointAdjust.setUserId(userId);
 		pointAdjust.setPointsAdjusted(dto.getPointsAdjusted());
@@ -151,7 +151,7 @@ public class adminServiceImpl implements adminService {
 
 	@Override
 	public int getUserIdByNickName(String nickName) { // 추가
-		return adminMapper.getUserIdByNickName(nickName);
+	    return adminMapper.getUserIdByNickName(nickName);
 	}
 
 	@Override
@@ -159,14 +159,21 @@ public class adminServiceImpl implements adminService {
 		return adminMapper.getUserDetails(userId);
 	}
 
-	@Override
-	public void updateNickName(int userId, String nickName) {
-		adminMapper.updateNickName(userId, nickName);
-	}
 
-	@Override
-	public void updateIsActive(int userId) {
-		adminMapper.updateIsActive(userId);
-	}
+    @Override
+    public void updateNickName(int userId, String nickName) {
+        adminMapper.updateNickName(userId, nickName);
+    }
 
+    @Override
+    public void updateIsActive(int userId) {
+        adminMapper.updateIsActive(userId);
+    }
+    
+	@Override
+	public boolean isUserNameExists(String nickName) {
+		UserDetails user = adminMapper.Namecheck(nickName);
+		boolean exists = user != null; 
+		return exists;
+	}
 }// end class

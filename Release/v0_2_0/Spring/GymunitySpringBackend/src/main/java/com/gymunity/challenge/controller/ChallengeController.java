@@ -1,6 +1,5 @@
 package com.gymunity.challenge.controller;
 
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,17 +15,13 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gymunity.challenge.dto.Challenge;
 import com.gymunity.challenge.dto.ChallengeCreateDTO;
 import com.gymunity.challenge.response.ChallengeCreateResponse;
 import com.gymunity.challenge.service.ChallengeService;
-import com.gymunity.security.config.CustomUserDetails;
-import com.gymunity.security.jwt.JwtProvider;
 import com.gymunity.challenge.controller.ChallengeController;
 import com.gymunity.challenge.dto.ProfileDTO;
 import com.gymunity.challenge.dto.PageDTO;
@@ -82,7 +77,6 @@ public class ChallengeController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
 
-		// 챌린지 상세 정보 가져오기
 		Challenge challenge = challengeService.detailChallengeProcess(chId);
 		map.put("challengeDetail", challenge);
 
@@ -100,15 +94,12 @@ public class ChallengeController {
 		Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
 		// 챌린지 생성 로직에 userId를 전달
 		ChallengeCreateResponse response = challengeService.createChallengeProcess(challengeDTO, userId);
-		
-		
 		return ResponseEntity.ok(response);
 	}// end createChallenge()
 
 	// 챌린지 참가
 	@Operation(summary = "챌린지 참가")
 	@PostMapping("/challenge/join/{chId}")
-//	public ResponseEntity<Object> joinChallenge(@RequestBody int chId) {
 	public ResponseEntity<String> joinChallenge(@PathVariable("chId") int chId) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출

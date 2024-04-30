@@ -147,7 +147,7 @@
 	</delete>
 
 	<!-- 챌린지 삭제 또는 종료 시 profile 테이블 ch_id 업데이트-->
-    <update id="updateProfileFinished">
+    <update id="updateProfileFinished" parameterType="int">
 	    UPDATE profiles
 	    SET
 	        ch_id1 = CASE WHEN ch_id1 = #{chId} THEN 0 ELSE ch_id1 END,
