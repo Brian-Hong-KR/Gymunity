@@ -8,6 +8,7 @@ import SoftTypography from "components/SoftTypography";
 import SoftInput from "components/SoftInput";
 import Table from "examples/Tables/Table";
 import typography from "assets/theme/base/typography";
+import { gConst } from "layouts/gConst";
 
 const AdminPointPage = () => {
   const config = {
@@ -47,7 +48,7 @@ const AdminPointPage = () => {
   const getPointsHistoryByAccountId = async () => {
     try {
       const response = await axios.get(
-        `/admin/points/history/${userAccountId}`,
+        `${gConst.API_BASE_URL}:8090/admin/points/history/${userAccountId}`,
         config
       );
       const formattedRows = response.data.details.map((item) => ({
@@ -74,7 +75,7 @@ const AdminPointPage = () => {
   const adjustPoints = async () => {
     try {
       await axios.post(
-        "/admin/points/adjust",
+        `${gConst.API_BASE_URL}:8090/admin/points/adjust`,
         {
           userAccountId,
           pointsAdjusted: pointAdjust,
