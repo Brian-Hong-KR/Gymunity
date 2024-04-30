@@ -30,6 +30,8 @@ function ChallengeDetail() {
   const { chId } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [successMessage, setSuccessMessage] = useState("");
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const challengeDetail = useSelector(
     (state) => state.challenge.challengeDetail
@@ -60,7 +62,10 @@ function ChallengeDetail() {
 
   const { image, category, grade, verifyTerm, remainingDays } =
     DataConverter(challengeDetail);
-  const [currentPage, setCurrentPage] = useState(1); // currentPage 상태 추가
+
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [currentPage, setCurrentPage] = useState(null); // currentPage 상태 추가
 
   useEffect(() => {
     dispatch(challengeActions.getChallengeDetail(chId));
@@ -622,13 +627,18 @@ function ChallengeDetail() {
                 >
                   참여하기
                 </SoftButton>
-                {showJoinAlert && (
-                  <AlertComponent
-                    message="참여 완료! 챌린지를 끝까지 완수해보세요."
-                    color="success"
-                    onClose={handleAlertClose}
-                  />
-                )}
+                {successMessage && (
+                    <SoftBox
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                      }}
+                    >
+                      <SoftAlert color="success">{successMessage}</SoftAlert>
+                    </SoftBox>
+                  )}
               </>
             ) : null}
           </SoftBox>
