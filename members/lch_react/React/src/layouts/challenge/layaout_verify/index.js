@@ -97,10 +97,17 @@ function ChallengeVerify() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <div style={{ marginBottom: "30px" }}></div>{" "}
-      {/* 헤더와 카드 사이 간격 조정 */}
+
+      <SoftBox my={2} textAlign="center">
+        <SoftTypography variant="h4" fontWeight="bold">
+          챌린지 인증
+        </SoftTypography>
+    </SoftBox>
+
+
+     
       <Card style={{ textAlign: "center" }}>
-        <SoftBox mb={2} style={{ width: "400px", margin: "0 auto" }}>
+        <SoftBox p={2} mb={2} style={{ width: "400px", margin: "0 auto" }}>
           <SoftBox mb={1} ml={1.5}>
             <SoftTypography component="label">
               첫 번째 인증사진을 등록하세요.
@@ -112,10 +119,15 @@ function ChallengeVerify() {
             accept="image/*"
             onChange={handleFileChange}
             placeholder="파일 선택"
+            style={{ marginTop: "8px" }}
           />
         </SoftBox>
 
-        <SoftBox mb={2} style={{ width: "400px", margin: "0 auto" }}>
+        <div style={{ margin: "0 auto", width: "80%" }}>
+          <hr style={{ borderTop: "1px solid #e0e0e0" }} />
+        </div>
+
+        <SoftBox p={2} mb={3} style={{ width: "400px", margin: "0 auto" }}>
           <SoftBox mb={1} ml={1.5}>
             <SoftTypography
               component="label"
@@ -131,6 +143,7 @@ function ChallengeVerify() {
             accept="image/*"
             placeholder="파일 선택"
             onChange={handleFileChange}
+            style={{ marginTop: "8px" }}
           />
         </SoftBox>
 
@@ -138,7 +151,7 @@ function ChallengeVerify() {
           <SoftButton
             type="submit"
             variant="gradient"
-            color="info"
+            color="dark"
             fullWidth
             onClick={handleUpload}
           >
