@@ -102,7 +102,11 @@ const ProfileData = () => {
     try {
       const accessToken = localStorage.getItem("Authorization");
       if (accessToken) {
-        await axios.post("/user/logout", null, config); // config 객체 전달
+        await axios.post(
+          `${gConst.API_BASE_URL}:8090/user/logout`,
+          null,
+          config
+        ); // config 객체 전달
         localStorage.clear();
       }
     } catch (error) {

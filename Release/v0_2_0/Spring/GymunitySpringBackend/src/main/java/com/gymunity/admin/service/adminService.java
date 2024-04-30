@@ -39,5 +39,7 @@ public interface adminService {
 	public void updateIsActive(int userId);
 	
 	public boolean isUserNameExists(String nickName);
+	
+	public int getUserIdByNickName(String nickName);
 
 }// end interface

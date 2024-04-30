@@ -1,27 +1,28 @@
-// prop-types is a library for typechecking of props
 import PropTypes from "prop-types";
-
-// @mui material components
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 import Icon from "@mui/material/Icon";
-
-// Soft UI Dashboard React components
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 import { useNavigate } from "react-router-dom";
 
 function MiniStatisticsCard({
-  bgColor,
-  title,
-  text,
+  bgColor = "white",
+  title = {
+    fontWeight: "medium",
+    text: "",
+  },
+  text = "",
   count,
-  percentage,
+  percentage = {
+    color: "success",
+    text: "",
+  },
   icon,
-  direction,
-  navigateTo, // 추가한부분(민호)
+  direction = "right",
+  navigateTo, // 추가한부분
 }) {
-  const navigate = useNavigate(); // 추가한부분(민호)
+  const navigate = useNavigate(); // 추가한부분
 
   const handleClick = () => {
     if (navigateTo) {
@@ -118,21 +119,6 @@ function MiniStatisticsCard({
     </Card>
   );
 }
-
-// Setting default values for the props of MiniStatisticsCard
-MiniStatisticsCard.defaultProps = {
-  bgColor: "white",
-  title: {
-    fontWeight: "medium",
-    text: "",
-  },
-  text: "", // 추가된 부분
-  percentage: {
-    color: "success",
-    text: "",
-  },
-  direction: "right",
-};
 
 // Typechecking props for the MiniStatisticsCard
 MiniStatisticsCard.propTypes = {

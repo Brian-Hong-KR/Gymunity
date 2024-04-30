@@ -1,6 +1,6 @@
 package com.gymunity.security.config;
 
-import javax.crypto.SecretKey;
+import java.util.Arrays;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,18 +10,14 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.gymunity.redis.TokenService;
-import com.gymunity.security.jwt.JwtProperties;
 import com.gymunity.security.jwt.JwtProvider;
 import com.gymunity.security.jwt.JwtTokenFilter;
 import com.gymunity.user.serviceimpl.SigninServiceImpl;
-
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.io.Decoders;
-import io.jsonwebtoken.security.Keys;
-import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -36,9 +32,25 @@ public class SecurityConfig {
 	private final TokenService tokenService;
 
 	@Bean
+	public CorsConfigurationSource corsConfigurationSource() {
+		CorsConfiguration config = new CorsConfiguration();
+		config.setAllowCredentials(true); // 쿠키나 인증을 사용하는 요청 허용
+		config.addAllowedOrigin("http://192.168.0.20:3000"); // 프론트엔드 서버 주소 명시
+		config.addAllowedHeader("*"); // 모든 헤더 허용
+		config.addAllowedMethod("*"); // 모든 HTTP 메소드 허용
+		config.setExposedHeaders(Arrays.asList("Authorization", "Authorization-refresh"));
+
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", config); // 모든 경로에 대해 CORS 설정 적용
+		return source;
+	}
+
+	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-		http
+		http.cors() // CORS 설정 활성화
+				.and()
+
 				// csrf() : Cross Site Request Forgery로 사이트간 위조 요청으로 사용자가 위조 요청을 보내는 것을
 				// 의미한다.(정상적인 사용자가 의도치 않게)
 				// http.csrf((csrf) -> csrf.disable());
