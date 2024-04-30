@@ -86,19 +86,20 @@
         ]]> 
     </insert>
 
-	<!-- 챌린지 생성 또는 참가 시 profile 테이블 ch_id 업데이트-->
-	<update id="updateProfile" parameterType="int">
-		UPDATE profiles
-		SET
-		ch_id1 = CASE
-		WHEN ch_id1 = 0 THEN #{chId}
-		ELSE ch_id1
-		END,
-		ch_id2 = CASE
-		WHEN ch_id2 = 0 THEN #{chId}
-		ELSE ch_id2
-		END
-		WHERE user_id = #{userId}
+	<!-- 챌린지 생성 또는 참가 시 profile 테이블 ch_id 삽입-->
+	<update id="updateChIdInProfiles" parameterType="int">
+    UPDATE profiles
+    SET
+        ch_id1 = CASE
+                    WHEN ch_id1 = 0 THEN #{chId}
+                    ELSE ch_id1
+                 END,
+        ch_id2 = CASE
+                    WHEN ch_id1 != 0 AND ch_id2 = 0 THEN #{chId}
+                    WHEN ch_id1 = 0 AND ch_id2 != 0 THEN ch_id2
+                    ELSE ch_id2
+                 END
+    WHERE user_id = #{userId} AND (ch_id1 = 0 OR ch_id2 = 0)
 	</update>
 
 	<!-- 업데이트한 행의 수를 불러오기 -->
@@ -146,13 +147,13 @@
 		WHERE ch_id=#{chId}
 	</delete>
 
-	<!-- 챌린지 삭제 또는 종료 시 profile 테이블 ch_id 업데이트-->
-    <update id="updateProfileFinished" parameterType="int">
-	    UPDATE profiles
-	    SET
-	        ch_id1 = CASE WHEN ch_id1 = #{chId} THEN 0 ELSE ch_id1 END,
-	        ch_id2 = CASE WHEN ch_id2 = #{chId} THEN 0 ELSE ch_id2 END
-	    WHERE ch_id1 = #{chId} OR ch_id2 = #{chId}
+	<!-- 챌린지 삭제 또는 종료 시 profile 테이블 ch_id 삭제-->
+	<update id="updateProfileFinished" parameterType="int">
+    	UPDATE profiles
+    	SET
+        	ch_id1 = CASE WHEN ch_id1 = #{chId} THEN 0 ELSE ch_id1 END,
+        	ch_id2 = CASE WHEN ch_id2 = #{chId} THEN 0 ELSE ch_id2 END
+        WHERE ch_id1 = #{chId} OR ch_id2 = #{chId}
 	</update>
 	
 	<!-- 챌린지 proceed 상태 변경-->
