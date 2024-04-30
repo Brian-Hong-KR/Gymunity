@@ -157,6 +157,7 @@ function AdminInfo() {
             color="dark"
             fullWidth
             style={{ width: "30%" }}
+            href="/admin/cs"
           >
             CS 관리
           </SoftButton>

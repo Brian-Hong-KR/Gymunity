@@ -35,6 +35,7 @@ import ReSurvey from "layouts/authentication/resurvey";
 import Replan from "layouts/authentication/replan";
 import AdminPointPage from "layouts/admin/adminpointpage";
 import AdminVerifyPage from "layouts/admin/verify";
+import AdminCsPage from "layouts/admin/admincspage";
 
 const routes = [
   {
@@ -113,6 +114,17 @@ const routes = [
     route: "/admin/editpoint",
     icon: <Settings size="12px" />,
     component: <AdminPointPage />,
+    noCollapse: true,
+    isAdmin: true, // 이 라인을 추가하여 라우트가 관리자용임을 명시
+  },
+
+  {
+    type: "collapse",
+    name: "AdminCsPage",
+    key: "adminCsPage",
+    route: "/admin/cs",
+    icon: <Settings size="12px" />,
+    component: <AdminCsPage />,
     noCollapse: true,
     isAdmin: true, // 이 라인을 추가하여 라우트가 관리자용임을 명시
   },
@@ -203,7 +215,7 @@ const routes = [
 
   {
     key: "editUser",
-    route: "/profile/editUser",
+    route: "/profile/edituser",
     component: <EditUser />,
   },
 

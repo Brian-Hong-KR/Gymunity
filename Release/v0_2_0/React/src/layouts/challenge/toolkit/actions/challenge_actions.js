@@ -1,6 +1,7 @@
 import axios from "axios";
 // import { gConst } from 'layouts/gConst';
 import { challengeReducers } from "../createSlice/challenge_createSlice";
+import { gConst } from "layouts/gConst";
 
 const config = {
   headers: {
@@ -16,7 +17,7 @@ function getChallengeListAsync(currentPage) {
   return async (dispatch) => {
     try {
       const response = await axios.get(
-        `/challenge/list/${currentPage}`,
+        `${gConst.API_BASE_URL}:8090/challenge/list/${currentPage}`,
         config
       );
 
@@ -49,7 +50,7 @@ function getChallengeListAsync(currentPage) {
 function getChallengeCreate(formData) {
   return async () => {
     await axios
-      .post(`/challenge/create`, formData, config)
+      .post(`${gConst.API_BASE_URL}:8090/challenge/create`, formData, config)
       .then((response) => response.data);
   };
 }
@@ -59,7 +60,8 @@ function getChallengeJoin(chId) {
   return async () => {
     try {
       const response = await axios.post(
-        `${url}/challenge/join/${chId}`,
+        // `${url}/challenge/join/${chId}`,
+        `${gConst.API_BASE_URL}:8090/challenge/join/${chId}`,
         config
       );
       // console.log("parsedChId: ", typeof parsedChId);
@@ -75,7 +77,7 @@ function getChallengeJoin(chId) {
 function getChallengeDetail(chId) {
   return async (dispatch) => {
     const data = await axios
-      .get(`/challenge/detail/${chId}`, config)
+      .get(`${gConst.API_BASE_URL}:8090/challenge/detail/${chId}`, config)
       .then((response) => response.data);
     dispatch(challengeReducers.getChallengeDetail({ data }));
   };
@@ -85,7 +87,10 @@ function getChallengeDetail(chId) {
 function getChallengeDownload(upload) {
   return async (dispatch) => {
     const data = await axios
-      .get(`/challenge/contentdownload/${upload}`, config)
+      .get(
+        `${gConst.API_BASE_URL}:8090/challenge/contentdownload/${upload}`,
+        config
+      )
       .then((response) => response.data);
     // dispatch(challengeActions.getChallengeDownload(data));
     return data;
@@ -96,7 +101,7 @@ function getChallengeDownload(upload) {
 function getChallengeUpdate(formData) {
   return async () => {
     await axios
-      .put(`/challenge/update`, formData, config)
+      .put(`${gConst.API_BASE_URL}:8090/challenge/update`, formData, config)
       .then((response) => response.data);
   };
 }
@@ -105,7 +110,7 @@ function getChallengeUpdate(formData) {
 function getChallengeDelete(chId) {
   return async () => {
     await axios
-      .delete(`/challenge/delete/${chId}`, config)
+      .delete(`${gConst.API_BASE_URL}:8090/challenge/delete/${chId}`, config)
       .then((response) => response.data);
   };
 }

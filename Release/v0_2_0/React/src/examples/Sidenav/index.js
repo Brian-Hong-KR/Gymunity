@@ -125,7 +125,12 @@ function Sidenav({ color = "info", brand = "", brandName, routes, ...rest }) {
             <Icon sx={{ fontWeight: "bold" }}>close</Icon>
           </SoftTypography>
         </SoftBox>
-        <SoftBox component={NavLink} to="/" display="flex" alignItems="center">
+        <SoftBox
+          component={NavLink}
+          to="/profile"
+          display="flex"
+          alignItems="center"
+        >
           {brand && (
             <SoftBox
               component="img"
