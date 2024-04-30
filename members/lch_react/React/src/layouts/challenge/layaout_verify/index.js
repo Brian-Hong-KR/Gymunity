@@ -32,7 +32,6 @@ import categoryToLoseWeight from "assets/images/category/category_toloseweight.j
 
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { gConst } from "layouts/gConst";
 
 // Overview page components
 

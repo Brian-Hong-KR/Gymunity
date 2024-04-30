@@ -145,12 +145,13 @@ function AdminInfo() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <Grid item xs={12} lg={5}>
+    <Grid container justifyContent="center"> {/* 그리드 컨테이너를 중앙 정렬 */}
+      <Grid item xs={12} lg={9.2}>
         <SoftBox
           display="flex"
           justifyContent="space-between"
           alignItems="center"
-          p={3}
+          p={4}
         >
           <SoftButton
             type="submit"
@@ -184,32 +185,36 @@ function AdminInfo() {
           </SoftButton>
         </SoftBox>
       </Grid>
-
-      <SoftBox mb={3}>
-        <Grid container spacing={3}>
-          <Grid item xs={12} lg={7}>
-            <GradientLineChart
-              title="유입자 회원가입"
-              height="20.25rem"
-              chart={chartData1}
-            />
+    </Grid>
+    <Grid container justifyContent="center"> {/* 두 번째 그리드 컨테이너를 중앙 정렬 */}
+      <Grid item xs={12} lg={9}>
+        <SoftBox mb={3}>
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <GradientLineChart
+                title="유입자 회원가입"
+                height="20.25rem"
+                chart={chartData1}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <GradientLineChart
+                title="회원가입 로그인"
+                height="20.25rem"
+                chart={chartData2}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <GradientLineChart
+                title="회원가입 추천가입"
+                height="20.25rem"
+                chart={chartData3}
+              />
+            </Grid>
           </Grid>
-          <Grid item xs={12} lg={7}>
-            <GradientLineChart
-              title="회원가입 로그인"
-              height="20.25rem"
-              chart={chartData2}
-            />
-          </Grid>
-          <Grid item xs={12} lg={7}>
-            <GradientLineChart
-              title="회원가입 추천가입"
-              height="20.25rem"
-              chart={chartData3}
-            />
-          </Grid>
-        </Grid>
-      </SoftBox>
+        </SoftBox>
+      </Grid>
+    </Grid>
     </DashboardLayout>
   );
 }
