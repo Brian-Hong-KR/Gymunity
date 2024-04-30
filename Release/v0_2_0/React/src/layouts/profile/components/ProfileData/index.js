@@ -195,17 +195,17 @@ const ProfileData = () => {
                   title={{ text: "Point" }}
                   count={profileInfo.currentPoints}
                   icon={{ color: "dark", component: "paid" }}
+                  navigateTo="/profile/point"
                 />
               </Grid>
 
               <Grid item xs={12} sm={6} xl={3}>
-                <Link to="/modifyPlan">
-                  <MiniStatisticsCard
-                    title={{ text: "Plan" }}
-                    count={profileInfo.planName}
-                    icon={{ color: "dark", component: "public" }}
-                  />
-                </Link>
+                <MiniStatisticsCard
+                  title={{ text: "Plan" }}
+                  count={profileInfo.planName}
+                  icon={{ color: "dark", component: "public" }}
+                  navigateTo="/authentication/resurvey"
+                />
               </Grid>
               {profileInfo.challenges.map((challenge, index) => (
                 <Grid item xs={12} sm={6} xl={3} key={index}>
