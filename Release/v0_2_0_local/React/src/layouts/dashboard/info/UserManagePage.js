@@ -45,7 +45,7 @@ const UserManagePage = () => {
         // Toggle isActive in userInfo
         setUserInfo((prevUserInfo) => ({
           ...prevUserInfo,
-          isActive: prevUserInfo.isActive === 'y' ? 'n' : 'y',
+          isActive: prevUserInfo.isActive === '활성화' ? '비활성화' : '활성화',
         }));
       })
       .catch((error) => {
@@ -106,23 +106,23 @@ const UserManagePage = () => {
           <SoftTypography
             component='label'
             fontWeight='bold'
-            style={{ width: '30%' }}
+            style={{ width: '30%', marginRight: '2%' }}
           >
-            NickName:
+            닉네임:
           </SoftTypography>
           <SoftInput
             type='text'
             value={nickName}
             onChange={handleChangeNickName}
-            placeholder='Enter nick name'
-            style={{ width: '30%' }}
+            placeholder='닉네임 입력하세요'
+            style={{ width: '10%', marginRight: '2%' }}
           />
           <SoftButton
             color='dark'
             onClick={handleGetUserDetails}
-            style={{ width: '30%' }}
+            style={{ width: '50%', marginRight: '2%' }}
           >
-            Get Info
+            정보 불러오기
           </SoftButton>
         </SoftBox>
       </SoftBox>
@@ -141,25 +141,25 @@ const UserManagePage = () => {
           >
             <h2>회원 정보</h2>
             <SoftTypography fontWeight='bold'>
-              User ID: {userInfo.userId}
+              유저 번호: {userInfo.userId}
             </SoftTypography>
             <SoftTypography fontWeight='bold'>
-              User Account ID: {userInfo.userAccountId}
+              유저 ID: {userInfo.userAccountId}
             </SoftTypography>
             <SoftTypography fontWeight='bold'>
-              Nick Name: {userInfo.nickName}
+              닉네임: {userInfo.nickName}
             </SoftTypography>
             <SoftTypography fontWeight='bold'>
-              Grade Name: {userInfo.gradeName}
+              등급: {userInfo.gradeName}
             </SoftTypography>
             <SoftTypography fontWeight='bold'>
-              Last Signin: {userInfo.lastSignin}
+              최근 접속일: {userInfo.lastSignin}
             </SoftTypography>
             <SoftTypography fontWeight='bold'>
-              Is Active: {userInfo.isActive}
+              상태: {userInfo.isActive}
             </SoftTypography>
             <SoftTypography fontWeight='bold'>
-              User Email: {userInfo.userEmail}
+              이메일: {userInfo.userEmail}
             </SoftTypography>
           </SoftBox>
 
@@ -169,25 +169,25 @@ const UserManagePage = () => {
                 type='text'
                 value={newNickName}
                 onChange={handleChangeNewNickName}
-                style={{ width: '40%' }}
-                placeholder='Enter new nick name'
+                style={{ width: '40%', marginRight: '2%' }}
+                placeholder='수정할 닉네임을 입력하세요(필수 X)'
               />
               <SoftButton
                 color='dark'
                 onClick={handleCheckAndUpdateNickName}
-                style={{ width: '40%' }}
+                style={{ width: '40%', marginRight: '2%' }}
               >
-                Update Nick Name
+                닉네임 수정하기
               </SoftButton>
             </SoftBox>
             <SoftButton
               onClick={handleToggleIsActive}
               fullWidth
               style={{
-                color: userInfo.isActive === 'y' ? 'red' : 'blue',
+                color: userInfo.isActive === '활성화' ? 'red' : 'blue',
               }}
             >
-              {userInfo.isActive === 'y' ? 'Deactivate' : 'Activate'}
+              {userInfo.isActive === '활성화' ? '비활성화' : '활성화'}
             </SoftButton>
           </SoftBox>
         </div>
