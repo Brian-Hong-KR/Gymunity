@@ -69,9 +69,9 @@ function ChallengeVerify() {
       },
     };
 
+   
     try {
       const response = await axios.post("/verify/upload", formData, config);
-      console.log(response.data);
 
       alert("사진이 성공적으로 업로드되었습니다.");
       setErrorMessage("");
@@ -82,9 +82,6 @@ function ChallengeVerify() {
       if (error.response.data && error.response.status === 400) {
         setErrorMessage("오늘 인증을 모두 하셨습니다.");
         console.error(error);
-        console.log("오류 응답:", error.response);
-        console.log("오류 상태:", error.response.status);
-        console.log("오류 데이터:", error.response.data);
       } else {
         setErrorMessage("사진 업로드 중 오류가 발생했습니다.");
       }
@@ -107,14 +104,14 @@ function ChallengeVerify() {
 
      
       <Card style={{ textAlign: "center" }}>
-        <SoftBox p={2} mb={2} style={{ width: "400px", margin: "0 auto" }}>
+        <SoftBox p={6} mb={2} style={{ width: "400px", margin: "0 auto" }}>
           <SoftBox mb={1} ml={1.5}>
             <SoftTypography component="label">
-              첫 번째 인증사진을 등록하세요.
+             인증사진을 등록하세요.
             </SoftTypography>
           </SoftBox>
           <SoftInput
-            input
+            input 
             type="file"
             accept="image/*"
             onChange={handleFileChange}
@@ -123,35 +120,12 @@ function ChallengeVerify() {
           />
         </SoftBox>
 
-        <div style={{ margin: "0 auto", width: "80%" }}>
-          <hr style={{ borderTop: "1px solid #e0e0e0" }} />
-        </div>
-
-        <SoftBox p={2} mb={3} style={{ width: "400px", margin: "0 auto" }}>
-          <SoftBox mb={1} ml={1.5}>
-            <SoftTypography
-              component="label"
-              accept="image/*"
-              onChange={handleFileChange}
-            >
-              두 번째 인증사진을 등록하세요.
-            </SoftTypography>
-          </SoftBox>
-          <SoftInput
-            input
-            type="file"
-            accept="image/*"
-            placeholder="파일 선택"
-            onChange={handleFileChange}
-            style={{ marginTop: "8px" }}
-          />
-        </SoftBox>
-
-        <SoftBox mt={4} mb={1}>
+        <SoftBox mt={1} mb={1}>
           <SoftButton
             type="submit"
             variant="gradient"
             color="dark"
+            style={{ fontSize: '15px' }} 
             fullWidth
             onClick={handleUpload}
           >

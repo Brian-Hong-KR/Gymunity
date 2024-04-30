@@ -47,11 +47,9 @@ const Cs = () => {
   return (
     <SoftBox py={1}>
       <SoftBox mb={1}>
-        <SoftBox
-          alignItems="center"
-        >
-          <SoftTypography variant="h5"  alignItems="center">CS 관리</SoftTypography>
-        </SoftBox>
+         <SoftBox alignItems="center" mb={4}>
+          <SoftTypography variant="h5" textAlign="center">CS 관리</SoftTypography>
+      </SoftBox>
         
 
         <SoftBox

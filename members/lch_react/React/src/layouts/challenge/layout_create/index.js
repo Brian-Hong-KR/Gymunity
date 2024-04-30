@@ -99,7 +99,6 @@ function ChallengeCreate() {
       ...prev,
       category: newCategory,
     }));
-    console.log("카테고리 값:", newCategory);
   };
 
   const handleSetTabValue1 = (event, newValue) => {
@@ -119,7 +118,6 @@ function ChallengeCreate() {
       ...prev,
       verifyTerm: newTerm,
     }));
-    console.log("빈도 값:", newTerm);
   };
 
   // 챌린지 기간
@@ -141,7 +139,6 @@ function ChallengeCreate() {
       challengePeriod: periodInWeeks,
     }));
 
-    console.log("기간 값:", periodInWeeks);
 
     if (!challenge.chStartDate) {
       console.error(
@@ -174,7 +171,6 @@ function ChallengeCreate() {
       chEndDate: endDate.toISOString().split("T")[0],
     }));
 
-    console.log("계산된 종료일:", endDate.toISOString().split("T")[0]);
   };
 
 
@@ -281,10 +277,8 @@ function ChallengeCreate() {
       },
     };
 
-    console.log("Form submitting", challenge);
     try {
       const response = await axios.post("/challenge/create", challenge, config);
-      console.log("Registration successful:", response);
       setSuccessMessage("챌린지가 성공적으로 생성되었습니다.");
       setShowSuccess(true); // 성공 메시지 박스를 보이게 함
       setTimeout(() => {
