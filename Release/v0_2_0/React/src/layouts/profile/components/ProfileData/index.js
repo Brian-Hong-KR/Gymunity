@@ -179,8 +179,54 @@ const ProfileData = () => {
         </Card>
         <SoftBox py={3}>
           <SoftBox mb={3}>
-            <Card>
-              <Grid container spacing={3}>
+            <Grid container spacing={3}>
+              <Grid item xs={12} sm={6} xl={3}>
+                <MiniStatisticsCard
+                  title={{ text: "Grade" }}
+                  count={profileInfo.gradeName}
+                  icon={{ color: "dark", component: "paid" }}
+                  text={`다음 등급까지 ${profileInfo.pointToNextGrade.toString()} point`}
+                  percentage={{ color: "success", text: "" }}
+                />
+              </Grid>
+
+              <Grid item xs={12} sm={6} xl={3}>
+                <MiniStatisticsCard
+                  title={{ text: "Point" }}
+                  count={profileInfo.currentPoints}
+                  icon={{ color: "dark", component: "paid" }}
+                />
+              </Grid>
+
+              <Grid item xs={12} sm={6} xl={3}>
+                <Link to="/modifyPlan">
+                  <MiniStatisticsCard
+                    title={{ text: "Plan" }}
+                    count={profileInfo.planName}
+                    icon={{ color: "dark", component: "public" }}
+                  />
+                </Link>
+              </Grid>
+              {profileInfo.challenges.map((challenge, index) => (
+                <Grid item xs={12} sm={6} xl={3} key={index}>
+                  <MiniStatisticsCard
+                    title={{ text: "Challenge" }}
+                    count={challenge.title}
+                    icon={{ color: "dark", component: "emoji_events" }}
+                    text={`카테고리 : ${
+                      categoryMapping[challenge.category] || "기타"
+                    }`}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+            <SoftBox py={3}>
+              <Card>
+                <ReportsBarChart title="Weekly Point" chart={chartData} />
+              </Card>
+            </SoftBox>
+            {/* <Card> */}
+            {/* <Grid container spacing={3}>
                 <Grid item xs={12} sm={6} xl={3}>
                   <SoftBox
                     display="flex"
@@ -265,10 +311,10 @@ const ProfileData = () => {
                     </Link>
                   </SoftBox>
                 </Grid>
-              </Grid>
+              </Grid> */}
 
-              <ReportsBarChart title="Weekly Point" chart={chartData} />
-            </Card>
+            {/* <ReportsBarChart title="Weekly Point" chart={chartData} />
+            </Card> */}
             <SoftBox py={3}>
               <SoftBox mb={3}>
                 <Card>

@@ -9,7 +9,7 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { gConst } from "layouts/gConst";
-import useAuth from "components/useAuth";
+// import useAuth from "components/useAuth";
 import SoftAlert from "components/SoftAlert";
 
 function CustomerCreate() {
@@ -55,9 +55,9 @@ function CustomerCreate() {
       const response = await axios.post("/user/inquiries", customer, config);
       console.log("Registration successful:", response);
       setSuccessMessage("문의가 성공적으로 작성되었습니다.");
-      setShowSuccess(true); 
+      setShowSuccess(true);
       setTimeout(() => {
-        setShowSuccess(false); 
+        setShowSuccess(false);
         navigate("/profile");
       }, 700);
     } catch (error) {
@@ -71,7 +71,9 @@ function CustomerCreate() {
 
       <SoftBox py={4}>
         <SoftBox mb={2} textAlign="center">
-          <SoftTypography variant="h5" fontWeight="bold">고객 문의</SoftTypography>
+          <SoftTypography variant="h5" fontWeight="bold">
+            고객 문의
+          </SoftTypography>
           <SoftTypography variant="body2" color="text">
             소중한 의견을 남겨주세요. (불편사항, 개선사항, 비지니스 문의 등)
           </SoftTypography>
@@ -82,11 +84,7 @@ function CustomerCreate() {
         <SoftBox component="form" role="form" pt={2} pb={3} px={3}>
           <SoftBox mb={2}>
             <SoftBox mb={1} ml={0.5}>
-              <SoftTypography
-                component="label"
-                variant="h7"
-                fontWeight="bold"
-              >
+              <SoftTypography component="label" variant="h7" fontWeight="bold">
                 제목
               </SoftTypography>
             </SoftBox>
@@ -101,11 +99,7 @@ function CustomerCreate() {
 
           <SoftBox mb={2}>
             <SoftBox mb={1} ml={0.5}>
-              <SoftTypography
-                component="label"
-                variant="h7"
-                fontWeight="bold"
-              >
+              <SoftTypography component="label" variant="h7" fontWeight="bold">
                 문의 내용
               </SoftTypography>
             </SoftBox>
@@ -123,16 +117,16 @@ function CustomerCreate() {
           </SoftBox>
 
           {successMessage && (
-                    <SoftBox
-                      style={{
-                        position: "absolute",
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)",
-                      }}
-                    >
-                      <SoftAlert color="success">{successMessage}</SoftAlert>
-                    </SoftBox>
+            <SoftBox
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+              }}
+            >
+              <SoftAlert color="success">{successMessage}</SoftAlert>
+            </SoftBox>
           )}
           <SoftBox mt={4} mb={1}>
             <SoftButton
@@ -141,7 +135,7 @@ function CustomerCreate() {
               color="dark"
               fullWidth
               onClick={handleSubmit}
-              style={{ fontSize: '15px' }} 
+              style={{ fontSize: "15px" }}
             >
               문의 완료
             </SoftButton>
