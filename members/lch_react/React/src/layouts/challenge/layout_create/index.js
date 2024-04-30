@@ -33,11 +33,13 @@ import Cube from "examples/Icons/Cube";
 import Document from "examples/Icons/Document";
 import Settings from "examples/Icons/Settings";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
+import SoftAlert from "components/SoftAlert";
 
 // Overview page components
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 import { useNavigate, useLocation } from "react-router-dom";
+
 
 import axios from "axios";
 
@@ -54,9 +56,11 @@ function ChallengeCreate() {
   const defaultEndDate = endDate.toISOString().split("T")[0]; // ISO 형식으로 변환하여 문자열로 가져오기
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [showError, setShowError] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [showSuccess, setShowSuccess] = useState(false);
 
-
-  
   const [challenge, setChallenge] = useState({
     title: "",
     content: "",
@@ -246,7 +250,11 @@ function ChallengeCreate() {
     setErrorMessage("");
 
     if (challenge.bettingPoint <= 199 || challenge.bettingPoint >= 1001) {
-      alert("포인트는 200부터 1000포인트를 입력하세요.");
+      setErrorMessage("포인트는 200부터 1000포인트를 입력하세요.");
+      setShowError(true); // 에러 메시지 박스를 보이게 함
+      setTimeout(() => {
+        setShowError(false); // 1초 뒤에 에러 메시지 박스를 숨김
+      }, 1400);
       return;
     }
 
@@ -256,6 +264,10 @@ function ChallengeCreate() {
       challenge.bettingPoint === 0
     ) {
       setErrorMessage("빈 입력란을 작성해주세요.");
+      setShowError(true); // 에러 메시지 박스를 보이게 함
+      setTimeout(() => {
+        setShowError(false); // 1초 뒤에 에러 메시지 박스를 숨김
+      }, 900);
       return;
     }
 
@@ -273,12 +285,21 @@ function ChallengeCreate() {
     try {
       const response = await axios.post("/challenge/create", challenge, config);
       console.log("Registration successful:", response);
-      alert("챌린지가 성공적으로 생성되었습니다.");
-      navigate("/Challenge/list/1");
+      setSuccessMessage("챌린지가 성공적으로 생성되었습니다.");
+      setShowSuccess(true); // 성공 메시지 박스를 보이게 함
+      setTimeout(() => {
+        setShowSuccess(false); // 1초 뒤에 성공 메시지 박스를 숨김
+        navigate("/Challenge/list/1");
+      }, 700);
+      
     } catch (error) {
       if (error.response && error.response.status === 409) {
         // 서버가 409를 반환할 때 이미 챌린지가 생성되었음을 알리는 팝업 표시
-        alert(`${error.response.data}`);
+        setErrorMessage(`${error.response.data}`);
+        setShowError(true); // 에러 메시지 박스를 보이게 함
+        setTimeout(() => {
+          setShowError(false); // 1초 뒤에 에러 메시지 박스를 숨김
+        }, 1000);
       } else {
         console.error("Registration failed:", error);
       }
@@ -299,7 +320,7 @@ function ChallengeCreate() {
 
         <Card>
         <SoftBox component="form" role="form" pt={2} pb={3} px={3} onSubmit={handleCreateChallenge}>
-          <SoftBox mb={2}>
+          <SoftBox mb={4}>
             <SoftBox mb={1} ml={0.5}>
               <SoftTypography
                 component="label"
@@ -318,7 +339,7 @@ function ChallengeCreate() {
             />
           </SoftBox>
 
-          <SoftBox mb={2}>
+          <SoftBox mb={4}>
             <SoftBox mb={1} ml={0.5}>
               <SoftTypography
                 component="label"
@@ -344,7 +365,7 @@ function ChallengeCreate() {
             </Grid>
           </SoftBox>
 
-          <SoftBox mb={2}>
+          <SoftBox mb={4}>
             <SoftBox mb={1} ml={0.5}>
               <SoftTypography
                 component="label"
@@ -373,7 +394,7 @@ function ChallengeCreate() {
             </Grid>
           </SoftBox>
 
-          <SoftBox mb={2}>
+          <SoftBox mb={4}>
             <SoftBox mb={1} ml={0.5}>
               <SoftTypography
                 component="label"
@@ -395,7 +416,7 @@ function ChallengeCreate() {
           </SoftBox>
 
 
-          <SoftBox mb={2}>
+          <SoftBox mb={4}>
             <SoftBox mb={1} ml={0.5}>
               <SoftTypography
                 component="label"
@@ -423,7 +444,7 @@ function ChallengeCreate() {
             </Grid>
           </SoftBox>
 
-          <SoftBox mb={2}>
+          <SoftBox mb={4}>
             <SoftBox mb={1} ml={0.5}>
               <SoftTypography
                 component="label"
@@ -442,7 +463,7 @@ function ChallengeCreate() {
             />
           </SoftBox>
 
-          <SoftBox mb={2}>
+          <SoftBox mb={4}>
             <SoftBox mb={1} ml={0.5}>
               <SoftTypography
                 component="label"
@@ -461,8 +482,31 @@ function ChallengeCreate() {
             />
           </SoftBox>
 
-          {errorMessage && <p>{errorMessage}</p>}
-          <SoftBox mt={4} mb={1}>
+           {showError && (
+          <SoftBox
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+            }}
+          >
+            <SoftAlert color="error">{errorMessage}</SoftAlert>
+          </SoftBox>
+        )}
+          {successMessage && (
+                    <SoftBox
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                      }}
+                    >
+                      <SoftAlert color="success">{successMessage}</SoftAlert>
+                    </SoftBox>
+                  )}
+          <SoftBox mt={5} mb={1}>
             <SoftButton
               type="submit"
               variant="gradient"
@@ -472,8 +516,11 @@ function ChallengeCreate() {
             >
               챌린지 만들기
             </SoftButton>
+            
           </SoftBox>
+          
         </SoftBox>
+        
       </Card>
 
     </DashboardLayout>
