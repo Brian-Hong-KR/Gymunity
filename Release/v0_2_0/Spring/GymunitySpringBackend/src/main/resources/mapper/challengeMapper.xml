@@ -86,7 +86,7 @@
         ]]> 
     </insert>
 
-	<!-- profile 테이블 ch_id 업데이트-->
+	<!-- 챌린지 생성 또는 참가 시 profile 테이블 ch_id 업데이트-->
 	<update id="updateProfile" parameterType="int">
 		UPDATE profiles
 		SET
@@ -145,18 +145,25 @@
 		DELETE FROM challenges
 		WHERE ch_id=#{chId}
 	</delete>
-<<<<<<< Updated upstream
 
-
-=======
-	<!-- profile 테이블 ch_id 업데이트-->
+	<!-- 챌린지 삭제 또는 종료 시 profile 테이블 ch_id 업데이트-->
     <update id="updateProfileFinished">
 	    UPDATE profiles
 	    SET
 	        ch_id1 = CASE WHEN ch_id1 = #{chId} THEN 0 ELSE ch_id1 END,
 	        ch_id2 = CASE WHEN ch_id2 = #{chId} THEN 0 ELSE ch_id2 END
-	    WHERE user_id = #{userId}
-	        AND (ch_id1 = #{chId} OR ch_id2 = #{chId})
+	    WHERE ch_id1 = #{chId} OR ch_id2 = #{chId}
 	</update>
->>>>>>> Stashed changes
+	
+	<!-- 챌린지 proceed 상태 변경-->
+	<update id="updateProceed">
+	    UPDATE challenges
+	    SET proceed=#{proceed}
+	    WHERE ch_id=#{chId}
+	</update>
+	
+	<select id="selectAllChallenges" resultType="Challenge" resultMap="challengeResultMap">
+		SELECT * FROM challenges
+	</select>
+
 </mapper>
