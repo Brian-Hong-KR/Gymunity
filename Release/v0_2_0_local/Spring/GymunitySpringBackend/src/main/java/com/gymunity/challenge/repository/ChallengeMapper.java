@@ -45,6 +45,11 @@ public interface ChallengeMapper {
 	//챌린지 삭제
 	public void deleteChallenges(int chId);
 	
-	public void updateProfileFinished(@Param("chId") int chId, @Param("userId") int userId);
+	public void updateProfileFinished(int chId);
 
+	// 챌린지 proceed 상태 업데이트 및 챌린지 종료
+	public void updateProceed(@Param("chId") int chId, @Param("proceed") String proceed);
+	
+	public List<Challenge> selectAllChallenges();
+	
 }// end class

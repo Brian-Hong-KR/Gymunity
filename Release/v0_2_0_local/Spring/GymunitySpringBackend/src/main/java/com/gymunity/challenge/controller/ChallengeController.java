@@ -1,11 +1,13 @@
 package com.gymunity.challenge.controller;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -46,6 +48,7 @@ public class ChallengeController {
    private int currentPage;
 
 	// 챌린지 리스트 조회
+   @Operation(summary = "챌린지 리스트 조회")
 	@GetMapping("/challenge/list/{currentPage}")
 	public ResponseEntity<Map<String, Object>> listExecute(@PathVariable("currentPage") int currentPage) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -114,17 +117,6 @@ public class ChallengeController {
 		return ResponseEntity.ok("챌린지가 참여되었습니다.");
 	}// end joinChallenge()
 
-//	// 챌린지 수정
-//	@Operation(summary = "챌린지 수정")
-//	@PutMapping("/challenge/update")
-//	public ResponseEntity<Object> updateChallenge(@RequestBody Challenge dto) {
-//		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//		Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
-//		challengeService.updateChallengeProcess(dto, userId);
-//
-//		return ResponseEntity.ok("챌린지가 수정되었습니다.");
-//	}// end updateChallenge()
-
 	// 챌린지 삭제
 	@Operation(summary = "챌린지 삭제")
 	@DeleteMapping("/challenge/delete/{chId}")
@@ -134,5 +126,12 @@ public class ChallengeController {
 		challengeService.deleteChallengeProcess(chId, userId);
 		return ResponseEntity.ok("챌린지가 삭제되었습니다.");
 	}// end deleteChallenge()
+	
+	
+	// 챌린지 proceed 상태 업데이트 및 챌린지 종료
+    @Scheduled(cron = "0 0 0 * * *") // 매일 자정마다 실행
+    public void checkAndUpdateChallengeProceedStatus() {
+    	challengeService.updateProceedProcess(); // 챌린지 업데이트
+    }
 
 }// end class

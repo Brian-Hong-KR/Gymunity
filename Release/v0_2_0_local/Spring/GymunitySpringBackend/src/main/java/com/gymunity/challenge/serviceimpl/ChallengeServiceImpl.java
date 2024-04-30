@@ -135,13 +135,12 @@ public class ChallengeServiceImpl implements ChallengeService {
 		response.setProceed(challenge.getProceed());
 		response.setNickName(user.getNickName());
 		response.setGradeName(user.getGradeName());
-		
-		//profile ch_id update
+
+		// profile ch_id update
 		challengeMapper.updateProfile(challenge.getChId(), challenge.getUserId());
 
 		return response;
 	}// end createChallengeProcess()
-
 
 	// 챌린지 참가
 	@Override
@@ -164,7 +163,7 @@ public class ChallengeServiceImpl implements ChallengeService {
 
 			// challenges count 추가
 			challengeMapper.updateChallengeCount(chId);
-			//profile ch_id update
+			// profile ch_id update
 			challengeMapper.updateProfile(chId, userId);
 		} catch (Exception ex) {
 			// 다른 예외 처리
@@ -179,25 +178,6 @@ public class ChallengeServiceImpl implements ChallengeService {
 		return challengeMapper.selectChallengesByChId(chId);
 	}// end detailChallengeProcess()
 
-//	// 챌린지 수정
-//	@Override
-//	public void updateChallengeProcess(Challenge dto, int userId) {
-//
-//		// userId를 사용해서 Challenge 정보 조회
-//		Challenge challenge = challengeMapper.selectChallengesByUserId(userId);
-//
-//		// dto에 userId set
-//		dto.setUserId(userId);
-//
-//		// 회원 카운트가 1이면
-//		if (challenge.getCount() == 1) {
-//			// 챌린지 수정
-//			challengeMapper.updateChallenges(dto);
-//		} else {
-//			throw new ChallengeException("사용자에 대한 챌린지 정보가 하나만 존재하지 않습니다.");
-//		}
-//	}// end updateChallengeProcess()
-
 	// 챌린지 삭제
 	@Override
 	public void deleteChallengeProcess(int chId, int userId) {
@@ -211,8 +191,8 @@ public class ChallengeServiceImpl implements ChallengeService {
 			pointMapper.addPoint(pointAdd);
 
 			pointService.addOrUpdatePointsAggr(userId);
-			//profile ch_id 0으로 update
-			challengeMapper.updateProfileFinished(chId, userId);
+			// profile ch_id 0으로 update
+			challengeMapper.updateProfileFinished(chId);
 			challengeMapper.deleteChallenges(chId);
 		} else {
 			throw new ChallengeException("다른 참여자가 있을 경우 삭제가 불가능 합니다.");
@@ -243,6 +223,27 @@ public class ChallengeServiceImpl implements ChallengeService {
 		return challengeMapper.joinChIdList(userId);
 	}
 	
+	// 챌린지 proceed 상태 업데이트 및 챌린지 종료
+	@Override
+	public void updateProceedProcess() {
+		LocalDate today = LocalDate.now();
+		List<Challenge> challenges = challengeMapper.selectAllChallenges();
 
+		for (Challenge challenge : challenges) {
+			int chId = challenge.getChId();
+			LocalDate startDate = LocalDate.parse(challenge.getChStartDate());
+			LocalDate endDate = LocalDate.parse(challenge.getChEndDate());
+
+			if (startDate.isEqual(today)) {
+				challenge.setProceed("pr");
+				challengeMapper.updateProceed(chId, challenge.getProceed());
+			}
+			if (endDate.isEqual(today)) {
+				challenge.setProceed("done");
+				challengeMapper.updateProceed(chId, challenge.getProceed());
+				challengeMapper.updateProfileFinished(chId);
+			}
+		}
+	}
 
 }// end class
