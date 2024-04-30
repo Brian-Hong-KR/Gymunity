@@ -26,6 +26,9 @@ import CoverLayout from "layouts/authentication/components/CoverLayout";
 import curved9 from "assets/images/curved-images/curved-6.jpg";
 
 // Soft UI Dashboard React icons
+import Basket from "examples/Icons/Basket";
+import CustomerSupport from "examples/Icons/CustomerSupport";
+import SpaceShip from "examples/Icons/SpaceShip";
 import Cube from "examples/Icons/Cube";
 import Document from "examples/Icons/Document";
 import Settings from "examples/Icons/Settings";
@@ -52,6 +55,8 @@ function ChallengeCreate() {
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
+
+  
   const [challenge, setChallenge] = useState({
     title: "",
     content: "",
@@ -283,9 +288,9 @@ function ChallengeCreate() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-        <SoftBox py={3}>
+        <SoftBox py={3} textAlign="center" paddingBottom={1}>
           <SoftBox mb={3}>
-              <SoftTypography variant="h5">챌린지 만들기</SoftTypography>
+              <SoftTypography variant="h4" fontWeight="bold">챌린지 만들기</SoftTypography>
               <SoftTypography variant="body2" color="text">
                 건전하고 공정한 챌린지로 모두 즐겁게 운동할 수 있게 해주세요.
               </SoftTypography>
@@ -298,7 +303,7 @@ function ChallengeCreate() {
             <SoftBox mb={1} ml={0.5}>
               <SoftTypography
                 component="label"
-                variant="caption"
+                variant="h7"
                 fontWeight="bold"
               >
                 챌린지 제목
@@ -317,7 +322,7 @@ function ChallengeCreate() {
             <SoftBox mb={1} ml={0.5}>
               <SoftTypography
                 component="label"
-                variant="caption"
+                variant="h7"
                 fontWeight="bold"
               >
                 챌린지 유형
@@ -331,9 +336,9 @@ function ChallengeCreate() {
                   onChange={handleSetTabValue}
                   sx={{ background: "transparent" }}
                 >
-                  <Tab label="체중 감소" icon={<Cube />} />
-                  <Tab label="근력 향상" icon={<Document />} />
-                  <Tab label="종합 건강 증진" icon={<Settings />} />
+                  <Tab label="체중 감소" icon={<CustomerSupport />} />
+                  <Tab label="근력 향상" icon={<CustomerSupport />} />
+                  <Tab label="종합 건강 증진" icon={<CustomerSupport />} />
                 </Tabs>
               </AppBar>
             </Grid>
@@ -343,7 +348,7 @@ function ChallengeCreate() {
             <SoftBox mb={1} ml={0.5}>
               <SoftTypography
                 component="label"
-                variant="caption"
+                variant="h7"
                 fontWeight="bold"
               >
                 인증 빈도
@@ -357,12 +362,12 @@ function ChallengeCreate() {
                   onChange={handleSetTabValue1}
                   sx={{ background: "transparent" }}
                 >
-                  <Tab label="매일" icon={<Cube />} />
-                  <Tab label="평일" icon={<Document />} />
-                  <Tab label="주말" icon={<Settings />} />
-                  <Tab label="주 1일" icon={<Settings />} />
-                  <Tab label="주 2일" icon={<Settings />} />
-                  <Tab label="주 3일" icon={<Settings />} />
+                  <Tab label="매일" icon={<SpaceShip />} />
+                  <Tab label="평일" icon={<SpaceShip />} />
+                  <Tab label="주말" icon={<SpaceShip />} />
+                  <Tab label="주 1일" icon={<SpaceShip />} />
+                  <Tab label="주 2일" icon={<SpaceShip />} />
+                  <Tab label="주 3일" icon={<SpaceShip />} />
                 </Tabs>
               </AppBar>
             </Grid>
@@ -372,7 +377,7 @@ function ChallengeCreate() {
             <SoftBox mb={1} ml={0.5}>
               <SoftTypography
                 component="label"
-                variant="caption"
+                variant="h7"
                 fontWeight="bold"
               >
                 챌린지 시작일
@@ -389,11 +394,12 @@ function ChallengeCreate() {
             />
           </SoftBox>
 
+
           <SoftBox mb={2}>
             <SoftBox mb={1} ml={0.5}>
               <SoftTypography
                 component="label"
-                variant="caption"
+                variant="h7"
                 fontWeight="bold"
               >
                 챌린지 기간
@@ -409,9 +415,9 @@ function ChallengeCreate() {
                 >
                   <Tab label="1주간" icon={<Cube />} />
                   <Tab label="2주간" icon={<Cube />} />
-                  <Tab label="4주간" icon={<Document />} />
-                  <Tab label="6주간" icon={<Document />} />
-                  <Tab label="8주간" icon={<Settings />} />
+                  <Tab label="4주간" icon={<Cube />} />
+                  <Tab label="6주간" icon={<Cube />} />
+                  <Tab label="8주간" icon={<Cube />} />
                 </Tabs>
               </AppBar>
             </Grid>
@@ -421,7 +427,7 @@ function ChallengeCreate() {
             <SoftBox mb={1} ml={0.5}>
               <SoftTypography
                 component="label"
-                variant="caption"
+                variant="h7"
                 fontWeight="bold"
               >
                 챌린지 소개
@@ -440,7 +446,7 @@ function ChallengeCreate() {
             <SoftBox mb={1} ml={0.5}>
               <SoftTypography
                 component="label"
-                variant="caption"
+                variant="h7"
                 fontWeight="bold"
               >
                 배팅 포인트

@@ -214,7 +214,6 @@ public class UserServiceImpl implements UserService {
 
 		// 조회된 고객 정보를 처리하고 response에 추가
 		List<Customer> dto = userMapper.selectInquiries();
-
 		response.setCs(dto);
 
 		return response;
