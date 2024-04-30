@@ -11,16 +11,16 @@ const config = {
 };
 
 //리스트 가져오기
-function getChallengeListAsync(currentPage) {
+function getChallengeListAsync(currentPage, category) {
   console.log("currentPage: ", currentPage);
   return async (dispatch) => {
     try {
       const response = await axios.get(
-        `/challenge/list/${currentPage}`,
+        `/challenge/list/${currentPage}/${category}`,
         config
       );
 
-      const { challengeList, joinList, pv } = response.data;
+      const { challengeList, joinList, joinChIdList, pv } = response.data;
       // dispatch(challengeReducers.getChallengeList({ challengeList, pv }));
       dispatch(
         challengeReducers.getChallengeList({
@@ -30,6 +30,7 @@ function getChallengeListAsync(currentPage) {
         })
       );
       dispatch(challengeReducers.getJoinList({ joinList }));
+      dispatch(challengeReducers.getJoinChIdList({ joinChIdList }));
     } catch (error) {
       console.error(
         "챌린지 및 참여 목록 데이터를 가져오는 중 오류 발생:",

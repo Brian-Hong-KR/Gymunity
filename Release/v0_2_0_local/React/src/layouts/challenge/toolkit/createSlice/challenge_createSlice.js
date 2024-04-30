@@ -24,6 +24,9 @@ const challengeSlice = createSlice({
     getJoinList(state, action) {
       state.joinList = action.payload.joinList;
     },
+    getJoinChIdList(state, action) {
+      state.joinChIdList = action.payload.joinChIdList;
+    },
     getChallengeDetail(state, action) {
       state.challengeDetail = action.payload.data.challengeDetail;
       state.joinChIdList = action.payload.data.joinChIdList;

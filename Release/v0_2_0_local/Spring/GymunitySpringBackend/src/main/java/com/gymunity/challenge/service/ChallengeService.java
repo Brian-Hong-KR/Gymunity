@@ -12,7 +12,7 @@ public interface ChallengeService {
 	
 	public int countProcess();
 	
-	public List<Challenge> listProcess(PageDTO pv);
+	public List<Challenge> listProcess(int category, int startRow, int blockCount);
 	
 	public List<Challenge> joinListProcess(int userId);
 	

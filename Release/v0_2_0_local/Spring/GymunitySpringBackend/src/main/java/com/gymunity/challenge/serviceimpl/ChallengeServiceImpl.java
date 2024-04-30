@@ -3,7 +3,9 @@ package com.gymunity.challenge.serviceimpl;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 import org.springframework.stereotype.Service;
@@ -207,8 +209,8 @@ public class ChallengeServiceImpl implements ChallengeService {
 
 	// 챌린지 리스트 조회
 	@Override
-	public List<Challenge> listProcess(PageDTO pv) {
-		return challengeMapper.list(pv);
+	public List<Challenge> listProcess(int category, int startRow, int blockCount) {
+		return challengeMapper.list(category, startRow, blockCount);
 	}
 
 	// 참가중인 챌린지 리스트 조회

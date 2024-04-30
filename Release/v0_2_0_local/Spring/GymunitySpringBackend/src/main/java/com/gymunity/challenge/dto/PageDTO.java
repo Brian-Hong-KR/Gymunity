@@ -8,7 +8,7 @@ public class PageDTO {
 	private int totalCount; // 총 레코드수
 	private int blockCount = 12; // 한 페이지에 보여줄 레코드 수
 //	private int blockPage = 3; // 한 블록에 보여줄 페이지 수
-//	private int totalPage; // 총 페이지수
+	private int totalPage; // 총 페이지수
 	private int startRow; // 시작 레코드 번호
 //	private int endRow; // 끝 레코드 번호
 //	private int startPage; // 한 블록의 시작 페이지 번호
@@ -26,10 +26,10 @@ public class PageDTO {
 		this.currentPage = currentPage;
 		this.totalCount = totalCount;
 		
-//		// 총 페이지수
-//		totalPage = totalCount / blockCount + (totalCount % blockCount == 0 ? 0 : 1);
-//		if(totalPage<currentPage)
-//		  this.currentPage = totalPage;
+		// 총 페이지수
+		totalPage = totalCount / blockCount + (totalCount % blockCount == 0 ? 0 : 1);
+		if(totalPage<currentPage)
+		  this.currentPage = totalPage;
 
 		// 시작레코드
 		startRow = (this.currentPage - 1) * blockCount;
@@ -87,14 +87,14 @@ public class PageDTO {
 //	public void setBlockPage(int blockPage) {
 //		this.blockPage = blockPage;
 //	}
-//
-//	public int getTotalPage() {
-//		return totalPage;
-//	}
-//
-//	public void setTotalPage(int totalPage) {
-//		this.totalPage = totalPage;
-//	}
+
+	public int getTotalPage() {
+		return totalPage;
+	}
+
+	public void setTotalPage(int totalPage) {
+		this.totalPage = totalPage;
+	}
 
 	public int getStartRow() {
 		return startRow;

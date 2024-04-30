@@ -36,20 +36,21 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class ChallengeController {
 
-   private final ChallengeService challengeService;
+	private final ChallengeService challengeService;
 
-   @Autowired
-   private PageDTO pdto;
-   private int currentPage;
+	@Autowired
+	private PageDTO pdto;
+	private int currentPage;
 
 	// 챌린지 리스트 조회
-   @Operation(summary = "챌린지 리스트 조회")
-	@GetMapping("/challenge/list/{currentPage}")
-	public ResponseEntity<Map<String, Object>> listExecute(@PathVariable("currentPage") int currentPage) {
+	@Operation(summary = "챌린지 리스트 조회")
+	@GetMapping("/challenge/list/{currentPage}/{category}")
+	public ResponseEntity<Map<String, Object>> listExecute(@PathVariable("currentPage") int currentPage,
+			@PathVariable("category") int category) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
 		log.info("list_userId :{}", userId);
-		
+
 		Map<String, Object> map = new HashMap<>();
 		int totalRecord = challengeService.countProcess();
 		log.info("totalRecord:{}", totalRecord);
@@ -58,17 +59,20 @@ public class ChallengeController {
 			this.currentPage = currentPage;
 			this.pdto = new PageDTO(this.currentPage, totalRecord);
 			map.put("pv", this.pdto);
-			map.put("challengeList", challengeService.listProcess(pdto));
+			map.put("challengeList", challengeService.listProcess(category, pdto.getStartRow(), pdto.getBlockCount()));
+//			log.info("pdto.getBlockCount() :{}", pdto.getBlockCount());
 		}
-		
+
 		if (userId != 0) {
 			map.put("joinList", challengeService.joinListProcess(userId));
+			map.put("joinChIdList", challengeService.joinChIdListProcess(userId));
 		}
 		log.info("challengeList:{}", map.get("challengeList"));
 		log.info("joinList:{}", map.get("joinList"));
+		log.info("joinChIdList:{}", map.get("joinChIdList"));
 		return ResponseEntity.ok(map);
 	}
-	
+
 	// 챌린지 상세정보
 	@Operation(summary = "챌린지 상세")
 	@GetMapping("/challenge/detail/{chId}")
@@ -117,12 +121,11 @@ public class ChallengeController {
 		challengeService.deleteChallengeProcess(chId, userId);
 		return ResponseEntity.ok("챌린지가 삭제되었습니다.");
 	}// end deleteChallenge()
-	
-	
+
 	// 챌린지 proceed 상태 업데이트 및 챌린지 종료
-    @Scheduled(cron = "0 0 0 * * *") // 매일 자정마다 실행
-    public void checkAndUpdateChallengeProceedStatus() {
-    	challengeService.updateProceedProcess(); // 챌린지 업데이트
-    }
+	@Scheduled(cron = "0 0 0 * * *") // 매일 자정마다 실행
+	public void checkAndUpdateChallengeProceedStatus() {
+		challengeService.updateProceedProcess(); // 챌린지 업데이트
+	}
 
 }// end class
