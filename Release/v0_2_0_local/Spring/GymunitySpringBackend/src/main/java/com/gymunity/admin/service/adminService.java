@@ -31,9 +31,7 @@ public interface adminService {
 	public PointDetailResponse getPointsProcess(String userAccountId);
 	
 	public void insertOrUpdateadjustPointsProcess(AddPointAdjustmentDTO dto);
-	
-	public int getUserIdByNickName(String nickName);
-	
+
 	public UserDetails getUserDetails(int userId);
 	
 	public void updateNickName(int userId, String nickName);

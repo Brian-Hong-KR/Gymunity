@@ -1,6 +1,6 @@
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import axios from "axios";
 import SoftButton from "components/SoftButton";
 import SoftBox from "components/SoftBox";
@@ -8,6 +8,7 @@ import SoftTypography from "components/SoftTypography";
 import SoftInput from "components/SoftInput";
 import Table from "examples/Tables/Table";
 import typography from "assets/theme/base/typography";
+import { debounce } from "@mui/material";
 import { gConst } from "layouts/gConst";
 
 const AdminPointPage = () => {
@@ -33,17 +34,17 @@ const AdminPointPage = () => {
     { name: "날짜", align: "center" },
   ];
 
-  const handleUserAccountIdChange = (event) => {
+  const handleUserAccountIdChange = useCallback((event) => {
     setUserAccountId(event.target.value);
-  };
+  }, []);
 
-  const handleReasonChange = (event) => {
+  const handlePointAdjustChange = useCallback((event) => {
+    setPointAdjust(event.target.value);
+  }, []);
+
+  const handleReasonChange = useCallback((event) => {
     setReason(event.target.value);
-  };
-
-  const handlePointAdjustChange = (event) => {
-    setPointAdjust(parseInt(event.target.value));
-  };
+  }, []);
 
   const getPointsHistoryByAccountId = async () => {
     try {
@@ -69,6 +70,20 @@ const AdminPointPage = () => {
       setRows(formattedRows);
     } catch (error) {
       console.error("Error fetching points history:", error);
+      if (error.response) {
+        console.log("HTTP status code:", error.response.status);
+        alert("접근 권한이 없습니다."); // 일관된 메시지를 위해 경고를 통일
+        if (error.response.status === 403) {
+          alert("접근 권한이 없습니다.");
+          navigate("/profile");
+        } else {
+          alert("접근 권한이 없습니다.");
+          navigate("/main");
+        }
+      } else {
+        alert("접근 권한이 없습니다.");
+        navigate("/main"); // 응답이 없는 경우, /main으로 리다이렉트
+      }
     }
   };
 
@@ -87,7 +102,21 @@ const AdminPointPage = () => {
       setReason("");
       getPointsHistoryByAccountId();
     } catch (error) {
-      console.error("Error adjusting points:", error);
+      console.error("Error adjustPoints:", error);
+      if (error.response) {
+        console.log("HTTP status code:", error.response.status);
+        alert("접근 권한이 없습니다."); // 일관된 메시지를 위해 경고를 통일
+        if (error.response.status === 403) {
+          alert("접근 권한이 없습니다.");
+          navigate("/profile");
+        } else {
+          alert("서버 오류가 발생했습니다.");
+          navigate("/main");
+        }
+      } else {
+        alert("네트워크 오류가 발생했습니다.");
+        navigate("/main"); // 응답이 없는 경우, /main으로 리다이렉트
+      }
     }
   };
 

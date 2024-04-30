@@ -176,4 +176,5 @@ public class adminServiceImpl implements adminService {
 		boolean exists = user != null; 
 		return exists;
 	}
+
 }// end class

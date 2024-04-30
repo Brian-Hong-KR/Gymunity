@@ -9,10 +9,12 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { gConst } from "layouts/gConst";
-// import useAuth from "components/useAuth";
+import useAuth from "components/useAuth";
 import SoftAlert from "components/SoftAlert";
 
 function CustomerCreate() {
+  useAuth();
+
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const navigate = useNavigate();

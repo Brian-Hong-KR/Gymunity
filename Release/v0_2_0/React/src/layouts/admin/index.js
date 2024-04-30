@@ -2,7 +2,9 @@ import Grid from "@mui/material/Grid";
 import SoftBox from "components/SoftBox";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import { Link } from "react-router-dom"; //
+
+import { Link, useNavigate } from "react-router-dom"; // react-router-dom을 사용하여 링크를 관리합니다.
+
 import GradientLineChart from "examples/Charts/LineCharts/GradientLineChart";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -10,11 +12,13 @@ import { gConst } from "layouts/gConst";
 import SoftButton from "components/SoftButton";
 
 function AdminInfo() {
+  const navigate = useNavigate();
   const config = {
     headers: {
       "Content-Type": "application/json",
-      Authorization: localStorage.getItem("Authorization"),
-      "Authorization-refresh": localStorage.getItem("Authorization-refresh"),
+      Authorization: localStorage.getItem("Authorization") || "",
+      "Authorization-refresh":
+        localStorage.getItem("Authorization-refresh") || "",
     },
   };
 
@@ -40,10 +44,22 @@ function AdminInfo() {
         setAdminInfo(data);
       } catch (error) {
         console.error("Error fetching admin data:", error);
+        if (error.response) {
+          if (error.response.status === 403) {
+            alert("접근 권한이 없습니다.");
+            navigate("/profile");
+          } else {
+            alert("서버 오류가 발생했습니다.");
+            navigate("/main");
+          }
+        } else {
+          alert("네트워크 오류가 발생했습니다.");
+          navigate("/main");
+        }
       }
     }
     fetchData();
-  }, []);
+  }, [navigate]);
 
   useEffect(() => {
     const labels = Array.from(

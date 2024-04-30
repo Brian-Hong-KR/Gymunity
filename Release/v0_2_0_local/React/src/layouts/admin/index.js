@@ -5,15 +5,12 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 import { Link, useNavigate } from "react-router-dom"; // react-router-dom을 사용하여 링크를 관리합니다.
 
-// Data
-import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
 import GradientLineChart from "examples/Charts/LineCharts/GradientLineChart";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import SoftButton from "components/SoftButton";
 
 function AdminInfo() {
-  const { chart, items } = reportsBarChartData;
   const navigate = useNavigate();
   const config = {
     headers: {
@@ -38,17 +35,10 @@ function AdminInfo() {
   useEffect(() => {
     async function fetchData() {
       try {
-        console.log("Fetching admin info...");
         const response = await axios.get("/admin/info", config);
         const data = response.data;
-        console.log("Admin data received:", data);
         setAdminInfo(data);
       } catch (error) {
-        console.error("503:", error);
-        console.log(
-          "HTTP status code:",
-          error.response ? error.response.status : "No response"
-        );
         console.error("Error fetching admin data:", error);
         if (error.response) {
           if (error.response.status === 403) {

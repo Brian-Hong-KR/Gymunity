@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 import Table from "examples/Tables/Table";
-import useAuth from "components/useAuth";
-import { gConst } from "layouts/gConst";
 
-const PointDetail = () => {
-  useAuth();
-
+const AdminCsDetail = () => {
   const baseConfig = {
     headers: {
       "Content-Type": "application/json",
@@ -21,8 +16,9 @@ const PointDetail = () => {
   const [rows, setRows] = useState([]);
 
   const columns = [
-    { name: "포인트", align: "center" },
-    { name: "이유", align: "center" },
+    { name: "이메일", align: "center" },
+    { name: "제목", align: "center" },
+    { name: "내용", align: "center" },
     { name: "날짜", align: "center" },
   ];
 
@@ -32,22 +28,14 @@ const PointDetail = () => {
 
   const fetchPoints = () => {
     axios
-      .get(`${gConst.API_BASE_URL}:8090/editinfo/pointdetail`, baseConfig)
+      .get(`http://127.0.0.1:8090/user/inquirieslist`, baseConfig)
       .then((response) => {
-        const details = response.data.details;
-        const newRows = details.map((pointdetail) => ({
-          포인트: (
-            <span
-              style={{
-                color: pointdetail.points >= 0 ? "blue" : "red",
-                fontWeight: "bold",
-              }}
-            >
-              {pointdetail.points}
-            </span>
-          ),
-          이유: pointdetail.reason,
-          날짜: pointdetail.time,
+        const cs = response.data.cs;
+        const newRows = cs.map((pointdetail) => ({
+          이메일: pointdetail.userEmail,
+          제목: pointdetail.title,
+          내용: pointdetail.content,
+          날짜: pointdetail.inquiryDate,
         }));
         setRows(newRows);
       })
@@ -63,7 +51,7 @@ const PointDetail = () => {
           alignItems="center"
           p={3}
         >
-          <SoftTypography variant="h5">포인트 내역</SoftTypography>
+          <SoftTypography variant="h5">CS 관리</SoftTypography>
         </SoftBox>
 
         <SoftBox
@@ -83,4 +71,4 @@ const PointDetail = () => {
   );
 };
 
-export default PointDetail;
+export default AdminCsDetail;

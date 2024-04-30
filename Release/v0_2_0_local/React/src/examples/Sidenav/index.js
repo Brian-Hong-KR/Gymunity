@@ -1,25 +1,20 @@
 import { useEffect } from "react";
-
 import { useLocation, NavLink } from "react-router-dom";
-
 import PropTypes from "prop-types";
-
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import Link from "@mui/material/Link";
 import Icon from "@mui/material/Icon";
-
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
-
+import SoftButton from "components/SoftButton";
 import SidenavCollapse from "examples/Sidenav/SidenavCollapse";
-
+import SidenavCard from "examples/Sidenav/SidenavCard";
 import SidenavRoot from "examples/Sidenav/SidenavRoot";
 import sidenavLogoLabel from "examples/Sidenav/styles/sidenav";
-
 import { useSoftUIController, setMiniSidenav } from "context";
 
-function Sidenav({ color, brand, brandName, routes, ...rest }) {
+function Sidenav({ color = "info", brand = "", brandName, routes, ...rest }) {
   const isAdmin = localStorage.getItem("isAdmin") === "y";
   const [controller, dispatch] = useSoftUIController();
   const { miniSidenav, transparentSidenav } = controller;
@@ -160,13 +155,6 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
   );
 }
 
-// Setting default values for the props of Sidenav
-Sidenav.defaultProps = {
-  color: "info",
-  brand: "",
-};
-
-// Typechecking props for the Sidenav
 Sidenav.propTypes = {
   color: PropTypes.oneOf([
     "primary",

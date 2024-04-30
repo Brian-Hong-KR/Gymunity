@@ -4,7 +4,7 @@ import { gConst } from "layouts/gConst";
 
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
@@ -13,8 +13,13 @@ import MiniStatisticsCard from "examples/Cards/StatisticsCards/MiniStatisticsCar
 import ReportsBarChart from "examples/Charts/BarCharts/ReportsBarChart";
 
 import SoftButton from "components/SoftButton";
+import useAuth from "components/useAuth";
 
 const ProfileData = () => {
+  const isLoggedIn = localStorage.getItem("isLogin") === "true";
+
+  useAuth();
+
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -92,8 +97,6 @@ const ProfileData = () => {
     if (isConfirmed) {
     }
   };
-
-  const isLoggedIn = localStorage.getItem("isLogin") === "true";
 
   const handleLogout = async () => {
     try {
