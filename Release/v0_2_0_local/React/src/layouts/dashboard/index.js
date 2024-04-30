@@ -36,6 +36,7 @@ function Dashboard() {
             color='dark'
             fullWidth
             style={{ width: '30%' }}
+            href='/dashboard/usermanage'
           >
             회원 관리
           </SoftButton>
@@ -57,6 +58,17 @@ function Dashboard() {
             color='dark'
             fullWidth
             style={{ width: '30%' }}
+            href='/admin/verify'
+          >
+            사진 인증 관리
+          </SoftButton>
+
+          <SoftButton
+            type='submit'
+            variant='gradient'
+            color='dark'
+            fullWidth
+            style={{ width: '30%' }}
           >
             CS 관리
           </SoftButton>
@@ -64,69 +76,69 @@ function Dashboard() {
       </Grid>
 
       <SoftBox mb={3}>
-          <Grid container spacing={3}>
-            <Grid item xs={12} lg={5}>
-              <ReportsBarChart
-                title="USER"
-                description={
-                  <>
-                    (<strong>+23%</strong>) than last week
-                  </>
-                }
-                chart={chart}
-                items={items}
-              />
-            </Grid>
-            <Grid item xs={12} lg={5}>
-              <ReportsBarChart
-                title="PT"
-                description={
-                  <>
-                    (<strong>+23%</strong>) than last week
-                  </>
-                }
-                chart={chart}
-                items={items}
-              />
-            </Grid>
-            <Grid item xs={12} lg={5}>
-              <ReportsBarChart
-                title="CHALLENGE"
-                description={
-                  <>
-                    (<strong>+23%</strong>) than last week
-                  </>
-                }
-                chart={chart}
-                items={items}
-              />
-            </Grid>
-            <Grid item xs={12} lg={5}>
-              <ReportsBarChart
-                title="STORE"
-                description={
-                  <>
-                    (<strong>+23%</strong>) than last week
-                  </>
-                }
-                chart={chart}
-                items={items}
-              />
-            </Grid>
-            <Grid item xs={12} lg={5}>
-              <ReportsBarChart
-                title="CS"
-                description={
-                  <>
-                    (<strong>+23%</strong>) than last week
-                  </>
-                }
-                chart={chart}
-                items={items}
-              />
-            </Grid>
+        <Grid container spacing={3}>
+          <Grid item xs={12} lg={5}>
+            <ReportsBarChart
+              title='USER'
+              description={
+                <>
+                  (<strong>+23%</strong>) than last week
+                </>
+              }
+              chart={chart}
+              items={items}
+            />
           </Grid>
-        </SoftBox>
+          <Grid item xs={12} lg={5}>
+            <ReportsBarChart
+              title='PT'
+              description={
+                <>
+                  (<strong>+23%</strong>) than last week
+                </>
+              }
+              chart={chart}
+              items={items}
+            />
+          </Grid>
+          <Grid item xs={12} lg={5}>
+            <ReportsBarChart
+              title='CHALLENGE'
+              description={
+                <>
+                  (<strong>+23%</strong>) than last week
+                </>
+              }
+              chart={chart}
+              items={items}
+            />
+          </Grid>
+          <Grid item xs={12} lg={5}>
+            <ReportsBarChart
+              title='STORE'
+              description={
+                <>
+                  (<strong>+23%</strong>) than last week
+                </>
+              }
+              chart={chart}
+              items={items}
+            />
+          </Grid>
+          <Grid item xs={12} lg={5}>
+            <ReportsBarChart
+              title='CS'
+              description={
+                <>
+                  (<strong>+23%</strong>) than last week
+                </>
+              }
+              chart={chart}
+              items={items}
+            />
+          </Grid>
+        </Grid>
+      </SoftBox>
     </DashboardLayout>
   );
 }
