@@ -26,10 +26,14 @@ import CoverLayout from "layouts/authentication/components/CoverLayout";
 import curved9 from "assets/images/curved-images/curved-6.jpg";
 
 // Soft UI Dashboard React icons
+import Basket from "examples/Icons/Basket";
+import CustomerSupport from "examples/Icons/CustomerSupport";
+import SpaceShip from "examples/Icons/SpaceShip";
 import Cube from "examples/Icons/Cube";
 import Document from "examples/Icons/Document";
 import Settings from "examples/Icons/Settings";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
+import SoftAlert from "components/SoftAlert";
 
 // Overview page components
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
@@ -52,6 +56,10 @@ function ChallengeCreate() {
   const defaultEndDate = endDate.toISOString().split("T")[0]; // ISO 형식으로 변환하여 문자열로 가져오기
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [showError, setShowError] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const [challenge, setChallenge] = useState({
     title: "",
