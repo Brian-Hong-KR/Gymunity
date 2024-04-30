@@ -30,6 +30,8 @@ function ChallengeDetail() {
   const { chId } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [successMessage, setSuccessMessage] = useState("");
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const challengeDetail = useSelector(
     (state) => state.challenge.challengeDetail
@@ -107,8 +109,8 @@ function ChallengeDetail() {
     // await dispatch(boardActions.getBoardWrite(formData, config));
     await dispatch(challengeActions.getChallengeJoin(chId));
     // SoftButton 클릭 시 SoftAlert을 보여주는 함수
-    setAlertMessage("참여 완료! 챌린지를 끝까지 완수해보세요.");
-    setShowAlert(true);
+    setSuccessMessage("참여");
+    setShowSuccess(true); 
   };
 
   return (
@@ -620,15 +622,18 @@ function ChallengeDetail() {
                 >
                   참여하기
                 </SoftButton>
-                {showAlert && (
-                  <SoftAlert
-                    color="success"
-                    dismissible
-                    onClose={handleAlertClose}
-                  >
-                    참여 완료! 챌린지를 끝까지 완수해보세요.
-                  </SoftAlert>
-                )}
+                {successMessage && (
+                    <SoftBox
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                      }}
+                    >
+                      <SoftAlert color="success">{successMessage}</SoftAlert>
+                    </SoftBox>
+                  )}
               </>
             ) : null}
           </SoftBox>
