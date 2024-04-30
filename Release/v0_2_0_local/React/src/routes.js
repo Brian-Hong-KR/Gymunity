@@ -161,7 +161,7 @@ const routes = [
 
   {
     key: "usermanage",
-    route: "/usermanage",
+    route: "/dashboard/usermanage",
     component: <UserManagePage />,
   },
 

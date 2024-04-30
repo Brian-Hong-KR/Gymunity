@@ -147,38 +147,50 @@ function AdminInfo() {
       <DashboardNavbar />
       <Grid item xs={12} lg={5}>
         <SoftBox
-          display="flex"
-          justifyContent="space-between"
-          alignItems="center"
+          display='flex'
+          justifyContent='space-between'
+          alignItems='center'
           p={3}
         >
           <SoftButton
-            type="submit"
-            variant="gradient"
-            color="dark"
+            type='submit'
+            variant='gradient'
+            color='dark'
             fullWidth
-            style={{ width: "30%" }}
+            style={{ width: '24%' }}
+            href='/dashboard/usermanage'
           >
             회원 관리
           </SoftButton>
 
           <SoftButton
-            type="submit"
-            variant="gradient"
-            color="dark"
+            type='submit'
+            variant='gradient'
+            color='dark'
             fullWidth
-            style={{ width: "30%" }}
-            href="/admin/editpoint"
+            style={{ width: '24%' }}
+            href='/dashboard/editpoint'
           >
             포인트 관리
           </SoftButton>
 
           <SoftButton
-            type="submit"
-            variant="gradient"
-            color="dark"
+            type='submit'
+            variant='gradient'
+            color='dark'
             fullWidth
-            style={{ width: "30%" }}
+            style={{ width: '24%' }}
+            href='/admin/verify'
+          >
+            사진 인증 관리
+          </SoftButton>
+
+          <SoftButton
+            type='submit'
+            variant='gradient'
+            color='dark'
+            fullWidth
+            style={{ width: '24%' }}
           >
             CS 관리
           </SoftButton>
@@ -189,22 +201,22 @@ function AdminInfo() {
         <Grid container spacing={3}>
           <Grid item xs={12} lg={7}>
             <GradientLineChart
-              title="유입자 회원가입"
-              height="20.25rem"
+              title='유입자 회원가입'
+              height='20.25rem'
               chart={chartData1}
             />
           </Grid>
           <Grid item xs={12} lg={7}>
             <GradientLineChart
-              title="회원가입 로그인"
-              height="20.25rem"
+              title='회원가입 로그인'
+              height='20.25rem'
               chart={chartData2}
             />
           </Grid>
           <Grid item xs={12} lg={7}>
             <GradientLineChart
-              title="회원가입 추천가입"
-              height="20.25rem"
+              title='회원가입 추천가입'
+              height='20.25rem'
               chart={chartData3}
             />
           </Grid>
