@@ -71,11 +71,11 @@ public class adminController {
 		adminService.insertOrUpdateadjustPointsProcess(dto);
 	}
 
-	@GetMapping("/getUserDetails/{nickName}")
-	public UserDetails getUserDetails(@PathVariable("nickName") String nickName) {
-	    int userId = adminService.getUserIdByNickName(nickName);
-	    return adminService.getUserDetails(userId);
-	}
+//	@GetMapping("/getUserDetails/{nickName}")
+//	public UserDetails getUserDetails(@PathVariable("nickName") String nickName) {
+//	    int userId = adminService.getUserIdByNickName(nickName);
+//	    return adminService.getUserDetails(userId);
+//	}
 
     @PutMapping("/updateNickName")
     public void updateNickName(@RequestParam("userId") int userId, @RequestParam("nickName") String nickName) {

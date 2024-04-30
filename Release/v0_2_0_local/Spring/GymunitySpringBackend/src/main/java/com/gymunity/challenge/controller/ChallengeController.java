@@ -46,10 +46,22 @@ public class ChallengeController {
 	@Operation(summary = "챌린지 리스트 조회")
 	@GetMapping("/challenge/list/{currentPage}/{category}")
 	public ResponseEntity<Map<String, Object>> listExecute(@PathVariable("currentPage") int currentPage,
-			@PathVariable("category") int category) {
+			@PathVariable(name = "category", required = false) String categoryString) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
 		log.info("list_userId :{}", userId);
+		
+	    // categoryString이 null이거나 "undefined"인 경우 0으로 설정
+	    int category = 0;
+	    if (categoryString != null && !"undefined".equals(categoryString)) {
+	        try {
+	            category = Integer.parseInt(categoryString);
+	        } catch (NumberFormatException e) {
+	            // 예외 발생 시 기본값인 0으로 유지
+	            log.warn("Failed to parse category value: {}", categoryString);
+	        }
+	    }
+		log.info("category:{}", category);
 
 		Map<String, Object> map = new HashMap<>();
 		int totalRecord = challengeService.countProcess();
@@ -59,6 +71,7 @@ public class ChallengeController {
 			this.currentPage = currentPage;
 			this.pdto = new PageDTO(this.currentPage, totalRecord);
 			map.put("pv", this.pdto);
+			map.remove("challengeList");
 			map.put("challengeList", challengeService.listProcess(category, pdto.getStartRow(), pdto.getBlockCount()));
 //			log.info("pdto.getBlockCount() :{}", pdto.getBlockCount());
 		}
@@ -80,7 +93,7 @@ public class ChallengeController {
 		Map<String, Object> map = new HashMap<>();
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
-
+		log.info("create_userId :{}", userId);
 		Challenge challenge = challengeService.detailChallengeProcess(chId);
 		map.put("challengeDetail", challenge);
 
@@ -108,6 +121,7 @@ public class ChallengeController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
 		challengeService.joinChallengeProcess(chId, userId);
+		
 //		log.info("challengeList:{}", map.get("challengeList"));
 		return ResponseEntity.ok("챌린지가 참여되었습니다.");
 	}// end joinChallenge()

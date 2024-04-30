@@ -60,7 +60,7 @@ function getChallengeJoin(chId) {
   return async () => {
     try {
       const response = await axios.post(`/challenge/join/${chId}`, config);
-      // console.log("parsedChId: ", typeof parsedChId);
+      console.log("parsedChId: ", typeof chId);
       return response.data;
     } catch (error) {
       console.error("챌린지 참여하기 중 오류 발생:", error);

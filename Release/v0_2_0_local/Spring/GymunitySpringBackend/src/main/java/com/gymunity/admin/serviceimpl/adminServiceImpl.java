@@ -149,10 +149,10 @@ public class adminServiceImpl implements adminService {
 	}// end insertOrUpdateadjustPointsProcess()
 
 
-	@Override
-	public int getUserIdByNickName(String nickName) { // 추가
-	    return adminMapper.getUserIdByNickName(nickName);
-	}
+//	@Override
+//	public int getUserIdByNickName(String nickName) { // 추가
+//	    return adminMapper.getUserIdByNickName(nickName);
+//	}
 
 	@Override
 	public UserDetails getUserDetails(int userId) {

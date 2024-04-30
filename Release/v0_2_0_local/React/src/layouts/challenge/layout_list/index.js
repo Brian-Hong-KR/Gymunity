@@ -26,7 +26,8 @@ function Challenge() {
   const dispatch = useDispatch();
 
   const [selectedItem, setSelectedItem] = useState(null);
-  const [selectedItemId, setSelectedItemId] = useState(0);
+  const [selectedItemId, setSelectedItemId] = useState();
+  console.log("selectedItemId:", selectedItemId);
   const [isInitialRender, setIsInitialRender] = useState(true);
 
   const getChallengeList = useCallback((page, selectedItemId) => {

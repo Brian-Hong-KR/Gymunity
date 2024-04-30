@@ -165,8 +165,7 @@ public class ChallengeServiceImpl implements ChallengeService {
 
 			// challenges count 추가
 			challengeMapper.updateChallengeCount(chId);
-			// profile ch_id update
-			challengeMapper.updateChIdInProfiles(chId, userId);
+
 		} catch (Exception ex) {
 			// 다른 예외 처리
 			// 예외 메시지 로깅 또는 다른 처리
