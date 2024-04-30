@@ -37,8 +37,7 @@ import { gConst } from "layouts/gConst";
 // Overview page components
 
 function ChallengeVerify() {
-  const { chId } = useParams();
-  console.log("ch_id:", chId);
+  const { ch_id } = useParams();
   const [file, setFile] = useState(null);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -60,7 +59,7 @@ function ChallengeVerify() {
     }
 
     const formData = new FormData();
-    formData.append("chId", chId); // chId를 FormData에 추가
+    formData.append("chId", ch_id); // chId를 FormData에 추가
     formData.append("file", file);
 
     const config = {
@@ -71,13 +70,13 @@ function ChallengeVerify() {
       },
     };
 
+   
     try {
       const response = await axios.post(
         `${gConst.API_BASE_URL}:8090/verify/upload`,
         formData,
         config
       );
-      console.log(response.data);
 
       alert("사진이 성공적으로 업로드되었습니다.");
       setErrorMessage("");
@@ -86,11 +85,7 @@ function ChallengeVerify() {
       }, 1000);
     } catch (error) {
       if (error.response.data && error.response.status === 400) {
-        setErrorMessage(error.response.data);
-        console.error(error);
-        console.log("오류 응답:", error.response);
-        console.log("오류 상태:", error.response.status);
-        console.log("오류 데이터:", error.response.data);
+        setErrorMessage("오늘 인증을 모두 하셨습니다.");
       } else {
         setErrorMessage("사진 업로드 중 오류가 발생했습니다.");
       }
@@ -103,13 +98,20 @@ function ChallengeVerify() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <div style={{ marginBottom: "30px" }}></div>{" "}
-      {/* 헤더와 카드 사이 간격 조정 */}
+
+      <SoftBox my={2} textAlign="center">
+        <SoftTypography variant="h4" fontWeight="bold">
+          챌린지 인증
+        </SoftTypography>
+    </SoftBox>
+
+
+     
       <Card style={{ textAlign: "center" }}>
-        <SoftBox mb={2} style={{ width: "400px", margin: "0 auto" }}>
+        <SoftBox p={6} mb={2} style={{ width: "400px", margin: "0 auto" }}>
           <SoftBox mb={1} ml={1.5}>
             <SoftTypography component="label">
-              인증사진을 등록하세요.
+             인증사진을 등록하세요.
             </SoftTypography>
           </SoftBox>
           <SoftInput
@@ -118,28 +120,16 @@ function ChallengeVerify() {
             accept="image/*"
             onChange={handleFileChange}
             placeholder="파일 선택"
+            style={{ marginTop: "8px" }}
           />
         </SoftBox>
 
-        {/* <SoftBox mb={2} style={{ width: "400px", margin: "0 auto" }}>
-          <SoftBox mb={1} ml={1.5}>
-            <SoftTypography
-              component="label"
-             
-              accept="image/*"
-              onChange={handleFileChange}
-            >
-              두 번째 인증사진을 등록하세요.
-            </SoftTypography>
-          </SoftBox>
-          <SoftInput  input type="file"   accept="image/*"  placeholder="파일 선택"  onChange={handleFileChange} />
-        </SoftBox> */}
-
-        <SoftBox mt={4} mb={1}>
+        <SoftBox mt={1} mb={1}>
           <SoftButton
             type="submit"
             variant="gradient"
-            color="info"
+            color="dark"
+            style={{ fontSize: '15px' }} 
             fullWidth
             onClick={handleUpload}
           >
