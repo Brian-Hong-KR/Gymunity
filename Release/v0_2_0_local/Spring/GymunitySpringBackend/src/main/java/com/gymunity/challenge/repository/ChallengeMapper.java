@@ -32,7 +32,7 @@ public interface ChallengeMapper {
 	public Challenge selectChallengesByChId(int chId);
 	
 	//챌린지 참가
-	public void updateProfile(@Param("chId") int chId, @Param("userId") int userId);
+	public void updateChIdInProfiles(@Param("chId") int chId, @Param("userId") int userId);
 	
 	public int getUpdateCount();
 

@@ -137,7 +137,7 @@ public class ChallengeServiceImpl implements ChallengeService {
 		response.setGradeName(user.getGradeName());
 
 		// profile ch_id update
-		challengeMapper.updateProfile(challenge.getChId(), challenge.getUserId());
+		challengeMapper.updateChIdInProfiles(challenge.getChId(), challenge.getUserId());
 
 		return response;
 	}// end createChallengeProcess()
@@ -147,7 +147,7 @@ public class ChallengeServiceImpl implements ChallengeService {
 	public void joinChallengeProcess(int chId, int userId) {
 		try {
 			// Profile 테이블에 ch_id1, ch_id2 중 0값이 있으면 chId를 업데이트
-			challengeMapper.updateProfile(chId, userId);
+			challengeMapper.updateChIdInProfiles(chId, userId);
 			int rowsUpdated = challengeMapper.getUpdateCount(); // 업데이트된 행의 수
 			if (rowsUpdated == 0) {
 				// 만약 업데이트된 행이 없는 경우, 즉 두 컬럼 모두 값이 0이 아닌 경우
@@ -164,7 +164,7 @@ public class ChallengeServiceImpl implements ChallengeService {
 			// challenges count 추가
 			challengeMapper.updateChallengeCount(chId);
 			// profile ch_id update
-			challengeMapper.updateProfile(chId, userId);
+			challengeMapper.updateChIdInProfiles(chId, userId);
 		} catch (Exception ex) {
 			// 다른 예외 처리
 			// 예외 메시지 로깅 또는 다른 처리
