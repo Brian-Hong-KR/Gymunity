@@ -27,18 +27,19 @@ public interface adminService {
 	public Map<String, Integer> countReferrerSignUpByWeek();
 	
 	public Map<String, Map<String, Integer>> getAllDataByWeek();
-
-	public int getUserIdByNickName(String nickName);
 	
 	public PointDetailResponse getPointsProcess(String userAccountId);
 	
 	public void insertOrUpdateadjustPointsProcess(AddPointAdjustmentDTO dto);
-
+	
+	public int getUserIdByNickName(String nickName);
+	
 	public UserDetails getUserDetails(int userId);
 	
 	public void updateNickName(int userId, String nickName);
 	
 	public void updateIsActive(int userId);
 	
+	public boolean isUserNameExists(String nickName);
 
 }// end interface

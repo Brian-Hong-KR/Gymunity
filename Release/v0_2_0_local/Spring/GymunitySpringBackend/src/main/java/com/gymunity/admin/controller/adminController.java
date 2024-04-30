@@ -86,4 +86,24 @@ public class adminController {
         adminService.updateIsActive(userId);
     }
 	 
+	// 닉네임 중복 체크
+	@Operation(summary = "닉네임 중복 체크")
+	@GetMapping("/checkUserNickname/{nickName}")
+	 public ResponseEntity<String> checkUsername(@PathVariable("nickName")String nickName) {
+		try {
+	        // 아이디 중복 확인을 위해 UserService의 메서드 호출
+	        boolean isExists = adminService.isUserNameExists(nickName);
+	        
+	        if (isExists) {
+	            // 아이디가 이미 존재하는 경우
+	            return ResponseEntity.status(HttpStatus.CONFLICT).body("이미 존재하는 닉네임입니다.");
+	        } else {
+	            // 아이디가 존재하지 않는 경우
+	            return ResponseEntity.ok("사용할 수 있는 닉네임입니다.");
+	        }
+	    } catch (Exception e) {
+	        // 예외 발생 시
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("서버 오류가 발생했습니다.");
+	    }
+	}
 }// end class
