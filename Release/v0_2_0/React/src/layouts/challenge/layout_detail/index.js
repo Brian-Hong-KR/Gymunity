@@ -37,7 +37,7 @@ function ChallengeDetail() {
   const pv = useSelector((state) => state.challenge.pv);
 
   const joinList = useSelector((state) => state.challenge.joinList || []);
-  console.log("joinList:", joinList);
+  // console.log("joinList:", joinList);
 
   const joinChIdList =
     joinList.length > 0 && typeof joinList[0] === "object"
@@ -51,64 +51,66 @@ function ChallengeDetail() {
       ? true
       : false;
 
-  console.log("challengeDetail.chId:", challengeDetail.chId);
-  console.log("challengeDetail.isJoined:", isJoined);
+  // console.log("challengeDetail.chId:", challengeDetail.chId);
+  // console.log("challengeDetail.isJoined:", isJoined);
 
   const localUserId = parseInt(localStorage.getItem("userId"));
-  console.log("localUserId:", localUserId);
-  console.log("register_UserId:", challengeDetail.userId);
+  // console.log("localUserId:", localUserId);
+  // console.log("register_UserId:", challengeDetail.userId);
 
   const { image, category, grade, verifyTerm, remainingDays } =
     DataConverter(challengeDetail);
-
-  const [showAlert, setShowAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState("");
-  const [currentPage, setCurrentPage] = useState(null); // currentPage 상태 추가
+  const [currentPage, setCurrentPage] = useState(1); // currentPage 상태 추가
 
   useEffect(() => {
     dispatch(challengeActions.getChallengeDetail(chId));
-  }, [chId]);
+  }, [chId, dispatch]);
 
-  // 삭제하기 함수
-  const handleDelete = async () => {
-    try {
-      const response = await dispatch(
-        challengeActions.getChallengeDelete(challengeDetail.chId)
-      );
-      console.error("삭제 chId:", challengeDetail.chId);
-      if (response.payload === "삭제 실패") {
-        setAlertMessage("다른 참여자가 있을 경우 삭제가 불가합니다.");
-        setShowAlert(true); // 알림창 열기
-      } else {
-        setAlertMessage("챌린지가 삭제되었습니다.");
-        setShowAlert(true); // 알림창 열기
-      }
-    } catch (error) {
-      console.error("삭제 요청 중 오류 발생:", error);
-      setAlertMessage("삭제 요청 중 오류가 발생했습니다."); // 오류 메시지 설정
-      setShowAlert(true); // 알림창 열기
-    }
-  };
+  // 알림창 관리
+  const [showJoinAlert, setShowJoinAlert] = useState(false);
+  const [showDeleteAlert, setShowDeleteAlert] = useState(false);
+  const [deleteMessage, setDeleteMessage] = useState("");
 
-  // SoftButton 클릭 시 SoftAlert을 보여주는 함수
-  const handleShowAlert = (message) => {
-    setAlertMessage(message);
-    setShowAlert(true);
-  };
+  const AlertComponent = ({ message, color, onClose }) => (
+    <SoftAlert color={color} dismissible onClose={onClose}>
+      {message}
+    </SoftAlert>
+  );
 
   // 알림창 닫기 함수
   const handleAlertClose = () => {
-    setShowAlert(false);
+    setShowJoinAlert(false);
+    setShowDeleteAlert(false);
     navigate(`/challenge/list/${currentPage}`);
   };
 
+  // 삭제하기 함수
+  const handleDeleteButtonClick = async () => {
+    try {
+      const response = await dispatch(
+        challengeActions.getChallengeDelete(chId)
+      );
+      console.error("삭제 chId:", chId);
+      if (response.payload === "삭제 실패") {
+        setDeleteMessage("다른 참여자가 있을 경우 삭제가 불가합니다.");
+        setShowDeleteAlert(true);
+      } else {
+        setDeleteMessage("챌린지가 삭제되었습니다.");
+        setShowDeleteAlert(true);
+      }
+    } catch (error) {
+      console.error("삭제 요청 중 오류 발생:", error);
+      setDeleteMessage("삭제 요청 중 오류가 발생했습니다.");
+      setShowDeleteAlert(true);
+    }
+  };
+
+  // 참여하기 함수
   const handleJoinButtonClick = async (e) => {
     e.preventDefault();
-    // await dispatch(boardActions.getBoardWrite(formData, config));
     await dispatch(challengeActions.getChallengeJoin(chId));
     // SoftButton 클릭 시 SoftAlert을 보여주는 함수
-    setAlertMessage("참여 완료! 챌린지를 끝까지 완수해보세요.");
-    setShowAlert(true);
+    setShowJoinAlert(true);
   };
 
   return (
@@ -620,41 +622,57 @@ function ChallengeDetail() {
                 >
                   참여하기
                 </SoftButton>
-                {showAlert && (
-                  <SoftAlert
+                {showJoinAlert && (
+                  <AlertComponent
+                    message="참여 완료! 챌린지를 끝까지 완수해보세요."
                     color="success"
-                    dismissible
                     onClose={handleAlertClose}
-                  >
-                    참여 완료! 챌린지를 끝까지 완수해보세요.
-                  </SoftAlert>
+                  />
                 )}
               </>
             ) : null}
           </SoftBox>
         </SoftBox>
-        {showAlert && (
-          <SoftAlert
+        {showDeleteAlert && (
+          <AlertComponent
+            message={deleteMessage}
             color="white"
-            position="fixed"
-            top="0"
-            left="50%"
-            transform="translateX(-50%)"
-            zIndex="9999"
-          >
-            {alertMessage}
-            <SoftButton variant="gradient" color="info" onClick={handleDelete}>
-              삭제
-            </SoftButton>
-            <SoftButton
-              variant="gradient"
-              color="info"
-              onClick={handleAlertClose}
-            >
-              취소
-            </SoftButton>
-          </SoftAlert>
+            onClose={handleAlertClose}
+          />
         )}
+        {/* <SoftAlert
+          color="white"
+          position="fixed"
+          top="20%"
+          transform="translateX(-50%)"
+          zIndex="9999"
+          flexDirection="column" // 수직으로 배치
+          alignItems="center" // 가운데 정렬
+        >
+          
+          <SoftButton
+            variant="gradient"
+            color="info"
+            onClick={handleDeleteButtonClick}
+            style={{ marginRight: "10px" }}
+          >
+            삭제
+          </SoftButton>
+          {showDeleteAlert && (
+            <AlertComponent
+              message={deleteMessage}
+              color="white"
+              onClose={handleAlertClose}
+            />
+          )}
+          <SoftButton
+            variant="gradient"
+            color="info"
+            onClick={handleDeleteButtonClick}
+          >
+            취소
+          </SoftButton>
+        </SoftAlert> */}
       </Card>
       <Footer />
     </DashboardLayout>

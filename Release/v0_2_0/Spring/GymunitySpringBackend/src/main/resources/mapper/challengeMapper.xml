@@ -46,7 +46,7 @@
 	</select>
 	
 	<!-- 참가중인 챌린지 리스트 불러오기-->
-	<select id="joinList" resultType="Challenge" parameterType="int">
+	<select id="joinList" parameterType="int" resultMap="challengeResultMap" >
 		SELECT c.*, u.nick_name, u.grade_name, u.admin_yn
 		FROM challenges c
 		JOIN users u ON c.user_id = u.user_id
@@ -147,7 +147,7 @@
 	</delete>
 
 	<!-- 챌린지 삭제 또는 종료 시 profile 테이블 ch_id 업데이트-->
-    <update id="updateProfileFinished">
+    <update id="updateProfileFinished" parameterType="int">
 	    UPDATE profiles
 	    SET
 	        ch_id1 = CASE WHEN ch_id1 = #{chId} THEN 0 ELSE ch_id1 END,

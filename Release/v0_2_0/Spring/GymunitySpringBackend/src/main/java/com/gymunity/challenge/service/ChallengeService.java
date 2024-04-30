@@ -26,8 +26,6 @@ public interface ChallengeService {
 	
 	public void joinChallengeProcess(int chId, int userId);
 	
-//	public void challengeFinishProcess();
-	
 	public void deleteChallengeProcess(int chId, int userId);
 	
 	public void updateProceedProcess();
