@@ -21,7 +21,14 @@ function getChallengeListAsync(currentPage) {
       );
 
       const { challengeList, joinList, pv } = response.data;
-      dispatch(challengeReducers.getChallengeList({ challengeList, pv }));
+      // dispatch(challengeReducers.getChallengeList({ challengeList, pv }));
+      dispatch(
+        challengeReducers.getChallengeList({
+          challengeList,
+          newChallengeList: challengeList,
+          pv,
+        })
+      );
       dispatch(challengeReducers.getJoinList({ joinList }));
     } catch (error) {
       console.error(
