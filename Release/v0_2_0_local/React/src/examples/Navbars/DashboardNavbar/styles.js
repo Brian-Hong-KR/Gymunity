@@ -9,34 +9,37 @@ function navbar(theme, ownerState) {
   const { borderRadius } = borders;
 
   return {
-    boxShadow: transparentNavbar || absolute ? "none" : navbarBoxShadow,
-    backdropFilter: transparentNavbar || absolute ? "none" : `saturate(200%) blur(${pxToRem(30)})`,
-    backgroundColor:"#C00000",
-    color: "white",
+    boxShadow: transparentNavbar || absolute ? 'none' : navbarBoxShadow,
+    backdropFilter:
+      transparentNavbar || absolute
+        ? 'none'
+        : `saturate(200%) blur(${pxToRem(30)})`,
+    backgroundColor: '#ea0606',
+    color: 'white',
     top: absolute ? 0 : pxToRem(12),
     minHeight: pxToRem(75),
-    display: "grid",
-    alignItems: "center",
+    display: 'grid',
+    alignItems: 'center',
     borderRadius: borderRadius.xl,
     paddingTop: pxToRem(8),
     paddingBottom: pxToRem(8),
     paddingRight: absolute ? pxToRem(8) : 0,
     paddingLeft: absolute ? pxToRem(16) : 0,
 
-    "& > *": {
-      transition: transitions.create("all", {
+    '& > *': {
+      transition: transitions.create('all', {
         easing: transitions.easing.easeInOut,
         duration: transitions.duration.standard,
       }),
     },
 
-    "& .MuiToolbar-root": {
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center",
+    '& .MuiToolbar-root': {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
 
-      [breakpoints.up("sm")]: {
-        minHeight: "auto",
+      [breakpoints.up('sm')]: {
+        minHeight: 'auto',
         padding: `${pxToRem(4)} ${pxToRem(16)}`,
       },
     },
