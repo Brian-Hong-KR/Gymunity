@@ -11,12 +11,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.gymunity.admin.dto.AdminEditUserDTO;
+import com.gymunity.admin.dto.UserDetails;
+import com.gymunity.admin.dto.AddPointAdjustmentDTO;
 import com.gymunity.admin.repository.AdminMapper;
 import com.gymunity.admin.service.adminService;
 import com.gymunity.challenge.dto.Challenge;
 import com.gymunity.challenge.dto.PhotoDTO;
 import com.gymunity.challenge.dto.Verify;
 import com.gymunity.challenge.repository.ChallengeMapper;
+import com.gymunity.point.dto.PointAdjust;
+import com.gymunity.point.repository.PointMapper;
+import com.gymunity.user.dto.PointDetailDTO;
+import com.gymunity.user.dto.User;
+import com.gymunity.user.repository.UserMapper;
+import com.gymunity.user.response.PointDetailResponse;
 
 import lombok.RequiredArgsConstructor;
 
@@ -27,9 +36,11 @@ public class adminServiceImpl implements adminService {
 
 	private final AdminMapper adminMapper;
 	private final ChallengeMapper challengeMapper;
-	
+	private final PointMapper pointMapper;
+	private final UserMapper userMapper;
+
 	@Override
-	public List<PhotoDTO> getPhotosByResultNProcess() {		
+	public List<PhotoDTO> getPhotosByResultNProcess() {
 		return adminMapper.selectPhotosByResultN();
 	}
 
@@ -109,12 +120,53 @@ public class adminServiceImpl implements adminService {
 
 		return allData;
 	}// getAllDataByWeek()
-	
-	
-	 @Override
-	    public void adminDeleteUsers(String userAccountId) {
-	        adminMapper.adminDeleteUsers(userAccountId);
-	    }
-	
-	
+
+	@Override
+	public PointDetailResponse getPointsProcess(String userAccountId) {
+
+		PointDetailResponse response = new PointDetailResponse();
+
+		List<PointDetailDTO> dto = adminMapper.getPointsByUserAccountId(userAccountId);
+		response.setDetails(dto);
+
+		return response;
+	}// end getPointsProcess()
+
+	@Override
+	public void insertOrUpdateadjustPointsProcess(AddPointAdjustmentDTO dto) {
+
+		User user = userMapper.selectUsersByAccountId(dto.getUserAccountId());
+
+		int userId = user.getUserId();
+
+		PointAdjust pointAdjust = new PointAdjust();
+		pointAdjust.setUserId(userId);
+		pointAdjust.setPointsAdjusted(dto.getPointsAdjusted());
+		pointAdjust.setReason(dto.getReason());
+		pointMapper.adjustPoint(pointAdjust);
+
+		pointMapper.adjustPointsAggr(userId);
+	}// end insertOrUpdateadjustPointsProcess()
+
+
+	@Override
+	public int getUserIdByNickName(String nickName) { // 추가
+		return adminMapper.getUserIdByNickName(nickName);
+	}
+
+	@Override
+	public UserDetails getUserDetails(int userId) {
+		return adminMapper.getUserDetails(userId);
+	}
+
+	@Override
+	public void updateNickName(int userId, String nickName) {
+		adminMapper.updateNickName(userId, nickName);
+	}
+
+	@Override
+	public void updateIsActive(int userId) {
+		adminMapper.updateIsActive(userId);
+	}
+
 }// end class

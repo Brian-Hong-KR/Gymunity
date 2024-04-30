@@ -26,7 +26,7 @@ public interface ChallengeService {
 	
 //	public void updateChallengeProcess(Challenge dto, int userId);
 	
-	public void deleteChallengeProcess(int userId);
+	public void deleteChallengeProcess(int chId, int userId);
 	
 
 }// end interface

@@ -1,7 +1,6 @@
 package com.gymunity.user.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.gymunity.user.dto.Survey;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

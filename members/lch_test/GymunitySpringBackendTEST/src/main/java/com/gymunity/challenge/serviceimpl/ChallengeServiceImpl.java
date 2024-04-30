@@ -6,7 +6,6 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.stream.Stream;
 
-import org.apache.ibatis.exceptions.PersistenceException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,7 +27,9 @@ import com.gymunity.user.dto.User;
 import com.gymunity.user.repository.UserMapper;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -128,6 +129,8 @@ public class ChallengeServiceImpl implements ChallengeService {
 
 		// userId로 users Table 조회하기
 		User user = userMapper.selectUsersByUserId(userId);
+		
+	
 
 		// 응답 객체 생성 및 필드 설정
 		ChallengeCreateResponse response = new ChallengeCreateResponse();
@@ -201,7 +204,7 @@ public class ChallengeServiceImpl implements ChallengeService {
 
 	// 챌린지 삭제
 	@Override
-	public void deleteChallengeProcess(int userId) {
+	public void deleteChallengeProcess(int chId, int userId) {
 		Challenge challenge = challengeMapper.selectChallengesByUserId(userId);
 
 		// 챌린지가 없는 경우 예외 처리
@@ -218,7 +221,7 @@ public class ChallengeServiceImpl implements ChallengeService {
 
 			pointService.addOrUpdatePointsAggr(userId);
 
-			challengeMapper.deleteChallenges(userId);
+			challengeMapper.deleteChallenges(chId);
 		} else {
 			throw new ChallengeException("사용자에 대한 챌린지 정보가 하나만 존재하지 않습니다.");
 		}

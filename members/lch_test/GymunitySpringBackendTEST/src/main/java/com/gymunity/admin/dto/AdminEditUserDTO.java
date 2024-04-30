@@ -5,8 +5,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class AdminDeleteUserDTO {
+public class AdminEditUserDTO {
 
-	 private String userAccountId;
-
+	private String nickName;
+	private boolean isActive;
 }

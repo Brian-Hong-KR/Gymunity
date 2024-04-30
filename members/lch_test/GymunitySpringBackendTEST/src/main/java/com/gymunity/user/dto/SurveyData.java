@@ -16,11 +16,13 @@ public class SurveyData {
 	private String level;
 	private String abnormal;
 	private int userId;
+	
 	@JsonProperty("plan_name")
 	private String planName;
 	@JsonProperty("plan_desc")
 	private String planDesc;
 	@JsonProperty("daily_program")
+	
 	private List<String> dailyProgram;
 	private List<String> videoList;
 }

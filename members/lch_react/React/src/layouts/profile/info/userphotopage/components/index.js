@@ -1,5 +1,3 @@
-// React에서 백엔드 API 호출하고 사진 데이터 표시하는 코드
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -39,9 +37,8 @@ const PhotoList = () => {
 
   const fetchPhotos = () => {
     axios
-      .get("http://192.168.0.60:8090/user/photo", baseConfig)
+      .get("/user/photo", baseConfig)
       .then((response) => {
-        console.log("Received data:", response.data);
         const newRows = response.data.map((photo) => ({
           사진1: photo.imagePath1 ? (
             <>
@@ -103,7 +100,7 @@ const PhotoList = () => {
     };
 
     axios
-      .delete("http://192.168.0.60:8090/user/photo/delete", deleteConfig)
+      .delete("/user/photo/delete", deleteConfig)
       .then(() => {
         console.log("Photo deleted successfully");
         fetchPhotos(); // 상태 업데이트를 위해 사진 목록 다시 불러오기

@@ -36,4 +36,12 @@ public class PointServiceImpl implements PointService {
 		userMapper.updateUserGradeName(userId);
 		
 	}
+	
+	@Override
+	public void adjustPointsAggr(int userId) {
+		pointMapper.adjustPointsAggr(userId);
+		
+		userMapper.updateUserGradeName(userId);
+		
+	}
 }// end class

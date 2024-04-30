@@ -19,9 +19,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @RequiredArgsConstructor
 public class JwtTokenFilter extends OncePerRequestFilter {
 	private static final int ACCESS_EXPIRED = 701;
@@ -35,10 +33,8 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 			throws ServletException, IOException {
 
 		String accessToken = request.getHeader("Authorization");
-		log.info("accessToken:{}", accessToken);
 
 		String refreshToken = request.getHeader("Authorization-refresh");
-		log.info("refreshToken:{}", refreshToken);
 
 		Boolean isAccessToken = null;
 		Boolean isRefreshToken = null;
@@ -48,11 +44,8 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 			System.out.println("refreshToken:" + refreshToken);
 			String authAccToken = accessToken.split(" ")[1];
 
-			log.info("token Expiration : " + JwtProvider.isExpired(authAccToken));
 			isAccessToken = JwtProvider.isExpired(authAccToken);
 			isRefreshToken = JwtProvider.isExpired(refreshToken);
-			log.info("isAccessToken : " + isAccessToken);
-			log.info("isRefreshToken : " + isRefreshToken);
 		}
 
 		if (Boolean.TRUE.equals(isAccessToken) && Boolean.TRUE.equals(isRefreshToken)) {
