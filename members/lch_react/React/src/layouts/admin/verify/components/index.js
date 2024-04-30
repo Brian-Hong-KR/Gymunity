@@ -123,7 +123,19 @@ const AdminVerify = () => {
         fetchVerify(); // 성공하면 목록을 다시 불러옵니다.
       })
       .catch((error) => {
-        console.error("Error updating verification status", error);
+        console.error("Error fetching verification list:", error);
+        if (error.response) {
+          if (error.response.status === 403) {
+            alert("접근 권한이 없습니다.");
+            navigate("/profile");
+          } else {
+            alert("서버 오류가 발생했습니다.");
+            navigate("/main");
+          }
+        } else {
+          alert("네트워크 오류가 발생했습니다.");
+          navigate("/main");
+        }
       });
   };
 
@@ -141,6 +153,18 @@ const AdminVerify = () => {
       })
       .catch((error) => {
         console.error("Error deleting photo", error);
+        if (error.response) {
+          if (error.response.status === 403) {
+            alert("접근 권한이 없습니다.");
+            navigate("/profile");
+          } else {
+            alert("서버 오류가 발생했습니다.");
+            navigate("/main");
+          }
+        } else {
+          alert("네트워크 오류가 발생했습니다.");
+          navigate("/main");
+        }
       });
   };
 

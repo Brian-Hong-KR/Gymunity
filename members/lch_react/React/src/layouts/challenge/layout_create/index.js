@@ -254,6 +254,8 @@ function ChallengeCreate() {
       return;
     }
 
+    
+
     const config = {
       headers: {
         "Content-Type": "application/json",

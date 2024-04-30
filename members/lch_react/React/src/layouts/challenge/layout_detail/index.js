@@ -63,40 +63,51 @@ function ChallengeDetail() {
 
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
-  //삭제버튼
-
-  const handleDelete = async (e) => {
-    e.preventDefault();
-    await dispatch(challengeActions.getChallengeDelete(chId)).then(
-      (response) => {
-        if (response.payload === "삭제 실패") {
-          setAlertMessage("다른 참여자가 있을 경우 삭제가 불가합니다.");
-        } else {
-          navigate(`/challenge/list/${pv.currentPage}`);
-        }
-      }
-    );
-  };
+  const [currentPage, setCurrentPage] = useState(null); // currentPage 상태 추가
 
   useEffect(() => {
     dispatch(challengeActions.getChallengeDetail(chId));
-  }, [dispatch, chId]);
+  }, [chId]);
+
+  // 삭제하기 함수
+  const handleDelete = async () => {
+    try {
+      const response = await dispatch(
+        challengeActions.getChallengeDelete(challengeDetail.chId)
+      );
+      console.error("삭제 chId:", challengeDetail.chId);
+      if (response.payload === "삭제 실패") {
+        setAlertMessage("다른 참여자가 있을 경우 삭제가 불가합니다.");
+        setShowAlert(true); // 알림창 열기
+      } else {
+        setAlertMessage("챌린지가 삭제되었습니다.");
+        setShowAlert(true); // 알림창 열기
+      }
+    } catch (error) {
+      console.error("삭제 요청 중 오류 발생:", error);
+      setAlertMessage("삭제 요청 중 오류가 발생했습니다."); // 오류 메시지 설정
+      setShowAlert(true); // 알림창 열기
+    }
+  };
 
   // SoftButton 클릭 시 SoftAlert을 보여주는 함수
-  const handleShowAlert = () => {
+  const handleShowAlert = (message) => {
+    setAlertMessage(message);
     setShowAlert(true);
   };
 
-  // SoftAlert의 닫기 버튼 클릭 시 SoftAlert을 닫는 함수
+  // 알림창 닫기 함수
   const handleAlertClose = () => {
     setShowAlert(false);
+    navigate(`/challenge/list/${currentPage}`);
   };
 
-  const handleClickJoinButton = async (e) => {
+  const handleJoinButtonClick = async (e) => {
     e.preventDefault();
     // await dispatch(boardActions.getBoardWrite(formData, config));
     await dispatch(challengeActions.getChallengeJoin(chId));
     // SoftButton 클릭 시 SoftAlert을 보여주는 함수
+    setAlertMessage("참여 완료! 챌린지를 끝까지 완수해보세요.");
     setShowAlert(true);
   };
 
@@ -584,7 +595,7 @@ function ChallengeDetail() {
                 <SoftButton
                   variant="gradient"
                   color="dark"
-                  onClick={handleShowAlert}
+                  onClick={() => handleShowAlert("정말 삭제하시겠습니까?")}
                 >
                   삭제
                 </SoftButton>
@@ -605,7 +616,7 @@ function ChallengeDetail() {
                 <SoftButton
                   variant="gradient"
                   color="dark"
-                  onClick={handleClickJoinButton}
+                  onClick={handleJoinButtonClick}
                 >
                   참여하기
                 </SoftButton>
@@ -629,9 +640,9 @@ function ChallengeDetail() {
             top="0"
             left="50%"
             transform="translateX(-50%)"
-            z-index="9999"
+            zIndex="9999"
           >
-            정말 삭제하시겠습니까?
+            {alertMessage}
             <SoftButton variant="gradient" color="info" onClick={handleDelete}>
               삭제
             </SoftButton>
@@ -644,15 +655,9 @@ function ChallengeDetail() {
             </SoftButton>
           </SoftAlert>
         )}
-        {alertMessage && ( // 새로운 조건 추가
-          <SoftAlert color="error" dismissible>
-            {alertMessage}
-          </SoftAlert>
-        )}
       </Card>
       <Footer />
     </DashboardLayout>
   );
 }
-
 export default ChallengeDetail;

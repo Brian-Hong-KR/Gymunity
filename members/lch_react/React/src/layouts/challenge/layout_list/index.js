@@ -21,6 +21,7 @@ import PlaceholderCard from "examples/Cards/PlaceholderCard";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import GymunityNavbar from "examples/Navbars/GymunityNavbar";
 import FilteringByCategory from "../components/FilteringByCategory";
+import SoftButton from "components/SoftButton";
 
 function Challenge() {
   const { currentPage = 1 } = useParams();
@@ -40,11 +41,13 @@ function Challenge() {
     }
   }, [currentPage, isInitialRender, getChallengeList]);
 
-  const pv = useSelector((state) => state.challenge.pv || {});
-
-  const challengeList = useSelector(
-    (state) => state.challenge.challengeList || []
-  );
+  // const challengeList = useSelector(
+  //   (state) => state.challenge.challengeList || []
+  // );
+  const challengeList = useSelector((state) => [
+    ...(state.challenge.challengeList || []),
+    ...(state.challenge.newChallengeList || []),
+  ]);
 
   const joinList = useSelector((state) => state.challenge.joinList || []);
   console.log("joinList:", joinList);
@@ -69,6 +72,11 @@ function Challenge() {
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
+  };
+
+  const handleLoadMore = () => {
+    const nextPage = parseInt(currentPage) + 1;
+    getChallengeList(nextPage);
   };
 
   //TODO localStorage.getItem('userId');로 바꾸기
@@ -100,17 +108,14 @@ function Challenge() {
               </SoftBox>
               <SoftBox p={1} m={1}>
                 <Grid container spacing={5}>
-                  {joinChIdList.length > 0 &&
-                    updatedChallengeList.map(
-                      (challenge) =>
-                        challenge.isJoined && (
-                          <Grid item xs={12} md={6} xl={3} key={challenge.chId}>
-                            <Link to={`/challenge/detail/${challenge.chId}`}>
-                              <ChallengeCard challenge={challenge} />
-                            </Link>
-                          </Grid>
-                        )
-                    )}
+                  {joinList &&
+                    joinList.map((challenge) => (
+                      <Grid item xs={12} md={6} xl={3} key={challenge.chId}>
+                        <Link to={`/challenge/detail/${challenge.chId}`}>
+                          <ChallengeCard challenge={challenge} />
+                        </Link>
+                      </Grid>
+                    ))}
                   <Grid
                     item
                     xs={12}
@@ -170,9 +175,28 @@ function Challenge() {
             </Grid>
           </SoftBox>
         </Card>
-
-        {/* TODO SoftPagination 설정 */}
-        {pv && <SoftPagination getChallengeList={getChallengeList} />}
+        <SoftBox
+          mt={3}
+          position="absolute"
+          minWidth="300px"
+          width="100%"
+          sx={{
+            maxWidth: "100%",
+            maxHeight: "100%",
+            display: "flex", // 가로 정렬 설정
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <SoftButton
+            variant="gradient"
+            color="dark"
+            onClick={handleLoadMore}
+            sx={{ width: "150px", marginRight: "50px" }}
+          >
+            더 보기
+          </SoftButton>
+        </SoftBox>
       </SoftBox>
     </DashboardLayout>
   );

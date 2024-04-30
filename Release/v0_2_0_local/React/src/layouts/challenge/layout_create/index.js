@@ -240,6 +240,11 @@ function ChallengeCreate() {
     
     setErrorMessage("");
 
+    if (challenge.bettingPoint <= 199 || challenge.bettingPoint >= 1001) {
+      alert("포인트는 200부터 1000포인트를 입력하세요.");
+      return;
+    }
+
     if (
       !challenge.title.trim() ||
       !challenge.content.trim() ||
@@ -249,11 +254,7 @@ function ChallengeCreate() {
       return;
     }
 
-    if (challenge.bettingPoint <= 199) {
-      alert("배팅 포인트를 200 이상으로 작성하세요.");
-      setBettingPoint(""); // 배팅 포인트 리셋
-      return;
-    }
+    
 
     const config = {
       headers: {

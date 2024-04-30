@@ -4,8 +4,11 @@ import axios from "axios";
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 import Table from "examples/Tables/Table";
+import useAuth from "components/useAuth";
 
 const PointDetail = () => {
+  useAuth();
+
   const baseConfig = {
     headers: {
       "Content-Type": "application/json",

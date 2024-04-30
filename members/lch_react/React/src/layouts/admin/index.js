@@ -1,16 +1,9 @@
 import Grid from "@mui/material/Grid";
-import Icon from "@mui/material/Icon";
 import SoftBox from "components/SoftBox";
-import SoftTypography from "components/SoftTypography";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import GymunityNavbar from "examples/Navbars/GymunityNavbar";
 
-import typography from "assets/theme/base/typography";
-import ReportsBarChart from "examples/Charts/BarCharts/ReportsBarChart";
-import Table from "examples/Tables/Table";
-
-import { Link } from "react-router-dom"; // react-router-dom을 사용하여 링크를 관리합니다.
+import { Link, useNavigate } from "react-router-dom"; // react-router-dom을 사용하여 링크를 관리합니다.
 
 // Data
 import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
@@ -21,11 +14,13 @@ import SoftButton from "components/SoftButton";
 
 function AdminInfo() {
   const { chart, items } = reportsBarChartData;
+  const navigate = useNavigate();
   const config = {
     headers: {
       "Content-Type": "application/json",
-      Authorization: localStorage.getItem("Authorization"),
-      "Authorization-refresh": localStorage.getItem("Authorization-refresh"),
+      Authorization: localStorage.getItem("Authorization") || "",
+      "Authorization-refresh":
+        localStorage.getItem("Authorization-refresh") || "",
     },
   };
 
@@ -43,16 +38,34 @@ function AdminInfo() {
   useEffect(() => {
     async function fetchData() {
       try {
+        console.log("Fetching admin info...");
         const response = await axios.get("/admin/info", config);
         const data = response.data;
-        console.log(data);
+        console.log("Admin data received:", data);
         setAdminInfo(data);
       } catch (error) {
+        console.error("503:", error);
+        console.log(
+          "HTTP status code:",
+          error.response ? error.response.status : "No response"
+        );
         console.error("Error fetching admin data:", error);
+        if (error.response) {
+          if (error.response.status === 403) {
+            alert("접근 권한이 없습니다.");
+            navigate("/profile");
+          } else {
+            alert("서버 오류가 발생했습니다.");
+            navigate("/main");
+          }
+        } else {
+          alert("네트워크 오류가 발생했습니다.");
+          navigate("/main");
+        }
       }
     }
     fetchData();
-  }, []);
+  }, [navigate]);
 
   useEffect(() => {
     const labels = Array.from(
@@ -134,17 +147,17 @@ function AdminInfo() {
       <DashboardNavbar />
       <Grid item xs={12} lg={5}>
         <SoftBox
-          display='flex'
-          justifyContent='space-between'
-          alignItems='center'
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
           p={3}
         >
           <SoftButton
-            type='submit'
-            variant='gradient'
-            color='dark'
+            type="submit"
+            variant="gradient"
+            color="dark"
             fullWidth
-            style={{ width: '30%' }}
+            style={{ width: "30%" }}
           >
             회원 관리
           </SoftButton>
@@ -197,7 +210,6 @@ function AdminInfo() {
           </Grid>
         </Grid>
       </SoftBox>
-      <GymunityNavbar />
     </DashboardLayout>
   );
 }

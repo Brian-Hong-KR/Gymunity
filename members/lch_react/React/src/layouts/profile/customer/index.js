@@ -8,8 +8,11 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import useAuth from "components/useAuth";
 
 function CustomerCreate() {
+  useAuth();
+
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const navigate = useNavigate();
