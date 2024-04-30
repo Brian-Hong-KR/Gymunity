@@ -5,6 +5,7 @@ let initialState = {
   newChallengeList: [], // 새로운 속성 추가
   pv: { currentPage: 1 },
   joinList: [],
+  joinChIdList: [],
   challengeDetail: {},
 };
 
@@ -25,7 +26,7 @@ const challengeSlice = createSlice({
     },
     getChallengeDetail(state, action) {
       state.challengeDetail = action.payload.data.challengeDetail;
-      state.joinList = action.payload.data.joinList;
+      state.joinChIdList = action.payload.data.joinChIdList;
     },
   },
 });
