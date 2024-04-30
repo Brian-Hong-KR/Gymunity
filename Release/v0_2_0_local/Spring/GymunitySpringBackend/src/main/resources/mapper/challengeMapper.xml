@@ -145,10 +145,7 @@
 		DELETE FROM challenges
 		WHERE ch_id=#{chId}
 	</delete>
-<<<<<<< Updated upstream
 
-
-=======
 	<!-- profile 테이블 ch_id 업데이트-->
     <update id="updateProfileFinished">
 	    UPDATE profiles
@@ -158,5 +155,5 @@
 	    WHERE user_id = #{userId}
 	        AND (ch_id1 = #{chId} OR ch_id2 = #{chId})
 	</update>
->>>>>>> Stashed changes
+
 </mapper>
