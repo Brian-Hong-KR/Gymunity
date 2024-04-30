@@ -50,21 +50,21 @@ function Challenge() {
   ]);
 
   const joinList = useSelector((state) => state.challenge.joinList || []);
-  console.log("joinList:", joinList);
+  const joinChIdList = joinList.map((obj) => obj.chId);
+  joinChIdList.length > 0 && typeof joinChIdList[0] === "object"
+    ? Object.values(joinList[0])
+    : [];
 
-  const joinChIdList =
-    joinList.length > 0 && typeof joinList[0] === "object"
-      ? Object.values(joinList[0])
-      : [];
   console.log("joinChIdList:", joinChIdList);
-  // console.log("joinChIdList:", typeof joinChIdList[0]);
+  console.log("joinChIdList typeof:", typeof joinChIdList[0]);
 
   const updatedChallengeList = challengeList.map((challenge) => {
     return {
       ...challenge,
       isJoined:
-        challenge.chId === joinChIdList[0] ||
-        challenge.chId === joinChIdList[1],
+        challenge.chId == joinChIdList[0] || challenge.chId == joinChIdList[1]
+          ? true
+          : false,
     };
   });
 
@@ -72,6 +72,7 @@ function Challenge() {
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
+    // getChallengeList(currentPage)
   };
 
   const handleLoadMore = () => {
@@ -178,7 +179,7 @@ function Challenge() {
         <SoftBox
           mt={3}
           position="absolute"
-          minWidth="300px"
+          minwidth="300px"
           width="100%"
           sx={{
             maxWidth: "100%",
