@@ -30,7 +30,7 @@ const Cs = () => {
     
       const fetchPoints = () => {
         axios
-          .get(`http://127.0.0.1:8090/user/inquirieslist`, baseConfig)
+          .get(`/user/inquirieslist`, baseConfig)
           .then((response) => {
             const cs = response.data.cs;
             const newRows = cs.map((pointdetail) => ({
@@ -48,13 +48,11 @@ const Cs = () => {
     <SoftBox py={1}>
       <SoftBox mb={1}>
         <SoftBox
-          display="flex"
-          justifyContent="space-between"
           alignItems="center"
-          p={3}
         >
-          <SoftTypography variant="h5">CS 관리</SoftTypography>
+          <SoftTypography variant="h5"  alignItems="center">CS 관리</SoftTypography>
         </SoftBox>
+        
 
         <SoftBox
           sx={{
@@ -65,6 +63,7 @@ const Cs = () => {
               },
             },
           }}
+          mt={7}
         >
             <div style={{ width: "60%", margin: "0 auto" }}>
           <Table  columns={columns} rows={rows} />

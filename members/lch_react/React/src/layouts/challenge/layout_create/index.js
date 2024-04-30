@@ -511,6 +511,7 @@ function ChallengeCreate() {
               type="submit"
               variant="gradient"
               color="dark"
+              style={{ fontSize: '15px' }} 
               fullWidth
               // onClick={handleCreateChallenge}>
             >
