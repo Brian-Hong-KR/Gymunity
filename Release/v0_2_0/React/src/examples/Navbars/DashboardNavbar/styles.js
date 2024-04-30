@@ -9,10 +9,13 @@ function navbar(theme, ownerState) {
   const { borderRadius } = borders;
 
   return {
-    boxShadow: transparentNavbar || absolute ? "none" : navbarBoxShadow,
-    backdropFilter: transparentNavbar || absolute ? "none" : `saturate(200%) blur(${pxToRem(30)})`,
-    backgroundColor:"#C00000",
-    color: "white",
+    boxShadow: transparentNavbar || absolute ? 'none' : navbarBoxShadow,
+    backdropFilter:
+      transparentNavbar || absolute
+        ? 'none'
+        : `saturate(200%) blur(${pxToRem(30)})`,
+    backgroundColor: '#ea0606',
+    color: 'white',
     top: absolute ? 0 : pxToRem(12),
     minHeight: pxToRem(75),
     display: "grid",

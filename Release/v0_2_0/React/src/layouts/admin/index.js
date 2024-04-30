@@ -123,42 +123,52 @@ function AdminInfo() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-    <Grid container justifyContent="center">
-      <Grid item xs={12} lg={9.2}>
+      <Grid item xs={12} lg={5}>
         <SoftBox
-          display="flex"
-          justifyContent="space-between"
-          alignItems="center"
-          p={4}
+          display='flex'
+          justifyContent='space-between'
+          alignItems='center'
+          p={3}
         >
           <SoftButton
-            type="submit"
-            variant="gradient"
-            color="dark"
+            type='submit'
+            variant='gradient'
+            color='dark'
             fullWidth
-            style={{ width: "30%" }}
+            style={{ width: '24%' }}
+            href='/dashboard/usermanage'
           >
             회원 관리
           </SoftButton>
 
           <SoftButton
-            type="submit"
-            variant="gradient"
-            color="dark"
+            type='submit'
+            variant='gradient'
+            color='dark'
             fullWidth
-            style={{ width: "30%" }}
-            href="/admin/editpoint"
+            style={{ width: '24%' }}
+            href='/dashboard/editpoint'
           >
             포인트 관리
           </SoftButton>
 
           <SoftButton
-            type="submit"
-            variant="gradient"
-            color="dark"
+            type='submit'
+            variant='gradient'
+            color='dark'
             fullWidth
-            style={{ width: "30%" }}
-            href="/admin/cs"
+            style={{ width: '24%' }}
+            href='/admin/verify'
+          >
+            사진 인증 관리
+          </SoftButton>
+
+          <SoftButton
+            type='submit'
+            variant='gradient'
+            color='dark'
+            fullWidth
+            style={{ width: '24%' }}
           >
             CS 관리
           </SoftButton>
