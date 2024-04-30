@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import SoftBox from "components/SoftBox";
-import SoftTypography from "components/SoftTypography";
 import Table from "examples/Tables/Table";
 import SoftButton from "components/SoftButton";
+import SoftTypography from "components/SoftTypography";
 
 const AdminVerify = () => {
   const imgStyle = {
@@ -39,9 +39,8 @@ const AdminVerify = () => {
 
   const fetchVerify = () => {
     axios
-      .get(`http://192.168.0.60:8090/admin/verify/list`, baseConfig)
+      .get(`/admin/verify/list`, baseConfig)
       .then((response) => {
-        console.log(response.data);
         const newRows = response.data.map((verifyList) => ({
           인덱스: verifyList.viId,
           사진1: verifyList.imagePath1 ? (
@@ -119,13 +118,24 @@ const AdminVerify = () => {
 
   const handleVerifyStatusChange = (viId, result) => {
     axios
-      .put("http://192.168.0.60:8090/admin/verify/check", { viId, result }, baseConfig)
+      .put("/admin/verify/check", { viId, result }, baseConfig)
       .then((response) => {
-        console.log("Status updated:", response.data);
         fetchVerify(); // 성공하면 목록을 다시 불러옵니다.
       })
       .catch((error) => {
-        console.error("Error updating verification status", error);
+        console.error("Error fetching verification list:", error);
+        if (error.response) {
+          if (error.response.status === 403) {
+            alert("접근 권한이 없습니다.");
+            navigate("/profile");
+          } else {
+            alert("서버 오류가 발생했습니다.");
+            navigate("/main");
+          }
+        } else {
+          alert("네트워크 오류가 발생했습니다.");
+          navigate("/main");
+        }
       });
   };
 
@@ -136,13 +146,25 @@ const AdminVerify = () => {
     };
 
     axios
-      .delete(`http://192.168.0.60:8090/user/photo/delete`, deleteConfig)
+      .delete(`/user/photo/delete`, deleteConfig)
       .then(() => {
         console.log("Photo deleted successfully");
         fetchVerify(); // 상태 업데이트를 위해 사진 목록 다시 불러오기
       })
       .catch((error) => {
         console.error("Error deleting photo", error);
+        if (error.response) {
+          if (error.response.status === 403) {
+            alert("접근 권한이 없습니다.");
+            navigate("/profile");
+          } else {
+            alert("서버 오류가 발생했습니다.");
+            navigate("/main");
+          }
+        } else {
+          alert("네트워크 오류가 발생했습니다.");
+          navigate("/main");
+        }
       });
   };
 
@@ -154,7 +176,9 @@ const AdminVerify = () => {
           justifyContent="space-between"
           alignItems="center"
           p={3}
-        ></SoftBox>
+        >
+          <SoftTypography variant="h5">인증사진목록</SoftTypography>
+        </SoftBox>
 
         <SoftBox
           sx={{

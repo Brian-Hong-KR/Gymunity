@@ -1,19 +1,14 @@
 import { useState } from "react";
 
-// react-router-dom components
 import { Link } from "react-router-dom";
 
-// @mui material components
 import Switch from "@mui/material/Switch";
 
-// Soft UI Dashboard React components
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 import SoftInput from "components/SoftInput";
 import SoftButton from "components/SoftButton";
 
-// Images
-import curved9 from "assets/images/curved-images/curved-6.jpg";
 import axios from "axios";
 import { Card } from "@mui/material";
 

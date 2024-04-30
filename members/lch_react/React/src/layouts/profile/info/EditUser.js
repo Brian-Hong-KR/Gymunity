@@ -2,6 +2,7 @@ import axios from "axios";
 import SoftBox from "components/SoftBox";
 import SoftButton from "components/SoftButton";
 import SoftInput from "components/SoftInput";
+import useAuth from "components/useAuth";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import React, { useEffect, useState } from "react";
@@ -10,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 const EditUser = () => {
   const navigate = useNavigate();
-  console.log("EditUser");
+  useAuth();
 
   const [users, setUsers] = useState({
     userEmail: localStorage.getItem("userEmail") || "",
@@ -75,10 +76,10 @@ const EditUser = () => {
     }
 
     try {
-      const response = await axios.put("http://192.168.0.60:8090/user/update", users, config);
+      const response = await axios.put("/user/update", users, config);
       localStorage.setItem("userEmail", userEmail);
       localStorage.setItem("nickName", nickName);
-      navigate("/"); // 수정 후 메인 페이지로 이동
+      navigate("/profile");
       console.log(config);
     } catch (error) {
       console.error("Error:", error);

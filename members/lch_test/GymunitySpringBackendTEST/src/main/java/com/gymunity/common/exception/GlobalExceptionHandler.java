@@ -39,4 +39,10 @@ public class GlobalExceptionHandler {
 		log.error("Handled ChallengeDuplicateEntryException: ", ex);
 		return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
 	}
+	
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<String> handleRuntimeException(RuntimeException ex) {
+        String errorMessage = ex.getMessage();
+        return new ResponseEntity<>(errorMessage, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }// end GlobalExceptionHandler()

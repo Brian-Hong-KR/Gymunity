@@ -1,32 +1,26 @@
 import Grid from "@mui/material/Grid";
-import Icon from "@mui/material/Icon";
 import SoftBox from "components/SoftBox";
-import SoftTypography from "components/SoftTypography";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import GymunityNavbar from "examples/Navbars/GymunityNavbar";
 
-import typography from "assets/theme/base/typography";
-import ReportsBarChart from "examples/Charts/BarCharts/ReportsBarChart";
-import Table from "examples/Tables/Table";
-
-import { Link } from "react-router-dom"; // react-router-dom을 사용하여 링크를 관리합니다.
+import { Link, useNavigate } from "react-router-dom"; // react-router-dom을 사용하여 링크를 관리합니다.
 
 // Data
 import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
 import GradientLineChart from "examples/Charts/LineCharts/GradientLineChart";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import SoftButton from 'components/SoftButton';
+import SoftButton from "components/SoftButton";
 
 function AdminInfo() {
-  // const { size } = typography;
   const { chart, items } = reportsBarChartData;
+  const navigate = useNavigate();
   const config = {
     headers: {
       "Content-Type": "application/json",
-      Authorization: localStorage.getItem("Authorization"),
-      "Authorization-refresh": localStorage.getItem("Authorization-refresh"),
+      Authorization: localStorage.getItem("Authorization") || "",
+      "Authorization-refresh":
+        localStorage.getItem("Authorization-refresh") || "",
     },
   };
 
@@ -44,19 +38,34 @@ function AdminInfo() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(
-          "http://192.168.0.60:8090/admin/info",
-          config
-        );
+        console.log("Fetching admin info...");
+        const response = await axios.get("/admin/info", config);
         const data = response.data;
-        console.log(data);
+        console.log("Admin data received:", data);
         setAdminInfo(data);
       } catch (error) {
+        console.error("503:", error);
+        console.log(
+          "HTTP status code:",
+          error.response ? error.response.status : "No response"
+        );
         console.error("Error fetching admin data:", error);
+        if (error.response) {
+          if (error.response.status === 403) {
+            alert("접근 권한이 없습니다.");
+            navigate("/profile");
+          } else {
+            alert("서버 오류가 발생했습니다.");
+            navigate("/main");
+          }
+        } else {
+          alert("네트워크 오류가 발생했습니다.");
+          navigate("/main");
+        }
       }
     }
     fetchData();
-  }, []);
+  }, [navigate]);
 
   useEffect(() => {
     const labels = Array.from(
@@ -125,7 +134,7 @@ function AdminInfo() {
           },
           {
             label: "추천인가입수",
-            color: "dark",
+            color: "error",
             data: dataReferrerSignUps,
           },
         ],
@@ -138,38 +147,38 @@ function AdminInfo() {
       <DashboardNavbar />
       <Grid item xs={12} lg={5}>
         <SoftBox
-          display='flex'
-          justifyContent='space-between'
-          alignItems='center'
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
           p={3}
         >
           <SoftButton
-            type='submit'
-            variant='gradient'
-            color='dark'
+            type="submit"
+            variant="gradient"
+            color="dark"
             fullWidth
-            style={{ width: '30%' }}
+            style={{ width: "30%" }}
           >
             회원 관리
           </SoftButton>
 
           <SoftButton
-            type='submit'
-            variant='gradient'
-            color='dark'
+            type="submit"
+            variant="gradient"
+            color="dark"
             fullWidth
-            style={{ width: '30%' }}
-            href='/dashboard/editpoint'
+            style={{ width: "30%" }}
+            href="/admin/editpoint"
           >
             포인트 관리
           </SoftButton>
 
           <SoftButton
-            type='submit'
-            variant='gradient'
-            color='dark'
+            type="submit"
+            variant="gradient"
+            color="dark"
             fullWidth
-            style={{ width: '30%' }}
+            style={{ width: "30%" }}
           >
             CS 관리
           </SoftButton>
@@ -178,18 +187,6 @@ function AdminInfo() {
 
       <SoftBox mb={3}>
         <Grid container spacing={3}>
-          {/* <Grid item xs={12} lg={5}>
-            <ReportsBarChart
-              title="PT"
-              description={
-                <>
-                  (<strong>+23%</strong>) than last week
-                </>
-              }
-              chart={chart}
-              items={items}
-            />
-          </Grid> */}
           <Grid item xs={12} lg={7}>
             <GradientLineChart
               title="유입자 회원가입"
@@ -213,7 +210,6 @@ function AdminInfo() {
           </Grid>
         </Grid>
       </SoftBox>
-      <GymunityNavbar />
     </DashboardLayout>
   );
 }

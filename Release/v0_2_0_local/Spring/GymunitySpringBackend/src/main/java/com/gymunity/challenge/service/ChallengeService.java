@@ -14,7 +14,9 @@ public interface ChallengeService {
 	
 	public List<Challenge> listProcess(PageDTO pv);
 	
-	public List<ProfileDTO> joinListProcess(int userId);
+	public List<Challenge> joinListProcess(int userId);
+	
+	public List<ProfileDTO> joinChIdListProcess(int userId);
 	
 	public ChallengeCreateResponse createChallengeProcess(ChallengeCreateDTO dto, int userId);
 	
@@ -24,9 +26,9 @@ public interface ChallengeService {
 	
 	public void joinChallengeProcess(int chId, int userId);
 	
-//	public void updateChallengeProcess(Challenge dto, int userId);
-	
 	public void deleteChallengeProcess(int chId, int userId);
+	
+	public void updateProceedProcess();
 	
 
 }// end interface

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { gConst } from 'layouts/gConst';
+// import { gConst } from 'layouts/gConst';
 import { challengeReducers } from "../createSlice/challenge_createSlice";
 
 const config = {
@@ -15,10 +15,20 @@ function getChallengeListAsync(currentPage) {
   console.log("currentPage: ", currentPage);
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${gConst.API_BASE_URL}:8090/challenge/list/${currentPage}`, config);
+      const response = await axios.get(
+        `/challenge/list/${currentPage}`,
+        config
+      );
 
       const { challengeList, joinList, pv } = response.data;
-      dispatch(challengeReducers.getChallengeList({ challengeList, pv }));
+      // dispatch(challengeReducers.getChallengeList({ challengeList, pv }));
+      dispatch(
+        challengeReducers.getChallengeList({
+          challengeList,
+          newChallengeList: challengeList,
+          pv,
+        })
+      );
       dispatch(challengeReducers.getJoinList({ joinList }));
     } catch (error) {
       console.error(
@@ -36,10 +46,10 @@ function getChallengeListAsync(currentPage) {
 //   };
 // }
 //챌린지 생성하기
-function getChallengeCreate(formData, config) {
+function getChallengeCreate(formData) {
   return async () => {
     await axios
-      .post(`${gConst.API_BASE_URL}:8090/challenge/create`, formData, config)
+      .post(`/challenge/create`, formData, config)
       .then((response) => response.data);
   };
 }
@@ -49,10 +59,7 @@ function getChallengeJoin(chId) {
   return async () => {
     try {
       const response = await axios.post(
-        `/challenge/join/${chId}`,
-        {
-          chId,
-        },
+        `${url}/challenge/join/${chId}`,
         config
       );
       // console.log("parsedChId: ", typeof parsedChId);
@@ -68,17 +75,17 @@ function getChallengeJoin(chId) {
 function getChallengeDetail(chId) {
   return async (dispatch) => {
     const data = await axios
-      .get(`${gConst.API_BASE_URL}:8090/challenge/detail/${chId}`, config)
+      .get(`/challenge/detail/${chId}`, config)
       .then((response) => response.data);
     dispatch(challengeReducers.getChallengeDetail({ data }));
   };
 }
 
 //첨부파일 다운로드
-function getChallengeDownload(upload, config) {
+function getChallengeDownload(upload) {
   return async (dispatch) => {
     const data = await axios
-      .get(`${gConst.API_BASE_URL}:8090/challenge/contentdownload/${upload}`, config)
+      .get(`/challenge/contentdownload/${upload}`, config)
       .then((response) => response.data);
     // dispatch(challengeActions.getChallengeDownload(data));
     return data;
@@ -86,10 +93,10 @@ function getChallengeDownload(upload, config) {
 }
 
 //수정하기
-function getChallengeUpdate(formData, config) {
+function getChallengeUpdate(formData) {
   return async () => {
     await axios
-      .put(`${gConst.API_BASE_URL}:8090/challenge/update`, formData, config)
+      .put(`/challenge/update`, formData, config)
       .then((response) => response.data);
   };
 }
@@ -98,7 +105,7 @@ function getChallengeUpdate(formData, config) {
 function getChallengeDelete(chId) {
   return async () => {
     await axios
-      .delete(`${gConst.API_BASE_URL}:8090/challenge/delete/${chId}`, config)
+      .delete(`/challenge/delete/${chId}`, config)
       .then((response) => response.data);
   };
 }

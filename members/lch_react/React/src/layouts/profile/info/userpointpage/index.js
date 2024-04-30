@@ -1,6 +1,5 @@
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import GymunityNavbar from "examples/Navbars/GymunityNavbar";
 import PointDetail from "./components";
 
 function UserPointPage() {

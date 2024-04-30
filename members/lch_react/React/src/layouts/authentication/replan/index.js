@@ -4,15 +4,21 @@ import { useNavigate, useLocation } from "react-router-dom";
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
-import typography from "assets/theme/base/typography";
 import { Card } from "@mui/material";
 
 import BasicLayout from "layouts/authentication/components/BasicLayout";
 import AuthNavbar from "examples/Navbars/AuthNavbar";
+import ReactMarkdown from "react-markdown";
+import axios from "axios";
 
-
-const ReplanPage = () => {
-  const { d1, h2, fontWeightMedium } = typography;
+const Replan = () => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: localStorage.getItem("Authorization"),
+      "Authorization-refresh": localStorage.getItem("Authorization-refresh"),
+    },
+  };
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -20,27 +26,42 @@ const ReplanPage = () => {
   const [planData, setPlanData] = useState(null);
 
   useEffect(() => {
-    if (
-      location.state &&
-      location.state.planData &&
-      location.state.planData.length > 0
-    ) {
-      console.log("Plan data received:", location.state.planData[0]);
-      setPlanData(location.state.planData[0]);
-    } else {
-      console.log("No plan data received.");
-    }
-
-    // Check and set formData if it's present in the location state
-    if (location.state && location.state.formData) {
-      console.log("Form data received:", location.state.formData);
-      setFormData(location.state.formData);
-    }
+    setPlanData(location.state?.planData?.[0] || null);
+    setFormData(location.state?.formData || null);
   }, [location.state]);
 
-  const handleRegister = () => {
-    navigate("/profile");
-    console.log("planPage후 프로필로 이동:", formData, planData);;
+  const [surveyData, setSurveyData] = useState({
+    gender: "",
+    age: "",
+    goal: "",
+    level: "",
+    abnormal: "",
+    planName: "",
+    planDesc: "",
+  });
+
+  useEffect(() => {
+    if (formData && planData) {
+      setSurveyData({
+        gender: formData.gender || "",
+        age: formData.age || "",
+        goal: formData.goal || "",
+        level: formData.level || "",
+        abnormal: formData.abnormal || "",
+        plan_name: planData.plan_name || "",
+        plan_desc: planData.plan_desc || "",
+      });
+    }
+  }, [formData, planData]);
+
+  const handleRegister = async () => {
+    try {
+      await axios.put("/user/resurvey", surveyData, config);
+      navigate("/profile");
+    } catch (error) {
+      console.error("Failed to resubmit the survey:", error);
+      alert("설문 다시하기에 실패했습니다.");
+    }
   };
 
   const handleSurveyReset = () => {
@@ -48,9 +69,14 @@ const ReplanPage = () => {
   };
 
   return (
-  <BasicLayout>
-    <AuthNavbar />
-      <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
+    <BasicLayout>
+      <AuthNavbar />
+      <SoftBox
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        p={3}
+      >
         <SoftTypography variant="h3">맞춤 운동 플랜</SoftTypography>
       </SoftBox>
 
@@ -61,7 +87,7 @@ const ReplanPage = () => {
               <>
                 <p>{planData.plan_name}</p>
                 <hr />
-                <div dangerouslySetInnerHTML={{ __html: planData.plan_desc }} />
+                <ReactMarkdown children={planData.plan_desc} />
                 <hr />
               </>
             )}
@@ -94,4 +120,4 @@ const ReplanPage = () => {
   );
 };
 
-export default ReplanPage;
+export default Replan;

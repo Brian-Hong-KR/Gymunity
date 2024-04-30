@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 let initialState = {
   challengeList: [],
+  newChallengeList: [], // 새로운 속성 추가
   pv: { currentPage: 1 },
   joinList: [],
   challengeDetail: {},
@@ -12,7 +13,11 @@ const challengeSlice = createSlice({
   initialState,
   reducers: {
     getChallengeList(state, action) {
-      state.challengeList = action.payload.challengeList;
+      // state.challengeList = action.payload.challengeList;
+      state.challengeList = [
+        ...state.challengeList,
+        ...action.payload.newChallengeList,
+      ];
       state.pv = action.payload.pv;
     },
     getJoinList(state, action) {

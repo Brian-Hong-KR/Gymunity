@@ -1,11 +1,13 @@
 package com.gymunity.challenge.controller;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -46,13 +48,12 @@ public class ChallengeController {
    private int currentPage;
 
 	// 챌린지 리스트 조회
+   @Operation(summary = "챌린지 리스트 조회")
 	@GetMapping("/challenge/list/{currentPage}")
 	public ResponseEntity<Map<String, Object>> listExecute(@PathVariable("currentPage") int currentPage) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
-
-		log.info("aaabbbb:{}", userId);
-		
+		log.info("list_userId :{}", userId);
 		
 		Map<String, Object> map = new HashMap<>();
 		int totalRecord = challengeService.countProcess();
@@ -68,7 +69,6 @@ public class ChallengeController {
 		if (userId != 0) {
 			map.put("joinList", challengeService.joinListProcess(userId));
 		}
-		log.info("aaabbbb:{}", map.get("userId"));
 		log.info("challengeList:{}", map.get("challengeList"));
 		log.info("joinList:{}", map.get("joinList"));
 		return ResponseEntity.ok(map);
@@ -86,8 +86,8 @@ public class ChallengeController {
 		Challenge challenge = challengeService.detailChallengeProcess(chId);
 		map.put("challengeDetail", challenge);
 
-		List<ProfileDTO> joinList = challengeService.joinListProcess(userId);
-		map.put("joinList", joinList);
+		List<ProfileDTO> joinChIdList = challengeService.joinChIdListProcess(userId);
+		map.put("joinChIdList", joinChIdList);
 
 		return ResponseEntity.ok(map);
 	}// end detailChallenge()
@@ -100,7 +100,8 @@ public class ChallengeController {
 		Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
 		// 챌린지 생성 로직에 userId를 전달
 		ChallengeCreateResponse response = challengeService.createChallengeProcess(challengeDTO, userId);
-
+		
+		
 		return ResponseEntity.ok(response);
 	}// end createChallenge()
 
@@ -113,20 +114,8 @@ public class ChallengeController {
 		Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
 		challengeService.joinChallengeProcess(chId, userId);
 //		log.info("challengeList:{}", map.get("challengeList"));
-
 		return ResponseEntity.ok("챌린지가 참여되었습니다.");
 	}// end joinChallenge()
-
-//	// 챌린지 수정
-//	@Operation(summary = "챌린지 수정")
-//	@PutMapping("/challenge/update")
-//	public ResponseEntity<Object> updateChallenge(@RequestBody Challenge dto) {
-//		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//		Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
-//		challengeService.updateChallengeProcess(dto, userId);
-//
-//		return ResponseEntity.ok("챌린지가 수정되었습니다.");
-//	}// end updateChallenge()
 
 	// 챌린지 삭제
 	@Operation(summary = "챌린지 삭제")
@@ -137,5 +126,12 @@ public class ChallengeController {
 		challengeService.deleteChallengeProcess(chId, userId);
 		return ResponseEntity.ok("챌린지가 삭제되었습니다.");
 	}// end deleteChallenge()
+	
+	
+	// 챌린지 proceed 상태 업데이트 및 챌린지 종료
+    @Scheduled(cron = "0 0 0 * * *") // 매일 자정마다 실행
+    public void checkAndUpdateChallengeProceedStatus() {
+    	challengeService.updateProceedProcess(); // 챌린지 업데이트
+    }
 
 }// end class
