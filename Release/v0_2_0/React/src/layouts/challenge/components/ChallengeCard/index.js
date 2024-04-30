@@ -346,6 +346,8 @@ function ChallengeCard({ challenge }) {
               alignItems: "center",
               padding: "0",
               color: "#808080",
+              overflow: "hidden", // 넘치는 부분 숨기기
+              whiteSpace: "nowrap", // 텍스트를 한 줄로 유지
             }}
           >
             {verifyTerm}

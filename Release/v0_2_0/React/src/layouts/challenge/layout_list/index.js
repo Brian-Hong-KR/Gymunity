@@ -100,17 +100,14 @@ function Challenge() {
               </SoftBox>
               <SoftBox p={1} m={1}>
                 <Grid container spacing={5}>
-                  {joinChIdList.length > 0 &&
-                    updatedChallengeList.map(
-                      (challenge) =>
-                        challenge.isJoined && (
-                          <Grid item xs={12} md={6} xl={3} key={challenge.chId}>
-                            <Link to={`/challenge/detail/${challenge.chId}`}>
-                              <ChallengeCard challenge={challenge} />
-                            </Link>
-                          </Grid>
-                        )
-                    )}
+                  {joinList &&
+                    joinList.map((challenge) => (
+                      <Grid item xs={12} md={6} xl={3} key={challenge.chId}>
+                        <Link to={`/challenge/detail/${challenge.chId}`}>
+                          <ChallengeCard challenge={challenge} />
+                        </Link>
+                      </Grid>
+                    ))}
                   <Grid
                     item
                     xs={12}

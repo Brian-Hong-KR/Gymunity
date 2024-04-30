@@ -1,5 +1,5 @@
 import axios from "axios";
-import { gConst } from 'layouts/gConst';
+import { gConst } from "layouts/gConst";
 import { challengeReducers } from "../createSlice/challenge_createSlice";
 
 const config = {
@@ -15,7 +15,10 @@ function getChallengeListAsync(currentPage) {
   console.log("currentPage: ", currentPage);
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${gConst.API_BASE_URL}:8090/challenge/list/${currentPage}`, config);
+      const response = await axios.get(
+        `${gConst.API_BASE_URL}:8090/challenge/list/${currentPage}`,
+        config
+      );
 
       const { challengeList, joinList, pv } = response.data;
       dispatch(challengeReducers.getChallengeList({ challengeList, pv }));
@@ -36,7 +39,7 @@ function getChallengeListAsync(currentPage) {
 //   };
 // }
 //챌린지 생성하기
-function getChallengeCreate(formData, config) {
+function getChallengeCreate(formData) {
   return async () => {
     await axios
       .post(`${gConst.API_BASE_URL}:8090/challenge/create`, formData, config)
@@ -49,10 +52,7 @@ function getChallengeJoin(chId) {
   return async () => {
     try {
       const response = await axios.post(
-        `/challenge/join/${chId}`,
-        {
-          chId,
-        },
+        `${gConst.API_BASE_URL}:8090/challenge/join/${chId}`,
         config
       );
       // console.log("parsedChId: ", typeof parsedChId);
@@ -75,10 +75,13 @@ function getChallengeDetail(chId) {
 }
 
 //첨부파일 다운로드
-function getChallengeDownload(upload, config) {
+function getChallengeDownload(upload) {
   return async (dispatch) => {
     const data = await axios
-      .get(`${gConst.API_BASE_URL}:8090/challenge/contentdownload/${upload}`, config)
+      .get(
+        `${gConst.API_BASE_URL}:8090/challenge/contentdownload/${upload}`,
+        config
+      )
       .then((response) => response.data);
     // dispatch(challengeActions.getChallengeDownload(data));
     return data;
@@ -86,7 +89,7 @@ function getChallengeDownload(upload, config) {
 }
 
 //수정하기
-function getChallengeUpdate(formData, config) {
+function getChallengeUpdate(formData) {
   return async () => {
     await axios
       .put(`${gConst.API_BASE_URL}:8090/challenge/update`, formData, config)

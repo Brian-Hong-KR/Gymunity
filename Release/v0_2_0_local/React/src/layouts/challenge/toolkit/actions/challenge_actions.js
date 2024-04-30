@@ -1,4 +1,5 @@
 import axios from "axios";
+import { gConst } from 'layouts/gConst';
 import { challengeReducers } from "../createSlice/challenge_createSlice";
 
 const config = {
