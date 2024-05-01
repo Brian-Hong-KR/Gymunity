@@ -71,7 +71,6 @@ const AdminPointPage = () => {
     } catch (error) {
       console.error("Error fetching points history:", error);
       if (error.response) {
-        console.log("HTTP status code:", error.response.status);
         alert("접근 권한이 없습니다."); // 일관된 메시지를 위해 경고를 통일
         if (error.response.status === 403) {
           alert("접근 권한이 없습니다.");
@@ -104,7 +103,6 @@ const AdminPointPage = () => {
     } catch (error) {
       console.error("Error adjustPoints:", error);
       if (error.response) {
-        console.log("HTTP status code:", error.response.status);
         alert("접근 권한이 없습니다."); // 일관된 메시지를 위해 경고를 통일
         if (error.response.status === 403) {
           alert("접근 권한이 없습니다.");

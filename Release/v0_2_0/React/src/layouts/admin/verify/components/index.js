@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { gConst } from 'layouts/gConst';
+import { gConst } from "layouts/gConst";
 
 import SoftBox from "components/SoftBox";
 import Table from "examples/Tables/Table";
@@ -119,7 +119,11 @@ const AdminVerify = () => {
 
   const handleVerifyStatusChange = (viId, result) => {
     axios
-      .put(`${gConst.API_BASE_URL}:8090/admin/verify/check`, { viId, result }, baseConfig)
+      .put(
+        `${gConst.API_BASE_URL}:8090/admin/verify/check`,
+        { viId, result },
+        baseConfig
+      )
       .then((response) => {
         fetchVerify(); // 성공하면 목록을 다시 불러옵니다.
       })
@@ -149,7 +153,6 @@ const AdminVerify = () => {
     axios
       .delete(`${gConst.API_BASE_URL}:8090/user/photo/delete`, deleteConfig)
       .then(() => {
-        console.log("Photo deleted successfully");
         fetchVerify(); // 상태 업데이트를 위해 사진 목록 다시 불러오기
       })
       .catch((error) => {

@@ -21,12 +21,6 @@ import icon_start from "assets/images/icon/start_bk.png";
 import icon_point from "assets/images/icon/point.png";
 
 function ChallengeCard({ challenge }) {
-  console.log("isJoined: ", challenge.isJoined);
-  console.log("chId: ", challenge.chId);
-  // console.log("chId: ", typeof challenge.chId);
-
-  // 예시 81번 나나
-
   const { image, category, grade, verifyTerm, remainingDays } =
     DataConverter(challenge);
 
