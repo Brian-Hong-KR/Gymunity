@@ -81,7 +81,6 @@ function Challenge() {
 
   // 카테고리 선택 함수
   const handleItemClick = (item) => {
-    setSelectedItem({ id: "", title: "" });
     setSelectedItem(item);
     setSelectedItemId(item.id);
     getChallengeList(1, item.id);
