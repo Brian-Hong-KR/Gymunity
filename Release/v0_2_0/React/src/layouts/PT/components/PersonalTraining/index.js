@@ -32,7 +32,6 @@ class DBPedia extends Component {
       })
       .then((response) => {
         const bindings = response.data.answer;
-        console.log(bindings);
 
         if (bindings) {
           this.setState({ loading: false, result: bindings });

@@ -6,8 +6,11 @@ import SoftBox from "components/SoftBox";
 import Table from "examples/Tables/Table";
 import SoftButton from "components/SoftButton";
 import SoftTypography from "components/SoftTypography";
+import { useNavigate } from "react-router-dom";
 
 const AdminVerify = () => {
+  const navigate = useNavigate();
+
   const imgStyle = {
     width: "100%",
     maxWidth: "100px",

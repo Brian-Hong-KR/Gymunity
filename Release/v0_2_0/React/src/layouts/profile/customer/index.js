@@ -59,7 +59,6 @@ function CustomerCreate() {
         customer,
         config
       );
-      console.log("Registration successful:", response);
       setSuccessMessage("문의가 성공적으로 작성되었습니다.");
       setShowSuccess(true);
       setTimeout(() => {

@@ -60,7 +60,6 @@ function getChallengeCreate(formData) {
 function getChallengeJoin(chId) {
   return async () => {
     try {
-      console.log("Config for join request:", config);
       const response = await axios.post(
         `${gConst.API_BASE_URL}:8090/challenge/join/${chId}`,
         null,
@@ -77,7 +76,6 @@ function getChallengeJoin(chId) {
 //챌린지 상세페이지
 function getChallengeDetail(chId) {
   return async (dispatch) => {
-    console.log("Config for detail request:", config);
     const data = await axios
       .get(`${gConst.API_BASE_URL}:8090/challenge/detail/${chId}`, config)
       .then((response) => response.data);

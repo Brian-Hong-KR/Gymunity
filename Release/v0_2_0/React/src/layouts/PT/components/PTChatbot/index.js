@@ -26,7 +26,6 @@ class DBPedia extends Component {
       }) // Use axios.get to fetch data
       .then((response) => {
         const bindings = response.data.answer;
-        console.log(bindings);
 
         if (bindings && bindings.length > 0) {
           this.setState({ loading: false, result: bindings });
@@ -35,7 +34,6 @@ class DBPedia extends Component {
         }
       })
       .catch((error) => {
-        console.error("Error fetching data:", error);
         this.setState({ loading: false, result: "Error fetching data." });
       });
   }

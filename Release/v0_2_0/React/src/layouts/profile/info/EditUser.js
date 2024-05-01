@@ -58,9 +58,7 @@ const EditUser = () => {
           return { ...prev, ...response.data, password: "" };
         });
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   };
 
   useEffect(() => {
@@ -84,7 +82,6 @@ const EditUser = () => {
       localStorage.setItem("userEmail", userEmail);
       localStorage.setItem("nickName", nickName);
       navigate("/profile");
-      console.log(config);
     } catch (error) {
       console.error("Error:", error);
       // 에러 처리 로직 추가

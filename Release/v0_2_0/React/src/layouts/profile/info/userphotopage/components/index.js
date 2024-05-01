@@ -115,7 +115,6 @@ const PhotoList = () => {
     axios
       .delete(`${gConst.API_BASE_URL}:8090/user/photo/delete`, deleteConfig)
       .then(() => {
-        console.log("Photo deleted successfully");
         fetchPhotos(); // 상태 업데이트를 위해 사진 목록 다시 불러오기
       })
       .catch((error) => {
