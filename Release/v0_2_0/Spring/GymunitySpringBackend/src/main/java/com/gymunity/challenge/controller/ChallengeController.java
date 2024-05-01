@@ -123,7 +123,6 @@ public class ChallengeController {
 		Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
 		challengeService.joinChallengeProcess(chId, userId);
 		
-//		log.info("challengeList:{}", map.get("challengeList"));
 		return ResponseEntity.ok("챌린지가 참여되었습니다.");
 	}// end joinChallenge()
 

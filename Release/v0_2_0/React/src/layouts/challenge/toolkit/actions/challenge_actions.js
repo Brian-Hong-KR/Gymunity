@@ -60,12 +60,12 @@ function getChallengeCreate(formData) {
 function getChallengeJoin(chId) {
   return async () => {
     try {
+      console.log("Config for join request:", config);
       const response = await axios.post(
-        // `${url}/challenge/join/${chId}`,
         `${gConst.API_BASE_URL}:8090/challenge/join/${chId}`,
+        null,
         config
       );
-      // console.log("parsedChId: ", typeof parsedChId);
       return response.data;
     } catch (error) {
       console.error("챌린지 참여하기 중 오류 발생:", error);
@@ -77,6 +77,7 @@ function getChallengeJoin(chId) {
 //챌린지 상세페이지
 function getChallengeDetail(chId) {
   return async (dispatch) => {
+    console.log("Config for detail request:", config);
     const data = await axios
       .get(`${gConst.API_BASE_URL}:8090/challenge/detail/${chId}`, config)
       .then((response) => response.data);

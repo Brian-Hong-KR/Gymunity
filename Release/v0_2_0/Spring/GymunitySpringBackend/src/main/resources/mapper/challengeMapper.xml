@@ -97,8 +97,8 @@
                     ELSE ch_id1
                  END,
         ch_id2 = CASE
+                    WHEN ch_id1 = 0 AND ch_id2 = 0 THEN 0
                     WHEN ch_id1 != 0 AND ch_id2 = 0 THEN #{chId}
-                    WHEN ch_id1 = 0 AND ch_id2 != 0 THEN ch_id2
                     ELSE ch_id2
                  END
     WHERE user_id = #{userId} AND (ch_id1 = 0 OR ch_id2 = 0)

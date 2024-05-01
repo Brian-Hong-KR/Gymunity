@@ -126,9 +126,7 @@ function ReSurvey() {
         justifyContent="space-between"
         alignItems="center"
         p={3}
-      >
-        <SoftTypography variant="h3">사전 설문</SoftTypography>
-      </SoftBox>
+      ></SoftBox>
       <Card>
         <SoftBox
           component="form"

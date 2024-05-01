@@ -116,11 +116,7 @@ public class ChallengeServiceImpl implements ChallengeService {
 		}else {
 			challenge.setProceed("rec");
 		}
-		challengeMapper.insertChallenges(challenge);
-		
-		System.out.println("Parsed startDate: " + startDate);
-		System.out.println("Current date (LocalDate.now()): " + LocalDate.now());
-
+		challengeMapper.insertChallenges(challenge);		
 
 		// member 등록
 		Member member = new Member();
@@ -149,8 +145,6 @@ public class ChallengeServiceImpl implements ChallengeService {
 		response.setProceed(challenge.getProceed());
 		response.setNickName(user.getNickName());
 		response.setGradeName(user.getGradeName());
-
-		log.info("aaaaaaaaaaa{} {}", challenge.getChId(), challenge.getUserId());
 
 		// profile ch_id update
 		challengeMapper.updateChIdInProfiles(challenge.getChId(), challenge.getUserId());

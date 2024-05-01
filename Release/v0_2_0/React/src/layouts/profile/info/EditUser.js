@@ -100,8 +100,6 @@ const EditUser = () => {
             <SoftBox mb={2}></SoftBox>
             <div className="container">
               <div className="container">
-                <h1>회원정보수정</h1>
-
                 <SoftBox mb={2}>
                   <div className="form-group mb-1">
                     <SoftInput
