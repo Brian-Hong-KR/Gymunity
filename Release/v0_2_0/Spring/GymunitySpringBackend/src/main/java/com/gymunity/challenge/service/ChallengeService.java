@@ -1,6 +1,7 @@
 package com.gymunity.challenge.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.gymunity.challenge.dto.Challenge;
 import com.gymunity.challenge.dto.ChallengeCreateDTO;
@@ -10,19 +11,11 @@ import com.gymunity.challenge.dto.ProfileDTO;
 
 public interface ChallengeService {
 	
-	public int countProcess();
+	public Map<String, Object> listProcess(int currentPage, String categoryString, int userId);
 	
-	public List<Challenge> listProcess(int category, int startRow, int blockCount);
-	
-	public List<Challenge> joinListProcess(int userId);
-	
-	public List<ProfileDTO> joinChIdListProcess(int userId);
+	public Map<String, Object> detailChallengeProcess(int chId, int userId);
 	
 	public ChallengeCreateResponse createChallengeProcess(ChallengeCreateDTO dto, int userId);
-	
-	public Challenge detailChallengeProcess(int chId);
-	
-//	public boolean isMemberExists(int userId, int chId);
 	
 	public void joinChallengeProcess(int chId, int userId);
 	

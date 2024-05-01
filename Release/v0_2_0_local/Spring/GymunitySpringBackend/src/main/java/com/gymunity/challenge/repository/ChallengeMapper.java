@@ -15,7 +15,8 @@ import com.gymunity.challenge.dto.PageDTO;
 @Mapper
 @Repository
 public interface ChallengeMapper {
-	
+
+	// 챌린지 리스트 조회	
 	public int count();
 
 	public List<Challenge> list(@Param("category") int category, @Param("startRow") int startRow, @Param("blockCount") int blockCount);
@@ -24,6 +25,7 @@ public interface ChallengeMapper {
 	
 	public List<ProfileDTO> joinChIdList(int userId);
 	
+	// 챌린지 생성
 	public int insertChallenges(Challenge dto);
 
 	public int insertMembers(Member dto);
@@ -32,7 +34,7 @@ public interface ChallengeMapper {
 
 	public Challenge selectChallengesByChId(int chId);
 	
-	//챌린지 참가
+	// 챌린지 참가
 	public void updateChId1InProfiles(@Param("chId") int chId, @Param("userId") int userId);
 	
 	public void updateChId2InProfiles(@Param("chId") int chId, @Param("userId") int userId);
@@ -41,7 +43,7 @@ public interface ChallengeMapper {
 	
 	public int countMembersByUserIdAndChId(@Param("chId") int chId, @Param("userId") int userId);
 
-	//챌린지 삭제
+	// 챌린지 삭제
 	public void deleteChallenges(int chId);
 	
 	public void updateProfileFinished(int chId);

@@ -49,40 +49,7 @@ public class ChallengeController {
 			@PathVariable(name = "category", required = false) String categoryString) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
-		log.info("list_userId :{}", userId);
-		
-	    // categoryString이 null이거나 "undefined"인 경우 0으로 설정
-	    int category = 0;
-	    if (categoryString != null && !"undefined".equals(categoryString)) {
-	        try {
-	            category = Integer.parseInt(categoryString);
-	        } catch (NumberFormatException e) {
-	            // 예외 발생 시 기본값인 0으로 유지
-	            log.warn("Failed to parse category value: {}", categoryString);
-	        }
-	    }
-		log.info("category:{}", category);
-
-		Map<String, Object> map = new HashMap<>();
-		int totalRecord = challengeService.countProcess();
-		log.info("totalRecord:{}", totalRecord);
-
-		if (totalRecord >= 1) {
-			this.currentPage = currentPage;
-			this.pdto = new PageDTO(this.currentPage, totalRecord);
-			map.put("pv", this.pdto);
-			map.remove("challengeList");
-			map.put("challengeList", challengeService.listProcess(category, pdto.getStartRow(), pdto.getBlockCount()));
-//			log.info("pdto.getBlockCount() :{}", pdto.getBlockCount());
-		}
-
-		if (userId != 0) {
-			map.put("joinList", challengeService.joinListProcess(userId));
-			map.put("joinChIdList", challengeService.joinChIdListProcess(userId));
-		}
-		log.info("challengeList:{}", map.get("challengeList"));
-		log.info("joinList:{}", map.get("joinList"));
-		log.info("joinChIdList:{}", map.get("joinChIdList"));
+		Map<String, Object> map = challengeService.listProcess(currentPage, categoryString, userId);
 		return ResponseEntity.ok(map);
 	}
 
@@ -90,16 +57,9 @@ public class ChallengeController {
 	@Operation(summary = "챌린지 상세")
 	@GetMapping("/challenge/detail/{chId}")
 	public ResponseEntity<Map<String, Object>> detailChallenge(@PathVariable("chId") int chId) {
-		Map<String, Object> map = new HashMap<>();
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
-		log.info("create_userId :{}", userId);
-		Challenge challenge = challengeService.detailChallengeProcess(chId);
-		map.put("challengeDetail", challenge);
-
-		List<ProfileDTO> joinChIdList = challengeService.joinChIdListProcess(userId);
-		map.put("joinChIdList", joinChIdList);
-
+		Map<String, Object> map = challengeService.detailChallengeProcess(chId, userId);
 		return ResponseEntity.ok(map);
 	}// end detailChallenge()
 
@@ -109,8 +69,6 @@ public class ChallengeController {
 	public ResponseEntity<ChallengeCreateResponse> createChallenge(@RequestBody ChallengeCreateDTO challengeDTO) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
-		log.info("create_userId :{}", userId);
-		// 챌린지 생성 로직에 userId를 전달
 		ChallengeCreateResponse response = challengeService.createChallengeProcess(challengeDTO, userId);
 		return ResponseEntity.ok(response);
 	}// end createChallenge()
@@ -121,8 +79,6 @@ public class ChallengeController {
 	public ResponseEntity<String> joinChallenge(@PathVariable("chId") int chId) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
-		
-		log.info("join_userId :{}", userId);
 		challengeService.joinChallengeProcess(chId, userId);
 		return ResponseEntity.ok("참여 완료");
 	}// end joinChallenge()
