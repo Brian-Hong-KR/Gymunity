@@ -130,7 +130,6 @@ function Survey() {
         alignItems="center"
         p={3}
       >
-        <SoftTypography variant="h3">사전 설문</SoftTypography>
       </SoftBox>
       <Card>
         <SoftBox

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { gConst } from 'layouts/gConst';
+import { gConst } from "layouts/gConst";
 
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
@@ -121,8 +121,7 @@ const PhotoList = () => {
           justifyContent="space-between"
           alignItems="center"
           p={3}
-        >
-        </SoftBox>
+        ></SoftBox>
 
         <SoftBox
           sx={{

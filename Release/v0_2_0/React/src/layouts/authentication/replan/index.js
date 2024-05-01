@@ -76,9 +76,7 @@ const Replan = () => {
         justifyContent="space-between"
         alignItems="center"
         p={3}
-      >
-        <SoftTypography variant="h3">맞춤 운동 플랜</SoftTypography>
-      </SoftBox>
+      ></SoftBox>
 
       <Card>
         <SoftBox pt={2} pb={3} px={3}>
