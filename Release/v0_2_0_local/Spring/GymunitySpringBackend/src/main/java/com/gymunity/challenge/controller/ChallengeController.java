@@ -49,7 +49,6 @@ public class ChallengeController {
 			@PathVariable(name = "category", required = false) String categoryString) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
-		log.info("list_userId :{}", userId);
 		
 	    // categoryString이 null이거나 "undefined"인 경우 0으로 설정
 	    int category = 0;
@@ -71,7 +70,6 @@ public class ChallengeController {
 			this.currentPage = currentPage;
 			this.pdto = new PageDTO(this.currentPage, totalRecord);
 			map.put("pv", this.pdto);
-			map.remove("challengeList");
 			map.put("challengeList", challengeService.listProcess(category, pdto.getStartRow(), pdto.getBlockCount()));
 //			log.info("pdto.getBlockCount() :{}", pdto.getBlockCount());
 		}
@@ -109,8 +107,6 @@ public class ChallengeController {
 	public ResponseEntity<ChallengeCreateResponse> createChallenge(@RequestBody ChallengeCreateDTO challengeDTO) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
-		log.info("create_userId :{}", userId);
-		// 챌린지 생성 로직에 userId를 전달
 		ChallengeCreateResponse response = challengeService.createChallengeProcess(challengeDTO, userId);
 		return ResponseEntity.ok(response);
 	}// end createChallenge()
@@ -121,8 +117,6 @@ public class ChallengeController {
 	public ResponseEntity<String> joinChallenge(@PathVariable("chId") int chId) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
-		
-		log.info("join_userId :{}", userId);
 		challengeService.joinChallengeProcess(chId, userId);
 		return ResponseEntity.ok("참여 완료");
 	}// end joinChallenge()
