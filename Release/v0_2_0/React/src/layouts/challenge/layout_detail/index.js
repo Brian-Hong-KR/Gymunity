@@ -39,15 +39,19 @@ function ChallengeDetail() {
   const joinList = useSelector((state) => state.challenge.joinList || []);
   // console.log("joinList:", joinList);
 
-  const joinChIdList =
+  const joinChId1 =
     joinList.length > 0 && typeof joinList[0] === "object"
       ? Object.values(joinList[0])
       : [];
-  console.log("joinChIdList:", joinChIdList);
+
+  const joinChId2 =
+    joinList.length > 0 && typeof joinList[1] === "object"
+      ? Object.values(joinList[1])
+      : [];
 
   const isJoined =
-    challengeDetail.chId === joinChIdList[0] ||
-    challengeDetail.chId === joinChIdList[1]
+    challengeDetail.chId === joinChId1[0] ||
+    challengeDetail.chId === joinChId2[0]
       ? true
       : false;
 
@@ -93,7 +97,7 @@ function ChallengeDetail() {
       setShowDeleteAlert(true);
     } catch (error) {
       console.error("삭제 요청 중 오류 발생:", error);
-      setAlertMessage("삭제 요청 중 오류가 발생했습니다.");
+      setAlertMessage("다른 참여자가 있을 경우 삭제할 수 없습니다.");
       setShowDeleteAlert(true);
     }
   };
@@ -106,7 +110,7 @@ function ChallengeDetail() {
       setShowJoinAlert(true);
     } catch (error) {
       console.error("참여 요청 중 오류 발생:", error);
-      setAlertMessage("참여 요청 중 오류가 발생했습니다.");
+      setAlertMessage("챌린지는 2개까지 참여할 수 있습니다.");
       setShowJoinAlert(true);
     }
   };

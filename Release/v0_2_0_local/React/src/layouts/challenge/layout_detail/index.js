@@ -39,15 +39,19 @@ function ChallengeDetail() {
   const joinList = useSelector((state) => state.challenge.joinList || []);
   // console.log("joinList:", joinList);
 
-  const joinChIdList =
+  const joinChId1 =
     joinList.length > 0 && typeof joinList[0] === "object"
       ? Object.values(joinList[0])
       : [];
-  console.log("joinChIdList:", joinChIdList);
+
+  const joinChId2 =
+    joinList.length > 0 && typeof joinList[1] === "object"
+      ? Object.values(joinList[1])
+      : [];
 
   const isJoined =
-    challengeDetail.chId === joinChIdList[0] ||
-    challengeDetail.chId === joinChIdList[1]
+    challengeDetail.chId === joinChId1[0] ||
+    challengeDetail.chId === joinChId2[0]
       ? true
       : false;
 
