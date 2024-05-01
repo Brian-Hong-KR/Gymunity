@@ -63,7 +63,6 @@ const PointDetail = () => {
           alignItems="center"
           p={3}
         >
-          <SoftTypography variant="h5">포인트 내역</SoftTypography>
         </SoftBox>
 
         <SoftBox

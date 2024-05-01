@@ -122,7 +122,6 @@ const PhotoList = () => {
           alignItems="center"
           p={3}
         >
-          <SoftTypography variant="h5">사진첩</SoftTypography>
         </SoftBox>
 
         <SoftBox

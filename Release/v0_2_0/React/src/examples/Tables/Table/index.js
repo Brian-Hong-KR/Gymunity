@@ -42,9 +42,9 @@ function Table({ columns = [], rows = [{}] }) {
         pl={align === "left" ? pl : 3}
         pr={align === "right" ? pr : 3}
         textAlign={align}
-        fontSize="20px"
+        fontSize="15px"
         fontWeight={fontWeightBold}
-        color="dark"
+        color="black"
         opacity={0.7}
         borderBottom={`${borderWidth[1]} solid ${light.main}`}
       >
