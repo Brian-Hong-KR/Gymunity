@@ -99,8 +99,7 @@ function ChallengeDetail() {
   };
 
   // 참여하기 함수
-  const handleJoinButtonClick = async (e) => {
-    e.preventDefault();
+  const handleJoinButtonClick = async () => {
     try {
       await dispatch(challengeActions.getChallengeJoin(chId));
       setAlertMessage("참여가 완료되었습니다!");
@@ -114,24 +113,30 @@ function ChallengeDetail() {
 
   const deleteCheckAlertComponent = (
     <SoftAlert
-      color="white"
+      color="secondary"
       position="fixed"
       top="20%"
       transform="translateX(-50%)"
       zIndex="9999"
       flexDirection="column" // 수직으로 배치
       alignItems="center" // 가운데 정렬
+      sx={{
+        fontSize: "1.0rem",
+        // fontWeight: 700,
+        backgroundColor: "rgba(128, 128, 128, 0.3)",
+        display: "flex",
+      }}
     >
       "정말 삭제하시겠습니까?"
       <SoftButton
         variant="gradient"
-        color="info"
+        color="dark"
         onClick={handleDeleteButtonClick}
-        style={{ marginRight: "10px" }}
+        style={{ marginRight: "10px", marginLeft: "10px" }}
       >
         삭제
       </SoftButton>
-      <SoftButton variant="gradient" color="info" onClick={handleAlertClose}>
+      <SoftButton variant="gradient" color="dark" onClick={handleAlertClose}>
         취소
       </SoftButton>
     </SoftAlert>
@@ -139,16 +144,22 @@ function ChallengeDetail() {
 
   const AlertComponent = (
     <SoftAlert
-      color="white"
+      color="secondary"
       position="fixed"
       top="20%"
       transform="translateX(-50%)"
       zIndex="9999"
       flexDirection="column" // 수직으로 배치
       alignItems="center" // 가운데 정렬
+      sx={{ backgroundColor: "rgba(128, 128, 128, 0.3)", display: "flex" }}
     >
       {alertMessage}
-      <SoftButton variant="gradient" color="info" onClick={handleAlertClose}>
+      <SoftButton
+        variant="gradient"
+        color="dark"
+        onClick={handleAlertClose}
+        style={{ marginLeft: "10px" }}
+      >
         닫기
       </SoftButton>
     </SoftAlert>
@@ -668,14 +679,22 @@ function ChallengeDetail() {
           </SoftBox>
           <SoftBox
             position="absolute"
+            color="white"
             bottom="180px"
-            sx={{ marginLeft: "15px" }}
+            transform="translateX(-50%)"
+            zIndex="9999"
             flexDirection="column" // 수직으로 배치
             alignItems="center" // 가운데 정렬
+            sy={{
+              backgroundColor: "rgba(128, 128, 128, 0.3)",
+              display: "flex",
+            }}
           >
             {showAlert && deleteCheckAlertComponent}
             {showJoinAlert && AlertComponent}
             {showDeleteAlert && AlertComponent}
+            {/* {deleteCheckAlertComponent}
+            {AlertComponent} */}
           </SoftBox>
         </SoftBox>
       </Card>

@@ -59,7 +59,11 @@ function getChallengeCreate(formData) {
 function getChallengeJoin(chId) {
   return async () => {
     try {
-      const response = await axios.post(`/challenge/join/${chId}`, config);
+      const response = await axios.post(
+        `/challenge/join/${chId}`,
+        null,
+        config
+      );
       console.log("parsedChId: ", typeof chId);
       return response.data;
     } catch (error) {
