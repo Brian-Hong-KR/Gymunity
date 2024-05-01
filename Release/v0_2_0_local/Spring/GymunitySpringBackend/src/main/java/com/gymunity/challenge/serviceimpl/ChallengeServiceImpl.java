@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,7 +37,10 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Transactional
 public class ChallengeServiceImpl implements ChallengeService {
-
+	
+	@Autowired
+	private PageDTO pdto;
+	private int currentPage;
 	private final ChallengeMapper challengeMapper;
 	private final UserMapper userMapper;
 	private final PointMapper pointMapper;
@@ -79,6 +83,55 @@ public class ChallengeServiceImpl implements ChallengeService {
 		}
 
 	}// end calculateTotalVerificationDays()
+	
+	// 챌린지 리스트 조회
+		@Override
+		public Map<String, Object> listProcess(int currentPage, String categoryString, int userId) {
+		    // categoryString이 null이거나 "undefined"인 경우 0으로 설정
+			
+		    int category = 0;
+		    if (categoryString != null && !"undefined".equals(categoryString)) {
+		        try {
+		            category = Integer.parseInt(categoryString);
+		        } catch (NumberFormatException e) {
+		            // 예외 발생 시 기본값인 0으로 유지
+		            log.warn("Failed to parse category value: {}", categoryString);
+		        }
+		    }
+		    
+			Map<String, Object> map = new HashMap<>();
+			int totalRecord = challengeMapper.count();
+			log.info("totalRecord:{}", totalRecord);
+			
+			if (totalRecord >= 1) {
+				this.currentPage = currentPage;
+				this.pdto = new PageDTO(this.currentPage, totalRecord);
+				map.put("pv", this.pdto);
+				map.put("challengeList", challengeMapper.list(category, pdto.getStartRow(), pdto.getBlockCount()));
+//				log.info("pdto.getBlockCount() :{}", pdto.getBlockCount());
+			}
+			
+			if (userId != 0) {
+				map.put("joinList", challengeMapper.joinList(userId));
+				map.put("joinChIdList", challengeMapper.joinChIdList(userId));
+			}
+			log.info("challengeList:{}", map.get("challengeList"));
+			log.info("joinList:{}", map.get("joinList"));
+			log.info("joinChIdList:{}", map.get("joinChIdList"));
+			
+			return map;
+		}
+
+		// 챌린지 상세보기
+		@Override
+		public Map<String, Object> detailChallengeProcess(int chId, int userId) {
+			Map<String, Object> map = new HashMap<>();
+			Challenge challenge = challengeMapper.selectChallengesByChId(chId);
+			map.put("challengeDetail", challenge);
+			List<ProfileDTO> joinChIdList = challengeMapper.joinChIdList(userId);
+			map.put("joinChIdList", joinChIdList);
+			return map;
+		}// end detailChallengeProcess()
 
 	// 챌린지 생성
 	@Override
@@ -199,12 +252,6 @@ public class ChallengeServiceImpl implements ChallengeService {
 		}
 	}
 
-	// 챌린지 상세보기
-	@Override
-	public Challenge detailChallengeProcess(int chId) {
-		return challengeMapper.selectChallengesByChId(chId);
-	}// end detailChallengeProcess()
-
 	// 챌린지 삭제
 	@Override
 	public void deleteChallengeProcess(int chId, int userId) {
@@ -225,30 +272,6 @@ public class ChallengeServiceImpl implements ChallengeService {
 			throw new ChallengeException("다른 참여자가 있을 경우 삭제가 불가능 합니다.");
 		}
 	}// end deleteChallengeProcess()
-
-	// 챌린지 개수 세기
-	@Override
-	public int countProcess() {
-		return challengeMapper.count();
-	}
-
-	// 챌린지 리스트 조회
-	@Override
-	public List<Challenge> listProcess(int category, int startRow, int blockCount) {
-		return challengeMapper.list(category, startRow, blockCount);
-	}
-
-	// 참가중인 챌린지 리스트 조회
-	@Override
-	public List<Challenge> joinListProcess(int userId) {
-		return challengeMapper.joinList(userId);
-	}
-
-	// 참가중인 챌린지ID 리스트 조회
-	@Override
-	public List<ProfileDTO> joinChIdListProcess(int userId) {
-		return challengeMapper.joinChIdList(userId);
-	}
 
 	// 챌린지 proceed 상태 업데이트 및 챌린지 종료
 	@Override

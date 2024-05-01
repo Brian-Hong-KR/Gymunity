@@ -32,7 +32,6 @@
     </insert>
 
 	<!-- 챌린지 리스트 조회-->
-	<!-- 챌린지 리스트 불러오기 -->
 	<select id="list" resultType="Challenge" resultMap="challengeResultMap" parameterType="int">
 		SELECT c.*, u.nick_name, u.grade_name, u.admin_yn
 		FROM challenges c
@@ -100,6 +99,7 @@
     WHERE user_id = #{userId}
 	</update>
 	
+	<!-- 챌린지 생성 또는 참가 시 profile 업데이트 -->
 	<update id="updateChId2InProfiles" parameterType="int">
     UPDATE profiles
     SET ch_id2 = CASE
@@ -156,6 +156,7 @@
 	    WHERE ch_id=#{chId}
 	</update>
 	
+	<!-- 모든 챌린지 조회-->
 	<select id="selectAllChallenges" resultType="Challenge" resultMap="challengeResultMap">
 		SELECT * FROM challenges
 	</select>
