@@ -40,12 +40,13 @@ function getChallengeListAsync(currentPage, category) {
   };
 }
 
-// //챌린지 생성하기
-// function getChallengeCreate(formData, config) {
-//   return async () => {
-//     await axios.post(`/challenge/create`, formData, config).then((response) => response.data);
-//   };
-// }
+//리스트 초기화
+function clearChallengeList() {
+  return (dispatch) => {
+    dispatch(challengeReducers.clearChallengeList());
+  };
+}
+
 //챌린지 생성하기
 function getChallengeCreate(formData) {
   return async () => {
@@ -120,4 +121,5 @@ export const challengeActions = {
   getChallengeDownload,
   getChallengeUpdate,
   getChallengeDelete,
+  clearChallengeList,
 };

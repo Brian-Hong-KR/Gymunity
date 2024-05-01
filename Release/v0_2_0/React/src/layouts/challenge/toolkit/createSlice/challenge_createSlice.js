@@ -31,6 +31,11 @@ const challengeSlice = createSlice({
       state.challengeDetail = action.payload.data.challengeDetail;
       state.joinChIdList = action.payload.data.joinChIdList;
     },
+    clearChallengeList(state) {
+      state.challengeList = [];
+      state.newChallengeList = [];
+      state.pv.currentPage = 1;
+    },
   },
 });
 

@@ -26,7 +26,7 @@ function Challenge() {
   const dispatch = useDispatch();
 
   const [selectedItem, setSelectedItem] = useState(null);
-  const [selectedItemId, setSelectedItemId] = useState(null);
+  const [selectedItemId, setSelectedItemId] = useState(0);
   console.log("selectedItemId:", selectedItemId);
   const [isInitialRender, setIsInitialRender] = useState(true);
 
@@ -39,8 +39,17 @@ function Challenge() {
     if (isInitialRender && currentPage) {
       getChallengeList(currentPage, selectedItemId);
       setIsInitialRender(false);
+    } else {
+      // 페이지 변경 시 기존 데이터 초기화
+      dispatch(challengeActions.clearChallengeList());
     }
-  }, [currentPage, isInitialRender, getChallengeList, selectedItemId]);
+  }, [
+    currentPage,
+    isInitialRender,
+    getChallengeList,
+    selectedItemId,
+    dispatch,
+  ]);
 
   const challengeList = useSelector((state) => [
     ...(state.challenge.challengeList || []),
@@ -81,6 +90,7 @@ function Challenge() {
 
   // 카테고리 선택 함수
   const handleItemClick = (item) => {
+    challengeActions.clearChallengeList();
     setSelectedItem(item);
     setSelectedItemId(item.id);
     getChallengeList(1, item.id);
