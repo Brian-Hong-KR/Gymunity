@@ -30,8 +30,6 @@ function ChallengeDetail() {
   const { chId } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [successMessage, setSuccessMessage] = useState("");
-  const [showSuccess, setShowSuccess] = useState(false);
 
   const challengeDetail = useSelector(
     (state) => state.challenge.challengeDetail
@@ -54,7 +52,7 @@ function ChallengeDetail() {
       : false;
 
   // console.log("challengeDetail.chId:", challengeDetail.chId);
-  // console.log("challengeDetail.isJoined:", isJoined);
+  console.log("challengeDetail.isJoined:", isJoined);
 
   const localUserId = parseInt(localStorage.getItem("userId"));
   // console.log("localUserId:", localUserId);
@@ -63,6 +61,8 @@ function ChallengeDetail() {
   const { image, category, grade, verifyTerm, remainingDays } =
     DataConverter(challengeDetail);
 
+  const [showJoinAlert, setShowJoinAlert] = useState(false);
+  const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [currentPage, setCurrentPage] = useState(null); // currentPage 상태 추가
@@ -71,41 +71,28 @@ function ChallengeDetail() {
     dispatch(challengeActions.getChallengeDetail(chId));
   }, [chId, dispatch]);
 
-  // 알림창 관리
-  const [showJoinAlert, setShowJoinAlert] = useState(false);
-  const [showDeleteAlert, setShowDeleteAlert] = useState(false);
-  const [deleteMessage, setDeleteMessage] = useState("");
-
-  const AlertComponent = ({ message, color, onClose }) => (
-    <SoftAlert color={color} dismissible onClose={onClose}>
-      {message}
-    </SoftAlert>
-  );
-
   // 알림창 닫기 함수
   const handleAlertClose = () => {
-    setShowJoinAlert(false);
     setShowDeleteAlert(false);
+    setShowJoinAlert(false);
+    setShowAlert(false);
     navigate(`/challenge/list/${currentPage}`);
+  };
+
+  // 삭제 확인 함수
+  const handleCheckDelete = () => {
+    setShowAlert(true);
   };
 
   // 삭제하기 함수
   const handleDeleteButtonClick = async () => {
     try {
-      const response = await dispatch(
-        challengeActions.getChallengeDelete(chId)
-      );
-      console.error("삭제 chId:", chId);
-      if (response.payload === "삭제 실패") {
-        setDeleteMessage("다른 참여자가 있을 경우 삭제가 불가합니다.");
-        setShowDeleteAlert(true);
-      } else {
-        setDeleteMessage("챌린지가 삭제되었습니다.");
-        setShowDeleteAlert(true);
-      }
+      await dispatch(challengeActions.getChallengeDelete(chId));
+      setAlertMessage("챌린지가 삭제되었습니다.");
+      setShowDeleteAlert(true);
     } catch (error) {
       console.error("삭제 요청 중 오류 발생:", error);
-      setDeleteMessage("삭제 요청 중 오류가 발생했습니다.");
+      setAlertMessage("삭제 요청 중 오류가 발생했습니다.");
       setShowDeleteAlert(true);
     }
   };
@@ -113,10 +100,58 @@ function ChallengeDetail() {
   // 참여하기 함수
   const handleJoinButtonClick = async (e) => {
     e.preventDefault();
-    await dispatch(challengeActions.getChallengeJoin(chId));
-    // SoftButton 클릭 시 SoftAlert을 보여주는 함수
-    setShowJoinAlert(true);
+    try {
+      await dispatch(challengeActions.getChallengeJoin(chId));
+      setAlertMessage("참여가 완료되었습니다!");
+      setShowJoinAlert(true);
+    } catch (error) {
+      console.error("참여 요청 중 오류 발생:", error);
+      setAlertMessage("참여 요청 중 오류가 발생했습니다.");
+      setShowJoinAlert(true);
+    }
   };
+
+  const deleteCheckAlertComponent = (
+    <SoftAlert
+      color="white"
+      position="fixed"
+      top="20%"
+      transform="translateX(-50%)"
+      zIndex="9999"
+      flexDirection="column" // 수직으로 배치
+      alignItems="center" // 가운데 정렬
+    >
+      "정말 삭제하시겠습니까?"
+      <SoftButton
+        variant="gradient"
+        color="info"
+        onClick={handleDeleteButtonClick}
+        style={{ marginRight: "10px" }}
+      >
+        삭제
+      </SoftButton>
+      <SoftButton variant="gradient" color="info" onClick={handleAlertClose}>
+        취소
+      </SoftButton>
+    </SoftAlert>
+  );
+
+  const AlertComponent = (
+    <SoftAlert
+      color="white"
+      position="fixed"
+      top="20%"
+      transform="translateX(-50%)"
+      zIndex="9999"
+      flexDirection="column" // 수직으로 배치
+      alignItems="center" // 가운데 정렬
+    >
+      {alertMessage}
+      <SoftButton variant="gradient" color="info" onClick={handleAlertClose}>
+        닫기
+      </SoftButton>
+    </SoftAlert>
+  );
 
   return (
     <DashboardLayout>
@@ -602,7 +637,7 @@ function ChallengeDetail() {
                 <SoftButton
                   variant="gradient"
                   color="dark"
-                  onClick={() => handleShowAlert("정말 삭제하시겠습니까?")}
+                  onClick={handleCheckDelete}
                 >
                   삭제
                 </SoftButton>
@@ -627,62 +662,21 @@ function ChallengeDetail() {
                 >
                   참여하기
                 </SoftButton>
-                {successMessage && (
-                    <SoftBox
-                      style={{
-                        position: "absolute",
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)",
-                      }}
-                    >
-                      <SoftAlert color="success">{successMessage}</SoftAlert>
-                    </SoftBox>
-                  )}
               </>
             ) : null}
           </SoftBox>
+          <SoftBox
+            position="absolute"
+            bottom="180px"
+            sx={{ marginLeft: "15px" }}
+            flexDirection="column" // 수직으로 배치
+            alignItems="center" // 가운데 정렬
+          >
+            {showAlert && deleteCheckAlertComponent}
+            {showJoinAlert && AlertComponent}
+            {showDeleteAlert && AlertComponent}
+          </SoftBox>
         </SoftBox>
-        {showDeleteAlert && (
-          <AlertComponent
-            message={deleteMessage}
-            color="white"
-            onClose={handleAlertClose}
-          />
-        )}
-        {/* <SoftAlert
-          color="white"
-          position="fixed"
-          top="20%"
-          transform="translateX(-50%)"
-          zIndex="9999"
-          flexDirection="column" // 수직으로 배치
-          alignItems="center" // 가운데 정렬
-        >
-          
-          <SoftButton
-            variant="gradient"
-            color="info"
-            onClick={handleDeleteButtonClick}
-            style={{ marginRight: "10px" }}
-          >
-            삭제
-          </SoftButton>
-          {showDeleteAlert && (
-            <AlertComponent
-              message={deleteMessage}
-              color="white"
-              onClose={handleAlertClose}
-            />
-          )}
-          <SoftButton
-            variant="gradient"
-            color="info"
-            onClick={handleDeleteButtonClick}
-          >
-            취소
-          </SoftButton>
-        </SoftAlert> */}
       </Card>
       <Footer />
     </DashboardLayout>

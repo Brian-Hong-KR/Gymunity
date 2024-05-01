@@ -26,7 +26,7 @@ function Challenge() {
   const dispatch = useDispatch();
 
   const [selectedItem, setSelectedItem] = useState(null);
-  const [selectedItemId, setSelectedItemId] = useState();
+  const [selectedItemId, setSelectedItemId] = useState(null);
   console.log("selectedItemId:", selectedItemId);
   const [isInitialRender, setIsInitialRender] = useState(true);
 
@@ -81,6 +81,7 @@ function Challenge() {
 
   // 카테고리 선택 함수
   const handleItemClick = (item) => {
+    setSelectedItem({ id: "", title: "" });
     setSelectedItem(item);
     setSelectedItemId(item.id);
     getChallengeList(1, item.id);
