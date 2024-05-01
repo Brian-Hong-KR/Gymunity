@@ -86,6 +86,7 @@ function ChallengeDetail() {
 
   // 삭제하기 함수
   const handleDeleteButtonClick = async () => {
+    setShowAlert(false);
     try {
       await dispatch(challengeActions.getChallengeDelete(chId));
       setAlertMessage("챌린지가 삭제되었습니다.");
