@@ -178,8 +178,8 @@ function ChallengeCard({ challenge }) {
                 component="img"
                 margin="0"
                 sx={{
-                  maxWidth: "18px",
-                  height: "auto",
+                  maxWidth: "auto",
+                  height: "22px",
                   borderRadius: 0,
                   bottom: "0",
                   position: "relative",
@@ -313,7 +313,7 @@ function ChallengeCard({ challenge }) {
         </SoftBox>
         <SoftBox // term + period + point + button
           mb={3}
-          minWidth="195px"
+          minidth="195px"
           width="100%"
           height="170px"
           position="relative"

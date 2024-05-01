@@ -25,6 +25,7 @@ import icon_bronze from "assets/images/grade/grade_bronze.png";
 import icon_count from "assets/images/icon/count_person.png";
 import icon_start from "assets/images/icon/start.png";
 import icon_point from "assets/images/icon/point.png";
+import icon_calendar from "assets/images/icon/calendar.png";
 
 function ChallengeDetail() {
   const { chId } = useParams();
@@ -517,18 +518,18 @@ function ChallengeDetail() {
             }}
           >
             <CardMedia
-              src={icon_point}
+              src={icon_calendar}
               component="img"
               sx={{
-                maxWidth: "33px",
+                maxWidth: "30px",
                 height: "auto",
-                margin: "0 5px 0 0",
+                margin: "0 3px 0 0",
                 objectFit: "cover",
                 objectPosition: "center",
                 borderRadius: 0,
                 position: "relative",
                 marginRight: "10px",
-                top: "-3px",
+                top: "-1px",
               }}
             />
             <SoftTypography variant="body2">
@@ -548,13 +549,13 @@ function ChallengeDetail() {
               color="#FFFFFF"
               sx={{ marginTop: "10px", fontSize: "0.9rem" }}
             >
-              {`100% 완료 시 1억`}
+              {`100% 완료 시 150%`}
               <br />
-              {`80% 완료 시 5000만원`}
+              {`80%  완료 시 50%`}
               <br />
-              {`50% 완료 시 100원`}
+              {`50%  완료 시 20%`}
               <br />
-              {`그 이하는 더 노력하세요.`}
+              {`베팅포인트가 지급됩니다.`}
               <br />
             </SoftTypography>
           </SoftBox>
