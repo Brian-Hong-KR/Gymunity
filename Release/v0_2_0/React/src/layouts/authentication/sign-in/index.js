@@ -50,7 +50,6 @@ function SignIn() {
         if (error.response && error.response.status === 403) {
           alert("접근이 거부되었습니다: " + error.response.data);
         } else {
-          console.log(error);
           alert(
             "아이디 또는 비밀번호를 잘못 입력했습니다. 입력하신 내용을 다시 확인해주세요."
           );

@@ -50,7 +50,7 @@ const PhotoList = () => {
                 alt="User Photo 1"
                 style={imgStyle}
               />
-              {photo.proceed === "rec" && (
+              {photo.proceed === "pr" && (
                 <SoftButton
                   type="submit"
                   variant="gradient"
@@ -72,7 +72,7 @@ const PhotoList = () => {
                 alt="User Photo 2"
                 style={imgStyle}
               />
-              {photo.proceed === "rec" && (
+              {photo.proceed === "pr" && (
                 <SoftButton
                   type="submit"
                   variant="gradient"
@@ -91,6 +91,16 @@ const PhotoList = () => {
           날짜: photo.dateUpdated,
           진행여부: photo.proceed,
         }));
+        // 'proceed' 값에 따라 정렬
+        newRows.sort((a, b) => {
+          if (a.진행여부 === "pr" && b.진행여부 === "done") {
+            return -1; // 'pr'을 'done'보다 아래에 위치
+          } else if (a.진행여부 === "done" && b.진행여부 === "pr") {
+            return 1; // 'done'을 'pr'보다 위에 위치
+          } else {
+            return 0; // 같은 경우는 순서 유지
+          }
+        });
         setRows(newRows);
       })
       .catch((error) => console.error("Error fetching photos", error));

@@ -22,9 +22,6 @@ import icon_count from "assets/images/icon/count_person.png";
 import icon_bronze from "assets/images/grade/grade_bronze.png";
 
 function DefaultProjectCard({ challenge }) {
-  console.log("isJoined: ", challenge.isJoined);
-  console.log("ch_id: ", challenge.chId);
-
   //카테고리 변환
   let image;
   let category;

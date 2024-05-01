@@ -97,35 +97,23 @@ const routes = [
   },
 
   {
-    type: "collapse",
-    name: "AdminVerfiy",
     key: "adminVerify",
     route: "/admin/verify",
-    icon: <Settings size="12px" />,
     component: <AdminVerifyPage />,
-    noCollapse: true,
     isAdmin: true, // 이 라인을 추가하여 라우트가 관리자용임을 명시
   },
 
   {
-    type: "collapse",
-    name: "AdminPointPage",
     key: "adminPointPage",
     route: "/admin/editpoint",
-    icon: <Settings size="12px" />,
     component: <AdminPointPage />,
-    noCollapse: true,
     isAdmin: true, // 이 라인을 추가하여 라우트가 관리자용임을 명시
   },
 
   {
-    type: "collapse",
-    name: "AdminCsPage",
     key: "adminCsPage",
     route: "/admin/cs",
-    icon: <Settings size="12px" />,
     component: <AdminCsPage />,
-    noCollapse: true,
     isAdmin: true, // 이 라인을 추가하여 라우트가 관리자용임을 명시
   },
 
