@@ -46,8 +46,8 @@
 		AND update_verify BETWEEN #{startOfWeek} AND #{endOfWeek}
 	</select>
 
-	<!-- 사진첩 -->
 	<!-- userId로 사진 정보와 챌린지 정보 조회 -->
+	<!-- 사진첩 
 	<select id="selectPhotosByUserId" resultType="PhotoDTO">
 		SELECT v.upload1 AS imagePath1, v.upload2 AS imagePath2, c.title AS
 		challengeTitle, c.proceed AS proceed, v.update_verify AS dateUpdated
@@ -57,7 +57,18 @@
           (v.upload1 IS NOT NULL) AND 
           (v.upload2 IS NOT NULL)
 		ORDER BY c.ch_id, v.update_verify DESC
-	</select>
+	</select>-->
+	
+	<!-- userId로 사진 정보와 챌린지 정보 조회 -->
+<select id="selectPhotosByUserId" resultType="PhotoDTO">
+    SELECT v.upload1 AS imagePath1, v.upload2 AS imagePath2, c.title AS
+    challengeTitle, c.proceed AS proceed, v.update_verify AS dateUpdated
+    FROM verify v
+    JOIN challenges c ON v.vi_ch_id = c.ch_id
+    WHERE v.vi_user_id = #{userId} AND 
+           (v.upload1 IS NOT NULL OR v.upload2 IS NOT NULL)
+    ORDER BY c.ch_id, v.update_verify DESC
+</select>
 
 	<!-- verify 테이블에서 upload1 or upload2 삭제-->
 	<update id="deletePhoto">

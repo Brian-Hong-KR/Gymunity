@@ -10,6 +10,7 @@ import BasicLayout from "layouts/authentication/components/BasicLayout";
 import AuthNavbar from "examples/Navbars/AuthNavbar";
 import ReactMarkdown from "react-markdown";
 import axios from "axios";
+import { gConst } from "layouts/gConst";
 
 const Replan = () => {
   const config = {
@@ -56,7 +57,11 @@ const Replan = () => {
 
   const handleRegister = async () => {
     try {
-      await axios.put("/user/resurvey", surveyData, config);
+      await axios.put(
+        `${gConst.API_BASE_URL}:8090/user/resurvey`,
+        surveyData,
+        config
+      );
       navigate("/profile");
     } catch (error) {
       console.error("Failed to resubmit the survey:", error);

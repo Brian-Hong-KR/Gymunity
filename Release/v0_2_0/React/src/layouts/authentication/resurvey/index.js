@@ -101,7 +101,7 @@ function ReSurvey() {
     };
     try {
       const response = await axios.post(
-        `${gConst.API_BASE_URL}:8090/resurvey`,
+        `${gConst.API_BASE_URL}:8090/survey`,
         formData,
         config
       );

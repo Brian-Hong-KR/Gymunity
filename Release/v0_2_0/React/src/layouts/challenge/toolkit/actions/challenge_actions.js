@@ -12,16 +12,16 @@ const config = {
 };
 
 //리스트 가져오기
-function getChallengeListAsync(currentPage) {
+function getChallengeListAsync(currentPage, category) {
   console.log("currentPage: ", currentPage);
   return async (dispatch) => {
     try {
       const response = await axios.get(
-        `${gConst.API_BASE_URL}:8090/challenge/list/${currentPage}`,
+        `${gConst.API_BASE_URL}:8090/challenge/list/${currentPage}/${category}`,
         config
       );
 
-      const { challengeList, joinList, pv } = response.data;
+      const { challengeList, joinList, joinChIdList, pv } = response.data;
       // dispatch(challengeReducers.getChallengeList({ challengeList, pv }));
       dispatch(
         challengeReducers.getChallengeList({

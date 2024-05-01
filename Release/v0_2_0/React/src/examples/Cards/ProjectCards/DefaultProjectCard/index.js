@@ -433,7 +433,7 @@ DefaultProjectCard.defaultProps = {
 
 DefaultProjectCard.propTypes = {
   challenge: PropTypes.shape({
-    ch_id: PropTypes.number.isRequired,
+    chId: PropTypes.number.isRequired,
     color: PropTypes.oneOf([
       "primary",
       "secondary",
