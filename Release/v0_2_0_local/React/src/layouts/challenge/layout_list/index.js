@@ -36,27 +36,34 @@ function Challenge() {
   }, []);
 
   useEffect(() => {
-    if (isInitialRender && currentPage) {
+    if (!isInitialRender && currentPage) {
       getChallengeList(currentPage, selectedItemId);
-      setIsInitialRender(false);
     } else {
-      // 페이지 변경 시 기존 데이터 초기화
-      dispatch(challengeActions.clearChallengeList());
+      setIsInitialRender(false);
     }
-  }, [
-    currentPage,
-    isInitialRender,
-    getChallengeList,
-    selectedItemId,
-    dispatch,
-  ]);
+  }, [currentPage, isInitialRender, selectedItemId, dispatch]);
+
+  useEffect(() => {
+    if (!isInitialRender && selectedItem) {
+      getChallengeList(1, selectedItem.id);
+    } else if (!isInitialRender && !selectedItem) {
+      setSelectedItemId(0);
+    }
+  }, [selectedItem, isInitialRender, dispatch]);
 
   const challengeList = useSelector((state) => [
     ...(state.challenge.challengeList || []),
     ...(state.challenge.newChallengeList || []),
   ]);
 
-  const totalPage = useSelector((state) => state.challenge.pv.totalPage || 1);
+  const pv = useSelector((state) =>
+    state.challenge.pv ? state.challenge.pv : { currentPage: 1 }
+  );
+
+  const pageNumbers = [];
+  for (let i = pv.startPage; i <= pv.endPage; i++) {
+    pageNumbers.push(i);
+  }
 
   const joinList = useSelector((state) => state.challenge.joinList || []);
   console.log("joinList:", joinList[0]);
@@ -90,20 +97,17 @@ function Challenge() {
 
   // 카테고리 선택 함수
   const handleItemClick = (item) => {
-    challengeActions.clearChallengeList();
+    dispatch(challengeActions.clearChallengeList());
     setSelectedItem(item);
     setSelectedItemId(item.id);
-    getChallengeList(1, item.id);
+    // getChallengeList(1, item.id);
     // console.log("item.id: ", item.id);
   };
 
   // 더보기 함수
   const handleLoadMore = () => {
-    const nextPage = parseInt(currentPage) + 1;
-    if (currentPage < totalPage + 1) {
-      console.log("totalPage:", totalPage);
-      getChallengeList(nextPage, selectedItemId);
-    }
+    // const nextPage = parseInt(currentPage) + 1;
+    getChallengeList(pv.startPage + pv.blockPage, selectedItemId);
   };
 
   return (
@@ -199,7 +203,7 @@ function Challenge() {
             </Grid>
           </SoftBox>
         </Card>
-        {currentPage < totalPage + 1 ? (
+        {pv.currentPage == pv.totalPage ? null : (
           <SoftBox
             mt={3}
             position="absolute"
@@ -222,7 +226,7 @@ function Challenge() {
               더 보기
             </SoftButton>
           </SoftBox>
-        ) : null}
+        )}
       </SoftBox>
     </DashboardLayout>
   );

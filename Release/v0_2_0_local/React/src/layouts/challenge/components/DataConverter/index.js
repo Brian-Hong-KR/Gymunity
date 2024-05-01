@@ -3,6 +3,9 @@ import categoryToLoseWeight from "assets/images/category/category_toloseweight.j
 import categoryToIncreaseMuscle from "assets/images/category/category_toincreasemuscle.jpg";
 import categoryPhysicalStrength from "assets/images/category/category_physicalstrength.jpg";
 import icon_bronze from "assets/images/grade/grade_bronze.png";
+import icon_silver from "assets/images/grade/grade_silver.png";
+import icon_gold from "assets/images/grade/grade_gold.png";
+import icon_platinum from "assets/images/grade/grade_platinum.png";
 
 //시작일을 D-day로 변환
 const getDaysRemaining = (startDate) => {
@@ -38,13 +41,13 @@ function DataConverter(challenge) {
       grade = icon_bronze;
       break;
     case "실버":
-      grade = icon_bronze;
+      grade = icon_silver;
       break;
     case "골드":
-      grade = icon_bronze;
+      grade = icon_gold;
       break;
     case "플래티넘":
-      grade = icon_bronze;
+      grade = icon_platinum;
       break;
   }
 

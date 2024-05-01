@@ -113,10 +113,10 @@ public class ChallengeServiceImpl implements ChallengeService {
 		// startDate가 오늘 날짜인 경우 proceed를 'pr'로 설정
 		if (!startDate.isAfter(LocalDate.now())) {
 			challenge.setProceed("pr");
-		}else {
+		} else {
 			challenge.setProceed("rec");
 		}
-		challengeMapper.insertChallenges(challenge);		
+		challengeMapper.insertChallenges(challenge);
 
 		// member 등록
 		Member member = new Member();
@@ -146,19 +146,19 @@ public class ChallengeServiceImpl implements ChallengeService {
 		response.setNickName(user.getNickName());
 		response.setGradeName(user.getGradeName());
 
-		List<ProfileDTO> pdto=challengeMapper.joinChIdList(userId);
+		List<ProfileDTO> pdto = challengeMapper.joinChIdList(userId);
 		ProfileDTO profile = pdto.get(0); // 리스트의 첫 번째 요소 선택
 		int ch_id1 = profile.getCh_id1();
 		int ch_id2 = profile.getCh_id2();
 
 		log.info("ch_id1:{}", ch_id1);
-		
-		if(ch_id1==0) {
+
+		if (ch_id1 == 0) {
 			challengeMapper.updateChId1InProfiles(challenge.getChId(), challenge.getUserId());
-		} else if (ch_id1!=0 && ch_id2==0) {
+		} else if (ch_id1 != 0 && ch_id2 == 0) {
 			challengeMapper.updateChId2InProfiles(challenge.getChId(), challenge.getUserId());
-		} 
-		
+		}
+
 		return response;
 	}// end createChallengeProcess()
 
@@ -167,18 +167,18 @@ public class ChallengeServiceImpl implements ChallengeService {
 	public void joinChallengeProcess(int chId, int userId) {
 		try {
 			// Profile 테이블에 ch_id1, ch_id2 중 0값이 있으면 chId를 업데이트
-			List<ProfileDTO> pdto=challengeMapper.joinChIdList(userId);
+			List<ProfileDTO> pdto = challengeMapper.joinChIdList(userId);
 			ProfileDTO profile = pdto.get(0); // 리스트의 첫 번째 요소 선택
 			int ch_id1 = profile.getCh_id1();
 			int ch_id2 = profile.getCh_id2();
 
 			log.info("ch_id1:{}", ch_id1);
-			
-			if(ch_id1==0) {
+
+			if (ch_id1 == 0) {
 				challengeMapper.updateChId1InProfiles(chId, userId);
-			} else if (ch_id1!=0 && ch_id2==0) {
+			} else if (ch_id1 != 0 && ch_id2 == 0) {
 				challengeMapper.updateChId2InProfiles(chId, userId);
-			} else if (ch_id1!=0 && ch_id2!=0) {
+			} else if (ch_id1 != 0 && ch_id2 != 0) {
 				throw new RuntimeException("챌린지 참여 중 오류가 발생했습니다.");
 			}
 
@@ -249,7 +249,7 @@ public class ChallengeServiceImpl implements ChallengeService {
 	public List<ProfileDTO> joinChIdListProcess(int userId) {
 		return challengeMapper.joinChIdList(userId);
 	}
-	
+
 	// 챌린지 proceed 상태 업데이트 및 챌린지 종료
 	@Override
 	public void updateProceedProcess() {
@@ -261,11 +261,11 @@ public class ChallengeServiceImpl implements ChallengeService {
 			LocalDate startDate = LocalDate.parse(challenge.getChStartDate());
 			LocalDate endDate = LocalDate.parse(challenge.getChEndDate());
 
-			if (startDate.isEqual(today)) {
+			if (startDate.isEqual(today) || startDate.isBefore(today)) {
 				challenge.setProceed("pr");
 				challengeMapper.updateProceed(chId, challenge.getProceed());
 			}
-			if (endDate.isEqual(today)) {
+			if (endDate.isEqual(today) || endDate.isBefore(today)) {
 				challenge.setProceed("done");
 				challengeMapper.updateProceed(chId, challenge.getProceed());
 				challengeMapper.updateProfileFinished(chId);

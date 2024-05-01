@@ -22,8 +22,6 @@ public interface ChallengeService {
 	
 	public Challenge detailChallengeProcess(int chId);
 	
-//	public boolean isMemberExists(int userId, int chId);
-	
 	public void joinChallengeProcess(int chId, int userId);
 	
 	public void deleteChallengeProcess(int chId, int userId);
