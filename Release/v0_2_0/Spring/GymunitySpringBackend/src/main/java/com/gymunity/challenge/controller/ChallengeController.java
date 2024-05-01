@@ -44,8 +44,7 @@ public class ChallengeController {
 
 	// 챌린지 리스트 조회
 	@Operation(summary = "챌린지 리스트 조회")
-//	@GetMapping("/challenge/list/{currentPage}/{category}")
-	@GetMapping("/challenge/list/{currentPage}")
+	@GetMapping("/challenge/list/{currentPage}/{category}")
 	public ResponseEntity<Map<String, Object>> listExecute(@PathVariable("currentPage") int currentPage,
 			@PathVariable(name = "category", required = false) String categoryString) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -110,6 +109,7 @@ public class ChallengeController {
 	public ResponseEntity<ChallengeCreateResponse> createChallenge(@RequestBody ChallengeCreateDTO challengeDTO) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
+		log.info("create_userId :{}", userId);
 		// 챌린지 생성 로직에 userId를 전달
 		ChallengeCreateResponse response = challengeService.createChallengeProcess(challengeDTO, userId);
 		return ResponseEntity.ok(response);
@@ -121,9 +121,10 @@ public class ChallengeController {
 	public ResponseEntity<String> joinChallenge(@PathVariable("chId") int chId) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
-		challengeService.joinChallengeProcess(chId, userId);
 		
-		return ResponseEntity.ok("챌린지가 참여되었습니다.");
+		log.info("join_userId :{}", userId);
+		challengeService.joinChallengeProcess(chId, userId);
+		return ResponseEntity.ok("참여 완료");
 	}// end joinChallenge()
 
 	// 챌린지 삭제
@@ -133,7 +134,7 @@ public class ChallengeController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
 		challengeService.deleteChallengeProcess(chId, userId);
-		return ResponseEntity.ok("챌린지가 삭제되었습니다.");
+		return ResponseEntity.ok("삭제 완료");
 	}// end deleteChallenge()
 
 	// 챌린지 proceed 상태 업데이트 및 챌린지 종료

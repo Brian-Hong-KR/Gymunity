@@ -31,10 +31,10 @@ import com.gymunity.user.repository.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 @Transactional
-@Slf4j
 public class ChallengeServiceImpl implements ChallengeService {
 
 	private final ChallengeMapper challengeMapper;
@@ -146,9 +146,19 @@ public class ChallengeServiceImpl implements ChallengeService {
 		response.setNickName(user.getNickName());
 		response.setGradeName(user.getGradeName());
 
-		// profile ch_id update
-		challengeMapper.updateChIdInProfiles(challenge.getChId(), challenge.getUserId());
+		List<ProfileDTO> pdto=challengeMapper.joinChIdList(userId);
+		ProfileDTO profile = pdto.get(0); // 리스트의 첫 번째 요소 선택
+		int ch_id1 = profile.getCh_id1();
+		int ch_id2 = profile.getCh_id2();
 
+		log.info("ch_id1:{}", ch_id1);
+		
+		if(ch_id1==0) {
+			challengeMapper.updateChId1InProfiles(challenge.getChId(), challenge.getUserId());
+		} else if (ch_id1!=0 && ch_id2==0) {
+			challengeMapper.updateChId2InProfiles(challenge.getChId(), challenge.getUserId());
+		} 
+		
 		return response;
 	}// end createChallengeProcess()
 
@@ -157,12 +167,18 @@ public class ChallengeServiceImpl implements ChallengeService {
 	public void joinChallengeProcess(int chId, int userId) {
 		try {
 			// Profile 테이블에 ch_id1, ch_id2 중 0값이 있으면 chId를 업데이트
-			challengeMapper.updateChIdInProfiles(chId, userId);
-			int rowsUpdated = challengeMapper.getUpdateCount(); // 업데이트된 행의 수
-			if (rowsUpdated == 0) {
-				// 만약 업데이트된 행이 없는 경우, 즉 두 컬럼 모두 값이 0이 아닌 경우
-				throw new RuntimeException("프로필 업데이트 중 오류가 발생했습니다. 이미 다른 챌린지에 참여 중입니다.");
-			}
+			List<ProfileDTO> pdto=challengeMapper.joinChIdList(userId);
+			ProfileDTO profile = pdto.get(0); // 리스트의 첫 번째 요소 선택
+			int ch_id1 = profile.getCh_id1();
+			int ch_id2 = profile.getCh_id2();
+
+			log.info("ch_id1:{}", ch_id1);
+			
+			if(ch_id1==0) {
+				challengeMapper.updateChId1InProfiles(chId, userId);
+			} else if (ch_id1!=0 && ch_id2==0) {
+				challengeMapper.updateChId2InProfiles(chId, userId);
+			} 
 
 			// member 등록
 			Member member = new Member();

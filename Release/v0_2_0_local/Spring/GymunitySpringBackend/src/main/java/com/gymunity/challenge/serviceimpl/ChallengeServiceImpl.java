@@ -11,7 +11,6 @@ import java.util.stream.Stream;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.gymunity.challenge.controller.ChallengeController;
 import com.gymunity.challenge.dto.Challenge;
 import com.gymunity.challenge.dto.ChallengeCreateDTO;
 import com.gymunity.challenge.dto.Member;
@@ -111,7 +110,13 @@ public class ChallengeServiceImpl implements ChallengeService {
 		challenge.setChallengePeriod(dto.getChallengePeriod());
 		challenge.setTotalDate(totalVerificationDays);
 		challenge.setUserId(userId);
-		challengeMapper.insertChallenges(challenge);
+		// startDate가 오늘 날짜인 경우 proceed를 'pr'로 설정
+		if (!startDate.isAfter(LocalDate.now())) {
+			challenge.setProceed("pr");
+		}else {
+			challenge.setProceed("rec");
+		}
+		challengeMapper.insertChallenges(challenge);		
 
 		// member 등록
 		Member member = new Member();

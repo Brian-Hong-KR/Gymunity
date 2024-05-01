@@ -93,6 +93,7 @@ public class ChallengeController {
 		Map<String, Object> map = new HashMap<>();
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Integer userId = (Integer) authentication.getPrincipal(); // 사용자 ID 추출
+		log.info("create_userId :{}", userId);
 		Challenge challenge = challengeService.detailChallengeProcess(chId);
 		map.put("challengeDetail", challenge);
 
