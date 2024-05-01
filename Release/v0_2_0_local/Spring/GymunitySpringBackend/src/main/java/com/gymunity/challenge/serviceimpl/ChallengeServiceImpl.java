@@ -178,7 +178,9 @@ public class ChallengeServiceImpl implements ChallengeService {
 				challengeMapper.updateChId1InProfiles(chId, userId);
 			} else if (ch_id1!=0 && ch_id2==0) {
 				challengeMapper.updateChId2InProfiles(chId, userId);
-			} 
+			} else if (ch_id1!=0 && ch_id2!=0) {
+				throw new RuntimeException("챌린지 참여 중 오류가 발생했습니다.");
+			}
 
 			// member 등록
 			Member member = new Member();

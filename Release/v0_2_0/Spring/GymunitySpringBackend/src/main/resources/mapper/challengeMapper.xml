@@ -16,6 +16,8 @@
 		<result column="nick_name" property="nickName" />
 		<result column="grade_name" property="gradeName" />
 		<result column="admin_yn" property="adminYn" />
+		<result column="ch_id1" property="chId1" />
+		<result column="ch_id2" property="chId2" />
 	</resultMap>
 
 	<!-- 챌린지 생성-->
@@ -87,27 +89,24 @@
         VALUES (#{memUserId}, #{memChId}, #{registrant})
         ]]> 
     </insert>
-
-	<!-- 챌린지 생성 또는 참가 시 profile 테이블 ch_id 삽입-->
-	<update id="updateChIdInProfiles" parameterType="int">
+	
+	<!-- 챌린지 생성 참가 시 profile 업데이트 -->
+	<update id="updateChId1InProfiles" parameterType="int">
     UPDATE profiles
-    SET
-        ch_id1 = CASE
+    SET ch_id1 = CASE
                     WHEN ch_id1 = 0 THEN #{chId}
                     ELSE ch_id1
-                 END,
-        ch_id2 = CASE
-                    WHEN ch_id1 = 0 AND ch_id2 = 0 THEN 0
-                    WHEN ch_id1 != 0 AND ch_id2 = 0 THEN #{chId}
+                 END
+    WHERE user_id = #{userId}
+	</update>
+	<update id="updateChId2InProfiles" parameterType="int">
+    UPDATE profiles
+    SET ch_id2 = CASE
+                    WHEN ch_id2 = 0 THEN #{chId}
                     ELSE ch_id2
                  END
-    WHERE user_id = #{userId} AND (ch_id1 = 0 OR ch_id2 = 0)
+    WHERE user_id = #{userId}
 	</update>
-
-	<!-- 업데이트한 행의 수를 불러오기 -->
-	<select id="getUpdateCount" resultType="int">
-		SELECT ROW_COUNT() AS updateCount
-	</select>
 
 	<!-- count 업데이트-->
 	<update id="updateChallengeCount" parameterType="int">

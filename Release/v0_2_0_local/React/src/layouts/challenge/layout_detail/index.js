@@ -93,7 +93,7 @@ function ChallengeDetail() {
       setShowDeleteAlert(true);
     } catch (error) {
       console.error("삭제 요청 중 오류 발생:", error);
-      setAlertMessage("삭제 요청 중 오류가 발생했습니다.");
+      setAlertMessage("다른 참여자가 있을 경우 삭제할 수 없습니다.");
       setShowDeleteAlert(true);
     }
   };
@@ -106,7 +106,7 @@ function ChallengeDetail() {
       setShowJoinAlert(true);
     } catch (error) {
       console.error("참여 요청 중 오류 발생:", error);
-      setAlertMessage("참여 요청 중 오류가 발생했습니다.");
+      setAlertMessage("챌린지는 2개까지 참여할 수 있습니다.");
       setShowJoinAlert(true);
     }
   };
