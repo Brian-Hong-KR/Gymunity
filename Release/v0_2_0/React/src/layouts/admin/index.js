@@ -153,7 +153,7 @@ function AdminInfo() {
               color="dark"
               fullWidth
               style={{ width: "24%" }}
-              href="/dashboard/usermanage"
+              href="/usermanage"
             >
               회원 관리
             </SoftButton>
@@ -164,7 +164,7 @@ function AdminInfo() {
               color="dark"
               fullWidth
               style={{ width: "24%" }}
-              href="/dashboard/editpoint"
+              href="/admin/editpoint"
             >
               포인트 관리
             </SoftButton>
@@ -186,6 +186,7 @@ function AdminInfo() {
               color="dark"
               fullWidth
               style={{ width: "24%" }}
+              href="/admin/cs"
             >
               CS 관리
             </SoftButton>
