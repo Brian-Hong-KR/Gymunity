@@ -29,10 +29,12 @@ import com.gymunity.user.dto.User;
 import com.gymunity.user.repository.UserMapper;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
 @Transactional
+@Slf4j
 public class ChallengeServiceImpl implements ChallengeService {
 
 	private final ChallengeMapper challengeMapper;
@@ -108,7 +110,17 @@ public class ChallengeServiceImpl implements ChallengeService {
 		challenge.setChallengePeriod(dto.getChallengePeriod());
 		challenge.setTotalDate(totalVerificationDays);
 		challenge.setUserId(userId);
+		// startDate가 오늘 날짜인 경우 proceed를 'pr'로 설정
+		if (!startDate.isAfter(LocalDate.now())) {
+			challenge.setProceed("pr");
+		}else {
+			challenge.setProceed("rec");
+		}
 		challengeMapper.insertChallenges(challenge);
+		
+		System.out.println("Parsed startDate: " + startDate);
+		System.out.println("Current date (LocalDate.now()): " + LocalDate.now());
+
 
 		// member 등록
 		Member member = new Member();
@@ -137,6 +149,8 @@ public class ChallengeServiceImpl implements ChallengeService {
 		response.setProceed(challenge.getProceed());
 		response.setNickName(user.getNickName());
 		response.setGradeName(user.getGradeName());
+
+		log.info("aaaaaaaaaaa{} {}", challenge.getChId(), challenge.getUserId());
 
 		// profile ch_id update
 		challengeMapper.updateChIdInProfiles(challenge.getChId(), challenge.getUserId());
@@ -223,7 +237,7 @@ public class ChallengeServiceImpl implements ChallengeService {
 	public List<ProfileDTO> joinChIdListProcess(int userId) {
 		return challengeMapper.joinChIdList(userId);
 	}
-	
+
 	// 챌린지 proceed 상태 업데이트 및 챌린지 종료
 	@Override
 	public void updateProceedProcess() {

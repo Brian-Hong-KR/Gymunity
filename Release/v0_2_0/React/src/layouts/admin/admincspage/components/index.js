@@ -3,6 +3,7 @@ import axios from "axios";
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 import Table from "examples/Tables/Table";
+import { gConst } from "layouts/gConst";
 
 const AdminCsDetail = () => {
   const baseConfig = {
@@ -28,7 +29,7 @@ const AdminCsDetail = () => {
 
   const fetchPoints = () => {
     axios
-      .get(`http://127.0.0.1:8090/user/inquirieslist`, baseConfig)
+      .get(`${gConst.API_BASE_URL}:8090/user/inquirieslist`, baseConfig)
       .then((response) => {
         const cs = response.data.cs;
         const newRows = cs.map((pointdetail) => ({

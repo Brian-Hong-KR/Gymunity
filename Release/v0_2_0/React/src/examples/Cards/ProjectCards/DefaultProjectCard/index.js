@@ -23,7 +23,7 @@ import icon_bronze from "assets/images/grade/grade_bronze.png";
 
 function DefaultProjectCard({ challenge }) {
   console.log("isJoined: ", challenge.isJoined);
-  console.log("ch_id: ", challenge.ch_id);
+  console.log("ch_id: ", challenge.chId);
 
   //카테고리 변환
   let image;
@@ -153,7 +153,7 @@ function DefaultProjectCard({ challenge }) {
     buttonComponent = (
       <SoftButton
         component={Link}
-        to={`/challenge/verify/${challenge.ch_id}`}
+        to={`/challenge/verify/${challenge.chId}`}
         variant="outlined"
         size="small"
         color="error"
@@ -193,7 +193,7 @@ function DefaultProjectCard({ challenge }) {
     buttonComponent = (
       <SoftButton
         component={Link}
-        to={`/challenge/detail/${challenge.ch_id}`}
+        to={`/challenge/detail/${challenge.chId}`}
         variant="outlined"
         size="small"
         color="light"
@@ -233,7 +233,7 @@ function DefaultProjectCard({ challenge }) {
     buttonComponent = (
       <SoftButton
         component={Link}
-        to={`/challenge/detail/${challenge.ch_id}`}
+        to={`/challenge/detail/${challenge.chId}`}
         variant="outlined"
         size="small"
         color="primary"
@@ -333,7 +333,7 @@ function DefaultProjectCard({ challenge }) {
         <SoftBox mb={1}>
           <SoftTypography
             component={Link}
-            to={`/challenge/detail/${challenge.ch_id}`}
+            to={`/challenge/detail/${challenge.chId}`}
             variant="h5"
             textTransform="capitalize"
           >

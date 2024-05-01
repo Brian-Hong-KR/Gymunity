@@ -37,7 +37,7 @@ import { gConst } from "layouts/gConst";
 // Overview page components
 
 function ChallengeVerify() {
-  const { ch_id } = useParams();
+  const { chId } = useParams();
   const [file, setFile] = useState(null);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -59,7 +59,7 @@ function ChallengeVerify() {
     }
 
     const formData = new FormData();
-    formData.append("chId", ch_id); // chId를 FormData에 추가
+    formData.append("chId", chId); // chId를 FormData에 추가
     formData.append("file", file);
 
     const config = {
@@ -70,7 +70,6 @@ function ChallengeVerify() {
       },
     };
 
-   
     try {
       const response = await axios.post(
         `${gConst.API_BASE_URL}:8090/verify/upload`,
@@ -103,15 +102,13 @@ function ChallengeVerify() {
         <SoftTypography variant="h4" fontWeight="bold">
           챌린지 인증
         </SoftTypography>
-    </SoftBox>
+      </SoftBox>
 
-
-     
       <Card style={{ textAlign: "center" }}>
         <SoftBox p={6} mb={2} style={{ width: "400px", margin: "0 auto" }}>
           <SoftBox mb={1} ml={1.5}>
             <SoftTypography component="label">
-             인증사진을 등록하세요.
+              인증사진을 등록하세요.
             </SoftTypography>
           </SoftBox>
           <SoftInput
@@ -129,7 +126,7 @@ function ChallengeVerify() {
             type="submit"
             variant="gradient"
             color="dark"
-            style={{ fontSize: '15px' }} 
+            style={{ fontSize: "15px" }}
             fullWidth
             onClick={handleUpload}
           >

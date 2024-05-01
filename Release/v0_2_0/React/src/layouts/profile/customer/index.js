@@ -54,7 +54,11 @@ function CustomerCreate() {
     };
 
     try {
-      const response = await axios.post("/user/inquiries", customer, config);
+      const response = await axios.post(
+        `${gConst.API_BASE_URL}:8090/user/inquiries`,
+        customer,
+        config
+      );
       console.log("Registration successful:", response);
       setSuccessMessage("문의가 성공적으로 작성되었습니다.");
       setShowSuccess(true);
