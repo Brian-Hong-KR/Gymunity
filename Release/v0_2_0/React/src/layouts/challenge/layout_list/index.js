@@ -10,7 +10,6 @@ import Card from "@mui/material/Card";
 // Soft UI Dashboard React components
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
-import SoftPagination from "components/SoftPagination";
 
 // Soft UI Dashboard React examples
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
@@ -19,7 +18,6 @@ import PlaceholderCard from "examples/Cards/PlaceholderCard";
 
 // Overview page components
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import GymunityNavbar from "examples/Navbars/GymunityNavbar";
 import FilteringByCategory from "../components/FilteringByCategory";
 import SoftButton from "components/SoftButton";
 
@@ -27,60 +25,76 @@ function Challenge() {
   const { currentPage = 1 } = useParams();
   const dispatch = useDispatch();
 
-  const getChallengeList = useCallback((page) => {
-    console.log("currentPage:", page);
-    dispatch(challengeActions.getChallengeListAsync(page));
-  }, []);
-
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItemId, setSelectedItemId] = useState();
+  console.log("selectedItemId:", selectedItemId);
   const [isInitialRender, setIsInitialRender] = useState(true);
+
+  const getChallengeList = useCallback((page, selectedItemId) => {
+    console.log("currentPage:", page);
+    dispatch(challengeActions.getChallengeListAsync(page, selectedItemId));
+  }, []);
 
   useEffect(() => {
     if (isInitialRender && currentPage) {
-      getChallengeList(currentPage);
+      getChallengeList(currentPage, selectedItemId);
       setIsInitialRender(false);
     }
-  }, [currentPage, isInitialRender, getChallengeList]);
+  }, [currentPage, isInitialRender, getChallengeList, selectedItemId]);
 
-  // const challengeList = useSelector(
-  //   (state) => state.challenge.challengeList || []
-  // );
   const challengeList = useSelector((state) => [
     ...(state.challenge.challengeList || []),
     ...(state.challenge.newChallengeList || []),
   ]);
 
+  const totalPage = useSelector((state) => state.challenge.pv.totalPage || 1);
+
   const joinList = useSelector((state) => state.challenge.joinList || []);
-  console.log("joinList:", joinList);
+  console.log("joinList:", joinList[0]);
+
+  const chIdList = useSelector((state) => state.challenge.joinChIdList || []);
 
   const joinChIdList =
-    joinList.length > 0 && typeof joinList[0] === "object"
-      ? Object.values(joinList[0])
+    chIdList.length > 0 && typeof joinList[0] === "object"
+      ? Object.values(chIdList[0])
       : [];
+
   console.log("joinChIdList:", joinChIdList);
-  // console.log("joinChIdList:", typeof joinChIdList[0]);
+  console.log("typeof joinChIdList:", typeof joinChIdList[0]);
 
   const updatedChallengeList = challengeList.map((challenge) => {
     return {
       ...challenge,
       isJoined:
-        challenge.chId === joinChIdList[0] ||
-        challenge.chId === joinChIdList[1],
+        challenge.chId === joinChIdList[0] || challenge.chId === joinChIdList[1]
+          ? true
+          : false,
     };
   });
 
-  const [selectedItem, setSelectedItem] = useState(null);
+  const updatedJoinList = joinList.map((challenge) => {
+    return {
+      ...challenge,
+      isJoined: true,
+    };
+  });
 
+  // 카테고리 선택 함수
   const handleItemClick = (item) => {
     setSelectedItem(item);
+    setSelectedItemId(item.id);
+    getChallengeList(1, item.id);
+    // console.log("item.id: ", item.id);
   };
 
+  // 더보기 함수
   const handleLoadMore = () => {
     const nextPage = parseInt(currentPage) + 1;
-    getChallengeList(nextPage);
+    if (currentPage < totalPage + 1) {
+      console.log("totalPage:", totalPage);
+      getChallengeList(nextPage, selectedItemId);
+    }
   };
-
-  //TODO localStorage.getItem('userId');로 바꾸기
-  // const localStorage.getItem =131;
 
   return (
     <DashboardLayout>
@@ -109,7 +123,7 @@ function Challenge() {
               <SoftBox p={1} m={1}>
                 <Grid container spacing={5}>
                   {joinList &&
-                    joinList.map((challenge) => (
+                    updatedJoinList.map((challenge) => (
                       <Grid item xs={12} md={6} xl={3} key={challenge.chId}>
                         <Link to={`/challenge/detail/${challenge.chId}`}>
                           <ChallengeCard challenge={challenge} />
@@ -175,28 +189,30 @@ function Challenge() {
             </Grid>
           </SoftBox>
         </Card>
-        <SoftBox
-          mt={3}
-          position="absolute"
-          minWidth="300px"
-          width="100%"
-          sx={{
-            maxWidth: "100%",
-            maxHeight: "100%",
-            display: "flex", // 가로 정렬 설정
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <SoftButton
-            variant="gradient"
-            color="dark"
-            onClick={handleLoadMore}
-            sx={{ width: "150px", marginRight: "50px" }}
+        {currentPage < totalPage + 1 ? (
+          <SoftBox
+            mt={3}
+            position="absolute"
+            minwidth="300px"
+            width="100%"
+            sx={{
+              maxWidth: "100%",
+              maxHeight: "100%",
+              display: "flex", // 가로 정렬 설정
+              justifyContent: "center",
+              alignItems: "center",
+            }}
           >
-            더 보기
-          </SoftButton>
-        </SoftBox>
+            <SoftButton
+              variant="gradient"
+              color="dark"
+              onClick={handleLoadMore}
+              sx={{ width: "150px", marginRight: "50px" }}
+            >
+              더 보기
+            </SoftButton>
+          </SoftBox>
+        ) : null}
       </SoftBox>
     </DashboardLayout>
   );

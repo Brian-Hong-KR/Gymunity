@@ -1,6 +1,7 @@
 package com.gymunity.challenge.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -17,7 +18,8 @@ public interface ChallengeMapper {
 	
 	public int count();
 	
-	public List<Challenge> list(PageDTO pv);
+//	public List<Challenge> list(@Param("pv") PageDTO pv, @Param("category") int category);
+	public List<Challenge> list(@Param("category") int category, @Param("startRow") int startRow, @Param("blockCount") int blockCount);
 	
 	public List<Challenge> joinList(int userId);
 	
@@ -32,7 +34,7 @@ public interface ChallengeMapper {
 	public Challenge selectChallengesByChId(int chId);
 	
 	//챌린지 참가
-	public void updateProfile(@Param("chId") int chId, @Param("userId") int userId);
+	public void updateChIdInProfiles(@Param("chId") int chId, @Param("userId") int userId);
 	
 	public int getUpdateCount();
 

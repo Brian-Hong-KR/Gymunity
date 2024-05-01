@@ -31,6 +31,7 @@ function getChallengeListAsync(currentPage) {
         })
       );
       dispatch(challengeReducers.getJoinList({ joinList }));
+      dispatch(challengeReducers.getJoinChIdList({ joinChIdList }));
     } catch (error) {
       console.error(
         "챌린지 및 참여 목록 데이터를 가져오는 중 오류 발생:",
